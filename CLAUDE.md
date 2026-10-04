@@ -79,4 +79,10 @@ Freigabe: „Anyone with the link“ ist aktiv. Wer die Seite offen hat, sieht n
   Intro beim ersten Besuch (`#intro`, `runIntro`): Terminal, Netzhaut-Scan, Stempel, „Zugang gewährt“, Panzertore,
   danach gestaffelter Seitenaufbau (`body.boot`) und gezeichnete Route (`heroDraw`). Merkt sich `ops5-intro`;
   überspringbar per Knopf, Klick, Esc; „Intro wiederholen“ im Footer. Zustandsklassen heißen `i-*` (nicht `stamp`!).
+- Version 11 (04.10.2026): Intro ohne „STRENG GEHEIM“-Stempel; stattdessen Zielerfassung Augsburg, Karlsbad, Prag
+  (Koordinaten rasten ein, `i-lock`), gesamt ca. 5 s länger. Aufrisse auf Werkplanungsniveau: Blatt 700×400 mit
+  Achsraster (`ax`), Höhenkoten (`lv`), Maßkette (`ch`), Schriftfeld; Zeichenbibliothek mit Sprossenfenstern
+  (`bWin` inkl. Verdachung/Balkon), Rustika, Gesimsen mit Zahnschnitt, Pilastern, korinthischen Säulen, Balustraden,
+  Mansarddächern mit Gauben, Portalen, Treppen, Schnittwänden (`bWall`) und Decken (`bSlab`), Möblierung.
+  Ebenen: `k` Hintergrund, `e` Fassade, `x` Umgebung, `i` Schnitt. Vollbild-Ansicht der Aufrisse (Esc schließt).
 - Tests: Playwright-Skripte müssen vor dem Laden `localStorage ops5-intro=1` setzen, sonst blockiert das Intro.
