@@ -96,8 +96,9 @@ Freigabe: „Anyone with the link“ ist aktiv. Wer die Seite offen hat, sieht n
   „OFFICIAL–SENSITIVE“ statt „STRENG GEHEIM“, Fußzeile „UK EYES ONLY“, Bereitschaftsanzeige `#rdyBtn` (`readiness()`,
   Lagebericht), Tastenkürzel 1–9/Q springen zu Modulen, „?“ zeigt Lagebericht und Kürzel (Ziffer nach „0“ springt nicht,
   damit „007“ funktioniert).
-- Zielobjekt-Karten und Detailpanel zeigen statt Fadenkreuz mit Kartensymbol eine Aufriss-Miniatur (`bpThumb`,
-  Ausschnitte in `THVB`): links Fassade, rechts Schnitt; bei Hover/Auswahl gleitet die Fassade zur Seite.
+- Zielobjekt-Karten und Detailpanel zeigen statt Fadenkreuz mit Kartensymbol eine statische Fassaden-Miniatur
+  (`bpThumb`, Klasse `bp bpth`, Ausschnitte in `THVB`, ohne Feinlinien und ohne Animation). Achtung: Der animierte
+  Aufriss im Detail wird mit `.bp:not(.bpth)` gesucht, sonst greift die Animation auf die Miniatur.
   Die Codes „OBJ A♠“ usw. bleiben als Kennung (Karten, Einsatzplan).
 - Dateiausgabe: Im Artifact-Viewer gehen Downloads nur über die Capability `downloads` (beim Veröffentlichen
   `capabilities: {downloads: true}` angeben). `.ics` ist dort nicht erlaubt, darum ist der ICS-Knopf im Viewer
