@@ -171,6 +171,59 @@ section{margin-top:56px}
 .mapfoot{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;padding:8px 16px;border-top:1px solid var(--line);font-family:var(--mono);font-size:.68rem;color:var(--mute)}
 .legend{display:flex;gap:14px;flex-wrap:wrap}
 .legend i{display:inline-block;vertical-align:middle;margin-right:5px}
+/* world */
+#world{display:block;width:100%;height:auto;aspect-ratio:1800/710;touch-action:pan-y;user-select:none;-webkit-user-select:none;background:var(--mapbg)}
+#world.pan{cursor:grab} #world.zoomed{touch-action:none} #world.drag{cursor:grabbing}
+.fstrip{display:flex;gap:6px;overflow-x:auto;padding:10px 16px;border-bottom:1px solid var(--line);scrollbar-width:thin;scroll-snap-type:x proximity}
+.fchip{flex:none;scroll-snap-align:start;background:none;border:1px solid var(--line2);color:var(--ink);font-family:var(--mono);font-size:.7rem;padding:6px 10px;border-radius:2px;cursor:pointer;white-space:nowrap}
+.fchip b{color:var(--cyan);font-weight:600;margin-right:3px}
+.fchip.u{border-style:dashed;color:var(--mute)}
+.fchip:hover{border-color:var(--cyan)}
+.fchip[aria-pressed="true"]{border-color:var(--amber);background:rgba(242,182,94,.1);color:var(--amber)}
+.fchip[aria-pressed="true"] b{color:var(--amber)}
+.fchip.play{border-color:var(--amber);color:var(--amber);font-weight:600}
+.pchip.f-n i{background:var(--cyan)}
+.mapinfo .ptag.f-n{color:var(--cyan)}
+.mapinfo .ref{margin:2px 2px 0 0}
+.w-sea{fill:var(--mapbg)}
+.w-grat{stroke:var(--mapgrid);stroke-width:1;vector-effect:non-scaling-stroke}
+.w-grat.maj{stroke:color-mix(in srgb,var(--mapline) 22%,transparent)}
+.w-grat.eq{stroke:color-mix(in srgb,var(--amber) 45%,transparent);stroke-dasharray:6 6}
+.w-trop{stroke:color-mix(in srgb,var(--mapline) 30%,transparent);stroke-dasharray:2 6;vector-effect:non-scaling-stroke}
+.w-gl{fill:var(--mute);font-family:var(--mono);font-size:10px;letter-spacing:.08em}
+.w-land{fill:color-mix(in srgb,var(--cyan) 13%,var(--mapbg));stroke:var(--mapline);stroke-width:.9;vector-effect:non-scaling-stroke;stroke-linejoin:round}
+.w-bord{stroke:var(--mapline);stroke-opacity:.35;stroke-width:.6;vector-effect:non-scaling-stroke}
+.w-ocean{fill:var(--cyan);opacity:.22;font-family:var(--mono);font-size:15px;letter-spacing:.5em}
+.w-route{stroke:var(--cyan);stroke-opacity:.28;stroke-width:1.3;vector-effect:non-scaling-stroke;stroke-linejoin:round}
+.w-route.u{stroke-dasharray:4 4}
+#world.film .w-route{stroke-opacity:.07}
+#world.film .w-route.sel{stroke:var(--amber);stroke-opacity:1;stroke-width:2.6;stroke-dasharray:7 5;animation:dash 1.4s linear infinite}
+@keyframes dash{to{stroke-dashoffset:-24}}
+.w-pl{cursor:pointer}
+.w-pm{fill:color-mix(in srgb,var(--red) 30%,var(--mapbg));stroke:var(--red);stroke-width:1.6}
+.w-pl.fi .w-pm{fill:var(--mapbg)}
+.w-pn{fill:var(--ink);font-family:var(--mono);font-size:7px;font-weight:600;pointer-events:none}
+.w-pt{fill:var(--ink);font-family:var(--sans);font-size:12px;font-weight:500;paint-order:stroke;stroke:var(--mapbg);stroke-width:3.5px;stroke-linejoin:round;opacity:0;pointer-events:none;transition:opacity .2s}
+#world.z5 .w-pt,.w-pl:hover .w-pt,.w-pl:focus .w-pt,.w-pl.on .w-pt{opacity:1}
+#world.film .w-pl:not(.on):not(:hover):not(:focus) .w-pt{opacity:0}
+#world.film .w-pl:not(.on){opacity:.3}
+#world.film .w-pl.on .w-pm{fill:var(--red)}
+#world.film .w-pl.on .w-pt{fill:var(--amber);font-weight:600}
+.w-pl:focus{outline:none} .w-pl:focus-visible .w-pm{stroke:var(--amber);stroke-width:2.5}
+.w-ops{cursor:pointer}
+.w-opsr{fill:none;stroke:var(--amber);stroke-width:1.5;animation:ppr 2.4s ease-out infinite;transform-box:fill-box;transform-origin:center}
+.w-opss{fill:var(--amber);stroke:var(--mapbg);stroke-width:1}
+.w-opst{fill:var(--amber);font-family:var(--mono);font-size:10px;font-weight:600;letter-spacing:.06em;paint-order:stroke;stroke:var(--mapbg);stroke-width:3px}
+.w-pp{cursor:pointer}
+.w-pp .w-pb{stroke:var(--mapbg);stroke-width:1.4}
+.w-pp.f-a .w-pb{fill:var(--green)} .w-pp.f-h .w-pb{fill:var(--red)} .w-pp.f-n .w-pb{fill:var(--cyan)} .w-pp.f-u .w-pb{fill:var(--amber)}
+.w-pnm{fill:var(--ink);font-family:var(--mono);font-size:10.5px;font-weight:600;paint-order:stroke;stroke:var(--mapbg);stroke-width:3px;stroke-linejoin:round;opacity:0;pointer-events:none}
+.w-pp:hover .w-pnm,.w-pp.sel .w-pnm,#world.film.z5 .w-pp .w-pnm{opacity:1}
+.w-pp.sel .w-pb{stroke:var(--ink);stroke-width:2.4}
+.w-pp.off{display:none}
+#world.psel .w-pp:not(.sel){opacity:.4}
+@media (prefers-reduced-motion: reduce){.w-opsr,#world.film .w-route.sel{animation:none}}
+
 /* svg map classes */
 .m-bg{fill:var(--mapbg)} .m-grid{stroke:var(--mapgrid)} .m-grid.maj{stroke-width:1.6} .m-gt{fill:var(--mute);font-family:var(--mono);font-size:12.5px}
 .m-land{fill:var(--ink);opacity:.13;font-family:var(--head);font-weight:700;font-size:44px;letter-spacing:.3em}
@@ -468,6 +521,8 @@ footer{margin:60px auto 0;padding:18px 20px 40px;max-width:1240px;border-top:1px
   .grid{grid-template-columns:repeat(auto-fill,minmax(150px,1fr))}
   .msg{padding:18px}
   #map{aspect-ratio:auto;height:min(64vh,440px)}
+  #world{aspect-ratio:auto;height:min(60vh,420px)}
+  #wStat{display:none}
   .zctl{right:8px;top:8px}
   .zctl button{width:34px;height:32px}
   .dpick{grid-template-columns:1fr auto}
@@ -479,7 +534,7 @@ footer{margin:60px auto 0;padding:18px 20px 40px;max-width:1240px;border-top:1px
 @media print{
   :root,:root[data-theme]{--bg:#fff;--bg2:#fff;--panel:#fff;--panel2:#fff;--ink:#111;--mute:#555;--cyan:#0E6E86;--green:#11895A;--amber:#9A5B00;--red:#B3261E;--line:#ccc;--line2:#999;--mapbg:#fff}
   body{background:#fff;font-size:11pt}
-  .sys,.gb,.toast,#qlab,.wave,.w-main,.w-list,.fbar,.ack .qbtn,.dpick .qbtn,#detail,.ghint,.zctl,.ppl,.pp,.m-trail{display:none!important}
+  .sys,.gb,.toast,#qlab,.wave,.w-main,.w-list,.fbar,.ack .qbtn,.dpick .qbtn,#detail,.ghint,.zctl,.ppl,.pp,.m-trail,.fstrip,.w-pp{display:none!important}
   .panel::after{display:none}
   .panel,section{break-inside:avoid}
   section{margin-top:24px}
@@ -494,7 +549,7 @@ footer{margin:60px auto 0;padding:18px 20px 40px;max-width:1240px;border-top:1px
   <button class="cls" type="button" id="clsBtn">STRENG GEHEIM</button>
   <span class="hide-s">MI6 · 00-SEKTION · OPS-ZENTRALE</span>
   <span class="hide-m clk" id="clk" aria-label="Ortszeit London und Prag">LDN --:-- · PRG --:--</span>
-  <nav aria-label="Module"><a href="#tx">Befehl</a><a href="#targets">Ziele</a><a href="#maps">Lage</a><a href="#ops">Einsatzplan</a><a href="#assets">Assets</a><a href="#regs">Protokoll</a><a href="#field">Handbuch</a><a href="#qlab">Q-Lab</a></nav>
+  <nav aria-label="Module"><a href="#tx">Befehl</a><a href="#targets">Ziele</a><a href="#maps">Lage</a><a href="#world-sec">Welt</a><a href="#ops">Einsatzplan</a><a href="#assets">Assets</a><a href="#regs">Protokoll</a><a href="#field">Handbuch</a><a href="#qlab">Q-Lab</a></nav>
   <button class="theme-btn" id="themeBtn" type="button">Tag / Nacht</button>
 </div>
 
@@ -535,7 +590,7 @@ footer{margin:60px auto 0;padding:18px 20px 40px;max-width:1240px;border-top:1px
     </div>
     <div class="panel wave">
       <svg viewBox="0 0 400 58" preserveAspectRatio="none" aria-hidden="true"><path id="wavePath" fill="none" stroke="currentColor" stroke-width="1.4" style="color:var(--green)"/></svg>
-      <div class="ticker"><span>50.1866 N 12.7540 E · LOKET · KONTAKT MATHIS ▸ 50.2262 N 12.8812 E · MÜHLBRUNNKOLONNADE · ANKUNFT MONTENEGRO ▸ 50.2183 N 12.8807 E · GRANDHOTEL PUPP · HOTEL SPLENDIDE ▸ 50.2190 N 12.8838 E · KAISERBAD · CASINO ROYALE ▸ 50.0862 N 14.3894 E · STRAHOV · COMMITTEE ROOM ▸ 50.0923 N 14.4395 E · DANUBE HOUSE · PROLOG ▸ 50.0789 N 14.4307 E · NATIONALMUSEUM · VENEDIG ▸ 50.0805 N 14.4285 E · BUNKER JALTA · ABHÖRZENTRALE ▸ 14.11.2026 · 20 JAHRE WELTPREMIERE CASINO ROYALE ▸ SCHATZAMT MELDET: SPESENRAHMEN UNVERÄNDERT ▸ Q: FAHRZEUG UNBESCHÄDIGT ZURÜCK ▸ BAR: EIN VESPER PRO AGENT ▸ WETTERLAGE WESTBÖHMEN: NOVEMBER, ALSO GRAU</span></div>
+      <div class="ticker"><span>50.1866 N 12.7540 E · LOKET · KONTAKT MATHIS ▸ 50.2262 N 12.8812 E · MÜHLBRUNNKOLONNADE · ANKUNFT MONTENEGRO ▸ 50.2183 N 12.8807 E · GRANDHOTEL PUPP · HOTEL SPLENDIDE ▸ 50.2190 N 12.8838 E · KAISERBAD · CASINO ROYALE ▸ 50.0862 N 14.3894 E · STRAHOV · COMMITTEE ROOM ▸ 50.0923 N 14.4395 E · DANUBE HOUSE · PROLOG ▸ 50.0789 N 14.4307 E · NATIONALMUSEUM · VENEDIG ▸ 50.0805 N 14.4285 E · BUNKER JALTA · ABHÖRZENTRALE ▸ 14.11.2026 · 20 JAHRE WELTPREMIERE CASINO ROYALE ▸ SCHATZAMT MELDET: SPESENRAHMEN UNVERÄNDERT ▸ Q: FAHRZEUG UNBESCHÄDIGT ZURÜCK ▸ BAR: EIN VESPER PRO AGENT ▸ WETTERLAGE WESTBÖHMEN: NOVEMBER, ALSO GRAU ▸ ARCHIV: 27 EINSÄTZE SEIT 1962 · LONDON 11× SCHAUPLATZ ▸ MONTENEGRO LIEGT IN WESTBÖHMEN, DAS ARCHIV BESTÄTIGT ES</span></div>
     </div>
   </div>
 
@@ -589,6 +644,20 @@ footer{margin:60px auto 0;padding:18px 20px 40px;max-width:1240px;border-top:1px
       <div class="ppl" id="ppl"></div>
       <div class="mapinfo" id="mapinfo" aria-live="polite"></div>
       <div class="mapfoot"><span class="legend"><span><i style="width:12px;height:12px;border:2px solid var(--red);border-radius:50%"></i>Zielobjekt</span><span><i style="width:9px;height:9px;background:var(--green)"></i>Asset</span><span><i style="width:11px;height:11px;border-radius:50%;background:var(--green)"></i>Verbündet</span><span><i style="width:10px;height:10px;background:var(--red);transform:rotate(45deg)"></i>Feindlich</span><span><i style="width:11px;height:11px;border-radius:50%;background:var(--amber)"></i>00-Einheit</span><span id="legRoute"></span></span><span>ZOOM: + / − · DOPPELKLICK · ZIEHEN · SCHEMATISCH, NICHT ZUR NAVIGATION</span></div>
+    </div>
+  </section>
+
+  <section id="world-sec">
+    <div class="sh"><div><div class="ix">MODUL 03-W // WELTLAGE</div><h2>Das Archiv</h2></div><p>Alle Einsätze seit 1962 auf einer Karte. Jede Linie ist ein Film, jeder Punkt ein Schauplatz der Handlung, und die Figuren sind unterwegs. Film wählen oder Chronologie abspielen.</p></div>
+    <div class="panel">
+      <div class="ph"><b id="wTitle">WELTLAGE</b><span id="wStat"></span></div>
+      <div class="fstrip" id="wFilms" aria-label="Filme"></div>
+      <div class="mapbox"><svg id="world" viewBox="0 0 1800 710" role="img" aria-label="Weltkarte aller Schauplätze"></svg>
+        <div class="zctl" aria-label="Zoom"><button type="button" id="wzIn" aria-label="Hineinzoomen">+</button><span id="wzLvl">1,0×</span><button type="button" id="wzOut" aria-label="Herauszoomen">−</button><button type="button" id="wzReset" aria-label="Ganze Welt">⤢</button></div>
+      </div>
+      <div class="ppl" id="wPpl"></div>
+      <div class="mapinfo" id="wInfo" aria-live="polite"></div>
+      <div class="mapfoot"><span class="legend"><span><i style="width:10px;height:10px;border-radius:50%;border:2px solid var(--red)"></i>Schauplatz (Zahl = Filme)</span><span><i style="width:9px;height:9px;border:2px solid var(--red);transform:rotate(45deg)"></i>fiktiv</span><span><i style="width:10px;height:10px;border-radius:50%;background:var(--green)"></i>Verbündet</span><span><i style="width:9px;height:9px;background:var(--red);transform:rotate(45deg)"></i>Feindlich</span><span><i style="width:10px;height:10px;border-radius:50%;background:var(--cyan)"></i>Undurchsichtig</span><span><i style="width:10px;height:10px;background:var(--amber);clip-path:polygon(50% 0,61% 35%,98% 35%,68% 57%,79% 91%,50% 70%,21% 91%,32% 57%,2% 35%,39% 35%)"></i>Ihr Einsatz</span></span><span>* INOFFIZIELL · SCHAUPLÄTZE LAUT HANDLUNG · KARTE: NATURAL EARTH</span></div>
     </div>
   </section>
 
@@ -982,7 +1051,7 @@ function placeAt(a,now){let u=((now/1000+a.off)/a.dur)%1;if(a.mode==='pp')u=u<.5
   // weich an den Wendepunkten
   u=u*u*(3-2*u)*.35+u*.65;let d=u*a.len,i=1;while(i<a.cum.length-1&&a.cum[i]<d)i++;
   const s0=a.cum[i-1],s1=a.cum[i],f=s1>s0?(d-s0)/(s1-s0):0,p0=a.pts[i-1],p1=a.pts[i];a.x=p0[0]+(p1[0]-p0[0])*f;a.y=p0[1]+(p1[1]-p0[1])*f;
-  a.g.setAttribute('transform',`translate(${a.x.toFixed(1)} ${a.y.toFixed(1)})`)}
+  a.g.setAttribute('transform',`translate(${a.x.toFixed(1)} ${a.y.toFixed(1)})${a.k&&a.k!==1?' scale('+a.k.toFixed(3)+')':''}`)}
 function draw(svgEl,key,opts){
   opts=opts||{};const el=mk(svgEl);const m=maps[key];svgEl.innerHTML='';const hero=!!opts.hero;
   const W=+svgEl.dataset.w,H=+svgEl.dataset.h,pad=60,[la0,la1,lo0,lo1]=m.b,k=Math.cos((la0+la1)/2*Math.PI/180);
@@ -1063,52 +1132,59 @@ function draw(svgEl,key,opts){
     document.querySelectorAll('#mapTabs .tbtn').forEach(b=>b.setAttribute('aria-selected',b.dataset.k===key?'true':'false'));
     const pe=document.getElementById('ppl');pe.innerHTML='<span class="pplh">ZIELPERSONEN</span>'+people.map(([id])=>{const p=PP[id];return `<button type="button" class="pchip f-${p.f}" data-p="${id}" aria-pressed="false"><i></i>${p.n}</button>`}).join('');
     pe.querySelectorAll('.pchip').forEach(b=>b.onclick=()=>selP(sel===b.dataset.p?null:b.dataset.p));
-    mapFocus=P(m.focus[0],m.focus[1]);zHome()}
+    MV.focus=P(m.focus[0],m.focus[1]);MV.home()}
 }
 maps.route.code='B-1';maps.kv.code='B-2';maps.prg.code='B-3';
 maps.route.label='Anmarsch & Rückzug';maps.kv.label='Karlsbad = Montenegro';maps.prg.label='Prag = London, Miami, Venedig';
 const mapSvg=document.getElementById('map'),heroSvg=document.getElementById('heroMap');
 
-/* Zoom und Verschieben */
-let Z={x:0,y:0,w:1000,h:640},mapFocus=[500,320];
-function zHome(){const w=innerWidth<680?520:1000;setZ(mapFocus[0]-w/2,mapFocus[1]-w*mapA()/2,w)}const zLvl=document.getElementById('zLvl');
-/* Seitenverhältnis folgt dem Element: am Handy ist die Karte höher als breit und zeigt einen Ausschnitt */
-const mapA=()=>mapSvg.clientWidth?mapSvg.clientHeight/mapSvg.clientWidth:.64;
-function setZ(x,y,w,now){const W=1000,H=640,A=mapA();w=Math.max(220,Math.min(W,H/A,w));const h=w*A;x=Math.max(0,Math.min(W-w,x));y=Math.max(0,Math.min(H-h,y));Z={x,y,w,h};
-  mapSvg.setAttribute('viewBox',`${x.toFixed(1)} ${y.toFixed(1)} ${w.toFixed(1)} ${h.toFixed(1)}`);mapSvg.classList.toggle('zoomed',w<Math.min(W,H/A)-1);mapSvg.classList.toggle('pan',w<W-1);zLvl.textContent=(W/w).toFixed(1).replace('.',',')+'×'}
-function zoomBy(f,cx,cy){if(cx==null){cx=Z.x+Z.w/2;cy=Z.y+Z.h/2}const w=Z.w/f;setZ(cx-(cx-Z.x)*w/Z.w,cy-(cy-Z.y)*w/Z.w,w)}
-function svgPt(e){const r=mapSvg.getBoundingClientRect();return[Z.x+(e.clientX-r.left)/r.width*Z.w,Z.y+(e.clientY-r.top)/r.height*Z.h]}
-document.getElementById('zIn').onclick=()=>zoomBy(1.5);
-document.getElementById('zOut').onclick=()=>{sel&&selP(null);zoomBy(1/1.5)};
-document.getElementById('zReset').onclick=()=>{selP(null);zHome()};
-mapSvg.addEventListener('dblclick',e=>{e.preventDefault();const[x,y]=svgPt(e);zoomBy(1.8,x,y)});
-mapSvg.addEventListener('wheel',e=>{if(!e.ctrlKey&&!e.metaKey)return;e.preventDefault();const[x,y]=svgPt(e);zoomBy(Math.exp(-e.deltaY*.01),x,y)},{passive:false});
-let drag=null;
-addEventListener('resize',()=>setZ(Z.x,Z.y,Z.w));
-mapSvg.addEventListener('pointerdown',e=>{if(!mapSvg.classList.contains('pan')||e.button>0)return;drag={sx:e.clientX,sy:e.clientY,z:{...Z},id:e.pointerId,on:false}});
-mapSvg.addEventListener('pointermove',e=>{if(!drag||e.pointerId!==drag.id)return;const dx=e.clientX-drag.sx,dy=e.clientY-drag.sy;
-  if(!drag.on){if(Math.hypot(dx,dy)<6)return;drag.on=true;follow=null;mapSvg.setPointerCapture(e.pointerId);mapSvg.classList.add('drag')}
-  const r=mapSvg.getBoundingClientRect();setZ(drag.z.x-dx/r.width*drag.z.w,drag.z.y-dy/r.height*drag.z.h,drag.z.w)});
-const endDrag=e=>{if(drag&&drag.on){mapSvg.releasePointerCapture(drag.id);mapSvg.classList.remove('drag')}drag=null};
-mapSvg.addEventListener('pointerup',endDrag);mapSvg.addEventListener('pointercancel',endDrag);
+/* Zoom und Verschieben, für Lagekarte und Weltkarte gemeinsam.
+   Das Seitenverhältnis folgt dem Element: am Handy sind die Karten höher und zeigen einen Ausschnitt. */
+function viewer(svg,BW,BH,lvl,o){
+  const V={x:0,y:0,w:BW,h:BH,follow:null,focus:[BW/2,BH/2],onDrag:null};
+  V.A=()=>svg.clientWidth?svg.clientHeight/svg.clientWidth:BH/BW;
+  V.set=(x,y,w)=>{const A=V.A();w=Math.max(o.min,Math.min(BW,BH/A,w));const h=w*A;x=Math.max(0,Math.min(BW-w,x));y=Math.max(0,Math.min(BH-h,y));Object.assign(V,{x,y,w,h});
+    svg.setAttribute('viewBox',`${x.toFixed(1)} ${y.toFixed(1)} ${w.toFixed(1)} ${h.toFixed(1)}`);svg.classList.toggle('zoomed',w<Math.min(BW,BH/A)-1);svg.classList.toggle('pan',w<BW-1);
+    lvl.textContent=(BW/w).toFixed(1).replace('.',',')+'×';if(o.onZoom)o.onZoom(BW/w)};
+  V.home=()=>{const w=o.homeW();V.set(V.focus[0]-w/2,V.focus[1]-w*V.A()/2,w)};
+  V.zoomBy=(f,cx,cy)=>{if(cx==null){cx=V.x+V.w/2;cy=V.y+V.h/2}const w=V.w/f;V.set(cx-(cx-V.x)*w/V.w,cy-(cy-V.y)*w/V.w,w)};
+  V.to=(cx,cy,w)=>V.set(cx-w/2,cy-w*V.A()/2,w);
+  V.pt=e=>{const r=svg.getBoundingClientRect();return[V.x+(e.clientX-r.left)/r.width*V.w,V.y+(e.clientY-r.top)/r.height*V.h]};
+  V.chase=(px,py)=>V.set(V.x+(px-V.w/2-V.x)*.06,V.y+(py-V.h/2-V.y)*.06,V.w);
+  svg.addEventListener('dblclick',e=>{e.preventDefault();const[x,y]=V.pt(e);V.zoomBy(1.8,x,y)});
+  svg.addEventListener('wheel',e=>{if(!e.ctrlKey&&!e.metaKey)return;e.preventDefault();const[x,y]=V.pt(e);V.zoomBy(Math.exp(-e.deltaY*.01),x,y)},{passive:false});
+  let drag=null;
+  addEventListener('resize',()=>V.set(V.x,V.y,V.w));
+  svg.addEventListener('pointerdown',e=>{if(!svg.classList.contains('pan')||e.button>0)return;drag={sx:e.clientX,sy:e.clientY,x:V.x,y:V.y,w:V.w,id:e.pointerId,on:false}});
+  svg.addEventListener('pointermove',e=>{if(!drag||e.pointerId!==drag.id)return;const dx=e.clientX-drag.sx,dy=e.clientY-drag.sy;
+    if(!drag.on){if(Math.hypot(dx,dy)<6)return;drag.on=true;V.follow=null;svg.setPointerCapture(e.pointerId);svg.classList.add('drag')}
+    const r=svg.getBoundingClientRect();V.set(drag.x-dx/r.width*drag.w,drag.y-dy/r.height*drag.w*V.A(),drag.w)});
+  const end=()=>{if(drag&&drag.on){try{svg.releasePointerCapture(drag.id)}catch(e){}svg.classList.remove('drag')}drag=null};
+  svg.addEventListener('pointerup',end);svg.addEventListener('pointercancel',end);
+  return V}
+const MV=viewer(mapSvg,1000,640,document.getElementById('zLvl'),{min:220,homeW:()=>innerWidth<680?520:1000});
+const Z=MV,setZ=MV.set,mapA=MV.A;
+document.getElementById('zIn').onclick=()=>MV.zoomBy(1.5);
+document.getElementById('zOut').onclick=()=>{sel&&selP(null);MV.zoomBy(1/1.5)};
+document.getElementById('zReset').onclick=()=>{selP(null);MV.home()};
 
 /* Auswahl und Verfolgung */
-let follow=null;
-function selP(id){sel=id;follow=id;const info=document.getElementById('mapinfo');const list=anims.get(mapSvg)||[];
+function selP(id){sel=id;MV.follow=id;const info=document.getElementById('mapinfo');const list=anims.get(mapSvg)||[];
   list.forEach(a=>{const on=a.id===id;a.g.classList.toggle('sel',on);a.tr.classList.toggle('sel',on);if(on)a.g.parentNode.appendChild(a.g)});
   document.querySelectorAll('#ppl .pchip').forEach(b=>b.setAttribute('aria-pressed',b.dataset.p===id?'true':'false'));
   if(!id){mapSvg.classList.remove('focus');return}
   mapSvg.classList.add('focus');
   const p=PP[id],a=list.find(x=>x.id===id);
   info.innerHTML=`<b>ZIELPERSON // ${p.n.toUpperCase()}</b> <span class="ptag f-${p.f}">${PF[p.f]} · ${p.t}</span><br>${p.d}<br><span class="psee">LETZTE SICHTUNG: ${a?a.where:'unbekannt'}${RM?'':' · Karte folgt der Person, Ziehen beendet die Verfolgung.'}</span>`;
-  if(a&&Z.w>(innerWidth<680?400:640)){const w=innerWidth<680?380:520;setZ(a.x-w/2,a.y-w*mapA()/2,w)}}
+  if(a&&MV.w>(innerWidth<680?400:640))MV.to(a.x,a.y,innerWidth<680?380:520)}
 mapSvg.addEventListener('click',e=>{if(sel&&!e.target.closest('.pp,.mk'))selP(null)});
 
-/* Animation, nur für sichtbare Karten */
-const vis=new Set();
-if('IntersectionObserver' in window){const io=new IntersectionObserver(es=>es.forEach(e=>e.isIntersecting?vis.add(e.target):vis.delete(e.target)));io.observe(mapSvg);io.observe(heroSvg)}else{vis.add(mapSvg);vis.add(heroSvg)}
-function frame(now){for(const[svg,list]of anims){if(!vis.has(svg))continue;list.forEach(a=>placeAt(a,now))}
-  if(follow&&vis.has(mapSvg)){const a=(anims.get(mapSvg)||[]).find(x=>x.id===follow);if(a)setZ(Z.x+(a.x-Z.w/2-Z.x)*.06,Z.y+(a.y-Z.h/2-Z.y)*.06,Z.w)}
+/* Animation, nur für sichtbare Karten; jede Karte mit Viewer kann einer Person folgen */
+const vis=new Set(),VIEW=new Map([[mapSvg,MV]]);
+const watchVis=el=>{if(!('IntersectionObserver' in window)){vis.add(el);return}(watchVis.io||(watchVis.io=new IntersectionObserver(es=>es.forEach(e=>e.isIntersecting?vis.add(e.target):vis.delete(e.target))))).observe(el)};
+watchVis(mapSvg);watchVis(heroSvg);
+function frame(now){for(const[svg,list]of anims){if(!vis.has(svg))continue;list.forEach(a=>placeAt(a,now));
+    const V=VIEW.get(svg);if(V&&V.follow){const a=list.find(x=>x.id===V.follow);if(a)V.chase(a.x,a.y)}}
   requestAnimationFrame(frame)}
 if(!RM)requestAnimationFrame(frame);
 
@@ -1117,7 +1193,198 @@ const mt=document.getElementById('mapTabs');
 draw(mapSvg,'route');
 draw(heroSvg,'route',{hero:true});
 /* Schilder nach dem Laden der Schriften neu vermessen */
-if(document.fonts&&document.fonts.ready)document.fonts.ready.then(()=>{const z={...Z},s=sel;draw(mapSvg,curMap);draw(heroSvg,'route',{hero:true});setZ(z.x,z.y,z.w);if(s)selP(s)});
+if(document.fonts&&document.fonts.ready)document.fonts.ready.then(()=>{const z={x:MV.x,y:MV.y,w:MV.w},s=sel;draw(mapSvg,curMap);draw(heroSvg,'route',{hero:true});MV.set(z.x,z.y,z.w);if(s)selP(s)});
+
+/* Weltgeometrie: Natural Earth 1:110 Mio. (gemeinfrei), abstandstreu projiziert, 84° N bis 58° S */
+const WORLD={W:1800,H:710,land:'M1791 508l1-1 2 1-1 3-3 0-3 0-1-2 2-2zM1800 503l-3 1-3 1-1-2 2-1 2 0 3-2 0 3zM0 500l1 0-1 3 0-3zM1144 228l2 4 5 1 3 3 7 0 8-1 1-1-1-4 0-5-3-1 1-4-4 0 2-4 4 1 5-2-4-3-1-3-4 2-1 3-1-3-1-1 1-2 0-2-6-2-3-4-2-1 0-2 4 0 1-3 4-1 4 1 1-5-1-3-5 0-4-1-6 2-4 1-3 3-5 1-5 5 5 5-1 3 6 6 3 3 2 3 2 0 2 2-4 0-1 4-1 2-2 1zM0 75l12 4 13 5 0 3 3 1-1-3 14 0 10 5-5 2-9 1 0 5-2 1-4 0-4-2-7-2-1-2-5-1-6 1-3-2 2-2-6 2 2 2-3 2 0-20zM1800 95l-6 2-7 0 5 3 3 4 2 1 0 2-1 1-9-1-14 4-5 1-7 3-8 3-1 3-7-4-14 4-2-2-5 2-6 0-2 3-6 5 0 2 6 1-1 7-4 0-2 5 2 2-9 2-2 6-7 1-2 5-7 5-2-3-2-8-3-11 3-7 4-3 0-2 8-1 9-7 8-5 9-4 4-7-6 1-3 4-12 5-4-6-13 2-13 8 4 3-11 2-8 0 1-4-8 0-6 2-16-1-16 2-16 10-19 11 8 1 2 3 5 1 3-2 6 0 7 6 0 4-4 5 0 6-3 8-7 7-2 3-7 6-6 6-4 3-6 3-3 0-4-2-6 3-1 2-2 0-2 1-2 2 1 4-3 1-1 1-2 1-3 1-2 1 0 2-1 1 2 1 3 2 4 6 1 3 0 6-2 3-4 1-4 2-5 0 0-3 1-3-2-6 3 0-3-5-3-1 0 1-2 1 0-1-1-1-1-1 1-2 1 0 0-1 1-3 0-1-3 0-3-2-7 2-3 2-6 2 3-3-1-2 4-3-3-3-4 2-6 4-3 3-5 0-2 2 2 4 4 1 1 2 4 1 5-3 5 2 3 0 1 2-7 2-3 2-5 3-2 3 5 3 2 5 3 5 4 4-1 3-3 2 2 2 2 2 0 4-2 4-2 0-4 6-4 6-5 6-7 5-7 4-5 1-3 2-2-2-3 3-7 2-5 1-2 5-3 1-1-4 1-2-6-2-3 1-6 5-5 4-1 4 4 5 5 7 4 3 3 4 3 9-1 9-4 3-6 3-4 4-6 5-2-3 1-4-3-2-5-1-2-3-2-5-5-2-4 0 1-4-5 0 0 5-3 8-1 4 0 4 3 0 2 5 1 4 3 3 3 0 3 3 1 0 3 3 2 4 0 3 0 2 0 2 1 3 1 1 2 5 0 2-3 0-5-4-6-4-1-2-3-4 0-4-2-3 1-3-2-2-2-2 0-3-3-3-2-2-1 3-1-3 0-3 2-5-1-3 2-4-2-3 1-6-2-2-2-6-1-7-2-4-3 3-6 3-3 0-3-1 2-6-1-5-4-6 0-2-3 0-3-4-2-3 0-3-1-2-2-3-5 0 1 2-2 3-2-1 0 1-2-1-2 0-1 2-3-1-6 2 0 3-3 3-7 4-5 5-4 4-5 3 0 2-3 1-4 2-2 1-2 3 1 7 0 4-2 5 0 8-2 0-3 4 2 2-5 1-1 4-2 1-5-4-2-7-2-6-2-2-3-5-1-6-1-3-4-7-2-10-2-6 0-6-1-5-7 3-4 0-6-6 2-2-1-2-6-4-4-2-1-3-4-4-9 1-8 0-8 1-9-2-5-1-6-1-2-6-3-1-3 1-5 3-7-2-5-4-4-1-4-5-3-7-3 1-3-2-2 2-3 0 1 2-1 1 2 4 2 5 3 1 0 1 4 3 0 2 0 1 0 2 2 1 0 2 1 1 0-3 1-3 1-1 2 2 0 3-1 3 1 2 1 0 0 1 4-1 4 0 3 0 3-3 4-3 3-3 2-2 0 3-1 0 1 4 2 4 3 2 4 0 3 1 2 3 1 2 2 0 0 1-2 3-1 2-2 1-2 4-2 0-1 1-1 2 1 4-1 0-2 0-3 2 0 3-2 1-3 0-2 1 0 2-2 1-3 0-3 1-2 1-4 1-1 2 0 2-5 2-8 2-5 4-2 0-1 0-3 2-3 1-5 0-1 1-1 1-1 0-1 2-3-1-1 1-4 0-1-3 0-3-1-1-1-4-1-2 1 0 0-3 0-1 0-2-1-2-1-1-1-2-2-2-3-4-1-4-4-4-2-1-3-4-1-4 0-3-3-5-2-2-3-1-1-3 0-1-1-3-2-1-2-4-3-4-2-3-3 0 1-3 0-2 1-2 0-1-2 3-1 3-1 3-1 1-2-2-2-2-4-7 2 5 3 6 4 7 1 3 2 3 4 5-1 1 1 3 5 5 1 1 2 5-1 1 1 5 1 6 2 1 3 2 3 6 1 4 3 3 7 5 3 2 2 3 2 2 2 2 2 1-1 2-2 1 2 2 1 1 1 2 3 2 2 0 5-1 5-1 5-2 2 0 2-1 3 0 1 0 3-1 2 0 3-2 2 0 0 1-1 3 0 3-1 2-1 5-3 6-3 6-4 7-4 6-6 7-5 4-8 5-4 4-6 6-1 2-1 1-4 2-1 2-2 1 0 3-2 2-1 4-2 1-2 7 0 2 3 2 0 1-1 4 0 1 0 2 2 4 2 4 2 2 0 2 0 5 1 4 0 8 1 2-2 4-2 4-3 3-4 2-6 2-6 5-2 1-3 4-2 1 0 3 2 4 1 3 0 2 1-1 0 5-1 3 1 1-1 2-2 1-4 2-6 3-2 2 0 2 2 0-1 3-1 3-1 5-1 2-3 2-1 1-2 3-2 2-3 4-5 5-4 3-4 2-5 2-2 0-1 2-3-1-3 1-5-1-3 1-2-1-5 2-5 1-3 2-2 0-2-2-2 0-2-2 0 1-1-2 0-3-1-3 1-1 0-4-3-4-3-5-3-6-4-4-2-4-1-4-1-4-2-8 0-6-1-2-2-3-2-4-3-6-1-3-4-5 0-3-1-4 1-4 2-5 0-2 2-4 1-2 3-4 1-2 1-4-1-2-1-2-1-3-2-3 1-1 1-2-1-5-1-3-3-4 1-1-1-1-1-4-5-5-5-5-3-4-3-5 0-2 1-2 1-3 1-4 0-1 1-5 1-4-2-4-2-1-1-2-2 0 1-2-6 2-2 0-2 1-4 0-2-3-2-4-3-3-4 0-5 0-4 0-4 1-8 3-2 2-5 1-4-1-3 0-3-1-3 0-6 1-4 1-5 2-1 0-1 0-5-2-5-4-4-3-3-3-2 0-3-2-3-3-1-2 0-4-2-2-2-2-2-1-1-1 0-2-1-1-2-1-2-2-2-1-2-1 0-1-1-1 0-1-1-4 0-2-2-4-2-2 2-1 2-3 2-3-1-2 2-3 0-5 0-4-1-3 1-2-2-3-2-2 0-2 0-2 2-2 2-2-1-2 2-4 3-3 2-1 1-3 0-2 2-3 3-2 3-5 3-2 5-1 3-3 3-1 4-5-1-6 2-4 0-3 4-3 5-2 3-3 4-5 1-3 4 0 3 2 5 0 5 1 2 0 5-3 5 0 4-3 4-1 9-1 8 0 3 0 4-2 6 0 2 2 3-1 6-2 3 1 0 2 4-1 1 1-3 2 0 2 2 2-1 4-3 2 1 3 2 0 2 3 1 0 6 2 2 0 5 0 6 3 3 4 4 1 7 2 5 3 3-2 2-2-1-4 2-2 3-3 4 0 6 1 2 2 2 0 2 1 5 1 1 1 6 0 5 1 5 2 3 1 3-2 2-1 5-1 3 1 2 2 1-1 4 1 4 0 2-1 2-2-1 0 2-2 1-4 0-1 1 0 1-5 3-3 0-4 1-2-2-2 2-2-3 0-4-1-4 3-7 0-4-2-6 0-1 2-4 0-4-2-6 0-3-5-3-3 2-4-3-2 5-5 8 0 2-4 10 1 6-4 6-1 8 0 9 3 7 2 6-1 4 1 6-3 1-2-2-3-3-2-2-1-2-1-7-4-5-2-5-3 4-1 4-4-3-2 8-2 0-1-5 0-4 1-3 2-5 0-4 2 0 2 0 1 3 1 5 0-1 1-6 1-7 3-2-1 1-2-6-2 1-1 5-1-1-1-1 0-7-2-1-2-4 1-2 3-4 4 0 1-2 1-2-1-1 6-3 3-2 3 2 3 1 2 4 1-1 2-6 0-2 2-4 2-2-2 0-1-3 0-2-1-6 2 3 2-3 1-2 0-3-2-1 1 1 3 3 2-2 1 3 2 2 2 0 3-4-2 1 3-3 0 2 5-4 0-4-2-2-4 0-4-2-2-3-3 0-1-1 0 0-2-3-1 0-3 0-3 1-2-1 0-1-1-2-1-2-1-4-2-3-2-5-2-4-3 1-1-2-2 0-1-4-1-1 2-2-2 0-1 1 0 1-1-4-1-4 2 0 3-1 1 2 3 5 2 2 4 6 4 4 0 1 1-2 1 5 2 4 2 4 2 0 1-1 2-2-2-5-1-2 3 4 2-1 2-2 1-2 4-3 0 0-1 1-3 2-1-2-3-2-2-2-1-1-2-4-1-2-2-4 0-3-3-5-3-3-3-2-5-2 0-5-2-2 1-3 2-2 1-4 2-10-1-7 2-1 3 0 3-5 3-6 1 0 2-3 2-2 4 2 3-3 3-1 3-4 1-4 4-6 0-5 0-3 1-2 2-2 0-2-2-2-3-4 0-2 1-3-1-2 1 0-4 0-3-2-1-2-2 1-3 2-2 0-2 1-3 0-2-1-2 0-1 0-4-2-2 7-4 6 1 7 0 5 1 4 0 8 0 3-3 1-10-5-5-4-3-7-2-1-3 7-2 8 2-2-6 5 2 12-4 1-4 5-1 4-1 2-1 5-7 6-3 5 1 1-1 4-1 1 1 3-2-1-2 0-3-2-3-1-5 1-1 2-2 4 0 2-1 4-2 0 3-2 2 1 1 3 1-2 2-1-1-4 4 2 2 0 2 5 1 0 2 5-1 3-1 5 2 3 1 3-1 8-3 6-1 5 1 0 1 5 0 1-2 7-2-1-4 0-4 3-3 5-2 4 4 4 0 1-4 0-3-2 1-3-2 0-3 6-1 6-1 6 1 5 0 6-3-6-3-9 1-9 2-8 1-3-3-4-2 1-5-3-4 3-3 4-3 12-6 3-1-1-2-6-2-9 1-5 4 1 3-8 4-10 4-3 7 3 4 5 3-5 5-5 1-2 9-3 4-6 0-3 4-5 0-2-5-4-5-4-7-3-3-10 5-7 2-7-3-1-5-2-12 5-3 13-4 10-5 9-7 12-10 8-4 14-6 11-2 8 0 8-4 9 0 9-1 15 4-6 1 6 3 5-2 8 3 14 2 18 5 4 3 1 3-6 3-8 1-22-4-4 1 8 3 0 3 1 5 6 1 4 2 1-3-3-2 3-2 12 3 4-1-3-3 11-5 5 0 5 2 3-4-5-3 3-3-4-3 14 2 3 3-6 0 0 3 4 2 7-1 2-4 10-2 18-4 3 0-5 3 7 1 3-2 10 0 7-2 6 3 5-4-5-3 3-1 15 1 6 2 19 6 3-3-5-3 0-1-6 0 1-3-2-4-1-1 10-5 3-4 4-1 13 1 1 3-5 4 3 2 2 3-1 7 5 3-2 3-10 7 6 1 2-2 6-1 1-2 4-3-3-3 3-3-6 0-1-3 4-5-6-4 8-4-1-3 3 0 2 3-2 4 6 1-2-3 8-2 10-1 9 3-4-4 0-5 8-1 12 0 11-1-4-2 6-4 6 0 9-2 14-1 1-1 13-1 4 1 12-2 9 0 1-2 5-2 12-2 8 1-6 1 11 1 1 3 5-2 14 0 12 3 4 2-2 2-5 2-13 3-4 1 6 1 8 1 4-1 3 3 2-1 8-1 16 1 1 2 21 1 0-4 11 1 8 0 8 3 2 3-3 2 7 4 7 2 5-5 8 2 9-1 9 1 4-1 8 1-3-5 6-2 46 3 4 3 13 4 20-1 10 1 4 2 0 3 6 2 6-1 9 0 10 1 9-1 9 5 6-2-4-3 2-2 16 1 11 0 14 2 7 2 0 20zM195 71l9 2 8 2 5 1 5-3 6-1 7 0 8-2 8-1 3 2 4-1 1-2 4 0 8 5 7-4 1 4 6-1 2-1 6 0 7 2 12 2 7 1 5-1 7 3-8 2 10 2 13-1 4-1 6 3 5-2-5-3 3-1 6 0 4-1 4 1 5 3 6 0 9 2 7-1 8 0-1-3 5-1 7 2 0 5 4-4 4 0 2-5-6-3-5-2 0-6 6-4 7 1 5 2 6 6-4 2 9 2 0 5 7-4 6 3-2 4 5 3 5-4 4-4 0-5 7 0 8 1 7 2 0 3-4 2 4 3-1 2-10 4-7 1-5-2-1 3-5 4-2 2-5 4-8 0-4 2 0 3-6 1-6 4-5 6-2 3 0 6 7 1 2 5 3 4 7-1 9 2 5 2 3 2 7 1 5 2 8 1 6 0-1 5 1 5 4 5 7 5 4-2 3-5-3-8-3-2 8-3 6-3 2-4 0-3-4-4-6-4 6-5-2-5-2-8 4-1 9 2 5 0 4-1 4 1 7 3 1 2 9 1 0 4 2 6 4 1 4 3 7-3 5-5 3-3 4 5 6 6 6 6-2 3 7 3 4 3 8 1 3 2 2 4 4 1 2 2 1 5-4 2-4 2-8 2-6 4-9 1-10-1-8 0-5 0-4 3-7 3-7 6-6 5 5-1 8-6 10-5 8 0 4 2-5 4 2 5 2 4 6 2 8 0 5-6 1 4 3 1-6 4-11 3-5 2-6 3-4 0 0-4 9-4-8 0-6 0 1 2-5 2-5 2-6 2-2 3-1 1 0 2 2 3 2 0-1-2 2 1-1 2-3 1-3 0-3 0-2 1-3 0-5 1 8-1 1 1-7 2-3 0 0-1-1 2 1 0-1 3-4 4 0-1-1 0-2-1 1 2 2 1 0 2-2 2-3 4 1-4-2-2-1-4-1 2 1 4-3-1 3 1 1 5 1 1 1 1 0 5-3 4-5 1-3 3-3 1-2 2-1 1-6 3-2 3-3 3 0 3 0 4 2 4 2 4 0 2 3 6 0 3-1 2-1 3-1 1-3-1-1-2-2-1-2-5-3-3 0-2 1-4-2-3-4-4-1 0-6 2-3-3-3-1-6 1-4-1-4 0-2 1 1 2 0 2 1 1-1 0-2-1-2 1-3 0-4-2-4 0-4-1-3 0-4 2-5 3-5 2-3 3-1 2 0 4 0 2 1 2-2 4-1 4 0 6 0 3 1 3 1 2 1 4 3 4 2 2 2 3 5 1 2 2 4-1 4-1 4-1 3 0 3-2 1-3 1-5 1-1 3-1 5-1 5 0 3-1 1 1 0 3-3 3-1 3 1 1-1 2-1 4-1-2-1 0 0 1 0 2 0 2 0 1-1 1 1 1-1 2-1 2-1 0-1 2 2 0 2 0 0 1 1-1 2 0 1 0 2 0 3 0 1 0 1-1 2 0 1 1 1-1 1 0 2 1 1 0 2 1 1 1 2 1 1 1 0 2 0 1-1 2-1 2 0 2 1 2 0 2-1 0-1 3 1 1-1 1 0 1 1 1 1 3 2 2 2 2 2 2 0 1 2 0 2 1 2 0 2-2 3-1 2-1 3 0 0 1 2 0 3 1 1 1 2 2 3 0 4-4 2 0 0-2 1-4 2-2 4-1 0-1 4 1 4-3 2-1 2-2 2 0 1 1-1 2 0 1-3 1 2 2 0 3-2 3 2 4 2-1 1-3-2-2 0-4 6-2 0-2 1-2 2 4 4 0 3 3 0 1 5 0 5 0 3 2 4 1 2-2 0-1 7-1 6 0-5 2 2 2 4 1 4 2 1 4 2 0 2 1 4 2 3 3 0 3 2 0 2 2 2 2 6 1 1-1 4 0 5 1 2 1 4 1 5 4 1 2 1 0 2 3 2 8 3 1 0 4-3 4 1 1 9 1 0 5 4-3 6 2 8 3 3 3-1 2 6-1 10 3 7-1 7 5 7 5 4 2 4 0 2 1 2 7 0 3-2 8-2 3-7 7-3 6-4 4-1 0-2 4 1 9-2 8 0 3-2 2-1 7-5 7-1 5-4 2-1 3-5 0-8 2-4 2-5 1-6 4-4 5-1 4 1 3-1 5-1 2-4 3-5 9-5 4-3 2-3 5-3 3-2 3-6 3-3-1-3 0-5-2-3 0-3-2 0 2 6 4-1 4 3 2 0 3-5 6-7 3-10 1-6-1 1 3-1 4 1 2-3 2-5 1-5-2-2 1 1 5 3 2 3-2 2 3-5 1-4 3-1 6-1 2-5 0-3 3-2 4 5 3 5 1-2 5-6 2-3 6-5 2-2 3 2 5 3 3-2-1-4 0-3 2-4 1-1 5-2 0-6-1-6-4-6-3-1-3 1-3-2-3-1-9 2-4 5-4-7-2 5-4 1-8 6 1 2-10-3-1-2 6-3-1 2-7 2-9 2-4-2-5 0-5 2 0 3-8 4-8 2-8-1-7 1-5 0-6 2-6 1-9 2-11 2-11-1-8-1-7-5-3 0-2-10-5-9-6-4-3-2-4 1-1-5-7-4-9-5-10-2-2-2-4-4-3-3-2 1-3-2-4 2-4 3-3 3-4-1-2-2 2-3-2 1-1-1-5 2 0 1-4 2-3 0-2 2-1 4-2-1-1 2-1 0-2 1-2 2 0 2-4 2-2-1-1 0-3-1-5 1-1 0-4-2-3-2-2-1-2 1-2-1 0-1-2-3-1-2 0-1 2-2 1-1 1 0 1 2 2-1 1-1 1-2 0-1-3-1 1-2-1-1-2-2 0-1 0-2 0 0 1-1-1-3-1-1-1 1-1 0-1-2-1-2-1-1-1-1-2-1 0 0 1-1 1-1-1-1-1-1-1 0-1 1-2-2 0 1-1-1-2-3-2-1-2-2-1-2-3 1 0 0-1-2-1-1 1-2 0-2 0-2-1-3-1-1-1-3-1-3 0-2-1-3-2-6-5-2-2-4-1-3 0-4 2-3 1-3-2-4-1-5-2-3-1-6-2-4-2-2-2-2 0-5-1-3-3-5-3-2-3-2-2 2-1-1-1 2-1 0-2-2-2 0-2-2-3-5-5-5-4-2-3-4-2-1-1 1-3-3-1-3-3-1-3-3-1-3-2-2-3 0-1-3-4-2-4 0-2-3-2-2 0-3-1-1 2 1 2 1 4 1 2 4 4 1 1 1 0 0 2 1 0 1 3 2 1 1 2 3 3 2 4 1 3 1 2 1 3 2 0 2 2 2 2 0 1-2 2-1 0-1-3-4-3-3-2-3-2 0-3-1-3-2-2-3-2-1 1-1-2-3-1-3-3 2 0 2-2 0-2-4-3-3-2-1-3-2-3-3-4-2-5 0-2-4-3-2-1-1-1-2 0-2-2-5 0-1-1-1-3-5-5-4-7 0-1-2-2-4-4 0-4-3-3 1-4 0-4-2-4 2-5 1-4 0-5 0-6-2-5-1-2 0-1 7 2 3 5 1-2-1-4-1-4-1 0-10-5-3-2-9-2-3-5 1-3-7-2-1-4-6-3 0-3-2-2-5-1-1-5-7-4-2-5-5 0-8 0-6-2-10-5-5-1-9-1-7 0-10-2-6-2-5 1 1 3-3 0-6 1-4 2-6 1 0-3 2-5 5-1-1-1-6 2-4 4-7 3 4 3-5 3-6 2-5 2-1 2-8 3-1 2-6 2-3 0-5 1-5 2-4 2-9 1-1-1 6-2 5-2 5-2 6-1 3-2 7-3 1-1 3-2 1-4 3-3-6 2-2-1-2 2-4-3-1 2-2-2-5 2-3 0 0-3 1-2-4-2-6 1-4-2-4-2 0-2-4-2 2-3 4-3 2-3 4 0 4 1 4-3 3 1 4-2-1-2-3-1 4-2-3 0-5 1-2 1-4-1-7 1-7-1-2-2-7-3 7-2 12-3 4 0-1 3 11-1-4-3-7-2-3-2-5-2-7-2 3-2 9-1 6-2 1-2 5-3 5 0 10-2 4 0 8-3 8 1 3 3 3-1 8 0 0 1 7 1 5-1 11 2 10 0 3 1 7-1 8 2zM480 108l4-3 7 0 0 1-6 3-4 0zM501 56l-5-3 0-1 2-1 12 1 8 2 1 2-6 0-5 0-5 0zM498 110l2-2 2 0 2 1-2 3-2-1-2-1zM432 45l-3 2-7 0-6-2 3-2 7-1 4 2zM431 32l-2 1-10-1-1-1 10 0 3 1zM416 26l6 2-1 2-8 1-4-1-2-2 0-2 6 0zM459 48l-8-1-13-1-2-3 0-2-5-3-11 0-6-2 2-2 11 1 5 1 10 0 4 2-1 2 6 1 3 1 7 0 7 1 8-1 10-1 8 0 6 2 1 2-3 2-8 1-6-1-14 1zM344 29l7 1-2 2-9 1-8-2 4-1zM345 26l7 1-6 1-9 0 0-1 6-1zM622 163l-3 4-3 4 3-2 4 1-2 2 4 1 3-1 5 2-2 3 4 0 0 2 2 3-2 5-3 0-3-1 1-4-1-1-6 5-3-1 4-2-5-1-6 0-9 0-1-1 3-2-2-2 4-3 5-8 3-2 5-2 2 0zM481 94l5 2 6 2 0 2 4 0 3 1-4 2-8-1-3-3-4 3-8 3-1-3-7 0 4-2 1-4 2-5 3 1 1 2 3-1zM506 58l5-2 11 3 7 2 1 2 9-1 5 3 12 2 4 2 5 5-9 2 12 4 8 1 7 4 8 1-2 3-9 6-6-2-8-5-6 1-1 3 6 2 6 3 2 1 4 5-2 4-6-2-13-4 7 5 5 3 1 1-13-2-11-3-6-2 2-1-8-3-7-2 0 1-15 1-4-2 4-4 9 0 10 0-1-2 1-3 7-4-2-3-2-1-7-3-10-1 3-2-5-3-5 0-4-2-2 2-10 0-18-1-10-1-8-1-5-2 6-2-7 0-2-5 4-5 5-2 13-1-4 3 4 3 5-4 12-2 9 5-1 4zM427 49l11 0 9 2-7 4-6 1-5 4-6 0-3-5 0-2 3-2zM286 39l8-3 10-4 8 1 7-1-1 4-4 1-4 1-10 2-7 1zM236 150l5-1-1 6 4 4-2 0-3-2-2-2-2-2-1-2 0-2zM373 23l9 1 14 2 4 2 2 2-9 0-8-2-11 0 5-1-6-2zM282 177l-2 1-8-2-2-2-4-2-1-1-5-1-2-3 0-1 5 1 4 1 4 1 2 1 2 3 5 2zM292 48l7 1 13 0 5 2 5 2-6 1-12 3-6 4 0 2-13 2-3-2-12-2 3-2 3-4 4-3-5-3zM361 41l4-1 6 0 0 3-3 2-16 1-13 2-8 0 0-2 10-2-23 1-7-1 7-5 5-1 14 1 9 3 9 1-7-5 4-2 5 1 2 2zM367 55l6 2 3 5 2 3 8 3 9 2 0 2-9 0 4 2-2 2-9-1-9-1-6 0-9 2-13 1-9 0-2-2-7-1-5 0-6-4 4 0 7-1 7 0 7-1-10-1-10 0-8 0-2-2 11-2-7 1-9-2 4-4 4-2 13-3 5 1-2 3 11-2 7 3 5-3 5 2 4 5 3-2-4-5 4-1zM398 56l-6-3 6-2 6 1 9-1 1 2-4 2 7 2-1 5-8 2-5-1-3-2-12-4 0-1zM367 52l7 0 4 1-5 3-8-3zM408 36l3 3 0 2-2 4-8 1-5-1 0-3-9 0 0-4 6 0 7-1 7 0zM420 17l3-2 6 0-3-1 12 0 6 2 9 1 8 1 4 4 6 1-7 2-9 4-9 0-10-1-6-2 0-2 4-1-9 0-5-2-4-2zM442 11l8-1 5-1 10 0 8-2 6 0 5 1 4-2 7-1 8-1 16 0 2 1 15-1 11 0 11 0 13 1 11 0 9 2 0 1-13 2-12 1-4 1 11 0-12 4-8 1-9 4-10 1-3 1-16 0 7 1-3 1 4 2-5 2-7 1-3 2-7 2 1 1 8 0 1 1-14 3-13-1-15 1-7-1-9 0-1-3 9-1-2-4 3 0 13 2-7-3-8-1 4-2 9-1 2-2-8-2-2-2 14 0 4 1 8-2-11-1-18 0-9-1-4-2-6-2zM524 83l-3 1-6 1-1-3 2-3 5 0 3 1 0 2zM419 73l3 1-3 2-7-1-4 0-7-2 4-2 4-2 5 2 3 1zM577 171l2-1 7 1 5 3-2 1-7-2zM580 185l2 2 3 1 5 0-3 2-1 0-7-2-1-2zM123 320l1 0 1 1 1 1 0 1-2 1-2 1-2 0 0-2 0-2 1-1-1-1 1 0zM120 316l0 1-2 0-1-1-1 0 0-1 1 0 2 0zM116 314l0 1-3 0 1-1zM110 311l0 1 2 1-1 1-2-1 0-1zM103 309l0 1 0 1-2-1 0-1 1 0zM68 118l4 1 0 1-3 1-3-1-3-1zM134 130l3 0 2 2-4 2-5 2-3-1 0-2 4-2zM41 101l3 1 4 0 4 1 5 1-1 0-4 1-3-1-2-1-5 0-1 0zM1605 433l9 3 9 3 3 3 3 2 1 3 8 3 1 3-4 1 1 3 4 3 4 6 3-1-1 3 4 0-1 1 5 2-1 2-3 0-1-1-4-1-5 0-4-4-3-2-3-5-6-2-5 2-3 1 1 4-4 2-3-1-5 0-4-5-5-1-2 2-6 0 2-4 3-1-1-6-2-4-10-4-4-1-8-4-1 2-2 1-1-2 0-2-4-3 5-2 4 0-1-1-7 0-2-3-4-1-2-2 6-2 3-1 8 2 1 2 1 8 5 3 4-5 6-3 5 0 4 1 4 2zM1663 438l2 2 1 3-2 1-1-3-1-2-2-2-3-2-4-1 2-2 2 2 2 1 2 1zM1657 449l-3 1-3 2-2 0-5-2-2-1 0-2 4 1 3 0 1-3 1 0 0 3 3-1 1-1 3-2 0-3 3 0 1 1 0 2-2 3-3 1zM1674 447l1 1 3 3 2 2-1 1-1 1-2-2-2-3-1-4 0-1zM1525 467l-3 4-4 1-1-1 1-2 2-3 5-2 0-1 5-1 3 0 2-1 2 1-2 1-5 3zM1571 454l0-3 0-2 1-2 2 2 0 2zM1477 393l4-4 3-4 2 0 2 3 0 2 4 1 4 2 0 2-4 0 1 3-4 1-2 5 3 5-1 2 6 4-6 1-2 3 1 5-5 3 0 5-2 8-1-2-6 3-2-4-3 0-3-1-6 1-1-2-4 0-4 0-1-7-2-1-3-5 0-4 0-5 3-3 4 2 4-1 1-4 2-1 6-2 4-3 2-4 2-2zM1547 434l5 1 2 4-4-2-4 0-3 0-3 0 1-3zM1534 439l-3-1-1-2 5 0 1 1zM1540 409l0 3 3 0 0 2 0 5-2-1-1 3 2 3-2 0-2-3-1-6 1-4zM1515 416l5-1 5-3 1 1-4 5-4 1-4-1-9 0-4 1-1 4 5 4 2-2 10-2-1 2-2 0-2 3-4 2 4 6-1 2 5 5 0 4-3 1-2-2 3-4-5 2-2-1 1-2-4-3 1-5-3 2 0 5 0 8-3 0-2-1 1-5-1-5-2 0-1-3 2-3 1-4 2-8 1-2 4-4 4 2zM1501 471l-6-3 5-1 2 1 2 2 0 1zM1507 463l3-1 5-2-1 3-8 2-6-1 0-2 4-1zM1491 462l3-1 2 3-6 1-4 0-2 0 1-3 3 0 1-2zM1442 452l1 2 10 0 1-2 9 3 2 3 7 1 7 3-6 2-6-2-4 0-5 0-5-1-6-2-4-1-2 1-9-2-1-2-4-1 3-5 6 1 4 2zM1422 425l1 4 1 3 4 0 3 3-2 7 0 7-5 0-5-4-6-4-2-3-4-4-2-4-4-7-5-4-1-4-2-4-5-3-2-5-4-2-5-6-1-2 4 0 7 1 5 5 4 3 2 2 5 6 5 0 4 3 3 4 4 2-2 5 3 1zM557 683l2 3 2 3 7 3 7 1-3 3-4 0-3-2-1 3-5 1-2 0-3-1-4-1-5-1-6-3-5-2-7-6 4 1 7 4 6 1 3-2 2-3 4-2zM541 330l-3-1-2 0-3 0-3 1-2-2 0-1 5 0 4 1 1-1-2-3 0-1-3-1 1-2 3 1 4 0 1 0 4 0 3 1 1 0 1 2 3-1 0 2 2 0 2 2-1 2-3-1-2 0-2 0-1 1-2 0 0-1-2 1-2 3-1-1zM1369 15l11-1 9 2 12 5-1 5-11 0-14-1-8-2-4-4-7-1zM1414 24l13 2-2 2-28 2 9-6 4-1zM1594 39l13 1 18 2-4 4-18 0-8 1-10-3 3-4zM1641 43l13 2-6 2-8-1-9-2 1-1zM1599 53l5-2 6 0 7 2 1 1-8 0-10-1zM1124 17l10-1 8 0 1 1 2-1 5-1 8 2-2 0-7 1-5 0 0 1-6 1-5-1 2-2zM1168 51l12-4-2-2 11-3 17-3 17-1 8-2 10-1 3 2-3 2-18 2-15 3-16 4-7 5-8 5 1 4 10 4-3 1-17-1-1-2-9-1-1-3 5-1 0-3 10-4zM1615 151l1 5 0 5 2 5 5 9-7-2-3 8 5 5 0 3-4-3-4 4 0-4 0-5 0-5 1-4 0-7-3-5 0-7 5-2-2-2 2-1zM1800 66l-5 0-1-1 6-3 0 4zM0 62l1 0 4 0 7 2-5 2-7 0 0-4zM505 286l2 0 4 0 0 1-6 1zM511 285l4 2-1 4-1-1 0-3-2-2zM509 294l2 0 1 4 0 3-1 0-1-2-2-2zM594 679l6-3 4 2 3-3 4 3-1 2-7 1-2-2-4 2zM976 22l2-2 7 0 6 1 17 4-13 2-3 4-4 1-2 4-6 0-11-3 4-2-7-1-10-4-4-4 14-2 3 2zM1037 20l-7 2-15 1-15-1-1-1-7 0-5-3 15-1 8 1 5-1 12 1zM1024 31l-12 2-8-1 3-2-3-1 10-1 2 2zM666 7l17-3 18 0 6-2 18 0 40 0 31 4-9 2-20 1-27 0 3 1 18-1 15 2 9-1 5 1-6 3 13-2 24-2 15 1 3 3-20 3-3 1-16 1 11 0-5 4-5 3 1 6 6 3-8 0-8 2 9 3 1 4-5 0 6 5-11 0 6 2-2 2-7 0-7 0 6 4 0 2-9-2-3 1 7 2 6 3 2 4-9 1-4-2-6-3 2 3-6 3 13 0 7 0-13 5-14 4-14 1-6 0-5 2-7 6-11 3-3 0-7 2-7 1-4 3 0 3-3 4-8 4 2 3-2 5-3 5-7 0-7-4-10 0-5-3-4-5-8-6-3-3 0-5-7-4 1-4-3-2 5-6 8-2 2-2 1-4-6 2-3 1-4 1-6-2-1-3 2-3 5 0 10 1-9-3-4-2-5 1-4-1 5-5-3-2-4-3-6-6-6-1 0-3-13-3-11 0-13 0-13 1-5-2-9-3 13-2 10 0-21-1-11-2 0-2 19-3 18-2 2-2-13-2 4-2 18-3 7-1-2-2 12-1 15-1 15 0 6 2 13-3 12 2 7 0 10 2-11-3zM1245 663l3 2 5 0 0 1-2 3-7 0 0-3 0-2zM944 207l3-2 1 4-2 4-2-1-1-3zM569 327l2 1 1 1-1 1-4 0-3 0 0-2 1-1zM512 328l4 0 2 1 1 2-4 0-1 0-3 0-3-2 1-1 2-1zM489 304l4 0 4 0 5 2 2 2 4-1 2 2 4 3 3 2 2 0 3 1 0 1 3 1 4 2 0 1-4 0-3 1-4-1-7 1 4-3-2-1-4-1-1-1-2-3-2 0-5-1-2-1-6-1-2-1 2-1-5 0-3 2-3 0 0 1-3 1-2 0 3-2 1-2 2-1 3-1 3 0zM1148 482l1 2 1 4 1 6 1 2 0 3-1 1-2-3-1 2 1 3 0 2-2 2 0 4-2 6-2 6-3 10-2 7-3 6-4 1-4 2-3-1-4-2-1-3-1-4-1-4-1-4 1-3 2-1 0-2 3-4 0-3-1-2-1-3 0-5 2-3 0-3 3 0 3-1 1-1 3 0 2-3 5-3 1-3-1-2 2 1 3-4 0-3 2-2zM1736 499l3 3-1 1-2-2zM1734 498l-1-1 0-4 3 2 0 4-1-1zM1031 243l0 2-7 0-6-1 1-3 2 2 4 0 4 0 0 1zM869 151l1 3-4 5-9 3-7-1 4-5-2-5 6-4 4-3 4 0 6 3zM1729 525l4 3 3 3-2 1-3-1-4-3-3-2-3-4-1-1 2 0 3 1 2 2zM1711 472l1 2-3 0-2-3 3 1zM1708 468l0 1-4-4-1-3 2 0 1 4zM1704 469l-2 0-3 0-1-1 1-2 3 1 1 1zM1698 460l1 2 1 1-4-2-3-2-2-2 1 0 2 1zM1686 455l2 2-1 0-2-1-3-2 1-1zM1784 620l-1 3-3 3-4 2-1-1-2-1 3-4-2-2-5-2 0-2 4-2 1-4-1-3-2-3 1-1-3-2-4-5-2-3 2-1 3 3 4 1 1 5 4 5 0-3 2 1 1 4 4 1 3 1 3-2 3 0-2 5-1 3-4 0-1 1 0 2zM1748 638l5-3 3-2 2-4 2-1 0-3 4-3 1 3 1 2 4-2 1 2 0 2-2 2-3 4-2 2 1 2-3 0-5 2-1 3-3 6-4 2-2 1-5 0-3-2-6 0 0-2 2-3 7-5 3-1zM1638 624l3 0 1 6-2 2 0 4-2-1-4 3-1 0-3 0-3-5-1-3-2-4 0-2 3 0 5 2 3-1zM1531 581l-6 3-4 1-1 2-2 2-4 1-3 0-5-1-3 1-4 0-3 3-1-1-2 2-3 1-4 0-3 0-5-3-3-1 0-3 3-1 1-1-1-1 1-4-1-3-2-5-1-3 0-3-2-3 0-1-2-2-1-4-3-4 0-2 2 2-2-5 3 2 1 1 0-2-2-4-1-2-1-1 1-3 1-1 0-3 0-3 2-3 0 4 2-4 4-2 3-2 4-1 2-1 1 1 4-2 3-1 1-1 1 0 3 0 5-2 3-2 1-2 3-3 0-2 1-3 3-4 2 4 2-1-1-2 1-2 2 1 1-4 3-3 1-2 2 0 0-2 3 1 0-2 2 0 2-1 4 2 3 3 3 0 3 1-1-3 2-4 3-1-1-1 2-3 3-2 3 1 4-1 0-3-4-2 3 0 3 1 3 2 4 1 1 0 3 1 3-1 2 0 1-1 3 3-2 2-1 2-2 1 0 2-1 2-2 3 1 1 3 3 4 1 3 2 4 3 1 0 3 1 0 2 5 2 3-2 1-3 1-2 1-3 2-4-1-2 0-2 0-3 0-3 1-1-1-2 2-3 1-2 0-2 2-2 1 3 0 3 2 1 0 2 2 2 0 3 0 2 2 4 3-2 1 2 3 2-1 2 1 4 1 3 1 1 2 4-1 2 2 4 5 2 4 3 3 2 0 1 2 3 2 6 2-1 2 2 2-1 1 5 3 3 2 2 4 4 2 4 0 3-1 3 3 5 0 4-1 2-2 5 0 3-1 3-2 5-3 2-2 4-2 3-1 4-2 2-2 4 0 4 0 1-3 2-5 0-5 2-2 2-3 2-5-2-3-1 1-3-3 1-4 4-4-1-3-1-3 0-5-2-3-3-1-4-1-2-3-2-4-1 1-2-1-4-2 3-5 1 3-2 1-3 1-3 0-4-4 5-3 1-2 4-4-2 0-2-3-4-3-2 1-1-6-3-4 0-4-3-9 1-7 2-5 1zM1309 382l-1 6-2 1-4 1-3-4-1-7 3-8 3 3 3 3zM1447 329l-4-2 0-4 3-2 5-2 3 1 1 2-2 2-1 3zM1509 298l-3 8-2 4-3-4 0-4 2-5 4-3 3 1zM974 229l4 0-2 4 1 1-1 3-4-2-3-1-7-2 1-3 6 1zM944 216l2-2 3 3-1 7-2 0-2 1-2-1 0-6-1-3zM962 139l1 3-3 4-5-3 0-2zM885 153l0-3-3-3-6-1-1-1 1-3-1-1-3 2 0-4-3-3 2-5 4-4 4 0 6 0-5 5 5 0 5 0-1 4-5 4 6 0 0 1 4 6 4 1 3 5 1 2 6 1 0 4-3 1 2 3-4 2-7 0-8 2-3-1-3 2-5-1-3 2-3-1 7-5 5-1-8-1-1-2 5-2-3-2 1-3zM827 88l-1 3 6 3-7 4-14 4-4 1-7-1-14-2 5-2-11-2 9-1 0-2-11-1 4-3 7-1 8 3 8-2 6 1 8-3zM1504 356l-2-3 4 0 2 2-2 4zM1513 370l1-1 1-3 2-1 0 4 3-5 0 5-2 1-1 3-2 2-3-4zM1532 378l0 3 1 3-2 5-2-5-2 2 1 4-1 2-6-3-1-3 1-3-3-2-2 2-2 0-4 3 0-2 2-4 3-2 2-1 2 2 4-2 1-2 3 0 0-4 4 3 1 2zM1493 373l-7 5 2-3 4-3 3-4 3-5 0 4-3 3zM1512 329l-1 2 2 4-2 4-3 1 0 4 1 4 2 1 3-1 6 3-1 3 2 1-1 2-4-2-1-3-2 2-3-3-4 1-3-1 0-2 2-2-2-1 0 2-3-3 0-2-1-5 2 2 1-8 2-5 3 0 3 2 1-1zM1510 363l-1-2 3 1 4 0 0 2-3 2-3 2 0-3zM1528 359l1 6-4-2 0 2 1 3-2 1 0-3-2 0 0-3 2 0 0-2-3-4 5 0zM1609 224l-4 5 0 5-2 4 1 3-3 3-6 3-9 0-7 6-3-2-1-4-8 1-6 2-6 1 5 3-3 9-4 2-2-2 1-5-3-1-2-3 5-2 2-3 5-3 4-3 10-2 5 1 6-9 3 3 7-5 3-2 3-6-1-6 3-3 5-1 3 7zM1623 200l4-2 1 6-8 1-4 5-8-3-3 5-5 0-1-5 3-4 5 0 1-7 2-4 6 5 4 2zM1562 253l3-3 2 0 3-2 3 1 1 2-3 3-2-2-3 2-1 2-3-1zM1064 244l1-1 3 0 5-1-4 2 1 1-5 2-3-1-1-2zM592 366l2 0 2 0-1 3-4 1-1 0 2-2z',
+ bord:'M1102 472l-4 2-6 2-3 0-2 2-3 0-1 1-6-2-4 1-2-7-1-3-1-1-5-1-3-1-3-1-2-1-2-1-3-7-3-2-1-3 1-3-1-4 2-1 2-2 2-2 1-1 0-2-1-1-1-2 2-1 0-3-2-2 2-1 5 0 11 0 18 10 1 3 7 5M815 313l11-1 1-1 2-3 2-6 6-6 3-6 1-1 2-3 4-1 2 1 2 0 2-1 3-1 0-2 1 0 0 1 0 8-17-1 0 13-4 1-2 2 1 7-19 0-1 2M247 146l3-2 0-4-9-3-5-5-3-4-4-2-4-2-2-3-5 2-5 2-5-3-3-2-5-1-5-1 0-28 0-19M564 194l-3-3 0-6-2-2-4 1-1-1-4 4-2 3-1 3-2 0-2 1-1 1-9 0-7 0-3 1-5 4-2 2-5 0-5 0-2 1 1 1 0 1 0 1-6 2-5 1-6 3-1 0-2-1-1-1 2-2 2-3 1-3-1-4-1-5-5-2 1-1-1-1-1 0-1 0-1-2-1 1-1 0 0-1-1 0 0-1-4-2-4-2-5-2-5-2-4 2-2 0-6-1-4 0-5-1-5-1-4 0-1-1-1-3-2 0 0 2-10 0-17 0-17 0-15 0-15 0-15 0-15 0-5 0-15 0-14 0M414 291l-2 0-3-1-4-2-2-2-1-4-3-3-1-2-3-4-3-2-4 0-4 4-4-1-2-2-2-3-1-2-3-2-3-2-2-2-8 0 0 2-4 0-10 0-12-3-7-3 0-1-6 1-6 0M1146 188l-3-1 0-2-3-4-3 0-5-3 3-4-1-1 4-5 5 3 1-4 10-5 8-1 11 4 6 2 5-2 8 0 6 2 2-1 7 0 1-2-8-4 5-2-1-2 4-1-3-3 2-2 19-2 2-1 13-2 4-2 9 1 2 5 5-1 7 2-1 3 5-1 12-4-1 1 6 4 11 13 3-3 7 3 7-1 3 1 2 2 4 1 2 3 6-1 3 3-4 3-4 1 0 5-3 2-10-2-4 9-2 1-10 2 4 9-3 1 0 3-3 0-2-2-8-1-8 0-2 1-7-2-3 1-1 2-8-1-3 0-1 3-3 1-7 3-2 4-2 0-1-3-6 0-1-4-3 0 0-5-6-4-8 1-6 0-5-4-4-2-8-3 0-1-13 3 0 18-3 1-3-4-4-2-5 1-2 2M1255 209l1 0-4 3 4 2 3-1 6 3-6 3-4 0-2 0-1-1 1-3-6 1-2 4-2 2-4 0-2 2 4 1 1 4-3 5-4-1-2 0 0-3-7-2-5-2-3-3-6-3-3-5-1-1-6 0-2-1 0-4-7-3-4 3-4 2 0 2-5 0M1605 466l0-17 0-16M1525 464l0 1 0 2M1448 410l1 3 4 3 3-1 3 0 3-2 2 0 5 1 4-1 3-7 2-2 1-6 6 0 4 1M565 694l-3 0-5 0 0-11M557 681l-4 0-13-1-2-3 0-4-3 1-2-2 0-5 4-3 1-3 0-2 2-5 2-6 0-3 2-1-1-2-2-1 2-2-3-2-1-6 2-1-1-6 2-5 1-4 3-2-2-5 0-5 4-3 0-4 3-5 0-5-1-1-3-8 3-5 0-5 2-5 3-4 4-4-2-1 1-2 0-8 5-3 2-5-1-1 5-5 6 1 3 4 2-4 6 0 1 1 9 8 4 1 6 4 5 2 1 2-5 8 5 1 6 1 4-1 4-4 1-4 2-1 3 3 0 4-4 2-4 2-5 5-7 7-1 4-2 5 0 5-1 1 0 4M548 512l3-2 1-2 2 3 1 4 3 2-2 5 3 5 2 7 3 0M1054 462l-2-1-7 1-1 1-2 3 1 2-1 6 0 5 1 1 4 2 1-1 0 5-3 0-2-3-2-2-4 0-1-3-3 2-4-1-2-2-3-1-2 0-1-1-1 0-3-1-3 1-2 0-1 0 0-6-2-1 0-3 1-3-1-2 0-4-6 0 0-1-3 0 0 1-3 0-1 3-1 1-3-1-1 1-4 0-2-2-1-2-1-3-1-4-15 0-2 1-1 0-2 0M961 449l1-1 0-2 1-1 2-1 1 0 2-1 3 0 0 1 2 1 3-3 3-3 1-1 0-4 2-5 2-3 4-2 0-2 0-2 1-1 0-3 0-5 1-3 2-2 0-4 1-3 2-3 2-1 4 2 4 1 3 1 4 1 2-3 0-1 2 1 6-3 2 2 2-1 0-1 2 0 4 0 3 0 2 0 3 4 2 1 1-1 3 0 3-1 1 2 4 3 0 6 2 1-2 2-2 1-2 3-1 2 0 4-1 2 0 4-2 1 0 3-1 3 1 2 1 7M1108 428l-3-4 0-18 4-6 2-1 3 0 4-4 7 0 14-15 3-4 3-3 0-3 0-5 0-2M1070 425l-1-6 2-2 2-3 2-4-2-5-1-3-2-3 3-3 3-4 3 1 0 3 2 2 3 0 7 4 1 0 1 0 1 0 4 1 1-2 5-2 2 1 3 0M1092 330l-2 3-4 1-2 1 0 4-2 7 0 2-1 4-2 5-3 3-2 3 0 2-3 2-1 5 0 5 0-4-1 0 0-3 0-2-3-2-1-3 1-4-2 0-1 1-3 0 2 2 0 3-3 2-2 4-3 0-4-2-2 1 0 1-3 1 0 1-5 0-1-1-3 0-2 1-2-1-2-3-1-1-4 1-1 2-1 4-2 1-2 1 4 2-4-2-2-2 0-1 1-2 0-2-3-4-1-2 0-1-1-1-1-3-1-2-1 0 0-2 1-2 0-2 2-1-1-2 1-3 2-3 4 0 0-20 0-2 6 0 0-10 20 0 19 0 20 0M1014 364l-3 1-2 2-4 6-5 2-5 0-1 0 1 2-3 2-2 2-6 1-2-1-1 0 0 2-5 0 1-1-1-4-1-2-2-1-3-3 1-2 2 0 2 0 2 0-2-4 0-4-1-3-2-3 1-3-3 0 0-3-2-2 2-6 6-5 1-7 1-10 2-2-3-2 0-1-2-2-1-7 5-3 20 10 20 9M541 321l1 3-1 2-1 1 2 1-1 2M1006 144l6 1 2 1-1 1 1 1-10 0-6 0M1554 209l-1-1 0-3 3 0 0-6-1-4 4-2 6 1 4-5 2-5 1-2 3-4-8 1-4 2-8 0-2-5-6-3-9-2-2-5-1-3-2-2-3-5-5-2-7-1-7 0-6 1-4 2 3 1 0 3-3 2-5 5 0 2-7 3-6-1-6 0-2-2-3 0-8 3-6 1-5 1-6 0-5 0-3-3-5-2-5-1-6 1-5 1-7-3-1-3-6-2-4 0-6-2-5 5 2 3-5 3-7-1-5 0-3-2-5 0-5-2-7 2-10 5-5 1-2 0M1143 211l-3 2-1 1-2 0-4-3-1 0-3-1-2-3-4-1-3 1-1-1-7-2-7-1-5-1 0 1M1091 184l0-2 3-1 5 0 0-2-1-3 2-3 0-1-7-2-3 0-3-2-4 1-6-2 0-1-2-2-4 0 0-2 1-1-3-3-5 1-2 0-1 1-2-1-1-3-1-1 0-1 5 0 1-1-1-1-3-1 0-1-2-1-3-3 1-1-1-3-5-1-2 1-1-2-5-1-2-3 0-2-3-1 3-2-2-5 4-3-1 0M1040 117l11-6 5-3 2-2-8-4 2-3-4-4 3-4-6-6 5-3-8-4 1-3 4-1 9-2M1067 190l1-1 4 1 2 0 0 1 1 0M1043 75l2-4-6-2-8 2-3 4-4 2-6-1-6 0-6-3-3 1-3 1-1 3-9-1-1 3-5 0-3 3-5 6-8 7 2 2-2 2-5 0-3 4 0 7 3 3-2 5-4 4-2 3M982 563l2-3 2 2 1 2 2 0 3 1 3 0 4-3 0-18 2 1 3 4-1 3 1 2 4 0 3-3 2-1 1-2 3-2 2 1 2 1 4 1 3-2 1-1 1-3 2 0 2-2 2-3 4-4 7-4 2 1 3 0 1 0 3 0 2 7 2 4-1 5 0 2-2-1-2 1 0 1-2 2 0 2 3 2 3 0 1-2 4 0M1045 565l-2-2-3 1-2 2-3 3 4 4 2 0 0-2 3-1 1-1 2-3-2-1M459 327l-1 1-2 3-1-1-1 0 0 1-4 0-5 0 0 3-2 0 2 1 1 2 1 1 1 0 0 2-7 0-2 4 1 1-1 1 0 1M612 571l3 0 5 3 2 0 5 3 4 3 3 4-2 2 1 3M627 549l1-3 1-3 0-3-2-1-2 1-2 0-1-2 0-5-1-1-3-2-2 1-6-1 1-6-2-3 2-1-1-3 2-2 1-4-2-3-2-2-1-2 1-3-10 0-2-6 2 0 0-2-1-1-1-3-2-2-4 0-2-1-3-1-2-2-6-1-5-4 0-4 0-1 0-4-6 1-3 2-4 2-1 1-3 0-4 0-2 1-3-1 1-8-5 3-4 0-2-2-3-1 1-2-3-3-2-4 1-1 0-2 3-2 0-3 1-1 1-3 5-3 4-1 1-1 5 0 2-13 0-2-1-3-2-2 0-4 3-1 1 1 0-2-3 0 0-4 10 1 1-2 2 1 1 3 1 0 2 2 4 0 1-1 4-2 2 0 1-3 3-1 0-1-4 0-1-4 0-3-2-1 1-1 4 1 4 1 1-1 4-1 5-2 2-2-1-1 3 0 1 1-1 2 2 1 1 2-1 2-1 4 1 3 1 2 3 2 2 1 1-1 1-1 3 0 1-2 3 1 1 0 3 0 0-1 0-1 0-2 2 1 3-1 2 1 3 1 1-1 1 0 1 2 2-1 2-2 2-3 3-5M609 521l0-2-5-2-4 0-9 1-2 5 0 2-2 6M552 508l3-5-2-5 1-1-1-2 2-3 0-4 1-3 1-2-5-8M498 437l1 2-1 1 0 2 2 0 2 0 2 3 3-2 1-4 3-4 6-2 5-5 2-3-1-4 1-1 4 3 1 2 3 1 3 6 3 0 3-1 2 1 3-1 4 3-3 5 1 0 3 2M523 421l-2-1-2-2-2 1-4-1-1-2-1 0-5-3M511 384l0-3 2 1 1-2-1-3M543 361l-3 1-1 2-2 2-2 2 0 3-2 3 3 1 1 2 1 1 0 2 0 2 0 1 1 0 1 2 7 0 3 0 3 4 2 0 4 0 3 0 1 1-1 2-1 2 0 3 1 4 1 1 0 1-2 3 2 1 1 2 2 5M485 379l0-1 1-1 0-1 0-1-1 0 0-2 2-1M471 365l1-1 3 1 2 0 1 0 1 1 2 0 1-1M463 355l2 0 1-1 0-3 1 0 1 0 2-1 1 1 1-1 2-2 0-1 1 0 0-1 1 0 1 1 1 0 1-1 1 0 2 0 1-1 1 0M461 353l0-2-1-1-3 1 0-1-1-1-1-1-2 0 1-1 0-1 0-1 3-2 2-2M450 351l1-2 1 0 0-1 1 0M454 331l0 4 0 6 1 0M601 378l-4 3 0 2 2 2-2 1-3 1 0 2-1 1 3 4M614 390l-1 5-3 1 1 1-1 3 2 3 2 0 0 3 3 5M630 391l-2 5 0 3 2 3-1 2 0 2-2 2M913 164l0 2 3 0 2 2 3 2 3 0 4 2 1 1 2 0 2 1 7 1-2 3-1 4-1 1-2-1 0 2-4 2 0 3 2-1 2 2 0 1 1 2-1 2 1 4 3 0-1 3M915 208l-6 0-5-2-2 1-10-2-2-2M1047 530l-3-2-4-1-1-3 0-2-3 0-5-6-2-2-1-1-2-4 6 0 2 1 1 0 3-4 4-4 2 0 1-2 3-2 3 0 1 1 4 0 2 1 1 2 3 0 2 2 0 6-1 3 0 4 1 2-1 3-2 4-5 5M999 544l0-15 5 0 1-18 3 0 8-2 2 2 3-2 2 0 2-1 1 1M959 507l2-1 3-1 3 0 3 2 1 0 20 0 4 2 12 1 9-2 4-2 3 1 2 1M818 339l1-1 3 0 2-1 3 0 3 1 3 2 3 3 3 4 0 3 1 3 2 1 1 2-1 2-3 0-1 0-4-1-2 0-10 0-1 0-2 0-2 1M816 354l4 0 2 0 2-2 2 2 3 0 2-2-1-1-2 1-1 0-2-1-2 0-1 1-6 0M839 347l2-1 1-3 1 0 4 1 3-1 1 1 1-1 20-1 1-3 0-1-3-21-2-22 7 0 17 11 17 11 1 2 3 2 3 1 0 3 5-1 0 12-2 3-1 3-4 1-7 0-2 2-3 0-3 0-2-1-2 1-5 2-1 2-4 2-1 1-2 1-2 0-1 1-1 3-4 4 0 2-1 2 0 3-2 1-1 1-1-3-1 1-1 0-1 1-4 0-2 0-2-1 1-2-1-1-1 1 0-2 1-1-2-2-1-1-1-2-1 0-1 1-1 1-2 1-2-1-1-1-1 0-1 1-1 0-1-2M909 389l-1-3 0-12-1-1 0-2-2-2-1-1 0-3 2-1 1-2 3 0 1-2 1-1 2 0 4 3 0 1 1 3-1 2 1 2-3 3-1 1-1 3 0 4-1 8M972 356l-1 0 0 2-1 0-3-6-2 0-3 3-4-2-3 0-1 1-3 0-3 2-3 0-6-3-2 2-3-1-2-1-5-2-5 0-1 1-1 3-2 2 0 5M911 360l0-3-6-1 0-3-3-3-1-2 1-3M921 324l7-2 15-10 17-9 8 2 3 3 3-2M971 358l2 2-1 0 0 2-4 4-1 3-1 3-1 1-1 3-3 2-1 3-1 2 0 2-4 2-3-2-1 0-3 3-2 0-2 5-1 3M976 383l-2 5-1 1-1 4 1 2-1 1 3 3 0 2 2 2 2 2 1 2 0 2 0 2-4-1-4-1-7 0 0-1-3 1-3-1-3 1-8 0M905 390l-1-1-1-4-1-2 2-5-2-1 0-4 0-4-2-3 0-1 4 0M886 395l0-2-2-4 1-6 2-4-1-7-1-4 0-3 9 0 2 0 2 0 2 0M873 368l2 1 1 2 2 1 2-1 2-1 4 2M861 398l1-4 0-1 0-2-2-2-2 0-1-1 1-3 0-2 0-1 1 0 0-3 0-1 2-1-1-4-2-2 1-2 1 0M858 382l-2-1-1 2-1 0-1-1 0-2-2-3-1 1-1 0-2 0 1-2-1-1 0-1-1-2-2-2-4 0-1 1-1 0-1 1-1 1-2 2M824 365l3-3 1 0 1 0 1 0 1-1 0-2 1-2M843 386l1-2 0-1 3-3 2-2M992 402l-3 0-3-1-3 3-3 5M1023 379l3 2 0 1 3 3 2 2 1 3 4 2 1 2M965 444l-2-2-1 1-2 2M955 440l4-3-2-3 2-1 3-1 1-2 3 2 4 0 1-2 1-3 0-4-3-3 2-6-1-1-4 0-1-2 0-2M947 415l2 0 7 0 0-6M1064 466l2 2 1 5 0 1-1 4 1 4-2 2-2 5 3 1-15 4 0 4M1016 508l-3-4-4-4 1-16 10 1 0-2 0-2 0-2 0-3 0-1M1073 478l-2 3 2 7 2 0 1 1 2 4 1 6-2 2-2 3-3-3 0-4 1-2-1-2-2-1-1 0-3-2M1060 554l0-3-1-2M1045 434l3 1 2-3 2 0M1076 255l1 0 1-1 1 0 0 2-1 0 1 0-1 2-2-1-1 4 1 0-1 1 0 1 2 0 0 2-2 7-1-1-3-7M1080 247l2 0 1 2-3 2-1 3M1078 258l0 3-1 2M957 254l0 4-2 2-2 1-3 2 0 2 0 2-3 1-2-9-3-2 0-1-4-3 0-3 3-3 1-4-1-5 1-3M857 282l0-6 8-4 5-1 4-1 2-3 6-1 0-4 3-1 2-1 6-1 1-2-1-1-2-6 0-3-2-3M947 268l2 5 0 2-1 4 1 3-1 2 1 3-2 3 3 3 0 2 2 3 2-1 4 3 2 3M1079 256l5 2 10-5 2 6-1 1-10 2 5 5-2 1 0 2-4 1-1 1-3 2-5-1M1182 295l-3 0 0 4 1 0-2 1 0 2-2 2 0 2-1 2-15-3-2-5 0-1M1157 297l-1 0-2-1M1142 277l-3 0-2-2-4 0 4-5 3 0M1094 253l11-5 2-6-1-4 3-1 3-3 2-1 6 1 1 1 3-1 3 6 3 2 1 3-3 1-1 4 4 5 6 3 2 3-1 4 2 0 0 3 3 2M1133 275l-9-1-15-10-7-3-6-2M1166 337l-2-4-4-8 15-5 3-10-2-4M1413 359l-1-6 3-4 6-1 5 1 4 2 2-4 5 2 1 3-1 6-8 4 2 3-5 1-4 2M1411 389l-2 2-3 1-1-3-4-2-1 1M1393 370l2-5 3-4-2-5 0-2-1-3-3-4-1-3 2-1 2-4-3-3-3-4-2-4 2-1 2-6 4 0 3-2 3-1 2 1 0 3 3 1-1 5 0 4 6-3 1 1 3 0 1-2 4 1 4 4 0 5 4 4 0 4-2 3M1401 318l1-2 4-3 0 1 3 0-1-6 3 0 3 4 2 4 6 0 2 5-3 1-2 2 6 3 5 6 3 4 4 3 1 4-1 5M1362 317l0-4 1 0 0-3 3-1-1-3 1-1 1-5 4 1 2-4 0-3 3-4 0-3 6-3 4 1-1-3 2-1 0-2 3-1 1 3 2 1 1 4-1 4-4 5-1 6 5-1 1 4 4 1-2 4 4 2 2 1 4-1 0 2M1411 308l3-2 4 0 4 0 5-3 2 2 5 1-1 3 2 2 5 1M1542 227l-1 1-2 0-4 1-2 2-2 0M1521 220l4-3 6-3 3-3 3 1 4 1-1-3 8-2 2-3 3 3M1483 171l-2 3-4 5 2 2 3 0 4 1 4-2 4 1 5 4-1 2-4-1-7 1-3 1-4 3-8 2-5 3-5-1-3-1-2 4 1 2 1 1-3 2-4 3-6 1-7 1-8 1-6 3-2-2-6 0-8-3-5 0-6 0-11-1-5 0-3-3-2-4-4-1-6-3-6-1-6 0-2-3 2-5-4-4-7-2-4-3-1-3M1363 310l-2-8-2 0 0 3-3-3 1-2 3-1 2-4-3-1-5 0-4 0-1-4-2 0-4-2-2 3 4 3-3 2-2 1 3 2 0 3 1 4 1 4M1241 302l3-4 11 0-1-4-3-3 0-3-3-3 5-5 6 0 5-5 3-5 5-5 0-3 4-3-4-3-1-3-2-5 2-2 8 1 5 0 5-4 6 5-1 4 2 3 0 3-4-1 2 5 5 4 7 3-4 2-2 5 5 2 5 2 7 3 6 1 3 2 4 1 6 1 4 0 1-2-1-3 1-2 3-1 0 4 0 1 5 1 3 0 4 0 4 0 1-3-3-2 5 0 4-4 6-3 4 1 4-2 2 3-2 2 6 1M1344 284l3-4 3-1 4 1 2 0 2 1M1306 269l2-1 4 1 5 4 3 0 1 3 4 1 4 2 6 1 6 1M1207 295l2-6 8-3-1-2-2-1 0-4-5-2-2-4-3-2 9 2 5 0 3 0 1-1 3 1 7-2 0-5 3-3 3 0 1-1 4-1 2 1 2-2-1-3 2-3 4-1-2-3 4 0 2-2 0-2 2-2-1-2-1-2 3-3 6-1 5 0 3-1 3-1 3 3 2 4 8 2M1239 234l2 1 3-2 2 1 2-2 3 0 0-1 1-2 2-1 3 1-1 1 2 0-1 5 2 1 2-1 2 0 3-2 4 0 5 0 1 1M1204 271l5-5-1-3-3-1-1-3-1-4 2-3-2 0 1-4 2-6 5 2 4-1 1-2 4-1 3-2 1-4 4-1 1-1 2 1 2 0M1255 219l-2 1-5-1-1 3 6 0 6 2 9-1 2 4 1 0 3 1 0 2 1 3M1301 208l0 1-8 3-2 2-6 1-2 3-6-1-3 1-5 3 1 1-2 1M1206 242l0-4-4-1-6-4-4-1-5-2-4-1-2 1-3 0-4 3-4 1M1124 234l-3-4 1-1-1-6 3-2 1 2 2 3 4 0 2 0 5-4 2 0 2 2-2 2 3 3 1-1M1081 241l1-1 1-1 1-3 1 1 6-2 2 1 5 0 5-1 3 0 6-1M1131 226l-2-3-3 0-1-2-1 0-2-1-4-1 1-3-1-1 7-1 1 1 2 1-1 1 2 2-1 2 2 1 2 1 1 3M1003 74l7 3 8 3 0 8 2 2M1059 159l-4 1-2 1 0 2-2 0-5 0-1-1-2 1-2-1-4 0-5-1-5-1-4 1-3 1-2 0 0-2-2-2 3-1 0-2-1-2-1-3 5 0 6-1 1-3 4-2-1-2 4-1 5-2M1048 194l-2-1-3 0-2 0 1-1 1-2 2-1-1-1 1-1 1 1 3 0 1 0-1-1 1 0-2-2-1-2-2-1 1-1-3-2-2 0-3-1-4 0-1 1-2 0-1 1-4 1-2 0-2-1-3 0-3 0-2 1-1-2-3-1 1-2 2-1 1 0-1-2 4-5 3 0 0-2-2-4M1013 175l-5-2-4 0-2 0-3 1-2-2-2 1-1 0-2-3-4 0 0-2-4 0 0 1-3-1 0-1-4-1-2-2-2-3 0-1-1-3-2-2 2-1-1-3M1014 148l2 1 1 1M1014 181l-4 1-2 3-3 3-4 1-3 0-4 1-2 1-4-1-4-2-1-1-1-1-1 0M985 179l0 2-3 0 1 2-2 3-1 1-4 0-3 1-4-1-7-1-1-2-5 1-1 1-3 0-2-1-3-1 1-1 0-1 1 0 3 1 1-1 4 0 4-1 2 1 2 1 0-1-1-3 2-1 2-2 4 1 3-2 1 0 4 1 3 0 2 1-1 1 1 1 2 2 2 0 4 0 1-1 2-1 2 0 1 0 2-1 1-1 2 0 5 1 1 0M1041 193l-1-3 1-2 0-2-3-3-2-2-1-2-2 0M1043 201l-3 0-4-2-6 1-2 2-7-1-4 0-2 0-2-2-1-1 2-1-2-1-1 2-3-2-1-2-3-1 0-2-3-2M1005 140l6-2 8 1 5-1 1 1 3 0 4 3M1022 131l4-1 2 1 4 2 4 0M975 164l-2 1-1-1-2 1-3 1-2 2-4 1 1 1 1 2 2 1 3 3M948 182l-5-1-1 1-5 0M931 173l0-3-1-1 1-3-1-5 3 0 1-2 1-5 0-1M943 145l3 1 4-1M1040 210l-4-1-5 2 0 2-5 1-4-2-4 1-3 0-1-3-2-2 1 0-1-1 1-1 2-2-3-2 0-2 1-1M1031 211l2 1-2 3-1 1M1001 222l2-3 0-1 2-1 0-1 3-1 2-1 3 0 1-1 1 0M1108 212l5 0 5 3M997 211l0-2 2-2 1 0 1 1 2 1 0 2-1 1 1 3 2 1M994 190l1 2 2 2-2 2-2-1-4 0-4-1-2 0-1 1-2-1-1 2 2 2 1 2 3 2 1 1 2 2 5 2-1 1M969 193l3 0 1-1 2 1 2 0 0-2 1 0 1-2 4-2M952 186l0 2-2 0-4 0-1 2-3 0 0-1-3 2-3 0-2-1M928 172l1-2 1-1M917 163l3 1 5-1 3 2 3 1M855 211l2-2 2 0 1 2 3 0 1-1 3 1 1 2-2 1 0 4-1 1 0 2-2 1 2 3-2 3 2 2-1 1-2 2 1 2M862 144l1 3-1 3 3 0 4 1M969 187l-1 3 2 2M1125 214l1-1 4 1 2 1 1-1-2-3 1 0M1471 397l2 3 1-2 3 0 0-3 0-2M985 177l1-1 2 0 1-1 1 0 1 0 0-1 1-1 1 0 1 0M1115 357l-1 1-2-1-2-1-2-3-2-2-2-2-4-2-3 0-2-1-2 1-3-2-2 4-6-1M1114 338l2-1 0-2 1-3 2 1 1 0 6 0 1 0 5 1 2 0 1 1 2-1 4-5 5-2 14-2M1070 245l-1 0-1 0-1 0 0-1-1 0-1 1-1-1M1025 310l0-18 0-18-1-4 1-3-1-2 2-3M1076 392l-2-5-3-1-1-2-2-3-3 0 1-3 3 0 1-1M1112 357l-2 2-2 3 1 1 0 2 3 0 1-1 1 1-1 2 2 3 1 2 2 2 17 6 4 0M1052 426l-3 1-1 0M1054 402l2-1 3 1 4-1 4 0 3-2M995 196l2 0-1 2 2 2-1 2-1 0-1 1-1 1-1 3M1003 211l1 0 0-1 3-1 1 0 2-1 2 0M1008 209l0-1 1-1-1 0-1-1-1-1-1-1-1 0-1 0-1 2-1 0 1 0-2-2-2 0-1-1-1-1'};
+/* Archiv: alle Filme mit Handlungsorten (Spielorte laut Handlung, nicht Drehorte) und Hauptfiguren.
+   Ort: [Name, Breite, Länge, fiktiv]  ·  Figur: [Name, a verbündet | h feindlich | n undurchsichtig, Rolle] */
+const LDN=['London',51.507,-0.128],IST=['Istanbul',41.008,28.978],VEN=['Venedig',45.438,12.335],HKG=['Hongkong',22.32,114.17],
+ MIA=['Miami',25.79,-80.13],NAS=['Nassau, Bahamas',25.048,-77.355],PAR=['Paris',48.857,2.352],MAC=['Macau',22.20,113.54],
+ TNG=['Tanger',35.76,-5.83],JAM=['Jamaika',18.0,-76.8],SCO=['Schottland',56.68,-5.1];
+const FILMS=[
+ {y:1962,t:'James Bond jagt Dr. No',a:'Ein Funkposten auf Jamaika schweigt. Jemand bringt amerikanische Raketen vom Kurs ab, und alle Spuren enden auf einer Insel, die niemand betreten soll.',
+  L:[LDN,JAM,['Crab Key',17.55,-77.75,1]],
+  P:[['Dr. Julius No','h','Herr über Crab Key, Hände aus Metall'],['Honey Ryder','a','Muschelsammlerin am falschen Strand'],['Felix Leiter','a','CIA, erster Auftritt'],['Quarrel','a','Bootsführer aus Kingston'],['Miss Taro','h','Sekretärin mit Nebenjob']]},
+ {y:1963,t:'Liebesgrüße aus Moskau',a:'SPECTRE ködert Bond mit einer Dechiffriermaschine und einer Überläuferin. Die Rückfahrt im Orient-Express wird länger als geplant.',
+  L:[LDN,IST,['Belgrad (Orient-Express)',44.787,20.457],['Zagreb',45.815,15.982],VEN],
+  P:[['Rosa Klebb','h','SPECTRE Nummer 3, Klinge im Schuh'],['Red Grant','h','Killer im Schlafwagen'],['Tatiana Romanova','a','Chiffrierbeamtin des KGB'],['Kerim Bey','a','MI6, Station Türkei'],['Kronsteen','h','Schachmeister und Planer']]},
+ {y:1964,t:'Goldfinger',a:'Ein Goldhändler will Fort Knox radioaktiv verseuchen, damit sein eigenes Gold im Wert steigt. Er spielt außerdem falsch Golf.',
+  L:[MIA,LDN,['Genf',46.204,6.143],['Fort Knox, Kentucky',37.89,-85.96]],
+  P:[['Auric Goldfinger','h','Goldhändler, Golfbetrüger'],['Oddjob','h','Hut mit Stahlkrempe'],['Pussy Galore','n','Pilotin, wechselt die Seite'],['Jill Masterson','a','Endet vergoldet'],['Felix Leiter','a','CIA']]},
+ {y:1965,t:'Feuerball',a:'SPECTRE stiehlt zwei Atombomben und fordert Lösegeld. Bond taucht vor den Bahamas nach ihnen.',
+  L:[['Kurklinik, Südengland',51.15,-0.75],PAR,NAS],
+  P:[['Emilio Largo','h','SPECTRE Nummer 2, Augenklappe'],['Domino Derval','a','Largos Mündel, wechselt die Seite'],['Fiona Volpe','h','SPECTRE, fährt Motorrad mit Raketen'],['Graf Lippe','h','Kurgast mit Tätowierung'],['Felix Leiter','a','CIA']]},
+ {y:1967,t:'Man lebt nur zweimal',a:'Raumkapseln verschwinden im Orbit. Bond stirbt zum Schein in Hongkong und findet die Basis in einem japanischen Vulkan.',
+  L:[HKG,['Tokio',35.68,139.69],['Kobe',34.69,135.20],['Vulkanbasis, Kyushu',31.91,130.88,1]],
+  P:[['Ernst Stavro Blofeld','h','SPECTRE Nummer 1, erstmals mit Gesicht'],['Aki','a','Japanischer Geheimdienst'],['Kissy Suzuki','a','Taucherin, Tarnehe mit Bond'],['Tiger Tanaka','a','Chef des japanischen Geheimdienstes'],['Helga Brandt','h','SPECTRE Nummer 11']]},
+ {y:1969,t:'Im Geheimdienst Ihrer Majestät',a:'Blofeld versteckt sich als Graf in einer Allergieklinik in den Schweizer Alpen. Bond heiratet. Es endet nicht gut.',
+  L:[['Estoril, Portugal',38.705,-9.398],['Bern',46.948,7.447],['Piz Gloria',46.558,7.835],LDN],
+  P:[['Ernst Stavro Blofeld','h','Als Graf de Bleuchamp'],['Tracy di Vicenzo','a','Wird Mrs. Bond'],['Marc-Ange Draco','a','Chef der Union Corse, Brautvater'],['Irma Bunt','h','Blofelds Stellvertreterin']]},
+ {y:1971,t:'Diamantenfieber',a:'Diamanten verschwinden aus Südafrika. Am Ende hängt ein Laser-Satellit über der Erde.',
+  L:[['Amsterdam',52.37,4.90],['Diamantmine, Südafrika',-28.74,24.77],['Las Vegas',36.17,-115.14],['Bohrinsel vor Baja California',31.0,-117.3]],
+  P:[['Ernst Stavro Blofeld','h','Mit Doppelgängern'],['Tiffany Case','a','Diamantenschmugglerin'],['Mr. Wint','h','Killer im Doppelpack'],['Mr. Kidd','h','Killer im Doppelpack'],['Willard Whyte','n','Milliardär, eingesperrt im eigenen Penthouse']]},
+ {y:1973,t:'Leben und sterben lassen',a:'Ein Inseldiktator will den US-Markt mit Gratis-Heroin übernehmen. Krokodile spielen eine Rolle.',
+  L:[['New York',40.71,-74.0],['New Orleans',29.95,-90.07],['San Monique',16.8,-70.2,1]],
+  P:[['Dr. Kananga / Mr. Big','h','Diktator mit Doppelleben'],['Solitaire','a','Liest Tarotkarten'],['Tee Hee','h','Stahlarm'],['Baron Samedi','h','Lacht zuletzt'],['Sheriff J. W. Pepper','n','Louisiana, ungefragt']]},
+ {y:1974,t:'Der Mann mit dem goldenen Colt',a:'Eine goldene Kugel mit eingravierter 007, ein Auftragskiller zu einer Million pro Schuss und ein Solarkraftwerk.',
+  L:[['Beirut',33.89,35.50],MAC,HKG,['Bangkok',13.75,100.50],['Scaramangas Insel',8.27,98.50,1]],
+  P:[['Francisco Scaramanga','h','Eine Million pro Schuss'],['Schnick Schnack','h','Butler, klein, gefährlich'],['Mary Goodnight','a','MI6, Station Hongkong'],['Andrea Anders','n','Scaramangas Geliebte'],['Lieutenant Hip','a','Polizei Hongkong']]},
+ {y:1977,t:'Der Spion, der mich liebte',a:'Ein Reeder lässt Atom-U-Boote verschwinden und will die Welt unter Wasser neu gründen. MI6 und KGB arbeiten ausnahmsweise zusammen.',
+  L:[['Österreichische Alpen',47.27,11.39],['Kairo',30.04,31.24],['Sardinien',41.1,9.55],['Atlantis',40.4,10.6,1],['Faslane, Schottland',56.06,-4.82]],
+  P:[['Karl Stromberg','h','Reeder mit Unterwasserstadt'],['Beißer','h','Stahlgebiss'],['Anya Amasova','a','KGB-Agentin XXX'],['Naomi','h','Hubschrauberpilotin'],['General Gogol','n','KGB-Chef, kooperativ']]},
+ {y:1979,t:'Moonraker – Streng geheim',a:'Ein Raumfähren-Hersteller will die Menschheit aus dem Orbit vergiften und mit Auserwählten neu beginnen. Bond fliegt ins All.',
+  L:[['Kalifornien',34.05,-118.24],VEN,['Rio de Janeiro',-22.91,-43.17],['Amazonas',-3.4,-60.0]],
+  P:[['Hugo Drax','h','Raumfahrtunternehmer'],['Beißer','n','Wechselt am Ende die Seite'],['Holly Goodhead','a','Astronautin und CIA'],['Chang','h','Kendo im Glasmuseum'],['Corinne Dufour','n','Drax\' Pilotin']]},
+ {y:1981,t:'In tödlicher Mission',a:'Ein Spionageschiff sinkt mit dem ATAC-System an Bord. Wettlauf mit dem KGB, Armbrust inklusive.',
+  L:[['Spanien',38.0,-0.8],['Cortina d\'Ampezzo',46.54,12.14],['Korfu',39.62,19.92],['Meteora (St. Cyril\'s)',39.72,21.63]],
+  P:[['Aristoteles Kristatos','h','Schmuggler, falscher Freund'],['Milos Columbo','a','Schmuggler, echter Freund'],['Melina Havelock','a','Armbrust, Rache'],['Emile Locque','h','Killer mit Brille'],['Erich Kriegler','h','Biathlet, KGB']]},
+ {y:1983,t:'Octopussy',a:'Ein gefälschtes Fabergé-Ei, ein Zirkus und eine Atombombe auf einer US-Basis in Westdeutschland.',
+  L:[['Ostberlin',52.52,13.40],LDN,['Udaipur',24.58,73.71],['Karl-Marx-Stadt',50.83,12.92],['Feldstadt, BRD',49.9,8.9,1]],
+  P:[['Kamal Khan','h','Afghanischer Prinz, würfelt falsch'],['General Orlov','h','Sowjetgeneral auf eigene Rechnung'],['Octopussy','a','Herrin einer Insel und eines Zirkus'],['Gobinda','h','Leibwächter'],['Magda','n','Akrobatin']]},
+ {y:1985,t:'Im Angesicht des Todes',a:'Ein Industrieller will das Silicon Valley fluten und den Mikrochip-Markt beherrschen. Finale auf der Golden Gate Bridge.',
+  L:[['Sibirien',70.0,90.0],PAR,['Chantilly',49.19,2.47],['San Francisco',37.77,-122.42]],
+  P:[['Max Zorin','h','Industrieller aus dem Labor'],['May Day','n','Wechselt am Ende die Seite'],['Stacey Sutton','a','Geologin'],['Dr. Carl Mortner','h','Zorins Erfinder'],['Scarpine','h','Sicherheitschef']]},
+ {y:1987,t:'Der Hauch des Todes',a:'Ein KGB-General läuft über, oder auch nicht. Waffen, Diamanten, Opium und ein Cellokasten als Schlitten.',
+  L:[['Gibraltar',36.14,-5.35],['Bratislava',48.15,17.11],['Wien',48.21,16.37],TNG,['Afghanistan',34.5,69.2]],
+  P:[['General Georgi Koskov','h','Überläufer zum Schein'],['Brad Whitaker','h','Waffenhändler, spielt Feldherr'],['Necros','h','Killer mit Kopfhörern'],['Kara Milovy','a','Cellistin'],['Kamran Shah','a','Mudschahedin-Anführer']]},
+ {y:1989,t:'Lizenz zum Töten',a:'Ein Drogenbaron verstümmelt Felix Leiter. Bond gibt seine Lizenz ab und rächt sich auf eigene Rechnung.',
+  L:[['Key West',24.55,-81.78],['Bimini',25.73,-79.25],['Isthmus City',9.0,-79.5,1]],
+  P:[['Franz Sanchez','h','Drogenbaron mit Leguan'],['Dario','h','Handlanger'],['Pam Bouvier','a','Pilotin, CIA-Kontakt'],['Lupe Lamora','a','Sanchez\' Geliebte'],['Felix Leiter','a','Heiratet, wird verstümmelt'],['Milton Krest','h','Schmuggler']]},
+ {y:1995,t:'GoldenEye',a:'Ein totgeglaubter Ex-Doppelnull stiehlt eine Satellitenwaffe und will London lahmlegen. Ein Panzer fährt durch St. Petersburg.',
+  L:[['Archangelsk',64.54,40.54],['Monaco',43.74,7.42],['Severnaya',72.0,95.0,1],['St. Petersburg',59.93,30.36],['Kuba (Antenne)',22.0,-80.0,1]],
+  P:[['Alec Trevelyan','h','Ehemals 006'],['Xenia Onatopp','h','Tödliche Umarmung'],['Natalya Simonova','a','Programmiererin'],['Boris Grishenko','h','Programmierer, unverwundbar laut eigener Aussage'],['General Ourumov','h','Sowjetgeneral'],['Valentin Zukovsky','n','Ex-KGB, Kaviarhändler']]},
+ {y:1997,t:'Der Morgen stirbt nie',a:'Ein Medienmogul provoziert einen Krieg zwischen Großbritannien und China, damit er die Schlagzeilen zuerst hat.',
+  L:[['Hamburg',53.55,9.99],['Südchinesisches Meer',16.0,112.0],['Saigon',10.82,106.63],['Halong-Bucht',20.91,107.18]],
+  P:[['Elliot Carver','h','Medienmogul'],['Wai Lin','a','Chinesischer Geheimdienst'],['Paris Carver','n','Carvers Frau, Bonds Vergangenheit'],['Stamper','h','Handlanger'],['Dr. Kaufman','h','Professioneller Mörder']]},
+ {y:1999,t:'Die Welt ist nicht genug',a:'Eine Ölerbin, ihr Entführer, der keinen Schmerz spürt, und eine Pipeline durch den Kaukasus.',
+  L:[['Bilbao',43.26,-2.93],LDN,['Castle Thane, Schottland',57.27,-5.52],['Baku',40.41,49.87],['Kasachstan',50.4,80.2],IST],
+  P:[['Renard','h','Spürt keinen Schmerz'],['Elektra King','h','Ölerbin'],['Christmas Jones','a','Atomphysikerin'],['Valentin Zukovsky','n','Kaviarfabrik in Baku'],['Zigarren-Mädchen','h','Bootsjagd auf der Themse']]},
+ {y:2002,t:'Stirb an einem anderen Tag',a:'Verrat in Nordkorea, vierzehn Monate Haft, dann ein Diamantenhändler mit einem Spiegel im All und einem Eispalast.',
+  L:[['Nordkorea',38.0,126.8],HKG,['Havanna',23.11,-82.37],LDN,['Island',64.05,-16.18]],
+  P:[['Gustav Graves','h','Neues Gesicht, alter Oberst'],['Zao','h','Diamanten im Gesicht'],['Jinx','a','NSA'],['Miranda Frost','h','MI6, Doppelagentin'],['Mr. Kil','h','Handlanger']]},
+ {y:2006,t:'Casino Royale',a:'Bonds erster Einsatz als Doppelnull. Ein Bankier des Terrors muss in Montenegro am Pokertisch gewinnen. Gedreht in Karlsbad – Ihr Einsatzgebiet.',
+  L:[['Prag (Prolog)',50.0755,14.4378],['Madagaskar',-18.9,47.5],NAS,MIA,['Montenegro (gedreht in Karlsbad)',42.43,19.26],VEN,['Comer See',45.99,9.26]],
+  P:[['Le Chiffre','h','Bankier des Terrors'],['Vesper Lynd','a','Schatzamt'],['René Mathis','a','Kontakt in Montenegro'],['Felix Leiter','a','CIA, am Spieltisch'],['Mr. White','h','Die Organisation'],['Alex Dimitrios','h','Mittelsmann'],['Valenka','h','Digitalis']]},
+ {y:2008,t:'Ein Quantum Trost',a:'Ein angeblicher Umweltschützer kauft Bolivien das Wasser ab. Bond sucht die Organisation hinter Vesper.',
+  L:[['Siena',43.32,11.33],['Haiti',18.54,-72.34],['Bregenz',47.50,9.75],['Talamone',42.55,11.13],['Bolivien',-16.5,-68.15],['Kasan',55.79,49.12]],
+  P:[['Dominic Greene','h','Greene Planet, Quantum'],['Camille Montes','a','Rache an Medrano'],['General Medrano','h','Will Bolivien'],['Strawberry Fields','a','MI6, Konsulat La Paz'],['Mr. White','h','Quantum'],['René Mathis','a','Im Ruhestand, nicht lange']]},
+ {y:2012,t:'Skyfall',a:'Ein ehemaliger Agent rächt sich an M. MI6 wird angegriffen, das Finale spielt in Schottland, im Haus, in dem Bond aufwuchs.',
+  L:[IST,['Shanghai',31.23,121.47],MAC,['Tote Stadt (Insel)',21.85,113.25,1],LDN,SCO],
+  P:[['Raoul Silva','h','Ehemals MI6, Rechnung mit M offen'],['Patrice','h','Söldner'],['Sévérine','n','Casino Macau'],['Eve Moneypenny','a','Außendienst, dann Vorzimmer'],['M','a','Leitung'],['Kincade','a','Wildhüter von Skyfall']]},
+ {y:2015,t:'Spectre',a:'Eine Botschaft der verstorbenen M führt zu einer Organisation, die hinter allem stand. Und zu einem alten Bekannten.',
+  L:[['Mexiko-Stadt',19.43,-99.13],['Rom',41.90,12.50],['Altaussee, Österreich',47.64,13.76],TNG,['Basis in der Sahara',31.0,-4.5,1],LDN],
+  P:[['Ernst Stavro Blofeld','h','Kopf von SPECTRE'],['Mr. Hinx','h','Daumennägel aus Stahl'],['Madeleine Swann','a','Psychologin, Tochter von Mr. White'],['Lucia Sciarra','n','Witwe in Rom'],['Max Denbigh','h','„C“, will MI6 abschaffen'],['Mr. White','n','Gebrochen, in Altaussee']]},
+ {y:2021,t:'Keine Zeit zu sterben',a:'Ein entführter Wissenschaftler, eine Biowaffe aus Nanobots und eine Insel zwischen Japan und Russland.',
+  L:[['Norwegen',60.6,9.2],['Matera',40.67,16.60],JAM,['Santiago de Cuba',20.02,-75.82],LDN,['Safins Insel',44.8,146.5,1]],
+  P:[['Lyutsifer Safin','h','Giftgarten auf einer Insel'],['Madeleine Swann','a','Vergangenheit in Norwegen'],['Nomi','a','Trägt die Nummer 007'],['Paloma','a','CIA, drei Wochen Ausbildung'],['Ernst Stavro Blofeld','h','In Belmarsh, trotzdem aktiv'],['Felix Leiter','a','CIA, letzter Einsatz'],['Logan Ash','h','CIA, falsches Spiel']]},
+ {y:1967,t:'Casino Royale (Parodie)',u:1,a:'Inoffizielle Satire: Der pensionierte Sir James Bond wird reaktiviert, und plötzlich heißen alle Agenten James Bond.',
+  L:[LDN,['Schottland',57.3,-4.4],['West-Berlin',52.5,13.3],['Casino Royale, Frankreich',48.9,2.2,1]],
+  P:[['Sir James Bond','a','Im Ruhestand, reaktiviert'],['Vesper Lynd','n','Spielt für mehrere Seiten'],['Le Chiffre','h','Spielt Baccara gegen die Pleite'],['Dr. Noah','h','Hat Großes vor']]},
+ {y:1983,t:'Sag niemals nie',u:1,a:'Inoffizielle Neuverfilmung von Feuerball: SPECTRE stiehlt zwei Marschflugkörper. Bond kehrt aus dem Ruhestand zurück.',
+  L:[['Kurklinik Shrublands',51.15,-0.75],NAS,['Nizza',43.70,7.27],['Palmyra (Nordafrika)',31.6,-8.0,1]],
+  P:[['Maximilian Largo','h','SPECTRE'],['Fatima Blush','h','SPECTRE Nummer 12'],['Domino Petachi','a','Largos Freundin'],['Ernst Stavro Blofeld','h','Mit Katze'],['Felix Leiter','a','CIA']]}
+];
+/* Weltlage: alle Filme, Schauplätze und Figuren auf einer Weltkarte (abstandstreu, Natural Earth 1:110 Mio.) */
+(function(){
+const wSvg=document.getElementById('world'),wInfo=document.getElementById('wInfo'),wFilms=document.getElementById('wFilms'),wPpl=document.getElementById('wPpl'),wStat=document.getElementById('wStat'),wTitle=document.getElementById('wTitle');
+const BW=WORLD.W,BH=WORLD.H,LAT0=84,el=mk(wSvg);
+const WP=(la,lo)=>[(lo+180)/360*BW,(LAT0-la)/360*BW];
+const FO=FILMS.map((f,i)=>({...f,i})).sort((a,b)=>a.y-b.y||(a.u?1:0)-(b.u?1:0));
+const WF={a:'VERBÜNDET',h:'FEINDLICH',n:'UNDURCHSICHTIG',u:'EIGENE EINHEIT'};
+const T=(x,y,s,c,ex,p)=>{const t=el('text',Object.assign({x,y,class:c},ex||{}),p);t.textContent=s;return t};
+/* Grundkarte */
+el('rect',{x:0,y:0,width:BW,height:BH,class:'w-sea'});
+for(let lo=-180;lo<=180;lo+=15){const[x]=WP(0,lo);el('line',{x1:x,y1:0,x2:x,y2:BH,class:'w-grat'+(lo%45?'':' maj')})}
+for(let la=-45;la<=75;la+=15){const[,y]=WP(la,0);el('line',{x1:0,y1:y,x2:BW,y2:y,class:'w-grat'+(la?'':' eq')})}
+[[23.44,'WENDEKREIS DES KREBSES'],[-23.44,'WENDEKREIS DES STEINBOCKS']].forEach(([la,n])=>{const[,y]=WP(la,0);el('line',{x1:0,y1:y,x2:BW,y2:y,class:'w-trop'});T(BW-10,y-5,n,'w-gl',{'text-anchor':'end'})});
+{const[,y]=WP(0,0);T(BW-10,y-5,'ÄQUATOR','w-gl',{'text-anchor':'end'})}
+el('path',{d:WORLD.land,class:'w-land'});el('path',{d:WORLD.bord,class:'w-bord',fill:'none'});
+[['ATLANTIK',28,-42],['PAZIFIK',8,-138],['PAZIFIK',22,163],['INDISCHER OZEAN',-22,78],['NORDPOLARMEER',78,-10],['SÜDPOLARMEER',-54,20]].forEach(([n,la,lo])=>{const[x,y]=WP(la,lo);T(x,y,n,'w-ocean',{'text-anchor':'middle'})});
+for(let lo=-150;lo<=150;lo+=30){const[x]=WP(0,lo);T(x,14,Math.abs(lo)+'°'+(lo<0?'W':lo?'O':''),'w-gl',{'text-anchor':'middle'})}
+for(let la=-30;la<=60;la+=30){const[,y]=WP(la,0);T(6,y-4,Math.abs(la)+'°'+(la<0?'S':la?'N':''),'w-gl')}
+/* Routen je Film */
+const routes=el('g',{class:'w-routes'});
+FO.forEach(f=>{f.pts=f.L.map(l=>WP(l[1],l[2]));f.route=el('path',{d:f.pts.map((p,j)=>(j?'L':'M')+p[0].toFixed(1)+' '+p[1].toFixed(1)).join(' '),class:'w-route'+(f.u?' u':''),fill:'none'},routes)});
+/* Schauplätze zusammenfassen: gleicher Name, gleicher Ort */
+const PL=new Map();FO.forEach(f=>f.L.forEach(l=>{const k=l[0];if(!PL.has(k))PL.set(k,{n:l[0],la:l[1],lo:l[2],fi:!!l[3],films:[]});PL.get(k).films.push(f)}));
+const placesG=el('g',{class:'w-places'});const places=[];
+PL.forEach(p=>{const[x,y]=WP(p.la,p.lo);const g=el('g',{class:'w-pl'+(p.fi?' fi':''),tabindex:0,role:'button','aria-label':p.n+', '+p.films.length+' Filme'},placesG);
+  const r=3.2+Math.min(p.films.length,10)*.55;
+  if(p.fi)el('path',{d:`M0 ${-r-1} L${r+1} 0 L0 ${r+1} L${-r-1} 0 Z`,class:'w-pm'},g);else el('circle',{r,class:'w-pm'},g);
+  if(p.films.length>2)T(0,3,p.films.length,'w-pn',{'text-anchor':'middle'},g);
+  const t=T(r+5,4,p.n+(p.fi?' (fiktiv)':''),'w-pt',{},g);
+  Object.assign(p,{x,y,g,t});places.push(p);
+  const act=()=>{stopPlay();showPlace(p)};g.addEventListener('click',e=>{e.stopPropagation();act()});g.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();act()}})});
+/* Ihr Einsatz */
+const ops=el('g',{class:'w-ops',tabindex:0,role:'button','aria-label':'Operation Splendide'});{const[x,y]=WP(50.2306,12.8711);
+  el('circle',{r:13,class:'w-opsr'},ops);el('path',{d:'M0 -9 L2.6 -2.8 9 -2.8 3.9 1.1 5.8 7.6 0 3.7 -5.8 7.6 -3.9 1.1 -9 -2.8 -2.6 -2.8 Z',class:'w-opss'},ops);
+  const t=T(14,-10,'OPERATION SPLENDIDE · NOV 2026','w-opst',{},ops);ops.dataset.x=x;ops.dataset.y=y;
+  ops.addEventListener('click',e=>{e.stopPropagation();stopPlay();wInfo.innerHTML='<b>OPERATION SPLENDIDE // IHR EINSATZ</b> <span class="ptag f-u">00-EINHEIT · NOVEMBER 2026</span><br>Karlsbad spielt Montenegro, Prag spielt London, Miami und Venedig. Auf der Weltkarte liegt Ihr gesamter Einsatz in einem einzigen Punkt. M findet das beruhigend. <a href="#maps">Zur Lagekarte</a>'})}
+/* Figuren */
+const pplG=el('g',{class:'w-ppl'});const list=[];let n=0;
+FO.forEach(f=>{const cum=[0];for(let j=1;j<f.pts.length;j++)cum.push(cum[j-1]+Math.hypot(f.pts[j][0]-f.pts[j-1][0],f.pts[j][1]-f.pts[j-1][1]));const len=cum[cum.length-1];
+  f.P.forEach((p,j)=>{const g=el('g',{class:'w-pp f-'+p[1],tabindex:-1,role:'button','aria-label':p[0]},pplG);
+    if(p[1]==='h')el('path',{d:'M0 -6.5 L6.5 0 L0 6.5 L-6.5 0 Z',class:'w-pb'},g);else el('circle',{r:5.2,class:'w-pb'},g);
+    const nt=T(0,-11,p[0],'w-pnm',{'text-anchor':'middle'},g);
+    const dur=Math.max(18,len/20),a={id:'w'+n++,g,pts:f.pts,cum,len,dur,mode:'pp',off:(j*dur/f.P.length)+f.y%7,x:f.pts[0][0],y:f.pts[0][1],k:1,f,p};
+    list.push(a);g.addEventListener('click',e=>{e.stopPropagation();stopPlay();selW(a.id)})})});
+{const route=[[48.3705,10.8978],[50.2306,12.8711],[50.0755,14.4378],[48.3705,10.8978]].map(q=>WP(q[0],q[1]));const cum=[0];for(let j=1;j<route.length;j++)cum.push(cum[j-1]+Math.hypot(route[j][0]-route[j-1][0],route[j][1]-route[j-1][1]));
+  const g=el('g',{class:'w-pp f-u'},pplG);el('circle',{r:5.6,class:'w-pb'},g);T(0,-11,'00-Einheit','w-pnm',{'text-anchor':'middle'},g);
+  list.push({id:'wops',g,pts:route,cum,len:cum[cum.length-1],dur:14,mode:'loop',off:0,x:route[0][0],y:route[0][1],k:1,f:null,p:['00-Einheit','u','Ihr Fahrzeug']});
+  g.addEventListener('click',e=>{e.stopPropagation();stopPlay();selW('wops')})}
+anims.set(wSvg,list);list.forEach(a=>placeAt(a,RM?0:performance.now()));
+wStat.textContent=`${FILMS.length} FILME · ${PL.size} SCHAUPLÄTZE · ${list.length-1} PERSONEN`;
+/* Zoom: Markierungen und Schrift behalten ihre Bildschirmgröße */
+const WV=viewer(wSvg,BW,BH,document.getElementById('wzLvl'),{min:110,homeW:()=>innerWidth<680?640:BW,onZoom:z=>{
+  const k=WV?WV.w/(wSvg.clientWidth||BW):1;wSvg.style.setProperty('--k',k.toFixed(3));wSvg.classList.toggle('z2',z>=2.3);wSvg.classList.toggle('z5',z>=5);
+  places.forEach(p=>p.g.setAttribute('transform',`translate(${p.x.toFixed(1)} ${p.y.toFixed(1)}) scale(${k.toFixed(3)})`));
+  ops.setAttribute('transform',`translate(${ops.dataset.x} ${ops.dataset.y}) scale(${k.toFixed(3)})`);
+  list.forEach(a=>{a.k=k;if(RM)placeAt(a,0)})}});
+VIEW.set(wSvg,WV);watchVis(wSvg);
+WV.focus=innerWidth<680?WP(42,12):[BW/2,BH/2];WV.home();
+document.getElementById('wzIn').onclick=()=>WV.zoomBy(1.6);
+document.getElementById('wzOut').onclick=()=>WV.zoomBy(1/1.6);
+document.getElementById('wzReset').onclick=()=>{stopPlay();selFilm(null);WV.home()};
+/* Filmleiste */
+wFilms.innerHTML='<button type="button" class="fchip" data-f="" aria-pressed="true">ALLE</button>'+FO.map(f=>`<button type="button" class="fchip${f.u?' u':''}" data-f="${f.i}" aria-pressed="false"><b>${f.y}</b> ${f.t}${f.u?' *':''}</button>`).join('')+'<button type="button" class="fchip play" id="wPlay">▶ CHRONOLOGIE</button>';
+wFilms.querySelectorAll('.fchip[data-f]').forEach(b=>b.onclick=()=>{stopPlay();selFilm(b.dataset.f===''?null:+b.dataset.f)});
+let cur=null,wsel=null,playT=null;
+function bbox(pts){let x0=1e9,y0=1e9,x1=-1e9,y1=-1e9;pts.forEach(([x,y])=>{x0=Math.min(x0,x);y0=Math.min(y0,y);x1=Math.max(x1,x);y1=Math.max(y1,y)});return[x0,y0,x1,y1]}
+function selFilm(i,quiet){cur=i;selW(null,true);const f=i==null?null:FO.find(x=>x.i===i);
+  wFilms.querySelectorAll('.fchip[data-f]').forEach(b=>{const on=b.dataset.f===(i==null?'':String(i));b.setAttribute('aria-pressed',on);if(on&&!quiet)wFilms.scrollTo({left:b.offsetLeft-wFilms.clientWidth/2+b.offsetWidth/2,behavior:RM?'auto':'smooth'})});
+  wSvg.classList.toggle('film',!!f);
+  FO.forEach(x=>x.route.classList.toggle('sel',x===f));
+  places.forEach(p=>p.g.classList.toggle('on',!!f&&p.films.includes(f)));
+  list.forEach(a=>a.g.classList.toggle('off',!!f&&a.f!==f&&a.id!=='wops'));
+  if(!f){wTitle.textContent='WELTLAGE // ALLE EINSÄTZE 1962–2021';wPpl.innerHTML='<span class="pplh">ALLE PERSONEN IN BEWEGUNG · FILM WÄHLEN FÜR DOSSIERS</span>';
+    wInfo.innerHTML=`<b>DAS ARCHIV</b> — ${FILMS.length} Einsätze auf ${PL.size} Schauplätzen. Am häufigsten: ${top.slice(0,4).map(p=>`${p.n} (${p.films.length})`).join(', ')}. Linien verbinden die Schauplätze eines Films in Reihenfolge der Handlung. Raute = fiktiver Ort.`;WV.home();return}
+  wTitle.textContent=`EINSATZAKTE ${f.y} // ${f.t.toUpperCase()}`;
+  const fp=list.filter(a=>a.f===f);
+  wPpl.innerHTML='<span class="pplh">PERSONEN</span>'+fp.map(a=>`<button type="button" class="pchip f-${a.p[1]==='n'?'n':a.p[1]}" data-w="${a.id}" aria-pressed="false"><i></i>${a.p[0]}</button>`).join('');
+  wPpl.querySelectorAll('.pchip').forEach(b=>b.onclick=()=>{stopPlay();selW(wsel===b.dataset.w?null:b.dataset.w)});
+  wInfo.innerHTML=`<b>${f.y} // ${f.t.toUpperCase()}</b>${f.u?' <span class="ptag f-n">INOFFIZIELL</span>':''}<br>${f.a}<br><span class="psee">SCHAUPLÄTZE: ${f.L.map(l=>l[0]+(l[3]?' (fiktiv)':'')).join(' → ')}</span>`;
+  const[x0,y0,x1,y1]=bbox(f.pts);const w=Math.max(220,(x1-x0)*1.35,(y1-y0)*1.45/WV.A());WV.to((x0+x1)/2,(y0+y1)/2,w)}
+function selW(id,quiet){wsel=id;WV.follow=id;list.forEach(a=>a.g.classList.toggle('sel',a.id===id));wSvg.classList.toggle('psel',!!id);
+  wPpl.querySelectorAll('.pchip').forEach(b=>b.setAttribute('aria-pressed',b.dataset.w===id));
+  if(!id||quiet)return;const a=list.find(x=>x.id===id);a.g.parentNode.appendChild(a.g);
+  if(a.f&&cur!==a.f.i){selFilm(a.f.i,true);wsel=id;WV.follow=id;a.g.classList.add('sel');wSvg.classList.add('psel');wPpl.querySelectorAll('.pchip').forEach(b=>b.setAttribute('aria-pressed',b.dataset.w===id))}
+  wInfo.innerHTML=`<b>ZIELPERSON // ${a.p[0].toUpperCase()}</b> <span class="ptag f-${a.p[1]}">${WF[a.p[1]]}</span><br>${a.p[2]}.${a.f?` Einsatz: ${a.f.t} (${a.f.y}).`:''}<br><span class="psee">ROUTE: ${a.f?a.f.L.map(l=>l[0]).join(' → '):'Augsburg → Karlsbad → Prag → Augsburg'}${RM?'':' · Karte folgt der Person.'}</span>`;
+  if(WV.w>700)WV.to(a.x,a.y,innerWidth<680?300:520)}
+function showPlace(p){const here=/Karlsbad|Prag/.test(p.n)?' <span class="ptag f-u">IHR EINSATZGEBIET</span>':'';
+  wInfo.innerHTML=`<b>SCHAUPLATZ // ${p.n.toUpperCase()}</b>${p.fi?' <span class="ptag f-n">FIKTIV</span>':''}${here}<br>In ${p.films.length===1?'einem Film':p.films.length+' Filmen'}: ${p.films.sort((a,b)=>a.y-b.y).map(f=>`<button type="button" class="ref" data-f="${f.i}">${f.y} ${f.t}</button>`).join(' ')}`;
+  wInfo.querySelectorAll('[data-f]').forEach(b=>b.onclick=()=>selFilm(+b.dataset.f))}
+wSvg.addEventListener('click',e=>{if(wsel&&!e.target.closest('.w-pp'))selW(null)});
+/* Chronologie: alle Filme nacheinander */
+const playB=document.getElementById('wPlay');
+function stopPlay(){if(playT){clearInterval(playT);playT=null;playB.textContent='▶ CHRONOLOGIE';playB.setAttribute('aria-pressed','false')}}
+playB.onclick=()=>{if(playT){stopPlay();return}const order=FO.filter(f=>!f.u);let k=cur==null?0:Math.max(0,order.findIndex(f=>f.i===cur)+1)%order.length;
+  const step=()=>{selFilm(order[k].i);k=(k+1)%order.length};step();playT=setInterval(step,RM?6000:4200);playB.textContent='■ STOPP';playB.setAttribute('aria-pressed','true')};
+const top=[...PL.values()].sort((a,b)=>b.films.length-a.films.length);
+selFilm(null);
+if(document.fonts&&document.fonts.ready)document.fonts.ready.then(()=>WV.set(WV.x,WV.y,WV.w));
+})();
 
 /* waveform */
 (function(){const p=document.getElementById('wavePath');let d='M0 29';for(let x=0;x<=400;x+=4){const y=29+Math.sin(x/9)*8*Math.sin(x/53)+(Math.sin(x*1.7)*3);d+=` L${x} ${y.toFixed(1)}`}p.setAttribute('d',d)})();
