@@ -65,3 +65,8 @@ Freigabe: „Anyone with the link“ ist aktiv. Wer die Seite offen hat, sieht n
   Sag niemals nie in `FILMS` (Handlungsorte, fiktive Orte markiert, Hauptfiguren). Routen je Film, ~140 bewegte
   Figuren, Filmfilter, Chronologie-Wiedergabe, Orts- und Personendossiers, Markierung „Operation Splendide“.
   Zoom-Logik ist jetzt der gemeinsame Baustein `viewer()` für Lage- und Weltkarte.
+- Version 8 (04.10.2026): Bewegungen als Simulation statt festem Takt (`placeAt`/`planLeg`, Arten in `MOT`):
+  `road` (Fahrzeuge bleiben auf der Strecke, wechselndes Tempo, zufällige Halte, gelegentliches Umkehren),
+  `roam` (Fußgänger, zufälliges nächstes Ziel, Bögen, Schwanken, Umhertreten beim Warten), `fly` (Weltkarte,
+  Flugbögen zwischen den Schauplätzen in zufälliger Reihenfolge). Weiches Anfahren und Bremsen, zufällige
+  Aufenthalte, gelegentlich lange Pausen. Bei reduzierter Bewegung stehen alle Figuren still an einem Zufallsort.

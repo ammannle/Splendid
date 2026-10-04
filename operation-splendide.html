@@ -1047,11 +1047,46 @@ function plate(t,cls,pad){const b=t.getBBox();if(!b.width)return;const px=pad||5
   r.setAttribute('x',(b.x-px).toFixed(1));r.setAttribute('y',(b.y-px/2-1).toFixed(1));r.setAttribute('width',(b.width+px*2).toFixed(1));r.setAttribute('height',(b.height+px+2).toFixed(1));r.setAttribute('rx',2);
   r.setAttribute('class','plate'+(cls?' '+cls:''));t.parentNode.insertBefore(r,t);return r}
 const anims=new Map();let curMap='route',sel=null;
-function placeAt(a,now){let u=((now/1000+a.off)/a.dur)%1;if(a.mode==='pp')u=u<.5?u*2:2-u*2;
-  // weich an den Wendepunkten
-  u=u*u*(3-2*u)*.35+u*.65;let d=u*a.len,i=1;while(i<a.cum.length-1&&a.cum[i]<d)i++;
-  const s0=a.cum[i-1],s1=a.cum[i],f=s1>s0?(d-s0)/(s1-s0):0,p0=a.pts[i-1],p1=a.pts[i];a.x=p0[0]+(p1[0]-p0[0])*f;a.y=p0[1]+(p1[1]-p0[1])*f;
-  a.g.setAttribute('transform',`translate(${a.x.toFixed(1)} ${a.y.toFixed(1)})${a.k&&a.k!==1?' scale('+a.k.toFixed(3)+')':''}`)}
+/* Bewegung: kleine Simulation statt fester Takt.
+   road = bleibt auf der Strecke, wechselndes Tempo, hält an zufälligen Punkten, kehrt manchmal um
+   roam = Fußgänger, wählt zufällig das nächste Ziel (nahe bevorzugt), geht in Bögen, schwankt, tritt beim Warten umher
+   fly  = Weltkarte, Flugbögen zwischen den Schauplätzen in zufälliger Reihenfolge, Aufenthalt vor Ort */
+const rnd=(a,b)=>a+Math.random()*(b-a);
+const easeIO=u=>u<.5?4*u*u*u:1-Math.pow(-2*u+2,3)/2;
+const MOT={road:{idle:0,sway:0,dwell:[400,2600],long:[3500,7000]},roam:{idle:3.2,sway:.9,dwell:[1200,6500],long:[7000,12000]},fly:{idle:2.2,sway:0,dwell:[1200,5200],long:[6000,9000]}};
+function setMotion(a,kind,v){a.kind=kind;a.v=v;Object.assign(a,{idle:MOT[kind].idle,sway:MOT[kind].sway});a.ph=null;return a}
+function renderP(a){a.g.setAttribute('transform',`translate(${a.x.toFixed(1)} ${a.y.toFixed(1)})${a.k&&a.k!==1?' scale('+a.k.toFixed(3)+')':''}`)}
+function initMove(a,now){const n=a.pts.length;a.i=Math.floor(Math.random()*(a.kind==='road'&&a.loop?n-1:n));a.dir=Math.random()<.5?1:-1;
+  const p=a.pts[a.i],s=a.k||1,o=a.kind==='roam'?3:0;a.ax=p[0]+rnd(-o,o)*s;a.ay=p[1]+rnd(-o,o)*s;Object.assign(a,{jx:0,jy:0,vx:0,vy:0,ph:'wait',until:now+rnd(0,a.kind==='road'?1800:4000),x:a.ax,y:a.ay,sw:rnd(0,6.3)})}
+function planLeg(a,now){const P=a.pts,n=P.length,s=a.k||1;
+  if(a.kind==='road'){const loop=a.loop,m=loop?n-1:n;if(Math.random()<.12)a.dir*=-1;
+    if(!loop){if(a.i>=n-1)a.dir=-1;if(a.i<=0)a.dir=1}
+    const hop=1+Math.floor(Math.random()*3),path=[[a.x,a.y]];let k=a.i;
+    for(let h=0;h<hop;h++){let nk=k+a.dir;if(loop)nk=(nk+m)%m;else if(nk<0||nk>n-1)break;k=nk;path.push(P[k])}
+    if(path.length<2){a.dir*=-1;a.until=now+300;return}
+    a.i=k;const cum=[0];for(let j=1;j<path.length;j++)cum.push(cum[j-1]+Math.hypot(path[j][0]-path[j-1][0],path[j][1]-path[j-1][1]));
+    a.leg={t:'poly',pts:path,cum,len:cum[cum.length-1]};a.T=Math.max(400,a.leg.len/(a.v*rnd(.65,1.3))*1000)}
+  else{if(n<2){a.until=now+3000;return}
+    const c=[];let tot=0;for(let j=0;j<n;j++){if(j===a.i)continue;const d=Math.hypot(P[j][0]-a.x,P[j][1]-a.y),w=a.kind==='roam'?1/(1+d/70):1;c.push([j,w]);tot+=w}
+    let r=Math.random()*tot,j=c[0][0];for(const[q,w]of c){r-=w;if(r<=0){j=q;break}}
+    const o=a.kind==='roam'?4:0,p0=[a.x,a.y],p1=[P[j][0]+rnd(-o,o)*s,P[j][1]+rnd(-o,o)*s],d=Math.hypot(p1[0]-p0[0],p1[1]-p0[1])||1;
+    const nx=-(p1[1]-p0[1])/d,ny=(p1[0]-p0[0])/d,mx=(p0[0]+p1[0])/2,my=(p0[1]+p1[1])/2;
+    const cv=a.kind==='fly'?[mx+nx*d*rnd(-.08,.08),my-d*rnd(.12,.27)]:[mx+nx*d*rnd(-.3,.3),my+ny*d*rnd(-.3,.3)];
+    a.i=j;a.leg={t:'bez',p0,c:cv,p1,d};a.T=d/(a.v*rnd(.7,1.3))*1000+350}
+  a.t0=now;a.ph='move'}
+function placeAt(a,now){if(!a.ph)initMove(a,now);
+  if(RM){a.x=a.ax;a.y=a.ay;renderP(a);return}
+  const dt=Math.min(.05,Math.max(0,(now-(a.last||now))/1000));a.last=now;
+  if(a.ph==='wait'){const R=a.idle*(a.k||1);
+    if(R){a.vx+=(Math.random()-.5)*R*9*dt-a.jx*1.6*dt;a.vy+=(Math.random()-.5)*R*9*dt-a.jy*1.6*dt;a.vx*=.95;a.vy*=.95;a.jx+=a.vx*dt;a.jy+=a.vy*dt;
+      const l=Math.hypot(a.jx,a.jy);if(l>R){a.jx*=R/l;a.jy*=R/l;a.vx*=-.3;a.vy*=-.3}}
+    a.x=a.ax+a.jx;a.y=a.ay+a.jy;if(now>=a.until){a.x=a.ax+a.jx;a.y=a.ay+a.jy;planLeg(a,now)}}
+  if(a.ph==='move'){const u=Math.min(1,(now-a.t0)/a.T),e=easeIO(u),L=a.leg;
+    if(L.t==='poly'){const d=e*L.len;let i=1;while(i<L.cum.length-1&&L.cum[i]<d)i++;const s0=L.cum[i-1],s1=L.cum[i],f=s1>s0?(d-s0)/(s1-s0):0,p0=L.pts[i-1],p1=L.pts[i];a.x=p0[0]+(p1[0]-p0[0])*f;a.y=p0[1]+(p1[1]-p0[1])*f}
+    else{const q=1-e;a.x=q*q*L.p0[0]+2*q*e*L.c[0]+e*e*L.p1[0];a.y=q*q*L.p0[1]+2*q*e*L.c[1]+e*e*L.p1[1];
+      if(a.sway){const tx=2*q*(L.c[0]-L.p0[0])+2*e*(L.p1[0]-L.c[0]),ty=2*q*(L.c[1]-L.p0[1])+2*e*(L.p1[1]-L.c[1]),tl=Math.hypot(tx,ty)||1,sw=Math.sin(e*L.d/5+a.sw)*a.sway*(a.k||1)*Math.sin(Math.PI*u);a.x+=-ty/tl*sw;a.y+=tx/tl*sw}}
+    if(u>=1){a.ph='wait';a.ax=a.x;a.ay=a.y;Object.assign(a,{jx:0,jy:0,vx:0,vy:0});const M=MOT[a.kind];a.until=now+(Math.random()<.15?rnd(...M.long):rnd(...M.dwell))}}
+  renderP(a)}
 function draw(svgEl,key,opts){
   opts=opts||{};const el=mk(svgEl);const m=maps[key];svgEl.innerHTML='';const hero=!!opts.hero;
   const W=+svgEl.dataset.w,H=+svgEl.dataset.h,pad=60,[la0,la1,lo0,lo1]=m.b,k=Math.cos((la0+la1)/2*Math.PI/180);
@@ -1125,7 +1160,7 @@ function draw(svgEl,key,opts){
     if(p.f==='h')el('path',{d:'M0 -14 L14 0 L0 14 L-14 0 Z',class:'pp-body'},g);else el('circle',{r:p.f==='u'?14:12.5,class:'pp-body'},g);
     T(0,4,p.c,'pp-code',{'text-anchor':'middle'},g);
     const nl=T(0,-24,p.n.toUpperCase(),'pp-name',{'text-anchor':'middle'},g);plate(nl,'pp-plate f-'+p.f,4);
-    const a={id,g,tr,pts,cum,len:cum[cum.length-1],dur,mode,where,off:i*7.3+dur*.37*i,x:pts[0][0],y:pts[0][1]};list.push(a);placeAt(a,RM?0:performance.now());
+    const road=key==='route'||id==='dryden',a=setMotion({id,g,tr,pts,cum,len:cum[cum.length-1],dur,mode,where,loop:mode==='loop'&&road,x:pts[0][0],y:pts[0][1]},road?'road':'roam',road?({unit:34,white:22,mathis:15,dryden:16}[id]||18):rnd(4,8));list.push(a);placeAt(a,RM?0:performance.now());
     if(!hero){const act=()=>selP(sel===id?null:id);g.addEventListener('click',e=>{e.stopPropagation();act()});g.addEventListener('keydown',ev=>{if(ev.key==='Enter'||ev.key===' '){ev.preventDefault();act()}})}});
   anims.set(svgEl,list);
   if(!hero){curMap=key;sel=null;document.getElementById('mapTitle').textContent='LAGE // '+m.label.toUpperCase();document.getElementById('mapCode').textContent='KARTE '+m.code;info.textContent=m.note;
@@ -1328,11 +1363,11 @@ FO.forEach(f=>{const cum=[0];for(let j=1;j<f.pts.length;j++)cum.push(cum[j-1]+Ma
   f.P.forEach((p,j)=>{const g=el('g',{class:'w-pp f-'+p[1],tabindex:-1,role:'button','aria-label':p[0]},pplG);
     if(p[1]==='h')el('path',{d:'M0 -6.5 L6.5 0 L0 6.5 L-6.5 0 Z',class:'w-pb'},g);else el('circle',{r:5.2,class:'w-pb'},g);
     const nt=T(0,-11,p[0],'w-pnm',{'text-anchor':'middle'},g);
-    const dur=Math.max(18,len/20),a={id:'w'+n++,g,pts:f.pts,cum,len,dur,mode:'pp',off:(j*dur/f.P.length)+f.y%7,x:f.pts[0][0],y:f.pts[0][1],k:1,f,p};
+    const a=setMotion({id:'w'+n++,g,pts:f.pts,cum,len,x:f.pts[0][0],y:f.pts[0][1],k:1,f,p},'fly',rnd(26,48));
     list.push(a);g.addEventListener('click',e=>{e.stopPropagation();stopPlay();selW(a.id)})})});
 {const route=[[48.3705,10.8978],[50.2306,12.8711],[50.0755,14.4378],[48.3705,10.8978]].map(q=>WP(q[0],q[1]));const cum=[0];for(let j=1;j<route.length;j++)cum.push(cum[j-1]+Math.hypot(route[j][0]-route[j-1][0],route[j][1]-route[j-1][1]));
   const g=el('g',{class:'w-pp f-u'},pplG);el('circle',{r:5.6,class:'w-pb'},g);T(0,-11,'00-Einheit','w-pnm',{'text-anchor':'middle'},g);
-  list.push({id:'wops',g,pts:route,cum,len:cum[cum.length-1],dur:14,mode:'loop',off:0,x:route[0][0],y:route[0][1],k:1,f:null,p:['00-Einheit','u','Ihr Fahrzeug']});
+  list.push(setMotion({id:'wops',g,pts:route,cum,len:cum[cum.length-1],loop:true,x:route[0][0],y:route[0][1],k:1,f:null,p:['00-Einheit','u','Ihr Fahrzeug']},'road',3.5));
   g.addEventListener('click',e=>{e.stopPropagation();stopPlay();selW('wops')})}
 anims.set(wSvg,list);list.forEach(a=>placeAt(a,RM?0:performance.now()));
 wStat.textContent=`${FILMS.length} FILME · ${PL.size} SCHAUPLÄTZE · ${list.length-1} PERSONEN`;
@@ -1341,7 +1376,7 @@ const WV=viewer(wSvg,BW,BH,document.getElementById('wzLvl'),{min:110,homeW:()=>i
   const k=WV?WV.w/(wSvg.clientWidth||BW):1;wSvg.style.setProperty('--k',k.toFixed(3));wSvg.classList.toggle('z2',z>=2.3);wSvg.classList.toggle('z5',z>=5);
   places.forEach(p=>p.g.setAttribute('transform',`translate(${p.x.toFixed(1)} ${p.y.toFixed(1)}) scale(${k.toFixed(3)})`));
   ops.setAttribute('transform',`translate(${ops.dataset.x} ${ops.dataset.y}) scale(${k.toFixed(3)})`);
-  list.forEach(a=>{a.k=k;if(RM)placeAt(a,0)})}});
+  list.forEach(a=>{a.k=k;if(RM&&a.ph)placeAt(a,0)})}});
 VIEW.set(wSvg,WV);watchVis(wSvg);
 WV.focus=innerWidth<680?WP(42,12):[BW/2,BH/2];WV.home();
 document.getElementById('wzIn').onclick=()=>WV.zoomBy(1.6);
