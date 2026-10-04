@@ -39,13 +39,24 @@ a:focus-visible,button:focus-visible,.mk:focus-visible{outline:2px solid var(--a
 .sys{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;display:flex;align-items:center;gap:18px;padding:10px 20px;background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border-bottom:1px solid var(--line);font-family:var(--mono);font-size:.74rem;color:var(--mute)}
 .sys .live{color:var(--green);display:flex;align-items:center;gap:7px}
 .sys .live::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--green);box-shadow:0 0 8px var(--green)}
-.sys .cls{color:var(--red);font-weight:600}
+.sys .cls{color:var(--red);font-weight:600;background:none;border:0;font:inherit;font-weight:600;cursor:pointer;padding:0;letter-spacing:.04em}
+.sys .rdy{display:flex;align-items:center;gap:7px;background:none;border:1px solid var(--line2);border-radius:2px;color:var(--amber);font:inherit;padding:3px 8px;cursor:pointer}
+.sys .rdy i{display:block;width:38px;height:4px;background:var(--line);overflow:hidden}.sys .rdy i b{display:block;height:100%;width:0;background:currentColor;transition:width .6s}
+.sys .rdy.ok{color:var(--green)}
+.fmark{color:var(--red);letter-spacing:.08em}.fmark kbd,.kh kbd{font-family:var(--mono);border:1px solid var(--line2);border-radius:2px;padding:0 5px;color:var(--ink)}
+.khelp{position:fixed;inset:0;z-index:95;display:grid;place-items:center;background:rgba(2,6,10,.72);padding:16px}.khelp[hidden]{display:none}
+.kh{width:min(560px,100%);max-height:calc(100vh - 32px);overflow:auto;background:var(--panel);border:1px solid var(--cyan);border-radius:3px;padding:18px 20px;font-family:var(--mono);font-size:.78rem;color:var(--ink)}
+.kh h3{font-family:var(--head);font-size:1.05rem;margin:0 0 4px;color:var(--cyan);letter-spacing:.06em}.kh p{color:var(--mute);margin:0 0 12px}
+.kh dl{display:grid;grid-template-columns:auto 1fr;gap:6px 14px;margin:0 0 12px}.kh dt{text-align:right;white-space:nowrap}.kh dd{margin:0}
+.kh .rd{list-style:none;padding:0;margin:0 0 12px}.kh .rd li{display:grid;grid-template-columns:1fr auto;gap:10px;padding:4px 0;border-bottom:1px dashed var(--line)}.kh .rd li span{color:var(--amber)}.kh .rd li.ok span{color:var(--green)}
+.ocal{list-style:none;margin:10px 0 0;padding:0;max-height:260px;overflow:auto;font-family:var(--mono);font-size:.74rem}.ocal li{display:grid;grid-template-columns:auto 1fr;gap:10px;padding:4px 0;border-bottom:1px dashed var(--line)}.ocal li span{color:var(--mute);white-space:nowrap}.ocal a{color:var(--cyan)}
+.kh button{background:none;border:1px solid var(--line2);color:var(--ink);font:inherit;padding:5px 12px;border-radius:2px;cursor:pointer}
 .sys nav{margin-left:auto;display:flex;gap:16px}
 .sys nav a{color:var(--ink);text-decoration:none;opacity:.75}
 .sys>*,.sys nav a{white-space:nowrap}
 @media (max-width:1240px){.sys .hide-s{display:none}.sys nav{gap:12px}}
 @media (max-width:1060px){.sys{gap:12px}.sys nav{gap:10px}}
-@media (max-width:680px){.sys{gap:10px;padding:10px 16px}.sys .live{font-size:0;gap:0}.sys .live::after{content:"GESICHERT";font-size:.74rem;margin-left:7px}.theme-btn{margin-left:auto;padding:4px 8px}}
+@media (max-width:680px){.sys .rdy i{display:none}.sys .cls{display:none}.sys{gap:10px;padding:10px 16px}.sys .live{font-size:0;gap:0}.sys .live::after{content:"GESICHERT";font-size:.74rem;margin-left:7px}.theme-btn{margin-left:auto;padding:4px 8px}}
 .sys nav a:hover{opacity:1;color:var(--cyan)}
 .theme-btn{background:none;border:1px solid var(--line2);color:var(--ink);font:inherit;padding:4px 10px;border-radius:3px;cursor:pointer}
 
@@ -382,7 +393,10 @@ footer{margin:60px auto 0;padding:18px 20px 40px;max-width:1240px;border-top:1px
 
 /* v5: clocks, countdown, letter */
 .sys .clk{color:var(--cyan);font-variant-numeric:tabular-nums}
-@media (max-width:1320px){.sys .hide-m{display:none}}
+@media (max-width:1439px){.sys .hide-m{display:none}}
+@media (max-width:1660px){.sys .hide-s{display:none}}
+@media (max-width:1180px){.sys .cls{display:none}.sys .live{font-size:0;gap:0}.sys .live::after{content:"GESICHERT";font-size:.74rem;margin-left:7px}}
+.sys nav{min-width:0;overflow-x:auto;scrollbar-width:none}.sys nav::-webkit-scrollbar{display:none}
 .kv .cd{border-color:var(--green)} .kv .cd b{color:var(--green);font-variant-numeric:tabular-nums}
 .msg .ps{font-size:.84rem;color:var(--mute);margin-top:18px}
 .ack{display:flex;flex-wrap:wrap;align-items:center;gap:16px;margin-top:18px;padding-top:16px;border-top:1px dashed var(--line2)}
@@ -565,6 +579,20 @@ html.bpfull{overflow:hidden}
 @media (max-width:680px){.detail .scan{flex-wrap:wrap}.rates{width:100%}.dsec dl{grid-template-columns:1fr}.bp .tb{display:none}}
 @media (prefers-reduced-motion: reduce){.bp .exL,.bp .exR{transition:none}.bp .scr2{animation:none}}
 
+/* Intro-Emblem */
+.iemb{position:absolute;left:50%;top:50%;width:min(300px,72vw);transform:translate(-50%,-50%);transition:transform 1.1s cubic-bezier(.6,0,.2,1),opacity .9s;pointer-events:none;z-index:3}
+.iemb-s{display:block;width:100%;height:auto;overflow:visible}
+.iemb .el{fill:none;stroke:#8FD7E8;stroke-width:1.1;stroke-dasharray:1;stroke-dashoffset:1;animation:bpdraw 1.1s cubic-bezier(.4,0,.2,1) forwards;animation-delay:var(--d)}
+.iemb .el.fn{stroke-width:.55;stroke-opacity:.85}
+.iemb .el.cons{stroke:#7F9BA6;stroke-width:.5;animation:bpdraw .9s ease forwards,consfade 1s 2.2s forwards;animation-delay:var(--d),2.2s}
+.iemb .el.gl{fill:rgba(75,227,154,0);animation:bpdraw 1.1s cubic-bezier(.4,0,.2,1) forwards,glfill .9s 2.1s forwards;animation-delay:var(--d),2.1s}
+@keyframes consfade{to{stroke-opacity:.25}}
+@keyframes glfill{to{fill:rgba(75,227,154,.16)}}
+.iemb-r{font:600 10.5px var(--mono);letter-spacing:.24em;fill:#F2B65E;opacity:0;animation:fadeIn .8s 1.3s forwards}
+.iemb-m{font:500 6.5px var(--mono);letter-spacing:.18em;fill:#7F9BA6;opacity:0;animation:fadeIn .6s 2s forwards}
+.intro.i-embdone .iemb{transform:translate(-50%,calc(-50vh + 30px)) scale(.42);transform-origin:50% 0;opacity:.55}
+.intro:not(.i-embdone) .iterm{opacity:0}
+@media (prefers-reduced-motion: reduce){.iemb .el,.iemb .el.cons,.iemb .el.gl{animation:none;stroke-dashoffset:0}.iemb-r,.iemb-m{animation:none;opacity:1}}
 /* Intro beim ersten Besuch */
 html.introing,html.introing body{overflow:hidden}
 .intro[hidden]{display:none}
@@ -633,6 +661,165 @@ body.boot .ph .st{animation:flick .9s 1s steps(2) 2}
 @keyframes titleIn{0%{opacity:0;letter-spacing:.4em;filter:blur(8px)}60%{opacity:1;filter:blur(0)}to{opacity:1;letter-spacing:.02em}}
 @keyframes fadeIn{from{opacity:0}to{opacity:1}}
 @media (prefers-reduced-motion: reduce){.iscan .ir1,.iscan .isweep,.ilock .il1{animation:none}}
+
+/* Roulette */
+.rt,.bar{margin-bottom:10px}
+.rtb{display:grid;grid-template-columns:minmax(240px,340px) 1fr;gap:18px;padding:16px;position:relative;z-index:1}
+.rtw{display:flex;flex-direction:column;align-items:center;gap:10px}
+#rtWheel{width:100%;max-width:330px;height:auto}
+.rw-rim{fill:#2A1A10;stroke:#7A5530;stroke-width:3}
+.rw-track{fill:#3B2616;stroke:#9C7444;stroke-width:1}
+.rw-trackin{fill:none;stroke:#9C7444;stroke-width:1}
+.rw-defl{fill:#C9A45C}
+.rw-p{stroke:#C9A45C;stroke-width:.6}.rw-p.r{fill:#A3231C}.rw-p.b{fill:#111A20}.rw-p.g{fill:#0E6B44}
+.rw-n{font:600 9.5px var(--mono);fill:#F4EBD8}
+.rw-fret{stroke:#C9A45C;stroke-width:1.2}
+.rw-ring{fill:none;stroke:#C9A45C;stroke-width:1.4}
+.rw-cone{fill:#5A3A20;stroke:#C9A45C;stroke-width:1}.rw-cone2{fill:#6B4627;stroke:#9C7444}
+.rw-turret{fill:#D8B565;stroke:#D8B565;stroke-width:3;stroke-linecap:round}.rw-hub{fill:#E8C877;stroke:#7A5530}
+.rw-ball{fill:#FBFBF8;stroke:#999;stroke-width:.6;filter:drop-shadow(0 1px 1.5px rgba(0,0,0,.6))}
+.rtcall{font-family:var(--head);font-size:1.15rem;letter-spacing:.02em;text-align:center;color:var(--amber);min-height:2.6em}
+.rtcall b{color:var(--ink)}
+.rts{display:flex;flex-direction:column;gap:10px;min-width:0}
+.rtacct{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.rtacct div{border-left:2px solid var(--amber);padding-left:9px}
+.rtacct small{display:block;font-family:var(--mono);font-size:.62rem;color:var(--mute)}
+.rtacct b{font-family:var(--head);font-size:1.25rem;font-variant-numeric:tabular-nums}
+.rtlay{background:#0B3A28;border:1px solid #C9A45C;border-radius:4px;padding:6px;overflow:hidden}
+#rtLayout{display:block;width:100%;height:auto;user-select:none;-webkit-user-select:none;touch-action:manipulation}
+.rl-cell{fill:transparent;stroke:#E8DDC4;stroke-width:1}.rl-cell.g{fill:#0E6B44}
+.rl-cell.hl{fill:rgba(242,182,94,.25)}.rl-cell.win{fill:rgba(242,182,94,.55);animation:winp .5s steps(2) 4}
+@keyframes winp{50%{fill:rgba(242,182,94,.1)}}
+.rl-dot.r{fill:#A3231C}.rl-dot.b{fill:#111A20}
+.rl-num{font:700 13px var(--head);fill:#F4EBD8;pointer-events:none}
+.rl-lab{font:600 10px var(--mono);fill:#F4EBD8;letter-spacing:.06em;pointer-events:none}
+.rl-sub{font:500 7.5px var(--mono);fill:#C9D9C9;pointer-events:none}
+.rl-dia.r{fill:#A3231C;stroke:#E8DDC4}.rl-dia.b{fill:#111A20;stroke:#E8DDC4}
+.rz{fill:transparent;cursor:pointer}
+.rz:hover,.rz:focus{fill:rgba(255,255,255,.12);outline:none}
+.rz-cheval:hover,.rz-carre:hover,.rz-trans:hover,.rz-sixain:hover{fill:rgba(242,182,94,.45)}
+.chip{pointer-events:none}
+.chip circle{stroke:#fff;stroke-width:1.4;stroke-dasharray:3 2}.chip .ci{fill:none;stroke-dasharray:none;stroke-width:.6;stroke-opacity:.7}
+.chip text{font:700 6.5px var(--mono);fill:#fff}
+.chip.c1 circle{fill:#4B6E8E}.chip.c2 circle{fill:#2E7D5B}.chip.c3 circle{fill:#9B2C2C}.chip.c4 circle{fill:#5B3B8C}.chip.c5 circle{fill:#B8860B}
+.rtchips{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.jeton{width:44px;height:44px;border-radius:50%;border:2px dashed rgba(255,255,255,.85);display:grid;place-items:center;cursor:pointer;font:700 .62rem var(--mono);color:#fff;box-shadow:inset 0 0 0 4px rgba(0,0,0,.25);transition:transform .15s}
+.jeton.c1{background:#4B6E8E}.jeton.c2{background:#2E7D5B}.jeton.c3{background:#9B2C2C}.jeton.c4{background:#5B3B8C}.jeton.c5{background:#B8860B}
+.jeton[aria-pressed="true"]{transform:translateY(-4px);box-shadow:inset 0 0 0 4px rgba(0,0,0,.25),0 0 0 2px var(--amber),0 6px 14px rgba(0,0,0,.4)}
+.jhint{font-family:var(--mono);font-size:.64rem;color:var(--mute)}
+.rthist{display:flex;gap:4px;flex-wrap:wrap;min-height:26px}
+.rthist span{min-width:26px;height:26px;padding:0 4px;display:grid;place-items:center;font:600 .7rem var(--mono);border-radius:13px;color:#fff}
+.rthist .r{background:#A3231C}.rthist .b{background:#111A20;border:1px solid var(--line2)}.rthist .g{background:#0E6B44}
+.rthist span:first-child{box-shadow:0 0 0 2px var(--amber)}
+.rtstat{font-family:var(--mono);font-size:.7rem;color:var(--mute);line-height:1.5}.rtstat small{opacity:.8}
+.rtrules{font-size:.84rem}.rtrules summary{font-family:var(--mono);font-size:.7rem;color:var(--cyan);cursor:pointer}
+.rtrules table{border-collapse:collapse;margin:8px 0;width:100%;font-size:.8rem}.rtrules td{border-bottom:1px solid var(--line);padding:4px 6px}.rtrules td:last-child{font-family:var(--mono);color:var(--amber);text-align:right;white-space:nowrap}
+.rtrules p{margin:6px 0 0;color:var(--mute)}
+/* Bar */
+.barb{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);gap:16px;padding:16px;position:relative;z-index:1}
+.barstage{display:flex;flex-direction:column;gap:8px;position:sticky;top:60px;align-self:start}
+#barSvg{width:100%;height:auto;display:block;border:1px solid var(--line);border-radius:2px}
+.b-bg{fill:color-mix(in srgb,var(--cyan) 3%,var(--mapbg))}
+.b-shelf,.b-line,.b-front{fill:none;stroke:var(--mapline);stroke-width:1}
+.b-mirror{fill:color-mix(in srgb,var(--cyan) 5%,transparent);stroke:var(--line);stroke-width:1}
+.b-panel{fill:none;stroke:var(--line);stroke-width:.8}
+.b-counter{fill:color-mix(in srgb,var(--amber) 22%,var(--panel));stroke:var(--amber);stroke-width:1}
+.b-bt{fill:color-mix(in srgb,var(--cyan) 10%,var(--mapbg));stroke:var(--cyan);stroke-width:1}
+.b-lbl{stroke:none;opacity:.85}.b-bt-t{font:700 5px var(--mono);fill:#0B1C27}
+.b-coaster{fill:none;stroke:var(--amber);stroke-width:1}.b-t{font:500 7px var(--mono);fill:var(--mute)}
+.bk-body{fill:color-mix(in srgb,var(--ink) 10%,var(--mapbg));stroke:var(--ink);stroke-width:1.2}
+.bk-vest{fill:none;stroke:var(--ink);stroke-width:1}
+.bk-tie{fill:var(--red);stroke:none}
+.bk-face{fill:color-mix(in srgb,var(--amber) 18%,var(--mapbg));stroke:var(--ink);stroke-width:1.2}
+.bk-hair{fill:var(--ink);opacity:.8}.bk-feat,.bk-brow{fill:none;stroke:var(--ink);stroke-width:1;stroke-linecap:round}
+.bk-arm{fill:none;stroke:var(--ink);stroke-width:5;stroke-linecap:round;stroke-linejoin:round}
+.bk-hand{fill:color-mix(in srgb,var(--amber) 18%,var(--mapbg));stroke:var(--ink);stroke-width:1}
+.bk-head{transition:transform .2s}
+.b-glass{fill:rgba(143,215,232,.06);stroke:var(--cyan);stroke-width:1.2;stroke-linejoin:round}
+.b-vessel.frost .b-glass{fill:rgba(220,235,239,.35)}
+.b-liq{opacity:.85}
+.b-stream{fill:none;stroke-width:2.2;stroke-linecap:round;opacity:.9}
+.b-ice{fill:rgba(220,235,239,.7);stroke:var(--cyan);stroke-width:.6}
+.b-spoon{stroke:var(--ink);stroke-width:1.4}.b-muddler{stroke:#B98B5A;stroke-width:4;stroke-linecap:round}
+.b-garnish{fill:none;stroke-width:1.6;stroke-linecap:round}.b-garnish.zeste,.b-garnish.zitrone{stroke:#F3E58A;fill:rgba(243,229,138,.25)}.b-garnish.minze{stroke:var(--green)}
+.b-steam{fill:none;stroke:var(--mute);stroke-width:1;animation:steam 2s ease-in-out infinite}
+@keyframes steam{50%{transform:translateY(-4px);opacity:.4}}
+.b-bubbles circle{fill:#fff;opacity:.8;animation:bub 1.6s linear infinite}
+@keyframes bub{from{transform:translateY(0);opacity:.9}to{transform:translateY(-40px);opacity:0}}
+.b-bucket{transition:opacity .4s}
+.barcap{font-family:var(--mono);font-size:.78rem;color:var(--amber);min-height:2.6em;border-top:1px dashed var(--line2);padding-top:8px}
+.barlist{display:grid;gap:8px;max-height:640px;overflow:auto;padding-right:4px}
+.bar-card{border:1px solid var(--line);border-radius:2px;padding:10px 12px;background:color-mix(in srgb,var(--panel) 70%,transparent)}
+.bar-card.on{border-color:var(--amber);box-shadow:0 0 0 1px var(--amber)}
+.bch{display:flex;justify-content:space-between;gap:8px;align-items:baseline}
+.bch b{font-family:var(--head);font-size:1.08rem;text-transform:uppercase;letter-spacing:.02em}
+.bch span{font-family:var(--mono);font-size:.64rem;color:var(--cyan);text-align:right}
+.bar-card p{margin:6px 0;font-size:.84rem}
+.bar-card ul{margin:4px 0;padding-left:16px;font-family:var(--mono);font-size:.72rem;color:var(--ink);columns:2}
+.bar-card .bcq{color:var(--mute);font-size:.8rem}
+@media (max-width:900px){.rtb,.barb{grid-template-columns:1fr}.barstage{position:static}.barlist{max-height:none}}
+@media (max-width:520px){.rtacct{grid-template-columns:1fr 1fr}.rtacct div:last-child{display:none}.bar-card ul{columns:1}.jeton{width:40px;height:40px}}
+
+/* Einsatzplan v2 */
+.pltools{display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:space-between;margin-top:12px}
+.plnow{flex:1 1 360px;font-family:var(--mono);font-size:.76rem;line-height:1.5;padding:10px 14px;border:1px solid var(--line2);border-left:3px solid var(--amber);background:color-mix(in srgb,var(--panel) 85%,transparent)}
+.plnow b{color:var(--amber);font-weight:600}.plnow i{font-style:normal;color:var(--green)}
+.dsum{display:flex;flex-wrap:wrap;gap:6px 16px;padding:8px 14px;border-bottom:1px solid var(--line);font-family:var(--mono);font-size:.68rem;color:var(--mute)}
+.dsum b{color:var(--ink);font-weight:600}.dsum .w b{color:var(--amber)}
+.dbar{padding:8px 14px 2px;border-bottom:1px solid var(--line)}
+.dbar-in{position:relative;height:12px;background:rgba(143,215,232,.06);border-radius:2px;overflow:hidden}
+.dbar-in i{position:absolute;top:0;bottom:0;border-right:1px solid var(--bg);opacity:.85}
+.dbar-in s{position:absolute;top:-2px;bottom:-2px;width:2px;background:var(--amber);text-decoration:none}
+.dbar-in u{display:none;position:absolute;top:-3px;bottom:-3px;width:2px;background:var(--red);box-shadow:0 0 6px var(--red)}
+.dbar-h{position:relative;height:14px;font-family:var(--mono);font-size:.56rem;color:var(--mute)}.dbar-h span{position:absolute;transform:translateX(-50%)}
+.k-drive{background:var(--cyan)}.k-visit{background:var(--red)}.k-walk{background:var(--green)}.k-food{background:#C9A45C}.k-bar{background:#B07ACC}.k-casino{background:var(--amber)}.k-hotel{background:var(--mute)}.k-free{background:color-mix(in srgb,var(--mute) 50%,transparent)}
+.log li.it{grid-template-columns:62px 1fr 34px;align-items:start;background:none}
+.log li.it.key{background:linear-gradient(90deg,rgba(242,182,94,.08),transparent)}
+.it-h{all:unset;cursor:pointer;display:block;font-size:.95rem;line-height:1.35}
+.it-h:focus-visible{outline:2px solid var(--amber);outline-offset:2px}
+.it-h em{font-style:normal;font-family:var(--mono);font-size:.6rem;letter-spacing:.08em;padding:1px 5px;margin-right:8px;border-radius:2px;color:var(--bg);vertical-align:2px}
+.k-drive .it-h em{background:var(--cyan)}.k-visit .it-h em{background:var(--red);color:#fff}.k-walk .it-h em{background:var(--green)}.k-food .it-h em{background:#C9A45C}.k-bar .it-h em{background:#B07ACC;color:#fff}.k-casino .it-h em{background:var(--amber)}.k-hotel .it-h em,.k-free .it-h em{background:var(--mute)}
+.it-h::after{content:" ▾";color:var(--mute);font-size:.7rem}.it-h[aria-expanded="true"]::after{content:" ▴"}
+.it-meta{display:flex;flex-wrap:wrap;gap:6px;margin-top:5px;font-family:var(--mono);font-size:.64rem;color:var(--mute);align-items:center}
+.it-meta>span{border:1px solid var(--line);padding:1px 6px;border-radius:2px}
+.bkb{font-family:var(--mono);font-size:.62rem;font-weight:600;padding:2px 7px;border-radius:2px;cursor:pointer;background:none;border:1px solid}
+.bkb.s0{color:var(--red);border-color:var(--red)}.bkb.s1{color:var(--amber);border-color:var(--amber)}.bkb.s2{color:var(--bg);background:var(--green);border-color:var(--green)}
+.it-d{margin-top:8px;padding:10px 12px;border-left:2px solid var(--line2);background:rgba(143,215,232,.04);font-size:.88rem}
+.it-d p{margin:0 0 6px}.it-via,.it-alt{font-family:var(--mono);font-size:.72rem;color:var(--cyan)}.it-bk{font-size:.82rem}.it-bk i{color:var(--amber);font-style:normal}
+.it-act{display:flex;flex-wrap:wrap;gap:6px;margin-top:6px}.it-act .btn{margin-top:0;padding:5px 10px;font-size:.66rem;background:none;cursor:pointer}
+.it-done{display:grid;place-items:center;cursor:pointer}.it-done input{position:absolute;opacity:0;width:1px;height:1px}
+.it-done span{width:24px;height:24px;display:grid;place-items:center;border:1px solid var(--line2);border-radius:2px;color:transparent;font-size:.8rem}
+.it-done input:checked+span{background:var(--green);border-color:var(--green);color:var(--bg)}.it-done input:focus-visible+span{outline:2px solid var(--amber)}
+.log li.done .it-h{color:var(--mute);text-decoration:line-through;text-decoration-color:var(--green)}
+.log li.now{box-shadow:inset 3px 0 0 var(--red);background:rgba(240,85,74,.07)}.log li.next{box-shadow:inset 3px 0 0 var(--amber)}
+.open-only li.done{display:none}
+.dfoot{display:grid;grid-template-columns:1fr 1fr;gap:12px;padding:10px 14px 12px;border-top:1px solid var(--line)}
+.dfoot summary{font-family:var(--mono);font-size:.68rem;color:var(--cyan);cursor:pointer}.dfoot p{margin:6px 0 0;font-size:.86rem}
+.dnote span{display:block;font-family:var(--mono);font-size:.62rem;color:var(--mute);margin-bottom:4px}
+.dnote textarea{width:100%;background:var(--bg2);border:1px solid var(--line2);color:var(--ink);font:inherit;font-size:.84rem;padding:6px 8px;border-radius:2px;resize:vertical}
+@media (max-width:680px){.dfoot{grid-template-columns:1fr}.log li.it{grid-template-columns:48px 1fr 30px}}
+
+/* Disposition */
+.orgg{display:grid;grid-template-columns:repeat(auto-fit,minmax(330px,1fr));gap:10px}
+.og .ob{position:relative;z-index:1;padding:12px 14px 14px;display:flex;flex-direction:column;gap:10px}
+.obar{height:5px;background:var(--line);border-radius:3px;overflow:hidden}.obar i{display:block;height:100%;background:var(--green);transition:width .4s}
+.obk{list-style:none;margin:0;padding:0}.obk li{display:grid;grid-template-columns:92px 1fr;gap:10px;align-items:center;padding:7px 0;border-bottom:1px solid var(--line)}
+.obk .bkb{justify-self:start}.obk b{font-size:.88rem;font-weight:500}.obk small{display:block;font-family:var(--mono);font-size:.64rem;color:var(--mute)}
+.onote{margin:0;font-size:.8rem;color:var(--mute);line-height:1.5}.onote b{color:var(--ink);font-weight:500}
+.obud{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.obud small{display:block;font-family:var(--mono);font-size:.6rem;color:var(--mute);margin-bottom:2px}
+.obud input{width:100%;background:var(--bg2);border:1px solid var(--line2);color:var(--ink);font-family:var(--mono);font-size:.86rem;padding:5px 8px;border-radius:2px;color-scheme:dark}
+.obud input:focus-visible,.olegs select:focus-visible{outline:2px solid var(--amber);outline-offset:1px}
+.obt{width:100%;border-collapse:collapse;font-size:.84rem}.obt td{padding:4px 0;border-bottom:1px solid var(--line)}.obt td:last-child{text-align:right;font-family:var(--mono);white-space:nowrap}
+.obt .tot td{font-weight:600;color:var(--amber);border-bottom-color:var(--line2)}
+.olegs{list-style:none;margin:0;padding:0}.olegs li{display:grid;gap:6px;padding:8px 0;border-bottom:1px solid var(--line);font-size:.88rem}
+.olegs small{display:block;font-family:var(--mono);font-size:.64rem;color:var(--mute)}
+.lg-a{display:flex;gap:8px;align-items:center;flex-wrap:wrap}.lg-a .btn{margin:0;padding:5px 10px;font-size:.66rem}
+.olegs select{background:var(--bg2);border:1px solid var(--line2);color:var(--ink);font-family:var(--mono);font-size:.74rem;padding:4px 6px;border-radius:2px}
+.otel{list-style:none;margin:0;padding:0;display:grid;gap:4px}.otel li{display:grid;grid-template-columns:150px 1fr;gap:10px;align-items:baseline;font-size:.86rem}
+.otel a{white-space:nowrap;font-family:var(--head);font-size:1.2rem;font-weight:600;color:var(--amber);text-decoration:none}
+.otxt{width:100%;background:var(--bg2);border:1px solid var(--line2);color:var(--ink);font-family:var(--mono);font-size:.74rem;padding:8px}
+@media (max-width:520px){.obud{grid-template-columns:1fr}.otel li{grid-template-columns:110px 1fr}}
 
 /* gun barrel */
 .gb{position:fixed;inset:0;z-index:100;background:#000;overflow:hidden;cursor:pointer}
@@ -711,6 +898,7 @@ body.boot .ph .st{animation:flick .9s 1s steps(2) 2}
 <div id="intro" class="intro" aria-hidden="true">
   <div class="ihalf t"><span>MI6 · VAUXHALL CROSS · SICHERHEITSTOR 07</span></div><div class="ihalf b"><span>FREIGABE NUR FÜR 00-PERSONAL</span></div>
   <div class="icore">
+    <div class="iemb" id="iEmb"><svg viewBox="0 0 300 300" class="iemb-s" aria-hidden="true"><defs><path id="ringT" d="M150 150m-120 0a120 120 0 1 1 240 0"/><path id="ringB" d="M150 150m-120 0a120 120 0 0 0 240 0"/></defs><circle cx="150" cy="150" r="140" pathLength="1" class="el cons" style="--d:0.00s"/><path d="M10 150H290M150 10V290" pathLength="1" class="el cons" style="--d:0.05s"/><path d="M51 51L249 249M249 51L51 249" pathLength="1" class="el cons" style="--d:0.15s"/><circle cx="150" cy="150" r="96" pathLength="1" class="el cons" style="--d:0.20s"/><circle cx="150" cy="150" r="132" pathLength="1" class="el " style="--d:0.35s"/><circle cx="150" cy="150" r="128" pathLength="1" class="el fn" style="--d:0.40s"/><circle cx="150" cy="150" r="112" pathLength="1" class="el " style="--d:0.45s"/><circle cx="150" cy="150" r="108" pathLength="1" class="el fn" style="--d:0.50s"/><path d="M262.0 150.0L254.0 150.0M261.4 161.7L257.4 161.3M259.6 173.3L255.6 172.5M256.5 184.6L252.7 183.4M252.3 195.6L248.7 193.9M247.0 206.0L240.1 202.0M240.6 215.8L237.4 213.5M233.2 224.9L230.3 222.3M224.9 233.2L222.3 230.3M215.8 240.6L213.5 237.4M206.0 247.0L202.0 240.1M195.6 252.3L193.9 248.7M184.6 256.5L183.4 252.7M173.3 259.6L172.5 255.6M161.7 261.4L161.3 257.4M150.0 262.0L150.0 254.0M138.3 261.4L138.7 257.4M126.7 259.6L127.5 255.6M115.4 256.5L116.6 252.7M104.4 252.3L106.1 248.7M94.0 247.0L98.0 240.1M84.2 240.6L86.5 237.4M75.1 233.2L77.7 230.3M66.8 224.9L69.7 222.3M59.4 215.8L62.6 213.5M53.0 206.0L59.9 202.0M47.7 195.6L51.3 193.9M43.5 184.6L47.3 183.4M40.4 173.3L44.4 172.5M38.6 161.7L42.6 161.3M38.0 150.0L46.0 150.0M38.6 138.3L42.6 138.7M40.4 126.7L44.4 127.5M43.5 115.4L47.3 116.6M47.7 104.4L51.3 106.1M53.0 94.0L59.9 98.0M59.4 84.2L62.6 86.5M66.8 75.1L69.7 77.7M75.1 66.8L77.7 69.7M84.2 59.4L86.5 62.6M94.0 53.0L98.0 59.9M104.4 47.7L106.1 51.3M115.4 43.5L116.6 47.3M126.7 40.4L127.5 44.4M138.3 38.6L138.7 42.6M150.0 38.0L150.0 46.0M161.7 38.6L161.3 42.6M173.3 40.4L172.5 44.4M184.6 43.5L183.4 47.3M195.6 47.7L193.9 51.3M206.0 53.0L202.0 59.9M215.8 59.4L213.5 62.6M224.9 66.8L222.3 69.7M233.2 75.1L230.3 77.7M240.6 84.2L237.4 86.5M247.0 94.0L240.1 98.0M252.3 104.4L248.7 106.1M256.5 115.4L252.7 116.6M259.6 126.7L255.6 127.5M261.4 138.3L257.4 138.7" pathLength="1" class="el fn" style="--d:0.60s"/><path d="M56 204H244" pathLength="1" class="el " style="--d:0.80s"/><rect x="60" y="188" width="180" height="16" pathLength="1" class="el gl" style="--d:0.85s"/><path d="M64 204V196a4 4 0 0 1 8 0V204M74 204V196a4 4 0 0 1 8 0V204M84 204V196a4 4 0 0 1 8 0V204M94 204V196a4 4 0 0 1 8 0V204M104 204V196a4 4 0 0 1 8 0V204M114 204V196a4 4 0 0 1 8 0V204M124 204V196a4 4 0 0 1 8 0V204M134 204V196a4 4 0 0 1 8 0V204M144 204V196a4 4 0 0 1 8 0V204M154 204V196a4 4 0 0 1 8 0V204M164 204V196a4 4 0 0 1 8 0V204M174 204V196a4 4 0 0 1 8 0V204M184 204V196a4 4 0 0 1 8 0V204M194 204V196a4 4 0 0 1 8 0V204M204 204V196a4 4 0 0 1 8 0V204M214 204V196a4 4 0 0 1 8 0V204M224 204V196a4 4 0 0 1 8 0V204M234 204V196a4 4 0 0 1 8 0V204" pathLength="1" class="el fn" style="--d:0.95s"/><rect x="46" y="182" width="14" height="22" pathLength="1" class="el gl" style="--d:0.90s"/><rect x="240" y="182" width="14" height="22" pathLength="1" class="el gl" style="--d:0.90s"/><rect x="66" y="172" width="168" height="16" pathLength="1" class="el gl" style="--d:1.00s"/><rect x="78" y="154" width="144" height="18" pathLength="1" class="el gl" style="--d:1.10s"/><rect x="90" y="134" width="120" height="20" pathLength="1" class="el gl" style="--d:1.20s"/><rect x="102" y="98" width="32" height="36" pathLength="1" class="el gl" style="--d:1.30s"/><rect x="166" y="98" width="32" height="36" pathLength="1" class="el gl" style="--d:1.30s"/><rect x="134" y="114" width="32" height="20" pathLength="1" class="el gl" style="--d:1.35s"/><path d="M102 98L118 80L134 98M166 98L182 80L198 98M134 114L150 100L166 114" pathLength="1" class="el " style="--d:1.45s"/><path d="M118 80V72M182 80V72" pathLength="1" class="el fn" style="--d:1.55s"/><path d="M68 176H232M68 180H232M68 184H232M80 158H220M80 162H220M80 166H220M92 138H208M92 142H208M92 146H208M92 150H208M104 104H132M104 110H132M104 116H132M104 122H132M104 128H132M168 104H196M168 110H196M168 116H196M168 122H196M168 128H196M136 118H164M136 124H164M136 130H164" pathLength="1" class="el fn" style="--d:1.60s"/><path d="M74 173V187M82 173V187M90 173V187M98 173V187M106 173V187M114 173V187M122 173V187M130 173V187M138 173V187M146 173V187M154 173V187M162 173V187M170 173V187M178 173V187M186 173V187M194 173V187M202 173V187M210 173V187M218 173V187M226 173V187M86 155V171M94 155V171M102 155V171M110 155V171M118 155V171M126 155V171M134 155V171M142 155V171M150 155V171M158 155V171M166 155V171M174 155V171M182 155V171M190 155V171M198 155V171M206 155V171M214 155V171M98 135V153M106 135V153M114 135V153M122 135V153M130 135V153M138 135V153M146 135V153M154 135V153M162 135V153M170 135V153M178 135V153M186 135V153M194 135V153M202 135V153M110 99V133M118 99V133M126 99V133M174 99V133M182 99V133M190 99V133" pathLength="1" class="el fn" style="--d:1.70s"/><path d="M58 212q8 -3 16 0t16 0t16 0t16 0t16 0t16 0t16 0t16 0t16 0t16 0t16 0t16 0" pathLength="1" class="el fn" style="--d:1.80s"/><path d="M70 219q8 -3 16 0t16 0t16 0t16 0t16 0t16 0t16 0t16 0t16 0t16 0" pathLength="1" class="el fn" style="--d:1.85s"/><path d="M60 232H240M60 228v8M240 228v8M150 228v8M57 235l6 -6M237 235l6 -6M147 235l6 -6" pathLength="1" class="el fn" style="--d:1.90s"/><text class="iemb-r"><textPath href="#ringT" startOffset="50%" text-anchor="middle">MI6 · VAUXHALL CROSS · LONDON SE1</textPath></text><text class="iemb-r" dy="7"><textPath href="#ringB" startOffset="50%" text-anchor="middle">00-SEKTION · OPERATION SPLENDIDE · MMXXVI</textPath></text><text x="150" y="246" class="iemb-m" text-anchor="middle">VAUXHALL CROSS · ANSICHT VON DER THEMSE</text></svg></div>
     <pre class="iterm" id="iTerm"></pre>
     <div class="iscan" id="iScan">
       <svg viewBox="0 0 140 140"><circle cx="70" cy="70" r="64" class="ir1"/><circle cx="70" cy="70" r="46" class="ir2"/><circle cx="70" cy="70" r="26" class="ir3"/><circle cx="70" cy="70" r="10" class="ir4"/>
@@ -726,10 +914,11 @@ body.boot .ph .st{animation:flick .9s 1s steps(2) 2}
 <script>try{if(localStorage.getItem('ops5-intro'))document.getElementById('intro').hidden=true;else document.documentElement.classList.add('introing')}catch(e){document.documentElement.classList.add('introing')}</script>
 <div class="sys">
   <span class="live">VERBINDUNG GESICHERT</span>
-  <button class="cls" type="button" id="clsBtn">STRENG GEHEIM</button>
+  <button class="cls" type="button" id="clsBtn" title="Einstufung">OFFICIAL–SENSITIVE</button>
+  <button class="rdy" type="button" id="rdyBtn" title="Einsatzbereitschaft (Taste ?: Kürzel)"><i><b id="rdyBar"></b></i><span id="rdyN">BEREIT –</span></button>
   <span class="hide-s">MI6 · 00-SEKTION · OPS-ZENTRALE</span>
   <span class="hide-m clk" id="clk" aria-label="Ortszeit London und Prag">LDN --:-- · PRG --:--</span>
-  <nav aria-label="Module"><a href="#tx">Befehl</a><a href="#targets">Ziele</a><a href="#maps">Lage</a><a href="#world-sec">Welt</a><a href="#ops">Einsatzplan</a><a href="#assets">Assets</a><a href="#regs">Protokoll</a><a href="#field">Handbuch</a><a href="#qlab">Q-Lab</a></nav>
+  <nav aria-label="Module"><a href="#tx">Befehl</a><a href="#targets">Ziele</a><a href="#maps">Lage</a><a href="#world-sec">Welt</a><a href="#ops">Einsatzplan</a><a href="#org">Orga</a><a href="#assets">Assets</a><a href="#regs">Protokoll</a><a href="#field">Handbuch</a><a href="#qlab">Q-Lab</a></nav>
   <button class="theme-btn" id="themeBtn" type="button">Tag / Nacht</button>
 </div>
 
@@ -850,7 +1039,59 @@ body.boot .ph .st{animation:flick .9s 1s steps(2) 2}
       <button class="qbtn" type="button" id="depClr">LEEREN</button>
       <div class="dflags" id="dflags" aria-live="polite"></div>
     </div>
+    <div class="pltools"><div class="plnow" id="planNow" aria-live="polite"></div><div class="qbtns"><button class="qbtn" type="button" id="plExp" aria-pressed="false">ALLE DETAILS</button><button class="qbtn" type="button" id="plOpen" aria-pressed="false">NUR OFFENE</button></div></div>
     <div id="days"></div>
+  </section>
+
+  <section id="org">
+    <div class="sh"><div><div class="ix">MODUL 04-L // DISPOSITION</div><h2>Reiseorganisation</h2></div><p>Buchungen, Kosten, Fahrten, Notfälle. Der Teil, den M „Verwaltung“ nennt und Q „das eigentliche Gadget“.</p></div>
+    <div class="orgg">
+      <div class="panel og">
+        <div class="ph"><b>BUCHUNGSSTAND</b><span id="orgBkN"></span></div>
+        <div class="ob"><div class="obar"><i id="orgBkBar"></i></div><ul class="obk" id="orgBk"></ul><p class="onote">Status antippen: offen → angefragt → bestätigt. Gekoppelt mit dem Einsatzplan, gespeichert auf diesem Gerät.</p></div>
+      </div>
+      <div class="panel og">
+        <div class="ph"><b>BUDGET // SCHATZAMT</b><span>EUR · RICHTWERTE</span></div>
+        <div class="ob"><div class="obud" id="orgBud">
+          <label><small>Pupp € / Zimmer / Nacht</small><input data-b="pupp" inputmode="decimal" placeholder="Preis eintragen"></label>
+          <label><small>Prag € / Zimmer / Nacht</small><input data-b="prg" inputmode="decimal" placeholder="Preis eintragen"></label>
+          <label><small>Verbrauch l / 100 km</small><input data-b="cons" inputmode="decimal"></label>
+          <label><small>Kraftstoff € / l</small><input data-b="fuel" inputmode="decimal"></label>
+          <label><small>Essen + Trinken € p. P. / Tag</small><input data-b="eat" inputmode="decimal"></label>
+          <label><small>Weitere Eintritte € p. P.</small><input data-b="extra" inputmode="decimal"></label>
+          <label><small>Casino-Limit € p. P.</small><input data-b="casino" inputmode="decimal"></label></div>
+          <table class="obt" id="orgBudT"></table><p class="mnote" id="orgBudM"></p></div>
+      </div>
+      <div class="panel og">
+        <div class="ph"><b>ETAPPEN // FAHRDIENST</b><span>NAVIGATION ÖFFNET GOOGLE MAPS</span></div>
+        <div class="ob"><ul class="olegs" id="orgLegs"></ul><p class="onote">Fahrer je Etappe festlegen. In Tschechien gilt 0,0 Promille, Abblendlicht auch tagsüber, Warnweste griffbereit.</p></div>
+      </div>
+      <div class="panel og">
+        <div class="ph"><b>NOTFALL // KONTAKTE</b><span>ANTIPPEN ZUM ANRUFEN</span></div>
+        <div class="ob"><ul class="otel">
+          <li><a href="tel:112">112</a><span>Europäischer Notruf, auch auf Englisch und Deutsch</span></li>
+          <li><a href="tel:158">158</a><span>Polizei (Policie ČR)</span></li><li><a href="tel:155">155</a><span>Rettungsdienst</span></li><li><a href="tel:150">150</a><span>Feuerwehr</span></li>
+          <li><a href="tel:1230">1230</a><span>Pannenhilfe ÚAMK</span></li><li><a href="tel:1240">1240</a><span>Pannenhilfe ABA</span></li>
+          <li><a href="tel:+498922222222">+49 89 22 22 22</a><span>ADAC-Auslandsnotruf (für Mitglieder)</span></li></ul>
+          <p class="onote"><b>Deutsche Botschaft Prag:</b> Vlašská 19, Praha 1 (Palais Lobkowicz). <a href="https://www.google.com/maps/search/?api=1&query=Vla%C5%A1sk%C3%A1%2019%2C%20Praha" target="_blank" rel="noopener">Karte</a>. Bei Verlust des Ausweises zuerst Polizei, dann Botschaft.<br>
+          <b>Gesundheit:</b> Europäische Krankenversicherungskarte mitnehmen. Apotheke heißt „Lékárna“.<br><b>Strom:</b> 230 V, Steckdosen Typ E – deutsche Stecker passen.</p></div>
+      </div>
+      <div class="panel og">
+        <div class="ph"><b>EXPORT // FÜR DIE TELEFONE</b><span>4 AGENTEN</span></div>
+        <div class="ob"><div class="qbtns"><button class="qbtn go" type="button" id="orgIcs">KALENDER (.ICS) LADEN</button><button class="qbtn" type="button" id="orgCalB">TERMINE IN GOOGLE KALENDER</button><button class="qbtn" type="button" id="orgTxtDl">PLAN ALS TEXTDATEI</button><button class="qbtn" type="button" id="orgShare">PLAN TEILEN / KOPIEREN</button><button class="qbtn" type="button" id="orgPrint">DOSSIER DRUCKEN</button></div>
+          <textarea id="orgTxt" class="otxt" rows="6" hidden aria-label="Plan als Text"></textarea>
+          <ul id="orgCal" class="ocal" hidden></ul>
+          <p class="onote">Der Kalender enthält jeden Programmpunkt mit Ort und Hinweisen; braucht ein Abreisedatum. Teilen nutzt das Teilen-Menü des Telefons oder die Zwischenablage.</p></div>
+      </div>
+      <div class="panel og">
+        <div class="ph"><b>LAGE // NOVEMBER IN BÖHMEN</b><span>KLIMA · KLEIDUNG</span></div>
+        <div class="ob"><ul class="gear">
+          <li><span>WETTER</span><span>Tagsüber meist um 2 bis 7 °C, nachts um den Gefrierpunkt. Oft Nebel und Niesel, erster Schnee möglich.</span></li>
+          <li><span>LICHT</span><span>Sonnenaufgang gegen 7:00, Untergang zwischen 16:45 und 16:05 Uhr. Genaue Zeiten im Einsatzplan.</span></li>
+          <li><span>KLEIDUNG</span><span>Mantel über dem Smoking, rutschfeste Schuhe für Kopfsteinpflaster, Schal. Ein Bond friert nicht sichtbar.</span></li>
+          <li><span>GELD</span><span>Tschechische Kronen. Karte fast überall, Kurs in der Wechselstube im Feldhandbuch.</span></li></ul></div>
+      </div>
+    </div>
   </section>
 
   <section id="assets">
@@ -902,33 +1143,31 @@ body.boot .ph .st{animation:flick .9s 1s steps(2) 2}
   </section>
   <section id="qlab">
     <div class="sh"><div><div class="ix">MODUL 08 // Q-ABTEILUNG</div><h2>Trainingsprogramm</h2></div><p>Vorbereitung auf den Einsatz. Gespielt wird mit Übungsgeld des Schatzamts.</p></div>
-    <div class="qgrid">
-      <div class="panel qp">
-        <div class="ph"><b>SPIELTISCH // TRAINING</b><span class="st" id="rlState">BEREIT</span></div>
-        <div class="qb">
-          <div class="rl-top"><div class="pocket" id="pocket" aria-label="Gefallene Zahl">–</div><div class="bal"><small>KONTO 00-EINHEIT · ÜBUNGSGELD</small><b id="bal">10.000.000 €</b></div></div>
-          <div class="qlbl">EINSATZ</div><div class="qbtns" id="stakes"></div>
-          <div class="qlbl">SETZEN AUF</div><div class="qbtns" id="bets"></div>
-          <button class="qbtn go" type="button" id="spin">KUGEL WERFEN</button>
-          <div class="hist" id="hist" aria-label="Letzte Zahlen"></div>
-          <div class="qout" id="rlOut" aria-live="polite">Einsatz und Feld wählen. Rot und Schwarz zahlen 1 zu 1, Zero zahlt 35 zu 1.</div>
+    <div class="panel rt">
+      <div class="ph"><b>SPIELTISCH // ROULETTE · EUROPÄISCH, EINE ZERO</b><span class="st" id="rtState">FAITES VOS JEUX</span></div>
+      <div class="rtb">
+        <div class="rtw"><svg id="rtWheel" viewBox="0 0 320 320" role="img" aria-label="Roulettekessel"></svg><div class="rtcall" id="rtCall" aria-live="polite">Messieurs, faites vos jeux.</div></div>
+        <div class="rts">
+          <div class="rtacct"><div><small>KONTO</small><b id="rtBal">–</b></div><div><small>AUF DEM TISCH</small><b id="rtOn">–</b></div><div><small>TISCHLIMIT JE FELD</small><b>5 Mio. €</b></div></div>
+          <div class="rtlay"><svg id="rtLayout" viewBox="0 0 580 220" role="group" aria-label="Tableau"></svg></div>
+          <div class="rtchips" id="rtChips"></div>
+          <div class="qbtns"><button class="qbtn go" type="button" id="rtSpin">KUGEL WERFEN</button><button class="qbtn" type="button" id="rtUndo">RÜCKGÄNGIG</button><button class="qbtn" type="button" id="rtClear">TISCH RÄUMEN</button><button class="qbtn" type="button" id="rtRe">WIEDERHOLEN</button><button class="qbtn" type="button" id="rtDbl">VERDOPPELN</button><button class="qbtn" type="button" id="rtBank" hidden>SCHATZAMT ANRUFEN</button></div>
+          <div class="rthist" id="rtHist" aria-label="Permanenz"></div>
+          <div class="rtstat" id="rtStat"></div>
+          <div class="qout" id="rtOut" aria-live="polite"></div>
+          <details class="rtrules"><summary>Spielregeln und Auszahlungen</summary>
+            <table><tr><td>Plein</td><td>eine Zahl</td><td>35 : 1</td></tr><tr><td>Cheval</td><td>zwei Zahlen (auf die Linie)</td><td>17 : 1</td></tr><tr><td>Transversale pleine</td><td>drei Zahlen (unterer Rand)</td><td>11 : 1</td></tr><tr><td>Carré</td><td>vier Zahlen (auf die Kreuzung)</td><td>8 : 1</td></tr><tr><td>Sixain</td><td>sechs Zahlen (Kreuzung am Rand)</td><td>5 : 1</td></tr><tr><td>Dutzend, Kolonne</td><td>zwölf Zahlen</td><td>2 : 1</td></tr><tr><td>Rouge, Noir, Pair, Impair, Manque, Passe</td><td>18 Zahlen</td><td>1 : 1</td></tr></table>
+            <p>Bei Zero verlieren hier die einfachen Chancen. Im echten Casino gilt oft „La partage“ (Hälfte zurück) – im Pupp vor dem Spiel erfragen. Mindesteinsätze, Dresscode und Ausweis ebenfalls.</p></details>
         </div>
       </div>
-      <div class="panel qp">
-        <div class="ph"><b>BAR // VESPER-PRÜFSTAND</b><span id="vsState">WARTET</span></div>
-        <div class="qb">
-          <div class="shk"><svg id="shaker" viewBox="0 0 64 110" aria-hidden="true"><rect x="24" y="3" width="16" height="10" rx="2" fill="none" stroke="currentColor" stroke-width="2"/><path d="M18 13 H46 L44 29 H20 Z" fill="none" stroke="currentColor" stroke-width="2"/><path d="M16 29 H48 L42 105 H22 Z" fill="currentColor" fill-opacity=".12" stroke="currentColor" stroke-width="2"/><line x1="19" y1="58" x2="45" y2="58" stroke="currentColor" stroke-opacity=".4"/></svg><p id="vsOut">Der Barkeeper wartet auf Ihre Anweisung zur Zubereitung.</p></div>
-          <div class="qbtns"><button class="qbtn" type="button" id="shaken">GESCHÜTTELT</button><button class="qbtn" type="button" id="stirred">GERÜHRT</button></div>
-          <div class="qout" id="vsLog" aria-live="polite">Korrekt zubereitet: 0 · Protokollverstöße: 0</div>
-        </div>
-      </div>
-      <div class="panel qp">
-        <div class="ph"><b>Q // AUSRÜSTUNGSAUSGABE</b><span id="gearState">4 AGENTEN</span></div>
-        <div class="qb">
-          <p>Q teilt jedem Agenten ein Gerät zu. Rückgabe bitte unbeschädigt.</p>
-          <ul class="gear" id="gear" aria-live="polite"></ul>
-          <button class="qbtn go" type="button" id="gearBtn">NEU ZUTEILEN</button>
-        </div>
+    </div>
+    <div class="panel bar">
+      <div class="ph"><b>BAR // BECHER’S · DIE GETRÄNKE DER AKTEN</b><span><span id="barCnt"></span> · <span class="st" id="barState">BEREIT</span></span></div>
+      <div class="barb">
+        <div class="barstage"><svg id="barSvg" viewBox="0 0 640 300" role="img" aria-label="Barkeeper hinter dem Tresen"></svg>
+          <div class="barcap" id="barCap" aria-live="polite"></div>
+          <div class="qbtns"><button class="qbtn" type="button" id="barFast">TEMPO ×2</button><button class="qbtn" type="button" id="barSkip">ÜBERSPRINGEN</button></div></div>
+        <div class="barlist" id="barList"></div>
       </div>
     </div>
     <div class="qgrid">
@@ -959,6 +1198,14 @@ body.boot .ph .st{animation:flick .9s 1s steps(2) 2}
           <div class="qout" id="pwOut">Sechs Versuche, dann sperrt die Bank.</div>
         </div>
       </div>
+      <div class="panel qp">
+        <div class="ph"><b>Q // AUSRÜSTUNGSAUSGABE</b><span id="gearState">4 AGENTEN</span></div>
+        <div class="qb">
+          <p>Q teilt jedem Agenten ein Gerät zu. Rückgabe bitte unbeschädigt.</p>
+          <ul class="gear" id="gear" aria-live="polite"></ul>
+          <button class="qbtn go" type="button" id="gearBtn">NEU ZUTEILEN</button>
+        </div>
+      </div>
     </div>
     <div class="panel qp quiz">
       <div class="ph"><b>MI6 // LIZENZPRÜFUNG</b><span id="qzState">FRAGE 1/9</span></div>
@@ -976,6 +1223,7 @@ body.boot .ph .st{animation:flick .9s 1s steps(2) 2}
 
 <footer>
   <p class="fbar"><button class="qbtn" type="button" id="printBtn">DOSSIER DRUCKEN</button><button class="qbtn" type="button" id="resetBtn">GERÄT BEREINIGEN</button><button class="qbtn" type="button" id="introBtn">INTRO WIEDERHOLEN</button><span>DIESE SEITE ZERSTÖRT SICH NICHT SELBST. FALSCHES FRANCHISE.</span></p>
+  <p class="fmark">OFFICIAL–SENSITIVE · UK EYES ONLY · WEITERGABE NUR AN DIE 00-EINHEIT · TASTE <kbd>?</kbd> FÜR KÜRZEL</p>
   <p>RECHERCHESTAND OKTOBER 2026 · ÖFFNUNGSZEITEN IM NOVEMBER VOR ABFAHRT PRÜFEN · FIKTIVER AUFTRAG, INOFFIZIELLER FAN-REISEPLAN OHNE VERBINDUNG ZU EON PRODUCTIONS ODER RECHTEINHABERN</p>
   <p>QUELLEN: <a href="https://www.thejamesbonddossier.com/films/casino-royale/locations.htm" target="_blank" rel="noopener">James Bond Dossier</a> · <a href="https://www.recenzent.org.ua/casino-royale-locations-in-prague/" target="_blank" rel="noopener">Casino Royale Prague locations</a> · <a href="https://bondlocations.com/2019/12/13/casino-royale-locations-gallery" target="_blank" rel="noopener">bondlocations.com</a> · <a href="https://www.reelstreets.com/films/casino-royale-2006/" target="_blank" rel="noopener">Reelstreets</a> · <a href="https://prague.eu/en/objevujte/cold-war-museum-muzeum-studene-valky/" target="_blank" rel="noopener">prague.eu</a> · <a href="https://www.strahovskyklaster.cz/en/for-visitors" target="_blank" rel="noopener">Strahov</a> · <a href="https://www.kudyznudy.cz/aktivity/cisarske-lazne-v-karlovych-varech" target="_blank" rel="noopener">Císařské lázně</a> · <a href="https://edalnice.cz" target="_blank" rel="noopener">edalnice.cz</a></p>
 </footer>
@@ -1080,45 +1328,80 @@ const maps={
    cards:['strahov','danube','ministry','museum','vitkov'], extras:['jalta','hemingway','ranger','advent'], pos:{strahov:'r',ministry:'l',danube:'r',vitkov:'l'},
    edge:['airport','Flughafen 12 km →',0], note:'Wenzelsplatz-Cluster: Nationalmuseum, Bunker und Schießstand liegen fußläufig beieinander'}
 };
-const D1={n:'Tag 1',t:'Phase Montenegro',sub:'Augsburg → Loket → Karlsbad · Nacht im Grandhotel Pupp (befohlen)',items:[
- ['07:30','Abfahrt Augsburg über Nürnberg und Marktredwitz, Grenze bei Schirnding/Pomezí, weiter über Cheb. Ca. 4 Stunden.'],
- ['11:30','Loket: Kontakt aufnehmen, wo Bond auf Mathis trifft. Mittagessen am Platz.','loket'],
- ['13:00','Burg Loket und Blick über die Ohře-Schleife.'],
- ['14:15','20 Minuten nach Karlsbad. Check-in im Grandhotel Pupp, Auto am Hotel abstellen.','pupp'],
- ['15:00','Führung durch das Kaiserbad – die Fassade des Casino Royale.','kaiserbad'],
- ['16:15','Dämmerungsspaziergang Tržiště → Mühlbrunnkolonnade, die Filmstrecke rückwärts.','trziste'],
- ['18:30','Ausrüstung anlegen: Smoking oder dunkler Anzug.'],
- ['19:30','Dinner im Grandrestaurant Pupp, am Schauplatz des Dinners mit Vesper.'],
- ['21:00','Vesper in Becher\'s Bar.'],['22:00','Hauptziel: Einsatz im Casino des Pupp. Ausweis, Limit, Haltung.'],['Nacht','Rückzug in die Zimmer im Hotel Splendide.']]};
-const D2={n:'Tag 2',t:'Phase London & Miami',sub:'Karlsbad → Prag · Übernachtung Prag',items:[
- ['09:30','Abfahrt über die D6, ca. 1:45 h.'],
- ['11:15','Kurzstopp am Terminal 1 – Bonds „Miami Airport".','airport'],
- ['12:15','Check-in, Auto in die Hotelgarage.'],
- ['13:00','Strahov-Bibliothek: Ms Committee Room. Mittagessen in der Klosterbrauerei nebenan.','strahov'],
- ['15:00','Burgviertel, hinab nach Malá Strana, Karlsbrücke zum Sonnenuntergang.'],
- ['17:30','Karlín bei Nacht: Verkehrsministerium und Danube House, die Schwarzweiß-Eröffnung.','danube'],
- ['19:30','Abendessen in Karlín.'],
- ['21:30','Absacker in der Hemingway Bar. Der Vesper wurde bereits gestern bestellt.']]};
-const D3={n:'Tag 3',t:'Phase Venedig & Kalter Krieg',sub:'Prag → Augsburg',items:[
- ['10:00','Nationaldenkmal Vítkov: Body-Worlds-Innenräume und Dachterrasse (montags zu).','vitkov'],
- ['11:30','Nationalmuseum: die „Venedig"-Lobby.','museum'],
- ['13:00','Inspektion der Abhörzentrale: Bunker-Führung unter dem Hotel Jalta.'],
- ['14:30','Spätes Mittagessen am Wenzelsplatz. Alternativ: Schießstand Ranger.'],
- ['16:00','Abfahrt mit Fotostopp am Barrandov-Studioturm, dann D5 über Pilsen.','barrandov'],
- ['20:30','Ankunft Augsburg, ca. 4,5 h Fahrt. Unterwegs: Planá (Objekt K).','plana']]};
+/* Einsatzplan: Programmpunkte mit Art, Dauer (Min.), Ort für Karte/Route, Reservierung und Details.
+   k: drive, visit, walk, food, bar, hotel, casino, free · q: Suchbegriff für Google Maps · bk: Reservierungsschlüssel */
+const BK={
+ vignette:{n:'E-Vignette Tschechien',w:'vor Abfahrt',h:'Nur über edalnice.cz, an das Kennzeichen gebunden. 10 Tage: 300 CZK.',u:'https://edalnice.cz'},
+ pupp:{n:'Grandhotel Pupp · 2 Zimmer',w:'so früh wie möglich',h:'Direkt beim Hotel; nach renovierten Zimmern und dem Filmtisch im Grandrestaurant fragen.'},
+ kaiserbad:{n:'Führung Kaiserbad',w:'1–2 Wochen vorher',h:'Führungszeiten für den Anreisetag erfragen; Gruppe 4 Personen.'},
+ grandrest:{n:'Tisch Grandrestaurant Pupp',w:'mit der Zimmerbuchung',h:'19:30 Uhr, vier Personen, Smoking erwünscht.'},
+ strahov:{n:'Innenführung Strahov-Bibliothek',w:'mehrere Wochen vorher',h:'Per E-Mail an das Kloster; Plätze sind knapp. Ohne Führung nur Blick von der Tür.',u:'https://www.strahovskyklaster.cz/en/for-visitors'},
+ prghotel:{n:'Hotel Prag · 2 Zimmer + Garage',w:'früh',h:'Jalta (Bunker im Haus) oder Mandarin Oriental; Garage bestätigen lassen.'},
+ dinner2:{n:'Abendessen Karlín',w:'einige Tage vorher',h:'Tisch für vier gegen 19:30 Uhr in Karlín.'},
+ hemingway:{n:'Hemingway Bar',w:'einige Tage vorher',h:'Karoliny Světlé 26; ohne Reservierung oft voll.'},
+ bunker:{n:'Bunker-Führung Hotel Jalta',w:'mind. 5 Stunden vorher',h:'Max. 7 Personen pro Gruppe, 250 CZK pro Person, ca. 80 Minuten.',u:'https://prague.eu/en/objevujte/cold-war-museum-muzeum-studene-valky/'},
+ ranger:{n:'Ranger Shooting (optional)',w:'einige Tage vorher',h:'Paket mit Instruktor, nach einer Walther fragen.'},
+ fine:{n:'Fine Dining Prag (4 Tage)',w:'1–2 Wochen vorher',h:'Michelin-Adresse, Smoking passt.'}};
+const P={aug:'Augsburg',loket:'náměstí T. G. Masaryka, Loket',burg:'Hrad Loket',pupp:'Grandhotel Pupp, Karlovy Vary',kaiser:'Císařské lázně, Karlovy Vary',trz:'Tržiště, Karlovy Vary',mlyn:'Mlýnská kolonáda, Karlovy Vary',
+ air:'Letiště Václava Havla Praha, Terminal 1',strahov:'Strahovská knihovna, Praha',brau:'Klášterní pivovar Strahov, Praha',karl:'Karlův most, Praha',danube:'Danube House, Karolinská 650/1, Praha',min:'Ministerstvo dopravy, nábřeží Ludvíka Svobody 1222, Praha',
+ karlin:'Karlín, Praha',hem:'Hemingway Bar, Karoliny Světlé 26, Praha',vitkov:'Národní památník na Vítkově, Praha',mus:'Národní muzeum, Praha',jalta:'Hotel Jalta, Václavské náměstí 45, Praha',ranger:'Ranger Shooting, Lublaňská 23, Praha',barr:'Barrandov Studios, Praha',altst:'Staroměstské náměstí, Praha'};
+const DRIVE={aug_loket:{km:335,min:240,via:'über Nürnberg, Marktredwitz, Grenze Schirnding/Pomezí, Cheb'},loket_kv:{km:12,min:20},kv_air:{km:115,min:90,via:'D6'},air_prg:{km:18,min:25},prg_aug:{km:425,min:270,via:'D5 über Pilsen, Grenze Rozvadov/Waidhaus, A6 Nürnberg'}};
+const D1={n:'Tag 1',t:'Phase Montenegro',sub:'Augsburg → Loket → Karlsbad · Nacht im Grandhotel Pupp',city:'kv',items:[
+ {t:'07:30',k:'drive',x:'Abfahrt Augsburg → Loket',dur:240,from:P.aug,q:P.loket,dr:'aug_loket',bk:'vignette',d:'Ca. 335 km, gut 4 Stunden über Nürnberg und Marktredwitz. Tankpause vor der Grenze, Sprit ist in Tschechien selten teurer. Ab Cheb gilt die E-Vignette.'},
+ {t:'11:30',k:'visit',x:'Loket: Marktplatz, Kontakt Mathis',r:'loket',dur:60,q:P.loket,d:'Der Platz mit Dreifaltigkeitssäule, wo Bond und Vesper Mathis treffen. Mittagessen direkt am Platz.'},
+ {t:'12:45',k:'visit',x:'Burg Loket',dur:60,q:P.burg,d:'Gotische Burg über der Ohře-Schleife. Bester Blick auf die Dächer und die Flussschleife.'},
+ {t:'14:00',k:'drive',x:'Weiter nach Karlsbad, Check-in Pupp',r:'pupp',dur:45,from:P.loket,q:P.pupp,dr:'loket_kv',bk:'pupp',d:'20 Minuten Fahrt. Auto am Hotel abstellen und bis zum nächsten Morgen stehen lassen.'},
+ {t:'15:00',k:'visit',x:'Kaiserbad: Führung',r:'kaiserbad',dur:75,q:P.kaiser,bk:'kaiserbad',d:'Die Fassade des Casino Royale, innen Zander-Saal und Kaiserkabine. Liegt gegenüber dem Pupp.'},
+ {t:'16:15',k:'walk',x:'Dämmerungsspaziergang Tržiště → Mühlbrunnkolonnade',r:'trziste',dur:50,from:P.pupp,q:P.mlyn,d:'Die Filmstrecke rückwärts, etwa 15 Minuten Gehzeit plus Fotostopps. Die Kolonnaden sind überdacht.'},
+ {t:'18:15',k:'free',x:'Zurück im Hotel, Smoking anlegen',dur:60,q:P.pupp,d:'Dresscode für Restaurant und Casino. Ausweise einstecken. Limit festlegen und aufschreiben.'},
+ {t:'19:30',k:'food',x:'Dinner im Grandrestaurant Pupp',r:'pupp',dur:90,q:P.pupp,bk:'grandrest',d:'Am Schauplatz des Dinners mit Vesper. Nach dem Tisch aus der Filmszene fragen.'},
+ {t:'21:00',k:'bar',x:'Becher’s Bar: ein Vesper',dur:50,q:P.pupp,d:'Ein Vesper pro Agent. Alternativ Beton, die Karlsbader Hausempfehlung.'},
+ {t:'22:00',k:'casino',x:'Hauptziel: Casino im Pupp',dur:120,q:P.pupp,d:'Ausweis am Einlass, Limit vorher, Smoking. Roulette und Blackjack. La-partage-Regel beim Croupier erfragen.'},
+ {t:'Nacht',k:'hotel',x:'Hotel Splendide',dur:0,q:P.pupp,d:'Rückzug in die Zimmer. Frühstück am Morgen ist Teil des Einsatzes.'}],
+ b:'Regen ändert wenig: Kaiserbad, Pupp und Casino sind drinnen, die Kolonnaden überdacht. Bei Sturm die Burg Loket streichen und länger beim Mittagessen bleiben.'};
+const D2={n:'Tag 2',t:'Phase London & Miami',sub:'Karlsbad → Prag · Übernachtung Prag',city:'prg',items:[
+ {t:'08:30',k:'food',x:'Frühstück im Pupp',dur:60,q:P.pupp,d:'Ohne Hast. Die Rechnung des Casinos wird hier nicht besprochen.'},
+ {t:'09:30',k:'drive',x:'Karlsbad → Prag, über die D6',dur:90,from:P.pupp,q:P.air,dr:'kv_air',d:'Ca. 115 km. Direkt am Flughafen vorbei, daher der Stopp.'},
+ {t:'11:15',k:'visit',x:'Terminal 1: Bonds „Miami Airport“',r:'airport',dur:30,q:P.air,d:'Kurzzeitparken, Halle und Abflugtafel. Die Rollfeld-Szenen stammen aus England.'},
+ {t:'12:00',k:'drive',x:'Check-in Prag, Auto in die Garage',dur:45,from:P.air,q:P.jalta,dr:'air_prg',bk:'prghotel',d:'Ab hier nur noch zu Fuß, Tram und Taxi. Blaue Parkzonen sind Anwohnern vorbehalten.'},
+ {t:'13:00',k:'visit',x:'Strahov-Bibliothek: Ms Committee Room',r:'strahov',dur:75,q:P.strahov,bk:'strahov',d:'Philosophischer Saal. Ohne Innenführung nur von der Tür aus, trotzdem eindrucksvoll.'},
+ {t:'14:30',k:'food',x:'Mittagessen Klosterbrauerei Strahov',dur:60,q:P.brau,d:'Gleich nebenan. Ein Bier für M, symbolisch.'},
+ {t:'15:30',k:'walk',x:'Burgviertel, Kleinseite, Karlsbrücke',dur:120,from:P.brau,q:P.karl,d:'Bergab durch die Kleinseite, Karlsbrücke zur Dämmerung (Sonnenuntergang siehe oben).'},
+ {t:'17:45',k:'visit',x:'Karlín bei Nacht: Ministerium und Danube House',r:'danube',dur:60,from:P.karl,q:P.danube,d:'Die Schwarzweiß-Eröffnung. Tram oder Taxi nach Karlín, dann zu Fuß zum Verkehrsministerium.'},
+ {t:'19:30',k:'food',x:'Abendessen in Karlín',dur:90,q:P.karlin,bk:'dinner2',d:'Das Viertel ist seit dem Hochwasser 2002 neu erfunden, die Küche auch.'},
+ {t:'21:30',k:'bar',x:'Hemingway Bar',dur:90,q:P.hem,bk:'hemingway',d:'Der Vesper wurde gestern bestellt. Heute etwas anderes, der Barkeeper berät.'}],
+ b:'Bei Regen Strahov und Nationalmuseum tauschen (Museum aus Tag 3 vorziehen). Karlín bleibt: Nachtfotos wirken auf nassem Pflaster ohnehin besser.'};
+const D3={n:'Tag 3',t:'Phase Venedig & Kalter Krieg',sub:'Prag → Augsburg',city:'prg',items:[
+ {t:'09:00',k:'food',x:'Frühstück, Check-out',dur:60,q:P.jalta,d:'Gepäck ins Auto, das Auto bleibt bis zur Abfahrt in der Garage.'},
+ {t:'10:00',k:'visit',x:'Nationaldenkmal Vítkov',r:'vitkov',dur:60,q:P.vitkov,d:'Body-Worlds-Innenräume und Dachterrasse. Montags geschlossen.'},
+ {t:'11:30',k:'visit',x:'Nationalmuseum: die „Venedig“-Lobby',r:'museum',dur:80,q:P.mus,d:'Prunktreppe und Pantheon. Mit Museumseintritt.'},
+ {t:'13:00',k:'visit',x:'Bunker unter dem Hotel Jalta',dur:80,q:P.jalta,bk:'bunker',cost:250,d:'Abhörzentrale des Kalten Kriegs, 20 m unter dem Wenzelsplatz. 250 CZK pro Person.'},
+ {t:'14:30',k:'food',x:'Spätes Mittagessen am Wenzelsplatz',dur:60,q:P.jalta,alt:'Alternativ: Ranger Shooting, 2 Stunden mit Instruktor (dann Abfahrt später).',d:'Kurz und gut, die Heimfahrt ist lang.'},
+ {t:'16:00',k:'drive',x:'Abfahrt mit Fotostopp Barrandov',r:'barrandov',dur:270,from:P.jalta,q:P.aug,dr:'prg_aug',d:'Kurzer Halt am Studioturm, dann D5 über Pilsen und Waidhaus, ca. 425 km. Unterwegs liegt Planá (Objekt K) nahe der Route.'},
+ {t:'20:30',k:'hotel',x:'Ankunft Augsburg',dur:0,q:P.aug,d:'Bericht an M bis Montag. Fotos genügen.'}],
+ b:'Alle Programmpunkte liegen drinnen. Bei Glatteis die Abfahrt vorziehen und Barrandov auslassen.'};
 const plans={
  '2':{label:'2 Tage',note:'M: Kompakt. Die Nacht im Pupp bleibt, Prag wird im Laufschritt erledigt, Heimfahrt am Abend. Vítkov und der Bunker entfallen. Ich bedauere das mehr als Sie.',days:[D1,
-  {n:'Tag 2',t:'Prag im Schnelldurchlauf',sub:'Karlsbad → Prag → Augsburg',items:[
-   ['08:30','Abfahrt Karlsbad über die D6.'],['10:15','Stopp am Terminal 1 („Miami").','airport'],['11:00','Strahov-Bibliothek, danach Mittagessen auf der Kleinseite.','strahov'],
-   ['14:00','Nationalmuseum am Wenzelsplatz.','museum'],['16:00','Karlín zur Dämmerung: Ministerium und Danube House.','danube'],['17:00','Heimfahrt, Ankunft gegen 21:30.']]}]},
+  {n:'Tag 2',t:'Prag im Schnelldurchlauf',sub:'Karlsbad → Prag → Augsburg',city:'prg',items:[
+   {t:'08:00',k:'drive',x:'Abfahrt Karlsbad über die D6',dur:90,from:P.pupp,q:P.air,dr:'kv_air',d:'Früh los, um Prag bei Tageslicht zu haben.'},
+   {t:'09:45',k:'visit',x:'Terminal 1 („Miami“)',r:'airport',dur:25,q:P.air,d:'Kurzer Stopp, Kurzzeitparken.'},
+   {t:'10:45',k:'visit',x:'Strahov-Bibliothek',r:'strahov',dur:75,q:P.strahov,bk:'strahov',d:'Parkhaus in der Nähe suchen oder Taxi.'},
+   {t:'12:15',k:'food',x:'Mittagessen auf der Kleinseite',dur:60,q:P.karl,d:'Schnell, nicht hektisch.'},
+   {t:'13:45',k:'visit',x:'Nationalmuseum am Wenzelsplatz',r:'museum',dur:75,q:P.mus,d:'Die „Venedig“-Lobby.'},
+   {t:'15:30',k:'visit',x:'Karlín zur Dämmerung: Ministerium und Danube House',r:'danube',dur:45,q:P.danube,d:'Gerade noch Dämmerung im November.'},
+   {t:'16:30',k:'drive',x:'Heimfahrt',dur:270,from:P.danube,q:P.aug,dr:'prg_aug',d:'Ankunft gegen 21:00 Uhr.'}],b:'Bei Regen Karlín streichen und früher fahren.'}]},
  '3':{label:'3 Tage',note:'M: Meine Empfehlung, und meine Empfehlungen sind selten Empfehlungen. Alle zugänglichen Zielobjekte ohne Hetze, eine Nacht im Pupp, eine in Prag.',days:[D1,D2,D3]},
  '4':{label:'4 Tage',note:'M: Mit Luft. Zwei Nächte Prag, Fine Dining und ein freier Tag, Ende November mit Adventsmarkt. Genehmigt, weil Sie ihn sich ohnehin genommen hätten.',days:[D1,D2,
-  {n:'Tag 3',t:'Phase Venedig & Kalter Krieg',sub:'Prag · Übernachtung Prag',items:[
-   ['10:00','Nationaldenkmal Vítkov (montags zu).','vitkov'],['11:30','Nationalmuseum.','museum'],['13:00','Bunker-Führung unter dem Hotel Jalta.'],
-   ['15:30','Schießstand Ranger: 2 Stunden mit Instruktor.'],['20:00','Fine Dining im Smoking – Michelin-Adresse vorab reservieren.']]},
-  {n:'Tag 4',t:'Freier Tag (genehmigt)',sub:'Prag → Augsburg',items:[
-   ['10:00','Altstädter Ring, Josefov und – ab Ende November – Adventsmarkt.'],['13:00','Mittagessen in der Altstadt.'],
-   ['15:00','Fotostopp Barrandov, dann D5 Richtung Heimat.','barrandov'],['19:30','Ankunft Augsburg.']]}]}
+  {n:'Tag 3',t:'Phase Venedig & Kalter Krieg',sub:'Prag · Übernachtung Prag',city:'prg',items:[
+   {t:'10:00',k:'visit',x:'Nationaldenkmal Vítkov',r:'vitkov',dur:60,q:P.vitkov,d:'Montags geschlossen.'},
+   {t:'11:30',k:'visit',x:'Nationalmuseum',r:'museum',dur:80,q:P.mus,d:'Prunktreppe und Pantheon.'},
+   {t:'13:00',k:'visit',x:'Bunker unter dem Hotel Jalta',dur:80,q:P.jalta,bk:'bunker',cost:250,d:'250 CZK pro Person, max. 7 Personen.'},
+   {t:'15:30',k:'visit',x:'Ranger Shooting: 2 Stunden mit Instruktor',dur:120,q:P.ranger,bk:'ranger',d:'Nach einer Walther fragen. Kein Vesper davor.'},
+   {t:'20:00',k:'food',x:'Fine Dining im Smoking',dur:150,q:P.altst,bk:'fine',d:'Michelin-Adresse vorab reservieren.'}],b:'Alles drinnen. Bei Regen ein Taxi mehr.'},
+  {n:'Tag 4',t:'Freier Tag (genehmigt)',sub:'Prag → Augsburg',city:'prg',items:[
+   {t:'10:00',k:'walk',x:'Altstädter Ring, Josefov, ab Ende November Adventsmarkt',dur:150,q:P.altst,d:'Glühwein zwischen Teynkirche und Rathausuhr.'},
+   {t:'13:00',k:'food',x:'Mittagessen in der Altstadt',dur:75,q:P.altst,d:'Ohne Programm, ohne Mission.'},
+   {t:'15:00',k:'drive',x:'Fotostopp Barrandov, dann Heimfahrt',r:'barrandov',dur:270,from:P.altst,q:P.aug,dr:'prg_aug',d:'Ankunft gegen 19:30 Uhr.'}],b:'Bei Regen Nationalgalerie oder Kaffeehaus statt Altstadtbummel.'}]}
 };
 const H=[
  ['Grandhotel Pupp','Karlsbad · 1 Nacht · befohlen','Das echte Hotel Splendide, mit Grandrestaurant, Becher\'s Bar und Casino im Haus. Zwei Zimmer buchen, Tisch im Grandrestaurant gleich mitreservieren. Die Zimmer sind klassisch mit Deckenfresken und Kronleuchtern – bei der Buchung gezielt nach den neuesten, renovierten Kategorien fragen.',1,'Das Zimmer zahlt das Schatzamt. Den Bademantel nicht.'],
@@ -2028,85 +2311,418 @@ if(document.fonts&&document.fonts.ready)document.fonts.ready.then(()=>WV.set(WV.
 
 /* plans */
 const pt=document.getElementById('planTabs'),days=document.getElementById('days'),note=document.getElementById('planNote');
-const KEY=/Pupp|Casino|Kaiserbad|Bunker|Abhör/;
-/* sunset (NOAA-Näherung), Ergebnis in MEZ – im November gilt keine Sommerzeit */
+/* Sonnenauf- und -untergang (NOAA-Näherung), Ergebnis in MEZ – im November gilt keine Sommerzeit */
 const rad=Math.PI/180;
-function sunset(dt,lat,lon){const y=dt.getFullYear(),m=dt.getMonth()+1,d=dt.getDate();
+function sun(dt,lat,lon,rise){const y=dt.getFullYear(),m=dt.getMonth()+1,d=dt.getDate();
   const N=Math.floor(275*m/9)-Math.floor((m+9)/12)*(1+Math.floor((y-4*Math.floor(y/4)+2)/3))+d-30;
-  const lh=lon/15,t=N+(18-lh)/24,M=.9856*t-3.289;const Ls=(M+1.916*Math.sin(M*rad)+.02*Math.sin(2*M*rad)+282.634+360)%360;
+  const lh=lon/15,t=N+((rise?6:18)-lh)/24,M=.9856*t-3.289;const Ls=(M+1.916*Math.sin(M*rad)+.02*Math.sin(2*M*rad)+282.634+360)%360;
   let RA=(Math.atan(.91764*Math.tan(Ls*rad))/rad+360)%360;RA=(RA+Math.floor(Ls/90)*90-Math.floor(RA/90)*90)/15;
-  const sd=.39782*Math.sin(Ls*rad),cd=Math.cos(Math.asin(sd));const H=Math.acos((Math.cos(90.833*rad)-sd*Math.sin(lat*rad))/(cd*Math.cos(lat*rad)))/rad/15;
+  const sd=.39782*Math.sin(Ls*rad),cd=Math.cos(Math.asin(sd));let H=Math.acos((Math.cos(90.833*rad)-sd*Math.sin(lat*rad))/(cd*Math.cos(lat*rad)))/rad;if(rise)H=360-H;H/=15;
   const h=((H+RA-.06571*t-6.622-lh)%24+24)%24+1,mi=Math.round(h%1*60);
   return String(Math.floor(h)+(mi===60?1:0)).padStart(2,'0')+':'+String(mi%60).padStart(2,'0')}
+const sunset=(dt,la,lo)=>sun(dt,la,lo,false);
 const DOW=['SO','MO','DI','MI','DO','FR','SA'],DOWL=['Sonntag','Montag','Dienstag','Mittwoch','Donnerstag','Freitag','Samstag'];
 const ddmm=d=>String(d.getDate()).padStart(2,'0')+'.'+String(d.getMonth()+1).padStart(2,'0')+'.';
-let dep=S.get('dep',''),curPlan='3';
+let dep=S.get('dep',''),curPlan=S.get('plan','3');
 const dayDate=i=>{if(!dep)return null;const d=new Date(dep+'T12:00:00');d.setDate(d.getDate()+i);return d};
-function plan(k){curPlan=k;const p=plans[k];note.textContent=p.note;days.innerHTML='';const flags=[];
-  p.days.forEach((d,i)=>{const dt=dayDate(i);let items=d.items.slice();let ss='';
-    if(dt){const kv=i===0;ss=sunset(dt,kv?50.2306:50.0755,kv?12.8711:14.4378);
-      const last=i===p.days.length-1&&i>0;
-      if(!last){const at=items.findIndex(([t])=>/^\d\d:\d\d$/.test(t)&&t>ss);const row=[ss,kv?'Sonnenuntergang in Karlsbad. Ab jetzt leuchten Kolonnaden und Kaiserbad wie im Film.':'Sonnenuntergang in Prag. Karlín und die Moldau gehören jetzt Ihnen.',null,'sun'];
-        if(at<0)items.splice(items.length-(items[items.length-1][0]==='Nacht'?1:0),0,row);else items.splice(at,0,row)}
-      if(dt.getDay()===1&&d.items.some(x=>x[2]==='vitkov')){items.unshift(['!!','Montag: Vítkov ist geschlossen. M: Tauschen Sie Tag oder Reihenfolge. Das Denkmal tut es nicht.',null,'warn']);flags.push(['r',`${d.n} ist ein Montag – Vítkov geschlossen`])}
-      if(dt.getDate()===14&&dt.getMonth()===10){items.unshift(['★','Heute vor zwanzig Jahren: Weltpremiere von Casino Royale in London. M: Ein Glas. Eins.',null,'key']);flags.push(['g',`${d.n} fällt auf den 14.11. – 20 Jahre Casino Royale`])}
+const KIND={drive:'FAHRT',visit:'ZIEL',walk:'ZU FUSS',food:'ESSEN',bar:'BAR',hotel:'QUARTIER',casino:'CASINO',free:'FREI'};
+const BKS=S.get('bk',{}),DONE=S.get('done',{}),NOTES=S.get('notes',{});
+const BKL=['OFFEN','ANGEFRAGT','BESTÄTIGT'];
+const gq=q=>`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(q)}`;
+const gd=(a,b,m)=>`https://www.google.com/maps/dir/?api=1&origin=${encodeURIComponent(a)}&destination=${encodeURIComponent(b)}&travelmode=${m}`;
+const mins=t=>/^\d\d:\d\d$/.test(t)?+t.slice(0,2)*60+ +t.slice(3):null;
+const fdur=m=>m>=60?`${Math.floor(m/60)} h${m%60?' '+m%60+' min':''}`:`${m} min`;
+const ikey=(d,it)=>`${d.n}|${it.t}|${it.x}`;
+const CITY={kv:[50.2306,12.8711],prg:[50.0755,14.4378]};
+function plan(k){curPlan=k;S.set('plan',k);const p=plans[k];note.textContent=p.note;days.innerHTML='';const flags=[];
+  p.days.forEach((d,i)=>{const dt=dayDate(i),[la,lo]=CITY[d.city];let items=d.items.map(x=>({...x}));let ss='',sr='';
+    if(dt){ss=sunset(dt,la,lo);sr=sun(dt,la,lo,true);
+      if(!(i===p.days.length-1&&i>0)){const at=items.findIndex(x=>mins(x.t)!=null&&x.t>ss);const row={t:ss,k:'sun',x:i===0?'Sonnenuntergang in Karlsbad. Ab jetzt leuchten Kolonnaden und Kaiserbad.':'Sonnenuntergang in Prag. Karlín und die Moldau gehören jetzt Ihnen.'};
+        if(at<0)items.splice(items.length-(items[items.length-1].t==='Nacht'?1:0),0,row);else items.splice(at,0,row)}
+      if(dt.getDay()===1&&d.items.some(x=>x.r==='vitkov')){items.unshift({t:'!!',k:'warn',x:'Montag: Vítkov ist geschlossen. Tag oder Reihenfolge tauschen. Das Denkmal tut es nicht.'});flags.push(['r',`${d.n} ist ein Montag – Vítkov geschlossen`])}
+      if(dt.getDate()===14&&dt.getMonth()===10){items.unshift({t:'★',k:'star',x:'Heute vor zwanzig Jahren: Weltpremiere von Casino Royale in London. M: Ein Glas. Eins.'});flags.push(['g',`${d.n} fällt auf den 14.11. – 20 Jahre Casino Royale`])}
       if((dt.getMonth()===11||(dt.getMonth()===10&&dt.getDate()>=28))&&i>0)flags.push(['w',`${d.n}: Adventsmärkte in Prag voraussichtlich geöffnet`])}
-    const div=document.createElement('div');div.className='panel day';
-    div.innerHTML=`<div class="ph"><h3>${d.n} // ${d.t}</h3><span class="dd"><span>${d.sub}</span>${dt?`<b>${DOW[dt.getDay()]} ${ddmm(dt)} · SONNENUNTERGANG ${ss}</b>`:''}</span></div><ol class="log">${items.map(([t,x,r,cl])=>{const c=r&&L.find(y=>y.id===r);return `<li class="${cl||(KEY.test(x)?'key':'')}"><time>${t}</time><span>${x}</span>${c?`<button class="ref" type="button" data-r="${r}">${code(c)}</button>`:'<span></span>'}</li>`}).join('')}</ol>`;
+    const real=items.filter(x=>KIND[x.k]);
+    const drive=real.filter(x=>x.k==='drive').reduce((s,x)=>s+(x.dr?DRIVE[x.dr].min:x.dur),0),km=real.filter(x=>x.dr).reduce((s,x)=>s+DRIVE[x.dr].km,0);
+    const bks=[...new Set(real.filter(x=>x.bk).map(x=>x.bk))],open=bks.filter(b=>(BKS[b]||0)<2).length,czk=real.reduce((s,x)=>s+(x.cost||0),0);
+    const doneN=real.filter(x=>DONE[ikey(d,x)]).length;
+    const seg=real.filter(x=>mins(x.t)!=null&&x.dur).map(x=>{const a=mins(x.t);return`<i class="k-${x.k}" style="left:${((a-420)/1020*100).toFixed(2)}%;width:${(Math.min(x.dur,1440-a)/1020*100).toFixed(2)}%" title="${x.t} ${x.x}"></i>`}).join('');
+    const sunM=ss?mins(ss):null;
+    const div=document.createElement('div');div.className='panel day';div.dataset.i=i;
+    div.innerHTML=`<div class="ph"><h3>${d.n} // ${d.t}</h3><span class="dd"><span>${d.sub}</span>${dt?`<b>${DOWL[dt.getDay()].toUpperCase()} ${ddmm(dt)} · ☀ ${sr} – ${ss}</b>`:''}</span></div>
+     <div class="dsum"><span><b>${real.length}</b> Punkte</span><span><b>${doneN}</b> erledigt</span>${drive?`<span><b>${fdur(drive)}</b> Fahrt${km?` · ${km} km`:''}</span>`:''}<span class="${open?'w':''}"><b>${open}</b> Reservierungen offen</span>${czk?`<span><b>${czk} CZK</b> p. P. bekannt</span>`:''}</div>
+     <div class="dbar" aria-hidden="true"><div class="dbar-in">${seg}${sunM?`<s style="left:${((sunM-420)/1020*100).toFixed(2)}%"></s>`:''}<u></u></div><div class="dbar-h">${[7,9,11,13,15,17,19,21,23].map(h=>`<span style="left:${((h*60-420)/1020*100).toFixed(2)}%">${h}</span>`).join('')}</div></div>
+     <ol class="log">${items.map((x,j)=>{if(!KIND[x.k])return`<li class="${x.k==='sun'?'sun':x.k==='warn'?'warn':'key'}"><time>${x.t}</time><span>${x.x}</span><span></span></li>`;
+       const key=ikey(d,x),c=x.r&&L.find(y=>y.id===x.r),bs=x.bk?(BKS[x.bk]||0):-1,prev=items.slice(0,j).reverse().find(y=>y.q);
+       const from=x.from||(prev&&prev.q!==x.q?prev.q:null),mode=x.k==='drive'?'driving':d.city==='prg'?'transit':'walking',dr=x.dr&&DRIVE[x.dr];
+       return`<li class="it k-${x.k}${DONE[key]?' done':''}${/Pupp|Casino|Kaiserbad|Bunker/.test(x.x)?' key':''}" data-key="${key}"><time>${x.t}</time>
+        <div class="itm"><button type="button" class="it-h" aria-expanded="false"><em>${KIND[x.k]}</em>${x.x}</button>
+         <div class="it-meta">${x.dur?`<span>${fdur(x.dur)}</span>`:''}${dr?`<span>${dr.km} km</span>`:''}${x.cost?`<span>${x.cost} CZK p. P.</span>`:''}${x.bk?`<button type="button" class="bkb s${bs}" data-bk="${x.bk}" title="${BK[x.bk].n}: Status wechseln">${BKL[bs]}</button>`:''}${c?`<button class="ref" type="button" data-r="${x.r}">${code(c)}</button>`:''}</div>
+         <div class="it-d" hidden><p>${x.d||''}</p>${dr&&dr.via?`<p class="it-via">Route: ${dr.via}.</p>`:''}${x.alt?`<p class="it-alt">${x.alt}</p>`:''}${x.bk?`<p class="it-bk"><b>${BK[x.bk].n}:</b> ${BK[x.bk].h} <i>Buchen: ${BK[x.bk].w}.</i>${BK[x.bk].u?` <a href="${BK[x.bk].u}" target="_blank" rel="noopener">Website</a>`:''}</p>`:''}
+          <div class="it-act">${x.q?`<a class="btn" href="${gq(x.q)}" target="_blank" rel="noopener">KARTE</a>`:''}${from&&x.q?`<a class="btn" href="${gd(from,x.q,mode)}" target="_blank" rel="noopener">ROUTE HIERHER</a>`:''}${c?`<button class="btn" type="button" data-r2="${x.r}">ZIELAKTE</button>`:''}</div></div></div>
+        <label class="it-done" title="Erledigt"><input type="checkbox" data-done="${key}"${DONE[key]?' checked':''}><span>✓</span></label></li>`}).join('')}</ol>
+     <div class="dfoot"><details><summary>PLAN B · SCHLECHTWETTER</summary><p>${d.b||'—'}</p></details>
+      <label class="dnote"><span>NOTIZEN ZU ${d.n.toUpperCase()}</span><textarea data-note="${k}|${d.n}" rows="2" placeholder="Reservierungsnummern, Treffpunkte, Kontaktdaten …">${(NOTES[k+'|'+d.n]||'').replace(/</g,'&lt;')}</textarea></label></div>`;
     days.appendChild(div)});
   const df=document.getElementById('dflags');
   if(dep){const a=dayDate(0),b=dayDate(p.days.length-1);df.innerHTML=[['',`${DOWL[a.getDay()]} ${ddmm(a)} bis ${DOWL[b.getDay()]} ${ddmm(b)}`]].concat(flags.length?flags:[['g','Keine Konflikte. M: Selten.']]).map(([c,t])=>`<span class="flag ${c}">${t}</span>`).join('')}
   else df.innerHTML='';
-  days.querySelectorAll('.ref').forEach(b=>b.onclick=()=>{showCard(b.dataset.r,false);document.getElementById('targets').scrollIntoView()});
-  pt.querySelectorAll('.tbtn').forEach(b=>b.setAttribute('aria-selected',b.dataset.k===k?'true':'false'))}
+  days.querySelectorAll('.ref,[data-r2]').forEach(b=>b.onclick=()=>{showCard(b.dataset.r||b.dataset.r2,false);document.getElementById('targets').scrollIntoView()});
+  days.querySelectorAll('.it-h').forEach(b=>b.onclick=()=>{const dd=b.closest('.itm').querySelector('.it-d');dd.hidden=!dd.hidden;b.setAttribute('aria-expanded',!dd.hidden)});
+  days.querySelectorAll('.bkb').forEach(b=>b.onclick=()=>{const k2=b.dataset.bk,v=((BKS[k2]||0)+1)%3;BKS[k2]=v;S.set('bk',BKS);
+    document.querySelectorAll(`.bkb[data-bk="${k2}"]`).forEach(x=>{x.className='bkb s'+v;x.textContent=BKL[v]});if(v===2)toast(`<b>Q:</b> ${BK[k2].n} bestätigt. Ich habe es mir notiert. Auf Papier.`);sumRefresh();if(window.orgRefresh)orgRefresh()});
+  days.querySelectorAll('[data-done]').forEach(cb=>cb.onchange=()=>{const k2=cb.dataset.done;if(cb.checked)DONE[k2]=1;else delete DONE[k2];S.set('done',DONE);cb.closest('li').classList.toggle('done',cb.checked);sumRefresh()});
+  days.querySelectorAll('[data-note]').forEach(t=>t.oninput=()=>{NOTES[t.dataset.note]=t.value;S.set('notes',NOTES)});
+  pt.querySelectorAll('.tbtn').forEach(b=>b.setAttribute('aria-selected',b.dataset.k===k?'true':'false'));
+  nowMode();if(window.orgRefresh)orgRefresh();if(window.readiness)readiness()}
+function sumRefresh(){const p=plans[curPlan];days.querySelectorAll('.day').forEach((div,i)=>{const d=p.days[i],real=d.items;
+  const bks=[...new Set(real.filter(x=>x.bk).map(x=>x.bk))],open=bks.filter(b=>(BKS[b]||0)<2).length,doneN=real.filter(x=>DONE[ikey(d,x)]).length;
+  const s=div.querySelectorAll('.dsum span');s[1].innerHTML=`<b>${doneN}</b> erledigt`;const o=[...s].find(x=>/Reservierungen/.test(x.textContent));if(o){o.innerHTML=`<b>${open}</b> Reservierungen offen`;o.className=open?'w':''}});if(window.readiness)readiness()}
+/* Jetzt-Modus: während der Reise den laufenden und nächsten Programmpunkt zeigen */
+function nowMode(){const box=document.getElementById('planNow');if(!box)return;const p=plans[curPlan],now=new Date();let html='';
+  days.querySelectorAll('li.now,li.next').forEach(l=>l.classList.remove('now','next'));days.querySelectorAll('.dbar u').forEach(u=>u.style.display='none');
+  if(dep){const i=p.days.findIndex((_,j)=>{const d=dayDate(j);return d&&d.toDateString()===now.toDateString()});
+    if(i>=0){const d=p.days[i],nm=now.getHours()*60+now.getMinutes(),its=d.items.filter(x=>mins(x.t)!=null);let cur=null,nx=null;
+      its.forEach(x=>{const a=mins(x.t);if(a<=nm&&a+(x.dur||0)>nm)cur=x;if(a>nm&&!nx)nx=x});
+      const div=days.querySelector(`.day[data-i="${i}"]`);const u=div&&div.querySelector('.dbar u');if(u&&nm>=420){u.style.display='block';u.style.left=((nm-420)/1020*100).toFixed(2)+'%'}
+      const mark=(x,c)=>{if(!x||!div)return;const li=div.querySelector(`li[data-key="${CSS.escape(ikey(d,x))}"]`);if(li)li.classList.add(c)};mark(cur,'now');mark(nx,'next');
+      html=`<b>EINSATZ LÄUFT · ${d.n.toUpperCase()}</b>${cur?` · Jetzt: ${cur.t} ${cur.x}`:''}${nx?` · Nächster Punkt: ${nx.t} ${nx.x} <i>in ${fdur(mins(nx.t)-nm)}</i>`:' · Für heute ist alles erledigt. M wünscht eine ruhige Nacht. Sie meint es dienstlich.'}`}
+    else{const a=dayDate(0),diff=Math.round((new Date(a.toDateString())-new Date(now.toDateString()))/864e5);
+      html=diff>0?`<b>EINSATZ IN ${diff} ${diff===1?'TAG':'TAGEN'}</b> · Start ${DOWL[a.getDay()]}, ${ddmm(a)} um ${p.days[0].items[0].t} Uhr in Augsburg.`:`<b>EINSATZ ABGESCHLOSSEN</b> · Bericht an M. Fotos genügen, Spesen bitte einzeln.`}}
+  else html='<b>KEIN ABREISEDATUM</b> · Datum oben wählen, dann erscheinen Wochentage, Sonnenzeiten und während der Reise der Jetzt-Modus.';
+  box.innerHTML=html}
+setInterval(nowMode,60000);
 const depIn=document.getElementById('dep');depIn.value=dep;
 depIn.addEventListener('change',()=>{dep=/^2026-11-\d\d$/.test(depIn.value)?depIn.value:'';if(depIn.value&&!dep)toast('<b>M:</b> November 2026. Nicht verhandelbar.');S.set('dep',dep);plan(curPlan);countdown()});
 document.getElementById('depClr').onclick=()=>{dep='';depIn.value='';S.set('dep','');plan(curPlan);countdown()};
 [['2','2 TAGE'],['3','3 TAGE'],['4','4 TAGE']].forEach(([k,l])=>{const b=document.createElement('button');b.className='tbtn';b.type='button';b.setAttribute('role','tab');b.dataset.k=k;b.textContent=l;b.onclick=()=>plan(k);pt.appendChild(b)});
-plan('3');
+document.getElementById('plExp').onclick=e=>{const open=e.target.getAttribute('aria-pressed')!=='true';e.target.setAttribute('aria-pressed',open);days.querySelectorAll('.it-d').forEach(d=>d.hidden=!open);days.querySelectorAll('.it-h').forEach(b=>b.setAttribute('aria-expanded',open))};
+document.getElementById('plOpen').onclick=e=>{const on=e.target.getAttribute('aria-pressed')!=='true';e.target.setAttribute('aria-pressed',on);days.classList.toggle('open-only',on)};
+plan(plans[curPlan]?curPlan:'3');
+
+/* Disposition: Buchungen, Budget, Etappen, Notfall, Export */
+(function(){
+const $=id=>document.getElementById(id);
+const BUD=Object.assign({pupp:'',prg:'',cons:7,fuel:1.75,eat:90,extra:40,casino:100},S.get('budget',{}));
+const DRV=S.get('drivers',{});
+const fmtE=v=>isFinite(v)?Math.round(v).toLocaleString('de-DE')+' €':'–';
+const planDays=()=>plans[curPlan].days;
+const usedBk=()=>[...new Set(planDays().flatMap(d=>d.items.filter(x=>x.bk).map(x=>x.bk)))];
+function bookings(){const ks=usedBk(),ok=ks.filter(k=>(BKS[k]||0)===2).length;
+  $('orgBkN').textContent=`${ok}/${ks.length} BESTÄTIGT`;$('orgBkBar').style.width=(ks.length?ok/ks.length*100:0)+'%';
+  $('orgBk').innerHTML=ks.map(k=>{const b=BK[k],s=BKS[k]||0,day=planDays().find(d=>d.items.some(x=>x.bk===k));
+    return`<li><button type="button" class="bkb s${s}" data-bk="${k}">${BKL[s]}</button><div><b>${b.n}</b><small>${day?day.n+' · ':''}buchen: ${b.w}${b.u?` · <a href="${b.u}" target="_blank" rel="noopener">Website</a>`:''}</small></div></li>`}).join('');
+  $('orgBk').querySelectorAll('.bkb').forEach(bt=>bt.onclick=()=>{const k=bt.dataset.bk,v=((BKS[k]||0)+1)%3;BKS[k]=v;S.set('bk',BKS);document.querySelectorAll(`.bkb[data-bk="${k}"]`).forEach(x=>{x.className='bkb s'+v;x.textContent=BKL[v]});bookings();sumRefresh()})}
+function legs(){const L2=[];planDays().forEach(d=>d.items.filter(x=>x.k==='drive'&&x.from&&x.q).forEach(x=>L2.push({d,x,dr:x.dr&&DRIVE[x.dr]})));return L2}
+function etappen(){const ls=legs();$('orgLegs').innerHTML=ls.map(({d,x,dr},i)=>{const id=`${curPlan}|${d.n}|${x.t}`;
+  return`<li><div><b>${d.n} · ${x.t}</b> ${x.x}<small>${dr?`ca. ${dr.km} km · ${fdur(dr.min)}${dr.via?' · '+dr.via:''}`:''}</small></div>
+   <div class="lg-a"><select data-drv="${id}" aria-label="Fahrer">${['–','Agent 01','Agent 02','Agent 03','Agent 04'].map(a=>`<option${DRV[id]===a?' selected':''}>${a}</option>`).join('')}</select><a class="btn" href="${gd(x.from,x.q,'driving')}" target="_blank" rel="noopener">NAVIGATION</a></div></li>`}).join('');
+  $('orgLegs').querySelectorAll('select').forEach(s=>s.onchange=()=>{DRV[s.dataset.drv]=s.value;S.set('drivers',DRV);
+    const n=Object.values(DRV).filter(v=>v===s.value).length;if(s.value!=='–')toast(`<b>Q:</b> ${s.value} fährt${n>1?` zum ${n}. Mal`:''}. Für ${s.value} gibt es an diesem Abend den Smoothie aus Spectre.`)})}
+function budget(){const inp=$('orgBud').querySelectorAll('input');inp.forEach(i=>{if(document.activeElement!==i)i.value=BUD[i.dataset.b]});
+  const days=planDays().length,nPrg=Math.max(0,days-2),km=legs().reduce((s,l)=>s+(l.dr?l.dr.km:0),0)+30,rate=parseFloat(String(S.get('fx','24,5')).replace(',','.'))||24.5;
+  const n=x=>parseFloat(String(x).replace(',','.'))||0;
+  const hotel=n(BUD.pupp)*2+n(BUD.prg)*2*nPrg,fuel=km*n(BUD.cons)/100*n(BUD.fuel),vig=300/rate,bunker=planDays().some(d=>d.items.some(x=>x.bk==='bunker'))?250*4/rate:0;
+  const eat=n(BUD.eat)*4*days,extra=n(BUD.extra)*4,casino=n(BUD.casino)*4,tot=hotel+fuel+vig+bunker+eat+extra+casino;
+  const rows=[['Hotel Pupp, 2 Zimmer, 1 Nacht',n(BUD.pupp)*2],[`Hotel Prag, 2 Zimmer, ${nPrg} ${nPrg===1?'Nacht':'Nächte'}`,n(BUD.prg)*2*nPrg],[`Kraftstoff, ca. ${km} km`,fuel],['E-Vignette (300 CZK)',vig],bunker?['Bunker-Führung (4 × 250 CZK)',bunker]:null,[`Essen und Getränke, ${days} ${days===1?'Tag':'Tage'}`,eat],['Weitere Eintritte',extra],['Casino-Limit (4 Agenten)',casino]].filter(Boolean);
+  $('orgBudT').innerHTML=rows.map(([a,v])=>`<tr><td>${a}</td><td>${fmtE(v)}</td></tr>`).join('')+`<tr class="tot"><td>Gesamt</td><td>${fmtE(tot)}</td></tr><tr class="tot"><td>Pro Agent</td><td>${fmtE(tot/4)}</td></tr><tr><td>in Kronen pro Agent</td><td>${Math.round(tot/4*rate).toLocaleString('de-DE')} CZK</td></tr>`;
+  $('orgBudM').textContent=!n(BUD.pupp)?'Tragen Sie die Zimmerpreise ein. Ich unterschreibe keine leeren Formulare.':tot/4>1500?'Das Schatzamt wird nachfragen. Bereiten Sie eine Antwort vor, die nicht „Vesper“ lautet.':'Vertretbar. Das Casino-Limit gilt als Obergrenze, nicht als Zielvorgabe.'}
+$('orgBud').querySelectorAll('input').forEach(i=>i.oninput=()=>{BUD[i.dataset.b]=i.value;S.set('budget',BUD);budget()});
+/* Export */
+const pad=n=>String(n).padStart(2,'0');
+function events(){if(!dep)return null;const ev=[];planDays().forEach((d,i)=>{const dt=dayDate(i);d.items.forEach(x=>{const m=mins(x.t);if(m==null)return;
+  const s=new Date(dt);s.setHours(Math.floor(m/60),m%60,0,0);const e=new Date(s.getTime()+Math.max(x.dur||30,15)*60000);ev.push({s,e,x,d})})});return ev}
+const icsT=t=>`${t.getFullYear()}${pad(t.getMonth()+1)}${pad(t.getDate())}T${pad(t.getHours())}${pad(t.getMinutes())}00`;
+const esc=s=>String(s||'').replace(/\\/g,'\\\\').replace(/;/g,'\\;').replace(/,/g,'\\,').replace(/\n/g,'\\n');
+$('orgIcs').onclick=()=>{const ev=events();if(!ev){toast('<b>M:</b> Ohne Abreisedatum kein Kalender. Wählen Sie es im Einsatzplan.');return}
+  const lines=['BEGIN:VCALENDAR','VERSION:2.0','PRODID:-//00-Einheit//Operation Splendide//DE','CALSCALE:GREGORIAN','X-WR-CALNAME:Operation Splendide'];
+  ev.forEach(({s,e,x,d},k)=>lines.push('BEGIN:VEVENT',`UID:splendide-${k}-${icsT(s)}@00-einheit`,`DTSTAMP:${icsT(new Date())}`,`DTSTART:${icsT(s)}`,`DTEND:${icsT(e)}`,`SUMMARY:${esc(x.x)}`,x.q?`LOCATION:${esc(x.q)}`:'',`DESCRIPTION:${esc((x.d||'')+(x.bk?' Reservierung: '+BK[x.bk].n+'.':''))}`,'END:VEVENT'));
+  lines.push('END:VCALENDAR');const blob=new Blob([lines.filter(Boolean).join('\r\n')],{type:'text/calendar'});
+  fileOut('operation-splendide.ics',blob);
+  toast(`<b>Q:</b> ${ev.length} Termine exportiert. Ihr Telefon weiß jetzt mehr als Mathis.`)};
+function planText(){const out=['OPERATION SPLENDIDE · '+plans[curPlan].label];planDays().forEach((d,i)=>{const dt=dayDate(i);out.push('',`${d.n.toUpperCase()}${dt?' · '+DOWL[dt.getDay()]+' '+ddmm(dt):''} · ${d.t}`);d.items.forEach(x=>out.push(`${x.t}  ${x.x}`))});out.push('','M: Ein Vesper. Nicht drei.');return out.join('\n')}
+$('orgShare').onclick=async()=>{const t=planText();try{if(navigator.share){await navigator.share({title:'Operation Splendide',text:t});return}}catch(e){if(e&&e.name==='AbortError')return}
+  try{await navigator.clipboard.writeText(t);toast('<b>Q:</b> Plan in die Zwischenablage kopiert. Einfügen, wo die 00-Einheit liest.')}catch(e){$('orgTxt').hidden=false;$('orgTxt').value=t;$('orgTxt').select();toast('<b>Q:</b> Text markiert. Kopieren Sie ihn von Hand. Wie früher.')}};
+const ctzT=t=>icsT(t);
+function calList(){const ev=events(),ul=$('orgCal');if(!ev){toast('<b>M:</b> Ohne Abreisedatum kein Kalender. Wählen Sie es im Einsatzplan.');return}
+  ul.innerHTML=ev.map(({s,e,x,d})=>{const u='https://calendar.google.com/calendar/render?action=TEMPLATE&ctz=Europe/Prague&text='+encodeURIComponent(x.x)+'&dates='+ctzT(s)+'/'+ctzT(e)+(x.q?'&location='+encodeURIComponent(x.q):'')+'&details='+encodeURIComponent((x.d||'')+(x.bk?' Reservierung: '+BK[x.bk].n+'.':''));
+    return`<li><span>${DOWL[s.getDay()].slice(0,2)} ${ddmm(s)} · ${pad(s.getHours())}:${pad(s.getMinutes())}</span><a href="${u}" target="_blank" rel="noopener">${x.x}</a></li>`}).join('');
+  ul.hidden=!ul.hidden;$('orgCalB').textContent=ul.hidden?'TERMINE IN GOOGLE KALENDER':'TERMINLISTE SCHLIESSEN'}
+$('orgCalB').onclick=calList;
+/* Datei ausgeben: im Artifact-Viewer über die Download-Freigabe, sonst direkt */
+let DLP=null;const inViewer=!!(window.claude&&window.claude.use);
+if(inViewer){DLP=window.claude.use('downloads').catch(()=>null);$('orgIcs').hidden=true}
+async function fileOut(name,blob){if(inViewer){const dl=await DLP;if(!dl){toast('<b>Q:</b> Dateiausgabe ist in dieser Ansicht gesperrt. Nehmen Sie „Plan teilen“.');return false}
+    try{await dl.save({filename:name,data:blob});return true}catch(e){if(e&&e.code==='rejected_extension')toast('<b>Q:</b> Dieses Format lässt die Ansicht nicht durch. Nehmen Sie die Google-Termine.');else if(e&&e.code!=='declined')toast('<b>Q:</b> Ausgabe gescheitert. Versuchen Sie es gleich noch einmal.');return false}}
+  const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download=name;document.body.appendChild(a);a.click();setTimeout(()=>{URL.revokeObjectURL(a.href);a.remove()},1000);return true}
+$('orgTxtDl').onclick=async()=>{if(await fileOut('operation-splendide.txt',new Blob([planText()],{type:'text/plain'})))toast('<b>Q:</b> Plan als Textdatei ausgegeben. Funktioniert auch ohne Netz. Anders als Sie vor dem Kaffee.')};
+window.orgRefresh=()=>{bookings();etappen();budget();if(!$('orgCal').hidden){$('orgCal').hidden=true;calList()}};orgRefresh();
+})();
 
 /* assets, regs */
 document.getElementById('hotelList').innerHTML=H.map(h=>`<div class="panel asset${h[3]?' must':''}"><div class="tag">${h[3]?'QUARTIER // BEFOHLEN':'QUARTIER // OPTION'}</div><h3>${h[0]}</h3><div class="meta">${h[1]}</div><p>${h[2]}</p><span class="mnote">${h[4]}</span></div>`).join('');
 document.getElementById('extras').innerHTML=X.map(e=>`<div class="panel asset${e.id==='casino'?' must':''}"><div class="tag">${e.id==='casino'?'ASSET // ZIEL 02':'ASSET'}</div><h3>${e.name}</h3><div class="meta">${e.city} · ${e.meta}</div><p>${e.txt}</p><a href="${gm(e.lat,e.lon)}" target="_blank" rel="noopener">KOORDINATEN ÖFFNEN</a></div>`).join('');
 document.getElementById('brief').innerHTML=B.map((b,i)=>`<li class="panel"><span class="n">PROTOKOLL ${String(i+1).padStart(2,'0')}</span><strong>${b[0]}</strong><p>${b[1]}</p><span class="mnote">${b[2]}</span></li>`).join('');
-/* q-lab: roulette */
+/* q-lab: Roulette, europäisch (eine Zero), vollständiges Tableau */
 const eur=n=>n.toLocaleString('de-DE')+' €';
-const REDS=new Set([1,3,5,7,9,12,14,16,18,19,21,23,25,27,30,32,34,36]);
-const col=n=>n===0?'g':REDS.has(n)?'r':'b';
-const COLN={r:'Rot',b:'Schwarz',g:'Zero'};
-let bal=10000000,stake=1000000,bet='r',spinning=false;
-const balEl=document.getElementById('bal'),pocket=document.getElementById('pocket'),rlOut=document.getElementById('rlOut'),rlState=document.getElementById('rlState'),spinBtn=document.getElementById('spin'),hist=document.getElementById('hist');
-const stakesEl=document.getElementById('stakes'),betsEl=document.getElementById('bets');
-const STK=[[100000,'100.000'],[1000000,'1 MIO.'],[5000000,'5 MIO.'],[0,'ALLES']];
-STK.forEach(([v,l])=>{const b=document.createElement('button');b.type='button';b.className='qbtn';b.dataset.v=v;b.textContent=l;b.onclick=()=>{stake=v;rlSync()};stakesEl.appendChild(b)});
-[['r','ROT'],['b','SCHWARZ'],['g','ZERO']].forEach(([k,l])=>{const b=document.createElement('button');b.type='button';b.className='qbtn';b.dataset.k=k;b.textContent=l;b.onclick=()=>{bet=k;rlSync()};betsEl.appendChild(b)});
-const curStake=()=>stake===0?bal:Math.min(stake,bal);
-function rlSync(){balEl.textContent=eur(bal);
-  stakesEl.querySelectorAll('.qbtn').forEach(b=>{const v=+b.dataset.v;b.setAttribute('aria-pressed',v===stake?'true':'false');b.disabled=spinning||(v>bal)});
-  betsEl.querySelectorAll('.qbtn').forEach(b=>{b.setAttribute('aria-pressed',b.dataset.k===bet?'true':'false');b.disabled=spinning});
-  spinBtn.disabled=spinning;spinBtn.textContent=bal<=0?'SCHATZAMT ANRUFEN':'KUGEL WERFEN · '+eur(curStake())}
-function setPocket(n){pocket.textContent=n;pocket.className='pocket '+col(n)}
-function resolve(n){const c=col(n),st=curStake(),won=c===bet;const gain=won?(bet==='g'?st*35:st):-st;bal+=gain;
-  const sp=document.createElement('span');sp.className=c;sp.textContent=n;hist.prepend(sp);while(hist.children.length>12)hist.lastChild.remove();
-  if(won){rlOut.className='qout win';rlOut.textContent=`${n} ${COLN[c]}. Gewonnen: +${eur(gain)}. ${bet==='g'?'Le Chiffre verlangt eine Pause.':'Le Chiffre tupft sich das Auge.'}`;rlState.textContent='GEWINN';rlState.className='st'}
-  else{rlOut.className='qout lose';rlOut.textContent=`${n} ${COLN[c]}. Le Chiffre zieht ${eur(st)} ein.`+(bal<=0?' Konto leer. M ist nicht amüsiert.':'');rlState.textContent=bal<=0?'PLEITE':'VERLUST';rlState.className='st warn'}
-  if(bal>=30000000){rlOut.textContent+=' Das Schatzamt bittet um Rücküberweisung.'}
-  spinning=false;rlSync()}
-spinBtn.onclick=()=>{if(spinning)return;
-  if(bal<=0){bal=10000000;rlOut.className='qout';rlOut.textContent='Das Schatzamt schießt 10.000.000 € nach. Einmalig, sagt M.';rlState.textContent='BEREIT';rlState.className='st';rlSync();return}
-  spinning=true;rlState.textContent='RIEN NE VA PLUS';rlState.className='st warn';rlOut.className='qout';rlOut.textContent='Die Kugel läuft …';rlSync();
-  const n=Math.floor(Math.random()*37);
-  if(RM){resolve(n);setPocket(n);return}
-  let d=40;(function tick(){if(d>360){setPocket(n);resolve(n);return}setPocket(Math.floor(Math.random()*37));d*=1.18;setTimeout(tick,d)})()};
-rlSync();
-
-/* q-lab: vesper */
-const shaker=document.getElementById('shaker'),vsOut=document.getElementById('vsOut'),vsLog=document.getElementById('vsLog'),vsState=document.getElementById('vsState');
-let okC=0,badC=0;
-const STIR=['Der Barkeeper hält inne. Gerührt steht nicht im Protokoll Vesper.','Gerührt? Q vermerkt das in Ihrer Personalakte.','M lässt ausrichten, dass dies nicht der Moment für Experimente ist.','Der Barkeeper schüttelt trotzdem. Er hat das Protokoll gelesen.'];
-function anim(cls){shaker.classList.remove('shake','stir');void shaker.getBoundingClientRect();shaker.classList.add(cls)}
-document.getElementById('shaken').onclick=()=>{okC++;anim('shake');vsOut.textContent='Drei Teile Gin, ein Teil Wodka, ein halber Teil Lillet, auf Eis geschüttelt, große Zitronenzeste. Korrekt.';vsState.textContent='FREIGEGEBEN';vsState.className='st';vsLog.className='qout win';vsLog.textContent=`Korrekt zubereitet: ${okC} · Protokollverstöße: ${badC}`};
-document.getElementById('stirred').onclick=()=>{badC++;anim('stir');vsOut.textContent=STIR[(badC-1)%STIR.length];vsState.textContent='PROTOKOLLVERSTOSS';vsState.className='st warn';vsLog.className='qout lose';vsLog.textContent=`Korrekt zubereitet: ${okC} · Protokollverstöße: ${badC}`};
+(function(){
+const WHEEL=[0,32,15,19,4,21,2,25,17,34,6,27,13,36,11,30,8,23,10,5,24,16,33,1,20,14,31,9,22,18,29,7,28,12,35,3,26];
+const RED=new Set([1,3,5,7,9,12,14,16,18,19,21,23,25,27,30,32,34,36]);
+const FR=['zéro','un','deux','trois','quatre','cinq','six','sept','huit','neuf','dix','onze','douze','treize','quatorze','quinze','seize','dix-sept','dix-huit','dix-neuf','vingt','vingt et un','vingt-deux','vingt-trois','vingt-quatre','vingt-cinq','vingt-six','vingt-sept','vingt-huit','vingt-neuf','trente','trente et un','trente-deux','trente-trois','trente-quatre','trente-cinq','trente-six'];
+const ODDS={plein:35,cheval:17,trans:11,carre:8,sixain:5,douz:2,col:2,simple:1};
+const TN={plein:'Plein',cheval:'Cheval',trans:'Transversale',carre:'Carré',sixain:'Sixain',douz:'Dutzend',col:'Kolonne',simple:'Einfache Chance'};
+const LIMIT=5000000,START=10000000,NS='http://www.w3.org/2000/svg';
+const col=n=>n===0?'g':RED.has(n)?'r':'b';
+const fmtK=v=>v>=1e6?(v/1e6).toLocaleString('de-DE',{maximumFractionDigits:1})+' M':v>=1e3?Math.round(v/1e3)+' K':String(v);
+const wSvg=document.getElementById('rtWheel'),lSvg=document.getElementById('rtLayout'),call=document.getElementById('rtCall'),out=document.getElementById('rtOut'),stateEl=document.getElementById('rtState');
+const balEl=document.getElementById('rtBal'),onEl=document.getElementById('rtOn'),lastEl=document.getElementById('rtLast'),histEl=document.getElementById('rtHist'),statEl=document.getElementById('rtStat'),spinB=document.getElementById('rtSpin');
+const sv=S.get('rt',{bal:START,hist:[]});let bal=sv.bal,hist=sv.hist||[],bets=new Map(),undo=[],last=[],chip=100000,spinning=false;
+const save=()=>S.set('rt',{bal,hist:hist.slice(0,200)});
+const el=(t,a,p)=>{const e=document.createElementNS(NS,t);for(const k in a)e.setAttribute(k,a[k]);(p||wSvg).appendChild(e);return e};
+/* Kessel */
+const C=160,STEP=360/37,rad=d=>d*Math.PI/180,pt=(r,a)=>[C+r*Math.cos(rad(a-90)),C+r*Math.sin(rad(a-90))];
+el('circle',{cx:C,cy:C,r:157,class:'rw-rim'});el('circle',{cx:C,cy:C,r:147,class:'rw-track'});el('circle',{cx:C,cy:C,r:131,class:'rw-trackin'});
+for(let k=0;k<8;k++){const[a,b]=pt(139,k*45+22.5);el('path',{d:`M${a-4} ${b}l4 -4l4 4l-4 4Z`,class:'rw-defl',transform:`rotate(${k*45+22.5} ${a} ${b})`})}
+const rot=el('g',{id:'rwRot'});
+WHEEL.forEach((n,i)=>{const a0=i*STEP-STEP/2,a1=a0+STEP,[x0,y0]=pt(128,a0),[x1,y1]=pt(128,a1),[x2,y2]=pt(100,a1),[x3,y3]=pt(100,a0);
+  el('path',{d:`M${x0} ${y0}A128 128 0 0 1 ${x1} ${y1}L${x2} ${y2}A100 100 0 0 0 ${x3} ${y3}Z`,class:'rw-p '+col(n)},rot);
+  const[tx,ty]=pt(117,i*STEP);const t=el('text',{x:tx,y:ty+3,class:'rw-n','text-anchor':'middle',transform:`rotate(${i*STEP} ${tx} ${ty})`},rot);t.textContent=n;
+  const[fx,fy]=pt(100,a0),[gx,gy]=pt(84,a0);el('line',{x1:fx,y1:fy,x2:gx,y2:gy,class:'rw-fret'},rot)});
+el('circle',{cx:C,cy:C,r:100,class:'rw-ring'},rot);el('circle',{cx:C,cy:C,r:84,class:'rw-cone'},rot);el('circle',{cx:C,cy:C,r:60,class:'rw-cone2'},rot);
+el('path',{d:`M${C} ${C-40}V${C+40}M${C-40} ${C}H${C+40}M${C} ${C-40}l-5 8h10ZM${C} ${C+40}l-5 -8h10ZM${C-40} ${C}l8 -5v10ZM${C+40} ${C}l-8 -5v10Z`,class:'rw-turret'},rot);el('circle',{cx:C,cy:C,r:10,class:'rw-hub'},rot);
+const ball=el('circle',{cx:C,cy:C-139,r:5.2,class:'rw-ball'});
+let wAng=0,bAng=0,bR=139,idleT=performance.now(),anim=null,restIdx=0;
+function drawWheel(){rot.setAttribute('transform',`rotate(${wAng.toFixed(2)} ${C} ${C})`);const[x,y]=pt(bR,bAng);ball.setAttribute('cx',x.toFixed(1));ball.setAttribute('cy',y.toFixed(1))}
+let wVis=false;if('IntersectionObserver' in window)new IntersectionObserver(es=>{wVis=es.some(e=>e.isIntersecting)}).observe(wSvg);else wVis=true;
+(function idle(t){if(!anim&&wVis&&!RM){const dt=Math.min(.05,(t-idleT)/1000);wAng=(wAng+dt*9)%360;if(!spinning&&bR<132)bAng=(wAng+restIdx*STEP)%360;drawWheel()}idleT=t;requestAnimationFrame(idle)})(idleT);
+/* Tableau */
+const LS=lSvg,cx=c=>40+c*40,ry=r=>r*48,num=(c,r)=>3*c+(3-r);
+const lel=(t,a,p)=>{const e=document.createElementNS(NS,t);for(const k in a)e.setAttribute(k,a[k]);(p||LS).appendChild(e);return e};
+const base=lel('g',{});const zones=lel('g',{class:'rt-zones'});const chipsG=lel('g',{class:'rt-chips'});
+lel('path',{d:`M40 0V144H0L0 72L18 0Z`,class:'rl-cell g'},base);{const t=lel('text',{x:22,y:78,class:'rl-num','text-anchor':'middle'},base);t.textContent='0'}
+for(let c=0;c<12;c++)for(let r=0;r<3;r++){const n=num(c,r);lel('rect',{x:cx(c),y:ry(r),width:40,height:48,class:'rl-cell'},base);
+  lel('ellipse',{cx:cx(c)+20,cy:ry(r)+24,rx:13,ry:11,class:'rl-dot '+col(n)},base);const t=lel('text',{x:cx(c)+20,y:ry(r)+28.5,class:'rl-num','text-anchor':'middle'},base);t.textContent=n}
+for(let r=0;r<3;r++){lel('rect',{x:520,y:ry(r),width:56,height:48,class:'rl-cell'},base);const t=lel('text',{x:548,y:ry(r)+28,class:'rl-lab','text-anchor':'middle'},base);t.textContent='2 : 1'}
+['1. DUTZEND','2. DUTZEND','3. DUTZEND'].forEach((s,k)=>{lel('rect',{x:40+k*160,y:144,width:160,height:36,class:'rl-cell'},base);const t=lel('text',{x:120+k*160,y:166,class:'rl-lab','text-anchor':'middle'},base);t.textContent=s});
+[['1–18','MANQUE'],['PAIR',''],['',''],['',''],['IMPAIR',''],['19–36','PASSE']].forEach(([a,b],k)=>{lel('rect',{x:40+k*80,y:180,width:80,height:36,class:'rl-cell'},base);
+  if(k===2||k===3)lel('path',{d:`M${80+k*80} 186l18 12l-18 12l-18 -12Z`,class:'rl-dia '+(k===2?'r':'b')},base);
+  else{const t=lel('text',{x:80+k*80,y:b?195:202,class:'rl-lab','text-anchor':'middle'},base);t.textContent=a;if(b){const u=lel('text',{x:80+k*80,y:208,class:'rl-sub','text-anchor':'middle'},base);u.textContent=b}}});
+const Z=[];const zone=(type,nums,x,y,w,h,label)=>Z.push({type,nums,x,y,w,h,label});
+for(let c=0;c<12;c++)for(let r=0;r<3;r++)zone('plein',[num(c,r)],cx(c)+6,ry(r)+6,28,36,'Plein '+num(c,r));
+zone('plein',[0],4,6,30,132,'Plein 0');
+for(let c=1;c<12;c++)for(let r=0;r<3;r++)zone('cheval',[num(c-1,r),num(c,r)],cx(c)-6,ry(r)+8,12,32);
+for(let c=0;c<12;c++)for(let r=0;r<2;r++)zone('cheval',[num(c,r),num(c,r+1)],cx(c)+8,ry(r+1)-6,24,12);
+for(let r=0;r<3;r++)zone('cheval',[0,num(0,r)],34,ry(r)+8,12,32);
+for(let c=0;c<12;c++)zone('trans',[num(c,2),num(c,1),num(c,0)],cx(c)+8,138,24,12);
+for(let c=1;c<12;c++)for(let r=0;r<2;r++)zone('carre',[num(c-1,r),num(c,r),num(c-1,r+1),num(c,r+1)],cx(c)-6,ry(r+1)-6,12,12);
+for(let c=1;c<12;c++)zone('sixain',[num(c-1,2),num(c-1,1),num(c-1,0),num(c,2),num(c,1),num(c,0)],cx(c)-6,138,12,12);
+zone('trans',[0,2,3],34,42,12,12,'Transversale 0-2-3');zone('trans',[0,1,2],34,90,12,12,'Transversale 0-1-2');zone('carre',[0,1,2,3],34,138,12,12,'Carré 0-1-2-3');
+for(let r=0;r<3;r++)zone('col',Array.from({length:12},(_,c)=>num(c,r)),520,ry(r),56,48,`Kolonne ${3-r}`);
+for(let k=0;k<3;k++)zone('douz',Array.from({length:12},(_,j)=>k*12+j+1),40+k*160,150,160,30,`${k+1}. Dutzend`);
+const R18=Array.from({length:18},(_,j)=>j+1),P18=Array.from({length:18},(_,j)=>j+19),EV=Array.from({length:18},(_,j)=>2*j+2),OD=Array.from({length:18},(_,j)=>2*j+1);
+[[R18,'Manque 1–18'],[EV,'Pair'],[[...RED],'Rouge'],[Array.from({length:36},(_,j)=>j+1).filter(n=>!RED.has(n)),'Noir'],[OD,'Impair'],[P18,'Passe 19–36']].forEach(([n,l],k)=>zone('simple',n.sort((a,b)=>a-b),40+k*80,180,80,36,l));
+Z.forEach(z=>{z.key=z.type+':'+z.nums.join('-');z.label=z.label||`${TN[z.type]} ${z.nums.join('-')}`;
+  const r=lel('rect',{x:z.x,y:z.y,width:z.w,height:z.h,class:'rz rz-'+z.type,'data-k':z.key,'aria-label':z.label},zones);
+  if(z.type==='plein'||z.type==='simple'||z.type==='douz'||z.type==='col'){r.setAttribute('tabindex','0');r.setAttribute('role','button')}
+  r.addEventListener('mouseenter',()=>hl(z.nums));r.addEventListener('mouseleave',()=>hl([]));r.addEventListener('focus',()=>hl(z.nums));r.addEventListener('blur',()=>hl([]));
+  r.addEventListener('click',()=>place(z));r.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();place(z)}});
+  r.addEventListener('contextmenu',e=>{e.preventDefault();remove(z)})});
+function hl(nums){base.querySelectorAll('.rl-cell.hl').forEach(c=>c.classList.remove('hl'));nums.forEach(n=>{const c=cellOf(n);if(c)c.classList.add('hl')})}
+function cellOf(n){if(n===0)return base.querySelector('path.rl-cell');const c=Math.floor((n-1)/3),r=3-(n-3*c);return base.querySelectorAll('rect.rl-cell')[c*3+r]}
+/* Jetons */
+const CH=[[10000,'c1'],[50000,'c2'],[100000,'c3'],[500000,'c4'],[1000000,'c5']];
+const chipsEl=document.getElementById('rtChips');
+chipsEl.innerHTML=CH.map(([v,c])=>`<button type="button" class="jeton ${c}" data-v="${v}" aria-pressed="${v===chip}"><span>${fmtK(v)}</span></button>`).join('')+'<span class="jhint">Klick setzt · Rechtsklick nimmt zurück</span>';
+chipsEl.querySelectorAll('.jeton').forEach(b=>b.onclick=()=>{chip=+b.dataset.v;chipsEl.querySelectorAll('.jeton').forEach(x=>x.setAttribute('aria-pressed',x===b))});
+const onTable=()=>[...bets.values()].reduce((s,b)=>s+b.amt,0);
+function place(z,amt,quiet){if(spinning)return;amt=amt||chip;const cur=bets.get(z.key);
+  if(amt>bal){if(!quiet)say('Nicht gedeckt. Das Schatzamt gewährt keinen Dispo.','lose');return false}
+  if((cur?cur.amt:0)+amt>LIMIT){if(!quiet)say(`Tischlimit ${eur(LIMIT)} pro Feld. Der Chef de Table schüttelt kaum merklich den Kopf.`,'lose');return false}
+  bal-=amt;bets.set(z.key,{z,amt:(cur?cur.amt:0)+amt});undo.push([z.key,amt]);render();return true}
+function remove(z){if(spinning)return;const b=bets.get(z.key);if(!b)return;bal+=b.amt;bets.delete(z.key);undo=undo.filter(u=>u[0]!==z.key);render()}
+function render(){chipsG.innerHTML='';bets.forEach(({z,amt})=>{const x=z.x+z.w/2,y=z.y+z.h/2;const g=lel('g',{class:'chip '+chipClass(amt),transform:`translate(${x} ${y})`},chipsG);
+    lel('circle',{r:9.5},g);lel('circle',{r:6.5,class:'ci'},g);const t=lel('text',{y:3,'text-anchor':'middle'},g);t.textContent=fmtK(amt)});
+  balEl.textContent=eur(bal);onEl.textContent=eur(onTable());spinB.disabled=spinning||!bets.size;
+  document.getElementById('rtUndo').disabled=spinning||!undo.length;document.getElementById('rtClear').disabled=spinning||!bets.size;
+  document.getElementById('rtRe').disabled=spinning||!last.length||bets.size>0;document.getElementById('rtDbl').disabled=spinning||!bets.size;
+  document.getElementById('rtBank').hidden=bal>=10000||bets.size>0;save()}
+const chipClass=a=>a>=1e6?'c5':a>=5e5?'c4':a>=1e5?'c3':a>=5e4?'c2':'c1';
+document.getElementById('rtUndo').onclick=()=>{const u=undo.pop();if(!u)return;const b=bets.get(u[0]);b.amt-=u[1];bal+=u[1];if(b.amt<=0)bets.delete(u[0]);render()};
+document.getElementById('rtClear').onclick=()=>{bal+=onTable();bets.clear();undo=[];render();say('Tisch geräumt.','')};
+document.getElementById('rtRe').onclick=()=>{let ok=true;last.forEach(([k,a])=>{const z=Z.find(q=>q.key===k);if(ok&&z)ok=place(z,a,true)});if(!ok)say('Nicht alle Einsätze gedeckt.','lose');render()};
+document.getElementById('rtDbl').onclick=()=>{let ok=true;[...bets.values()].forEach(({z,amt})=>{if(ok)ok=place(z,amt,true)});if(!ok)say('Verdoppeln nicht vollständig gedeckt. Das Limit hat Vorrang vor dem Ehrgeiz.','lose');render()};
+document.getElementById('rtBank').onclick=()=>{bal+=START;render();say('Das Schatzamt überweist 10.000.000 €. Begleitschreiben: „Bitte nicht zur Gewohnheit machen.“','')};
+function say(t,c){out.className='qout '+(c||'');out.textContent=t}
+/* Drehen */
+const ease=t=>1-Math.pow(1-t,3);
+spinB.onclick=()=>{if(spinning||!bets.size)return;spinning=true;last=[...bets.values()].map(b=>[b.z.key,b.amt]);undo=[];render();
+  stateEl.textContent='RIEN NE VA PLUS';stateEl.className='st warn';call.textContent='Les jeux sont faits …';say('Die Kugel läuft.','');
+  const n=WHEEL[Math.floor(Math.random()*37)],idx=WHEEL.indexOf(n);
+  if(RM){wAng=(wAng+40)%360;bR=110;bAng=(wAng+idx*STEP)%360;restIdx=idx;drawWheel();finish(n);return}
+  const D=6200,w0=wAng,rotW=360+Math.random()*180,wEnd=w0+rotW,bEnd=wEnd+idx*STEP,turns=5+Math.random()*2,t0=performance.now();let rnvp=false;
+  anim=true;(function f(now){const t=Math.min(1,(now-t0)/D),e=ease(t);wAng=w0+rotW*e;bAng=bEnd-(1-e)*turns*360;
+    bR=t<.62?139:t<.78?139-(t-.62)/.16*27+Math.sin((t-.62)*60)*2.5:112+Math.sin((t-.78)*50)*Math.max(0,1-(t-.78)/.12)*3;
+    if(t>.3&&!rnvp){rnvp=true;call.textContent='Rien ne va plus.'}
+    drawWheel();if(t<1)requestAnimationFrame(f);else{anim=null;wAng%=360;restIdx=idx;bR=112;finish(n)}})(t0)};
+function finish(n){const c=col(n);let win=0,stake=0,best=null;
+  bets.forEach(({z,amt})=>{stake+=amt;if(z.nums.includes(n)){const p=amt*(ODDS[z.type]+1);win+=p;if(!best||ODDS[z.type]>ODDS[best.type])best=z}});
+  bal+=win;hist.unshift(n);if(hist.length>200)hist.length=200;
+  const name=FR[n].charAt(0).toUpperCase()+FR[n].slice(1);
+  call.innerHTML=n===0?'<b>Zéro.</b>':`<b>${name}</b>, ${c==='r'?'rouge':'noir'}, ${n%2?'impair':'pair'} et ${n<=18?'manque':'passe'}.`;
+  hl([n]);const cell=cellOf(n);cell&&cell.classList.add('win');
+  const net=win-stake;
+  if(win>0)say(`${n} ${c==='r'?'Rot':c==='b'?'Schwarz':'Zero'}. Auszahlung ${eur(win)}, netto ${net>=0?'+':''}${eur(net)}. `+(best&&ODDS[best.type]>=17?'Le Chiffre tupft sich das Auge.':net>0?'Mathis nickt. Mehr nicht.':'Gewonnen und trotzdem verloren. Willkommen im Casino.'),net>=0?'win':'lose');
+  else say(`${n} ${c==='r'?'Rot':c==='b'?'Schwarz':'Zero'}. Die Bank nimmt ${eur(stake)}. `+(n===0?'Zéro – die einfachen Chancen gehen an das Haus.':bal<10000?'Konto erschöpft. Das Schatzamt prüft Ihre Eignung für den Außendienst.':'Vesper notiert den Betrag. Wortlos.'),'lose');
+  bets.clear();spinning=false;stateEl.textContent='FAITES VOS JEUX';stateEl.className='st';
+  setTimeout(()=>{cell&&cell.classList.remove('win');hl([])},2600);stats();render()}
+function stats(){histEl.innerHTML=hist.slice(0,18).map(n=>`<span class="${col(n)}">${n}</span>`).join('');
+  if(!hist.length){statEl.textContent='Noch keine Permanenz.';return}
+  const h=hist.slice(0,100),cnt=new Array(37).fill(0);h.forEach(n=>cnt[n]++);const r=h.filter(n=>RED.has(n)).length,z=h.filter(n=>n===0).length;
+  const hot=cnt.map((v,n)=>[n,v]).filter(x=>x[1]>0).sort((a,b)=>b[1]-a[1]).slice(0,3).map(x=>x[0]);
+  const absent=Array.from({length:37},(_,n)=>[n,hist.indexOf(n)<0?hist.length:hist.indexOf(n)]).sort((a,b)=>b[1]-a[1]).slice(0,3).map(x=>x[0]);
+  statEl.innerHTML=`${h.length} Coups · Rot ${Math.round(r/h.length*100)} % · Schwarz ${Math.round((h.length-r-z)/h.length*100)} % · Zero ${z}×<br>Heiß: ${hot.join(', ')} · Kalt: ${absent.join(', ')} <small>(Der Kessel hat kein Gedächtnis. Croupiers schon.)</small>`}
+stats();render();drawWheel();say('Jeton wählen, auf das Tableau setzen, Kugel werfen. Rechtsklick nimmt einen Einsatz zurück.','');
+})();
+/* q-lab: Bar mit Barkeeper. Rezepte aus den Filmen, Zubereitung als Animation. */
+(function(){
+const NS='http://www.w3.org/2000/svg',svg=document.getElementById('barSvg'),cap=document.getElementById('barCap'),list=document.getElementById('barList'),stEl=document.getElementById('barState'),cnt=document.getElementById('barCnt');
+const mk=(t,a,p,txt)=>{const e=document.createElementNS(NS,t);for(const k in a)e.setAttribute(k,a[k]);(p||svg).appendChild(e);if(txt!=null)e.textContent=txt;return e};
+/* Rezepte: Mengen in cl; Schritte werden aus Methode und Zutaten erzeugt */
+const R=[
+ {id:'vesper',n:'Vesper',f:'Casino Royale',y:2006,g:'martini',c:'#E9D9A6',m:'shake',z:[['GIN',6],['WODKA',2],['LILLET',1]],gar:'zeste',
+  s:'Bond bestellt ihn am Pokertisch, diktiert das Rezept und benennt ihn später nach Vesper Lynd.',q:'Drei Teile Gin, ein Teil Wodka, ein halber Teil Lillet. Auf Eis schütteln, große dünne Zitronenzeste.',hum:'„Ein Vesper.“ M: Einer.'},
+ {id:'vmart',n:'Wodka-Martini',f:'James Bond jagt Dr. No',y:1962,g:'martini',c:'#E8EEF0',m:'shake',z:[['WODKA',6],['WERMUT',1]],gar:'zeste',
+  s:'Schon im ersten Film bringt man ihm den Martini so, wie er ihn verlangt hat: geschüttelt, nicht gerührt.',q:'Wodka und trockener Wermut auf Eis schütteln, in die vorgekühlte Schale abseihen, Zeste.',hum:'Der Barkeeper hat nicht gefragt. Er wusste es.'},
+ {id:'henderson',n:'Martini, gerührt',f:'Man lebt nur zweimal',y:1967,g:'martini',c:'#E8EEF0',m:'stir',z:[['WODKA',6],['WERMUT',1]],gar:'zeste',
+  s:'Der Kontaktmann in Tokio mixt ihn gerührt statt geschüttelt und fragt nach, ob das richtig war. Bond ist zu höflich für eine Korrektur.',q:'Wodka und Wermut im Rührglas auf Eis rühren, abseihen, Zeste. Formal korrekt, dienstlich bedenklich.',hum:'Bond nennt ihn perfekt. Bond lügt beruflich.'},
+ {id:'julep',n:'Mint Julep',f:'Goldfinger',y:1964,g:'julep',c:'#C98A3A',m:'muddle',z:[['SIRUP',1],['BOURBON',6]],gar:'minze',
+  s:'Auf Goldfingers Gestüt in Kentucky. Bond bestellt ihn mit Sour Mash, nicht zu süß.',q:'Minze mit Zucker im Becher andrücken, Bourbon, Crushed Ice, rühren bis der Becher beschlägt, Minzzweig.',hum:'Goldfinger zahlt. Bond trinkt trotzdem mit Vorsicht.'},
+ {id:'collins',n:'Rum Collins',f:'Feuerball',y:1965,g:'highball',c:'#E6D7B0',m:'build',z:[['RUM',5],['ZITRONE',2.5],['SIRUP',1.5],['SODA',8]],gar:'zitrone',
+  s:'In Nassau, in einem Casino voller SPECTRE-Leute. Bond bestellt einen Rum Collins, Domino lässt anschreiben.',q:'Rum, Zitronensaft und Zuckersirup auf Eis ins Longdrinkglas, mit Soda auffüllen, kurz rühren, Zitronenscheibe.',hum:'Getrunken auf Rechnung eines Mannes mit Augenklappe.'},
+ {id:'sake',n:'Sake, warm',f:'Man lebt nur zweimal',y:1967,g:'sake',c:'#F2EFE4',m:'warm',z:[['SAKE',6]],gar:'',
+  s:'Bond lobt den Sake – und dass er korrekt auf 98,4 Grad Fahrenheit temperiert ist.',q:'Sake im Wasserbad auf Körpertemperatur bringen, etwa 37 °C, in kleine Schalen gießen.',hum:'98,4 °F. Bond misst Temperaturen offenbar am Geschmack.'},
+ {id:'dom',n:'Dom Pérignon ’53',f:'Goldfinger',y:1964,g:'flute',c:'#F1DB8A',m:'chill',z:[['CHAMPAGNER',10]],gar:'',
+  s:'Bond besteht darauf, dass man ihn unter 38 °F trinkt. Darüber sei es wie die Beatles ohne Ohrenschützer.',q:'Champagner gut gekühlt, unter 3 °C, in die Flöte gießen, zweimal, damit die Perlage nicht überläuft.',hum:'Kurz darauf ist Jill Masterson vergoldet. Der Champagner kann nichts dafür.'},
+ {id:'mojito',n:'Mojito',f:'Stirb an einem anderen Tag',y:2002,g:'highball',c:'#D9EFD0',m:'muddle',z:[['SIRUP',1.5],['LIMETTE',2.5],['RUM',5],['SODA',6]],gar:'minze',
+  s:'Havanna. Bond bestellt einen Mojito und beobachtet Jinx, die aus dem Meer steigt.',q:'Minze, Limettensaft und Zucker im Glas andrücken, Crushed Ice, weißer Rum, mit Soda auffüllen, Minzzweig.',hum:'Der Barkeeper sieht nur den Mojito. Professionell.'},
+ {id:'macallan',n:'Macallan, 50 Jahre',f:'Skyfall',y:2012,g:'tumbler',c:'#B5651D',m:'neat',z:[['WHISKY',4]],gar:'',
+  s:'Auf Silvas Insel. Ein Glas auf Sévérines Kopf, ein Schießspiel, und Bond findet es eine Verschwendung guten Scotchs.',q:'Pur, Zimmertemperatur, ohne Eis. Ein paar Tropfen Wasser sind erlaubt, Wilhelm Tell nicht.',hum:'Das Glas überlebt. Der Rest der Szene nicht.'},
+ {id:'smoothie',n:'Probiotischer Smoothie',f:'Spectre',y:2015,g:'highball',c:'#9BC46A',m:'build',z:[['SMOOTHIE',12]],gar:'',
+  s:'In der Hoffler-Klinik in den Alpen bestellt Bond einen Martini. Die Klinik schenkt keinen Alkohol aus.',q:'Grün, gesund, alkoholfrei. Wird serviert, nicht empfohlen.',hum:'Bond nimmt ihn mit dem Gesicht eines Mannes, der gerade gefoltert wird. Vorgezogen.'},
+ {id:'beton',n:'Beton',f:'Hausempfehlung Karlsbad',y:0,g:'tumbler',c:'#E4CF8E',m:'build',z:[['BECHEROVKA',4],['TONIC',10]],gar:'zitrone',
+  s:'Kein Film, aber Ihr Einsatzgebiet: Becherovka und Tonic, der Name ist ein Wortspiel aus BEcherovka und TONic.',q:'Becherovka auf Eis, mit Tonic auffüllen, Zitronenscheibe. In Becher’s Bar im Pupp ohnehin Pflicht.',hum:'M genehmigt ihn als landeskundliche Maßnahme.'}];
+/* Szene */
+const BOT={GIN:'#CFE8F0',WODKA:'#E6EEF0',LILLET:'#E9C46A',WERMUT:'#D8E6C8',BOURBON:'#B8732E',RUM:'#E8DCC2',ZITRONE:'#F3E58A',SIRUP:'#F2EFE4',SODA:'#DDEFF5',SAKE:'#F2EFE4',CHAMPAGNER:'#F1DB8A',LIMETTE:'#C9E6A0',WHISKY:'#B5651D',SMOOTHIE:'#9BC46A',BECHEROVKA:'#E4CF8E',TONIC:'#E8F4F6'};
+const SHELF=Object.keys(BOT).map((k,i)=>({k,x:132+(i%8)*50+(i%8>3?40:0),y:i<8?66:122}));
+mk('rect',{x:0,y:0,width:640,height:300,class:'b-bg'});
+mk('path',{d:'M110 66H530M110 70H530M110 122H530M110 126H530',class:'b-shelf'});
+mk('path',{d:'M100 20H540V200H100Z',class:'b-mirror'});mk('path',{d:'M320 0V14M306 14h28l-6 8h-16Z',class:'b-line'});
+SHELF.forEach(b=>{b.g=mk('g',{class:'b-bottle',transform:`translate(${b.x} ${b.y})`});bottleShape(b.g,b.k)});
+function bottleShape(g,k){mk('path',{d:'M-8 0V-30Q-8 -36 -3 -38V-48H3V-38Q8 -36 8 -30V0Z',class:'b-bt'},g);mk('rect',{x:-6,y:-26,width:12,height:12,class:'b-lbl',style:`fill:${BOT[k]}`},g);mk('text',{x:0,y:-17.5,class:'b-bt-t','text-anchor':'middle'},g,k.slice(0,3))}
+/* Barkeeper */
+const BK=mk('g',{class:'bk'});
+mk('path',{d:'M296 212V146Q296 128 320 126Q344 128 344 146V212',class:'bk-body'},BK);
+mk('path',{d:'M304 140L320 186L336 140M320 186V212M312 160h0M320 170a1.4 1.4 0 1 0 .1 0M320 182a1.4 1.4 0 1 0 .1 0M320 194a1.4 1.4 0 1 0 .1 0',class:'bk-vest'},BK);
+mk('path',{d:'M312 132l8 4l8 -4l-1 8l-7 -3l-7 3Z',class:'bk-tie'},BK);
+const HEAD=mk('g',{class:'bk-head'},BK);mk('circle',{cx:320,cy:100,r:14,class:'bk-face'},HEAD);mk('path',{d:'M306 98Q308 82 322 84Q334 85 334 98Q330 90 320 90Q312 90 306 98Z',class:'bk-hair'},HEAD);
+mk('path',{d:'M314 101h3M323 101h3M316 108q4 2 8 0',class:'bk-feat'},HEAD);mk('path',{d:'M314 98h4M322 98h4',class:'bk-brow',id:'bkBrow'},HEAD);
+const armL=mk('polyline',{class:'bk-arm'}),armR=mk('polyline',{class:'bk-arm'});const handL=mk('circle',{r:4,class:'bk-hand'}),handR=mk('circle',{r:4,class:'bk-hand'});
+/* Tresen */
+mk('path',{d:'M40 212H600V220H40Z',class:'b-counter'});mk('path',{d:'M48 220V300M592 220V300M48 260H592M60 286H580',class:'b-front'});
+for(let x=80;x<580;x+=60)mk('path',{d:`M${x} 226h44v28h-44Z`,class:'b-panel'});
+mk('ellipse',{cx:575,cy:212,rx:16,ry:3,class:'b-coaster'});mk('text',{x:575,y:236,class:'b-t','text-anchor':'middle'},null,'GAST');
+const bucket=mk('g',{class:'b-bucket',transform:'translate(80 212)',style:'opacity:0'});mk('path',{d:'M-16 0L-19 -26H19L16 0Z',class:'b-bt'},bucket);mk('path',{d:'M-14 -26l4 -8M-6 -26l2 -10M4 -26l-2 -8M12 -26l-3 -9',class:'b-line'},bucket);
+/* Gefäße und Gläser */
+const GL={martini:{d:'M-12 0h24M0 0V-22M-22 -48L0 -22L22 -48Z',lq:'M-22 -48L0 -22L22 -48Z',top:-48,bot:-22},
+ highball:{d:'M-12 0V-60H12V0Z',lq:'M-11 -1V-59H11V-1Z',top:-58,bot:-2},julep:{d:'M-14 0L-16 -42H16L14 0Z',lq:'M-13 -1L-15 -41H15L13 -1Z',top:-40,bot:-2},
+ tumbler:{d:'M-15 0V-32H15V0ZM-15 -5H15',lq:'M-14 -6V-31H14V-6Z',top:-30,bot:-6},flute:{d:'M-10 0h20M0 0V-18M-8 -66Q-9 -30 0 -18Q9 -30 8 -66Z',lq:'M-8 -66Q-9 -30 0 -18Q9 -30 8 -66Z',top:-62,bot:-18},
+ sake:{d:'M-11 0L-13 -16H13L11 0Z',lq:'M-10 -1L-12 -15H12L10 -1Z',top:-14,bot:-2},
+ tin:{d:'M-13 0L-16 -46H16L13 0Z',lq:'M-12 -1L-15 -45H15L12 -1Z',top:-44,bot:-2},mixing:{d:'M-15 0V-46H15V0ZM-15 -4H15',lq:'M-14 -5V-45H14V-5Z',top:-44,bot:-5}};
+let uid=0;function vessel(type,x,y,color){const s=GL[type],id='lq'+(++uid),g=mk('g',{class:'b-vessel',transform:`translate(${x} ${y})`});
+  const cp=mk('clipPath',{id},g);mk('path',{d:s.lq},cp);const r=mk('rect',{x:-30,y:s.bot,width:60,height:0,class:'b-liq','clip-path':`url(#${id})`,style:`fill:${color||'#E9D9A6'}`},g);
+  mk('path',{d:s.d,class:'b-glass'},g);return{g,r,s,type,x,y,lv:0,rot:0,set(l){this.lv=Math.max(0,Math.min(1,l));const h=(this.s.bot-this.s.top)*this.lv;this.r.setAttribute('y',(this.s.bot-h).toFixed(1));this.r.setAttribute('height',h.toFixed(1))},
+   pos(x,y,rot){this.x=x;this.y=y;this.rot=rot||0;this.g.setAttribute('transform',`translate(${x.toFixed(1)} ${y.toFixed(1)}) rotate(${this.rot.toFixed(1)})`)},color(c){this.r.style.fill=c}}}
+/* Arme: zwei Segmente, Ellbogen nach außen */
+const SL=[302,132],SR=[338,132],REST={L:[288,200],R:[352,200]};let hL=[...REST.L],hR=[...REST.R];
+function ik(s,h,out){const a=36,b=34,dx=h[0]-s[0],dy=h[1]-s[1];let d=Math.hypot(dx,dy);d=Math.min(d,a+b-.5);const ang=Math.atan2(dy,dx),k=Math.acos((a*a+d*d-b*b)/(2*a*d))*out;return[s[0]+a*Math.cos(ang+k),s[1]+a*Math.sin(ang+k)]}
+function pose(){const eL=ik(SL,hL,1),eR=ik(SR,hR,-1);armL.setAttribute('points',`${SL} ${eL.map(v=>v.toFixed(1))} ${hL.map(v=>v.toFixed(1))}`);armR.setAttribute('points',`${SR} ${eR.map(v=>v.toFixed(1))} ${hR.map(v=>v.toFixed(1))}`);
+  handL.setAttribute('cx',hL[0]);handL.setAttribute('cy',hL[1]);handR.setAttribute('cx',hR[0]);handR.setAttribute('cy',hR[1])}
+pose();
+/* Zeitsteuerung */
+let speed=1,skip=false,busy=false;
+const tw=(ms,f)=>new Promise(res=>{if(skip||RM){f(1);res();return}const t0=performance.now(),D=ms/speed;(function s(t){const u=Math.min(1,(t-t0)/D);f(u);if(u<1&&!skip)requestAnimationFrame(s);else{f(1);res()}})(t0)});
+const io=u=>u<.5?2*u*u:1-Math.pow(-2*u+2,2)/2;const lerp=(a,b,u)=>a+(b-a)*u;
+const moveH=(side,to,ms)=>{const from=side==='L'?[...hL]:[...hR];return tw(ms||420,u=>{const e=io(u),p=[lerp(from[0],to[0],e),lerp(from[1],to[1],e)];if(side==='L')hL=p;else hR=p;pose()})};
+const say=t=>{cap.textContent=t};
+const VS=[250,212],GS=[400,212],GU=[575,212];
+/* Schritte */
+async function pour(k,cl,into,total){const sh=SHELF.find(b=>b.k===k);say(`${String(cl).replace('.',',')} cl ${k.charAt(0)+k.slice(1).toLowerCase()}`);
+  await moveH('R',[sh.x,sh.y-20],380);sh.g.style.opacity=0;const bt=mk('g',{class:'b-bottle'});bottleShape(bt,k);
+  const p0=[sh.x,sh.y],p1=[into.x+26,into.y+into.s.top-30];
+  await tw(450,u=>{const e=io(u),x=lerp(p0[0],p1[0],e),y=lerp(p0[1],p1[1],e);bt.setAttribute('transform',`translate(${x} ${y}) rotate(${-e*125})`);hR=[x,y-20];pose()});
+const mx=p1[0]-39,my=p1[1]+28;
+  const st=mk('path',{d:`M${mx} ${my}Q${mx-4} ${(my+into.y+into.s.top)/2} ${into.x+4} ${into.y+into.s.top+4}`,class:'b-stream',style:`stroke:${BOT[k]}`});
+  const l0=into.lv;await tw(300+cl*130,u=>into.set(l0+(cl/total)*u));st.remove();
+  await tw(420,u=>{const e=io(u),x=lerp(p1[0],p0[0],e),y=lerp(p1[1],p0[1],e);bt.setAttribute('transform',`translate(${x} ${y}) rotate(${-(1-e)*125})`);hR=[x,y-20];pose()});
+  bt.remove();sh.g.style.opacity=1}
+async function ice(into,crushed){say(crushed?'Crushed Ice':'Eis');await moveH('L',[into.x-24,150],320);const cubes=[];
+  for(let k=0;k<(crushed?6:3);k++){const c=mk('rect',{x:into.x-6+k*4-(crushed?6:0),y:140,width:crushed?4:8,height:crushed?4:8,class:'b-ice'});cubes.push(c)}
+  await tw(420,u=>cubes.forEach((c,k)=>c.setAttribute('y',(140+u*(into.y+into.s.top+10-140)+k*2).toFixed(1))));cubes.forEach(c=>c.remove());await moveH('L',REST.L,300)}
+async function shake(v){say('Geschüttelt, kräftig, rund zehn Sekunden. Hier etwas kürzer.');
+  const cap2=mk('path',{d:'M-15 -46L-12 -64H12L15 -46Z',class:'b-glass'},v.g);
+  const c=[330,150];await Promise.all([tw(420,u=>{const e=io(u);v.pos(lerp(VS[0],c[0],e),lerp(VS[1],c[1]+30,e),e*-35);hR=[v.x+6,v.y-56];hL=[v.x-8,v.y-4];pose()})]);
+  v.g.classList.add('frost');await tw(1700,u=>{const o=Math.sin(u*Math.PI*22)*(1-Math.pow(u,6));v.pos(c[0]+o*13,c[1]+30+o*-9,-35+o*6);hR=[v.x+6,v.y-56];hL=[v.x-8,v.y-4];HEAD.setAttribute('transform',`rotate(${o*2} 320 110)`);pose()});
+  HEAD.removeAttribute('transform');cap2.remove();await tw(380,u=>{const e=io(u);v.pos(lerp(c[0],VS[0],e),lerp(c[1]+30,VS[1],e),-35*(1-e));hR=[v.x+6,v.y-56];hL=[v.x-8,v.y-4];pose()});await moveH('L',REST.L,260)}
+async function stir(v){say('Gerührt. Langsam, mit dem Barlöffel, etwa dreißig Umdrehungen.');const sp=mk('line',{class:'b-spoon'});
+  await moveH('R',[v.x,v.y-70],380);await tw(1900,u=>{const a=u*Math.PI*2*6,tx=v.x+Math.cos(a)*5,ty=v.y-70+Math.sin(a)*2;sp.setAttribute('x1',tx);sp.setAttribute('y1',ty);sp.setAttribute('x2',v.x+Math.cos(a)*7);sp.setAttribute('y2',v.y-6);hR=[tx,ty];pose()});
+  sp.remove();await moveH('R',REST.R,300)}
+async function muddle(v){say('Minze andrücken, nicht zermalmen. Die Minze hat niemandem etwas getan.');const md=mk('line',{class:'b-muddler'});
+  await moveH('R',[v.x,v.y-80],360);await tw(1500,u=>{const o=Math.abs(Math.sin(u*Math.PI*5))*16;md.setAttribute('x1',v.x);md.setAttribute('y1',v.y-82+o);md.setAttribute('x2',v.x);md.setAttribute('y2',v.y-12+o*.2);hR=[v.x,v.y-82+o];pose()});
+  md.remove();await moveH('R',REST.R,300)}
+async function strain(v,g){say('Abseihen.');const p0=[v.x,v.y],p1=[g.x-30,g.y+g.s.top-26];
+  await tw(450,u=>{const e=io(u);v.pos(lerp(p0[0],p1[0],e),lerp(p0[1],p1[1],e),e*95);hR=[v.x-4,v.y-30];hL=[v.x+10,v.y-46];pose()});
+  const st=mk('path',{d:`M${p1[0]+40} ${p1[1]+10}Q${g.x+2} ${p1[1]+20} ${g.x} ${g.y+g.s.top+6}`,class:'b-stream',style:`stroke:${g.r.style.fill}`});
+  const l0=v.lv;await tw(1000,u=>{v.set(l0*(1-u));g.set(u*.92)});st.remove();
+  await tw(420,u=>{const e=io(u);v.pos(lerp(p1[0],p0[0],e),lerp(p1[1],p0[1],e),95*(1-e));hR=[v.x-4,v.y-30];hL=[v.x+10,v.y-46];pose()});await Promise.all([moveH('R',REST.R,280),moveH('L',REST.L,280)])}
+async function garnish(g,kind){if(!kind)return;const T={zeste:'Zitronenzeste, über dem Glas abgedreht.',minze:'Ein Minzzweig. Nicht drei.',zitrone:'Zitronenscheibe an den Rand.',olive:'Olive.'};say(T[kind]);
+  await moveH('L',[g.x-6,g.y+g.s.top-12],420);const gx=g.x+(kind==='minze'?-4:10),gy=g.y+g.s.top;
+  const d={zeste:`M${gx} ${gy}q4 -8 -2 -10q-6 -2 -2 -10q4 -6 -2 -10`,minze:`M${gx} ${gy}v-14M${gx} ${gy-8}q-8 -4 -10 2q6 2 10 -2M${gx} ${gy-12}q8 -6 10 0q-6 3 -10 0`,zitrone:`M${gx-8} ${gy+2}A9 9 0 0 1 ${gx+10} ${gy+2}ZM${gx+1} ${gy+2}L${gx+1} ${gy-7}`}[kind];
+  const p=mk('path',{d,class:'b-garnish '+kind});p.style.opacity=0;await tw(380,u=>p.style.opacity=u);g.extra=(g.extra||[]).concat(p);await moveH('L',REST.L,300)}
+async function serve(g,r){say('Serviert.');await moveH('R',[g.x+16,g.y-16],300);const x0=g.x;
+  await tw(900,u=>{const e=io(u),x=lerp(x0,GU[0],e);g.pos(x,g.y);(g.extra||[]).forEach(p=>p.setAttribute('transform',`translate(${(x-x0).toFixed(1)} 0)`));hR=[Math.min(x+16,470),g.y-16];pose()});
+  await moveH('R',REST.R,300);HEAD.setAttribute('transform','rotate(-6 320 112)');await tw(500,()=>{});HEAD.removeAttribute('transform')}
+async function warm(g){say('Sake im Wasserbad auf etwa 37 °C. Bond prüft es später ohne Thermometer.');const steam=mk('path',{d:`M${g.x-4} ${g.y-20}q-4 -6 0 -12q4 -6 0 -12M${g.x+4} ${g.y-20}q-4 -6 0 -12`,class:'b-steam'});setTimeout(()=>steam.remove(),6000/speed)}
+async function chill(g){bucket.style.opacity=1;say('Im Kühler unter 3 °C, also unter 38 °F. Alles andere wäre, laut Bond, die Beatles ohne Ohrenschützer.');await tw(900,()=>{})}
+/* Ablauf je Rezept */
+let glass=null,vess=null;
+async function make(r,forceMethod){if(busy)return;busy=true;skip=false;const m=forceMethod||r.m;stEl.textContent='IN ZUBEREITUNG';stEl.className='st warn';
+  document.querySelectorAll('.bar-card').forEach(c=>c.classList.toggle('on',c.dataset.id===r.id));
+  [glass,vess].forEach(v=>v&&(v.g.remove(),(v.extra||[]).forEach(p=>p.remove())));bucket.style.opacity=0;svg.querySelectorAll('.b-steam,.b-bubbles').forEach(e=>e.remove());
+  glass=vessel(r.g,GS[0],GS[1],r.c);vess=null;const tot=r.z.reduce((s,z)=>s+z[1],0);
+  if(m==='shake'||m==='stir'){vess=vessel(m==='shake'?'tin':'mixing',VS[0],VS[1],r.c);await ice(vess);for(const[k,cl]of r.z)await pour(k,cl,vess,tot);
+    if(m==='shake')await shake(vess);else await stir(vess);await strain(vess,glass)}
+  else if(m==='muddle'){say('Zuerst Minze und Zucker in das Glas.');const mint=mk('path',{d:`M${GS[0]-8} ${GS[1]-6}q8 -10 16 0`,class:'b-garnish minze'});await pour(r.z[0][0],r.z[0][1],glass,tot);await muddle(glass);mint.remove();
+    await ice(glass,true);for(const[k,cl]of r.z.slice(1))await pour(k,cl,glass,tot);await stir(glass)}
+  else if(m==='build'){await ice(glass);for(const[k,cl]of r.z)await pour(k,cl,glass,tot)}
+  else if(m==='warm'){await pour('SAKE',6,glass,6);await warm(glass)}
+  else if(m==='chill'){await chill(glass);await pour('CHAMPAGNER',10,glass,10);const b=mk('g',{class:'b-bubbles'});for(let k=0;k<6;k++)mk('circle',{cx:GS[0]-4+k*1.6,cy:GS[1]-24,r:1,style:`animation-delay:${k*.25}s`},b)}
+  else{for(const[k,cl]of r.z)await pour(k,cl,glass,tot)}
+  await garnish(glass,r.gar);await serve(glass,r);
+  const n=S.get('bar',{}),c=(n[r.id]||0)+1;n[r.id]=c;S.set('bar',n);
+  let fin=r.hum;if(r.id==='vesper'&&c>1)fin=`Vesper Nummer ${c}. M hat Ihr P.S. gelesen. Sie offenbar nicht.`;
+  if(forceMethod==='stir'&&r.m==='shake')fin='Gerührt. Der Barkeeper hebt eine Braue um genau einen Millimeter. Dienstlich vermerkt.'+(r.id==='vesper'&&c>1?` Außerdem Nummer ${c}.`:'');
+  say(fin);if(forceMethod==='stir'&&r.m==='shake'){const b=document.getElementById('bkBrow');b.setAttribute('transform','translate(0 -2)');setTimeout(()=>b.removeAttribute('transform'),2500)}
+  stEl.textContent='SERVIERT';stEl.className='st';total();busy=false}
+function total(){const n=S.get('bar',{});const t=Object.values(n).reduce((a,b)=>a+b,0);cnt.textContent=t?`${t} serviert`:'Noch nichts serviert'}
+list.innerHTML=R.map(r=>`<div class="bar-card" data-id="${r.id}"><div class="bch"><b>${r.n}</b><span>${r.y?r.f+' · '+r.y:r.f}</span></div><p>${r.s}</p>
+  <ul>${r.z.map(([k,cl])=>`<li>${String(cl).replace('.',',')} cl ${k.charAt(0)+k.slice(1).toLowerCase()}</li>`).join('')}${r.gar?`<li>${{zeste:'Zitronenzeste',minze:'Minzzweig',zitrone:'Zitronenscheibe'}[r.gar]}</li>`:''}</ul>
+  <p class="bcq">${r.q}</p><div class="qbtns"><button type="button" class="qbtn go" data-mk="${r.id}">ZUBEREITEN</button>${r.m==='shake'?`<button type="button" class="qbtn" data-stir="${r.id}">GERÜHRT VERLANGEN</button>`:''}</div></div>`).join('');
+list.querySelectorAll('[data-mk]').forEach(b=>b.onclick=()=>{make(R.find(r=>r.id===b.dataset.mk));svg.scrollIntoView({block:'nearest',behavior:RM?'auto':'smooth'})});
+list.querySelectorAll('[data-stir]').forEach(b=>b.onclick=()=>{make(R.find(r=>r.id===b.dataset.stir),'stir');svg.scrollIntoView({block:'nearest',behavior:RM?'auto':'smooth'})});
+document.getElementById('barFast').onclick=e=>{speed=speed===1?2:1;e.target.textContent=speed===1?'TEMPO ×2':'TEMPO ×1'};
+document.getElementById('barSkip').onclick=()=>{skip=true};
+total();say('Wählen Sie ein Getränk. Der Barkeeper hört zu, nickt und fragt nicht nach.');
+})();
 
 /* q-lab: gadgets */
 const GEAR=['Manschettenknöpfe mit Wanze, nur auf Tschechisch geeicht','Armbanduhr mit Laser. Zeigt zuverlässig die Uhrzeit.','Kugelschreiber, drei Klicks, Funktion unbekannt','Defibrillator im Handschuhfach (Attrappe)','Schusssicherer Smoking, leider nur in Größe M','Peilsender für das Fahrzeug, damit Q es wiederfindet','Pokerface, Trainingsversion 0.7','Ersatzausweis für den Casino-Einlass','Fernbedienung für den Aston Martin. Batterien fehlen.','Stadtplan von Montenegro. Zeigt Karlsbad.','Bademantel des Hotel Splendide als Tarnanzug','Kompass, der stets zum nächsten Kolonnadencafé zeigt'];
@@ -2178,7 +2794,7 @@ const unred=()=>{red.classList.toggle('open');if(red.classList.contains('open'))
 red.onclick=unred;red.onkeydown=e=>{if(e.key==='Enter'){unred()}};
 let clsN=0;
 document.getElementById('clsBtn').onclick=()=>{clsN++;document.body.classList.remove('glitch');void document.body.offsetWidth;document.body.classList.add('glitch');setTimeout(()=>document.body.classList.remove('glitch'),700);
-  toast(['<b>ZUGRIFF VERWEIGERT.</b> Ihre Freigabestufe reicht nicht aus.','<b>WARNUNG.</b> Der Vorfall wurde an M gemeldet.','<b>LETZTE WARNUNG.</b> Q hat Ihren Kugelschreiber deaktiviert.','<b>NA GUT.</b> Freigabe 00 erteilt. Tippen Sie 007.'][Math.min(clsN-1,3)])};
+  toast(['<b>OFFICIAL–SENSITIVE.</b> Nicht „streng geheim“. Wir sind ein Ministerium, kein Kinoplakat.','<b>HINWEIS.</b> Weitergabe nur an die 00-Einheit. Und nicht an Mathis.','<b>VERMERK.</b> Dreimal auf die Einstufung geklickt. Die Personalabteilung hat einen Ordner für Leute wie Sie.','<b>M:</b> Wenn Sie so dringend Zugang wollen: Tippen Sie 007. Und dann gehen Sie packen.'][Math.min(clsN-1,3)])};
 console.log('%cMI6 // OPS-ZENTRALE','color:#F2B65E;font:600 14px monospace','\nSie lesen den Quelltext. Q ist beeindruckt. M weniger.\nTippen Sie 007. Oder vesper, martini, mathis.');
 
 /* mission goals */
@@ -2263,7 +2879,7 @@ function qzPick(i){const[,,a,why]=QZ[qzOrder[qzI]];const ok=i===a;if(ok)qzS++;
   qzO.querySelectorAll('.qbtn').forEach(b=>{b.disabled=true;const j=+b.dataset.i;if(j===a)b.classList.add('ok');else if(j===i)b.classList.add('no')});
   qzOut.className='qout '+(ok?'win':'lose');qzOut.textContent=(ok?'Richtig. ':'Falsch. ')+'M: '+why;
   qzNext.hidden=false;qzNext.textContent=qzI===QZ.length-1?'AUSWERTUNG':'WEITER';qzNext.focus({preventScroll:true})}
-function qzEnd(){qzBar.style.width='100%';const pass=qzS>=7;qzState.textContent=pass?'LIZENZ ERTEILT':'DURCHGEFALLEN';qzQ.textContent='';
+function qzEnd(){qzBar.style.width='100%';const pass=qzS>=7;qzState.textContent=pass?'LIZENZ ERTEILT':'DURCHGEFALLEN';S.set('lic',Math.max(qzS,S.get('lic',0)));qzQ.textContent='';
   qzO.innerHTML=`<div class="lic"><span class="n">${qzS}/9</span><div><b>${pass?(qzS===9?'Lizenz zum Töten, mit Auszeichnung':'Lizenz zum Töten erteilt'):'Lizenz verweigert'}</b><small>${pass?(qzS===9?'M: Fehlerfrei. Das macht mich misstrauisch.':'M: Bestanden. Feiern Sie das nicht im Casino.'):'M: Sehen Sie sich den Film noch einmal an. Auf eigene Kosten.'}</small></div></div>`;
   qzOut.className='qout'+(pass?' win':' lose');qzOut.textContent=pass?'Die Freigabe ist im System vermerkt.':'Die Prüfung kann beliebig oft wiederholt werden. Das Schatzamt hat dafür kein Budget.';
   qzNext.hidden=false;qzNext.textContent='PRÜFUNG WIEDERHOLEN';qzI=QZ.length}
@@ -2272,6 +2888,7 @@ qzStart();
 
 /* footer tools */
 document.getElementById('printBtn').onclick=()=>{toast('<b>M:</b> Ausdrucke werden nach dem Einsatz vernichtet. Von Ihnen.');setTimeout(()=>window.print(),400)};
+document.getElementById('orgPrint').onclick=()=>document.getElementById('printBtn').click();
 document.getElementById('resetBtn').onclick=()=>{if(!confirm('Gespeicherten Stand auf diesem Gerät löschen? Gesicherte Ziele, Missionsziele, Packliste, Datum und Quittung werden zurückgesetzt.'))return;
   try{Object.keys(localStorage).filter(k=>k.startsWith('ops5-')).forEach(k=>localStorage.removeItem(k))}catch(e){}location.reload()};
 
@@ -2287,7 +2904,9 @@ function runIntro(ov){const term=document.getElementById('iTerm'),bar=document.g
   const T=[];let done=false;const at=(ms,f)=>T.push(setTimeout(()=>{if(!done)f()},ms));
   const L=[['> MI6 // SICHERE VERBINDUNG WIRD AUFGEBAUT','',''],['> ROUTING ÜBER VAUXHALL CROSS, LONDON ',' OK','ok'],['> RELAIS KARLSBAD · PRAG ',' OK','ok'],['> CHIFFRE OS-26/CZ ',' GELADEN','ok'],['> EMPFÄNGER: 00-EINHEIT · 4 AGENTEN','',''],['> AUFTRAG: ',' OPERATION SPLENDIDE','am']];
   term.innerHTML='';ov.className='intro';
-  let t=300;const sp=RM?0:9;
+  const emb=document.getElementById('iEmb');if(emb){const c=emb.cloneNode(true);emb.replaceWith(c)}
+  at(RM?200:3100,()=>ov.classList.add('i-embdone'));
+  let t=RM?400:3500;const sp=RM?0:8;
   L.forEach(([a,b,c])=>{const line=document.createElement('div');at(t,()=>term.appendChild(line));
     for(let k=1;k<=a.length;k++)at(t+k*sp,()=>line.textContent=a.slice(0,k));t+=a.length*sp+90;
     if(b){const dots='·'.repeat(Math.max(2,30-a.length));at(t,()=>line.textContent=a+dots);t+=180;at(t,()=>{line.innerHTML=a+dots+`<span class="${c}">${b}</span>`});t+=140}});
@@ -2316,8 +2935,35 @@ const gb=document.getElementById('gb');let gbT;
 function closeGb(){gb.hidden=true;gb.classList.remove('run');clearTimeout(gbT)}
 function barrel(){gb.hidden=false;gb.classList.remove('run');void gb.offsetWidth;gb.classList.add('run');clearTimeout(gbT);gbT=setTimeout(closeGb,RM?1800:5600)}
 gb.onclick=closeGb;
+/* Einsatzbereitschaft */
+const rdyBtn=document.getElementById('rdyBtn'),rdyN=document.getElementById('rdyN'),rdyBar=document.getElementById('rdyBar');
+function rdyParts(){const days=plans[curPlan].days,bks=[...new Set(days.flatMap(d=>d.items.filter(x=>x.bk).map(x=>x.bk)))],bkOk=bks.filter(k=>(S.get('bk',{})[k]||0)===2).length;
+  const drv=S.get('drivers',{}),lg=[];days.forEach(d=>d.items.filter(x=>x.k==='drive'&&x.from&&x.q).forEach(x=>lg.push(`${curPlan}|${d.n}|${x.t}`)));const lgOk=lg.filter(id=>drv[id]&&drv[id]!=='–').length;
+  const bud=S.get('budget',{}),pk=S.get('pack',[]).length,lic=S.get('lic',0);
+  return[['Reservierungen bestätigt',35,bks.length?bkOk/bks.length:1,`${bkOk}/${bks.length}`],['Abreisedatum festgelegt',10,S.get('dep','')?1:0,S.get('dep','')?ddmm(new Date(S.get('dep')+'T12:00')):'offen'],
+   ['Einsatzbefehl quittiert',10,S.get('ack',0)?1:0,S.get('ack',0)?'ja':'nein'],['Packliste',20,pk/PK.length,`${pk}/${PK.length}`],
+   ['Budget mit Zimmerpreisen',10,(bud.pupp?.5:0)+(bud.prg?.5:0),bud.pupp&&bud.prg?'ja':'offen'],['Fahrer eingeteilt',5,lg.length?lgOk/lg.length:1,`${lgOk}/${lg.length}`],['Lizenzprüfung bestanden',10,lic>=7?1:0,lic?`${lic}/9`:'nicht abgelegt']]}
+let rdyT=0;
+window.readiness=()=>{clearTimeout(rdyT);rdyT=setTimeout(()=>{const ps=rdyParts(),v=Math.round(ps.reduce((a,p)=>a+p[1]*Math.min(1,p[2]),0));
+  rdyN.textContent=`BEREIT ${v} %`;rdyBar.style.width=v+'%';rdyBtn.classList.toggle('ok',v>=100);rdyBtn.setAttribute('aria-label',`Einsatzbereitschaft ${v} Prozent`)},30)};
+const _set=S.set;S.set=(k,v)=>{_set(k,v);if(window.readiness)readiness()};readiness();
+const kh=document.createElement('div');kh.className='khelp';kh.hidden=true;kh.setAttribute('role','dialog');kh.setAttribute('aria-modal','true');kh.setAttribute('aria-label','Lagebericht und Tastenkürzel');document.body.appendChild(kh);
+const JUMP={'1':['tx','Einsatzbefehl'],'2':['targets','Zielobjekte'],'3':['maps','Lagekarten'],'4':['world-sec','Weltlage'],'5':['ops','Einsatzplan'],'6':['org','Disposition'],'7':['assets','Assets'],'8':['regs','Protokoll'],'9':['field','Feldhandbuch'],'q':['qlab','Q-Lab']};
+function khShow(){const ps=rdyParts(),v=Math.round(ps.reduce((a,p)=>a+p[1]*Math.min(1,p[2]),0)),open=ps.filter(p=>p[2]<1);
+  kh.innerHTML=`<div class="kh"><h3>LAGEBERICHT · BEREIT ${v} %</h3><p>${v>=100?'M: Vollständig. Ich bin beinahe beeindruckt. Fahren Sie.':open.length<=2?'M: Fast. „Fast“ hat noch keinen Einsatz gerettet.':'M: Das ist kein Reiseplan, das ist eine Absichtserklärung.'}</p>
+  <ul class="rd">${ps.map(p=>`<li class="${p[2]>=1?'ok':''}"><b>${p[0]}</b><span>${p[3]}</span></li>`).join('')}</ul>
+  <h3>TASTENKÜRZEL</h3><dl>${Object.entries(JUMP).map(([k,[,n]])=>`<dt><kbd>${k.toUpperCase()}</kbd></dt><dd>${n}</dd>`).join('')}<dt><kbd>?</kbd></dt><dd>Dieser Bericht</dd><dt><kbd>Esc</kbd></dt><dd>Schließen</dd></dl>
+  <p>Es gibt weitere Kombinationen. Q hat sie nicht dokumentiert, aus Prinzip.</p><button type="button" id="khX">VERSTANDEN</button></div>`;
+  kh.hidden=false;document.getElementById('khX').onclick=khHide;document.getElementById('khX').focus()}
+function khHide(){kh.hidden=true}
+kh.onclick=e=>{if(e.target===kh)khHide()};rdyBtn.onclick=khShow;
 let keys='';
 document.addEventListener('keydown',e=>{if(e.key==='Escape'&&!gb.hidden){closeGb();return}
+  if(e.key==='Escape'&&!kh.hidden){khHide();return}
+  if(!e.target.closest||!e.target.closest('input,textarea,select,[contenteditable]')){
+    if(e.ctrlKey||e.metaKey||e.altKey||document.documentElement.classList.contains('introing')){}
+    else if(e.key==='?'){e.preventDefault();kh.hidden?khShow():khHide()}
+    else if(JUMP[e.key.toLowerCase()]&&kh.hidden&&!(/\d/.test(e.key)?keys.endsWith('0'):/[a-z]$/.test(keys))){const t=document.getElementById(JUMP[e.key.toLowerCase()][0]);if(t)t.scrollIntoView({behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth'})}}
   if(e.target.closest&&e.target.closest('input,textarea,select,[contenteditable]'))return;
   if(e.key.length!==1)return;keys=(keys+e.key.toLowerCase()).slice(-8);
   if(keys.endsWith('007')){keys='';barrel()}

@@ -26,7 +26,7 @@ und anschließend per öffentlichem Link geteilt.
 - Alle Interaktionen (Karten-Tabs, Zielobjekte, Einsatzplan 2/3/4 Tage, Entschlüsselungs-Animation, Radar,
   Q-Lab mit Roulette-Training, Vesper-Prüfstand, Gadget-Ausgabe, Le Chiffres Tell (Reaktionstest),
   Defibrillator (Timing), Kontopasswort (Wort-Raten), Gun-Barrel-Easter-Egg per „007“ oder 3× Tipp auf Ms Unterschrift;
-  versteckt: Agentenstatus per Klick, geschwärzte Zeile aufdecken, Klick auf „STRENG GEHEIM“, Konsolen-Nachricht)
+  versteckt: Agentenstatus per Klick, geschwärzte Zeile aufdecken, Klick auf die Einstufung „OFFICIAL–SENSITIVE“, Konsolen-Nachricht)
   laufen als Inline-JavaScript im Browser.
 - Seit v5 zusätzlich: Abreisedatum im Einsatzplan (Wochentage, Sonnenuntergang per NOAA-Näherung in MEZ,
   Montags-Warnung Vítkov, 14.11. = 20 Jahre Premiere, Adventsmarkt-Hinweis), Countdown im Casino-Kasten,
@@ -34,7 +34,8 @@ und anschließend per öffentlichem Link geteilt.
   (Tschechisch-Sätze, Wechselstube, Packliste), Lizenzprüfung (Quiz) im Q-Lab (jetzt Modul 08), Druckansicht,
   Tastatur-Eggs „vesper“, „martini“, „mathis“, Tab-Titel „M wartet.“
 - `localStorage`: Tag/Nacht unter `ops-theme`; v5-Fortschritt (gesicherte Ziele, Missionsziele, Packliste, Datum,
-  Kurs, Quittung) unter Schlüsseln mit Präfix `ops5-`. Alles in try/catch, nur pro Gerät. „Gerät bereinigen“ im
+  Kurs, Quittung) unter Schlüsseln mit Präfix `ops5-`; seit v12 außerdem `ops5-rt` (Roulette), `bar`, `bk`
+  (Buchungsstatus), `done`, `notes`, `plan`, `budget`, `drivers`, `lic` (Lizenzprüfung). Alles in try/catch, nur pro Gerät. „Gerät bereinigen“ im
   Footer löscht die `ops5-`-Schlüssel.
 - Ms Stimme: knapp, trocken, schneidend, siezt, Ironie über Schatzamt/Spesen/Q. Randnotizen stehen in `MN`
   (Zielobjekte), Feld 5 von `H` (Quartiere), Feld 3 von `B` (Protokoll) und in den Plan-Notizen.
@@ -85,4 +86,17 @@ Freigabe: „Anyone with the link“ ist aktiv. Wer die Seite offen hat, sieht n
   (`bWin` inkl. Verdachung/Balkon), Rustika, Gesimsen mit Zahnschnitt, Pilastern, korinthischen Säulen, Balustraden,
   Mansarddächern mit Gauben, Portalen, Treppen, Schnittwänden (`bWall`) und Decken (`bSlab`), Möblierung.
   Ebenen: `k` Hintergrund, `e` Fassade, `x` Umgebung, `i` Schnitt. Vollbild-Ansicht der Aufrisse (Esc schließt).
+- Version 12 (04.10.2026): Intro beginnt mit eigenem, als Blaupause gezeichnetem Emblem (Vauxhall Cross von der Themse,
+  bewusst kein offizielles SIS-Wappen), das danach nach oben wandert; Intro ca. 18 s. Einsatzplan v2 (`BK` Buchungsregister,
+  `DRIVE` Etappen, Tage `D1–D3` mit Dauer, Ort, Kosten, Plan B, Notizen, Zeitleiste, Jetzt-Modus mit „läuft/als Nächstes“,
+  Buchungsstatus OFFEN/ANGEFRAGT/BESTÄTIGT, abhakbar). Neues Modul 04-L „Disposition“ (`#org`): Buchungsstand, Budgetrechner,
+  Etappen mit Fahrereinteilung und Navigation, Notfallnummern, Kalender-Export (.ics), Teilen, Druck. Q-Lab: echter
+  europäischer Roulette-Tisch (alle Einsatzarten, Kessel mit Kugelphysik, französische Ansagen, Statistik) und Bar mit
+  animiertem Barkeeper (schütteln, rühren, muddeln, abseihen) und Rezepten aus vielen Filmen. Flair: Einstufung
+  „OFFICIAL–SENSITIVE“ statt „STRENG GEHEIM“, Fußzeile „UK EYES ONLY“, Bereitschaftsanzeige `#rdyBtn` (`readiness()`,
+  Lagebericht), Tastenkürzel 1–9/Q springen zu Modulen, „?“ zeigt Lagebericht und Kürzel (Ziffer nach „0“ springt nicht,
+  damit „007“ funktioniert).
+- Dateiausgabe: Im Artifact-Viewer gehen Downloads nur über die Capability `downloads` (beim Veröffentlichen
+  `capabilities: {downloads: true}` angeben). `.ics` ist dort nicht erlaubt, darum ist der ICS-Knopf im Viewer
+  ausgeblendet; stattdessen Google-Kalender-Links je Termin (`#orgCal`) und „Plan als Textdatei“ (.txt).
 - Tests: Playwright-Skripte müssen vor dem Laden `localStorage ops5-intro=1` setzen, sonst blockiert das Intro.
