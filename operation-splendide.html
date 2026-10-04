@@ -579,13 +579,24 @@ html.introing,html.introing body{overflow:hidden}
 @keyframes sweep{from{transform:translateY(-50px)}to{transform:translateY(50px)}}
 .ibar{width:220px;height:4px;background:rgba(143,215,232,.18)} .ibar i{display:block;height:100%;width:0;background:#4BE39A;box-shadow:0 0 8px #4BE39A}
 #iPct{font-size:.68rem;letter-spacing:.14em;color:#8FD7E8}
-.istamp{position:absolute;white-space:nowrap;font-family:var(--head);font-weight:700;font-size:clamp(2.2rem,9vw,4.4rem);letter-spacing:.06em;color:#F0554A;border:6px double #F0554A;padding:4px 20px;transform:rotate(-8deg) scale(3);opacity:0;pointer-events:none;text-shadow:0 0 30px rgba(240,85,74,.4)}
-.intro.i-stamp .istamp{animation:slam .38s cubic-bezier(.3,1.6,.5,1) forwards}
-@keyframes slam{to{transform:rotate(-8deg) scale(1);opacity:1}}
-.intro.i-stamp .icore{animation:quake .4s .3s}
-@keyframes quake{20%{transform:translate(-8px,4px)}40%{transform:translate(7px,-5px)}60%{transform:translate(-5px,-3px)}80%{transform:translate(3px,4px)}}
-.intro.i-stamp .iscan,.intro.i-stamp .iterm{opacity:.12;transition:opacity .3s}
-.igrant{position:absolute;bottom:-10px;font-family:var(--head);font-weight:600;font-size:clamp(1.2rem,4vw,1.8rem);letter-spacing:.2em;color:#4BE39A;text-align:center;opacity:0;text-shadow:0 0 18px rgba(75,227,154,.6)}
+.ilock{position:absolute;inset:0;display:grid;place-content:center;justify-items:center;gap:10px;opacity:0;pointer-events:none;transition:opacity .5s}
+.intro.i-lock .ilock{opacity:1}
+.intro.i-lock .iterm,.intro.i-lock .iscan{opacity:.04;transition:opacity .5s}
+.intro.i-grant .ilock{opacity:.22;transform:translateY(-40px);transition:opacity .5s,transform .7s cubic-bezier(.6,0,.2,1)}
+.ilock svg{width:150px;height:150px;overflow:visible}
+.ilock circle,.ilock path{fill:none;stroke:#8FD7E8;stroke-width:1.2}
+.ilock .il1{stroke-dasharray:3 7;animation:spin 9s linear infinite;transform-origin:80px 80px}
+.ilock .il2{transform-origin:80px 80px;transition:transform .5s cubic-bezier(.3,1.5,.5,1),stroke .3s}
+.ilock .il3{fill:#F2B65E;stroke:none}
+.ilock .il5{stroke:#F2B65E;transform-origin:80px 80px;transition:transform .5s cubic-bezier(.3,1.5,.5,1)}
+.ilock.locked .il2{transform:scale(.62);stroke:#4BE39A}
+.ilock.locked .il5{transform:scale(.72)}
+.ilk{font-size:.62rem;letter-spacing:.3em;color:#7F9BA6}
+.icoord{font:600 clamp(1.05rem,4.4vw,1.6rem)/1.2 var(--mono);letter-spacing:.06em;color:#DCEBEF;font-variant-numeric:tabular-nums;white-space:nowrap}
+.ilock.locked .icoord{color:#4BE39A;text-shadow:0 0 12px rgba(75,227,154,.45)}
+.iplace{min-height:2.6em;text-align:center;font-size:.72rem;letter-spacing:.18em;color:#F2B65E;line-height:1.6}
+.iplace small{display:block;color:#7F9BA6;letter-spacing:.12em}
+.igrant{position:absolute;bottom:-20px;font-family:var(--head);font-weight:600;font-size:clamp(1.2rem,4vw,1.8rem);letter-spacing:.2em;color:#4BE39A;text-align:center;opacity:0;text-shadow:0 0 18px rgba(75,227,154,.6)}
 .igrant small{display:block;font-family:var(--mono);font-size:.62rem;letter-spacing:.3em;color:#8FD7E8;margin-top:6px}
 .intro.i-grant .igrant{animation:gin .5s ease forwards,flick .9s .5s steps(2) 1}
 @keyframes gin{from{opacity:0;letter-spacing:.6em}to{opacity:1;letter-spacing:.2em}}
@@ -605,7 +616,7 @@ body.boot .ph .st{animation:flick .9s 1s steps(2) 2}
 @keyframes bootDown{from{opacity:0;transform:translateY(-100%)}to{opacity:1;transform:none}}
 @keyframes titleIn{0%{opacity:0;letter-spacing:.4em;filter:blur(8px)}60%{opacity:1;filter:blur(0)}to{opacity:1;letter-spacing:.02em}}
 @keyframes fadeIn{from{opacity:0}to{opacity:1}}
-@media (prefers-reduced-motion: reduce){.iscan .ir1,.iscan .isweep{animation:none}.intro.i-stamp .icore{animation:none}}
+@media (prefers-reduced-motion: reduce){.iscan .ir1,.iscan .isweep,.ilock .il1{animation:none}}
 
 /* gun barrel */
 .gb{position:fixed;inset:0;z-index:100;background:#000;overflow:hidden;cursor:pointer}
@@ -690,7 +701,8 @@ body.boot .ph .st{animation:flick .9s 1s steps(2) 2}
         <path d="M6 70 Q70 18 134 70 Q70 122 6 70 Z" class="ieye"/><line x1="0" y1="70" x2="140" y2="70" class="isweep"/></svg>
       <div class="ibar"><i id="iBar"></i></div><span id="iPct">NETZHAUT-SCAN 0 %</span>
     </div>
-    <div class="istamp" id="iStamp">STRENG GEHEIM</div>
+    <div class="ilock" id="iLock"><svg viewBox="0 0 160 160"><circle cx="80" cy="80" r="72" class="il1"/><circle cx="80" cy="80" r="50" class="il2"/><circle cx="80" cy="80" r="4" class="il3"/><path d="M80 0v26M80 134v26M0 80h26M134 80h26" class="il4"/><path d="M30 30h14M30 30v14M130 30h-14M130 30v14M30 130h14M30 130v-14M130 130h-14M130 130v-14" class="il5"/></svg>
+      <div class="ilk" id="iLk">ZIELERFASSUNG 1/3</div><div class="icoord" id="iCoord">--.---- N · --.---- E</div><div class="iplace" id="iPlace">&nbsp;</div></div>
     <div class="igrant" id="iGrant">ZUGANG GEWÄHRT<small>WILLKOMMEN, 00-EINHEIT</small></div>
   </div>
   <button class="iskip" id="iSkip" type="button">ÜBERSPRINGEN ›</button>
@@ -2074,7 +2086,7 @@ function heroDraw(){const r=document.querySelector('#heroMap .rt');if(!r)return;
   setTimeout(()=>{r.style.transition=r.style.strokeDasharray=r.style.strokeDashoffset=''},3200)}
 function runIntro(ov){const term=document.getElementById('iTerm'),bar=document.getElementById('iBar'),pct=document.getElementById('iPct');
   const T=[];let done=false;const at=(ms,f)=>T.push(setTimeout(()=>{if(!done)f()},ms));
-  const L=[['> MI6 // SICHERE VERBINDUNG WIRD AUFGEBAUT','',''],['> ROUTING ÜBER VAUXHALL CROSS, LONDON ',' OK','ok'],['> RELAIS KARLSBAD · PRAG ',' OK','ok'],['> CHIFFRE OS-26/CZ ',' GELADEN','ok'],['> EMPFÄNGER: 00-EINHEIT · 4 AGENTEN','',''],['> EINSTUFUNG: ',' STRENG GEHEIM','am']];
+  const L=[['> MI6 // SICHERE VERBINDUNG WIRD AUFGEBAUT','',''],['> ROUTING ÜBER VAUXHALL CROSS, LONDON ',' OK','ok'],['> RELAIS KARLSBAD · PRAG ',' OK','ok'],['> CHIFFRE OS-26/CZ ',' GELADEN','ok'],['> EMPFÄNGER: 00-EINHEIT · 4 AGENTEN','',''],['> AUFTRAG: ',' OPERATION SPLENDIDE','am']];
   term.innerHTML='';ov.className='intro';
   let t=300;const sp=RM?0:9;
   L.forEach(([a,b,c])=>{const line=document.createElement('div');at(t,()=>term.appendChild(line));
@@ -2082,11 +2094,19 @@ function runIntro(ov){const term=document.getElementById('iTerm'),bar=document.g
     if(b){const dots='·'.repeat(Math.max(2,30-a.length));at(t,()=>line.textContent=a+dots);t+=180;at(t,()=>{line.innerHTML=a+dots+`<span class="${c}">${b}</span>`});t+=140}});
   at(t+200,()=>ov.classList.add('i-scan'));const s0=t+300;
   for(let k=0;k<=20;k++)at(s0+k*55,()=>{const v=Math.min(100,Math.round(k*5+(k<20?Math.random()*4:0)));bar.style.width=v+'%';pct.textContent=(v<100?'NETZHAUT-SCAN ':'IDENTITÄT BESTÄTIGT ')+v+' %'});
-  t=s0+20*55+300;at(t,()=>ov.classList.add('i-stamp'));at(t+900,()=>ov.classList.add('i-grant'));
+  t=s0+20*55+400;at(t,()=>ov.classList.add('i-lock'));
+  const lk=document.getElementById('iLock'),lc=document.getElementById('iCoord'),lp=document.getElementById('iPlace'),ll=document.getElementById('iLk');
+  const TG=[['48.3705 N · 10.8978 E','AUGSBURG · DE','AUSGANGSPUNKT DER 00-EINHEIT'],['50.2306 N · 12.8711 E','KARLOVY VARY · CZ','IM FILM: MONTENEGRO'],['50.0755 N · 14.4378 E','PRAHA · CZ','IM FILM: LONDON · MIAMI · VENEDIG']];
+  const scr=(s,k)=>s.split('').map((ch,j)=>j<k||!/\d/.test(ch)?ch:String(Math.random()*10|0)).join('');
+  TG.forEach(([c,p,q],n)=>{const t0=t+300+n*1650;
+    at(t0,()=>{lk.classList.remove('locked');ll.textContent=`ZIELERFASSUNG ${n+1}/3`;lp.innerHTML='&nbsp;'});
+    for(let f=0;f<=24;f++)at(t0+f*45,()=>{lc.textContent=scr(c,Math.round(f/24*c.length))});
+    at(t0+1150,()=>{lc.textContent=c;lk.classList.add('locked');lp.innerHTML=`${p}<small>${q}</small>`})});
+  t=t+300+3*1650+200;at(t,()=>ov.classList.add('i-grant'));
   const finish=()=>{if(done)return;done=true;T.forEach(clearTimeout);ov.classList.add('i-closing');if(!RM){document.body.classList.add('boot');setTimeout(heroDraw,300);setTimeout(()=>document.body.classList.remove('boot'),4400)}setTimeout(()=>ov.classList.add('i-open'),RM?0:250);
     try{localStorage.setItem('ops5-intro','1')}catch(e){}
     setTimeout(()=>{document.documentElement.classList.remove('introing');ov.hidden=true;},RM?300:900)};
-  at(t+2100,finish);
+  at(t+2400,finish);
   ov.onclick=finish;document.getElementById('iSkip').onclick=e=>{e.stopPropagation();finish()};
   const key=e=>{if(!done&&(e.key==='Escape'||e.key==='Enter'||e.key===' ')){e.preventDefault();finish()}if(done)removeEventListener('keydown',key,true)};addEventListener('keydown',key,true)}
 {const ov=document.getElementById('intro');if(ov&&!ov.hidden)runIntro(ov);
