@@ -70,3 +70,8 @@ Freigabe: „Anyone with the link“ ist aktiv. Wer die Seite offen hat, sieht n
   `roam` (Fußgänger, zufälliges nächstes Ziel, Bögen, Schwanken, Umhertreten beim Warten), `fly` (Weltkarte,
   Flugbögen zwischen den Schauplätzen in zufälliger Reihenfolge). Weiches Anfahren und Bremsen, zufällige
   Aufenthalte, gelegentlich lange Pausen. Bei reduzierter Bewegung stehen alle Figuren still an einem Zufallsort.
+- Version 9 (04.10.2026): Aufrisse der 13 Zielobjekte (`BP`, Zeichenhelfer `bR/bL/bP/bC/bWin/bCols`): Blaupause
+  wird Linie für Linie gezeichnet, dann gleitet die Fassade (`e`) auseinander, Umgebung (`x`) bleibt stehen,
+  Innenleben (`i`) mit nummerierten Markierungen und pulsierender Filmszene erscheint. Schriftfeld, Maßstabsfigur.
+  Erweiterte Akten in `XT` (Baujahr, Architekt, Stil, Fakten, Besuch, Fotospot, Auftrag, Q-Notiz, Bewertung),
+  nächstes Zielobjekt mit berechneter Entfernung, Aufträge abhakbar (`ops5-tasks`). Zahlen nur, wo belegt.

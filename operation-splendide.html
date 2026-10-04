@@ -470,6 +470,85 @@ footer{margin:60px auto 0;padding:18px 20px 40px;max-width:1240px;border-top:1px
 .fbar{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
 .fbar span{margin-left:4px}
 
+/* Aufriss */
+.detail .bd{min-width:0}
+.bpbox{margin-top:14px;display:grid;grid-template-columns:1fr 220px;gap:12px;align-items:start}
+.bp{display:block;width:100%;height:auto;background:color-mix(in srgb,var(--cyan) 4%,var(--mapbg));border:1px solid var(--line);border-radius:2px;--bpf:color-mix(in srgb,var(--cyan) 7%,var(--mapbg))}
+.bp .bpgrid{stroke:var(--mapgrid);stroke-width:1}
+.bp .ln{fill:none;stroke:var(--cyan);stroke-width:1.15;stroke-linejoin:round;stroke-linecap:round;stroke-dasharray:1;stroke-dashoffset:1}
+.bp .ln.fill{fill:var(--bpf);fill-opacity:0}
+.bp .ln.faint{stroke-opacity:.45}
+.bp .ln.gr{stroke:var(--ink);stroke-width:1.6}
+.bp .ln.hatch{stroke-opacity:.35}
+.bp .ln.palm{stroke:var(--green)}
+.bp .ln.fresco{stroke:var(--amber);stroke-width:6;stroke-opacity:.35}
+.bp .ln.lift{stroke:var(--amber)}
+.bp.draw .ln{animation:bpdraw .9s cubic-bezier(.4,0,.2,1) forwards;animation-delay:var(--d)}
+.bp.draw .ln.fill{animation:bpdraw .9s cubic-bezier(.4,0,.2,1) forwards,bpfill .6s ease forwards;animation-delay:var(--d),calc(var(--d) + .4s)}
+@keyframes bpdraw{to{stroke-dashoffset:0}}
+@keyframes bpfill{to{fill-opacity:1}}
+.bp .tx{font-family:var(--mono);font-size:9px;fill:var(--mute);opacity:0;transition:opacity .5s}
+.bp.draw .ex .tx,.bp.draw .ctx .tx{opacity:1;transition-delay:1s}
+.bp .tx.sg{fill:var(--cyan);font-size:10px;letter-spacing:.14em;font-weight:600}
+.bp .tx.dim{font-size:8px}
+.bp .tx.il{fill:var(--amber);font-size:9px}
+.bp .tx.redt{fill:#fff;font-weight:700;letter-spacing:.2em}
+.bp .redbar{fill:var(--ink)}
+.bp .in{opacity:0;transition:opacity .5s .2s}
+.bp .in .ln{stroke:var(--amber);animation:none}
+.bp.open .in{opacity:1}
+.bp.open .in .ln{animation:bpdraw .9s cubic-bezier(.4,0,.2,1) forwards;animation-delay:calc(var(--d) - .6s)}
+.bp.open .in .tx{opacity:1;transition-delay:.9s}
+.bp .exL,.bp .exR{transition:transform 1.2s cubic-bezier(.65,0,.25,1),opacity 1.2s ease}
+.bp.open .exL{transform:translateX(-150px);opacity:.24}
+.bp.open .exR{transform:translateX(150px);opacity:.24}
+.bp.open .ex .ln.fill{fill-opacity:.15!important;transition:fill-opacity 1s}
+.bp .co{opacity:0;transform-box:fill-box;transform-origin:center;transform:scale(.3)}
+.bp.open .co{animation:copop .4s cubic-bezier(.2,1.6,.4,1) forwards;animation-delay:var(--d)}
+@keyframes copop{to{opacity:1;transform:scale(1)}}
+.bp .co circle{fill:var(--amber);stroke:var(--mapbg);stroke-width:2}
+.bp .co text{font-family:var(--mono);font-size:9px;font-weight:700;fill:var(--mapbg)}
+.bp .scm,.bp .sct{opacity:0;transition:opacity .4s 2.1s}
+.bp.open .scm,.bp.open .sct{opacity:1}
+.bp .scr{fill:none;stroke:var(--red);stroke-width:2}
+.bp .scr2{fill:none;stroke:var(--red);stroke-width:1.5;transform-box:fill-box;transform-origin:center;animation:ppr 1.8s ease-out infinite}
+.bp .scl{stroke:var(--red);stroke-width:2}
+.bp .sct{font-family:var(--mono);font-size:9px;font-weight:700;fill:var(--red);paint-order:stroke;stroke:var(--mapbg);stroke-width:3px}
+.bp .tb rect{fill:var(--mapbg);stroke:var(--line2)} .bp .tb line{stroke:var(--line2)}
+.bp .tb text{font-family:var(--mono);font-size:7.5px;fill:var(--ink)} .bp .tb .tbs{fill:var(--mute);font-size:6.5px}
+.bp .dimln{fill:none;stroke:var(--mute);stroke-width:1} .bp .dimt{font-family:var(--mono);font-size:8px;fill:var(--mute)}
+.bp.done .ln{animation:none!important;stroke-dashoffset:0}.bp.done .ln.fill{fill-opacity:1}.bp.done .co{animation:none;opacity:1;transform:none}
+.bplist{list-style:none;margin:0;padding:0;font-size:.82rem;line-height:1.35;counter-reset:x}
+.bplist li{display:grid;grid-template-columns:22px 1fr;gap:6px;padding:5px 0;border-bottom:1px solid var(--line)}
+.bplist b{display:grid;place-items:center;width:18px;height:18px;border-radius:50%;background:var(--amber);color:var(--bg);font-family:var(--mono);font-size:.62rem}
+.bpctl{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-top:10px}
+.bpctl span{font-family:var(--mono);font-size:.62rem;color:var(--mute);margin-left:4px}
+.dgrid{columns:2;column-gap:26px;margin-top:16px}
+.dsec{break-inside:avoid;margin-bottom:18px}
+.dsec h4{margin:0 0 6px;font-family:var(--mono);font-size:.7rem;font-weight:600;color:var(--amber);letter-spacing:.1em;padding-bottom:5px;border-bottom:1px solid var(--line)}
+.dsec dl{margin:0;grid-template-columns:100px 1fr}
+.detail .dsec dd{font-size:.88rem}
+.detail .dsec dd small{color:var(--mute)}
+.facts{margin:10px 0 0;padding-left:16px;font-size:.86rem;line-height:1.45}
+.facts li{margin-bottom:5px}
+.facts li::marker{content:"▸ ";color:var(--cyan)}
+.tasks{list-style:none;margin:0;padding:0}
+.tasks label{display:grid;grid-template-columns:20px 1fr;gap:8px;padding:5px 0;font-size:.88rem;cursor:pointer}
+.tasks input{accent-color:var(--green);width:16px;height:16px;margin:2px 0 0}
+.tasks input:checked+span{color:var(--mute);text-decoration:line-through;text-decoration-color:var(--green)}
+.tn{float:right;color:var(--green)}
+.qnote{display:block;margin:6px 0 0;font-family:var(--mono);font-size:.72rem;line-height:1.45;color:var(--cyan)}
+.qnote::before{content:"Q: ";color:var(--mute)}
+.dsec .mnote{margin-top:10px}
+.rates{width:100%;display:grid;gap:6px;margin-top:4px}
+.rate{display:grid;grid-template-columns:1fr auto;align-items:center;gap:6px;font-size:.62rem;text-align:left}
+.rate i{display:flex;gap:3px}
+.rate b{width:12px;height:6px;border:1px solid var(--line2);border-radius:1px}
+.rate b.on{background:var(--cyan);border-color:var(--cyan)}
+@media (max-width:1000px){.bpbox{grid-template-columns:1fr}.dgrid{columns:1}}
+@media (max-width:680px){.detail .scan{flex-wrap:wrap}.rates{width:100%}.dsec dl{grid-template-columns:1fr}.bp .tb{display:none}}
+@media (prefers-reduced-motion: reduce){.bp .exL,.bp .exR{transition:none}.bp .scr2{animation:none}}
+
 /* gun barrel */
 .gb{position:fixed;inset:0;z-index:100;background:#000;overflow:hidden;cursor:pointer}
 .gb[hidden]{display:none}
@@ -977,14 +1056,242 @@ function secSync(){const n=SEC.size;document.getElementById('secN').textContent=
   deck.querySelectorAll('.tgt').forEach(p=>{const on=SEC.has(p.dataset.id);p.classList.toggle('sec',on);p.querySelector('.ss').hidden=!on});
   document.querySelectorAll('#tlist li').forEach(li=>li.classList.toggle('sec',SEC.has(li.dataset.id)))}
 function secToggle(id){if(SEC.has(id))SEC.delete(id);else{SEC.add(id);const n=SEC.size;if(n===1)toast(SECMSG[0]);else if(n===7)toast(SECMSG[1]);else if(n===13)toast(SECMSG[2])}
-  S.set('sec',[...SEC]);secSync();showCard(id,false)}
-function showCard(id,scroll){const c=L.find(x=>x.id===id);if(!c)return;const[s,k]=st(c.id);const on=SEC.has(id);
+  S.set('sec',[...SEC]);secSync();showCard(id,false,true)}
+/* Aufrisse: technische Zeichnungen der Zielobjekte (schematisch, nicht maßstäblich).
+   ext = Fassade (wird gezeichnet und klappt dann auseinander), int = Innenleben (erscheint beim Öffnen) */
+const BPW=640,G=300;
+const bpD=(x,base)=>((base||0)+.1+Math.max(0,Math.min(640,x))/640*.9).toFixed(2)+'s';
+const bR=(x,y,w,h,c,b)=>`<rect x="${x}" y="${y}" width="${w}" height="${h}" pathLength="1" class="ln ${c||''}" style="--d:${bpD(x,b)}"/>`;
+const bL=(x1,y1,x2,y2,c,b)=>`<line x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}" pathLength="1" class="ln ${c||''}" style="--d:${bpD(Math.min(x1,x2),b)}"/>`;
+const bP=(d,c,b,x)=>`<path d="${d}" pathLength="1" class="ln ${c||''}" style="--d:${bpD(x==null?(+(/[\d.]+/.exec(d)||[0])[0]):x,b)}"/>`;
+const bC=(x,y,r,c,b)=>`<circle cx="${x}" cy="${y}" r="${r}" pathLength="1" class="ln ${c||''}" style="--d:${bpD(x,b)}"/>`;
+const bT=(x,y,s,c,a)=>`<text x="${x}" y="${y}" class="tx ${c||''}"${a?` text-anchor="${a}"`:''}>${s}</text>`;
+function bWin(x,y,cols,rows,ww,wh,gx,gy,c,b,arch){let s='';for(let i=0;i<cols;i++)for(let j=0;j<rows;j++){const X=x+i*gx,Y=y+j*gy;
+  s+=arch?bP(`M${X} ${Y+wh} V${Y+ww/2} A${ww/2} ${ww/2} 0 0 1 ${X+ww} ${Y+ww/2} V${Y+wh} Z`,c,b,X):bR(X,Y,ww,wh,c,b)}return s}
+function bCols(x0,x1,n,yT,yB,c,b){let s='';for(let i=0;i<n;i++){const x=x0+(x1-x0)*i/(n-1);s+=bR(x-3,yT+6,6,yB-yT-10,c,b)+bR(x-6,yT,12,6,c,b)+bR(x-6,yB-4,12,4,c,b)}return s}
+const bHuman=(x,b)=>bC(x,G-33,4,'',b)+bP(`M${x} ${G-29} V${G-12} M${x-6} ${G-23} H${x+6} M${x} ${G-12} L${x-5} ${G} M${x} ${G-12} L${x+5} ${G}`,'',b,x)+bT(x+9,G-20,'1,8 M','dim');
+const bCar=(x,w,b)=>bP(`M${x} ${G-4} V${G-14} Q${x+4} ${G-20} ${x+w*.22} ${G-21} L${x+w*.34} ${G-31} H${x+w*.66} L${x+w*.78} ${G-21} H${x+w-4} Q${x+w} ${G-18} ${x+w} ${G-12} V${G-4} Z`,'',b,x)+bC(x+w*.22,G-4,5,'',b)+bC(x+w*.8,G-4,5,'',b);
+const bGround=()=>bL(20,G,620,G,'gr',0)+bP(`M20 ${G} `+Array.from({length:30},(_,i)=>`M${24+i*20} ${G} l-8 8`).join(' '),'hatch',0,20);
+const bFloor=(x,w,ys,b)=>ys.map(y=>bL(x,y,x+w,y,'',b)).join('');
+const bLab=(x,y,s,a)=>bT(x,y,s,'il',a);
+const BP={
+ loket:()=>{let e='',i='',x='';const H=[[40,175],[148,150],[256,162],[364,146],[472,172]];
+  x+=bP('M300 168 L330 116 L372 100 L560 98 L600 128 L612 168','',0)+bR(470,40,34,62,'',0)+bP('M464 40 L487 14 L510 40','',0,464)+bR(382,72,88,30,'',0)+bR(504,64,72,36,'',0)
+    +bP('M382 72 v-6 h8 v6 h8 v-6 h8 v6 h8 v-6 h8 v6 h8 v-6 h8 v6 h8 v-6 h8 v6 h8 v-6 h8 v6','',0,382);
+  H.forEach(([x,t],k)=>{e+=bR(x,t,104,G-t,'fill',0)+bP(k%2?`M${x} ${t} L${x+52} ${t-38} L${x+104} ${t}`:`M${x} ${t} L${x+18} ${t-26} H${x+86} L${x+104} ${t}`,'',0,x)+bWin(x+14,t+16,3,k===2?1:2,16,22,30,34,'',0)+bR(x+42,G-36,20,36,'',0)});
+  e+=bP('M250 246 H368 L376 262 H242 Z','',0,242)+bP('M250 262 v-16 M266 262 v-16 M282 262 v-16 M298 262 v-16 M314 262 v-16 M330 262 v-16 M346 262 v-16 M362 262 v-16','faint',0,250)
+    +[262,292,322,352].map(x=>bC(x,286,7,'',0)+bL(x,293,x,G,'',0)).join('')
+    +bT(406,140,'BÍLÝ KŮŇ','sg','middle');x+=bR(118,286,40,14,'',0)+bR(128,274,20,12,'',0)+bR(135,196,6,78,'',0)+bP('M138 196 l-9 -15 l9 -12 l9 12 Z','',0,129)+bHuman(586);
+  i+=bFloor(256,104,[214,250],1.1)+bL(308,214,308,250,'',1.1)+bLab(270,232,'Gastraum')+bLab(316,232,'Küche')+bLab(270,200,'Wohnung')
+    +bFloor(364,104,[194,236],1.1)+bLab(376,214,'Hotelzimmer')+bLab(376,256,'Rezeption')+bL(416,236,416,G,'',1.1)+bLab(422,272,'Treppe');
+  return{e,i,x,co:[[1,300,280,'Café am Platz: Bond, Vesper und Mathis'],[2,416,132,'Hotel Bílý kůň, Schriftzug kurz im Bild'],[3,138,186,'Dreifaltigkeitssäule (Barock)'],[4,487,52,'Burg Loket, Bergfried auf dem Felsen'],[5,246,232,'Gastraum hinter dem Café']],sc:[322,286,'SZENE: CAFÉTISCH'],dim:'PLATZFRONT · MASSSTAB SCHEMATISCH'}},
+ mlyn:()=>{let e='',i='',x='';
+  e+=bR(40,170,560,112,'fill',0)+bCols(60,580,24,170,282,'',0);
+  x+=bR(40,282,560,18,'',0)+bP('M30 300 H610 M36 291 H604','',0,30)+bR(40,146,560,24,'fill',0)+bR(40,124,560,22,'fill',0)+bR(262,98,116,48,'fill',0)+bP('M254 98 L320 68 L386 98 Z','',0,254);
+  for(let k=0;k<12;k++){const q=70+k*(500/11);if(q>250&&q<390)continue;x+=bP(`M${q} 124 l-4 -6 l2 -15 l2 -4 l2 4 l2 15 l-4 6 Z`,'',0,q-4)}
+  [282,320,358].forEach(q=>x+=bP(`M${q} 98 l-4 -6 l2 -15 l2 -4 l2 4 l2 15 l-4 6 Z`,'',0,q));
+  x+=bT(320,138,'MLÝNSKÁ KOLONÁDA','sg','middle')+bHuman(612);
+  [[110,'Mühlbrunn'],[220,'Rusalka'],[320,'Fürst Wenzel'],[420,'Libuše'],[530,'Felsenquelle']].forEach(([q,n])=>{i+=bR(q-18,262,36,18,'',1.1)+bP(`M${q} 262 q-7 -22 0 -38 q7 16 0 38`,'',1.1,q)+bLab(q,214,n,'middle')});
+  i+=bP('M60 176 H580 M60 188 H580','faint',1.1,60)+bLab(320,200,'Trinkhalle · Rückwand','middle');
+  return{e,i,x,co:[[1,110,250,'Mühlbrunn'],[2,220,250,'Rusalka-Quelle'],[3,320,250,'Fürst-Wenzel-Quelle'],[4,420,250,'Libuše-Quelle'],[5,530,250,'Felsenquelle'],[6,90,112,'Zwölf Statuen: die Monate des Jahres']],sc:[80,250,'SZENE: „BAHNHOF“'],dim:'≈ 132 M · 124 SÄULEN'}},
+ trziste:()=>{let e='',i='',x='';
+  e+=bR(470,70,50,230,'fill',0)+bWin(482,130,1,4,26,20,0,40,'',0,1);x+=bP('M462 70 L495 34 L528 70 Z M495 34 V18','',0,462)+bC(495,98,12,'',0)+bP('M495 98 v-8 M495 98 l6 3','',0,495);
+  x+=bR(560,150,70,150,'',0)+bWin(572,166,2,3,16,20,26,36,'',0)+bR(20,140,70,160,'',0)+bWin(30,156,2,3,16,20,26,36,'',0);
+  e+=bP('M104 196 L118 176 H402 L416 196 Z','',0,104)+bL(104,196,416,196,'',0)+Array.from({length:12},(_,k)=>bR(116+k*26,196,4,104,'',0)).join('')
+    +bP('M110 206 '+Array.from({length:30},(_,k)=>`l5 ${k%2?-7:7}`).join(' '),'faint',0,110)+bT(260,190,'TRŽNÍ KOLONÁDA','sg','middle');
+  x+=bR(40,286,40,14,'',0)+bR(50,272,20,14,'',0)+bR(57,190,6,82,'',0)+bP('M60 190 l-9 -15 l9 -12 l9 12 Z','',0,51)+bCar(190,130,0)+bHuman(440);
+  i+=bR(240,262,40,18,'',1.1)+bP('M260 262 q-6 -20 0 -34 q6 14 0 34','',1.1,260)+bLab(260,222,'Karl-IV.-Quelle','middle')+bR(150,214,70,34,'',1.1)+bLab(185,234,'Relief Karl IV.','middle')
+    +bFloor(470,50,[130,170,210,250],1.1)+bLab(495,154,'Treppe','middle')+bLab(495,236,'Glocken','middle');
+  return{e,i,x,co:[[1,260,186,'Marktkolonnade aus Holz (1883)'],[2,260,250,'Quelle Karls IV.'],[3,495,60,'Schlossturm (1608)'],[4,60,180,'Dreifaltigkeitssäule'],[5,185,214,'Relief: die Legende vom Hirsch']],sc:[250,284,'SZENE: LIMOUSINE'],dim:'STRASSENFRONT · SCHEMATISCH'}},
+ pupp:()=>{let e='',i='',x='';
+  e+=bR(50,112,200,188,'fill',0)+bR(390,112,200,188,'fill',0)+bR(250,84,140,216,'fill',0)
+    +bP('M50 112 L66 92 H250 M390 92 H574 L590 112','',0,50)+bP('M250 84 Q320 28 390 84','',0,250)
+    +bWin(64,124,6,5,18,22,30,34,'',0)+bWin(404,124,6,5,18,22,30,34,'',0)+bWin(264,104,4,4,20,30,32,42,'',0,1)
+    +bP('M54 190 H246 M394 190 H586','',0,54)+bP('M262 262 H378 L386 270 H254 Z','',0,254)+bCols(270,370,4,270,300,'',0)
+    +bT(320,98,'GRANDHOTEL PUPP','sg','middle');x+=bP('M320 46 V20 l14 5 l-14 5','',0,320)+bCar(520,96,0)+bHuman(36);
+  i+=bFloor(50,540,[150,190,230,262],1.1)+bLab(70,140,'Zimmer · 3.–5. OG')+bLab(404,140,'Zimmer')
+    +bLab(70,214,'Festsaal')+[96,140,184].map(x=>bP(`M${x} 194 v6 m-6 4 l6 -4 l6 4`,'',1.1,x)).join('')
+    +bLab(404,214,'Grandrestaurant')+[430,470,510,550].map(x=>bC(x,222,5,'',1.1)).join('')
+    +bLab(70,250,'Lobby')+bLab(404,250,"Becher's Bar")+bLab(70,286,'Rezeption')+bLab(404,286,'Casino')+bLab(320,250,'Treppenhaus','middle')
+    +bP('M300 262 l10 -10 l10 10 l10 -10 l10 10','',1.1,300);
+  return{e,i,x,co:[[1,120,250,'Lobby: Ankunft im Hotel Splendide'],[2,470,214,'Grandrestaurant: Dinner mit Vesper'],[3,150,190,'Balkon: Mathis und die Leichen im Kofferraum'],[4,470,286,'Casino im Haus'],[5,470,250,"Becher's Bar"],[6,560,290,'Parkplatz mit dem Aston Martin']],sc:[470,222,'SZENE: DINNER'],dim:'HAUPTFRONT · BAU 1905–1907'}},
+ kaiserbad:()=>{let e='',i='',x='';
+  e+=bR(70,150,200,150,'fill',0)+bR(370,150,200,150,'fill',0)+bR(270,118,100,182,'fill',0)+bR(52,128,44,172,'fill',0)+bR(544,128,44,172,'fill',0)
+    
+    +bWin(104,176,5,2,22,40,34,62,'',0,1)+bWin(404,176,5,2,22,40,34,62,'',0,1)+bWin(286,136,3,1,18,34,24,0,'',0,1)
+    +bR(296,240,48,60,'',0)+bCols(280,360,4,236,300,'',0)+bT(320,230,'CÍSAŘSKÉ LÁZNĚ','sg','middle');x+=bP('M262 118 Q320 36 378 118','',0,262)+bR(312,48,16,18,'',0)+bP('M48 128 Q74 98 100 128 M540 128 Q566 98 592 128','',0,48)+bHuman(612);
+  i+=bFloor(70,500,[226],1.1)+bLab(84,214,'Warteräume')+bLab(384,214,'Warteräume')+bLab(84,262,'Zander-Saal')
+    +[100,140,180,220].map(x=>bP(`M${x} 290 v-18 h10 M${x} 280 l12 -8`,'',1.1,x)).join('')
+    +bLab(384,262,'Kaiserkabine')+bP('M440 292 Q442 278 456 278 H500 Q512 278 514 292 Z','',1.1,440)+bLab(320,190,'Kuppelhalle','middle')+bP('M296 300 l12 -12 h24 l12 12','',1.1,296);
+  return{e,i,x,co:[[1,320,268,'Eingang: im Film das Casino Royale'],[2,150,262,'Zander-Saal mit historischen Geräten'],[3,477,270,'Kaiserkabine'],[4,320,180,'Kuppelhalle'],[5,150,214,'Historische Warteräume']],sc:[320,286,'SZENE: CASINO-EINGANG'],dim:'HAUPTFRONT · BAU 1893–1895'}},
+ airport:()=>{let e='',i='',x='';
+  e+=bP('M40 182 Q320 140 600 182 L600 300 L40 300 Z','fill',0,40)+Array.from({length:28},(_,k)=>bL(60+k*20,170-Math.sin(k/27*Math.PI)*22+8,60+k*20,300,'faint',0)).join('')
+    +bL(40,236,600,236,'',0)+bT(160,226,'TERMINAL 1','sg');x+=bR(560,60,18,122,'fill',0)+bP('M548 60 L590 60 L584 40 L554 40 Z M569 40 V24','',0,548)+bHuman(30);
+  i+=bLab(70,212,'Abflug · Check-in')+bLab(70,262,'Ankunft · Gepäck')+bR(190,250,80,30,'',1.1)+bLab(196,266,'Sicherheit')
+    +bP('M330 290 h120 m-120 -10 h120','',1.1,330)+bLab(334,272,'Gepäckband')+bR(470,196,90,30,'',1.1)+bLab(476,214,'Gates A–C');
+  return{e,i,x,co:[[1,230,250,'Sicherheitskontrolle: der Cameo-Auftritt'],[2,330,200,'Terminalhalle: Bond verfolgt Carlos'],[3,569,50,'Tower'],[4,515,196,'Gates · Rollfeld (gedreht in England)']],sc:[230,262,'SZENE: SICHERHEITSKONTROLLE'],dim:'TERMINALQUERSCHNITT · SCHEMATISCH'}},
+ strahov:()=>{let e='',i='',x='';
+  e+=bR(60,110,520,190,'fill',0)+bWin(84,128,8,2,30,56,64,82,'',0,1)+bR(298,224,44,76,'',0)
+    +bT(320,212,'BIBLIOTHECA STRAHOVIENSIS','sg','middle');x+=bP('M60 110 L320 64 L580 110','',0,60)+bC(320,92,14,'',0)+bHuman(612);
+  i+=bP('M66 116 Q320 26 574 116','',1.1,66)+bP('M100 104 Q320 44 540 104','fresco',1.1,100)+bLab(320,92,'Deckenfresko · Maulbertsch 1794','middle')
+    +bR(76,120,488,72,'',1.1)+Array.from({length:5},(_,k)=>bL(76,132+k*12,564,132+k*12,'faint',1.1)).join('')+Array.from({length:12},(_,k)=>bL(76+k*40.6,120,76+k*40.6,192,'faint',1.1)).join('')
+    +bL(70,196,570,196,'',1.1)+Array.from({length:50},(_,k)=>bL(72+k*10,196,72+k*10,186,'faint',1.15)).join('')
+    +bR(76,200,488,100,'',1.2)+Array.from({length:7},(_,k)=>bL(76,212+k*12,564,212+k*12,'faint',1.2)).join('')+Array.from({length:12},(_,k)=>bL(76+k*40.6,200,76+k*40.6,300,'faint',1.2)).join('')
+    +bP('M96 300 Q86 270 104 252 Q120 236 104 210 Q94 200 100 196','',1.2,86)+bLab(108,248,'Wendeltreppe')
+    +bR(250,276,140,8,'',1.3)+bL(260,284,260,300,'',1.3)+bL(380,284,380,300,'',1.3)+bC(430,284,10,'',1.3)+bC(470,284,10,'',1.3)+bLab(440,270,'Globen');
+  return{e,i,x,co:[[1,320,280,'Langer Tisch: Ms Committee Room'],[2,320,150,'Galerie mit oberem Regal'],[3,320,72,'Deckenfresko „Geistige Entwicklung der Menschheit“'],[4,98,230,'Wendeltreppe zur Galerie'],[5,450,250,'Historische Globen']],sc:[320,276,'SZENE: M VERLÄSST DIE SITZUNG'],dim:'PHILOSOPHISCHER SAAL · ≈ 32 M LANG · ≈ 14 M HOCH'}},
+ danube:()=>{let e='',i='',x='';
+  e+=bR(120,70,400,230,'fill',0)+Array.from({length:19},(_,k)=>bL(140+k*20,70,140+k*20,300,'faint',0)).join('')+Array.from({length:7},(_,k)=>bL(120,100+k*30,520,100+k*30,'faint',0)).join('')
+    +bR(300,70,40,230,'',0)+bP('M280 262 H360 L368 270 H272 Z','',0,272)+bT(320,62,'DANUBE HOUSE','sg','middle');x+=bCar(40,110,0)+bHuman(600);e+=''
+    +bP('M120 330 V300 M520 330 V300','faint',0,120);
+  i+=bFloor(120,400,[100,130,160,190,220,250],1.1)+bR(306,74,28,222,'',1.1)+bR(309,250,22,40,'lift',1.1)+bLab(320,316,'Tiefgarage','middle')
+    +bR(400,74,110,24,'',1.2)+bLab(404,90,'Büro Dryden · oberstes Geschoss')+bR(470,82,22,12,'',1.3)+bLab(140,90,'Büros')+bLab(140,284,'Foyer')+bP('M120 300 V336 H520 V300','',1.1,120);
+  return{e,i,x,co:[[1,455,86,'Drydens Büro: Bond wartet im Dunkeln'],[2,320,270,'Aufzug'],[3,95,286,'Drydens Wagen vor dem Haus'],[4,481,88,'Safe']],sc:[455,86,'SZENE: „DIE ERSTE“'],dim:'BÜROBAU 2003 · SCHEMATISCH'}},
+ ministry:()=>{let e='',i='',x='';
+  e+=bR(60,92,520,208,'fill',0)+bR(60,72,520,20,'fill',0)+Array.from({length:14},(_,k)=>bR(76+k*38,104,8,196,'',0)).join('')+bWin(92,116,13,4,18,26,38,44,'',0)
+    +bR(270,200,100,100,'fill',0)+bCols(276,364,5,196,300,'',0)+bP('M262 196 L320 172 L378 196 Z','',0,262);x+=bP('M320 72 V40 l18 6 l-18 6','',0,320);
+  [200,440].forEach(q=>x+=bP(`M${q} 300 q-4 -40 4 -80 M${q+4} 220 q-24 -6 -34 8 M${q+4} 220 q24 -6 34 8 M${q+4} 220 q-14 -16 -28 -14 M${q+4} 220 q14 -16 28 -14`,'palm',0,q-30));
+  e+=bT(320,188,'AUSSTELLUNG','sg','middle');x+=bHuman(612);
+  i+=bFloor(60,520,[148,200,250],1.1)+bLab(80,176,'Büros')+bLab(80,228,'Büros')+bLab(296,240,'Foyer')+bP('M300 300 l14 -14 h12 l14 14 M314 286 v-38 h12 v38','',1.1,300)+bLab(334,270,'Treppe');
+  return{e,i,x,co:[[1,320,250,'Portal: Eingang der Ausstellung in „Miami“'],[2,200,240,'Palmen: für den Film aufgestellt'],[3,440,240,'Palmen: für den Film aufgestellt']],sc:[320,280,'SZENE: DIMITRIOS’ KONTAKT'],dim:'HAUPTFRONT · SCHEMATISCH'}},
+ museum:()=>{let e='',i='',x='';
+  e+=bR(40,140,560,160,'fill',0)+bR(250,112,140,188,'fill',0)+bR(40,120,60,180,'fill',0)+bR(540,120,60,180,'fill',0)
+    +bWin(116,160,5,2,16,36,26,60,'',0,1)+bWin(408,160,5,2,16,36,26,60,'',0,1)+bWin(270,140,4,2,18,40,30,64,'',0,1)
+    +bT(320,128,'NÁRODNÍ MUZEUM','sg','middle');x+=bP('M262 112 Q320 30 378 112','',0,262)+bR(310,40,20,22,'',0)+bP('M200 300 L240 280 H400 L440 300','',0,200)+bHuman(612);
+  i+=bLab(320,86,'Pantheon','middle')+bL(262,112,378,112,'',1.1)+bP('M268 300 L300 268 H340 L372 236 M300 268 L268 236','',1.1,268)+bLab(260,228,'Prunktreppe','end')
+    +[284,302,338,356].map(x=>bR(x-3,92,6,16,'',1.2)).join('')+bFloor(40,560,[220],1.1)+bLab(60,200,'Ausstellungssäle')+bLab(420,200,'Ausstellungssäle')+bP('M60 300 V330 H580 V300','faint',1.2,60)+bLab(320,322,'Verbindungsgang zum Neubau','middle');
+  return{e,i,x,co:[[1,320,260,'Prunktreppe: Hotellobby in „Venedig“'],[2,320,96,'Pantheon unter der Kuppel'],[3,120,200,'Ausstellungssäle'],[4,500,322,'Unterirdischer Gang zum Neubau']],sc:[320,262,'SZENE: LOBBY VENEDIG'],dim:'HAUPTFRONT · BAU 1885–1891'}},
+ vitkov:()=>{let e='',i='',x='';
+  x+=bP('M20 300 Q160 220 320 214 Q480 220 620 300','faint',0,20);e+=bR(200,110,280,150,'fill',0)+bR(190,100,300,12,'',0)+bWin(226,132,6,1,22,70,38,0,'',0)+bR(316,200,48,60,'',0)
+    ;x+=bR(110,236,70,24,'',0)+bP('M118 236 l6 -26 l20 -12 l26 0 l8 -14 l6 4 l-4 16 l-4 32 M150 198 l2 -26 l8 -8 l6 8 l-4 26','',0,118)+bT(145,272,'REITERSTATUE','dim','middle')+bP('M440 100 V60 l20 6 l-20 6','',0,440)+bHuman(612);
+  i+=bFloor(200,280,[150,200],1.1)+bLab(340,132,'Dachterrasse · Café','middle')+bL(200,104,480,104,'',1.1)+Array.from({length:14},(_,k)=>bL(204+k*20,104,204+k*20,96,'faint',1.1)).join('')
+    +bLab(340,176,'Zeremoniensaal','middle')+bLab(220,228,'Ausstellung')+bP('M200 260 V296 H480 V260','',1.2,200)+bLab(340,284,'Ehem. Mausoleum (Untergeschoss)','middle');
+  return{e,i,x,co:[[1,260,228,'Ausstellungshalle: „Body Worlds“ innen'],[2,340,120,'Dachterrasse mit Panoramablick'],[3,145,214,'Reiterstatue Jan Žižka'],[4,340,288,'Ehemaliges Mausoleum']],sc:[260,236,'SZENE: AUSSTELLUNG'],dim:'BAU 1928–1938 · SCHEMATISCH'}},
+ barrandov:()=>{let e='',i='',x='';
+  e+=bR(40,124,420,176,'fill',0)+bR(150,190,120,110,'',0)+bL(210,190,210,300,'faint',0)+bT(250,118,'HALLE','sg','middle')
+    ;x+=bP('M40 124 Q250 70 460 124','',0,40)+bR(500,46,46,254,'fill',0)+bP('M494 46 h58 v-12 h-58 z M510 34 v-14 h26 v14','',0,494)+bWin(512,70,1,6,22,16,0,34,'',0)+bHuman(612);
+  i+=Array.from({length:9},(_,k)=>bP(`M${60+k*45} ${122-Math.sin((k+.5)/9*Math.PI)*28} l22 22 l22 -22`,'faint',1.1,60+k*45)).join('')+bL(60,150,440,150,'',1.1)+bLab(70,144,'Beleuchterbrücke')
+    +[120,200,280,360].map(x=>bP(`M${x} 150 v10 l-8 10 h16 l-8 -10`,'',1.15,x-8)).join('')
+    +bP('M180 270 Q250 250 320 270 Q250 290 180 270 Z','',1.2,180)+[190,230,270,310].map(x=>bC(x,262,4,'',1.25)+bC(x,282,4,'',1.25)).join('')+bP('M250 180 v14 m-14 0 h28 l-6 8 h-16 z','',1.2,236)
+    +bP('M380 290 h40 M392 290 l8 -26 h18 v-10 h10 v14 h-10','',1.3,380)+bLab(388,250,'Kamera')+bLab(250,240,'Set: Pokersaal','middle');
+  return{e,i,x,co:[[1,250,270,'Set des Pokertischs'],[2,250,150,'Beleuchterbrücke'],[3,405,280,'Kamera auf Dolly'],[4,523,40,'Studioturm, Wahrzeichen'],[5,250,190,'Kronleuchter des Sets']],sc:[250,270,'SZENE: POKERTISCH'],dim:'TONHALLE · SCHEMATISCH'}},
+ plana:()=>{let e='',i='',x='';
+  e+=bR(70,130,500,170,'fill',0)+bP('M70 130 L90 106 H550 L570 130','',0,70)+bWin(90,146,12,3,20,26,40,46,'',0)+bR(300,250,40,50,'',0)
+    ;x+=bP('M20 300 V250 '+Array.from({length:30},(_,k)=>`M${24+k*20} 300 V252`).join(' ')+' M20 256 H620','faint',0,20);e+=''
+    +'<rect x="120" y="180" width="160" height="16" class="redbar"/><rect x="360" y="226" width="180" height="16" class="redbar"/>'+bT(320,96,'OBJEKT K','sg','middle');
+  i+=bFloor(70,500,[176,222],1.1)+bLab(90,170,'Station')+bLab(90,216,'Station')+bLab(90,262,'Flur')+'<rect x="300" y="150" width="200" height="60" class="redbar"/>'+bT(400,184,'GESCHWÄRZT','redt','middle');
+  return{e,i,x,co:[[1,400,180,'Krankenzimmer (laut Recherche)'],[2,320,270,'Gesperrter Zugang']],sc:[400,180,'SZENE: NACH DER FOLTER'],dim:'KEIN ZUTRITT · DATEN UNVOLLSTÄNDIG'}}
+};
+/* Erweiterte Akten: Baudaten, Fakten, Besuch, Auftrag, Q, Bewertung [Zugang, Bond-Faktor, Fotowert] */
+const XT={
+ loket:{b:'Burg ab dem 12. Jh., Bürgerhäuser überwiegend 18./19. Jh.',a:'—',s:'Gotische Burg, barocke und klassizistische Platzbebauung',
+  f:['„Loket“ heißt Ellenbogen – die Stadt liegt in einer engen Schleife der Ohře.','Goethe kam mehrfach und feierte 1823 im Weißen Ross seinen 74. Geburtstag.','Die Burg ist eine der ältesten steinernen Burgen Böhmens und heute Museum.','Im Film ist der Platz das Zentrum eines Städtchens in Montenegro.'],
+  v:['Platz frei zugänglich, Burg mit Eintritt','1,5–2 Stunden mit Burg','Vom unteren Platzende hinauf: Säule, Häuserzeile und Burg in einem Bild','Parkplätze am Rand der Altstadt, ins Zentrum zu Fuß'],
+  t:['Kaffee am Platz trinken, Rücken zur Wand','Foto mit Säule, Häusern und Burg','Burgblick über die Ohře-Schleife'],q:'Fernglas für die Burgmauern. Mathis hat seines nie zurückgegeben.',r:[5,4,5]},
+ mlyn:{b:'1871–1881',a:'Josef Zítek (auch Nationaltheater und Rudolfinum in Prag)',s:'Neorenaissance',
+  f:['Rund 132 Meter lang mit 124 korinthischen Säulen – die größte Kolonnade der Stadt.','Auf der Attika stehen zwölf Statuen, eine für jeden Monat.','Fünf Heilquellen entspringen hier; getrunken wird aus der flachen Karlsbader Schnabeltasse.','Im Film ist die Säulenhalle der Bahnhof von Montenegro.'],
+  v:['Frei zugänglich, rund um die Uhr','30 Minuten','Schräg von der Uferseite, damit die Säulen in die Tiefe laufen','Kurzone, zu Fuß vom Pupp etwa 15 Minuten'],
+  t:['Eine Quelle probieren, einen Schluck','Säulenhalle zur Dämmerung fotografieren','Die Stelle finden, an der die Limousine wartet'],q:'Schnabeltasse mit doppeltem Boden. Leer. Noch.',r:[5,3,5]},
+ trziste:{b:'Marktkolonnade 1883, Schlossturm 1608',a:'Marktkolonnade: Fellner & Helmer',s:'Holzbau im Schweizer Stil, Turm der Spätrenaissance',
+  f:['Die hölzerne Marktkolonnade war als Provisorium gedacht und steht seit 1883.','Der Schlossturm steht an der Stelle der Burg Karls IV.','Ein Relief zeigt die Legende: Karl IV. soll die Quellen auf der Jagd entdeckt haben.','Im Film rollt die Limousine hier vorbei, Säule und Turm im Hintergrund.'],
+  v:['Fußgängerzone, frei zugänglich','20 Minuten','Straße hinauf mit Säule links und Turm rechts – die Limousinen-Perspektive','Zu Fuß zwischen Kolonnaden und Pupp'],
+  t:['Strecke zu Fuß abgehen und die Tarngeschichte proben','Foto: Säule und Schlossturm','Relief Karls IV. finden'],q:'Ein Hirschgeweih als Antenne. Q bestreitet, dass das ein Scherz ist.',r:[5,3,4]},
+ pupp:{b:'Gründung 1701, Hauptgebäude 1905–1907',a:'Fellner & Helmer (Wien)',s:'Neobarock mit Jugendstilanklängen',
+  f:['Der Name geht auf den Konditor Johann Georg Pupp zurück, der im 18. Jahrhundert einheiratete.','Während des Filmfestivals im Juli wohnen hier traditionell die Stars.','Im Film heißt es Hotel Splendide: Ankunft, Lobby, Dinner, Balkon.','Das Haus ist älter als jeder Geheimdienst, der sich darin aufgehalten hat.'],
+  v:['Hotelgäste; Restaurant und Bar auch für Besucher','Eine Nacht (befohlen)','Vom Vorplatz frontal, abends mit beleuchteter Fassade','Hotelparkplatz, Auto bis zur Abreise stehen lassen'],
+  t:['Check-in mit Haltung','Grandrestaurant: nach dem Filmtisch fragen','Balkonfoto aus Mathis\' Perspektive',"Becher's Bar: ein Vesper"],q:'Manschettenknöpfe für das Dinner. Funktion: Manschetten.',r:[4,5,5]},
+ kaiserbad:{b:'1893–1895',a:'Fellner & Helmer',s:'Neorenaissance mit Kuppel',
+  f:['Bei der Eröffnung eine der modernsten Badeanstalten Europas.','Im Zander-Saal stehen Trainingsgeräte nach Gustav Zander – ein Fitnessstudio um 1900.','Die Kaiserkabine wurde für Franz Joseph I. eingerichtet.','Im Film ist die Fassade das Casino Royale; der Spielsaal stand in Barrandov.'],
+  v:['Führungen nach Anmeldung','1 bis 1,5 Stunden','Vom Pupp-Vorplatz über die Teplá: Fassade wie auf dem Filmplakat','Gegenüber dem Pupp, zu Fuß'],
+  t:['Führung buchen','Plakatfoto der Fassade','Zander-Saal ansehen'],q:'Ein Spielchip mit Peilsender. Bitte nicht einlösen.',r:[3,5,5]},
+ airport:{b:'Terminal 1 eröffnet 1997',a:'—',s:'Funktionsbau',
+  f:['Seit 2012 trägt der Flughafen den Namen Václav Havels.','Damals hieß er noch Praha-Ruzyně.','Im Film ist er Miami International. Die Rollfeldjagd entstand in England.'],
+  v:['Öffentliche Terminalbereiche frei','20 Minuten','Abflugebene mit Blick in die Halle','Kurzzeitparken am Terminal'],
+  t:['Terminal-1-Halle betreten','Foto der Abflugtafel'],q:'Ein Schlüsselanhänger, der Bomben deaktiviert. Theoretisch.',r:[4,2,2]},
+ strahov:{b:'Theologischer Saal 1671–1679, Philosophischer Saal ab 1783',a:'Jan Ignác Palliardi · Fresko: Franz Anton Maulbertsch',s:'Barock und Klassizismus',
+  f:['Das Kloster der Prämonstratenser wurde 1143 gegründet.','Der Philosophische Saal ist rund 32 Meter lang und 14 Meter hoch; die Nussbaumregale stammen aus einem aufgelösten Kloster in Mähren.','Maulbertsch malte das Deckenfresko 1794 in wenigen Monaten, mit fast siebzig Jahren.','Im Film ist der Saal ein Sitzungsraum in London.'],
+  v:['Säle von der Tür aus; Innenführung auf Anfrage','1 Stunde mit Klosterhof','Von der Türschwelle aus durch die Saalachse','Parken schwierig, besser Tram und Fußweg'],
+  t:['Innenführung anfragen','Saalachse fotografieren (ohne Blitz)','Klosterbrauerei: ein Bier für M'],q:'Ein Buch mit ausgehöhlten Seiten. Es heißt „Spesenrecht“.',r:[3,4,5]},
+ danube:{b:'2003',a:'—',s:'Glas- und Stahlbau',
+  f:['Teil des Büroquartiers River City Prague am Moldauufer.','Karlín wurde 2002 vom Hochwasser schwer getroffen und danach neu gebaut.','Nebenan läuft das Negrelli-Viadukt von 1850.','Im Film erwartet Bond Dryden hier im dunklen Büro.'],
+  v:['Nur von außen','20 Minuten','Nachts von der Straße schräg hinauf zum obersten Geschoss','Straßenparken in Karlín, besser Tram'],
+  t:['Nachtfoto der Fassade','Negrelli-Viadukt ablaufen'],q:'Taschenlampe. Für das Büro. Bond hat keine gebraucht.',r:[2,5,3]},
+ ministry:{b:'Zwischenkriegszeit',a:'—',s:'Monumentaler Verwaltungsbau',
+  f:['Sitz des tschechischen Verkehrsministeriums.','Für den Film standen Palmen vor dem Portal: Prag als Miami.','Wenige Gehminuten vom Danube House am Moldauufer.'],
+  v:['Nur von außen','10 Minuten','Gegenüber vom Portal, Bäume als Palmenersatz','Mit Danube House kombinieren'],
+  t:['Portal fotografieren','Palmen vorstellen'],q:'Eine Topfpalme mit Mikrofon. Leider nicht freigegeben.',r:[2,3,3]},
+ museum:{b:'1885–1891',a:'Josef Schulz',s:'Neorenaissance',
+  f:['Das Gebäude schließt den Wenzelsplatz nach oben ab.','Von 2011 bis 2018 umfassend saniert.','Unter der Kuppel liegt das Pantheon mit Statuen und Büsten bedeutender Persönlichkeiten.','Im Film ist die Prunktreppe die Lobby eines Hotels in Venedig.'],
+  v:['Mit Museumseintritt','1,5 Stunden','Von unten die Prunktreppe hinauf','Wenzelsplatz, U-Bahn Muzeum'],
+  t:['Prunktreppe hinaufgehen','Pantheon besuchen','Foto: Treppe von unten'],q:'Ein Reiseführer für Venedig. Er beschreibt Prag.',r:[4,4,5]},
+ vitkov:{b:'1928–1938',a:'Jan Zázvorka',s:'Funktionalistisches Monument',
+  f:['Davor steht die Reiterstatue Jan Žižkas, eine der größten Bronze-Reiterstatuen der Welt.','Zu kommunistischer Zeit lag hier das Mausoleum von Klement Gottwald.','Die Dachterrasse bietet einen der besten Blicke über Prag.','Im Film: die Innenräume der Ausstellung in „Miami“.'],
+  v:['Di–So, montags geschlossen','1 Stunde','Von der Dachterrasse Richtung Altstadt','Bergauf zu Fuß von Karlín, oder Bus'],
+  t:['Dachterrasse besuchen','Reiterstatue von unten fotografieren','Nicht am Montag kommen'],q:'Wanderschuhe. Der Hügel ist kein Gadget.',r:[4,3,5]},
+ barrandov:{b:'1931–1933',a:'Max Urban',s:'Moderne der Zwischenkriegszeit',
+  f:['Gegründet von Miloš Havel; eines der größten Filmstudios Europas.','Casino Royale nutzte das Studio als Produktionsbasis.','Der Pokersaal und Ms Wohnung entstanden hier als Kulisse.','Der weiße Studioturm ist das Wahrzeichen des Geländes.'],
+  v:['Für die Öffentlichkeit derzeit geschlossen','10 Minuten Fotostopp','Studioturm von der Straße aus','Auf dem Weg zur D5'],
+  t:['Foto vom Studioturm'],q:'Eine Klappe. Sie sagt: Ende der Aufnahme.',r:[1,5,2]},
+ plana:{b:'Unbekannt',a:'—',s:'Kaserne / Krankenhaus',
+  f:['Nach Recherchen eines Location-Bloggers wurden hier einzelne Krankenhausszenen gedreht.','Das Gelände ist nicht öffentlich zugänglich.'],
+  v:['Kein Zugang','—','—','Nur durchfahren'],
+  t:['Nicht betreten'],q:'Nichts. Hier wird nichts gebraucht. Weiterfahren.',r:[0,2,1]}
+};
+const hav=(a,b)=>{const R=6371,dl=(b.lat-a.lat)*Math.PI/180,dn=(b.lon-a.lon)*Math.PI/180,x=Math.sin(dl/2)**2+Math.cos(a.lat*Math.PI/180)*Math.cos(b.lat*Math.PI/180)*Math.sin(dn/2)**2;return 2*R*Math.asin(Math.sqrt(x))};
+function nearest(c){return L.filter(x=>x.id!==c.id).map(x=>[x,hav(c,x)]).sort((a,b)=>a[1]-b[1])[0]}
+const fmtDist=km=>km<1?Math.round(km*100)*10+' m':km.toFixed(1).replace('.',',')+' km';
+const walk=km=>km<3?`≈ ${Math.max(1,Math.round(km*1.3/4.8*60))} Min. zu Fuß`:`≈ ${Math.round(km*1.25/50*60+5)} Min. Fahrt`;
+const TK=S.get('tasks',{});
+function bpSVG(c,idx){const d=BP[c.id]();const bars=XT[c.id].r;
+  return `<svg class="bp" viewBox="0 0 640 360" role="img" aria-label="Aufriss ${c.name}">
+  <defs><pattern id="bpg" width="20" height="20" patternUnits="userSpaceOnUse"><path d="M20 0H0V20" fill="none" class="bpgrid"/></pattern>
+  <clipPath id="bpL"><rect x="0" y="0" width="320" height="360"/></clipPath><clipPath id="bpR"><rect x="320" y="0" width="320" height="360"/></clipPath></defs>
+  <rect width="640" height="360" fill="url(#bpg)"/>
+  <g class="in">${d.i}${d.co.map(([n,x,y])=>`<g class="co" style="--d:${(1.5+n*.12).toFixed(2)}s"><circle cx="${x}" cy="${y}" r="8"/><text x="${x}" y="${y+3.5}" text-anchor="middle">${n}</text></g>`).join('')}
+   <g class="scm" transform="translate(${d.sc[0]} ${d.sc[1]})"><circle r="13" class="scr"/><circle r="13" class="scr2"/><path d="M-19 0h8M11 0h8M0 -19v8M0 11v8" class="scl"/></g><text x="${d.sc[0]}" y="${d.sc[1]-22}" class="sct" text-anchor="middle">${d.sc[2]}</text></g>
+  <g class="ex"><g class="exL" clip-path="url(#bpL)">${d.e}</g><g class="exR" clip-path="url(#bpR)">${d.e}</g></g>
+  <g class="ctx">${d.x}</g>
+  ${bGround()}
+  <g class="tb"><rect x="440" y="318" width="190" height="36"/><line x1="440" y1="330" x2="630" y2="330"/><line x1="560" y1="330" x2="560" y2="354"/>
+   <text x="446" y="327">MI6 · Q-ABT. · AUFRISS</text><text x="446" y="343">${code(c)} · ${c.name.length>15?c.name.slice(0,14)+'…':c.name}</text><text x="446" y="351" class="tbs">${d.dim}</text><text x="566" y="343">BLATT ${idx+1}/13</text></g>
+  <path d="M20 330 H200 M20 326 v8 M200 326 v8" class="dimln"/><text x="110" y="346" class="dimt" text-anchor="middle">${d.dim.split('·')[0].trim()}</text></svg>
+  <ol class="bplist">${d.co.map(([n,,,t])=>`<li><b>${n}</b>${t}</li>`).join('')}</ol>`}
+let bpTimer=0,bpIO=null;
+function bpPlay(instant){const svg=detail.querySelector('.bp');if(!svg)return;clearTimeout(bpTimer);
+  const go=()=>{if(RM||instant){svg.classList.add('draw','open','done');bpBtn(true);return}
+    svg.classList.remove('draw','open','done');void svg.getBoundingClientRect();svg.classList.add('draw');bpBtn(false);bpTimer=setTimeout(()=>{svg.classList.add('open');bpBtn(true)},1500)};
+  if(instant||RM){go();return}
+  if(bpIO)bpIO.disconnect();
+  if(!('IntersectionObserver' in window)){go();return}
+  bpIO=new IntersectionObserver(es=>{if(es.some(e=>e.isIntersecting)){bpIO.disconnect();go()}},{threshold:.35});bpIO.observe(svg)}
+function bpBtn(open){const b=document.getElementById('bpTog');if(b)b.textContent=open?'AUFRISS SCHLIESSEN':'AUFRISS ÖFFNEN'}
+function showCard(id,scroll,keep){const c=L.find(x=>x.id===id);if(!c)return;const[s,k]=st(c.id);const on=SEC.has(id),x=XT[id],idx=L.indexOf(c),[nb,nd]=nearest(c);
+  const wasOpen=keep&&detail.querySelector('.bp.open');
   deck.querySelectorAll('.tgt').forEach(p=>p.setAttribute('aria-pressed',p.dataset.id===id?'true':'false'));
-  detail.innerHTML=`<div class="scan">${reticle(c,true)}<div>${code(c)}<br>${c.lat.toFixed(4)} N<br>${c.lon.toFixed(4)} E<br><span class="${k}">● ${s}</span>${on?'<br><span class="s-ok">✓ GESICHERT</span>':''}</div></div>
-  <div class="bd"><h3>${c.name}</h3><div class="cov">DECKNAME IM FILM // ${c.as}</div>
-  <dl><dt>SZENE</dt><dd>${c.scene}</dd><dt>LAGE HEUTE</dt><dd>${c.today}</dd><dt>HINWEIS</dt><dd>${c.tip}</dd><dt class="mn">M</dt><dd class="mn">${MN[c.id]}</dd></dl>
+  const pips=(n,l)=>`<div class="rate"><span>${l}</span><i>${[1,2,3,4,5].map(j=>`<b class="${j<=n?'on':''}"></b>`).join('')}</i></div>`;
+  const done=TK[id]||[];
+  detail.innerHTML=`<div class="scan">${reticle(c,true)}<div>${code(c)}<br>${c.lat.toFixed(4)} N<br>${c.lon.toFixed(4)} E<br><span class="${k}">● ${s}</span>${on?'<br><span class="s-ok">✓ GESICHERT</span>':''}</div>
+    <div class="rates">${pips(x.r[0],'ZUGANG')}${pips(x.r[1],'BOND-FAKTOR')}${pips(x.r[2],'FOTOWERT')}</div></div>
+  <div class="bd"><h3>${c.name}</h3><div class="cov">DECKNAME IM FILM // ${c.as} · ${c.city.toUpperCase()}</div>
+  <div class="bpbox">${bpSVG(c,idx)}</div>
+  <div class="bpctl"><button class="qbtn go" type="button" id="bpTog">AUFRISS ÖFFNEN</button><button class="qbtn" type="button" id="bpRe">NEU ZEICHNEN</button><span>SCHEMATISCH, NICHT MASSSTÄBLICH</span></div>
+  <div class="dgrid">
+   <section class="dsec"><h4>LAGEBERICHT</h4><dl><dt>SZENE</dt><dd>${c.scene}</dd><dt>LAGE HEUTE</dt><dd>${c.today}</dd><dt>HINWEIS</dt><dd>${c.tip}</dd></dl></section>
+   <section class="dsec"><h4>AKTE</h4><dl><dt>BAUJAHR</dt><dd>${x.b}</dd><dt>ARCHITEKT</dt><dd>${x.a}</dd><dt>STIL</dt><dd>${x.s}</dd></dl><ul class="facts">${x.f.map(f=>`<li>${f}</li>`).join('')}</ul></section>
+   <section class="dsec"><h4>BESUCH</h4><dl><dt>ZUGANG</dt><dd>${x.v[0]}</dd><dt>ZEITBEDARF</dt><dd>${x.v[1]} <small>(Richtwert)</small></dd><dt>FOTOSPOT</dt><dd>${x.v[2]}</dd><dt>ANFAHRT</dt><dd>${x.v[3]}</dd>
+     <dt>NÄCHSTES ZIEL</dt><dd><button class="ref" type="button" data-n="${nb.id}">${code(nb)}</button> ${nb.name} · ${fmtDist(nd)} Luftlinie, ${walk(nd)}</dd></dl></section>
+   <section class="dsec"><h4>EINSATZAUFTRAG <span class="tn" id="tkN">${done.length}/${x.t.length}</span></h4><ul class="tasks">${x.t.map((t,j)=>`<li><label><input type="checkbox" data-j="${j}"${done.includes(j)?' checked':''}><span>${t}</span></label></li>`).join('')}</ul>
+     <p class="mnote">${MN[c.id]}</p><p class="qnote">${x.q}</p></section>
+  </div>
   <div class="acts"><a class="btn" href="${gm(c.lat,c.lon)}" target="_blank" rel="noopener">KOORDINATEN ÖFFNEN</a><button class="btn sec" type="button" id="secBtn" aria-pressed="${on}">${on?'✓ GESICHERT':'ALS GESICHERT MARKIEREN'}</button></div></div>`;
   document.getElementById('secBtn').onclick=()=>secToggle(id);
+  detail.querySelector('[data-n]').onclick=()=>showCard(nb.id,true);
+  detail.querySelectorAll('.tasks input').forEach(cb=>cb.onchange=()=>{const a=new Set(TK[id]||[]);cb.checked?a.add(+cb.dataset.j):a.delete(+cb.dataset.j);TK[id]=[...a];S.set('tasks',TK);
+    document.getElementById('tkN').textContent=a.size+'/'+x.t.length;if(a.size===x.t.length)toast(`<b>M:</b> Auftrag ${code(c)} erledigt. ${on?'':'Markieren Sie das Ziel als gesichert.'}`)});
+  const svg=detail.querySelector('.bp');
+  document.getElementById('bpTog').onclick=()=>{clearTimeout(bpTimer);if(!svg.classList.contains('draw'))svg.classList.add('draw');const o=!svg.classList.contains('open');svg.classList.toggle('open',o);bpBtn(o)};
+  document.getElementById('bpRe').onclick=()=>bpPlay(false);
+  bpPlay(!!wasOpen);
   if(scroll)detail.scrollIntoView({block:'nearest'})}
 showCard('pupp',false);secSync();
 
