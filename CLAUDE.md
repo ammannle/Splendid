@@ -28,7 +28,16 @@ und anschließend per öffentlichem Link geteilt.
   Defibrillator (Timing), Kontopasswort (Wort-Raten), Gun-Barrel-Easter-Egg per „007“ oder 3× Tipp auf Ms Unterschrift;
   versteckt: Agentenstatus per Klick, geschwärzte Zeile aufdecken, Klick auf „STRENG GEHEIM“, Konsolen-Nachricht)
   laufen als Inline-JavaScript im Browser.
-- `localStorage` wird nur für den Tag/Nacht-Schalter genutzt und ist in try/catch gekapselt.
+- Seit v5 zusätzlich: Abreisedatum im Einsatzplan (Wochentage, Sonnenuntergang per NOAA-Näherung in MEZ,
+  Montags-Warnung Vítkov, 14.11. = 20 Jahre Premiere, Adventsmarkt-Hinweis), Countdown im Casino-Kasten,
+  Uhren LDN/PRG, abhakbare Zielobjekte und Missionsziele, „Befehl quittieren“-Stempel, Modul 07 Feldhandbuch
+  (Tschechisch-Sätze, Wechselstube, Packliste), Lizenzprüfung (Quiz) im Q-Lab (jetzt Modul 08), Druckansicht,
+  Tastatur-Eggs „vesper“, „martini“, „mathis“, Tab-Titel „M wartet.“
+- `localStorage`: Tag/Nacht unter `ops-theme`; v5-Fortschritt (gesicherte Ziele, Missionsziele, Packliste, Datum,
+  Kurs, Quittung) unter Schlüsseln mit Präfix `ops5-`. Alles in try/catch, nur pro Gerät. „Gerät bereinigen“ im
+  Footer löscht die `ops5-`-Schlüssel.
+- Ms Stimme: knapp, trocken, schneidend, siezt, Ironie über Schatzamt/Spesen/Q. Randnotizen stehen in `MN`
+  (Zielobjekte), Feld 5 von `H` (Quartiere), Feld 3 von `B` (Protokoll) und in den Plan-Notizen.
 - Externe Links (Google Maps, Quellen) öffnen in neuem Tab.
 
 ## Design-System (bei Änderungen beibehalten)
@@ -43,4 +52,6 @@ Freigabe: „Anyone with the link“ ist aktiv. Wer die Seite offen hat, sieht n
 
 ## Stand
 - Version 4 (04.10.2026): Promille-Hinweise entfernt, Q-Lab (Modul 07) mit sechs Spielen, versteckte Gags.
-- Offen: Im Infokasten „Casino // Hotel Splendide“ ist seit Entfernen der Promille-Kachel ein Feld frei.
+- Version 5 (04.10.2026): M neu geschrieben (Einsatzbefehl mit Kopie, Aktenzeichen, P.S., Randnotizen überall),
+  Countdown füllt das freie Feld im Casino-Kasten, Datumsplanung, Fortschritt zum Abhaken, Feldhandbuch,
+  Lizenzprüfung, Druckansicht, weitere Eggs. Statusleiste läuft auf keiner Breite mehr über.

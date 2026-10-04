@@ -43,7 +43,9 @@ a:focus-visible,button:focus-visible,.mk:focus-visible{outline:2px solid var(--a
 .sys nav{margin-left:auto;display:flex;gap:16px}
 .sys nav a{color:var(--ink);text-decoration:none;opacity:.75}
 .sys>*,.sys nav a{white-space:nowrap}
-@media (max-width:1000px){.sys .hide-s{display:none}.sys nav{gap:12px}}
+@media (max-width:1240px){.sys .hide-s{display:none}.sys nav{gap:12px}}
+@media (max-width:1060px){.sys{gap:12px}.sys nav{gap:10px}}
+@media (max-width:680px){.sys{gap:10px;padding:10px 16px}.sys .live{font-size:0;gap:0}.sys .live::after{content:"GESICHERT";font-size:.74rem;margin-left:7px}.theme-btn{margin-left:auto;padding:4px 8px}}
 .sys nav a:hover{opacity:1;color:var(--cyan)}
 .theme-btn{background:none;border:1px solid var(--line2);color:var(--ink);font:inherit;padding:4px 10px;border-radius:3px;cursor:pointer}
 
@@ -86,7 +88,7 @@ a:focus-visible,button:focus-visible,.mk:focus-visible{outline:2px solid var(--a
 .wave{grid-column:1/-1;display:grid;grid-template-columns:1fr 2fr;gap:0}
 .wave svg{display:block;width:100%;height:58px}
 .ticker{overflow:hidden;white-space:nowrap;font-family:var(--mono);font-size:.74rem;color:var(--cyan);border-left:1px solid var(--line);display:flex;align-items:center}
-.ticker span{display:inline-block;padding-left:100%;animation:tick 60s linear infinite}
+.ticker span{display:inline-block;padding-left:100%;animation:tick 95s linear infinite}
 @keyframes tick{to{transform:translateX(-100%)}}
 @media (prefers-reduced-motion: reduce){.ticker span{animation:none;padding-left:12px}}
 
@@ -95,6 +97,8 @@ section{margin-top:56px}
 .sh{display:flex;align-items:flex-end;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-bottom:16px;padding-bottom:10px;border-bottom:1px solid var(--line)}
 .sh .ix{font-family:var(--mono);font-size:.72rem;color:var(--amber);letter-spacing:.1em}
 .sh h2{font-family:var(--head);font-weight:600;font-size:clamp(1.8rem,4vw,2.6rem);margin:4px 0 0;text-transform:uppercase;letter-spacing:.03em;line-height:1}
+.sh>div{min-width:0;max-width:100%}
+.sh h2{hyphens:auto;overflow-wrap:break-word}
 .sh p{margin:0;color:var(--mute);max-width:46ch;font-size:.92rem}
 
 /* transmission */
@@ -272,6 +276,96 @@ footer{margin:60px auto 0;padding:18px 20px 40px;max-width:1240px;border-top:1px
 @keyframes glitch{20%{transform:translate(4px,0);filter:hue-rotate(60deg)}40%{transform:translate(-4px,1px)}60%{filter:blur(2px)}80%{transform:translate(2px,-1px)}}
 @media (prefers-reduced-motion: reduce){.glitch .wrap{animation:none}}
 
+/* v5: clocks, countdown, letter */
+.sys .clk{color:var(--cyan);font-variant-numeric:tabular-nums}
+@media (max-width:1320px){.sys .hide-m{display:none}}
+.kv .cd{border-color:var(--green)} .kv .cd b{color:var(--green);font-variant-numeric:tabular-nums}
+.msg .ps{font-size:.84rem;color:var(--mute);margin-top:18px}
+.ack{display:flex;flex-wrap:wrap;align-items:center;gap:16px;margin-top:18px;padding-top:16px;border-top:1px dashed var(--line2)}
+.stamp{display:inline-block;border:3px double var(--red);color:var(--red);font-family:var(--head);font-weight:700;font-size:1.05rem;letter-spacing:.08em;text-transform:uppercase;line-height:1.15;padding:6px 12px;transform:rotate(-4deg);border-radius:3px}
+.stamp small{display:block;font-family:var(--mono);font-weight:500;font-size:.62rem;letter-spacing:.04em}
+.stamp.in{animation:stampIn .35s cubic-bezier(.2,1.6,.4,1)}
+@keyframes stampIn{from{transform:rotate(-14deg) scale(1.8);opacity:0}to{transform:rotate(-4deg) scale(1);opacity:1}}
+.goals li{cursor:pointer;transition:opacity .2s}
+.goals li:hover{background:rgba(143,215,232,.05)}
+.goals em{display:block;font-style:normal;font-family:var(--mono);font-size:.68rem;color:var(--amber);margin-top:4px;opacity:.9}
+.goals em::before{content:"M: ";color:var(--mute)}
+.goals li.done{opacity:.6}
+.goals li.done>span:last-child{text-decoration:line-through;text-decoration-color:var(--green)}
+.goals li.done .g i{color:var(--green)!important}
+.mnote{display:block;margin-top:8px;font-family:var(--mono);font-size:.72rem;line-height:1.45;color:var(--amber)}
+.mnote::before{content:"M: ";color:var(--mute)}
+.ghint{margin:0;padding:8px 14px 12px;border-top:1px solid var(--line);font-family:var(--mono);font-size:.64rem;color:var(--mute)}
+@media (prefers-reduced-motion: reduce){.stamp.in{animation:none}}
+
+/* v5: targets secured, M notes */
+.detail dd.mn{font-family:var(--mono);font-size:.84rem;color:var(--amber)}
+.detail dt.mn{color:var(--amber)}
+.detail .acts{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
+.detail .acts .btn{margin-top:0;background:none;cursor:pointer}
+.btn.sec{border-color:var(--green);color:var(--green)}
+.btn.sec:hover{background:var(--green);color:var(--bg)}
+.btn.sec[aria-pressed="true"]{background:var(--green);color:var(--bg)}
+.tgt .ss{position:absolute;right:8px;top:30px;transform:rotate(8deg);border:2px solid var(--green);color:var(--green);font-family:var(--mono);font-size:.56rem;font-weight:600;letter-spacing:.08em;padding:1px 5px;border-radius:2px;background:color-mix(in srgb,var(--panel) 80%,transparent)}
+.tgt.sec{border-color:color-mix(in srgb,var(--green) 55%,transparent)}
+.tlist li.sec span:nth-child(2)::after{content:" ✓";color:var(--green)}
+
+/* v5: date planner */
+.dpick{display:grid;grid-template-columns:1fr auto auto;gap:10px 12px;align-items:center;padding:12px 16px;margin-top:12px}
+.dpick label b{display:block;font-family:var(--mono);font-size:.7rem;color:var(--amber);letter-spacing:.08em;font-weight:600}
+.dpick label span{font-size:.86rem;color:var(--mute)}
+.dpick input,.fx input,.fxr input{background:var(--bg2);border:1px solid var(--line2);color:var(--ink);border-radius:2px;color-scheme:dark}
+:root[data-theme="light"] .dpick input,:root[data-theme="light"] .fx input,:root[data-theme="light"] .fxr input{color-scheme:light}
+.dpick input{font-family:var(--mono);font-size:.9rem;padding:6px 10px}
+.dpick input:focus-visible,.fx input:focus-visible,.fxr input:focus-visible{outline:2px solid var(--amber);outline-offset:1px}
+.dflags{grid-column:1/-1;display:flex;flex-wrap:wrap;gap:6px}
+.dflags:empty{display:none}
+.flag{font-family:var(--mono);font-size:.68rem;padding:4px 8px;border:1px solid var(--line2);border-radius:2px;color:var(--cyan)}
+.flag.w{border-color:var(--amber);color:var(--amber)} .flag.r{border-color:var(--red);color:var(--red)} .flag.g{border-color:var(--green);color:var(--green)}
+.day .ph .dd{display:flex;flex-direction:column;align-items:flex-end;gap:2px;text-align:right}
+.day .ph .dd b{font-family:var(--mono);color:var(--amber);font-size:.7rem}
+.log li.warn{background:linear-gradient(90deg,color-mix(in srgb,var(--red) 16%,transparent),transparent)}
+.log li.warn time{color:var(--red)}
+.log li.sun time{color:var(--amber)}
+
+/* v5: field manual */
+.phr{list-style:none;margin:0;padding:0}
+.phr button{display:block;width:100%;text-align:left;background:none;border:none;border-bottom:1px solid var(--line);color:var(--ink);font:inherit;padding:8px 0;cursor:pointer}
+.phr li:last-child button{border-bottom:none}
+.phr .cz{display:block;font-family:var(--head);font-weight:600;font-size:1.05rem;line-height:1.25}
+.phr .de{display:block;font-size:.8rem;color:var(--mute)}
+.phr .pr{display:none;font-family:var(--mono);font-size:.74rem;color:var(--cyan);margin-top:2px}
+.phr button[aria-expanded="true"] .pr{display:block}
+.phr button[aria-expanded="true"] .cz{color:var(--cyan)}
+.fx{display:grid;grid-template-columns:1fr auto 1fr;gap:8px;align-items:end}
+.fx label small,.fxr small{display:block;font-family:var(--mono);font-size:.64rem;color:var(--mute);letter-spacing:.06em}
+.fx input{width:100%;font-family:var(--head);font-weight:600;font-size:1.45rem;padding:4px 10px;font-variant-numeric:tabular-nums}
+.fxs{font-family:var(--mono);color:var(--amber);padding-bottom:10px}
+.fxr{display:flex;flex-wrap:wrap;align-items:center;gap:6px}
+.fxr input{width:7ch;font-family:var(--mono);font-size:.82rem;padding:3px 6px}
+.pack{list-style:none;margin:0;padding:0}
+.pack label{display:grid;grid-template-columns:20px 1fr;gap:8px;align-items:start;padding:6px 0;border-bottom:1px solid var(--line);font-size:.88rem;line-height:1.35;cursor:pointer}
+.pack li:last-child label{border-bottom:none}
+.pack input{accent-color:var(--green);width:16px;height:16px;margin:2px 0 0}
+.pack small{display:block;font-family:var(--mono);font-size:.64rem;color:var(--mute)}
+.pack input:checked+span{color:var(--mute);text-decoration:line-through;text-decoration-color:var(--green)}
+
+/* v5: quiz */
+.quiz{margin-top:10px}
+.qzbar{height:4px;background:var(--line);border-radius:2px;overflow:hidden}
+.qzbar i{display:block;height:100%;width:0;background:var(--amber);transition:width .3s}
+.qzq{font-family:var(--head);font-weight:600;font-size:1.3rem!important;line-height:1.25}
+.qzo{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:6px}
+.qzo .qbtn{text-align:left;padding:10px 12px;font-size:.8rem}
+.qzo .qbtn.ok{background:var(--green);border-color:var(--green);color:var(--bg);opacity:1}
+.qzo .qbtn.no{border-color:var(--red);color:var(--red);opacity:1}
+.lic{display:grid;grid-template-columns:auto 1fr;gap:16px;align-items:center;border:1px solid var(--amber);padding:14px 16px;border-radius:2px;background:linear-gradient(90deg,rgba(242,182,94,.12),transparent)}
+.lic .n{font-family:var(--head);font-weight:700;font-size:2.6rem;color:var(--amber);line-height:1}
+.lic b{display:block;font-family:var(--head);font-size:1.2rem;text-transform:uppercase;letter-spacing:.04em}
+.lic small{font-family:var(--mono);font-size:.68rem;color:var(--mute)}
+.fbar{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.fbar span{margin-left:4px}
+
 /* gun barrel */
 .gb{position:fixed;inset:0;z-index:100;background:#000;overflow:hidden;cursor:pointer}
 .gb[hidden]{display:none}
@@ -322,6 +416,21 @@ footer{margin:60px auto 0;padding:18px 20px 40px;max-width:1240px;border-top:1px
   .log li .ref{grid-column:2;justify-self:start}
   .grid{grid-template-columns:repeat(auto-fill,minmax(150px,1fr))}
   .msg{padding:18px}
+  .dpick{grid-template-columns:1fr auto}
+  .dpick label{grid-column:1/-1}
+  .dpick input{width:100%}
+  .day .ph{flex-wrap:wrap}
+  .day .ph .dd{align-items:flex-start;text-align:left}
+}
+@media print{
+  :root,:root[data-theme]{--bg:#fff;--bg2:#fff;--panel:#fff;--panel2:#fff;--ink:#111;--mute:#555;--cyan:#0E6E86;--green:#11895A;--amber:#9A5B00;--red:#B3261E;--line:#ccc;--line2:#999;--mapbg:#fff}
+  body{background:#fff;font-size:11pt}
+  .sys,.gb,.toast,#qlab,.wave,.w-main,.w-list,.fbar,.ack .qbtn,.dpick .qbtn,#detail,.ghint,.mapscroll+.mapinfo{display:none!important}
+  .panel::after{display:none}
+  .panel,section{break-inside:avoid}
+  section{margin-top:24px}
+  .redact{background:#111}
+  .wall{grid-template-columns:1fr 1fr}
 }
 </style>
 </head>
@@ -330,7 +439,8 @@ footer{margin:60px auto 0;padding:18px 20px 40px;max-width:1240px;border-top:1px
   <span class="live">VERBINDUNG GESICHERT</span>
   <button class="cls" type="button" id="clsBtn">STRENG GEHEIM</button>
   <span class="hide-s">MI6 · 00-SEKTION · OPS-ZENTRALE</span>
-  <nav aria-label="Module"><a href="#tx">Befehl</a><a href="#targets">Ziele</a><a href="#maps">Lage</a><a href="#ops">Einsatzplan</a><a href="#assets">Assets</a><a href="#regs">Protokoll</a><a href="#qlab">Q-Lab</a></nav>
+  <span class="hide-m clk" id="clk" aria-label="Ortszeit London und Prag">LDN --:-- · PRG --:--</span>
+  <nav aria-label="Module"><a href="#tx">Befehl</a><a href="#targets">Ziele</a><a href="#maps">Lage</a><a href="#ops">Einsatzplan</a><a href="#assets">Assets</a><a href="#regs">Protokoll</a><a href="#field">Handbuch</a><a href="#qlab">Q-Lab</a></nav>
   <button class="theme-btn" id="themeBtn" type="button">Tag / Nacht</button>
 </div>
 
@@ -345,7 +455,7 @@ footer{margin:60px auto 0;padding:18px 20px 40px;max-width:1240px;border-top:1px
         <li><span class="av">00</span><span>AGENT 04</span><span class="ok">BEREIT</span></li>
       </ul>
       <div class="kv">
-        <div><small>ZIELOBJEKTE</small><b>13</b></div>
+        <div><small>ZIELE GESICHERT</small><b id="secN">0/13</b></div>
         <div><small>EINSATZTAGE</small><b>2–4</b></div>
         <div class="am"><small>NÄCHTE SPLENDIDE</small><b>1</b></div>
         <div><small>FAHRZEUGE</small><b>1</b></div>
@@ -366,11 +476,12 @@ footer{margin:60px auto 0;padding:18px 20px 40px;max-width:1240px;border-top:1px
         <div class="am"><small>QUARTIER</small><b>Pupp</b></div>
         <div class="am"><small>ZIEL 2</small><b>Casino</b></div>
         <div><small>DRESSCODE</small><b>Smoking</b></div>
+        <div class="cd"><small id="cdLbl">COUNTDOWN</small><b id="cdVal">T–</b></div>
       </div>
     </div>
     <div class="panel wave">
       <svg viewBox="0 0 400 58" preserveAspectRatio="none" aria-hidden="true"><path id="wavePath" fill="none" stroke="currentColor" stroke-width="1.4" style="color:var(--green)"/></svg>
-      <div class="ticker"><span>50.1866 N 12.7540 E · LOKET · KONTAKT MATHIS ▸ 50.2262 N 12.8812 E · MÜHLBRUNNKOLONNADE · ANKUNFT MONTENEGRO ▸ 50.2183 N 12.8807 E · GRANDHOTEL PUPP · HOTEL SPLENDIDE ▸ 50.2190 N 12.8838 E · KAISERBAD · CASINO ROYALE ▸ 50.0862 N 14.3894 E · STRAHOV · COMMITTEE ROOM ▸ 50.0923 N 14.4395 E · DANUBE HOUSE · PROLOG ▸ 50.0789 N 14.4307 E · NATIONALMUSEUM · VENEDIG ▸ 50.0805 N 14.4285 E · BUNKER JALTA · ABHÖRZENTRALE</span></div>
+      <div class="ticker"><span>50.1866 N 12.7540 E · LOKET · KONTAKT MATHIS ▸ 50.2262 N 12.8812 E · MÜHLBRUNNKOLONNADE · ANKUNFT MONTENEGRO ▸ 50.2183 N 12.8807 E · GRANDHOTEL PUPP · HOTEL SPLENDIDE ▸ 50.2190 N 12.8838 E · KAISERBAD · CASINO ROYALE ▸ 50.0862 N 14.3894 E · STRAHOV · COMMITTEE ROOM ▸ 50.0923 N 14.4395 E · DANUBE HOUSE · PROLOG ▸ 50.0789 N 14.4307 E · NATIONALMUSEUM · VENEDIG ▸ 50.0805 N 14.4285 E · BUNKER JALTA · ABHÖRZENTRALE ▸ 14.11.2026 · 20 JAHRE WELTPREMIERE CASINO ROYALE ▸ SCHATZAMT MELDET: SPESENRAHMEN UNVERÄNDERT ▸ Q: FAHRZEUG UNBESCHÄDIGT ZURÜCK ▸ BAR: EIN VESPER PRO AGENT ▸ WETTERLAGE WESTBÖHMEN: NOVEMBER, ALSO GRAU</span></div>
     </div>
   </div>
 
@@ -380,23 +491,30 @@ footer{margin:60px auto 0;padding:18px 20px 40px;max-width:1240px;border-top:1px
       <div class="panel">
         <div class="ph"><b>ÜBERTRAGUNG // M</b><span class="st" id="decState">ENTSCHLÜSSELT</span></div>
         <div class="msg">
-          <dl class="meta"><dt>AN</dt><dd>00-Einheit · 4 Agenten</dd><dt>VON</dt><dd>M</dd><dt>BETREFF</dt><dd>Operation Splendide</dd><dt>EINSATZGEBIET</dt><dd>Loket · Karlsbad · Prag</dd><dt>ZEITRAUM</dt><dd>November 2026 · 2–4 Tage</dd></dl>
-          <p data-dec>00-Agenten, ich mache es kurz. Ein erstaunlich großer Teil unserer jüngeren Geschichte wurde nicht dort gedreht, wo er spielt. Montenegro liegt in Westböhmen, Miami in Prag-Karlín, und mein Londoner Sitzungssaal ist eine Klosterbibliothek. Sie fahren hin und sichern alle dreizehn Zielobjekte.</p>
-          <p data-dec>Ihre Unterbringung in Karlsbad ist keine Empfehlung, sondern ein Befehl: Sie beziehen für eine Nacht Quartier im Grandhotel Pupp, dem Hotel Splendide, und erscheinen am Abend im Casino. Angemessen gekleidet, mit gültigem Ausweis.</p>
-          <p data-dec>Q lässt ausrichten, dass das Fahrzeug unbeschädigt zurückkommt.</p>
+          <dl class="meta"><dt>AN</dt><dd>00-Einheit · 4 Agenten</dd><dt>VON</dt><dd>M</dd><dt>KOPIE</dt><dd>Q · Schatzamt (zur Kenntnis, widerwillig)</dd><dt>AKTENZEICHEN</dt><dd>OS-26/CZ · Ablage: Vauxhall Cross, 3. UG</dd><dt>BETREFF</dt><dd>Operation Splendide</dd><dt>EINSATZGEBIET</dt><dd>Loket · Karlsbad · Prag</dd><dt>ZEITRAUM</dt><dd>November 2026 · 2–4 Tage</dd></dl>
+          <p data-dec>00-Agenten,</p>
+          <p data-dec>ich fasse mich kurz. Sie lesen ohnehin nur die Hälfte.</p>
+          <p data-dec>Ein beträchtlicher Teil unserer jüngeren Geschichte wurde nicht dort gedreht, wo er spielt. Montenegro liegt in Westböhmen. Miami liegt in Prag-Karlín. Venedig ist das Treppenhaus eines Museums, und mein Londoner Sitzungssaal ist eine Klosterbibliothek. Ich habe das aus der Zeitung erfahren. Das gefällt mir nicht.</p>
+          <p data-dec>Sie fahren hin. Sie sichern alle dreizehn Zielobjekte, Sie dokumentieren sie, und Sie fassen nichts an, das älter ist als Sie. Das betrifft in Karlsbad nahezu alles.</p>
+          <p data-dec>Die Unterbringung ist keine Empfehlung. Sie beziehen für eine Nacht Quartier im Grandhotel Pupp, dem Hotel Splendide, und erscheinen am Abend im Casino. Im Smoking, mit gültigem Ausweis und mit einem Limit, das Sie vorher festlegen und hinterher nicht neu verhandeln.</p>
+          <p data-dec>Am 14. November ist es zwanzig Jahre her, dass dieser Einsatz in London uraufgeführt wurde. Ich erwarte keine Feierlichkeiten. Ich erwarte Haltung.</p>
+          <p data-dec>Q lässt ausrichten, dass das Fahrzeug unbeschädigt zurückkommt. Ich lasse ausrichten, dass mich das Fahrzeug weniger interessiert als Ihre Spesenabrechnung.</p>
           <p>Über die Spesen sprechen wir, wenn Sie <span class="redact">gewonnen haben</span> zurück sind.</p>
           <div class="sig">M</div>
+          <p class="ps" data-dec>P.S. Ein Vesper. Nicht drei. Die Rechnungen landen auf meinem Schreibtisch.</p>
+          <div class="ack"><button class="qbtn go" type="button" id="ackBtn">BEFEHL QUITTIEREN</button><span class="stamp" id="stamp" hidden></span></div>
         </div>
       </div>
       <div class="panel">
-        <div class="ph"><b>MISSIONSZIELE</b><span>5</span></div>
-        <ul class="goals">
-          <li class="must"><span class="g">ZIEL 01<i>PFLICHT</i></span><span>Eine Nacht im Grandhotel Pupp, Karlsbad.</span></li>
-          <li class="must"><span class="g">ZIEL 02<i>PFLICHT</i></span><span>Einsatz am Spieltisch im Casino des Pupp. Limit vorher festlegen.</span></li>
-          <li><span class="g">ZIEL 03<i>PRIMÄR</i></span><span>Alle zugänglichen Zielobjekte in Loket, Karlsbad und Prag aufsuchen.</span></li>
-          <li><span class="g">ZIEL 04<i>SEKUNDÄR</i></span><span>Abhörzentrale unter dem Hotel Jalta inspizieren.</span></li>
-          <li><span class="g">ZIEL 05<i>SEKUNDÄR</i></span><span>Einen korrekt zubereiteten Vesper bestellen. Einen.</span></li>
+        <div class="ph"><b>MISSIONSZIELE</b><span id="goalN">0/5 ERFÜLLT</span></div>
+        <ul class="goals" id="goals">
+          <li class="must" data-g="1"><span class="g">ZIEL 01<i>PFLICHT</i></span><span>Eine Nacht im Grandhotel Pupp, Karlsbad.<em>Nicht verhandelbar.</em></span></li>
+          <li class="must" data-g="2"><span class="g">ZIEL 02<i>PFLICHT</i></span><span>Einsatz am Spieltisch im Casino des Pupp. Limit vorher festlegen.<em>Das Limit gilt auch nach dem dritten Gewinn.</em></span></li>
+          <li data-g="3"><span class="g">ZIEL 03<i>PRIMÄR</i></span><span>Alle zugänglichen Zielobjekte in Loket, Karlsbad und Prag aufsuchen.<em>Fotos als Nachweis. Keine Selfies vor Ministerien.</em></span></li>
+          <li data-g="4"><span class="g">ZIEL 04<i>SEKUNDÄR</i></span><span>Abhörzentrale unter dem Hotel Jalta inspizieren.<em>Sprechen Sie dort leise. Aus Prinzip.</em></span></li>
+          <li data-g="5"><span class="g">ZIEL 05<i>SEKUNDÄR</i></span><span>Einen korrekt zubereiteten Vesper bestellen. Einen.<em>Siehe P.S.</em></span></li>
         </ul>
+        <p class="ghint">Erfüllte Ziele antippen. Der Stand bleibt auf diesem Gerät gespeichert.</p>
       </div>
     </div>
   </section>
@@ -420,6 +538,12 @@ footer{margin:60px auto 0;padding:18px 20px 40px;max-width:1240px;border-top:1px
   <section id="ops">
     <div class="sh"><div><div class="ix">MODUL 04 // OPERATIONSPLANUNG</div><h2>Einsatzplan</h2></div><div class="tabs" role="tablist" id="planTabs"></div></div>
     <p class="plannote" id="planNote"></p>
+    <div class="panel dpick">
+      <label for="dep"><b>ABREISE TAG 1</b><span>Datum wählen: Wochentage, Sonnenuntergang und Warnungen erscheinen im Plan.</span></label>
+      <input type="date" id="dep" min="2026-11-01" max="2026-11-30">
+      <button class="qbtn" type="button" id="depClr">LEEREN</button>
+      <div class="dflags" id="dflags" aria-live="polite"></div>
+    </div>
     <div id="days"></div>
   </section>
 
@@ -437,8 +561,41 @@ footer{margin:60px auto 0;padding:18px 20px 40px;max-width:1240px;border-top:1px
     <div class="sh"><div><div class="ix">MODUL 06 // DIENSTVORSCHRIFT</div><h2>Einsatzprotokoll</h2></div><p>Vor Abfahrt abzuarbeiten.</p></div>
     <ol class="regs" id="brief"></ol>
   </section>
+
+  <section id="field">
+    <div class="sh"><div><div class="ix">MODUL 07 // FELDHANDBUCH</div><h2>Für unterwegs</h2></div><p>Sprache, Währung, Ausrüstung. Was ein Agent in Böhmen nicht improvisieren sollte.</p></div>
+    <div class="qgrid">
+      <div class="panel qp">
+        <div class="ph"><b>TARNSPRACHE // TSCHECHISCH</b><span>ANTIPPEN = AUSSPRACHE</span></div>
+        <div class="qb">
+          <p>Betont wird immer die erste Silbe. Ř klingt wie ein gerolltes R mit einem Sch dahinter. Üben Sie das nicht am Casino-Einlass.</p>
+          <ul class="phr" id="phr"></ul>
+        </div>
+      </div>
+      <div class="panel qp">
+        <div class="ph"><b>SCHATZAMT // WECHSELSTUBE</b><span>EUR ⇄ CZK</span></div>
+        <div class="qb">
+          <div class="fx">
+            <label><small>EURO</small><input id="fxE" inputmode="decimal" value="100"></label>
+            <span class="fxs" aria-hidden="true">⇄</span>
+            <label><small>KRONEN</small><input id="fxC" inputmode="decimal"></label>
+          </div>
+          <label class="fxr"><small>KURS: 1 € =</small><input id="fxR" inputmode="decimal" value="24,5"><small>CZK · Richtwert, Tageskurs prüfen</small></label>
+          <ul class="gear" id="fxL"></ul>
+          <div class="qout" id="fxOut">Wechselstuben am Wenzelsplatz meiden. Karte oder Bankautomat, und immer in Kronen abrechnen lassen.</div>
+        </div>
+      </div>
+      <div class="panel qp">
+        <div class="ph"><b>AUSRÜSTUNG // PACKLISTE</b><span id="packN">0/12</span></div>
+        <div class="qb">
+          <ul class="pack" id="pack"></ul>
+          <div class="qout" id="packOut">Abhaken, was im Koffer ist. Der Stand bleibt auf diesem Gerät.</div>
+        </div>
+      </div>
+    </div>
+  </section>
   <section id="qlab">
-    <div class="sh"><div><div class="ix">MODUL 07 // Q-ABTEILUNG</div><h2>Trainingsprogramm</h2></div><p>Vorbereitung auf den Einsatz. Gespielt wird mit Übungsgeld des Schatzamts.</p></div>
+    <div class="sh"><div><div class="ix">MODUL 08 // Q-ABTEILUNG</div><h2>Trainingsprogramm</h2></div><p>Vorbereitung auf den Einsatz. Gespielt wird mit Übungsgeld des Schatzamts.</p></div>
     <div class="qgrid">
       <div class="panel qp">
         <div class="ph"><b>SPIELTISCH // TRAINING</b><span class="st" id="rlState">BEREIT</span></div>
@@ -497,11 +654,22 @@ footer{margin:60px auto 0;padding:18px 20px 40px;max-width:1240px;border-top:1px
         </div>
       </div>
     </div>
-    <p class="qhint">Q-HINWEIS: Auf der Tastatur <b>007</b> tippen oder dreimal auf die Unterschrift von M tippen. Auf dieser Seite sind noch weitere Dinge anklickbar, die nicht danach aussehen.</p>
+    <div class="panel qp quiz">
+      <div class="ph"><b>MI6 // LIZENZPRÜFUNG</b><span id="qzState">FRAGE 1/9</span></div>
+      <div class="qb">
+        <div class="qzbar" aria-hidden="true"><i id="qzBar"></i></div>
+        <p class="qzq" id="qzQ"></p>
+        <div class="qzo" id="qzO"></div>
+        <div class="qout" id="qzOut" aria-live="polite">Neun Fragen zum Einsatz von 2006. Wer sieben richtig hat, bekommt die Lizenz.</div>
+        <button class="qbtn go" type="button" id="qzNext" hidden>WEITER</button>
+      </div>
+    </div>
+    <p class="qhint">Q-HINWEIS: Auf der Tastatur <b>007</b> tippen oder dreimal auf die Unterschrift von M tippen. Auf dieser Seite sind noch weitere Dinge anklickbar, die nicht danach aussehen. Manche Wörter darf man auch einfach tippen.</p>
   </section>
 </div>
 
 <footer>
+  <p class="fbar"><button class="qbtn" type="button" id="printBtn">DOSSIER DRUCKEN</button><button class="qbtn" type="button" id="resetBtn">GERÄT BEREINIGEN</button><span>DIESE SEITE ZERSTÖRT SICH NICHT SELBST. FALSCHES FRANCHISE.</span></p>
   <p>RECHERCHESTAND OKTOBER 2026 · ÖFFNUNGSZEITEN IM NOVEMBER VOR ABFAHRT PRÜFEN · FIKTIVER AUFTRAG, INOFFIZIELLER FAN-REISEPLAN OHNE VERBINDUNG ZU EON PRODUCTIONS ODER RECHTEINHABERN</p>
   <p>QUELLEN: <a href="https://www.thejamesbonddossier.com/films/casino-royale/locations.htm" target="_blank" rel="noopener">James Bond Dossier</a> · <a href="https://www.recenzent.org.ua/casino-royale-locations-in-prague/" target="_blank" rel="noopener">Casino Royale Prague locations</a> · <a href="https://bondlocations.com/2019/12/13/casino-royale-locations-gallery" target="_blank" rel="noopener">bondlocations.com</a> · <a href="https://www.reelstreets.com/films/casino-royale-2006/" target="_blank" rel="noopener">Reelstreets</a> · <a href="https://prague.eu/en/objevujte/cold-war-museum-muzeum-studene-valky/" target="_blank" rel="noopener">prague.eu</a> · <a href="https://www.strahovskyklaster.cz/en/for-visitors" target="_blank" rel="noopener">Strahov</a> · <a href="https://www.kudyznudy.cz/aktivity/cisarske-lazne-v-karlovych-varech" target="_blank" rel="noopener">Císařské lázně</a> · <a href="https://edalnice.cz" target="_blank" rel="noopener">edalnice.cz</a></p>
 </footer>
@@ -563,6 +731,21 @@ const L=[
   today:'Nicht öffentlich zugänglich – nur Trivia.',
   tip:'Für die Rückfahrt: Die Route führt in Grenznähe daran vorbei.'}
 ];
+const MN={
+ loket:'Ein Straßencafé ist kein sicherer Ort. Setzen Sie sich trotzdem, der Kaffee ist gut. Rücken zur Wand.',
+ mlyn:'Ein Bahnhof ohne Gleise. Passt zu einer Branche, in der niemand ist, wer er zu sein behauptet.',
+ trziste:'Nutzen Sie den Weg für Ihre Tarngeschichte. „Vier Touristen aus Bayern“ ist keine. Das ist ein Geständnis.',
+ pupp:'Das Haus ist älter als der Geheimdienst. Benehmen Sie sich entsprechend. Die Minibar zahlt das Schatzamt nicht.',
+ kaiserbad:'Die Fassade ist echt, der Spielsaal war Kulisse. Das gilt auch für die meisten Leute an den Spieltischen.',
+ airport:'Zwanzig Minuten, nicht mehr. Hier wird niemand verfolgt, und schon gar nicht über ein Rollfeld.',
+ strahov:'Hier habe ich gesagt, dass ich den Kalten Krieg vermisse. Ich stehe dazu. Fotografieren Sie leise.',
+ danube:'Hier hat alles angefangen. Zwei Ziele, eine Beförderung. Sie bleiben draußen.',
+ ministry:'Ein Ministerium mit Palmen. In Whitehall wäre das nicht genehmigt worden.',
+ museum:'Venedig ohne Wasser. Mir ist das, offen gesagt, lieber.',
+ vitkov:'Montags geschlossen. Sehen Sie in den Kalender, bevor Sie den Berg hinauflaufen.',
+ barrandov:'Hier wurde meine Wohnung gebaut. Sie werden sie nicht betreten. Auch nicht als Kulisse.',
+ plana:'Wer dort hineingeht, braucht hinterher selbst ein Krankenhaus. Fahren Sie weiter.'
+};
 const X=[
  {id:'casino',name:'Casino im Pupp',city:'Karlsbad',lat:50.2179,lon:12.8800,meta:'Hauptziel · im Grandhotel Pupp · laut Verzeichnis abends ab 19 Uhr',txt:'Roulette und Blackjack im Haus, in dem Bond wohnte. Ausweis ist am Einlass Pflicht. Öffnungszeiten beim Check-in bestätigen lassen und Limit vorher festlegen.'},
  {id:'becher',name:'Becher\'s Bar',city:'Karlsbad',lat:50.2186,lon:12.8803,meta:'Im Grandhotel Pupp',txt:'Für den Vesper vor oder nach dem Casino – oder stilecht einen Becherovka, den Kräuterlikör der Stadt.'},
@@ -618,12 +801,12 @@ const D3={n:'Tag 3',t:'Phase Venedig & Kalter Krieg',sub:'Prag → Augsburg',ite
  ['16:00','Abfahrt mit Fotostopp am Barrandov-Studioturm, dann D5 über Pilsen.','barrandov'],
  ['20:30','Ankunft Augsburg, ca. 4,5 h Fahrt. Unterwegs: Planá (Objekt K).','plana']]};
 const plans={
- '2':{label:'2 Tage',note:'Kompakt: die befohlene Nacht im Pupp, Prag als Tagesprogramm mit Heimfahrt am Abend. Vítkov und Bunker fallen weg.',days:[D1,
+ '2':{label:'2 Tage',note:'M: Kompakt. Die Nacht im Pupp bleibt, Prag wird im Laufschritt erledigt, Heimfahrt am Abend. Vítkov und der Bunker entfallen. Ich bedauere das mehr als Sie.',days:[D1,
   {n:'Tag 2',t:'Prag im Schnelldurchlauf',sub:'Karlsbad → Prag → Augsburg',items:[
    ['08:30','Abfahrt Karlsbad über die D6.'],['10:15','Stopp am Terminal 1 („Miami").','airport'],['11:00','Strahov-Bibliothek, danach Mittagessen auf der Kleinseite.','strahov'],
    ['14:00','Nationalmuseum am Wenzelsplatz.','museum'],['16:00','Karlín zur Dämmerung: Ministerium und Danube House.','danube'],['17:00','Heimfahrt, Ankunft gegen 21:30.']]}]},
- '3':{label:'3 Tage',note:'Empfohlen von M: alle zugänglichen Zielobjekte ohne Hetze – eine Nacht im Pupp, eine in Prag.',days:[D1,D2,D3]},
- '4':{label:'4 Tage',note:'Mit Luft: zwei Nächte Prag, ein freier Agententag inklusive Fine Dining und – Ende November – den Adventsmärkten.',days:[D1,D2,
+ '3':{label:'3 Tage',note:'M: Meine Empfehlung, und meine Empfehlungen sind selten Empfehlungen. Alle zugänglichen Zielobjekte ohne Hetze, eine Nacht im Pupp, eine in Prag.',days:[D1,D2,D3]},
+ '4':{label:'4 Tage',note:'M: Mit Luft. Zwei Nächte Prag, Fine Dining und ein freier Tag, Ende November mit Adventsmarkt. Genehmigt, weil Sie ihn sich ohnehin genommen hätten.',days:[D1,D2,
   {n:'Tag 3',t:'Phase Venedig & Kalter Krieg',sub:'Prag · Übernachtung Prag',items:[
    ['10:00','Nationaldenkmal Vítkov (montags zu).','vitkov'],['11:30','Nationalmuseum.','museum'],['13:00','Bunker-Führung unter dem Hotel Jalta.'],
    ['15:30','Schießstand Ranger: 2 Stunden mit Instruktor.'],['20:00','Fine Dining im Smoking – Michelin-Adresse vorab reservieren.']]},
@@ -632,19 +815,21 @@ const plans={
    ['15:00','Fotostopp Barrandov, dann D5 Richtung Heimat.','barrandov'],['19:30','Ankunft Augsburg.']]}]}
 };
 const H=[
- ['Grandhotel Pupp','Karlsbad · 1 Nacht · befohlen','Das echte Hotel Splendide, mit Grandrestaurant, Becher\'s Bar und Casino im Haus. Zwei Zimmer buchen, Tisch im Grandrestaurant gleich mitreservieren. Die Zimmer sind klassisch mit Deckenfresken und Kronleuchtern – bei der Buchung gezielt nach den neuesten, renovierten Kategorien fragen.',1],
- ['Hotel Jalta','Prag, Wenzelsplatz','Spionage zum Übernachten: Der Atombunker mit Abhörzentrale liegt direkt unter dem Haus, das Nationalmuseum zwei Gehminuten entfernt. Vor der Buchung Zimmerfotos und Garage prüfen.'],
- ['Mandarin Oriental Prag','Prag, Kleinseite','Ruhige Luxusadresse in einem ehemaligen Kloster, nah an Strahov und Karlsbrücke. Garage und Zimmerkategorie vorab klären.']];
+ ['Grandhotel Pupp','Karlsbad · 1 Nacht · befohlen','Das echte Hotel Splendide, mit Grandrestaurant, Becher\'s Bar und Casino im Haus. Zwei Zimmer buchen, Tisch im Grandrestaurant gleich mitreservieren. Die Zimmer sind klassisch mit Deckenfresken und Kronleuchtern – bei der Buchung gezielt nach den neuesten, renovierten Kategorien fragen.',1,'Das Zimmer zahlt das Schatzamt. Den Bademantel nicht.'],
+ ['Hotel Jalta','Prag, Wenzelsplatz','Spionage zum Übernachten: Der Atombunker mit Abhörzentrale liegt direkt unter dem Haus, das Nationalmuseum zwei Gehminuten entfernt. Vor der Buchung Zimmerfotos und Garage prüfen.',0,'Ein Hotel, das seine Gäste jahrzehntelang abgehört hat. Fühlen Sie sich wie zu Hause.'],
+ ['Mandarin Oriental Prag','Prag, Kleinseite','Ruhige Luxusadresse in einem ehemaligen Kloster, nah an Strahov und Karlsbrücke. Garage und Zimmerkategorie vorab klären.',0,'Ein ehemaliges Kloster. Vielleicht färbt etwas ab.']];
 const B=[
- ['E-Vignette','Für tschechische Autobahnen, an das Kennzeichen gebunden. 10 Tage kosten 2026 300 CZK. Nur über edalnice.cz kaufen, Kennzeichen doppelt prüfen.'],
- ['Winterreifen','Von 1. November bis 31. März bei winterlichen Straßenverhältnissen Pflicht. Abblendlicht auch tagsüber.'],
- ['Parken in Prag','Blaue Zonen sind Anwohnern vorbehalten. Hotelgarage buchen und das Auto bis zur Abreise stehen lassen.'],
- ['Ausweise','Für das Casino zwingend, auch für den Bunker und Hotels sinnvoll.'],
- ['Dunkelheit','Im November geht die Sonne gegen 16:15 Uhr unter. Innenräume tagsüber, Danube House und Kolonnaden bewusst abends.'],
- ['Reservieren','Kaiserbad-Führung, Strahov-Innenführung, Bunker-Tour (max. 7 Personen), Grandrestaurant Pupp, Hemingway Bar.'],
- ['Montag meiden','Vítkov ist montags geschlossen – den Prag-Tag möglichst auf Dienstag bis Sonntag legen.']];
+ ['E-Vignette','Für tschechische Autobahnen, an das Kennzeichen gebunden. 10 Tage kosten 2026 300 CZK. Nur über edalnice.cz kaufen, Kennzeichen doppelt prüfen.','Bußgelder aus dem Ausland erstattet das Schatzamt nicht. Ich habe nachgefragt.'],
+ ['Winterreifen','Von 1. November bis 31. März bei winterlichen Straßenverhältnissen Pflicht. Abblendlicht auch tagsüber. Warnweste, Warndreieck und Verbandkasten gehören in Tschechien ins Auto.','Ich habe Sie nicht ausbilden lassen, damit Sie in einem böhmischen Graben enden.'],
+ ['Parken in Prag','Blaue Zonen sind Anwohnern vorbehalten. Hotelgarage buchen und das Auto bis zur Abreise stehen lassen.','Q will den Wagen mit vier Rädern zurück. Er hat sie gezählt.'],
+ ['Ausweise','Für das Casino zwingend, auch für den Bunker und Hotels sinnvoll.','Ohne Ausweis sind Sie niemand. In unserem Beruf ein Vorteil, am Casino-Einlass nicht.'],
+ ['Dunkelheit','Im November geht die Sonne zwischen 16:45 und 16:05 Uhr unter, je nach Datum. Innenräume tagsüber, Danube House und Kolonnaden bewusst abends. Genaue Zeiten zeigt der Einsatzplan nach Datumswahl.','Sie arbeiten ohnehin lieber im Dunkeln.'],
+ ['Reservieren','Kaiserbad-Führung, Strahov-Innenführung, Bunker-Tour (max. 7 Personen), Grandrestaurant Pupp, Hemingway Bar.','Improvisation ist etwas für Leute ohne Termine.'],
+ ['Montag meiden','Vítkov ist montags geschlossen – den Prag-Tag möglichst auf Dienstag bis Sonntag legen.','Auch Denkmäler haben einen Ruhetag. Sie nicht.']];
 const root=document.documentElement;
 const RM=matchMedia('(prefers-reduced-motion: reduce)').matches;
+const S={get(k,d){try{const v=localStorage.getItem('ops5-'+k);return v===null?d:JSON.parse(v)}catch(e){return d}},set(k,v){try{localStorage.setItem('ops5-'+k,JSON.stringify(v))}catch(e){}}};
+const SEC=new Set(S.get('sec',[]));
 try{const t=localStorage.getItem('ops-theme');if(t)root.setAttribute('data-theme',t)}catch(e){}
 document.getElementById('themeBtn').onclick=()=>{const cur=root.getAttribute('data-theme')||'dark';const n=cur==='light'?'dark':'light';root.setAttribute('data-theme',n);try{localStorage.setItem('ops-theme',n)}catch(e){}};
 const ST={barrandov:['GESPERRT','s-no'],plana:['KEIN ZUGANG','s-no'],danube:['NUR AUSSEN','s-out'],ministry:['NUR AUSSEN','s-out']};
@@ -659,16 +844,23 @@ document.querySelectorAll('#tlist li').forEach(li=>{const go=()=>{showCard(li.da
 /* deck */
 const deck=document.getElementById('deck'),detail=document.getElementById('detail');
 L.forEach((c,i)=>{const[s,k]=st(c.id);const b=document.createElement('button');b.type='button';b.className='tgt';b.dataset.id=c.id;b.setAttribute('aria-pressed','false');
-  b.innerHTML=`<span class="top"><b>${code(c)}</b><span>${String(i+1).padStart(2,'0')}/13</span></span>${reticle(c)}<span class="nm">${c.name}</span><span class="cv">Deckname: ${c.as}</span><span class="stt ${k}">● ${s} · ${c.city.toUpperCase()}</span>`;
+  b.innerHTML=`<span class="top"><b>${code(c)}</b><span>${String(i+1).padStart(2,'0')}/13</span></span>${reticle(c)}<span class="ss" hidden>GESICHERT</span><span class="nm">${c.name}</span><span class="cv">Deckname: ${c.as}</span><span class="stt ${k}">● ${s} · ${c.city.toUpperCase()}</span>`;
   b.onclick=()=>showCard(c.id,true);deck.appendChild(b)});
-function showCard(id,scroll){const c=L.find(x=>x.id===id);if(!c)return;const[s,k]=st(c.id);
+const SECMSG=['<b>M:</b> Das erste. Fehlen noch zwölf.','<b>M:</b> Halbzeit. Ich bin nicht beeindruckt, aber aufmerksam.','<b>M:</b> Alle dreizehn. Gut. Ich hatte nichts anderes erwartet. Doch, hatte ich.'];
+function secSync(){const n=SEC.size;document.getElementById('secN').textContent=n+'/13';
+  deck.querySelectorAll('.tgt').forEach(p=>{const on=SEC.has(p.dataset.id);p.classList.toggle('sec',on);p.querySelector('.ss').hidden=!on});
+  document.querySelectorAll('#tlist li').forEach(li=>li.classList.toggle('sec',SEC.has(li.dataset.id)))}
+function secToggle(id){if(SEC.has(id))SEC.delete(id);else{SEC.add(id);const n=SEC.size;if(n===1)toast(SECMSG[0]);else if(n===7)toast(SECMSG[1]);else if(n===13)toast(SECMSG[2])}
+  S.set('sec',[...SEC]);secSync();showCard(id,false)}
+function showCard(id,scroll){const c=L.find(x=>x.id===id);if(!c)return;const[s,k]=st(c.id);const on=SEC.has(id);
   deck.querySelectorAll('.tgt').forEach(p=>p.setAttribute('aria-pressed',p.dataset.id===id?'true':'false'));
-  detail.innerHTML=`<div class="scan">${reticle(c,true)}<div>${code(c)}<br>${c.lat.toFixed(4)} N<br>${c.lon.toFixed(4)} E<br><span class="${k}">● ${s}</span></div></div>
+  detail.innerHTML=`<div class="scan">${reticle(c,true)}<div>${code(c)}<br>${c.lat.toFixed(4)} N<br>${c.lon.toFixed(4)} E<br><span class="${k}">● ${s}</span>${on?'<br><span class="s-ok">✓ GESICHERT</span>':''}</div></div>
   <div class="bd"><h3>${c.name}</h3><div class="cov">DECKNAME IM FILM // ${c.as}</div>
-  <dl><dt>SZENE</dt><dd>${c.scene}</dd><dt>LAGE HEUTE</dt><dd>${c.today}</dd><dt>HINWEIS</dt><dd>${c.tip}</dd></dl>
-  <a class="btn" href="${gm(c.lat,c.lon)}" target="_blank" rel="noopener">KOORDINATEN ÖFFNEN</a></div>`;
+  <dl><dt>SZENE</dt><dd>${c.scene}</dd><dt>LAGE HEUTE</dt><dd>${c.today}</dd><dt>HINWEIS</dt><dd>${c.tip}</dd><dt class="mn">M</dt><dd class="mn">${MN[c.id]}</dd></dl>
+  <div class="acts"><a class="btn" href="${gm(c.lat,c.lon)}" target="_blank" rel="noopener">KOORDINATEN ÖFFNEN</a><button class="btn sec" type="button" id="secBtn" aria-pressed="${on}">${on?'✓ GESICHERT':'ALS GESICHERT MARKIEREN'}</button></div></div>`;
+  document.getElementById('secBtn').onclick=()=>secToggle(id);
   if(scroll)detail.scrollIntoView({block:'nearest'})}
-showCard('pupp',false);
+showCard('pupp',false);secSync();
 
 /* maps */
 function mk(svgEl){return function(t,a,p){const e=document.createElementNS(NS,t);for(const k in a)e.setAttribute(k,a[k]);(p||svgEl).appendChild(e);return e}}
@@ -752,19 +944,46 @@ draw(document.getElementById('heroMap'),'route',{hero:true});
 /* plans */
 const pt=document.getElementById('planTabs'),days=document.getElementById('days'),note=document.getElementById('planNote');
 const KEY=/Pupp|Casino|Kaiserbad|Bunker|Abhör/;
-function plan(k){const p=plans[k];note.textContent=p.note;days.innerHTML='';
-  p.days.forEach(d=>{const div=document.createElement('div');div.className='panel day';
-    div.innerHTML=`<div class="ph"><h3>${d.n} // ${d.t}</h3><span>${d.sub}</span></div><ol class="log">${d.items.map(([t,x,r])=>{const c=r&&L.find(y=>y.id===r);return `<li class="${KEY.test(x)?'key':''}"><time>${t}</time><span>${x}</span>${c?`<button class="ref" type="button" data-r="${r}">${code(c)}</button>`:'<span></span>'}</li>`}).join('')}</ol>`;
+/* sunset (NOAA-Näherung), Ergebnis in MEZ – im November gilt keine Sommerzeit */
+const rad=Math.PI/180;
+function sunset(dt,lat,lon){const y=dt.getFullYear(),m=dt.getMonth()+1,d=dt.getDate();
+  const N=Math.floor(275*m/9)-Math.floor((m+9)/12)*(1+Math.floor((y-4*Math.floor(y/4)+2)/3))+d-30;
+  const lh=lon/15,t=N+(18-lh)/24,M=.9856*t-3.289;const Ls=(M+1.916*Math.sin(M*rad)+.02*Math.sin(2*M*rad)+282.634+360)%360;
+  let RA=(Math.atan(.91764*Math.tan(Ls*rad))/rad+360)%360;RA=(RA+Math.floor(Ls/90)*90-Math.floor(RA/90)*90)/15;
+  const sd=.39782*Math.sin(Ls*rad),cd=Math.cos(Math.asin(sd));const H=Math.acos((Math.cos(90.833*rad)-sd*Math.sin(lat*rad))/(cd*Math.cos(lat*rad)))/rad/15;
+  const h=((H+RA-.06571*t-6.622-lh)%24+24)%24+1,mi=Math.round(h%1*60);
+  return String(Math.floor(h)+(mi===60?1:0)).padStart(2,'0')+':'+String(mi%60).padStart(2,'0')}
+const DOW=['SO','MO','DI','MI','DO','FR','SA'],DOWL=['Sonntag','Montag','Dienstag','Mittwoch','Donnerstag','Freitag','Samstag'];
+const ddmm=d=>String(d.getDate()).padStart(2,'0')+'.'+String(d.getMonth()+1).padStart(2,'0')+'.';
+let dep=S.get('dep',''),curPlan='3';
+const dayDate=i=>{if(!dep)return null;const d=new Date(dep+'T12:00:00');d.setDate(d.getDate()+i);return d};
+function plan(k){curPlan=k;const p=plans[k];note.textContent=p.note;days.innerHTML='';const flags=[];
+  p.days.forEach((d,i)=>{const dt=dayDate(i);let items=d.items.slice();let ss='';
+    if(dt){const kv=i===0;ss=sunset(dt,kv?50.2306:50.0755,kv?12.8711:14.4378);
+      const last=i===p.days.length-1&&i>0;
+      if(!last){const at=items.findIndex(([t])=>/^\d\d:\d\d$/.test(t)&&t>ss);const row=[ss,kv?'Sonnenuntergang in Karlsbad. Ab jetzt leuchten Kolonnaden und Kaiserbad wie im Film.':'Sonnenuntergang in Prag. Karlín und die Moldau gehören jetzt Ihnen.',null,'sun'];
+        if(at<0)items.splice(items.length-(items[items.length-1][0]==='Nacht'?1:0),0,row);else items.splice(at,0,row)}
+      if(dt.getDay()===1&&d.items.some(x=>x[2]==='vitkov')){items.unshift(['!!','Montag: Vítkov ist geschlossen. M: Tauschen Sie Tag oder Reihenfolge. Das Denkmal tut es nicht.',null,'warn']);flags.push(['r',`${d.n} ist ein Montag – Vítkov geschlossen`])}
+      if(dt.getDate()===14&&dt.getMonth()===10){items.unshift(['★','Heute vor zwanzig Jahren: Weltpremiere von Casino Royale in London. M: Ein Glas. Eins.',null,'key']);flags.push(['g',`${d.n} fällt auf den 14.11. – 20 Jahre Casino Royale`])}
+      if((dt.getMonth()===11||(dt.getMonth()===10&&dt.getDate()>=28))&&i>0)flags.push(['w',`${d.n}: Adventsmärkte in Prag voraussichtlich geöffnet`])}
+    const div=document.createElement('div');div.className='panel day';
+    div.innerHTML=`<div class="ph"><h3>${d.n} // ${d.t}</h3><span class="dd"><span>${d.sub}</span>${dt?`<b>${DOW[dt.getDay()]} ${ddmm(dt)} · SONNENUNTERGANG ${ss}</b>`:''}</span></div><ol class="log">${items.map(([t,x,r,cl])=>{const c=r&&L.find(y=>y.id===r);return `<li class="${cl||(KEY.test(x)?'key':'')}"><time>${t}</time><span>${x}</span>${c?`<button class="ref" type="button" data-r="${r}">${code(c)}</button>`:'<span></span>'}</li>`}).join('')}</ol>`;
     days.appendChild(div)});
+  const df=document.getElementById('dflags');
+  if(dep){const a=dayDate(0),b=dayDate(p.days.length-1);df.innerHTML=[['',`${DOWL[a.getDay()]} ${ddmm(a)} bis ${DOWL[b.getDay()]} ${ddmm(b)}`]].concat(flags.length?flags:[['g','Keine Konflikte. M: Selten.']]).map(([c,t])=>`<span class="flag ${c}">${t}</span>`).join('')}
+  else df.innerHTML='';
   days.querySelectorAll('.ref').forEach(b=>b.onclick=()=>{showCard(b.dataset.r,false);document.getElementById('targets').scrollIntoView()});
   pt.querySelectorAll('.tbtn').forEach(b=>b.setAttribute('aria-selected',b.dataset.k===k?'true':'false'))}
+const depIn=document.getElementById('dep');depIn.value=dep;
+depIn.addEventListener('change',()=>{dep=/^2026-11-\d\d$/.test(depIn.value)?depIn.value:'';if(depIn.value&&!dep)toast('<b>M:</b> November 2026. Nicht verhandelbar.');S.set('dep',dep);plan(curPlan);countdown()});
+document.getElementById('depClr').onclick=()=>{dep='';depIn.value='';S.set('dep','');plan(curPlan);countdown()};
 [['2','2 TAGE'],['3','3 TAGE'],['4','4 TAGE']].forEach(([k,l])=>{const b=document.createElement('button');b.className='tbtn';b.type='button';b.setAttribute('role','tab');b.dataset.k=k;b.textContent=l;b.onclick=()=>plan(k);pt.appendChild(b)});
 plan('3');
 
 /* assets, regs */
-document.getElementById('hotelList').innerHTML=H.map(h=>`<div class="panel asset${h[3]?' must':''}"><div class="tag">${h[3]?'QUARTIER // BEFOHLEN':'QUARTIER // OPTION'}</div><h3>${h[0]}</h3><div class="meta">${h[1]}</div><p>${h[2]}</p></div>`).join('');
+document.getElementById('hotelList').innerHTML=H.map(h=>`<div class="panel asset${h[3]?' must':''}"><div class="tag">${h[3]?'QUARTIER // BEFOHLEN':'QUARTIER // OPTION'}</div><h3>${h[0]}</h3><div class="meta">${h[1]}</div><p>${h[2]}</p><span class="mnote">${h[4]}</span></div>`).join('');
 document.getElementById('extras').innerHTML=X.map(e=>`<div class="panel asset${e.id==='casino'?' must':''}"><div class="tag">${e.id==='casino'?'ASSET // ZIEL 02':'ASSET'}</div><h3>${e.name}</h3><div class="meta">${e.city} · ${e.meta}</div><p>${e.txt}</p><a href="${gm(e.lat,e.lon)}" target="_blank" rel="noopener">KOORDINATEN ÖFFNEN</a></div>`).join('');
-document.getElementById('brief').innerHTML=B.map((b,i)=>`<li class="panel"><span class="n">PROTOKOLL ${String(i+1).padStart(2,'0')}</span><strong>${b[0]}</strong><p>${b[1]}</p></li>`).join('');
+document.getElementById('brief').innerHTML=B.map((b,i)=>`<li class="panel"><span class="n">PROTOKOLL ${String(i+1).padStart(2,'0')}</span><strong>${b[0]}</strong><p>${b[1]}</p><span class="mnote">${b[2]}</span></li>`).join('');
 /* q-lab: roulette */
 const eur=n=>n.toLocaleString('de-DE')+' €';
 const REDS=new Set([1,3,5,7,9,12,14,16,18,19,21,23,25,27,30,32,34,36]);
@@ -875,7 +1094,105 @@ red.onclick=unred;red.onkeydown=e=>{if(e.key==='Enter'){unred()}};
 let clsN=0;
 document.getElementById('clsBtn').onclick=()=>{clsN++;document.body.classList.remove('glitch');void document.body.offsetWidth;document.body.classList.add('glitch');setTimeout(()=>document.body.classList.remove('glitch'),700);
   toast(['<b>ZUGRIFF VERWEIGERT.</b> Ihre Freigabestufe reicht nicht aus.','<b>WARNUNG.</b> Der Vorfall wurde an M gemeldet.','<b>LETZTE WARNUNG.</b> Q hat Ihren Kugelschreiber deaktiviert.','<b>NA GUT.</b> Freigabe 00 erteilt. Tippen Sie 007.'][Math.min(clsN-1,3)])};
-console.log('%cMI6 // OPS-ZENTRALE','color:#F2B65E;font:600 14px monospace','\nSie lesen den Quelltext. Q ist beeindruckt. Tippen Sie 007.');
+console.log('%cMI6 // OPS-ZENTRALE','color:#F2B65E;font:600 14px monospace','\nSie lesen den Quelltext. Q ist beeindruckt. M weniger.\nTippen Sie 007. Oder vesper, martini, mathis.');
+
+/* mission goals */
+const GD=new Set(S.get('goals',[]));const goalN=document.getElementById('goalN');
+function goalSync(){document.querySelectorAll('#goals li').forEach(li=>{const i=li.querySelector('.g i');if(!i.dataset.o)i.dataset.o=i.textContent;const on=GD.has(li.dataset.g);li.classList.toggle('done',on);li.setAttribute('aria-pressed',on);i.textContent=on?'ERFÜLLT':i.dataset.o});goalN.textContent=GD.size+'/5 ERFÜLLT'}
+document.querySelectorAll('#goals li').forEach(li=>{li.tabIndex=0;li.setAttribute('role','button');
+  const go=()=>{const g=li.dataset.g;if(GD.has(g))GD.delete(g);else{GD.add(g);if(g==='5')toast('<b>M:</b> Einer. Ich zähle mit.');if(GD.size===5)toast('<b>M:</b> Alle Ziele erfüllt. Schreiben Sie keinen Bericht. Ich will Fotos.')}S.set('goals',[...GD]);goalSync()};
+  li.onclick=go;li.onkeydown=e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();go()}}});
+goalSync();
+
+/* acknowledge order */
+const ackBtn=document.getElementById('ackBtn'),stamp=document.getElementById('stamp');
+function ackShow(ts,anim){const d=new Date(ts);stamp.innerHTML=`Quittiert<small>${ddmm(d)}${d.getFullYear()} · ${String(d.getHours()).padStart(2,'0')}:${String(d.getMinutes()).padStart(2,'0')} · 00-EINHEIT</small>`;stamp.hidden=false;ackBtn.hidden=true;if(anim){stamp.classList.remove('in');void stamp.offsetWidth;stamp.classList.add('in')}}
+ackBtn.onclick=()=>{const ts=Date.now();S.set('ack',ts);ackShow(ts,true);toast('<b>M:</b> Gut. Und jetzt hören Sie auf zu lesen und fangen an zu packen.')};
+stamp.onclick=()=>toast('<b>M:</b> Quittiert ist quittiert. Ein Rücktritt vom Befehl ist nicht vorgesehen.');
+{const a=S.get('ack',0);if(a)ackShow(a,false)}
+
+/* countdown */
+function countdown(){const v=document.getElementById('cdVal'),l=document.getElementById('cdLbl');
+  const now=new Date();now.setHours(0,0,0,0);const tgt=new Date((dep||'2026-11-01')+'T00:00:00');const n=Math.round((tgt-now)/864e5);
+  l.textContent=dep?'BIS ABREISE':'BIS NOVEMBER';
+  if(n>0)v.textContent='T–'+n;else if(n===0)v.textContent='HEUTE';else if(dep&&n>-4)v.textContent='LÄUFT';else if(!dep&&now<new Date('2026-12-01T00:00:00'))v.textContent='JETZT';else v.textContent='ERFÜLLT'}
+countdown();
+
+/* clocks */
+const clk=document.getElementById('clk');
+function tick(){try{const f=tz=>new Date().toLocaleTimeString('de-DE',{timeZone:tz,hour:'2-digit',minute:'2-digit'});clk.textContent=`LDN ${f('Europe/London')} · PRG ${f('Europe/Prague')}`}catch(e){clk.hidden=true}}
+tick();setInterval(tick,15000);
+
+/* field manual: phrases */
+const PH=[
+ ['Dobrý den.','Guten Tag. Funktioniert von morgens bis abends.','DOB-rie den'],
+ ['Děkuji.','Danke.','DJE-ku-ji'],
+ ['Prosím.','Bitte. Auch: Wie bitte? Und: Hier, bitte.','PRO-siem'],
+ ['Na zdraví!','Prost. Dabei in die Augen sehen, sonst gilt es nicht.','NA-sdra-wie'],
+ ['Jmenuji se Bond.','Mein Name ist Bond. Nur im Notfall.','JME-nu-ji se bond'],
+ ['Jedno martini. Protřepané, ne míchané.','Einen Martini. Geschüttelt, nicht gerührt.','JED-no MAR-ti-ni · PRO-trsche-pa-ne, NE-mie-cha-ne'],
+ ['Kde je kasino?','Wo ist das Casino?','GDE je KA-si-no'],
+ ['Účet, prosím.','Die Rechnung, bitte. Das Schatzamt dankt.','UU-tschet, PRO-siem'],
+ ['Mluvíte německy?','Sprechen Sie Deutsch?','MLU-wie-te NJE-mets-ki']];
+document.getElementById('phr').innerHTML=PH.map(([c,d,p])=>`<li><button type="button" aria-expanded="false"><span class="cz">${c}</span><span class="de">${d}</span><span class="pr">▸ ${p}</span></button></li>`).join('');
+document.querySelectorAll('#phr button').forEach(b=>b.onclick=()=>b.setAttribute('aria-expanded',b.getAttribute('aria-expanded')==='true'?'false':'true'));
+
+/* field manual: exchange */
+const fxE=document.getElementById('fxE'),fxC=document.getElementById('fxC'),fxR=document.getElementById('fxR'),fxL=document.getElementById('fxL');
+const num=s=>parseFloat(String(s).replace(/\s/g,'').replace(/\./g,'').replace(',','.'));
+const fmt=(n,d)=>isFinite(n)?n.toLocaleString('de-DE',{maximumFractionDigits:d,minimumFractionDigits:d}):'';
+const FXL=[['E-Vignette, 10 Tage',300],['Bunker-Führung, pro Kopf',250],['Becherovka an der Bar, ca.',150],['Startkapital im Q-Lab',0]];
+fxR.value=S.get('fx','24,5');
+function fxList(){const r=num(fxR.value);fxL.innerHTML=FXL.map(([t,c],i)=>`<li><span>${i===3?'ROULETTE':fmt(c,0)+' CZK'}</span><span>${t}: ${i===3?'10.000.000 € entsprechen '+fmt(10000000*r,0)+' CZK. Das Schatzamt rechnet lieber nicht nach.':'≈ '+fmt(c/r,2)+' €'}</span></li>`).join('')}
+fxE.oninput=()=>{fxC.value=fmt(num(fxE.value)*num(fxR.value),0)};
+fxC.oninput=()=>{fxE.value=fmt(num(fxC.value)/num(fxR.value),2)};
+fxR.oninput=()=>{S.set('fx',fxR.value);fxE.oninput();fxList()};
+fxE.oninput();fxList();
+
+/* field manual: packing list */
+const PK=[['Personalausweis oder Reisepass','Casino, Hotel, Bunker'],['Smoking oder dunkler Anzug','Dresscode Casino und Grandrestaurant'],['Fliege, Einstecktuch, polierte Schuhe','Haltung beginnt unten'],['Führerschein und Fahrzeugschein',''],['E-Vignette gekauft','edalnice.cz, Kennzeichen geprüft'],['Winterreifen montiert','Pflicht bei Winterwetter'],['Warnweste, Warndreieck, Verbandkasten','in Tschechien vorgeschrieben'],['Tschechische Kronen oder Karte','Bargeld für Trinkgeld'],['Reservierungsbestätigungen','Pupp, Kaiserbad, Strahov, Bunker'],['Casino-Limit festgelegt','schriftlich, vor der Abfahrt'],['Ladekabel und Powerbank','Q liefert keine Ersatzakkus'],['Warme Jacke','November in Westböhmen']];
+const PKD=new Set(S.get('pack',[]));const packEl=document.getElementById('pack'),packN=document.getElementById('packN'),packOut=document.getElementById('packOut');
+packEl.innerHTML=PK.map(([t,s],i)=>`<li><label><input type="checkbox" data-i="${i}"${PKD.has(i)?' checked':''}><span>${t}${s?`<small>${s}</small>`:''}</span></label></li>`).join('');
+function packSync(){packN.textContent=PKD.size+'/'+PK.length;packOut.className='qout'+(PKD.size===PK.length?' win':'');packOut.textContent=PKD.size===PK.length?'Vollständig. M: Dann fahren Sie endlich.':PKD.size?`Noch ${PK.length-PKD.size} Punkte offen.`:'Abhaken, was im Koffer ist. Der Stand bleibt auf diesem Gerät.'}
+packEl.addEventListener('change',e=>{const i=+e.target.dataset.i;if(e.target.checked)PKD.add(i);else PKD.delete(i);S.set('pack',[...PKD]);packSync()});
+packSync();
+
+/* q-lab: licence exam */
+const QZ=[
+ ['Welches Auto gewinnt Bond auf den Bahamas beim Poker?',['Aston Martin DB5','Aston Martin DBS','BMW Z3','Lotus Esprit'],0,'Den DB5 von 1964, gewonnen von Dimitrios. Q hat ihn nie zurückbekommen.'],
+ ['Wie hoch ist der Einsatz pro Spieler im Casino Royale?',['1 Million Dollar','10 Millionen Dollar','25 Millionen Euro','5 Millionen Pfund'],1,'Zehn Millionen, dazu fünf für den Rebuy. Das Schatzamt erinnert sich ungern.'],
+ ['Womit wird Bond am Spieltisch vergiftet?',['Arsen','Zyankali','Digitalis','Polonium'],2,'Digitalis im Martini. Daher der Defibrillator im Handschuhfach.'],
+ ['Welche Stadt spielt im Film Montenegro?',['Prag','Pilsen','Marienbad','Karlsbad'],3,'Karlsbad. Montenegro hat das bis heute nicht kommentiert.'],
+ ['Welches Passwort wählt Bond für das Konto?',['VESPER','ROYALE','MATHIS','SPLENDIDE'],0,'Vesper. M hätte ein sichereres gewählt.'],
+ ['Mit welcher Hand gewinnt Bond das Finale?',['Royal Flush','Straight Flush','Vierling','Full House'],1,'Straight Flush in Pik. Le Chiffre hatte ein Full House, das reichte nicht.'],
+ ['Wen stellt Bond im Schwarzweiß-Prolog in Prag?',['Dimitrios','Mr. White','Dryden','Le Chiffre'],2,'Dryden, Sektionschef in Prag. Gedreht im Danube House, Objekt 8♣.'],
+ ['In welcher Stadt endet die Geschichte mit Vesper?',['Venedig','Monte Carlo','London','Miami'],0,'Venedig. Die Hotellobby steht in Prag, Objekt 10♦.'],
+ ['Wann war die Weltpremiere in London?',['23. November 2006','14. November 2006','1. Mai 2006','14. November 2008'],1,'Am 14. November 2006. Der 23. war der deutsche Kinostart. Im November 2026 sind es zwanzig Jahre.']];
+let qzI=0,qzS=0,qzOrder=[];
+const qzQ=document.getElementById('qzQ'),qzO=document.getElementById('qzO'),qzOut=document.getElementById('qzOut'),qzNext=document.getElementById('qzNext'),qzState=document.getElementById('qzState'),qzBar=document.getElementById('qzBar');
+function qzStart(){qzI=0;qzS=0;qzOrder=QZ.map((_,i)=>i).sort(()=>Math.random()-.5);qzNext.textContent='WEITER';qzShow()}
+function qzShow(){const[q,o]=QZ[qzOrder[qzI]];qzState.textContent=`FRAGE ${qzI+1}/${QZ.length}`;qzBar.style.width=(qzI/QZ.length*100)+'%';qzQ.textContent=q;qzNext.hidden=true;qzOut.className='qout';qzOut.textContent=qzI?`Richtig bisher: ${qzS}`:'Neun Fragen zum Einsatz von 2006. Wer sieben richtig hat, bekommt die Lizenz.';
+  qzO.innerHTML=o.map((t,i)=>`<button class="qbtn" type="button" data-i="${i}">${String.fromCharCode(65+i)} · ${t}</button>`).join('');
+  qzO.querySelectorAll('.qbtn').forEach(b=>b.onclick=()=>qzPick(+b.dataset.i))}
+function qzPick(i){const[,,a,why]=QZ[qzOrder[qzI]];const ok=i===a;if(ok)qzS++;
+  qzO.querySelectorAll('.qbtn').forEach(b=>{b.disabled=true;const j=+b.dataset.i;if(j===a)b.classList.add('ok');else if(j===i)b.classList.add('no')});
+  qzOut.className='qout '+(ok?'win':'lose');qzOut.textContent=(ok?'Richtig. ':'Falsch. ')+'M: '+why;
+  qzNext.hidden=false;qzNext.textContent=qzI===QZ.length-1?'AUSWERTUNG':'WEITER';qzNext.focus({preventScroll:true})}
+function qzEnd(){qzBar.style.width='100%';const pass=qzS>=7;qzState.textContent=pass?'LIZENZ ERTEILT':'DURCHGEFALLEN';qzQ.textContent='';
+  qzO.innerHTML=`<div class="lic"><span class="n">${qzS}/9</span><div><b>${pass?(qzS===9?'Lizenz zum Töten, mit Auszeichnung':'Lizenz zum Töten erteilt'):'Lizenz verweigert'}</b><small>${pass?(qzS===9?'M: Fehlerfrei. Das macht mich misstrauisch.':'M: Bestanden. Feiern Sie das nicht im Casino.'):'M: Sehen Sie sich den Film noch einmal an. Auf eigene Kosten.'}</small></div></div>`;
+  qzOut.className='qout'+(pass?' win':' lose');qzOut.textContent=pass?'Die Freigabe ist im System vermerkt.':'Die Prüfung kann beliebig oft wiederholt werden. Das Schatzamt hat dafür kein Budget.';
+  qzNext.hidden=false;qzNext.textContent='PRÜFUNG WIEDERHOLEN';qzI=QZ.length}
+qzNext.onclick=()=>{if(qzI>=QZ.length){qzStart();return}qzI++;if(qzI>=QZ.length)qzEnd();else qzShow()};
+qzStart();
+
+/* footer tools */
+document.getElementById('printBtn').onclick=()=>{toast('<b>M:</b> Ausdrucke werden nach dem Einsatz vernichtet. Von Ihnen.');setTimeout(()=>window.print(),400)};
+document.getElementById('resetBtn').onclick=()=>{if(!confirm('Gespeicherten Stand auf diesem Gerät löschen? Gesicherte Ziele, Missionsziele, Packliste, Datum und Quittung werden zurückgesetzt.'))return;
+  try{Object.keys(localStorage).filter(k=>k.startsWith('ops5-')).forEach(k=>localStorage.removeItem(k))}catch(e){}location.reload()};
+
+/* tab title */
+const T0=document.title;
+document.addEventListener('visibilitychange',()=>{document.title=document.hidden?'M wartet.':T0});
 
 /* gun barrel easter egg */
 const gb=document.getElementById('gb');let gbT;
@@ -885,7 +1202,11 @@ gb.onclick=closeGb;
 let keys='';
 document.addEventListener('keydown',e=>{if(e.key==='Escape'&&!gb.hidden){closeGb();return}
   if(e.target.closest&&e.target.closest('input,textarea,select,[contenteditable]'))return;
-  if(e.key.length!==1)return;keys=(keys+e.key).slice(-3);if(keys==='007'){keys='';barrel()}});
+  if(e.key.length!==1)return;keys=(keys+e.key.toLowerCase()).slice(-8);
+  if(keys.endsWith('007')){keys='';barrel()}
+  else if(keys.endsWith('vesper')){keys='';toast('<b>M:</b> Einen. Ich sagte einen.')}
+  else if(keys.endsWith('martini')){keys='';toast('<b>BARKEEPER:</b> Geschüttelt oder gerührt? <b>M:</b> Fragen Sie das nicht noch einmal.')}
+  else if(keys.endsWith('mathis')){keys='';toast('<b>M:</b> Mathis ist ein Kontakt, kein Freund. Merken Sie sich den Unterschied.')}});
 const sig=document.querySelector('.msg .sig');let taps=[];
 sig.addEventListener('click',()=>{const now=Date.now();taps=taps.filter(t=>now-t<1500);taps.push(now);if(taps.length>=3){taps=[];barrel()}});
 })();
