@@ -97,7 +97,8 @@ Freigabe: „Anyone with the link“ ist aktiv. Wer die Seite offen hat, sieht n
   Lagebericht), Tastenkürzel 1–9/Q springen zu Modulen, „?“ zeigt Lagebericht und Kürzel (Ziffer nach „0“ springt nicht,
   damit „007“ funktioniert).
 - Zielobjekt-Karten und Detailpanel zeigen statt Fadenkreuz mit Kartensymbol eine statische Fassaden-Miniatur
-  (`bpThumb`, Klasse `bp bpth`, Ausschnitte in `THVB`, ohne Feinlinien und ohne Animation). Achtung: Der animierte
+  (`bpThumb`, Klasse `bp bpth`, Ausschnitte in `THVB`): geschlossene Ansicht in vollem Detail (Ebenen `k`, `e`, `x`,
+  Schriftzüge), ohne Schnitt und ohne Animation. Achtung: Der animierte
   Aufriss im Detail wird mit `.bp:not(.bpth)` gesucht, sonst greift die Animation auf die Miniatur.
   Die Codes „OBJ A♠“ usw. bleiben als Kennung (Karten, Einsatzplan).
 - Dateiausgabe: Im Artifact-Viewer gehen Downloads nur über die Capability `downloads` (beim Veröffentlichen

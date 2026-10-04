@@ -142,9 +142,9 @@ section{margin-top:56px}
 .tgt .thw svg,.thw svg.bpth{display:block;width:100%;height:auto;margin:0;border:0;background:none}
 .tgt .thw svg,.thw.big svg{aspect-ratio:2/1}.thw i{background:color-mix(in srgb,var(--mapbg) 80%,transparent);padding:0 3px}
 .bp.bpth .ln{stroke-dasharray:none;stroke-dashoffset:0;animation:none!important;vector-effect:non-scaling-stroke}.bp.bpth line,.bp.bpth path{vector-effect:non-scaling-stroke}.bp.bpth .ln.fill{fill-opacity:1}
-.bp.bpth .ln{stroke-width:1}.bp.bpth .ln.fn{stroke-width:.6;stroke-opacity:.7}.bp.bpth .ln.hatch,.bp.bpth .ln.faint{stroke-opacity:.3}.bp.bpth .ln.fresco{stroke-width:2}
-.bp.bpth .ln.fn,.bp.bpth .ln.hatch,.bp.bpth .ln.faint,.bp.bpth .ln.fresco,.bp.bpth .ln.palm,.bp.bpth .ln.lift{display:none}.bp.bpth .in{opacity:1}.bp.bpth .in .ln{stroke:var(--amber)}
-.bp.bpth .tx,.bp.bpth .co,.bp.bpth .scm,.bp.bpth .sct{display:none}
+.bp.bpth .ln{stroke-width:.9}.bp.bpth .ln.fn{stroke-width:.45;stroke-opacity:.75}.bp.bpth .ln.hatch,.bp.bpth .ln.faint{stroke-opacity:.3}.bp.bpth .ln.fresco{stroke-width:2}
+.bp.bpth .in{opacity:1}.bp.bpth .in .ln{stroke:var(--amber)}
+.bp.bpth .tx,.bp.bpth .co,.bp.bpth .scm,.bp.bpth .sct{display:none}.bp.bpth .tx.sg,.bp.bpth .tx.sg2,.bp.bpth .tx.redt{display:inline;opacity:1}.bp.bpth .redbar{opacity:1}
 .bp.bpth .thcut{stroke:var(--amber);stroke-width:1;stroke-dasharray:6 4;opacity:.8}.bp.bpth .thgr{stroke:var(--ink);stroke-width:1.2;opacity:.6}
 .bp.bpth .thL{transition:transform .7s cubic-bezier(.65,0,.25,1)}
 
@@ -1571,7 +1571,7 @@ document.querySelectorAll('#tlist li').forEach(li=>{const go=()=>{showCard(li.da
 /* deck */
 const deck=document.getElementById('deck'),detail=document.getElementById('detail');
 L.forEach((c,i)=>{const[s,k]=st(c.id);const b=document.createElement('button');b.type='button';b.className='tgt';b.dataset.id=c.id;b.setAttribute('aria-pressed','false');
-  b.innerHTML=`<span class="top"><b>${code(c)}</b><span>${String(i+1).padStart(2,'0')}/13</span></span><span class="thw" data-th="${c.id}"><i>ANSICHT</i></span><span class="ss" hidden>GESICHERT</span><span class="nm">${c.name}</span><span class="cv">Deckname: ${c.as}</span><span class="stt ${k}">● ${s} · ${c.city.toUpperCase()}</span>`;
+  b.innerHTML=`<span class="top"><b>${code(c)}</b><span>${String(i+1).padStart(2,'0')}/13</span></span><span class="thw" data-th="${c.id}"></span><span class="ss" hidden>GESICHERT</span><span class="nm">${c.name}</span><span class="cv">Deckname: ${c.as}</span><span class="stt ${k}">● ${s} · ${c.city.toUpperCase()}</span>`;
   b.onclick=()=>showCard(c.id,true);deck.appendChild(b)});
 const SECMSG=['<b>M:</b> Das erste. Fehlen noch zwölf.','<b>M:</b> Halbzeit. Ich bin nicht beeindruckt, aber aufmerksam.','<b>M:</b> Alle dreizehn. Gut. Ich hatte nichts anderes erwartet. Doch, hatte ich.'];
 function secSync(){const n=SEC.size;document.getElementById('secN').textContent=n+'/13';
@@ -1957,10 +1957,10 @@ function bpSVG(c,idx){const d=BP[c.id]();
    <text x="616" y="373">BLATT ${idx+1}/13</text><text x="616" y="385" class="tbs">GEZ. Q · GEPR. M</text><text x="616" y="391" class="tbs">INDEX A · 11/2026</text></g>
   <text x="24" y="392" class="dimt">${d.dim} · ALLE MASSE SCHEMATISCH</text></svg>
   <ol class="bplist">${d.co.map(([n,,,t])=>`<li><b>${n}</b>${t}</li>`).join('')}</ol>`}
-/* Aufriss-Miniatur statt Kartensymbol: nur die Grundansicht der Fassade, statisch */
-const THVB={loket:'19 100 578 212',mlyn:'25 162 590 150',trziste:'67 62 492 250',pupp:'29 76 582 236',kaiserbad:'31 110 578 202',airport:'25 152 591 160',strahov:'39 102 562 210',danube:'56 44 528 268',ministry:'39 64 562 248',museum:'19 104 602 208',vitkov:'124 92 432 220',barrandov:'25 100 450 212',plana:'49 78 542 234'};
+/* Aufriss-Miniatur statt Kartensymbol: geschlossene Fassadenansicht in vollem Detail, ohne Schnitt, statisch */
+const THVB={loket:'23 6 608 304',mlyn:'26 54 628 256',trziste:'6 0 638 310',pupp:'15 2 616 308',kaiserbad:'38 10 616 300',airport:'14 11 598 299',strahov:'46 58 608 252',danube:'32 46 610 291',ministry:'46 34 608 276',museum:'26 2 628 308',vitkov:'12 54 642 256',barrandov:'32 2 622 308',plana:'12 80 616 230'};
 function bpThumb(c,pre){const d=BP[c.id](),v=THVB[c.id]||'20 30 620 310',cx=d.cut||320,u=pre+'-'+c.id;
-  return `<svg class="bp bpth" viewBox="${v}" preserveAspectRatio="xMidYMax meet" aria-hidden="true" focusable="false"><g class="thE">${d.e}</g><line x1="0" y1="300" x2="700" y2="300" class="thgr"/></svg>`}
+  return `<svg class="bp bpth" viewBox="${v}" preserveAspectRatio="xMidYMax meet" aria-hidden="true" focusable="false"><g class="ctx bk">${d.k||''}</g><g class="thE">${d.e}</g><g class="ctx">${d.x}</g><line x1="0" y1="300" x2="700" y2="300" class="thgr"/></svg>`}
 deck.querySelectorAll('.thw[data-th]').forEach(w=>w.insertAdjacentHTML('afterbegin',bpThumb(L.find(x=>x.id===w.dataset.th),'tk')));
 let bpTimer=0,bpIO=null;
 function bpPlay(instant){const svg=detail.querySelector('.bp:not(.bpth)');if(!svg)return;clearTimeout(bpTimer);
