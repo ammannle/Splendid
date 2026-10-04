@@ -834,6 +834,107 @@ body.boot .ph .st{animation:flick .9s 1s steps(2) 2}
 .otxt{width:100%;background:var(--bg2);border:1px solid var(--line2);color:var(--ink);font-family:var(--mono);font-size:.74rem;padding:8px}
 @media (max-width:520px){.obud{grid-template-columns:1fr}.otel li{grid-template-columns:110px 1fr}}
 
+/* Qs Garage */
+.gz .gzf{display:flex;flex-wrap:wrap;gap:6px;padding:10px 12px 0}
+.gz .gzf button{background:none;border:1px solid var(--line2);color:var(--mute);font-family:var(--mono);font-size:.66rem;letter-spacing:.06em;padding:4px 9px;border-radius:2px;cursor:pointer}
+.gz .gzf button[aria-pressed="true"]{color:var(--amber);border-color:var(--amber)}
+.gzbays{display:grid;grid-auto-flow:column;grid-auto-columns:150px;gap:8px;overflow-x:auto;padding:10px 12px 12px;scrollbar-width:thin;scroll-snap-type:x proximity}
+.bay{scroll-snap-align:start;text-align:left;background:linear-gradient(180deg,var(--panel2),var(--panel));border:1px solid var(--line);border-radius:2px;padding:6px 8px 8px;color:var(--ink);font:inherit;cursor:pointer;display:flex;flex-direction:column;gap:3px}
+.bay[hidden]{display:none}
+.bay:hover{border-color:var(--line2)}.bay[aria-pressed="true"]{border-color:var(--amber);box-shadow:0 0 0 1px var(--amber)}
+.bay .bn{font-family:var(--mono);font-size:.56rem;color:var(--mute);letter-spacing:.08em}
+.bay b{font-family:var(--head);font-size:.82rem;line-height:1.1;font-weight:600}
+.bay small{font-family:var(--mono);font-size:.56rem;color:var(--mute);line-height:1.3}
+.gzm{display:block;width:100%;height:56px;background:color-mix(in srgb,var(--cyan) 4%,var(--mapbg));border:1px solid var(--line);border-radius:2px}
+.gzmain{display:grid;grid-template-columns:minmax(0,1fr) 330px;gap:0;border-top:1px solid var(--line)}
+.gzdraw{padding:12px;min-width:0;border-right:1px solid var(--line)}
+.gzs#gzSvg{display:block;width:100%;height:auto;background:color-mix(in srgb,var(--cyan) 4%,var(--mapbg));border:1px solid var(--line);border-radius:2px;--bpf:color-mix(in srgb,var(--cyan) 7%,var(--mapbg))}
+.gzs .gzgrid{stroke:var(--mapgrid);stroke-width:1}
+.gzs .ln{fill:none;stroke:var(--cyan);stroke-width:1;stroke-linejoin:round;stroke-linecap:round;stroke-dasharray:1;stroke-dashoffset:0}
+.gzs .ln.fill{fill:var(--bpf)}.gzs .ln.body{stroke-width:1.5}
+.gzs .ln.fn{stroke-width:.55;stroke-opacity:.75}
+.gzs .ln.glass{fill:color-mix(in srgb,var(--cyan) 12%,transparent);stroke-width:.9}
+.gzs .ln.chr{stroke:var(--ink);stroke-width:1.5}
+.gzs .ln.amb{stroke:var(--amber)}.gzs .ln.thick{stroke-width:2.2}
+.gzs .ln.red{stroke:var(--red);fill:color-mix(in srgb,var(--red) 22%,transparent)}
+.gzs .ln.tyre{fill:color-mix(in srgb,var(--bg) 70%,var(--mapbg));stroke-width:1.3}
+.gzs .ln.rim{stroke-width:1.1}.gzs .ln.spk{stroke-width:.3;stroke-opacity:.85}.gzs .ln.spk2{fill:var(--bpf);stroke-width:.7}
+.gzs .ln.disc{stroke-dasharray:none}.gzs .hole{fill:var(--cyan);opacity:.5}
+.gzs .tr{stroke:var(--cyan);stroke-width:.4;stroke-opacity:.5}
+.gzs .gnd{stroke:var(--ink);stroke-width:1.3}.gzs .hatch{stroke:var(--mute);stroke-width:.6;fill:none;opacity:.5}
+.gzs .rd{stroke:var(--mute);stroke-width:1;stroke-dasharray:14 18;fill:none;opacity:.4}
+.gzs .axl{stroke:var(--mute);stroke-width:.6;stroke-dasharray:8 3 1.5 3;fill:none;opacity:.6}
+.gzs .dl{stroke:var(--mute);stroke-width:.7;fill:none}
+.gzs .tx{font-family:var(--mono);fill:var(--mute)}
+.gzs .dt{font-size:9px;fill:var(--ink)}.gzs .bd{fill:var(--cyan);letter-spacing:.12em;font-weight:600}
+.gzs .xray{opacity:0;transition:opacity .5s}.gzs.xray .xray{opacity:1}
+.gzs .ln.xr{stroke:var(--amber);stroke-dasharray:none;fill:color-mix(in srgb,var(--amber) 10%,transparent)}.gzs .ln.xr.fn{fill:none}
+.gzs .xrt{font-size:7px;fill:var(--amber);letter-spacing:.08em}
+.gzs.xray .car>.body{fill-opacity:.35}
+.gzs .ghost .gh{fill:none;stroke:var(--amber);stroke-width:1;stroke-dasharray:4 3;opacity:.8}.gzs .ght{font-size:8px;fill:var(--amber)}
+.gzs .tb rect{fill:var(--mapbg);stroke:var(--mute);stroke-width:.7}.gzs .tb line{stroke:var(--mute);stroke-width:.5}
+.gzs .tbt{font-size:7px;fill:var(--cyan);letter-spacing:.06em}.gzs .tbn{font-size:8.5px;fill:var(--ink);font-weight:600}.gzs .tbs{font-size:5.6px}
+.gzs .co{cursor:pointer}.gzs .co .cc{fill:var(--mapbg);stroke:var(--amber);stroke-width:1}.gzs .co .cn{font-size:9px;fill:var(--amber);font-weight:600}
+.gzs .co .lead{fill:none;stroke:var(--amber);stroke-width:.6;opacity:.75}.gzs .co .dot{fill:var(--amber)}
+.gzs .co:hover .cc,.gzs .co:focus .cc,.gzs .co.hot .cc{fill:var(--amber)}.gzs .co:hover .cn,.gzs .co:focus .cn,.gzs .co.hot .cn{fill:var(--bg)}.gzs .co:focus{outline:none}
+.gzs .car,.gzs .wheels{transform-box:fill-box;transform-origin:50% 50%}
+.gzs .whl{transform-box:fill-box;transform-origin:50% 50%}
+.gzs .fx *{transform-box:fill-box;transform-origin:50% 50%}
+.gzs .fig .tx{font-size:7px}
+.gzs .fxg{stroke:var(--amber);stroke-width:1.6;fill:var(--amber)}.gzs .fxg.thick{stroke-width:2.4}
+.gzs .fxf{fill:#fff;stroke:var(--amber);stroke-width:1}.gzs .fxr{fill:var(--ink);stroke:var(--red)}.gzs .fxs{stroke:var(--mute);stroke-width:2;stroke-dasharray:3 3}
+.gzs .fxsh{fill:color-mix(in srgb,var(--amber) 25%,transparent);stroke:var(--amber);stroke-width:1}
+.gzs .fxe{fill:var(--amber);stroke:var(--ink)}.gzs .fxsm{fill:var(--mute);opacity:.6}
+.gzs .fxl{stroke:var(--red);stroke-width:1.6;fill:none}.gzs .fxfl{fill:var(--amber);stroke:var(--red)}
+.gzs .fxb{fill:none;stroke:var(--amber);stroke-width:2}.gzs .fxra{fill:none;stroke:var(--green);stroke-width:1}
+.gzs .fxt{font-size:11px;fill:var(--amber);font-weight:600}.gzs .fxsaw{fill:none;stroke:var(--red);stroke-width:1.4}
+.gzs .half .ln{stroke:var(--amber)}
+.gzs.pre .car,.gzs.pre .dims,.gzs.pre .callouts,.gzs.pre .fig{opacity:0}
+.gzs.draw .ln{animation:gzdraw .8s cubic-bezier(.4,0,.2,1) both;animation-delay:var(--d)}
+.gzs.draw .ln.fill{animation:gzdraw .8s cubic-bezier(.4,0,.2,1) both,gzfill .6s ease both;animation-delay:var(--d),calc(var(--d) + .5s)}
+.gzs.draw .dims,.gzs.draw .callouts,.gzs.draw .fig,.gzs.draw .tb{animation:gzfade .6s ease both;animation-delay:1.6s}
+.gzs.draw .tr,.gzs.draw .hole{animation:gzfade .5s ease both;animation-delay:1.2s}
+@keyframes gzdraw{from{stroke-dashoffset:1}to{stroke-dashoffset:0}}
+@keyframes gzfill{from{fill-opacity:0}to{fill-opacity:1}}
+@keyframes gzfade{from{opacity:0}to{opacity:1}}
+@keyframes gzspin{to{transform:rotate(-360deg)}}
+@keyframes gzroad{to{stroke-dashoffset:-32}}
+@keyframes gzidle{0%{transform:translateY(0)}100%{transform:translateY(.6px)}}
+.gzs.idle .car{animation:gzidle .09s steps(2) infinite alternate}
+.gzs.drive .whl{animation:gzspin var(--spd,.6s) linear infinite}
+.gzs.drive .rd{animation:gzroad var(--spd,.6s) linear infinite;opacity:.7}
+.gztools{display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin-top:10px}
+.gztools .qbtn[aria-pressed="true"]{color:var(--amber);border-color:var(--amber)}
+.gzspd{font-family:var(--mono);font-size:.72rem;color:var(--green);min-width:120px;padding:0 4px}
+.gzg{list-style:none;margin:10px 0 0;padding:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:4px 10px}
+.gzg button{display:flex;gap:8px;align-items:flex-start;width:100%;text-align:left;background:none;border:0;border-bottom:1px dashed var(--line);color:var(--ink);font:inherit;font-size:.82rem;padding:5px 0;cursor:pointer;line-height:1.3}
+.gzg button b{flex:none;width:20px;height:20px;border:1px solid var(--amber);border-radius:50%;display:grid;place-items:center;font-family:var(--mono);font-size:.66rem;color:var(--amber)}
+.gzg button:hover b,.gzg button.hot b{background:var(--amber);color:var(--bg)}
+.gzdraw.full{position:fixed;inset:0;z-index:150;background:var(--bg);overflow:auto;padding:max(16px,env(safe-area-inset-top)) 16px 16px;display:flex;flex-direction:column;justify-content:center}
+.gzdraw.full .gzs{max-height:calc(100vh - 150px);width:auto;max-width:100%;margin:0 auto}
+@media (orientation:portrait) and (max-width:680px){.gzdraw.full .gzg{display:none}.gzdraw.full .gzs#gzSvg{position:fixed;left:50%;top:calc(50% - 40px);width:calc(100vh - 150px);max-width:none;max-height:none;transform:translate(-50%,-50%) rotate(90deg)}.gzdraw.full .gztools{position:fixed;left:16px;right:16px;bottom:max(12px,env(safe-area-inset-bottom));justify-content:center}}
+.gzspec{padding:14px 16px;font-size:.84rem;min-width:0}
+.gzspec .gzh b{display:block;font-family:var(--head);font-size:1.25rem;line-height:1.1}.gzspec .gzh span{font-family:var(--mono);font-size:.66rem;color:var(--amber);letter-spacing:.08em}
+.gzspec dl{display:grid;grid-template-columns:104px 1fr;gap:5px 10px;margin:12px 0}
+.gzspec dt{font-family:var(--mono);font-size:.6rem;color:var(--mute);letter-spacing:.06em;padding-top:2px}.gzspec dd{margin:0;line-height:1.35}
+.gzret{border:1px solid var(--red);border-radius:2px;padding:8px 10px;margin:10px 0;line-height:1.4;font-size:.8rem}
+.gzret span{display:block;font-family:var(--mono);font-size:.6rem;color:var(--red);letter-spacing:.12em;margin-bottom:3px}
+.gzspec .qnote,.gzspec .mnote{font-family:var(--mono);font-size:.72rem;line-height:1.5;margin:8px 0}.gzspec .qnote{color:var(--cyan)}.gzspec .mnote{color:var(--amber)}
+.gzest{font-size:.7rem;color:var(--mute)}
+.gzlow{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);gap:12px;margin-top:12px}
+.gzbook{list-style:none;margin:0;padding:6px 12px 10px;max-height:420px;overflow:auto}
+.gzbook li{display:grid;grid-template-columns:42px minmax(0,1fr);gap:2px 10px;padding:6px 0;border-bottom:1px solid var(--line);font-size:.8rem}
+.gzbook li span{font-family:var(--mono);font-size:.7rem;color:var(--amber);grid-row:span 2}.gzbook li b{font-weight:600}
+.gzbook em{font-style:normal;color:var(--mute);font-size:.76rem}.gzbook a{color:var(--cyan)}.gzbook a.on{color:var(--amber)}.gzbook i{font-style:normal}
+.gzcmp{list-style:none;margin:0;padding:8px 12px}
+.gzcmp li{display:grid;grid-template-columns:minmax(0,1fr) 70px 54px;gap:3px 8px;align-items:center;padding:4px 0;border-bottom:1px dashed var(--line);cursor:pointer;font-size:.74rem}
+.gzcmp li b{grid-row:span 2;font-weight:500;line-height:1.2}.gzcmp li small{font-family:var(--mono);font-size:.62rem;color:var(--mute);text-align:right}
+.gzcmp .br{height:5px;background:var(--line)}.gzcmp .br i{display:block;height:100%;background:var(--amber)}.gzcmp .br.v i{background:var(--cyan)}
+.gzcmp li:hover b{color:var(--cyan)}.gzn{font-size:.7rem;color:var(--mute);padding:0 12px 10px;margin:0}
+@media (max-width:1000px){.gzmain{grid-template-columns:1fr}.gzdraw{border-right:0;border-bottom:1px solid var(--line)}.gzlow{grid-template-columns:1fr}}
+@media (max-width:680px){.gzdraw{padding:8px}.gzbays{grid-auto-columns:128px}.gzspec dl{grid-template-columns:90px 1fr}.gztools .qbtn{padding:6px 8px}}
+@media (prefers-reduced-motion:reduce){.gzs.idle .car,.gzs.drive .whl,.gzs.drive .rd{animation:none}}
+
 /* gun barrel */
 .gb{position:fixed;inset:0;z-index:100;background:#000;overflow:hidden;cursor:pointer}
 .gb[hidden]{display:none}
@@ -924,14 +1025,14 @@ body.boot .ph .st{animation:flick .9s 1s steps(2) 2}
   </div>
   <button class="iskip" id="iSkip" type="button">ÜBERSPRINGEN ›</button>
 </div>
-<script>try{if(localStorage.getItem('ops5-intro'))document.getElementById('intro').hidden=true;else document.documentElement.classList.add('introing')}catch(e){document.documentElement.classList.add('introing')}</script>
+<script>if(window.__NOINTRO)document.getElementById('intro').hidden=true;else document.documentElement.classList.add('introing')</script>
 <div class="sys">
   <span class="live">VERBINDUNG GESICHERT</span>
   <button class="cls" type="button" id="clsBtn" title="Einstufung">OFFICIAL–SENSITIVE</button>
   <button class="rdy" type="button" id="rdyBtn" title="Einsatzbereitschaft (Taste ?: Kürzel)"><i><b id="rdyBar"></b></i><span id="rdyN">BEREIT –</span></button>
   <span class="hide-s">MI6 · 00-SEKTION · OPS-ZENTRALE</span>
   <span class="hide-m clk" id="clk" aria-label="Ortszeit London und Prag">LDN --:-- · PRG --:--</span>
-  <nav aria-label="Module"><a href="#tx">Befehl</a><a href="#targets">Ziele</a><a href="#maps">Lage</a><a href="#world-sec">Welt</a><a href="#ops">Einsatzplan</a><a href="#org">Orga</a><a href="#assets">Assets</a><a href="#regs">Protokoll</a><a href="#field">Handbuch</a><a href="#qlab">Q-Lab</a></nav>
+  <nav aria-label="Module"><a href="#tx">Befehl</a><a href="#targets">Ziele</a><a href="#maps">Lage</a><a href="#world-sec">Welt</a><a href="#ops">Einsatzplan</a><a href="#org">Orga</a><a href="#assets">Assets</a><a href="#regs">Protokoll</a><a href="#field">Handbuch</a><a href="#garage">Garage</a><a href="#qlab">Q-Lab</a></nav>
   <button class="theme-btn" id="themeBtn" type="button">Tag / Nacht</button>
 </div>
 
@@ -1154,6 +1255,31 @@ body.boot .ph .st{animation:flick .9s 1s steps(2) 2}
       </div>
     </div>
   </section>
+  <section id="garage">
+    <div class="sh"><div><div class="ix">MODUL 08-G // Q-ABTEILUNG · FUHRPARK</div><h2>Qs Garage</h2></div><p>Jedes Fahrzeug, das 007 im Dienst bewegt hat, als Seitenriss mit Datenblatt, Ausstattung und Rückgabeprotokoll. Bitte nichts anfassen.</p></div>
+    <div class="panel gz">
+      <div class="ph"><b>FUHRPARK // SEITENRISSE</b><span class="st" id="gzState"></span></div>
+      <div class="gzf" id="gzFlt" role="group" aria-label="Hersteller"><button type="button" aria-pressed="true" data-f="Alle">ALLE</button><button type="button" aria-pressed="false" data-f="Aston Martin">ASTON MARTIN</button><button type="button" aria-pressed="false" data-f="BMW">BMW</button><button type="button" aria-pressed="false" data-f="Lotus">LOTUS</button><button type="button" aria-pressed="false" data-f="Andere">ANDERE</button></div>
+      <div class="gzbays" id="gzBays"></div>
+      <div class="gzmain">
+        <div class="gzdraw">
+          <svg id="gzSvg" class="gzs pre" viewBox="0 0 1000 420" role="img" aria-label="Seitenriss"></svg>
+          <div class="gztools">
+            <button type="button" class="qbtn" id="gzPrev" aria-label="Vorheriges Fahrzeug">‹</button><button type="button" class="qbtn" id="gzNext" aria-label="Nächstes Fahrzeug">›</button>
+            <button type="button" class="qbtn go" id="gzIgn" aria-pressed="false">ZÜNDUNG</button><button type="button" class="qbtn" id="gzRun">PROBEFAHRT</button><span class="gzspd" id="gzSpd" aria-live="polite"></span>
+            <button type="button" class="qbtn" id="gzDemo">Q-AUSSTATTUNG VORFÜHREN</button><button type="button" class="qbtn" id="gzXr" aria-pressed="false">DURCHLEUCHTEN</button><button type="button" class="qbtn" id="gzCmp" aria-pressed="false">MASSSTAB DB5</button><button type="button" class="qbtn" id="gzRe">NEU ZEICHNEN</button><button type="button" class="qbtn" id="gzFull">VOLLBILD</button>
+          </div>
+          <ol class="gzg" id="gzG" aria-label="Q-Ausstattung"></ol>
+        </div>
+        <div class="gzspec" id="gzSpec" aria-live="polite"></div>
+      </div>
+    </div>
+    <div class="gzlow">
+      <div class="panel"><div class="ph"><b>FUHRPARKBUCH // ALLE OFFIZIELLEN FILME</b><span class="st">25 EINSÄTZE</span></div><ol class="gzbook" id="gzBook"></ol></div>
+      <div class="panel"><div class="ph"><b>LEISTUNGSVERGLEICH</b><span class="st">PS · KM/H</span></div><ul class="gzcmp" id="gzCmpT"></ul><p class="gzn">Werksangaben, gerundet. Fahrzeuge ohne belastbare Angabe fehlen.</p></div>
+    </div>
+  </section>
+
   <section id="qlab">
     <div class="sh"><div><div class="ix">MODUL 08 // Q-ABTEILUNG</div><h2>Trainingsprogramm</h2></div><p>Vorbereitung auf den Einsatz. Gespielt wird mit Übungsgeld des Schatzamts.</p></div>
     <div class="panel rt">
@@ -2941,7 +3067,6 @@ function runIntro(ov){const term=document.getElementById('iTerm'),bar=document.g
     at(t0+1150,()=>{lc.textContent=c;lk.classList.add('locked');lp.innerHTML=`${p}<small>${q}</small>`})});
   t=t+300+3*1650+200;at(t,()=>ov.classList.add('i-grant'));
   const finish=()=>{if(done)return;done=true;T.forEach(clearTimeout);ov.classList.add('i-closing');if(!RM){document.body.classList.add('boot');setTimeout(heroDraw,300);setTimeout(()=>document.body.classList.remove('boot'),4400)}setTimeout(()=>ov.classList.add('i-open'),RM?0:250);
-    try{localStorage.setItem('ops5-intro','1')}catch(e){}
     setTimeout(()=>{document.documentElement.classList.remove('introing');ov.hidden=true;},RM?300:900)};
   at(t+2400,finish);
   ov.onclick=finish;document.getElementById('iSkip').onclick=e=>{e.stopPropagation();finish()};
@@ -2954,6 +3079,463 @@ const gb=document.getElementById('gb');let gbT;
 function closeGb(){gb.hidden=true;gb.classList.remove('run');clearTimeout(gbT)}
 function barrel(){gb.hidden=false;gb.classList.remove('run');void gb.offsetWidth;gb.classList.add('run');clearTimeout(gbT);gbT=setTimeout(closeGb,RM?1800:5600)}
 gb.onclick=closeGb;
+/* Qs Garage: Fahrzeuge. Maße in mm, x ab Vorderkante, h über Grund. Profil von vorne unten über das Dach nach hinten unten. */
+const GZ=[
+{id:'alpine',n:'Sunbeam Alpine Series II',mk:'Andere',y:1961,f:[['Dr. No',1962]],
+ L:3950,WB:2180,fo:720,H:1310,r:290,rim:165,sill:230,ar:330,wh:'steel',open:1,
+ top:[[40,230,1],[0,330],[0,430],[40,560],[160,640],[600,700],[1200,740],[1520,760,1],[1600,790,1],[2500,790,1],[2700,800],[3200,830],[3700,880],[3900,905,1],[3950,800],[3945,560],[3930,420],[3870,230,1]],
+ ft:[['s',[[300,600],[1500,640],[3000,700],[3880,830]]],['l',[[1600,790],[1590,262]]],['l',[[2560,790],[2580,262]]],['l',[[1590,262],[2580,262]]],
+  ['hl',70,570,80],['gr',-5,380,40,140,4],['ch',[[-5,410],[60,412],[220,418]]],['ch',[[3700,430],[3950,425]]],['tl',3905,720,45,150],['dh',2400,700,80],['mi',1450,770,'wing'],
+  ['ws',[[1540,772],[1720,1100],[1810,1100]]],['seat',2350,790,1],['sw',1900,950],['ex',3800,250,200],['fc',3500,860,30]],
+ eng:{x:180,h:350,w:700,hh:380,n:4,t:'I'},tank:[3300,500,500,220],drv:'F-R',
+ g:[[1,1900,1100,'Keine. Bond fährt unter einem Kranausleger durch, der verfolgende Leichenwagen nicht.','none']],
+ sp:{m:'Reihenvierzylinder, Frontmotor, Hinterradantrieb',cc:1592,ps:'80 bhp (ca. 81 PS)',v:'ca. 160 km/h',vn:160,c:'Lake Blue',l:3950,wb:2180,h:1310},
+ ret:'Unbeschädigt. Der Leichenwagen nicht.',q:'Ausrüstung im ersten Einsatz: keine. Damals hieß ich noch Major Boothroyd und gab Pistolen aus.',m:'Ein Mietwagen auf Jamaika. Der einzige Einsatz, bei dem das Fahrzeug billiger war als der Anzug.'},
+
+{id:'bentley',n:'Bentley 3½ Litre Drophead Coupé',mk:'Andere',y:1935,f:[['Liebesgrüße aus Moskau',1963]],
+ L:4600,WB:3200,fo:450,H:1550,r:370,rim:230,sill:520,flat:1,est:1,wh:'wire',
+ top:[[350,520,1],[330,620,1],[330,1180,1],[420,1205,1],[1700,1215],[1760,1225,1],[1830,1520,1],[1920,1545],[3000,1560],[3480,1460],[3800,1180],[3980,900],[4120,700],[4160,560,1]],
+ dlo:[[1850,1260,1],[1890,1480],[2900,1500],[3200,1420],[3300,1270,1]],
+ ft:[['s',[[0,560],[60,700],[260,860],[560,885],[820,800],[1080,600],[1400,490,1]]],['l',[[1400,488],[3000,488]]],['s',[[3000,490],[3200,690],[3530,860],[3850,830],[4150,640],[4260,525]]],
+  ['lvv',800,800,700,280,9],['gr',330,640,60,540,6],['hl',290,1090,115],['ch',[[-30,420],[420,420]]],['ch',[[4150,430],[4420,430]]],
+  ['l',[[1850,1225],[1850,560]]],['l',[[2850,1250],[2850,560]]],['dh',2750,1110,90],['ch',[[3350,1360],[3500,1310],[3560,1210]]],
+  ['l',[[4100,700],[4260,660],[4260,560]]],['tl',4200,700,40,80],['seat',2600,1100,1.1],['sw',2050,1250],['ex',4000,420,300]],
+ eng:{x:480,h:700,w:1150,hh:450,n:6,t:'I'},tank:[3900,600,350,250],drv:'F-R',
+ g:[[1,2150,1260,'Autotelefon im Armaturenbrett','radio']],
+ sp:{m:'Reihensechszylinder, Frontmotor, Hinterradantrieb',cc:3669,ps:'ca. 110 PS (Werk ohne Angabe)',v:'ca. 145 km/h',vn:145,wb:3200},
+ ret:'Unbeschädigt. Picknick am Fluss inklusive.',q:'In den Romanen fährt 007 einen 4½ Litre mit Kompressor von Amherst Villiers. Das Kino gab ihm einen 3½ Litre. Ich hätte den Kompressor genommen.',m:'Ein Autotelefon im Jahr 1963. Er hat es benutzt, um eine Verabredung zu verschieben. Dafür war es nicht gedacht.'},
+
+{id:'db5',n:'Aston Martin DB5',mk:'Aston Martin',y:1964,f:[['Goldfinger',1964],['Feuerball',1965],['GoldenEye',1995],['Casino Royale',2006],['Skyfall',2012],['Spectre',2015],['Keine Zeit zu sterben',2021]],
+ L:4570,WB:2490,fo:880,H:1340,r:330,rim:190,sill:260,ar:380,wh:'wire',
+ top:[[30,250,1],[0,330],[-5,420],[10,560],[90,640],[260,690],[700,740],[1150,780],[1430,800,1],[1880,1255],[2150,1325],[2500,1340],[2800,1310],[3200,1150],[3600,990],[4050,900],[4380,850],[4540,790],[4570,640],[4565,420],[4520,300],[4470,250,1]],
+ dlo:[[1520,850,1],[1860,1235],[2120,1290],[2480,1300],[2780,1270],[3150,1110],[3330,1000,1],[3250,930,1],[2600,905],[1600,880,1]],
+ pil:[[[2660,905],[2690,1295],[2750,1285],[2720,905]]],
+ ft:[['s',[[200,600],[1200,640],[2600,680],[4000,690],[4550,680]]],['l',[[1500,880],[1490,290]]],['l',[[2690,900],[2700,290]]],['l',[[1490,290],[2700,290]]],
+  ['ve',1290,430,170,160,3],['bd',1180,700,'SUPERLEGGERA'],['hl',110,610,80],['hr',40,450,70,40,'a'],['ch',[[-5,440],[150,445],[300,450]]],['l',[[40,380],[40,520]]],
+  ['ch',[[4300,450],[4570,445]]],['tl',4510,650,55,110],['dh',2550,820,90],['mi',1150,790,'wing'],['fc',3420,965,35],['seat',2300,890,1],['sw',1950,1010],['ex',4380,280,200],['an',3900,905,260]],
+ eng:{x:150,h:380,w:850,hh:420,n:6,t:'I'},tank:[3800,450,600,250],drv:'F-R',
+ g:[[1,40,470,'Browning-MGs hinter den Blinkern','gun'],[2,4570,520,'Drehende Kennzeichen: GB, F, CH','plate'],[3,3750,1010,'Kugelsicherer Heckschild','shield'],[4,2300,1310,'Schleudersitz, Beifahrerseite','eject'],[5,3370,330,'Reifenschlitzer aus der Radnabe','spike'],[6,4500,330,'Ölspur und Nebelwand','smoke'],[7,1850,960,'Radar-Ortung im Armaturenbrett','radar']],
+ sp:{m:'Reihensechszylinder, zwei obenliegende Nockenwellen, drei SU-Vergaser',cc:3995,ps:'286 PS (282 bhp)',v:'ca. 233 km/h',vn:233,l:4570,wb:2490,h:1340,kg:1502,c:'Silver Birch',reg:'BMT 216A',n:'rund 1 000 Coupés'},
+ ret:'Goldfinger: gegen eine Mauer. Skyfall: zerschossen. Spectre: von Q neu aufgebaut. Er kommt immer wieder.',q:'„Schleudersitz? Sie scherzen!“ – „Ich scherze nie über meine Arbeit, 007.“',m:'Das teuerste Firmenfahrzeug der Krone. Er hat es zweimal privat übernommen, ohne zu fragen.'},
+
+{id:'toyota',n:'Toyota 2000GT Roadster',mk:'Andere',y:1967,f:[['Man lebt nur zweimal',1967]],
+ L:4175,WB:2330,fo:900,H:1160,r:310,rim:190,sill:220,ar:350,wh:'alloy10',open:1,
+ top:[[40,220,1],[0,300],[-5,420],[30,520],[200,590],[700,660],[1300,720],[1650,760,1],[1720,790,1],[2650,790,1],[2900,830],[3400,850],[3900,820],[4120,760],[4175,620],[4170,420],[4110,220,1]],
+ ft:[['s',[[300,520],[1400,560],[3000,620],[4100,640]]],['hl',90,400,70],['l',[[250,580],[520,615]]],['ve',1330,420,200,120,4],['l',[[1720,790],[1700,250]]],['l',[[2600,790],[2620,250]]],['l',[[1700,250],[2620,250]]],
+  ['dh',2500,700,80],['mi',1200,705,'wing'],['tl',4140,600,40,90],['ch',[[0,330],[150,335]]],['ch',[[3950,350],[4175,350]]],['fc',3200,815,30],
+  ['ws',[[1670,772],[1900,1050],[1980,1050]]],['seat',2350,790,1],['sw',1950,960],['ex',3950,230,220]],
+ eng:{x:200,h:300,w:900,hh:350,n:6,t:'I'},tank:[3500,450,450,200],drv:'F-R',
+ g:[[1,2200,860,'Funk- und Videoverbindung zu Tiger Tanaka','radio']],
+ sp:{m:'Reihensechszylinder, zwei obenliegende Nockenwellen (Yamaha)',cc:1988,ps:'150 PS',v:'ca. 220 km/h',vn:220,l:4175,wb:2330,h:1160,kg:1120,c:'Weiß',n:'351 (Serie, Coupé); zwei Roadster für den Film'},
+ ret:'Unbeschädigt. 007 saß auf dem Beifahrersitz, gefahren hat Aki.',q:'Den Roadster gab es nur für den Film. Ins Coupé passte 007 nicht hinein. Ein seltener Fall, in dem er für etwas zu groß war.',m:'Das einzige Dienstfahrzeug, das er nicht selbst gesteuert hat. Wir haben es sofort im Haushalt vermerkt.'},
+
+{id:'dbs',n:'Aston Martin DBS',mk:'Aston Martin',y:1969,f:[['Im Geheimdienst Ihrer Majestät',1969],['Diamantenfieber',1971]],
+ L:4585,WB:2610,fo:850,H:1330,r:330,rim:190,sill:250,ar:375,wh:'slot',
+ top:[[30,250,1],[0,330],[-5,420,1],[0,640,1],[60,690],[500,735],[1100,770],[1480,795,1],[1900,1260],[2200,1320],[2650,1330],[3000,1300],[3400,1130],[3800,980,1],[4300,950],[4570,930,1],[4585,700,1],[4580,430],[4520,250,1]],
+ dlo:[[1530,850,1],[1880,1240],[2200,1295],[2640,1305],[2980,1275],[3350,1100],[3550,1010,1],[3400,940,1],[2700,915],[1600,890,1]],
+ pil:[[[2780,915],[2800,1300],[2860,1295],[2840,915]]],
+ ft:[['s',[[50,620],[1200,650],[3000,700],[4580,720]]],['hr',-5,560,30,90,'c'],['gr',-5,430,20,200,3],['ve',1300,450,150,140,3],['l',[[1520,880],[1510,280]]],['l',[[2830,915],[2840,280]]],['l',[[1510,280],[2840,280]]],
+  ['dh',2650,830,90],['mi',1700,900,'door'],['tl',4560,660,40,180],['ch',[[-5,420],[300,430]]],['ch',[[4300,430],[4585,425]]],['seat',2350,900,1],['sw',1980,1020],['ex',4380,270,200],['fc',3700,990,30]],
+ eng:{x:150,h:350,w:850,hh:420,n:6,t:'I'},tank:[3850,450,600,250],drv:'F-R',
+ g:[[1,1750,890,'Gewehr mit Zielfernrohr im Handschuhfach','none']],
+ sp:{m:'Reihensechszylinder, zwei obenliegende Nockenwellen',cc:3995,ps:'286 PS (282 bhp)',v:'ca. 225 km/h',vn:225,l:4585,wb:2610,h:1330,c:'Olive Green'},
+ ret:'Hochzeitsfahrt. Q verzichtet auf jeden Kommentar.',q:'Ausstattung: ein Gewehr im Handschuhfach. Mehr hielt man damals für unnötig. Man hat sich geirrt.',m:'Kein Kommentar.'},
+
+{id:'mustang',n:'Ford Mustang Mach 1',mk:'Andere',y:1971,f:[['Diamantenfieber',1971]],
+ L:4813,WB:2769,fo:1000,H:1280,r:330,rim:180,sill:280,ar:380,wh:'magnum',
+ top:[[40,280,1],[0,380],[-10,520,1],[10,720,1],[120,770],[900,830],[1650,860,1],[2150,1260],[2500,1280],[2850,1270],[3200,1200],[4100,1000],[4700,960,1],[4813,900,1],[4800,650,1],[4790,420],[4720,280,1]],
+ dlo:[[1720,900,1],[2140,1235],[2500,1255],[2820,1240],[3100,1170],[3300,1110,1],[3150,1010,1],[2500,960],[1800,930,1]],
+ ft:[['l',[[2950,975],[2950,1230]]],['l',[[600,832],[700,880],[1100,880],[1150,852]]],['gr',-10,440,25,260,4],['hl',30,640,70],['ve',3600,700,200,100,3],['st',[[300,380],[4500,400]]],['bd',3650,460,'MACH 1'],
+  ['l',[[1700,900],[1680,310]]],['l',[[2900,975],[2920,310]]],['l',[[1680,310],[2920,310]]],['tl',4790,700,30,150],['ch',[[-15,420],[300,430]]],['ch',[[4450,430],[4813,420]]],['dh',2750,880,90],['mi',1950,950,'door'],
+  ['seat',2500,950,1],['sw',2150,1060],['ex',4600,300,200],['fc',4780,800,30]],
+ eng:{x:200,h:380,w:1000,hh:430,n:8,t:'V'},tank:[4100,500,500,200],drv:'F-R',
+ g:[[1,2400,1290,'Kippfahrt auf zwei Rädern durch eine Gasse in Las Vegas','tilt']],
+ sp:{m:'V8, Frontmotor, Hinterradantrieb (Filmwagen mit unterschiedlichen Motoren)',l:4813,wb:2769,c:'Rot'},
+ ret:'Eingefahren auf den rechten Rädern, ausgefahren auf den linken. Die Schnittabteilung bittet um Nachsicht.',q:'Der Wagen gehörte Tiffany Case. Ich war nicht beteiligt und bestehe darauf, dass das so vermerkt wird.',m:'Physikalisch unmöglich, aber pünktlich. Ich nehme das Zweite.'},
+
+{id:'bus',n:'AEC Regent III RT (Londoner Doppeldecker)',mk:'Andere',y:1950,f:[['Leben und sterben lassen',1973]],
+ L:7920,WB:4980,fo:1450,H:4340,r:520,rim:290,sill:420,ar:570,wh:'bus',est:1,
+ top:[[0,450,1],[0,1500,1],[60,1560,1],[700,1560,1],[700,2650,1],[140,2650,1],[110,2800],[100,3700],[220,4150],[700,4330],[1500,4340],[7200,4340],[7700,4200],[7900,3800],[7920,3000,1],[7920,500,1],[7860,450,1]],
+ ft:[['wr',1950,6600,1750,2450,5],['wr',300,7700,3150,3900,7],['rc',760,1700,560,700],['rc',6750,480,1050,1900],['l',[[7300,480],[7300,2300]]],['ch',[[700,2650],[7920,2650]]],['ch',[[140,3020],[7920,3020]]],['bd',3400,2780,'LONDON TRANSPORT'],
+  ['gr',0,700,30,750,5],['hl',380,1650,120],['ch',[[0,600],[700,600]]],['rc',2700,1650,300,260],['ex',7600,450,250]],
+ eng:{x:150,h:600,w:1200,hh:800,n:6,t:'I'},tank:[5000,600,700,300],drv:'F-R',
+ g:[[1,4000,3600,'Oberdeck an einer niedrigen Brücke abgeschert','shear']],
+ sp:{m:'Reihensechszylinder-Diesel, Frontmotor',v:'Stadtverkehr',c:'London-Rot'},
+ ret:'Einstöckig zurückgegeben.',q:'Ein Doppeldecker unter einer niedrigen Brücke. Ich hätte vorher nachgerechnet. 007 hat hinterher nachgerechnet.',m:'London Transport hat die Rechnung an uns geschickt. Wir haben sie an den Kraken weitergeleitet.'},
+
+{id:'hornet',n:'AMC Hornet X Hatchback',mk:'Andere',y:1974,f:[['Der Mann mit dem goldenen Colt',1974]],
+ L:4554,WB:2743,fo:820,H:1320,r:330,rim:180,sill:280,ar:375,wh:'slot',
+ top:[[30,280,1],[0,380],[-5,460,1],[0,720,1],[80,760],[700,800],[1350,830,1],[1820,1290],[2100,1320],[2700,1320],[3050,1290],[3700,1080],[4300,920,1],[4554,880,1],[4554,460,1],[4540,380],[4480,280,1]],
+ dlo:[[1430,880,1],[1810,1270],[2100,1295],[2690,1295],[3000,1265],[3550,1060,1],[3400,960,1],[1500,920,1]],
+ pil:[[[2600,935],[2620,1295],[2690,1295],[2670,935]]],
+ ft:[['gr',-5,480,20,220,3],['hl',20,620,70],['bd',3150,760,'HORNET X'],['tl',4540,560,20,250],['ch',[[-15,400],[300,410]]],['ch',[[4250,410],[4570,400]]],
+  ['l',[[1420,880],[1400,310]]],['l',[[2640,935],[2650,310]]],['l',[[1400,310],[2650,310]]],['dh',2500,860,90],['mi',1600,920,'door'],['seat',2250,940,1],['sw',1900,1060],['ex',4300,290,200],['s',[[200,640],[2000,670],[4500,700]]]],
+ eng:{x:180,h:380,w:900,hh:420,n:8,t:'V'},tank:[3900,450,500,200],drv:'F-R',
+ g:[[1,2400,1330,'Astro-Spiral: 360-Grad-Rolle über einen eingestürzten Steg','spiral']],
+ sp:{m:'V8, Frontmotor, Hinterradantrieb',l:4554,wb:2743,c:'Rot'},
+ ret:'Spirale geglückt, in einer Einstellung. Sheriff Pepper saß daneben.',q:'Der Sprung wurde vorab am Computer berechnet. Den Pfeifton, den man im Film darunter gelegt hat, bedauert die Abteilung bis heute.',m:'Aus einem Autohaus entwendet, mit einem Sheriff als Beifahrer. Ich verlange keinen Bericht. Ich will es nicht wissen.'},
+
+{id:'esprit',n:'Lotus Esprit S1 „Wet Nellie“',mk:'Lotus',y:1976,f:[['Der Spion, der mich liebte',1977]],
+ L:4191,WB:2438,fo:760,H:1110,r:315,rim:180,sill:220,ar:355,wh:'alloy5',
+ top:[[30,220,1],[0,300,1],[-10,430],[30,500],[400,580],[1100,720],[1520,790,1],[2150,1095,1],[2600,1110],[2950,1095,1],[3300,1010,1],[4100,900,1],[4191,880,1],[4191,520,1],[4150,300],[4100,220,1]],
+ dlo:[[1600,820,1],[2130,1075],[2580,1090],[2900,1080,1],[2840,880,1],[1700,840,1]],
+ ft:[['gl',[[2980,1060],[3250,995],[3020,905]]],['l',[[0,470],[4191,520]]],['l',[[350,575],[750,640]]],['l',[[1580,800],[1560,250]]],['l',[[2850,880],[2870,250]]],['l',[[1560,250],[2870,250]]],
+  ['dh',2700,760,60],['mi',1800,830,'door'],['ve',3000,450,200,120,2],['tl',4180,620,20,180],['bd',3700,600,'LOTUS'],['l',[[3300,1010],[3350,1050],[4050,930]]],['seat',2350,820,.9],['sw',1950,900],['ex',4050,240,150]],
+ eng:{x:2900,h:350,w:900,hh:380,n:4,t:'I'},tank:[2650,380,230,450],drv:'M-R',
+ g:[[1,2000,250,'U-Boot-Modus: Räder ein, Finnen und Propeller aus','sub'],[2,3500,1000,'Boden-Luft-Rakete','rocketUp'],[3,300,450,'Torpedos','torpedo'],[4,4150,350,'Seeminen','mine'],[5,4100,700,'Tintenwolke','smoke'],[6,100,550,'Zementsprüher','spray']],
+ sp:{m:'Reihenvierzylinder, 16 Ventile (Lotus 907), Mittelmotor',cc:1973,ps:'162 PS (160 bhp)',v:'ca. 222 km/h',vn:222,l:4191,wb:2438,h:1110,c:'Polar White',reg:'PPW 306R'},
+ ret:'Aus dem Meer auf den Strand gefahren. Ein Fisch aus dem Fenster.',q:'Ich hatte gebeten, ihn in einem Stück zurückzubringen. Er kam in einem Stück zurück. Nass.',m:'Ein Auto, das tauchen kann. Das Schatzamt hat gefragt, ob es auch schwimmen kann, wenn man es verkauft.'},
+
+{id:'turbo',n:'Lotus Esprit Turbo',mk:'Lotus',y:1980,f:[['In tödlicher Mission',1981]],
+ L:4191,WB:2438,fo:760,H:1130,r:320,rim:190,sill:220,ar:360,wh:'mesh',
+ top:[[60,200,1],[0,280,1],[-15,430],[30,500],[400,585],[1100,725],[1520,795,1],[2150,1100,1],[2600,1115],[2950,1100,1],[3300,1015,1],[4100,905,1],[4191,885,1],[4191,520,1],[4150,300],[4100,220,1]],
+ dlo:[[1600,825,1],[2130,1080],[2580,1095],[2900,1085,1],[2840,885,1],[1700,845,1]],
+ ft:[['gl',[[2980,1065],[3250,1000],[3020,910]]],['l',[[0,470],[4191,520]]],['l',[[350,580],[750,645]]],['l',[[60,200],[700,215]]],['l',[[1580,805],[1560,250]]],['l',[[2850,885],[2870,250]]],['l',[[1560,250],[2870,250]]],
+  ['dh',2700,765,60],['mi',1800,835,'door'],['ve',3000,450,200,120,2],['tl',4180,620,20,180],['bd',3580,340,'TURBO ESPRIT'],['l',[[3300,1015],[3350,1055],[4050,935]]],
+  ['ch',[[2000,1190],[3250,1170]]],['l',[[2250,1110],[2250,1185]]],['l',[[2900,1110],[2900,1175]]],['seat',2350,825,.9],['sw',1950,905],['ex',4050,240,150]],
+ eng:{x:2900,h:350,w:900,hh:380,n:4,t:'I'},tank:[2650,380,230,450],drv:'M-R',
+ g:[[1,2600,900,'Diebstahlsicherung: Selbstzerstörung bei Einbruch','boom'],[2,2600,1180,'Skiträger für Cortina','none']],
+ sp:{m:'Reihenvierzylinder mit Turbolader (Lotus 910), Mittelmotor',cc:2174,ps:'213 PS (210 bhp)',v:'ca. 240 km/h',vn:240,l:4191,wb:2438,h:1130,c:'Weiß, danach Kupferrot'},
+ ret:'Weiß: von der eigenen Alarmanlage gesprengt. Kupferrot: überstand Cortina.',q:'Die Diebstahlsicherung hat funktioniert. Ich bitte, das festzuhalten.',m:'Ein Auto, das sich selbst zerstört, wenn man es stiehlt. Ich hätte gern dieselbe Vorrichtung für Spesenabrechnungen.'},
+
+{id:'cv',n:'Citroën 2CV6',mk:'Andere',y:1981,f:[['In tödlicher Mission',1981]],
+ L:3830,WB:2400,fo:620,H:1600,r:300,rim:190,sill:330,ar:335,wh:'steel',
+ top:[[60,330,1],[0,420,1],[0,560,1],[40,700],[200,790],[700,950],[1050,1050,1],[1250,1560,1],[1400,1595],[2700,1595],[3150,1485],[3550,1100],[3780,800,1],[3830,560,1],[3800,330,1]],
+ ft:[['gl',[[1290,1110],[1350,1500],[2050,1520],[2050,1110]]],['gl',[[2110,1110],[2110,1520],[2700,1520],[3020,1350],[3060,1110]]],
+  ['s',[[0,560],[150,800],[500,920],[850,860],[1150,620],[1300,400]]],['s',[[200,810],[1000,1040]]],['s',[[220,860],[1010,1000]]],['s',[[240,910],[1020,960]]],['hl',360,960,90],
+  ['l',[[1250,1500],[1230,350]]],['l',[[2080,1525],[2080,350]]],['l',[[3070,1350],[3100,350]]],['dh',1950,1000,70],['dh',2950,1000,70],['s',[[1400,1600],[3150,1490]]],['bh',2400,800],['bh',2620,700],['bh',2510,880],
+  ['ch',[[-10,450],[200,455]]],['ch',[[3650,450],[3840,450]]],['tl',3790,800,40,80],['seat',2000,1150,.9],['sw',1600,1250],['ex',3700,320,150]],
+ post:[['sk',[[2600,330],[2620,760],[3050,820],[3420,660],[3480,330]]]],
+ eng:{x:40,h:420,w:520,hh:330,n:2,t:'B'},tank:[2900,450,450,200],drv:'F-F',
+ g:[[1,2000,1600,'Ausstattung: keine. Nur Mut.','none'],[2,1800,330,'Überschlag, wieder aufgestellt, weitergefahren','flip']],
+ sp:{m:'Luftgekühlter Zweizylinder-Boxer, Frontmotor, Vorderradantrieb',cc:602,ps:'29 PS',v:'ca. 115 km/h',vn:115,l:3830,wb:2400,h:1600,c:'Mimosengelb',n:'Sonderserie „2CV 007“ mit Einschusslöchern als Aufkleber'},
+ ret:'Überschlagen, von Hand wieder aufgestellt, weitergefahren. Würde ich jedem Ministerium empfehlen.',q:'Nicht von mir. Gehörte Melina Havelock. Ich hätte nichts verbessern können, und das sage ich selten.',m:'Neunundzwanzig PS gegen zwei Peugeot. Er hat gewonnen. Ich frage mich, wofür wir die anderen Autos kaufen.'},
+
+{id:'v8',n:'Aston Martin V8 (Volante / Saloon)',mk:'Aston Martin',y:1987,f:[['Der Hauch des Todes',1987],['Keine Zeit zu sterben',2021]],
+ L:4670,WB:2610,fo:900,H:1300,r:330,rim:190,sill:240,ar:380,wh:'slot',est:1,
+ top:[[30,240,1],[-5,300,1],[-10,430],[0,600,1],[80,650],[600,720],[900,760],[1450,790,1],[1880,1240],[2200,1295],[2650,1300],[3050,1270],[3450,1070],[3850,960,1],[4450,930],[4650,900,1],[4670,650,1],[4660,430],[4600,240,1]],
+ dlo:[[1520,840,1],[1860,1220],[2200,1270],[2640,1275],[3020,1245],[3350,1090],[3500,1010,1],[3350,930,1],[2700,910],[1600,885,1]],
+ pil:[[[2780,910],[2800,1275],[2860,1270],[2840,910]]],
+ ft:[['s',[[500,730],[700,795],[1200,805],[1420,792]]],['hl',30,540,75],['hl',40,380,45],['gr',-10,420,20,170,3],['l',[[1510,870],[1500,270]]],['l',[[2830,910],[2840,270]]],['l',[[1500,270],[2840,270]]],
+  ['dh',2650,830,90],['mi',1750,900,'door'],['tl',4650,620,25,170],['l',[[4400,940],[4665,965]]],['s',[[100,560],[1300,600],[3200,640],[4650,650]]],['seat',2350,890,1],['sw',1980,1010],['ex',4450,260,200],['an',3950,960,250]],
+ eng:{x:150,h:350,w:900,hh:450,n:8,t:'V'},tank:[3900,450,600,250],drv:'F-R',
+ g:[[1,900,330,'Laser in der Radnabe','laser'],[2,40,380,'Raketen hinter den Nebelscheinwerfern','rocket'],[3,2300,240,'Ausfahrbare Kufen','ski'],[4,3510,330,'Spikes in den Reifen','spike'],[5,4620,330,'Raketentriebwerk','flame'],[6,2600,1050,'Selbstzerstörung','boom'],[7,1900,950,'Polizeifunk-Scanner','radio']],
+ sp:{m:'V8, vier obenliegende Nockenwellen',cc:5340,ps:'über 300 PS (je nach Ausführung)',wb:2610},
+ ret:'Im Schnee selbst gesprengt. In „Keine Zeit zu sterben“ wieder im Dienst. Wir fragen nicht, wie.',q:'Winterfest gemacht. Mit Ausrüstung, die man im Winter eher selten braucht. Kufen zum Beispiel. Und Raketen.',m:'Er hat ihn gesprengt, damit er nicht in falsche Hände fällt. Ich habe den Vorgang als Diebstahlschutz abgelegt.'},
+
+{id:'z3',n:'BMW Z3 Roadster 1.9',mk:'BMW',y:1995,f:[['GoldenEye',1995]],
+ L:4025,WB:2446,fo:720,H:1293,r:315,rim:205,sill:230,ar:355,wh:'alloy5',open:1,
+ top:[[30,230,1],[0,310],[-5,420],[20,520],[200,610],[800,700],[1400,770],[1620,810,1],[1700,840,1],[2650,840,1],[2850,870],[3400,890],[3900,850],[4020,760,1],[4025,560,1],[4010,420],[3950,230,1]],
+ ft:[['gr',-5,450,25,110,2],['hr',60,520,350,70,'c'],['ve',1100,500,200,110,2],['ci',1200,560,30],['l',[[1700,840],[1680,262]]],['l',[[2650,840],[2670,262]]],['l',[[1680,262],[2670,262]]],['dh',2500,740,70],['mi',1750,880,'door'],['tl',4010,650,20,120],
+  ['s',[[2700,850],[2780,1000],[2880,1000],[2950,860]]],['ws',[[1640,822],[1990,1160],[2060,1150]]],['seat',2400,840,1],['sw',2000,990],['ex',3800,250,150],['s',[[150,560],[1500,600],[3000,640],[4000,640]]]],
+ eng:{x:150,h:330,w:750,hh:380,n:4,t:'I'},tank:[3000,350,500,250],drv:'F-R',
+ g:[[1,60,520,'Stinger-Raketen hinter den Scheinwerfern','rocket'],[2,4000,600,'Bremsfallschirm','chute'],[3,2000,960,'Radar im Armaturenbrett','radar'],[4,2300,500,'Selbstzerstörung','boom']],
+ sp:{m:'Reihenvierzylinder, Frontmotor, Hinterradantrieb',cc:1895,ps:'140 PS',v:'205 km/h',vn:205,l:4025,wb:2446,h:1293,c:'Atlantablau'},
+ ret:'Unbeschädigt. Ein Novum.',q:'Keine einzige Funktion kam zum Einsatz. Ich nehme das persönlich.',m:'Das erste Dienstfahrzeug, das unversehrt zurückkam. Ich habe den Vorgang zweimal prüfen lassen.'},
+
+{id:'e38',n:'BMW 750iL (E38)',mk:'BMW',y:1997,f:[['Der Morgen stirbt nie',1997]],
+ L:5124,WB:3070,fo:900,H:1435,r:340,rim:205,sill:260,ar:385,wh:'alloy10',
+ top:[[30,260,1],[0,330],[-10,450],[0,640,1],[100,710],[700,790],[1350,830],[1700,850,1],[2180,1380],[2550,1430],[3300,1435],[3750,1410],[4150,1160],[4350,1080,1],[4950,1060],[5100,1010,1],[5124,700,1],[5115,430],[5060,260,1]],
+ dlo:[[1760,890,1],[2160,1360],[2550,1405],[3280,1410],[3700,1390],[4080,1160],[4200,1080,1],[3500,1000],[2500,950],[1850,920,1]],
+ pil:[[[2790,950],[2810,1410],[2880,1410],[2860,950]],[[3640,1000],[3660,1395],[3720,1390],[3700,1000]]],
+ ft:[['gr',-10,520,25,120,2],['hr',10,600,300,90,'c'],['hl',30,380,40],['ch',[[300,480],[5000,500]]],['l',[[1730,880],[1700,300]]],['l',[[2830,950],[2830,300]]],['l',[[3950,1120],[3990,300]]],['l',[[1700,300],[3990,300]]],
+  ['dh',2650,880,80],['dh',3750,890,80],['mi',1850,930,'door'],['tl',5100,750,25,200],['seat',2450,950,1],['seat',3400,960,1],['sw',2100,1060],['ex',4900,280,200],['an',4600,1070,200]],
+ eng:{x:150,h:370,w:1000,hh:450,n:12,t:'V'},tank:[4300,450,600,250],drv:'F-R',
+ g:[[1,3000,1000,'Fernsteuerung per Mobiltelefon','radio'],[2,3000,1435,'Raketen aus dem Schiebedach','rocketUp'],[3,5124,350,'Krähenfüße aus dem Heck','caltrop'],[4,3970,340,'Selbstaufpumpende Reifen','none'],[5,0,700,'Drahtschneider im Emblem','blade'],[6,4900,300,'Tränengas','smoke'],[7,2650,880,'Elektroschock am Türgriff','zap']],
+ sp:{m:'V12, Frontmotor, Hinterradantrieb',cc:5379,ps:'326 PS',v:'250 km/h (abgeregelt)',vn:250,l:5124,wb:3070,h:1435},
+ ret:'Vom Dach eines Parkhauses in eine Mietwagenfiliale.',q:'Übergabe am Hamburger Flughafen, ich in Uniform eines Autovermieters. Er hat die Vollkasko abgelehnt.',m:'Gesteuert von der Rückbank, mit einem Telefon. So stelle ich mir auch die Haushaltsführung des Schatzamts vor.'},
+
+{id:'z8',n:'BMW Z8',mk:'BMW',y:1999,f:[['Die Welt ist nicht genug',1999]],
+ L:4400,WB:2505,fo:850,H:1317,r:340,rim:230,sill:240,ar:380,wh:'alloy10',open:1,
+ top:[[30,240,1],[0,320],[-10,450],[20,580],[200,670],[800,750],[1450,800],[1720,820,1],[1800,860,1],[2900,860,1],[3100,890],[3600,920],[4200,880],[4380,800,1],[4400,600,1],[4390,440],[4330,240,1]],
+ ft:[['ve',1150,520,250,140,3],['gr',-10,470,25,140,2],['hr',60,600,350,60,'c'],['s',[[100,620],[1500,660],[3500,700],[4390,700]]],['l',[[1800,860],[1780,270]]],['l',[[2900,860],[2920,270]]],['l',[[1780,270],[2920,270]]],
+  ['dh',2750,780,80],['mi',1850,900,'door'],['tl',4380,640,20,140],['s',[[2900,870],[2980,1040],[3080,1040],[3150,900]]],['ws',[[1740,832],[2120,1290],[2200,1285]]],['seat',2500,860,1],['sw',2100,1000],['ex',4250,260,150]],
+ eng:{x:200,h:330,w:850,hh:420,n:8,t:'V'},tank:[3100,350,600,250],drv:'F-R',
+ g:[[1,1270,590,'Stinger-Raketen aus der Seitenkieme','rocket'],[2,2600,960,'Fernsteuerung per Schlüsselanhänger','radio'],[3,2200,450,'Titanpanzerung','none'],[4,2350,860,'Längs halbiert durch Hubschrauber-Sägen','saw']],
+ sp:{m:'V8 (S62), 32 Ventile, Frontmittelmotor, Hinterradantrieb',cc:4941,ps:'400 PS',v:'250 km/h (abgeregelt)',vn:250,a:'4,7 s',l:4400,wb:2505,h:1317,kg:1585,c:'Titansilber',n:'5 703'},
+ ret:'Längs halbiert. Beide Hälften wurden zurückgegeben.',q:'Zwei Dinge wollte ich Ihnen immer beibringen: Lassen Sie niemanden sehen, dass Sie bluten. Und haben Sie immer einen Fluchtweg.',m:'Über die Rückgabe von Ausrüstung hat Q ihm nie etwas beigebracht. Man sieht es.'},
+
+{id:'vanq',n:'Aston Martin V12 Vanquish',mk:'Aston Martin',y:2002,f:[['Stirb an einem anderen Tag',2002]],
+ L:4665,WB:2690,fo:900,H:1318,r:345,rim:245,sill:240,ar:385,wh:'alloy10',
+ top:[[30,240,1],[-5,320,1],[-10,450],[20,600],[150,670],[700,740],[1250,790],[1650,815,1],[2120,1270],[2500,1318],[2900,1300],[3400,1170],[3850,1030,1],[4450,1000],[4640,960,1],[4665,700,1],[4655,450],[4600,240,1]],
+ dlo:[[1720,860,1],[2110,1250],[2490,1295],[2880,1280],[3300,1160],[3500,1080,1],[3300,950,1],[2500,930],[1800,900,1]],
+ pil:[[[3080,960],[3100,1250],[3150,1240],[3130,960]]],
+ ft:[['hr',30,560,280,90,'c'],['gr',-10,380,25,200,6],['ve',1350,470,250,90,1],['l',[[1700,880],[1680,280]]],['l',[[3050,960],[3070,280]]],['l',[[1680,280],[3070,280]]],['dh',2850,870,80],['mi',1850,920,'door'],
+  ['tl',4650,700,20,170],['l',[[4300,260],[4650,300]]],['s',[[100,580],[1500,620],[3300,680],[4650,700]]],['seat',2500,930,1],['sw',2100,1040],['ex',4500,270,150]],
+ eng:{x:350,h:330,w:1000,hh:420,n:12,t:'V'},tank:[3800,400,550,250],drv:'F-R',
+ g:[[1,2300,900,'Adaptive Tarnung („Vanish“)','cloak'],[2,0,400,'MGs im Kühlergrill','gun'],[3,100,700,'Zielsuchende Raketen','rocket'],[4,900,345,'Spikes in den Reifen','spike'],[5,2400,1310,'Schleudersitz durch das Dach','eject'],[6,1900,1000,'Wärmebildanzeige','radar']],
+ sp:{m:'V12, 48 Ventile, Frontmittelmotor, Hinterradantrieb',cc:5935,ps:'466 PS (460 bhp)',v:'ca. 306 km/h',vn:306,l:4665,wb:2690,h:1318},
+ ret:'Rennen auf dem Eis gegen einen Jaguar. Überstanden.',q:'Wir nennen ihn den „Vanish“. Bitte stellen Sie ihn nicht irgendwo ab, wo Sie ihn nicht wiederfinden.',m:'Ein unsichtbares Auto. Im Inventar ist es auch fast unsichtbar, so viel hat es gekostet.'},
+
+{id:'dbs12',n:'Aston Martin DBS V12',mk:'Aston Martin',y:2007,f:[['Casino Royale',2006],['Ein Quantum Trost',2008]],
+ L:4721,WB:2740,fo:930,H:1280,r:340,rim:254,sill:230,ar:380,wh:'alloy10',
+ top:[[30,230,1],[-5,310,1],[-10,450],[20,600],[160,670],[700,730],[1300,775],[1720,800,1],[2200,1235],[2600,1280],[3050,1265],[3550,1120],[4050,1000,1],[4550,985],[4700,940,1],[4721,700,1],[4710,450],[4640,230,1]],
+ dlo:[[1790,845,1],[2190,1215],[2590,1255],[3030,1240],[3450,1110],[3620,1040,1],[3400,940,1],[2600,920],[1880,880,1]],
+ pil:[[[3200,950],[3220,1220],[3270,1210],[3250,950]]],
+ ft:[['hr',30,560,330,90,'c'],['gr',-10,370,25,220,6],['ve',1380,460,260,110,2],['st',[[1300,262],[3400,262]]],['l',[[1770,860],[1750,280]]],['l',[[3180,950],[3190,280]]],['l',[[1750,280],[3190,280]]],
+  ['dh',2950,860,80],['mi',1900,910,'door'],['tl',4700,720,20,180],['l',[[4300,250],[4700,290]]],['s',[[100,580],[1500,620],[3300,680],[4700,700]]],['seat',2550,920,1],['sw',2150,1030],['ex',4550,260,150]],
+ eng:{x:300,h:320,w:1050,hh:430,n:12,t:'V'},tank:[3850,400,550,250],drv:'F-R',
+ g:[[1,1950,950,'Defibrillator mit Standleitung nach London','defib'],[2,1850,800,'Walther P99 im Handschuhfach','none'],[3,2900,800,'Medizinkoffer mit Giftanalyse','none'],[4,2450,1285,'Weltrekord: sieben Überschläge','roll7']],
+ sp:{m:'V12, 48 Ventile, Frontmittelmotor, Hinterradantrieb',cc:5935,ps:'517 PS (510 bhp)',v:'307 km/h',vn:307,a:'4,3 s',l:4721,wb:2740,h:1280,kg:1695},
+ ret:'Casino Royale: sieben Überschläge, Totalschaden. Ein Quantum Trost: Fahrertür fehlt.',q:'Der Defibrillator hat funktioniert. Die Schnittstelle zwischen Fahrer und Fahrbahn weniger.',m:'Er weicht einer Frau auf der Straße aus und verliert dabei das Auto. Das ist das Netteste, was ich je über ihn in einem Unfallbericht gelesen habe.'},
+
+{id:'db10',n:'Aston Martin DB10',mk:'Aston Martin',y:2015,f:[['Spectre',2015]],
+ L:4650,WB:2740,fo:900,H:1240,r:345,rim:254,sill:230,ar:385,wh:'alloy10',est:1,
+ top:[[30,230,1],[-5,300,1],[-15,430],[10,560],[150,630],[800,700],[1350,745],[1750,770,1],[2250,1200],[2650,1240],[3100,1220],[3700,1060],[4150,960,1],[4600,940],[4650,880,1],[4650,560,1],[4640,420],[4580,230,1]],
+ dlo:[[1810,815,1],[2240,1180],[2640,1215],[3080,1200],[3500,1080],[3700,1010,1],[3450,900,1],[2600,880],[1900,850,1]],
+ ft:[['hr',20,540,300,50,'c'],['gr',-15,360,25,220,7],['ve',1400,430,280,90,1],['l',[[1790,830],[1770,270]]],['l',[[3300,900],[3320,270]]],['l',[[1770,270],[3320,270]]],['dh',3000,820,80],['mi',1950,880,'door'],
+  ['tl',4640,780,20,60],['l',[[4250,250],[4650,280]]],['s',[[100,520],[1500,560],[3300,640],[4640,660]]],['seat',2600,880,1],['sw',2200,990],['ex',4500,260,150]],
+ eng:{x:350,h:320,w:900,hh:420,n:8,t:'V'},tank:[3900,400,500,250],drv:'F-R',
+ g:[[1,4620,500,'Flammenwerfer im Heck','flame'],[2,4600,700,'Heck-MGs, leider ungeladen','gunR'],[3,2500,1230,'Schleudersitz mit Fallschirm','eject']],
+ sp:{m:'V8, Frontmittelmotor, Hinterradantrieb',cc:4735,c:'Silber',n:'10, eigens für den Film gebaut'},
+ ret:'Im Tiber versenkt. Rückgabe: nein.',q:'Er war für 009 bestimmt. Ich hätte ihn gern zurückgehabt. In einem Stück. Oder überhaupt.',m:'Die Maschinengewehre waren nicht geladen. Der Knopf mit der Aufschrift „Atmos“ spielt Musik. Ich finde, das sagt alles über unsere Beschaffung.'}
+];
+/* Fuhrparkbuch: alle offiziellen Filme */
+const GZB=[[1962,'James Bond jagt Dr. No',[['alpine','Sunbeam Alpine']]],[1963,'Liebesgrüße aus Moskau',[['bentley','Bentley 3½ Litre'],[0,'Boot, Lkw, Hubschrauber']]],[1964,'Goldfinger',[['db5','Aston Martin DB5']]],
+ [1965,'Feuerball',[['db5','Aston Martin DB5'],[0,'Raketenrucksack']]],[1967,'Man lebt nur zweimal',[['toyota','Toyota 2000GT'],[0,'Tragschrauber „Little Nellie“']]],[1969,'Im Geheimdienst Ihrer Majestät',[['dbs','Aston Martin DBS'],[0,'Bob, Ski']]],
+ [1971,'Diamantenfieber',[['mustang','Ford Mustang Mach 1'],[0,'Mondfahrzeug']]],[1973,'Leben und sterben lassen',[['bus','Londoner Doppeldecker'],[0,'Rennboot']]],[1974,'Der Mann mit dem goldenen Colt',[['hornet','AMC Hornet']]],
+ [1977,'Der Spion, der mich liebte',[['esprit','Lotus Esprit „Wet Nellie“'],[0,'Wetbike']]],[1979,'Moonraker',[[0,'Gondel mit Luftkissen'],[0,'Q-Boot']]],[1981,'In tödlicher Mission',[['turbo','Lotus Esprit Turbo'],['cv','Citroën 2CV']]],
+ [1983,'Octopussy',[[0,'Mini-Jet Acrostar'],[0,'Mercedes-Benz auf Bahngleisen'],[0,'Tuk-Tuk']]],[1985,'Im Angesicht des Todes',[[0,'Renault 11 Taxi, Paris (zuletzt halbiert)']]],[1987,'Der Hauch des Todes',[['v8','Aston Martin V8']]],
+ [1989,'Lizenz zum Töten',[[0,'Tanklastzug']]],[1995,'GoldenEye',[['z3','BMW Z3'],['db5','Aston Martin DB5'],[0,'Panzer T-55']]],[1997,'Der Morgen stirbt nie',[['e38','BMW 750iL'],[0,'Motorrad BMW R 1200 C']]],
+ [1999,'Die Welt ist nicht genug',[['z8','BMW Z8'],[0,'Q-Boot auf der Themse']]],[2002,'Stirb an einem anderen Tag',[['vanq','Aston Martin V12 Vanquish']]],[2006,'Casino Royale',[['dbs12','Aston Martin DBS V12'],['db5','Aston Martin DB5'],[0,'Ford Mondeo']]],
+ [2008,'Ein Quantum Trost',[['dbs12','Aston Martin DBS V12']]],[2012,'Skyfall',[['db5','Aston Martin DB5']]],[2015,'Spectre',[['db10','Aston Martin DB10'],['db5','Aston Martin DB5']]],[2021,'Keine Zeit zu sterben',[['db5','Aston Martin DB5'],['v8','Aston Martin V8']]]];
+
+/* Qs Garage: Seitenrisse */
+(function(){
+const $=id=>document.getElementById(id);
+const NS='http://www.w3.org/2000/svg';
+const f1=v=>Math.round(v*10)/10;
+const mm=v=>String(Math.round(v)).replace(/\B(?=(\d{3})+(?!\d))/g,' ');
+const GW=1000,GG=330;
+/* Geometrie: Maßstab und Abbildung mm -> px */
+function geo(c,mini){const k=mini?Math.min(560/c.L,200/c.H):Math.min(690/c.L,235/c.H);const x0=mini?40:70+(690-c.L*k)/2;return{k,x0,X:x=>f1(x0+x*k),Y:h=>f1(GG-h*k)}}
+/* Catmull-Rom zu Bezier, Ecken mit drittem Wert 1 */
+function crv(P,move){let d=move===false?'':`M${P[0][0]} ${P[0][1]}`;
+  for(let i=0;i<P.length-1;i++){const p0=P[i-1]||P[i],p1=P[i],p2=P[i+1],p3=P[i+2]||P[i+1];
+    const c1=p1[2]?[p1[0],p1[1]]:[p1[0]+(p2[0]-p0[0])/6,p1[1]+(p2[1]-p0[1])/6],c2=p2[2]?[p2[0],p2[1]]:[p2[0]-(p3[0]-p1[0])/6,p2[1]-(p3[1]-p1[1])/6];
+    d+=`C${f1(c1[0])} ${f1(c1[1])} ${f1(c2[0])} ${f1(c2[1])} ${p2[0]} ${p2[1]}`}return d}
+const P=(g,pts)=>pts.map(p=>[g.X(p[0]),g.Y(p[1]),p[2]]);
+function bodyPath(c,g){const t=P(g,c.top);let d=crv(t);const ra=c.fo+c.WB,fa=c.fo,ar=c.ar||c.r+45;
+  if(c.flat){d+=`L${g.X(c.top[c.top.length-1][0])} ${g.Y(c.sill)}L${g.X(c.top[0][0])} ${g.Y(c.sill)}Z`;return d}
+  const dx=Math.sqrt(Math.max(0,ar*ar-(c.sill-c.r)**2)),R=f1(ar*g.k),lg=c.sill<c.r?1:0;
+  d+=`L${g.X(ra+dx)} ${g.Y(c.sill)}A${R} ${R} 0 ${lg} 0 ${g.X(ra-dx)} ${g.Y(c.sill)}L${g.X(fa+dx)} ${g.Y(c.sill)}A${R} ${R} 0 ${lg} 0 ${g.X(fa-dx)} ${g.Y(c.sill)}Z`;return d}
+let dly=0;const D=()=>`style="--d:${(dly+=.012).toFixed(3)}s"`;
+const ln=(d,cl='')=>`<path d="${d}" pathLength="1" class="ln ${cl}" ${D()}/>`;
+const cir=(x,y,r,cl='')=>`<circle cx="${f1(x)}" cy="${f1(y)}" r="${f1(Math.max(.4,r))}" pathLength="1" class="ln ${cl}" ${D()}/>`;
+const rect=(x,y,w,h,cl='')=>`<rect x="${f1(x)}" y="${f1(y)}" width="${f1(Math.max(.5,w))}" height="${f1(Math.max(.5,h))}" pathLength="1" class="ln ${cl}" ${D()}/>`;
+const pl=(g,pts,cl)=>ln('M'+pts.map(p=>`${g.X(p[0])} ${g.Y(p[1])}`).join('L'),cl);
+/* Räder */
+function wheel(c,g,ax){const cx=g.X(ax),cy=g.Y(c.r),R=c.r*g.k,rr=c.rim*g.k,o=[];
+  o.push(cir(cx,cy,R,'tyre fill'),cir(cx,cy,R-1.6,'fn'),cir(cx,cy,rr+R*.06,'fn'));
+  for(let i=0;i<48;i++){const a=i/48*Math.PI*2,c1=Math.cos(a),s1=Math.sin(a);o.push(`<line x1="${f1(cx+c1*(R-.2))}" y1="${f1(cy+s1*(R-.2))}" x2="${f1(cx+c1*(R-R*.09))}" y2="${f1(cy+s1*(R-R*.09))}" class="ln tr"/>`)}
+  const modern=['alloy10','alloy5','mesh'].includes(c.wh)&&c.y>1990;
+  if(modern){o.push(cir(cx,cy,rr*.82,'fn disc'));for(let i=0;i<24;i++){const a=i/24*Math.PI*2;o.push(`<circle cx="${f1(cx+Math.cos(a)*rr*.62)}" cy="${f1(cy+Math.sin(a)*rr*.62)}" r=".6" class="hole"/>`)}
+    o.push(ln(`M${f1(cx+rr*.25)} ${f1(cy-rr*.8)}A${f1(rr*.84)} ${f1(rr*.84)} 0 0 1 ${f1(cx+rr*.8)} ${f1(cy-rr*.25)}`,'amb thick'))}
+  o.push(cir(cx,cy,rr,'rim'),cir(cx,cy,rr*.93,'fn'));
+  const hub=rr*.22,sp=[];
+  if(c.wh==='wire'){for(let i=0;i<72;i++){const a=i/72*Math.PI*2,b=a+(i%2?.5:-.5),h0=i%3===0?hub*.8:hub;sp.push(`M${f1(cx+Math.cos(a)*h0)} ${f1(cy+Math.sin(a)*h0)}L${f1(cx+Math.cos(b)*rr*.92)} ${f1(cy+Math.sin(b)*rr*.92)}`)}
+    o.push(ln(sp.join(''),'spk'),cir(cx,cy,hub,''),ln(`M${f1(cx-hub*1.6)} ${f1(cy-hub*.25)}L${f1(cx+hub*1.6)} ${f1(cy+hub*.25)}M${f1(cx-hub*.25)} ${f1(cy+hub*1.6)}L${f1(cx+hub*.25)} ${f1(cy-hub*1.6)}`,'chr'))}
+  else if(c.wh==='steel'){o.push(cir(cx,cy,rr*.7,''),cir(cx,cy,rr*.55,'fn'),cir(cx,cy,rr*.18,''));for(let i=0;i<8;i++){const a=i/8*Math.PI*2;o.push(cir(cx+Math.cos(a)*rr*.8,cy+Math.sin(a)*rr*.8,rr*.07,'fn'))}}
+  else if(c.wh==='bus'){o.push(cir(cx,cy,rr*.75,''),cir(cx,cy,rr*.35,''),cir(cx,cy,rr*.15,'fn'));for(let i=0;i<10;i++){const a=i/10*Math.PI*2;o.push(cir(cx+Math.cos(a)*rr*.5,cy+Math.sin(a)*rr*.5,rr*.05,''))}}
+  else if(c.wh==='mesh'){for(let i=0;i<20;i++){const a=i/20*Math.PI*2,b=a+.45;sp.push(`M${f1(cx+Math.cos(a)*hub)} ${f1(cy+Math.sin(a)*hub)}L${f1(cx+Math.cos(b)*rr*.9)} ${f1(cy+Math.sin(b)*rr*.9)}M${f1(cx+Math.cos(a)*hub)} ${f1(cy+Math.sin(a)*hub)}L${f1(cx+Math.cos(a-.45)*rr*.9)} ${f1(cy+Math.sin(a-.45)*rr*.9)}`)}
+    o.push(ln(sp.join(''),'spk'),cir(cx,cy,hub,''),cir(cx,cy,hub*.5,'fn'))}
+  else{const n=c.wh==='alloy10'?10:c.wh==='slot'?6:c.wh==='magnum'?5:5;
+    for(let i=0;i<n;i++){const a=i/n*Math.PI*2-Math.PI/2,w=c.wh==='alloy10'?.09:c.wh==='slot'?.25:.2;
+      if(c.wh==='slot'){const m=a+Math.PI/n,x1=cx+Math.cos(m)*rr*.58,y1=cy+Math.sin(m)*rr*.58;o.push(`<ellipse cx="${f1(x1)}" cy="${f1(y1)}" rx="${f1(rr*.2)}" ry="${f1(rr*.1)}" transform="rotate(${f1(m*180/Math.PI)} ${f1(x1)} ${f1(y1)})" pathLength="1" class="ln" ${D()}/>`)}
+      else{const p=[[hub,a-w*1.4],[rr*.9,a-w*.55],[rr*.9,a+w*.55],[hub,a+w*1.4]].map(([r,b])=>`${f1(cx+Math.cos(b)*r)} ${f1(cy+Math.sin(b)*r)}`);o.push(ln('M'+p.join('L')+'Z','spk2'))}}
+    o.push(cir(cx,cy,hub,''),cir(cx,cy,hub*.45,'fn'));for(let i=0;i<5;i++){const a=i/5*Math.PI*2;o.push(cir(cx+Math.cos(a)*hub*.72,cy+Math.sin(a)*hub*.72,.7,'fn'))}}
+  return `<g class="whl">${o.join('')}</g>`}
+/* Details */
+function feat(c,g,t){const[k]=t,K=g.k;switch(k){
+  case 'l':return pl(g,t[1],'');case 's':return ln(crv(P(g,t[1])),'');case 'ch':return pl(g,t[1],'chr');case 'st':return pl(g,t[1],'amb thick');
+  case 'ws':return pl(g,t[1],'chr')+ln(`M${g.X(t[1][0][0])} ${g.Y(t[1][0][1])}L${g.X(t[1][1][0])} ${g.Y(t[1][1][1])}`,'fn');
+  case 'gl':return ln(crv(P(g,t[1].map(p=>[p[0],p[1],1])))+'Z','glass');
+  case 'hl':return cir(g.X(t[1]),g.Y(t[2]),t[3]*K,'')+cir(g.X(t[1]),g.Y(t[2]),t[3]*K*.62,'fn glass')+cir(g.X(t[1]),g.Y(t[2]),t[3]*K*.2,'fn');
+  case 'hr':return rect(g.X(t[1]),g.Y(t[2]+t[4]),t[3]*K,t[4]*K,t[5]==='a'?'amb':'glass')+ln(`M${g.X(t[1]+t[3]*.15)} ${g.Y(t[2]+t[4]*.5)}H${g.X(t[1]+t[3]*.85)}`,'fn');
+  case 'tl':return rect(g.X(t[1]),g.Y(t[2]+t[4]),t[3]*K,t[4]*K,'red');
+  case 'gr':{let o=rect(g.X(t[1]),g.Y(t[2]+t[4]),t[3]*K,t[4]*K,'');for(let i=1;i<=t[5];i++){const h=t[2]+t[4]*i/(t[5]+1);o+=ln(`M${g.X(t[1])} ${g.Y(h)}H${g.X(t[1]+t[3])}`,'fn')}return o}
+  case 'dh':return rect(g.X(t[1]),g.Y(t[2]+18),t[3]*K,36*K,'chr');
+  case 'mi':{const x=g.X(t[1]),y=g.Y(t[2]),s=K,st=t[3]==='wing'?90:50;return ln(`M${x} ${y}v${f1(-st*s)}`,'chr')+ln(`M${f1(x-60*s)} ${f1(y-st*s)}c0 ${f1(-70*s)} ${f1(150*s)} ${f1(-80*s)} ${f1(170*s)} ${f1(-20*s)}c${f1(10*s)} ${f1(30*s)} ${f1(-60*s)} ${f1(40*s)} ${f1(-170*s)} ${f1(20*s)}z`,'fill')}
+  case 've':{let o=rect(g.X(t[1]),g.Y(t[2]+t[4]),t[3]*K,t[4]*K,'chr');for(let i=1;i<=t[5];i++){const x=t[1]+t[3]*i/(t[5]+1);o+=ln(`M${g.X(x-t[3]*.12)} ${g.Y(t[2]+t[4]*.12)}L${g.X(x+t[3]*.06)} ${g.Y(t[2]+t[4]*.88)}`,'')}return o}
+  case 'lvv':{let o='';for(let i=0;i<t[5];i++){const x=t[1]+t[3]*i/(t[5]-1);o+=ln(`M${g.X(x)} ${g.Y(t[2])}V${g.Y(t[2]+t[4])}`,'fn')}return o}
+  case 'fc':return cir(g.X(t[1]),g.Y(t[2]),t[3]*K,'chr');case 'ci':return cir(g.X(t[1]),g.Y(t[2]),t[3]*K,'')+cir(g.X(t[1]),g.Y(t[2]),t[3]*K*.5,'fn');
+  case 'an':return ln(`M${g.X(t[1])} ${g.Y(t[2])}l${f1(-25*K)} ${f1(-t[3]*K)}`,'fn');
+  case 'ex':return rect(g.X(t[1]),g.Y(t[2]+30),t[3]*K,60*K,'chr');
+  case 'bd':return `<text x="${g.X(t[1])}" y="${g.Y(t[2])}" class="tx bd" style="font-size:${f1(Math.max(4,70*K))}px">${t[3]}</text>`;
+  case 'bh':return cir(g.X(t[1]),g.Y(t[2]),22*K,'')+ln(`M${f1(g.X(t[1])-30*K)} ${g.Y(t[2])}h${f1(60*K)}M${g.X(t[1])} ${f1(g.Y(t[2])-30*K)}v${f1(60*K)}`,'fn');
+  case 'rc':return rect(g.X(t[1]),g.Y(t[2]+t[4]),t[3]*K,t[4]*K,'glass');
+  case 'wr':{let o='';const n=t[5],gap=120,w=(t[2]-t[1]-gap*(n-1))/n;for(let i=0;i<n;i++){const x=t[1]+i*(w+gap);o+=rect(g.X(x),g.Y(t[4]),w*K,(t[4]-t[3])*K,'glass')}return o}
+  case 'seat':{const x=t[1],h=t[2]-380,s=t[3];return ln(crv(P(g,[[x-260*s,h+40*s,1],[x-150*s,h+60*s],[x+180*s,h+50*s,1],[x+220*s,h+420*s],[x+300*s,h+520*s],[x+180*s,h+560*s],[x+140*s,h+420*s],[x+100*s,h+120*s,1]])),'fn')}
+  case 'sw':return `<ellipse cx="${g.X(t[1])}" cy="${g.Y(t[2])}" rx="${f1(22*K)}" ry="${f1(180*K)}" transform="rotate(-25 ${g.X(t[1])} ${g.Y(t[2])})" pathLength="1" class="ln fn" ${D()}/>`+ln(`M${g.X(t[1])} ${g.Y(t[2])}L${g.X(t[1]-260)} ${g.Y(t[2]-260)}`,'fn');
+  case 'sk':return ln(crv(P(g,t[1].map(p=>[p[0],p[1],1])))+'Z','fill');
+  default:return''}}
+/* Röntgen: Motor, Tank, Antrieb */
+function xray(c,g){const e=c.eng,K=g.k,o=[];if(!e)return'';const x=g.X(e.x),y=g.Y(e.h+e.hh),w=e.w*K,h=e.hh*K;
+  o.push(rect(x,y,w,h,'xr'));const n=e.t==='V'?e.n/2:e.n;for(let i=0;i<n;i++){const cx=x+w*(i+.5)/n;o.push(rect(cx-w/n*.32,y+h*.12,w/n*.64,h*.42,'xr fn'))}
+  o.push(ln(`M${f1(x)} ${f1(y+h*.75)}H${f1(x+w)}`,'xr'));o.push(`<text x="${f1(x+w/2)}" y="${f1(y-4)}" class="tx xrt" text-anchor="middle">${e.t==='V'?'V'+e.n:e.t==='B'?e.n+' ZYL. BOXER':e.n+' ZYL. REIHE'}</text>`);
+  const gx=e.x+e.w,dr=c.drv,ra=c.fo+c.WB,fa=c.fo;
+  if(dr==='F-R')o.push(rect(g.X(gx),g.Y(e.h+e.hh*.7),280*K,e.hh*.5*K,'xr'),ln(`M${g.X(gx+280)} ${g.Y(e.h+e.hh*.45)}L${g.X(ra)} ${g.Y(c.r)}`,'xr'));
+  else if(dr==='M-R')o.push(rect(g.X(gx),g.Y(e.h+e.hh*.7),300*K,e.hh*.6*K,'xr'),ln(`M${g.X(ra)} ${g.Y(c.r)}L${g.X(gx)} ${g.Y(c.r)}`,'xr'));
+  else o.push(ln(`M${g.X(e.x)} ${g.Y(e.h+e.hh*.4)}L${g.X(fa)} ${g.Y(c.r)}`,'xr'));
+  if(c.tank)o.push(rect(g.X(c.tank[0]),g.Y(c.tank[1]+c.tank[3]),c.tank[2]*K,c.tank[3]*K,'xr'),`<text x="${g.X(c.tank[0]+c.tank[2]/2)}" y="${f1(g.Y(c.tank[1]+c.tank[3])-3)}" class="tx xrt" text-anchor="middle">TANK</text>`);
+  o.push(ln(`M${g.X(e.x+e.w*.5)} ${g.Y(e.h)}C${g.X(e.x+e.w)} ${g.Y(c.sill*.6)} ${g.X(c.L*.6)} ${g.Y(c.sill*.5)} ${g.X(c.L-120)} ${g.Y(c.sill*.6)}`,'xr fn'));
+  return `<g class="xray">${o.join('')}</g>`}
+/* Maßketten */
+function chain(g,y,segs,est){let o='';segs.forEach(([a,b,lab])=>{const xa=g.X(a),xb=g.X(b);o+=`<line x1="${xa}" y1="${y}" x2="${xb}" y2="${y}" class="dl"/><line x1="${xa}" y1="${y-4}" x2="${xa}" y2="${y+4}" class="dl"/><line x1="${xb}" y1="${y-4}" x2="${xb}" y2="${y+4}" class="dl"/><path d="M${f1(xa-3)} ${y+3}l6 -6M${f1(xb-3)} ${y+3}l6 -6" class="dl"/>`;
+  if(xb-xa>26)o+=`<text x="${f1((xa+xb)/2)}" y="${y-3}" class="tx dt" text-anchor="middle">${est?'≈ ':''}${lab||mm(b-a)}</text>`});return o}
+function figure(x,k){const h=1800*k,s=h/180;const y=GG;return `<g class="fig">${ln(`M${x} ${f1(y)}l${f1(8*s)} ${f1(-85*s)}l${f1(8*s)} ${f1(85*s)}M${f1(x+8*s)} ${f1(y-85*s)}v${f1(-62*s)}M${f1(x-6*s)} ${f1(y-150*s)}l${f1(14*s)} ${f1(10*s)}l${f1(14*s)} ${f1(-10*s)}M${f1(x+8*s)} ${f1(y-145*s)}l${f1(-12*s)} ${f1(55*s)}M${f1(x+8*s)} ${f1(y-145*s)}l${f1(12*s)} ${f1(55*s)}M${f1(x+4*s)} ${f1(y-147*s)}l4 3l4 -3`,'fn')}${cir(x+8*s,y-162*s,13*s,'fn')}<text x="${f1(x+8*s)}" y="${f1(y-182*s)}" class="tx dt" text-anchor="middle">1,80 m</text></g>`}
+/* Gesamtzeichnung */
+function draw(c,mini,cmp){dly=0;const g=geo(c,mini),fa=c.fo,ra=c.fo+c.WB,o=[];
+  const body=bodyPath(c,g);
+  let car=`<path d="${body}" pathLength="1" class="ln body fill" ${D()}/>`;
+  if(c.dlo)car+=ln(crv(P(g,c.dlo))+'Z','glass');
+  (c.pil||[]).forEach(p=>car+=ln('M'+p.map(q=>`${g.X(q[0])} ${g.Y(q[1])}`).join('L')+'Z','fill'));
+  (c.ft||[]).forEach(t=>car+=feat(c,g,t));
+  const arch=c.flat?'':ln(`M${g.X(fa-c.ar*.94)} ${g.Y(c.r)}A${f1(c.ar*.94*g.k)} ${f1(c.ar*.94*g.k)} 0 0 1 ${g.X(fa+c.ar*.94)} ${g.Y(c.r)}M${g.X(ra-c.ar*.94)} ${g.Y(c.r)}A${f1(c.ar*.94*g.k)} ${f1(c.ar*.94*g.k)} 0 0 1 ${g.X(ra+c.ar*.94)} ${g.Y(c.r)}`,'fn');
+  if(!c.flat)car+=ln(`M${g.X(fa+c.ar+40)} ${g.Y(c.sill+70)}L${g.X(ra-c.ar-40)} ${g.Y(c.sill+70)}`,'fn');
+  car+=arch+xray(c,g)+`<g class="wheels">${wheel(c,g,fa)}${wheel(c,g,ra)}</g>`;
+  (c.post||[]).forEach(t=>car+=feat(c,g,t));
+  if(mini){const x1=g.X(-60),x2=g.X(c.L+60),y1=g.Y(c.H+120);return `<svg class="gzs gzm" viewBox="${f1(x1)} ${f1(y1)} ${f1(x2-x1)} ${f1(GG+6-y1)}" aria-hidden="true" focusable="false"><g class="car">${car}</g><line x1="${f1(x1)}" y1="${GG}" x2="${f1(x2)}" y2="${GG}" class="gnd"/></svg>`}
+  let hatch='';for(let x=20;x<980;x+=12)hatch+=`M${x} ${GG}l-8 8`;
+  o.push(`<rect width="${GW}" height="420" fill="url(#gzg)"/>`);
+  o.push(`<path d="M10 ${GG}H990" class="gnd"/><path d="${hatch}" class="hatch"/><g class="road"><path d="M10 ${GG+14}H990" class="rd"/></g>`);
+  o.push(`<g class="axes"><path d="M${g.X(fa)} ${GG+6}V${f1(g.Y(c.H)-14)}M${g.X(ra)} ${GG+6}V${f1(g.Y(c.H)-14)}M${f1(g.X(fa)-c.r*g.k-8)} ${g.Y(c.r)}H${f1(g.X(fa)+c.r*g.k+8)}M${f1(g.X(ra)-c.r*g.k-8)} ${g.Y(c.r)}H${f1(g.X(ra)+c.r*g.k+8)}" class="axl"/></g>`);
+  if(cmp&&cmp.id!==c.id){const g2={k:g.k,x0:g.x0,X:g.X,Y:g.Y};o.push(`<g class="ghost"><path d="${bodyPath(cmp,g2)}" class="gh"/><circle cx="${g.X(cmp.fo)}" cy="${g.Y(cmp.r)}" r="${f1(cmp.r*g.k)}" class="gh"/><circle cx="${g.X(cmp.fo+cmp.WB)}" cy="${g.Y(cmp.r)}" r="${f1(cmp.r*g.k)}" class="gh"/><text x="${g.X(cmp.L)}" y="${f1(g.Y(cmp.H)-6)}" class="tx ght" text-anchor="end">${cmp.n.toUpperCase()} · GLEICHER MASSSTAB</text></g>`)}
+  o.push(`<g class="car">${car}</g><g class="fx"></g>`);
+  const est=!!c.est,yC=GG+30;
+  o.push(`<g class="dims">${chain(g,yC,[[0,fa],[fa,ra],[ra,c.L]],est)}${chain(g,yC+22,[[0,c.L]],est)}`);
+  const xh=f1(g.X(c.L)+24);o.push(`<line x1="${xh}" y1="${GG}" x2="${xh}" y2="${g.Y(c.H)}" class="dl"/><line x1="${f1(xh-4)}" y1="${g.Y(c.H)}" x2="${f1(+xh+4)}" y2="${g.Y(c.H)}" class="dl"/><line x1="${f1(xh-4)}" y1="${GG}" x2="${f1(+xh+4)}" y2="${GG}" class="dl"/><text x="${f1(+xh+5)}" y="${f1((GG+g.Y(c.H))/2)}" class="tx dt" transform="rotate(-90 ${f1(+xh+5)} ${f1((GG+g.Y(c.H))/2)})" text-anchor="middle" dy="8">${est?'≈ ':''}${mm(c.H)}</text>`);
+  o.push(`<text x="${g.X(fa)}" y="${f1(g.Y(c.H)-18)}" class="tx dt" text-anchor="middle">VA</text><text x="${g.X(ra)}" y="${f1(g.Y(c.H)-18)}" class="tx dt" text-anchor="middle">HA</text></g>`);
+  o.push(figure(Math.min(905,+xh+60),g.k));
+  /* Legenden-Nummern */
+  const gs=[...c.g].sort((a,b)=>a[1]-b[1]),yl=f1(Math.max(26,Math.min(g.Y(c.H)-48,GG-60))),LX=[];let last=-99;
+  gs.forEach((q,i)=>{LX[i]=Math.max(g.X(q[1]),last+24,24);last=LX[i]});for(let i=gs.length-1;i>=0;i--)LX[i]=Math.min(LX[i],i===gs.length-1?840:LX[i+1]-24);
+  o.push(`<g class="callouts">${gs.map((q,i)=>{const lx=LX[i],px=g.X(q[1]),py=g.Y(q[2]);
+    return `<g class="co" data-n="${q[0]}" tabindex="0" role="button" aria-label="Ausstattung ${q[0]}: ${q[3]}"><path d="M${f1(lx)} ${f1(+yl+9)}L${f1(lx)} ${f1(+yl+18)}L${px} ${py}" class="lead"/><circle cx="${px}" cy="${py}" r="2.4" class="dot"/><circle cx="${f1(lx)}" cy="${yl}" r="9" class="cc"/><text x="${f1(lx)}" y="${f1(+yl+3.5)}" class="tx cn" text-anchor="middle">${q[0]}</text></g>`}).join('')}</g>`);
+  const idx=GZ.indexOf(c)+1;
+  o.push(`<g class="tb" transform="translate(0 358)"><rect x="768" y="8" width="224" height="46"/><line x1="768" y1="21" x2="992" y2="21"/><line x1="768" y1="34" x2="992" y2="34"/><line x1="910" y1="34" x2="910" y2="54"/>
+   <text x="774" y="18" class="tx tbt">Q-ABTEILUNG · FUHRPARK · SEITENRISS</text><text x="774" y="31" class="tx tbn">${c.n.length>34?c.n.slice(0,33)+'…':c.n}</text>
+   <text x="774" y="45" class="tx tbs">${est?'MASSE TEILWEISE GESCHÄTZT':'MASSE NACH WERKSANGABEN'}</text><text x="774" y="51.5" class="tx tbs">BAUJAHR ${c.y} · ALLE MASSE IN MM</text><text x="916" y="45" class="tx tbs">BLATT ${idx}/${GZ.length}</text><text x="916" y="51.5" class="tx tbs">GEZ. Q · GEPR. M</text></g>`);
+  return `<defs><pattern id="gzg" width="20" height="20" patternUnits="userSpaceOnUse"><path d="M20 0H0V20" fill="none" class="gzgrid"/></pattern></defs>`+o.join('')}
+
+/* Oberfläche */
+const svg=$('gzSvg'),bays=$('gzBays'),spec=$('gzSpec'),glist=$('gzG'),stEl=$('gzState'),speedo=$('gzSpd');
+let cur=GZ.find(x=>x.id===S.get('car','db5'))||GZ[0],flt='Alle',cmp=false,xr=false,idle=false,drive=0,puffT=0,ign=0;
+bays.innerHTML=GZ.map((c,i)=>`<button type="button" class="bay" data-id="${c.id}" data-mk="${c.mk}"><span class="bn">BOX ${String(i+1).padStart(2,'0')}</span>${draw(c,true)}<b>${c.n}</b><small>BJ. ${c.y} · ${c.f.length>1?c.f.length+' FILME':c.f[0][0].toUpperCase()}</small></button>`).join('');
+bays.querySelectorAll('.bay').forEach(b=>b.onclick=()=>sel(b.dataset.id,true));
+document.querySelectorAll('#gzFlt button').forEach(b=>b.onclick=()=>{flt=b.dataset.f;document.querySelectorAll('#gzFlt button').forEach(x=>x.setAttribute('aria-pressed',x===b));
+  bays.querySelectorAll('.bay').forEach(x=>x.hidden=!(flt==='Alle'||x.dataset.mk===flt))});
+function specRows(c){const s=c.sp,dr={'F-R':'Frontmotor, Hinterradantrieb','M-R':'Mittelmotor, Hinterradantrieb','F-F':'Frontmotor, Vorderradantrieb'}[c.drv];
+  const rows=[['FILME',c.f.map(([t,y])=>`${t} (${y})`).join(' · ')],['MOTOR',s.m],['HUBRAUM',s.cc?(typeof s.cc==='number'?mm(s.cc)+' cm³':s.cc):''],['LEISTUNG',s.ps],['HÖCHSTGESCHW.',s.v],['0–100 KM/H',s.a],['ANTRIEB',dr],
+    ['LÄNGE',s.l?mm(s.l)+' mm':''],['RADSTAND',s.wb?mm(s.wb)+' mm':''],['HÖHE',s.h?mm(s.h)+' mm':''],['GEWICHT',s.kg?mm(s.kg)+' kg (leer)':''],['FARBE',s.c],['KENNZEICHEN',s.reg],['STÜCKZAHL',s.n]].filter(r=>r[1]);
+  return `<div class="gzh"><b>${c.n}</b><span>${c.mk.toUpperCase()} · BAUJAHR ${c.y}</span></div><dl>${rows.map(([a,b])=>`<dt>${a}</dt><dd>${b}</dd>`).join('')}</dl>
+   <div class="gzret"><span>RÜCKGABEPROTOKOLL</span>${c.ret}</div><p class="qnote"><b>Q:</b> ${c.q}</p><p class="mnote"><b>M:</b> ${c.m}</p>${c.est?'<p class="gzest">Zeichnung schematisch; wo keine Werksmaße vorliegen, sind die Proportionen geschätzt und mit ≈ markiert.</p>':''}`}
+function render(redraw){svg.innerHTML=draw(cur,false,cmp?GZ.find(x=>x.id==='db5'):null);svg.setAttribute('aria-label','Seitenriss '+cur.n);
+  svg.classList.toggle('xray',xr);if(redraw!==false&&!RM){svg.classList.remove('draw');void svg.getBoundingClientRect();svg.classList.add('draw')}else svg.classList.remove('draw');
+  svg.querySelectorAll('.co').forEach(g=>{const go=()=>gadget(cur.g.find(q=>q[0]==+g.dataset.n));g.onclick=go;g.onkeydown=e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();go()}}})}
+function sel(id,scroll){const c=GZ.find(x=>x.id===id);if(!c)return;if(scroll){first=false;svg.classList.remove('pre')}stopDrive();cur=c;S.set('car',id);
+  bays.querySelectorAll('.bay').forEach(b=>b.setAttribute('aria-pressed',b.dataset.id===id));
+  render();spec.innerHTML=specRows(c);
+  glist.innerHTML=c.g.map(q=>`<li><button type="button" data-n="${q[0]}"><b>${q[0]}</b>${q[3]}</button></li>`).join('');
+  glist.querySelectorAll('button').forEach(b=>b.onclick=()=>gadget(c.g.find(q=>q[0]==+b.dataset.n)));
+  stEl.textContent=`BOX ${String(GZ.indexOf(c)+1).padStart(2,'0')} / ${GZ.length}`;speedo.textContent=c.sp.vn?`0 / ${c.sp.vn} km/h`:'– km/h';
+  $('gzRun').disabled=false;if(scroll){const b=bays.querySelector(`[data-id="${id}"]`);if(b)b.scrollIntoView({block:'nearest',inline:'nearest',behavior:RM?'auto':'smooth'})}
+  document.querySelectorAll('#gzBook a[data-car]').forEach(a=>a.classList.toggle('on',a.dataset.car===id))}
+/* Effekte */
+const fxL=()=>svg.querySelector('.fx'),carG=()=>svg.querySelector('.car');
+const mk=(tag,attrs,par)=>{const e=document.createElementNS(NS,tag);for(const k in attrs)e.setAttribute(k,attrs[k]);(par||fxL()).appendChild(e);return e};
+const anim=(el,kf,o)=>el.animate?el.animate(kf,Object.assign({duration:1000,easing:'ease-out',fill:'forwards'},o)):{finished:Promise.resolve()};
+const done=(el,ms)=>setTimeout(()=>el.remove(),ms);
+function G(){return geo(cur,false)}
+const FX={
+ gun(x,y,dir=-1){for(let i=0;i<6;i++){const l=mk('path',{d:`M${x} ${y-3+(i%2)*6}h${dir*14}`,class:'fxg'});anim(l,[{transform:'translateX(0)',opacity:1},{transform:`translateX(${dir*180}px)`,opacity:0}],{duration:420,delay:i*160});done(l,1500)}
+   const fl=mk('circle',{cx:x+dir*4,cy:y,r:7,class:'fxf'});anim(fl,[{opacity:1},{opacity:0},{opacity:1},{opacity:0},{opacity:1},{opacity:0}],{duration:900});done(fl,1000)},
+ gunR(x,y){FX.gun(x,y,1)},
+ rocket(x,y,dx=-1,dy=0){const r=mk('g',{});mk('path',{d:`M${x} ${y}l${-dx*16} -3v6z`,class:'fxr'},r);const tr=mk('path',{d:`M${x-dx*16} ${y}h${-dx*30}`,class:'fxs'},r);
+   anim(r,[{transform:'translate(0,0)'},{transform:`translate(${dx*520}px,${dy*520}px)`}],{duration:1300,easing:'ease-in'});done(r,1400)},
+ rocketUp(x,y){FX.rocket(x,y,-.6,-.8)},torpedo(x,y){FX.rocket(x,y+8,-1,0)},
+ shield(x,y){const s=mk('rect',{x:x-30,y:y,width:60,height:4,class:'fxsh'});anim(s,[{transform:'translateY(0) scaleY(1)'},{transform:'translateY(-26px)'}],{duration:500});setTimeout(()=>anim(s,[{opacity:1},{opacity:0}],{duration:600}),2600);done(s,3300)},
+ eject(x,y){const s=mk('path',{d:`M${x-6} ${y}h12l-2 -16h-8z`,class:'fxe'});anim(s,[{transform:'translate(0,0) rotate(0)'},{transform:`translate(24px,${-Math.max(40,y-14)}px) rotate(160deg)`,offset:.6},{transform:`translate(40px,${-Math.max(40,y-14)+30}px) rotate(180deg)`,opacity:.3}],{duration:2200,easing:'ease-out'});done(s,2300);toast('<b>Q:</b> Schleudersitz. Ich scherze nie über meine Arbeit.')},
+ smoke(x,y,dir){dir=dir||(x>GW/2?1:-1);for(let i=0;i<9;i++){const c=mk('circle',{cx:x,cy:y,r:4,class:'fxsm'});anim(c,[{transform:'translate(0,0) scale(1)',opacity:.9},{transform:`translate(${dir*(40+i*14)}px,${-6-i*3}px) scale(${3+i*.4})`,opacity:0}],{duration:1600,delay:i*120});done(c,3000)}},
+ spray(x,y){FX.smoke(x,y,-1)},
+ spike(x,y){const g=G(),ax=[cur.fo,cur.fo+cur.WB].map(a=>g.X(a)).sort((a,b)=>Math.abs(a-x)-Math.abs(b-x))[0],cy=g.Y(cur.r),R=cur.r*g.k;
+   for(let i=0;i<12;i++){const a=i/12*Math.PI*2,l=mk('path',{d:`M${f1(ax+Math.cos(a)*R)} ${f1(cy+Math.sin(a)*R)}l${f1(Math.cos(a)*9)} ${f1(Math.sin(a)*9)}`,class:'fxg'});anim(l,[{opacity:0},{opacity:1},{opacity:1},{opacity:0}],{duration:2200});done(l,2300)}
+   const b=mk('path',{d:`M${f1(ax-R*.3)} ${f1(cy)}h${f1(-R*1.4)}`,class:'fxg thick'});anim(b,[{transform:'scaleX(0)'},{transform:'scaleX(1)'},{transform:'scaleX(1)'},{transform:'scaleX(0)'}],{duration:1800});done(b,1900)},
+ laser(x,y){const l=mk('path',{d:`M${x} ${y}h-420`,class:'fxl'});anim(l,[{opacity:0},{opacity:1},{opacity:.6},{opacity:1},{opacity:0}],{duration:1400});done(l,1500)},
+ ski(){const g=G(),y=g.Y(cur.sill)+6;const s=mk('path',{d:`M${g.X(cur.fo-200)} ${y}H${g.X(cur.fo+cur.WB+200)}q10 0 14 -8`,class:'fxsh'});anim(s,[{transform:'translateY(-8px)',opacity:0},{transform:'translateY(4px)',opacity:1}],{duration:600});setTimeout(()=>anim(s,[{opacity:1},{opacity:0}],{duration:500}),2600);done(s,3200)},
+ flame(x,y){const f=mk('path',{d:`M${x} ${y-6}q30 6 60 0q-30 6 -60 12z`,class:'fxfl'});anim(f,[{transform:'scaleX(.3)',opacity:1},{transform:'scaleX(1.2)'},{transform:'scaleX(.8)'},{transform:'scaleX(1.3)'},{transform:'scaleX(.2)',opacity:0}],{duration:1800});done(f,1900)},
+ boom(x,y){for(let i=0;i<3;i++){const c=mk('circle',{cx:x,cy:y,r:10,class:'fxb'});anim(c,[{transform:'scale(.2)',opacity:1},{transform:`scale(${8+i*4})`,opacity:0}],{duration:900,delay:i*180});done(c,1400)}
+   anim(carG(),[{transform:'translate(0,0)'},{transform:'translate(-3px,1px)'},{transform:'translate(3px,-1px)'},{transform:'translate(-2px,0)'},{transform:'translate(0,0)'}],{duration:500,iterations:2,fill:'none'});
+   anim(carG(),[{opacity:1},{opacity:.15},{opacity:.15},{opacity:1}],{duration:2600,delay:300,fill:'none'})},
+ cloak(){anim(carG(),[{opacity:1,filter:'none'},{opacity:.6},{opacity:.06},{opacity:.06},{opacity:.4},{opacity:1}],{duration:3600,fill:'none'})},
+ radar(x,y){for(let i=0;i<4;i++){const c=mk('circle',{cx:x,cy:y,r:4,class:'fxra'});anim(c,[{transform:'scale(1)',opacity:1},{transform:'scale(7)',opacity:0}],{duration:1400,delay:i*350});done(c,3000)}},
+ radio(x,y){for(let i=0;i<4;i++){const a=mk('path',{d:`M${x+8} ${y-12}a14 14 0 0 1 0 24M${x-8} ${y-12}a14 14 0 0 0 0 24`,class:'fxra'});anim(a,[{transform:'scale(.6)',opacity:1},{transform:'scale(2.6)',opacity:0}],{duration:1200,delay:i*300});done(a,2600)}},
+ defib(x,y){const e=mk('path',{d:`M${x-80} ${y}h30l8 -18l10 34l8 -26l6 10h40`,class:'fxl'});anim(e,[{strokeDashoffset:1,opacity:1},{strokeDashoffset:0,opacity:1},{opacity:0}],{duration:1600});e.setAttribute('pathLength','1');e.style.strokeDasharray='1';done(e,1700);
+   toast('<b>Q:</b> Defibrillator geladen. Üben können Sie im Q-Lab. Bitte nicht am Fahrer.')},
+ zap(x,y){const z=mk('path',{d:`M${x} ${y-14}l6 8h-6l6 10h-7l7 12`,class:'fxf'});anim(z,[{opacity:1},{opacity:0},{opacity:1},{opacity:0}],{duration:800});done(z,900)},
+ blade(x,y){const b=mk('path',{d:`M${x} ${y}l-16 -3v6z`,class:'fxsh'});anim(b,[{transform:'translateX(10px)'},{transform:'translateX(-6px)'},{transform:'translateX(-6px)'},{transform:'translateX(10px)'}],{duration:2000});done(b,2100)},
+ caltrop(x,y){for(let i=0;i<8;i++){const t=mk('path',{d:`M${x} ${y}l4 -6l4 6z`,class:'fxg'});anim(t,[{transform:'translate(0,0)'},{transform:`translate(${20+i*14}px,${GG-y-4}px)`}],{duration:700,delay:i*90,easing:'ease-in'});done(t,3200)}},
+ mine(x,y){for(let i=0;i<3;i++){const m=mk('circle',{cx:x,cy:y,r:5,class:'fxg'});anim(m,[{transform:'translate(0,0)'},{transform:`translate(${30+i*30}px,${40+i*6}px)`}],{duration:1400,delay:i*400});done(m,3400)}},
+ chute(x,y){const c=mk('path',{d:`M${x} ${y}l40 -18M${x} ${y}l40 18M${x+36} ${y-24}q22 24 0 48`,class:'fxsh'});anim(c,[{transform:'scale(.1)',opacity:1},{transform:'scale(1)'},{transform:'scale(1)',opacity:0}],{duration:2600});done(c,2700)},
+ plate(x,y){const P3=['BMT 216A','4711-EA-62','LU 6789','BMT 216A'],t=mk('text',{x:x+10,y:y,class:'tx fxt'});let i=0;t.textContent=P3[0];const iv=setInterval(()=>{i++;if(i>=P3.length){clearInterval(iv);t.remove();return}t.textContent=P3[i]},800)},
+ roll(n,dur){anim(carG(),Array.from({length:n*4+1},(_,i)=>({transform:`translate(${i/(n*4)*-260}px,${-Math.sin(i/(n*4)*Math.PI)*60}px) scaleY(${Math.cos(i/4*Math.PI*2/1)})`})),{duration:dur,easing:'linear',fill:'none'})},
+ spiral(){FX.roll(1,1800)},
+ roll7(){FX.roll(7,4200);setTimeout(()=>toast('<b>Q:</b> Sieben Überschläge. Weltrekord. Ich hätte lieber das Auto gehabt.'),4300)},
+ flip(){FX.roll(1,2200)},
+ tilt(){anim(carG(),[{transform:'translateY(0) scaleY(1)'},{transform:'translateY(-14px) scaleY(.82) skewX(-4deg)'},{transform:'translateY(-14px) scaleY(.82) skewX(-4deg)'},{transform:'translateY(0) scaleY(1)'}],{duration:3000,fill:'none'})},
+ sub(){const g=G(),w=svg.querySelector('.wheels'),wl=GG-cur.H*g.k-30;anim(w,[{transform:'translateY(0)',opacity:1},{transform:`translateY(-${f1(cur.r*g.k*.6)}px)`,opacity:0}],{duration:900,fill:'forwards'});
+   const wv=mk('path',{d:`M10 ${f1(wl)}`+Array.from({length:50},(_,i)=>`q10 -5 20 0`).join(''),class:'fxra'});const fin=mk('path',{d:`M${g.X(cur.L-200)} ${g.Y(cur.sill+100)}l40 -24v40zM${g.X(250)} ${g.Y(cur.sill+150)}l-30 12h40z`,class:'fxsh'});
+   const pr=mk('path',{d:`M${g.X(cur.L)+30} ${g.Y(cur.sill+180)}v-14v28`,class:'fxsh'});anim(pr,[{transform:'scaleY(1)'},{transform:'scaleY(-1)'}],{duration:200,iterations:16,fill:'none'});
+   anim(fin,[{opacity:0},{opacity:1}],{duration:700,delay:600});anim(wv,[{opacity:0},{opacity:1}],{duration:700});
+   setTimeout(()=>{anim(w,[{transform:`translateY(-${f1(cur.r*g.k*.6)}px)`,opacity:0},{transform:'translateY(0)',opacity:1}],{duration:900,fill:'forwards'});[wv,fin,pr].forEach(e=>e.remove())},4200);
+   toast('<b>Q:</b> Bitte nicht auf dem Parkplatz testen.')},
+ shear(){const g=G(),cut=g.Y(2900),c=carG(),cl=c.cloneNode(true);c.parentNode.insertBefore(cl,c.nextSibling);
+   const id='gzc'+Date.now();const df=svg.querySelector('defs');const cp=document.createElementNS(NS,'clipPath');cp.id=id+'t';cp.innerHTML=`<rect x="0" y="0" width="${GW}" height="${cut}"/>`;df.appendChild(cp);
+   const cp2=document.createElementNS(NS,'clipPath');cp2.id=id+'b';cp2.innerHTML=`<rect x="0" y="${cut}" width="${GW}" height="420"/>`;df.appendChild(cp2);
+   cl.setAttribute('clip-path',`url(#${id}t)`);c.setAttribute('clip-path',`url(#${id}b)`);
+   anim(cl,[{transform:'translate(0,0) rotate(0)'},{transform:'translate(260px,-20px) rotate(10deg)',opacity:1},{transform:'translate(420px,120px) rotate(25deg)',opacity:0}],{duration:2200,easing:'ease-in'});
+   setTimeout(()=>{cl.remove();c.removeAttribute('clip-path');cp.remove();cp2.remove();anim(c,[{opacity:0},{opacity:1}],{duration:500,fill:'none'})},3400)},
+ saw(){const g=G(),y=g.Y(cur.H)-6;for(let i=0;i<2;i++){const s=mk('g',{});mk('circle',{cx:g.X(0),cy:y-i*14,r:12,class:'fxsaw'},s);mk('path',{d:`M${g.X(0)} ${y-i*14-12}v24M${g.X(0)-12} ${y-i*14}h24`,class:'fxsaw'},s);
+   anim(s,[{transform:'translateX(-40px)'},{transform:`translateX(${f1(cur.L*g.k+80)}px)`}],{duration:2400,delay:i*300,easing:'linear'});done(s,3000)}
+   setTimeout(()=>{const c=carG(),cl=c.cloneNode(true);cl.classList.add('half');c.parentNode.insertBefore(cl,c);anim(cl,[{transform:'translate(0,0)',opacity:.6},{transform:'translate(18px,-14px)',opacity:.6},{transform:'translate(18px,-14px)',opacity:.6},{transform:'translate(0,0)',opacity:0}],{duration:3200});setTimeout(()=>cl.remove(),3300)},2200)},
+ none(){toast('<b>Q:</b> Keine Vorrichtung. Nur Fahrer und Glück.')}};
+function gadget(q){if(!q)return;const g=G(),x=g.X(q[1]),y=g.Y(q[2]);
+  svg.querySelectorAll('.co').forEach(e=>e.classList.toggle('hot',+e.dataset.n===q[0]));glist.querySelectorAll('button').forEach(b=>b.classList.toggle('hot',+b.dataset.n===q[0]));
+  if(RM){toast(`<b>Q:</b> ${q[3]}.`);return}
+  (FX[q[4]]||FX.none)(x,y);
+  if(q[4]==='gunR')setTimeout(()=>toast('<b>Q:</b> Ungeladen. Der Knopf „Atmos“ spielt Musik. Ich war dagegen.'),500)}
+async function demo(){const gs=cur.g.filter(q=>q[4]!=='none');if(!gs.length){FX.none();return}for(const q of gs){gadget(q);await new Promise(r=>setTimeout(r,q[4]==='roll7'?4600:q[4]==='sub'?5000:1900))}}
+/* Zündung und Probefahrt */
+function puff(){const g=G(),ex=(cur.ft||[]).find(t=>t[0]==='ex');const x=ex?g.X(ex[1]+ex[3]):g.X(cur.L),y=ex?g.Y(ex[2]):g.Y(300);
+  const c=mk('circle',{cx:x,cy:y,r:2,class:'fxsm'});anim(c,[{transform:'translate(0,0) scale(1)',opacity:.7},{transform:`translate(${drive?60:22}px,-8px) scale(4)`,opacity:0}],{duration:900});done(c,950)}
+function setIdle(on){idle=on;svg.classList.toggle('idle',on);$('gzIgn').setAttribute('aria-pressed',on);$('gzIgn').textContent=on?'MOTOR AUS':'ZÜNDUNG';clearInterval(puffT);
+  if(on){ign++;puffT=setInterval(puff,drive?120:420);if(ign===3)toast('<b>Q:</b> Hören Sie auf, damit zu spielen. Das ist kein Spielzeug. Es ist ein Werkzeug.')}else stopDrive()}
+let spdT=0;function stopDrive(){drive=0;svg.classList.remove('drive');clearInterval(spdT);if(idle){clearInterval(puffT);puffT=setInterval(puff,420)}$('gzRun').textContent='PROBEFAHRT';speedo.textContent=cur.sp.vn?`0 / ${cur.sp.vn} km/h`:'– km/h'}
+$('gzIgn').onclick=()=>setIdle(!idle);
+$('gzRun').onclick=()=>{if(drive){stopDrive();return}if(!idle)setIdle(true);drive=1;svg.classList.add('drive');clearInterval(puffT);puffT=setInterval(puff,120);$('gzRun').textContent='ANHALTEN';
+  const vm=cur.sp.vn||120;let v=0;clearInterval(spdT);spdT=setInterval(()=>{v=Math.min(vm,v+vm/40+Math.random()*2);speedo.textContent=`${Math.round(v)} / ${cur.sp.vn||'–'} km/h`;
+   svg.style.setProperty('--spd',(0.9-.75*v/vm).toFixed(2)+'s');if(v>=vm){clearInterval(spdT);toast(`<b>Q:</b> ${cur.sp.vn?cur.sp.vn+' km/h. Werksangabe erreicht.':'Höchstgeschwindigkeit: unbekannt.'} In Tschechien gelten 130. Auch für Sie.`)}},100)};
+$('gzDemo').onclick=demo;
+$('gzXr').onclick=()=>{xr=!xr;svg.classList.toggle('xray',xr);$('gzXr').setAttribute('aria-pressed',xr)};
+$('gzCmp').onclick=()=>{cmp=!cmp;$('gzCmp').setAttribute('aria-pressed',cmp);render(false)};
+$('gzRe').onclick=()=>render(true);
+const gzd=document.querySelector('.gzdraw');function full(on){gzd.classList.toggle('full',on);vb();document.documentElement.classList.toggle('bpfull',on);$('gzFull').textContent=on?'SCHLIESSEN':'VOLLBILD'}
+$('gzFull').onclick=()=>full(!gzd.classList.contains('full'));addEventListener('keydown',e=>{if(e.key==='Escape'&&gzd.classList.contains('full'))full(false)});
+const mq=matchMedia('(max-width:680px)');function vb(){svg.setAttribute('viewBox',mq.matches&&!gzd.classList.contains('full')?'40 18 880 380':'0 0 1000 420')}vb();mq.addEventListener&&mq.addEventListener('change',vb);
+$('gzPrev').onclick=()=>step(-1);$('gzNext').onclick=()=>step(1);
+function step(d){const vis=GZ.filter(c=>flt==='Alle'||c.mk===flt);const i=vis.indexOf(cur);const n=vis[(i+d+vis.length)%vis.length]||vis[0];sel(n.id,true)}
+$('garage').addEventListener('keydown',e=>{if(e.target.closest('input,textarea,select'))return;if(e.key==='ArrowRight'){e.preventDefault();step(1)}else if(e.key==='ArrowLeft'){e.preventDefault();step(-1)}});
+/* Fuhrparkbuch und Vergleich */
+$('gzBook').innerHTML=GZB.map(([y,t,vs])=>`<li><span>${y}</span><b>${t}</b><em>${vs.map(([id,n])=>id?`<a href="#garage" data-car="${id}">${n}</a>`:`<i>${n}</i>`).join(' · ')}</em></li>`).join('');
+$('gzBook').querySelectorAll('a[data-car]').forEach(a=>a.onclick=e=>{e.preventDefault();sel(a.dataset.car,true);$('gzSvg').scrollIntoView({block:'center',behavior:RM?'auto':'smooth'})});
+const ps=c=>{const m=/(\d+)\s*PS/.exec(c.sp.ps||'');return m?+m[1]:0};const mx=Math.max(...GZ.map(ps)),mv=Math.max(...GZ.map(c=>c.sp.vn||0));
+$('gzCmpT').innerHTML=GZ.filter(c=>ps(c)||c.sp.vn).sort((a,b)=>ps(b)-ps(a)).map(c=>`<li data-car="${c.id}" tabindex="0"><b>${c.n}</b><span class="br"><i style="width:${ps(c)/mx*100}%"></i></span><small>${ps(c)?ps(c)+' PS':'–'}</small><span class="br v"><i style="width:${(c.sp.vn||0)/mv*100}%"></i></span><small>${c.sp.vn?c.sp.vn+' km/h':'–'}</small></li>`).join('');
+$('gzCmpT').querySelectorAll('li').forEach(li=>{const go=()=>{sel(li.dataset.car,true);$('gzSvg').scrollIntoView({block:'center',behavior:RM?'auto':'smooth'})};li.onclick=go;li.onkeydown=e=>{if(e.key==='Enter')go()}});
+/* nur zeichnen, wenn sichtbar */
+let first=true;const io='IntersectionObserver' in window?new IntersectionObserver(es=>{if(es.some(e=>e.isIntersecting)&&first){first=false;svg.classList.remove('pre');render(true);io.disconnect()}},{threshold:.3}):null;
+sel(cur.id,false);if(io)io.observe(svg);else{svg.classList.remove('pre');render(true)}
+})();
+
 /* Einsatzbereitschaft */
 const rdyBtn=document.getElementById('rdyBtn'),rdyN=document.getElementById('rdyN'),rdyBar=document.getElementById('rdyBar');
 function rdyParts(){const days=plans[curPlan].days,bks=[...new Set(days.flatMap(d=>d.items.filter(x=>x.bk).map(x=>x.bk)))],bkOk=bks.filter(k=>(S.get('bk',{})[k]||0)===2).length;
@@ -2967,7 +3549,7 @@ window.readiness=()=>{clearTimeout(rdyT);rdyT=setTimeout(()=>{const ps=rdyParts(
   rdyN.textContent=`BEREIT ${v} %`;rdyBar.style.width=v+'%';rdyBtn.classList.toggle('ok',v>=100);rdyBtn.setAttribute('aria-label',`Einsatzbereitschaft ${v} Prozent`)},30)};
 const _set=S.set;S.set=(k,v)=>{_set(k,v);if(window.readiness)readiness()};readiness();
 const kh=document.createElement('div');kh.className='khelp';kh.hidden=true;kh.setAttribute('role','dialog');kh.setAttribute('aria-modal','true');kh.setAttribute('aria-label','Lagebericht und Tastenkürzel');document.body.appendChild(kh);
-const JUMP={'1':['tx','Einsatzbefehl'],'2':['targets','Zielobjekte'],'3':['maps','Lagekarten'],'4':['world-sec','Weltlage'],'5':['ops','Einsatzplan'],'6':['org','Disposition'],'7':['assets','Assets'],'8':['regs','Protokoll'],'9':['field','Feldhandbuch'],'q':['qlab','Q-Lab']};
+const JUMP={'1':['tx','Einsatzbefehl'],'2':['targets','Zielobjekte'],'3':['maps','Lagekarten'],'4':['world-sec','Weltlage'],'5':['ops','Einsatzplan'],'6':['org','Disposition'],'7':['assets','Assets'],'8':['regs','Protokoll'],'9':['field','Feldhandbuch'],'g':['garage','Qs Garage'],'q':['qlab','Q-Lab']};
 function khShow(){const ps=rdyParts(),v=Math.round(ps.reduce((a,p)=>a+p[1]*Math.min(1,p[2]),0)),open=ps.filter(p=>p[2]<1);
   kh.innerHTML=`<div class="kh"><h3>LAGEBERICHT · BEREIT ${v} %</h3><p>${v>=100?'M: Vollständig. Ich bin beinahe beeindruckt. Fahren Sie.':open.length<=2?'M: Fast. „Fast“ hat noch keinen Einsatz gerettet.':'M: Das ist kein Reiseplan, das ist eine Absichtserklärung.'}</p>
   <ul class="rd">${ps.map(p=>`<li class="${p[2]>=1?'ok':''}"><b>${p[0]}</b><span>${p[3]}</span></li>`).join('')}</ul>

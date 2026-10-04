@@ -78,7 +78,7 @@ Freigabe: „Anyone with the link“ ist aktiv. Wer die Seite offen hat, sieht n
   nächstes Zielobjekt mit berechneter Entfernung, Aufträge abhakbar (`ops5-tasks`). Zahlen nur, wo belegt.
 - Version 10 (04.10.2026): Weltkarte deutlich langsamer (`fly` 6–11 E/s, Aufenthalte 4–12 s, ruhigeres Umhertreten).
   Intro beim ersten Besuch (`#intro`, `runIntro`): Terminal, Netzhaut-Scan, Stempel, „Zugang gewährt“, Panzertore,
-  danach gestaffelter Seitenaufbau (`body.boot`) und gezeichnete Route (`heroDraw`). Merkt sich `ops5-intro`;
+  danach gestaffelter Seitenaufbau (`body.boot`) und gezeichnete Route (`heroDraw`). Seit v13 bei jedem Laden;
   überspringbar per Knopf, Klick, Esc; „Intro wiederholen“ im Footer. Zustandsklassen heißen `i-*` (nicht `stamp`!).
 - Version 11 (04.10.2026): Intro ohne „STRENG GEHEIM“-Stempel; stattdessen Zielerfassung Augsburg, Karlsbad, Prag
   (Koordinaten rasten ein, `i-lock`), gesamt ca. 5 s länger. Aufrisse auf Werkplanungsniveau: Blatt 700×400 mit
@@ -102,4 +102,12 @@ Freigabe: „Anyone with the link“ ist aktiv. Wer die Seite offen hat, sieht n
 - Dateiausgabe: Im Artifact-Viewer gehen Downloads nur über die Capability `downloads` (beim Veröffentlichen
   `capabilities: {downloads: true}` angeben). `.ics` ist dort nicht erlaubt, darum ist der ICS-Knopf im Viewer
   ausgeblendet; stattdessen Google-Kalender-Links je Termin (`#orgCal`) und „Plan als Textdatei“ (.txt).
-- Tests: Playwright-Skripte müssen vor dem Laden `localStorage ops5-intro=1` setzen, sonst blockiert das Intro.
+- Version 13 (04.10.2026): Modul 08-G „Qs Garage“ (`#garage`, vor dem Q-Lab, Kürzel G): 18 Bond-Fahrzeuge in `GZ`
+  (Maße in mm, Profil `top`, Fensterfläche `dlo`, Säulen `pil`, Details `ft`, Motor/Tank/Antrieb für die Röntgenansicht,
+  Gadgets `g` mit Animationsart, Datenblatt `sp`, Rückgabeprotokoll, Q- und M-Notiz). Seitenriss-Generator `draw()`
+  (Catmull-Rom-Profil, Radläufe, Speichen-/Alu-/Stahlräder, Bremsscheiben, Maßketten, Achsen, Maßfigur 1,80 m,
+  Schriftfeld). Zündung, Probefahrt mit Tacho, Q-Ausstattung vorführen (Effekte in `FX`), Durchleuchten,
+  Maßstab DB5 als Vergleich, Vollbild (am Handy hochkant gedreht), Pfeiltasten. Fuhrparkbuch `GZB` für alle 25 Filme,
+  Leistungsvergleich. Nur belegte Werte im Datenblatt; geschätzte Zeichnungsmaße sind mit ≈ markiert (`est`).
+  Gewähltes Fahrzeug unter `ops5-car`. Intro läuft jetzt bei **jedem** Laden (kein `ops5-intro` mehr).
+- Tests: Playwright-Skripte müssen vor dem Laden `window.__NOINTRO=1` per `addInitScript` setzen, sonst läuft das Intro.
