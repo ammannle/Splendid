@@ -117,4 +117,8 @@ Freigabe: „Anyone with the link“ ist aktiv. Wer die Seite offen hat, sieht n
   Iris, Bart, Brille, Kleidung, Schraffur, Fingerabdruck, nummerierte Merkmale `mk`), Merkmale und Akte in `PAX`
   (Rolle, Erstkontakt, Merkmale, Vorgehen, Schwachstelle, Ausrüstung, Status, Darsteller, Gefährdung, Drehorte, M-Notiz).
   Verknüpft mit Lagekarte („Auf der Lagekarte verfolgen“, in der Karte „Akte öffnen“) und den Zielobjekten. Auswahl unter `ops5-pa`.
+- Version 15 (04.10.2026): Module Reiseorganisation (`#org`), Einsatzprotokoll (`#regs`) und Feldhandbuch (`#field`)
+  auf Wunsch entfernt. Bereitschaft zählt nur noch Buchungen, Datum, Quittung, Lizenz. Garage: DB5, Esprit, 2CV nach
+  CC0-Vektorvorlagen, Alpine nach Foto nachgezeichnet (`TRC`). Maßfigur 007 im Smoking (`BF`, `bondFig`) ersetzt alle
+  Strichmännchen; ab 110 px Höhe mit nachgezeichnetem Craig-Gesicht (`BF.T`). Porträts nach Fotos in `PT` (`traced()`).
 - Tests: Playwright-Skripte müssen vor dem Laden `window.__NOINTRO=1` per `addInitScript` setzen, sonst läuft das Intro.
