@@ -3313,7 +3313,7 @@ function crv(P,move){let d=move===false?'':`M${P[0][0]} ${P[0][1]}`;
     const c1=p1[2]?[p1[0],p1[1]]:[p1[0]+(p2[0]-p0[0])/6,p1[1]+(p2[1]-p0[1])/6],c2=p2[2]?[p2[0],p2[1]]:[p2[0]-(p3[0]-p1[0])/6,p2[1]-(p3[1]-p1[1])/6];
     d+=`C${f1(c1[0])} ${f1(c1[1])} ${f1(c2[0])} ${f1(c2[1])} ${p2[0]} ${p2[1]}`}return d}
 const P=(g,pts)=>pts.map(p=>[g.X(p[0]),g.Y(p[1]),p[2]]);
-function bodyPath(c,g){const t=P(g,c.top);let d=crv(t);const ra=c.fo+c.WB,fa=c.fo,ar=c.ar||c.r+45;
+function bodyPath(c,g){if(c.sil)return 'M'+c.sil.map(p=>`${g.X(p[0])} ${g.Y(p[1])}`).join('L')+'Z';const t=P(g,c.top);let d=crv(t);const ra=c.fo+c.WB,fa=c.fo,ar=c.ar||c.r+45;
   if(c.flat){d+=`L${g.X(c.top[c.top.length-1][0])} ${g.Y(c.sill)}L${g.X(c.top[0][0])} ${g.Y(c.sill)}Z`;return d}
   const dx=Math.sqrt(Math.max(0,ar*ar-(c.sill-c.r)**2)),R=f1(ar*g.k),lg=c.sill<c.r?1:0;
   d+=`L${g.X(ra+dx)} ${g.Y(c.sill)}A${R} ${R} 0 ${lg} 0 ${g.X(ra-dx)} ${g.Y(c.sill)}L${g.X(fa+dx)} ${g.Y(c.sill)}A${R} ${R} 0 ${lg} 0 ${g.X(fa-dx)} ${g.Y(c.sill)}Z`;return d}
@@ -3388,9 +3388,11 @@ function draw(c,mini,cmp){dly=0;const g=geo(c,mini),fa=c.fo,ra=c.fo+c.WB,o=[];
   let car=`<path d="${body}" pathLength="1" class="ln body fill" ${D()}/>`;
   if(c.dlo)car+=ln(crv(P(g,c.dlo))+'Z','glass');
   (c.pil||[]).forEach(p=>car+=ln('M'+p.map(q=>`${g.X(q[0])} ${g.Y(q[1])}`).join('L')+'Z','fill'));
+  (c.tg||[]).forEach(q=>car+=ln('M'+q.map(p=>`${g.X(p[0])} ${g.Y(p[1])}`).join('L')+'Z','glass'));
+  (c.tl||[]).forEach(([cl,q])=>car+=pl(g,q,cl));
   (c.ft||[]).forEach(t=>car+=feat(c,g,t));
-  const arch=c.flat?'':ln(`M${g.X(fa-c.ar*.94)} ${g.Y(c.r)}A${f1(c.ar*.94*g.k)} ${f1(c.ar*.94*g.k)} 0 0 1 ${g.X(fa+c.ar*.94)} ${g.Y(c.r)}M${g.X(ra-c.ar*.94)} ${g.Y(c.r)}A${f1(c.ar*.94*g.k)} ${f1(c.ar*.94*g.k)} 0 0 1 ${g.X(ra+c.ar*.94)} ${g.Y(c.r)}`,'fn');
-  if(!c.flat)car+=ln(`M${g.X(fa+c.ar+40)} ${g.Y(c.sill+70)}L${g.X(ra-c.ar-40)} ${g.Y(c.sill+70)}`,'fn');
+  const arch=c.flat||c.sil?'':ln(`M${g.X(fa-c.ar*.94)} ${g.Y(c.r)}A${f1(c.ar*.94*g.k)} ${f1(c.ar*.94*g.k)} 0 0 1 ${g.X(fa+c.ar*.94)} ${g.Y(c.r)}M${g.X(ra-c.ar*.94)} ${g.Y(c.r)}A${f1(c.ar*.94*g.k)} ${f1(c.ar*.94*g.k)} 0 0 1 ${g.X(ra+c.ar*.94)} ${g.Y(c.r)}`,'fn');
+  if(!c.flat&&!c.sil)car+=ln(`M${g.X(fa+c.ar+40)} ${g.Y(c.sill+70)}L${g.X(ra-c.ar-40)} ${g.Y(c.sill+70)}`,'fn');
   car+=arch+xray(c,g)+`<g class="wheels">${wheel(c,g,fa)}${wheel(c,g,ra)}</g>`;
   (c.post||[]).forEach(t=>car+=feat(c,g,t));
   if(mini){const x1=g.X(-60),x2=g.X(c.L+60),y1=g.Y(c.H+120);return `<svg class="gzs gzm" viewBox="${f1(x1)} ${f1(y1)} ${f1(x2-x1)} ${f1(GG+6-y1)}" aria-hidden="true" focusable="false"><g class="car">${car}</g><line x1="${f1(x1)}" y1="${GG}" x2="${f1(x2)}" y2="${GG}" class="gnd"/></svg>`}
