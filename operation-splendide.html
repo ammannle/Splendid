@@ -981,6 +981,53 @@ body.boot .ph .st{animation:flick .9s 1s steps(2) 2}
 .bp .bfh{opacity:0;transition:opacity .6s 1.1s}.bp.draw .bfh{opacity:1}
 .pas .pth path{fill:none;stroke:var(--cyan);stroke-width:.35;stroke-opacity:.45}.pas .ln.ptl{stroke-width:.75}.pam .ln.ptl{stroke-width:.6;display:inline}.pam .pth{display:none}
 .pas.draw .pth{animation:gzfade 1.2s ease both;animation-delay:2s}
+/* Missionsbriefing */
+.ms{padding:0}
+.ms-stage{position:relative;aspect-ratio:1000/470;background:color-mix(in srgb,var(--cyan) 4%,var(--mapbg));border-bottom:1px solid var(--line);overflow:hidden}
+.ms-sc{position:absolute;inset:0;animation:msIn .7s ease both}
+@keyframes msIn{from{opacity:0;transform:scale(1.02)}to{opacity:1;transform:none}}
+.ms-sc svg{display:block}
+.ms-title{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;text-align:center}
+.ms-h{font-family:var(--head);font-weight:700;font-size:clamp(1.8rem,6vw,4.2rem);line-height:.95;letter-spacing:.06em;color:var(--ink);animation:msType 1.6s steps(20) both}
+@keyframes msType{from{clip-path:inset(0 100% 0 0)}to{clip-path:inset(0 0 0 0)}}
+.ms-k{font-family:var(--mono);font-size:.72rem;letter-spacing:.2em;color:var(--amber)}
+.ms-rad{position:absolute;right:4%;top:8%;width:16%;opacity:.5}.ms-rad circle{fill:none;stroke:var(--cyan);stroke-width:.6}.ms-rad .sw{fill:var(--green);opacity:.25;transform-origin:50px 50px;animation:spin 3s linear infinite}
+.ms-map,.pk{width:100%;height:100%}
+.ms-grid{stroke:var(--mapgrid);stroke-width:1}.ms-border{stroke:var(--mute);stroke-dasharray:6 4;fill:none}
+.ms-route{fill:none;stroke:var(--amber);stroke-width:3;stroke-dasharray:1;stroke-dashoffset:1;animation:gzdraw 4.6s ease-in-out forwards}
+.ms-city circle{fill:var(--cyan)}.ms-city .ring{fill:none;stroke:var(--cyan);opacity:.5;transform-box:fill-box;transform-origin:center;animation:msPing 1.6s ease-out infinite}
+.ms-city text{font-family:var(--mono);font-size:15px;fill:var(--ink);letter-spacing:.1em}.ms-city{opacity:0;animation:gzfade .5s ease forwards;animation-delay:calc(var(--i)*1.2s)}
+@keyframes msPing{from{transform:scale(.4);opacity:.8}to{transform:scale(1.8);opacity:0}}
+.ms-cap2{font-family:var(--mono);font-size:12px;fill:var(--mute)}
+.ms-car .ln{stroke-dasharray:none;stroke-dashoffset:0}
+.ms-split{position:absolute;inset:0;display:grid;grid-template-columns:minmax(0,1fr) 26%;gap:12px;align-items:center;padding:2.5%}
+.ms-split .bp{width:100%;height:auto;max-height:100%}
+.ms-face{margin:0;display:flex;flex-direction:column;gap:6px;opacity:0;animation:gzfade .6s ease both;animation-delay:.9s}
+.ms-face div{border:1px solid var(--line2);background:var(--mapbg)}.ms-face svg{width:100%;height:auto;display:block}
+.ms-face figcaption{font-size:.74rem;color:var(--mute);line-height:1.35}.ms-face b{display:block;font-family:var(--head);font-size:1rem;color:var(--ink)}
+.pk-rail{fill:var(--bg);stroke:var(--cyan);stroke-width:2}.pk-felt{fill:color-mix(in srgb,var(--green) 10%,var(--mapbg));stroke:var(--cyan);stroke-width:1}.pk-line{fill:none;stroke:var(--cyan);stroke-opacity:.35;stroke-dasharray:4 4}
+.pk-cr{font-family:var(--mono);font-size:11px;fill:var(--mute);letter-spacing:.15em}
+.pk-head{fill:var(--mapbg);stroke:var(--cyan)}.pk-sh{fill:none;stroke:var(--cyan)}.pk-l{font-family:var(--mono);font-size:11px;fill:var(--mute);letter-spacing:.1em}.pk-l.pot{fill:var(--amber)}
+.pk-seat.lc .pk-head{stroke:var(--red)}.pk-seat.lc text{fill:var(--red)}.pk-seat.bd .pk-head{stroke:var(--amber)}.pk-seat.bd text{fill:var(--amber)}
+.pk-chip{fill:var(--bg);stroke:var(--amber);stroke-width:1}
+.pk-c{fill:var(--ink);stroke:var(--cyan)}.pk-r,.pk-s{font-family:var(--head);font-weight:700;fill:#111}.pk-r{font-size:11px}.pk-s{font-size:18px}.pk-r.red,.pk-s.red{fill:#C62828}
+.pk-back{fill:none;stroke:var(--cyan);stroke-width:.8}.pk-card .pk-face{opacity:0}.pk-card .pk-c{fill:var(--mapbg)}
+.pk-card{transition:transform .4s}
+.pk.s-bd0 .bd0 .pk-face,.pk.s-bd1 .bd1 .pk-face,.pk.s-bd2 .bd2 .pk-face,.pk.s-bd3 .bd3 .pk-face,.pk.s-bd4 .bd4 .pk-face,.pk.s-lch .lch .pk-face,.pk.s-bh .bh .pk-face{opacity:1}
+.pk.s-bd0 .bd0 .pk-c,.pk.s-bd1 .bd1 .pk-c,.pk.s-bd2 .bd2 .pk-c,.pk.s-bd3 .bd3 .pk-c,.pk.s-bd4 .bd4 .pk-c,.pk.s-lch .lch .pk-c,.pk.s-bh .bh .pk-c{fill:var(--ink)}
+.pk.s-bd0 .bd0 .pk-back,.pk.s-bd1 .bd1 .pk-back,.pk.s-bd2 .bd2 .pk-back,.pk.s-bd3 .bd3 .pk-back,.pk.s-bd4 .bd4 .pk-back,.pk.s-lch .lch .pk-back,.pk.s-bh .bh .pk-back{display:none}
+.pk-win{opacity:0;transition:opacity .5s}.pk.s-pk-win .pk-win{opacity:1}.pk-win rect{fill:var(--bg);stroke:var(--amber)}.pk-win text{font-family:var(--mono);font-size:13px;fill:var(--amber);letter-spacing:.12em}
+.pk.s-pk-win .bh .pk-c{stroke:var(--amber);stroke-width:2}
+.ms-split.pkw{grid-template-columns:minmax(0,1fr) 22%}
+.ms-fin{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:2%}.ms-fin svg{width:92%;height:auto}
+.ms-end{text-align:center;margin-top:-1%;opacity:0;animation:gzfade .8s ease both;animation-delay:2s}.ms-end b{display:block;font-family:var(--head);font-size:clamp(1rem,2.6vw,1.6rem);letter-spacing:.08em}.ms-end span{font-family:var(--mono);font-size:.78rem;color:var(--amber)}
+.ms-cap{min-height:2.6em;padding:10px 14px;font-family:var(--mono);font-size:.82rem;color:var(--ink);border-bottom:1px solid var(--line)}
+.ms-ctl{display:flex;flex-wrap:wrap;gap:8px;align-items:center;padding:10px 12px}
+.ms-prog{flex:1 1 180px;height:4px;background:var(--line)}.ms-prog i{display:block;height:100%;width:0;background:var(--amber)}
+.ms-time{font-family:var(--mono);font-size:.7rem;color:var(--mute);min-width:64px}
+.ms-chips{display:flex;flex-wrap:wrap;gap:4px;padding:0 12px 12px}.ms-chips button{background:none;border:1px solid var(--line2);color:var(--mute);font-family:var(--mono);font-size:.6rem;letter-spacing:.08em;padding:3px 7px;border-radius:2px;cursor:pointer}.ms-chips button.on{color:var(--amber);border-color:var(--amber)}
+@media (max-width:680px){.ms-split{grid-template-columns:1fr 30%;gap:6px;padding:1.5%}.ms-face figcaption{display:none}.ms-city text{font-size:20px}}
+@media (prefers-reduced-motion:reduce){.ms-sc,.ms-route,.ms-city,.ms-face,.ms-end,.ms-h{animation:none!important;opacity:1;stroke-dashoffset:0;clip-path:none}}
 /* gun barrel */
 .gb{position:fixed;inset:0;z-index:100;background:#000;overflow:hidden;cursor:pointer}
 .gb[hidden]{display:none}
@@ -1078,7 +1125,7 @@ body.boot .ph .st{animation:flick .9s 1s steps(2) 2}
   <button class="rdy" type="button" id="rdyBtn" title="Einsatzbereitschaft (Taste ?: Kürzel)"><i><b id="rdyBar"></b></i><span id="rdyN">BEREIT –</span></button>
   <span class="hide-s">MI6 · 00-SEKTION · OPS-ZENTRALE</span>
   <span class="hide-m clk" id="clk" aria-label="Ortszeit London und Prag">LDN --:-- · PRG --:--</span>
-  <nav aria-label="Module"><a href="#tx">Befehl</a><a href="#targets">Ziele</a><a href="#maps">Lage</a><a href="#persons">Personen</a><a href="#world-sec">Welt</a><a href="#ops">Einsatzplan</a><a href="#assets">Assets</a><a href="#garage">Garage</a><a href="#qlab">Q-Lab</a></nav>
+  <nav aria-label="Module"><a href="#tx">Befehl</a><a href="#mission">Briefing</a><a href="#targets">Ziele</a><a href="#maps">Lage</a><a href="#persons">Personen</a><a href="#world-sec">Welt</a><a href="#ops">Einsatzplan</a><a href="#assets">Assets</a><a href="#garage">Garage</a><a href="#qlab">Q-Lab</a></nav>
   <button class="theme-btn" id="themeBtn" type="button">Tag / Nacht</button>
 </div>
 
@@ -1154,6 +1201,16 @@ body.boot .ph .st{animation:flick .9s 1s steps(2) 2}
         </ul>
         <p class="ghint">Erfüllte Ziele antippen. Der Stand bleibt auf diesem Gerät gespeichert.</p>
       </div>
+    </div>
+  </section>
+
+  <section id="mission">
+    <div class="sh"><div><div class="ix">MODUL 01-B // BRIEFING</div><h2>Missionsbriefing</h2></div><p>Dreißig Sekunden, sieben Stationen. M hat darauf bestanden, dass Sie es sich ansehen.</p></div>
+    <div class="panel ms"><div class="ph"><b>BRIEFING // OPERATION SPLENDIDE</b><span class="st" id="msTime"></span></div>
+      <div class="ms-stage" id="msStage" aria-live="off"></div>
+      <div class="ms-cap" id="msCap" aria-live="polite"></div>
+      <div class="ms-ctl"><button type="button" class="qbtn go" id="msPlay">▶ ABSPIELEN</button><button type="button" class="qbtn" id="msRe">↺ VON VORN</button><div class="ms-prog"><i id="msBar"></i></div></div>
+      <div class="ms-chips" id="msChips"></div>
     </div>
   </section>
 
@@ -3301,6 +3358,7 @@ function draw(c,mini,cmp){dly=0;const g=geo(c,mini),fa=c.fo,ra=c.fo+c.WB,o=[];
    <text x="774" y="45" class="tx tbs">${est?'MASSE TEILWEISE GESCHÄTZT':'MASSE NACH WERKSANGABEN'}</text><text x="774" y="51.5" class="tx tbs">BAUJAHR ${c.y} · ALLE MASSE IN MM</text><text x="916" y="45" class="tx tbs">BLATT ${idx}/${GZ.length}</text><text x="916" y="51.5" class="tx tbs">GEZ. Q · GEPR. M</text></g>`);
   return `<defs><pattern id="gzg" width="20" height="20" patternUnits="userSpaceOnUse"><path d="M20 0H0V20" fill="none" class="gzgrid"/></pattern></defs>`+o.join('')}
 
+window.gzDraw=draw;
 /* Oberfläche */
 const svg=$('gzSvg'),bays=$('gzBays'),spec=$('gzSpec'),glist=$('gzG'),stEl=$('gzState'),speedo=$('gzSpd');
 let cur=GZ.find(x=>x.id===S.get('car','db5'))||GZ[0],flt='Alle',cmp=false,xr=false,idle=false,drive=0,puffT=0,ign=0;
@@ -3723,6 +3781,79 @@ open(cur,false);
 const io='IntersectionObserver' in window?new IntersectionObserver(es=>{if(es.some(e=>e.isIntersecting)){io.disconnect();open(cur,true)}},{threshold:.3}):null;if(io)io.observe(box);
 })();
 
+/* Missionsbriefing: animierter Durchlauf (ca. 30 s) */
+(function(){
+const st=document.getElementById('msStage');if(!st)return;
+const $=id=>document.getElementById(id),NS='http://www.w3.org/2000/svg';
+/* Pokertisch (Draufsicht), Texas Hold'em, Schlusshand aus dem Film */
+function card(x,y,r,s,rot,cls){const red=s==='♥'||s==='♦';return `<g class="pk-card ${cls||''}" transform="translate(${x} ${y}) rotate(${rot||0})"><rect x="-17" y="-24" width="34" height="48" rx="3" class="pk-c"/><g class="pk-face"><text x="-12" y="-9" class="pk-r${red?' red':''}">${r}</text><text x="0" y="12" text-anchor="middle" class="pk-s${red?' red':''}">${s}</text></g><path d="M-13 -20h26v40h-26z M-9 -16l18 32M9 -16l-18 32" class="pk-back"/></g>`}
+function chips(x,y,n){let o='';for(let i=0;i<n;i++)o+=`<ellipse cx="${x}" cy="${y-i*3}" rx="11" ry="4.5" class="pk-chip"/>`;return o}
+function seat(x,y,lab,cls){return `<g class="pk-seat ${cls||''}"><circle cx="${x}" cy="${y}" r="20" class="pk-head"/><path d="M${x-30} ${y+34}q30 -26 60 0" class="pk-sh"/><text x="${x}" y="${y+52}" text-anchor="middle" class="pk-l">${lab}</text></g>`}
+function poker(){const cx=500,cy=230;
+  let o=`<ellipse cx="${cx}" cy="${cy}" rx="330" ry="150" class="pk-rail"/><ellipse cx="${cx}" cy="${cy}" rx="300" ry="124" class="pk-felt"/><ellipse cx="${cx}" cy="${cy}" rx="250" ry="92" class="pk-line"/>
+  <text x="${cx}" y="${cy-60}" text-anchor="middle" class="pk-cr">CASINO ROYALE · NO LIMIT HOLD'EM</text>`;
+  const S=[[cx-250,cy-150,'LE CHIFFRE','lc'],[cx,cy-170,'FIELDS',''],[cx+250,cy-150,'INFANTE',''],[cx+330,cy+40,'',''],[cx+190,cy+170,'LEITER',''],[cx-190,cy+170,'BOND','bd'],[cx-330,cy+40,'DEALER','dl']];
+  S.forEach(([x,y,l,c])=>{if(l)o+=seat(x,y,l,c)});
+  o+=chips(cx-170,cy-50,7)+chips(cx-140,cy-46,5)+chips(cx+150,cy-50,3)+chips(cx-120,cy+62,8)+chips(cx-92,cy+66,6)+chips(cx+130,cy+60,2);
+  o+=`<g class="pk-pot">${chips(cx-14,cy+6,9)}${chips(cx+14,cy+4,7)}${chips(cx,cy+22,10)}</g><text x="${cx}" y="${cy+52}" text-anchor="middle" class="pk-l pot">POT 115 MIO. $</text>`;
+  /* Board: A♠ 8♠ 6♠ 4♣ A♥ */
+  [['A','♠'],['8','♠'],['6','♠'],['4','♣'],['A','♥']].forEach(([r,s],i)=>o+=card(cx-92+i*46,cy-12,r,s,0,'bd'+i));
+  o+=card(cx-200,cy-62,'A','♦',-12,'lch lc1')+card(cx-170,cy-66,'6','♦',8,'lch lc2');
+  o+=card(cx-150,cy+110,'5','♠',-10,'bh bh1')+card(cx-120,cy+106,'7','♠',10,'bh bh2');
+  o+=`<g class="pk-win"><rect x="${cx-150}" y="${cy+140}" width="300" height="30" rx="2"/><text x="${cx}" y="${cy+160}" text-anchor="middle">STRAIGHT FLUSH · 4 BIS 8 PIK</text></g>`;
+  return `<svg class="pk" viewBox="0 0 1000 470">${o}</svg>`}
+/* Route (Lage) aus den Kartendaten projiziert */
+function route(){const pts=maps.route.out.concat([[50.17,13.4],[50.12,14.0],[50.0755,14.4378]]),lat0=49.9,k=88;const P=([la,lo])=>[(lo-10.6)*k*Math.cos(lat0*Math.PI/180)*1.0+60,(51.0-la)*k*1.0+40];
+  const C=[['AUGSBURG',[48.3705,10.8978],1],['LOKET',[50.1866,12.754],-1],['KARLSBAD',[50.2306,12.8711],1],['PRAHA',[50.0755,14.4378],1]];
+  const xy=pts.map(P),all=xy.concat(C.map(c=>P(c[1]))),xs=all.map(p=>p[0]),ys=all.map(p=>p[1]);const mx=Math.min(...xs)-60,my=Math.min(...ys)-60,w=Math.max(...xs)-mx+60,h=Math.max(...ys)-my+60,sc=Math.min(940/w,420/h);
+  const ox=(1000-w*sc)/2,oy=(440-h*sc)/2,Q=p=>[((p[0]-mx)*sc+ox).toFixed(1),((p[1]-my)*sc+oy).toFixed(1)];const d='M'+xy.map(p=>Q(p).join(' ')).join('L');
+  let o=`<path d="M0 ${(P([50.18,12.09])[1]-my)*sc+25}" class="ms-border"/>`;
+  for(let i=0;i<14;i++)o+=`<line x1="${i*75}" y1="0" x2="${i*75}" y2="470" class="ms-grid"/>`;for(let i=0;i<7;i++)o+=`<line x1="0" y1="${i*75}" x2="1000" y2="${i*75}" class="ms-grid"/>`;
+  o+=`<path d="${d}" pathLength="1" class="ms-route" id="msRoute"/>`;
+  C.forEach(([n,c,sd],i)=>{const [x,y]=Q(P(c));o+=`<g class="ms-city" style="--i:${i}"><circle cx="${x}" cy="${y}" r="7"/><circle cx="${x}" cy="${y}" r="15" class="ring"/><text x="${sd>0?+x+14:+x-14}" y="${sd>0?+y-12:+y+26}" text-anchor="${sd>0?'start':'end'}">${n}</text></g>`});
+  o+=`<text x="30" y="455" class="ms-cap2">ROUTE B-1 · AUGSBURG – LOKET – KARLSBAD – PRAG · ZURÜCK ÜBER PILSEN</text>`;
+  return `<svg class="ms-map gzs" viewBox="0 0 1000 470">${o}<g id="msCar" class="ms-car"></g></svg>`}
+const T=n=>L.find(x=>x.id===n);
+const bp=id=>{const c=T(id);return bpSVG(c,L.indexOf(c)).replace(/<ol class="bplist">[\s\S]*$/,'')};
+const face=(id,cap)=>{const p=Object.assign({id},PP[id],PAX[id]);return `<figure class="ms-face"><div>${PA.sheet(p,0,1,true)}</div><figcaption><b>${p.n}</b>${cap}</figcaption></figure>`};
+const db5=GZ.find(c=>c.id==='db5');
+const SC=[
+ {t:3.5,h:()=>`<div class="ms-title"><div class="ms-k">MI6 · 00-SEKTION · BRIEFING</div><div class="ms-h">OPERATION<br>SPLENDIDE</div><div class="ms-k">AKTE 007 · ${depTxt()}</div><svg class="ms-rad" viewBox="0 0 100 100"><circle cx="50" cy="50" r="46"/><circle cx="50" cy="50" r="30"/><circle cx="50" cy="50" r="14"/><path d="M50 50L50 4A46 46 0 0 1 90 28Z" class="sw"/></svg></div>`,c:'M: Setzen Sie sich. Es dauert dreißig Sekunden. Für Sie mache ich eine Ausnahme.'},
+ {t:5.5,h:()=>route(),c:'Abfahrt Augsburg, über die Grenze nach Westböhmen. Fahrzeug: wie immer zu auffällig.',on:car},
+ {t:4.5,h:()=>`<div class="ms-split">${bp('loket')}${face('mathis','Kontakt. Kennt jeden Polizisten der Stadt.')}</div>`,c:'Loket, im Film Montenegro. Treffen mit René Mathis am Marktplatz.',on:open},
+ {t:4.5,h:()=>`<div class="ms-split">${bp('pupp')}${face('vesper','Schatzamt. Verwaltet den Einsatz.')}</div>`,c:'Karlsbad, Grandhotel Pupp, alias Hotel Splendide. Abendgarderobe ist Dienstkleidung.',on:open},
+ {t:5,h:()=>`<div class="ms-split pkw">${poker()}${face('lechiffre','Bankier. Blutet aus dem linken Auge.')}</div>`,c:'Kaiserbad, alias Casino Royale. Le Chiffre am Tisch. Spielen Sie das Blatt, nicht den Mann.',on:pk},
+ {t:4,h:()=>`<div class="ms-split">${bp('danube')}${face('bond','007. Unberechenbar, sagt M.')}</div>`,c:'Prag. Danube House, Strahov, Bunker. Hier fing alles an.',on:open},
+ {t:4,h:()=>`<div class="ms-fin"><svg class="gzs draw" viewBox="0 0 1000 420">${window.gzDraw?gzDraw(db5,false):''}</svg><div class="ms-end"><b>IHRE MISSION BEGINNT ${depTxt(1)}</b><span>Ein Vesper. Nicht drei. — M</span></div></div>`,c:'Rückgabe des Fahrzeugs bitte in einem Stück. Q lässt grüßen.'}
+];
+function depTxt(up){const d=typeof dep!=='undefined'&&dep?new Date(dep+'T12:00'):null;return d?(up?'AM ':'')+ddmm(d)+'.2026':(up?'IM ':'')+'NOVEMBER 2026'}
+const TOT=SC.reduce((a,s)=>a+s.t,0);
+const chipsEl=$('msChips');chipsEl.innerHTML=SC.map((s,i)=>`<button type="button" data-i="${i}">${['TITEL','ROUTE','LOKET','KARLSBAD','CASINO','PRAG','FINALE'][i]}</button>`).join('');
+let cur=-1,t0=0,el=0,playing=false,raf=0,timers=[];
+function clear(){timers.forEach(clearTimeout);timers=[]}
+function later(f,ms){timers.push(setTimeout(f,RM?0:ms))}
+function show(i){clear();cur=i;const s=SC[i];st.innerHTML=`<div class="ms-sc in">${s.h()}</div>`;$('msCap').textContent='';typeCap(s.c);
+  chipsEl.querySelectorAll('button').forEach((b,j)=>b.classList.toggle('on',j===i));
+  const svg=st.querySelector('.bp');if(svg){svg.classList.add('draw');if(RM)svg.classList.add('open','done')}
+  if(s.on)s.on(st)}
+function open(root){const svg=root.querySelector('.bp');later(()=>svg&&svg.classList.add('open'),1500)}
+function pk(root){const g=root.querySelector('.pk');const steps=['bd0','bd1','bd2','bd3','bd4','lch','bh','pk-win'];steps.forEach((c,i)=>later(()=>g.classList.add('s-'+c),300+i*480))}
+function car(root){const path=root.querySelector('#msRoute'),g=root.querySelector('#msCar');if(!path||!g)return;
+  const svgInner=window.gzDraw?gzDraw(db5,true).replace(/^<svg[^>]*>|<\/svg>$/g,''):'';g.innerHTML=`<g transform="scale(.11) translate(-320 -290)">${svgInner}</g>`;
+  const L2=path.getTotalLength(),dur=RM?0:4600,start=performance.now();
+  (function step(now){const f=dur?Math.min(1,(now-start)/dur):1,e=f<.5?2*f*f:1-Math.pow(-2*f+2,2)/2,p=path.getPointAtLength(L2*e);g.setAttribute('transform',`translate(${p.x.toFixed(1)} ${p.y.toFixed(1)})`);if(f<1&&cur===1)requestAnimationFrame(step)})(start)}
+function typeCap(t){const c=$('msCap');let i=0;if(RM){c.textContent=t;return}(function ty(){c.textContent=t.slice(0,++i);if(i<t.length)later(ty,22)})()}
+function frame(now){if(!playing)return;el=Math.min(TOT,(now-t0)/1000);let acc=0,i=0;for(;i<SC.length;i++){if(el<acc+SC[i].t)break;acc+=SC[i].t}
+  if(i>=SC.length){stop(true);return}if(i!==cur)show(i);$('msBar').style.width=(el/TOT*100)+'%';$('msTime').textContent=`${Math.floor(el)} / ${Math.round(TOT)} S`;raf=requestAnimationFrame(frame)}
+function play(){if(el>=TOT)el=0;playing=true;t0=performance.now()-el*1000;$('msPlay').textContent='❚❚ PAUSE';cancelAnimationFrame(raf);raf=requestAnimationFrame(frame)}
+function stop(end){playing=false;cancelAnimationFrame(raf);$('msPlay').textContent=end?'↺ NOCHMAL':'▶ WEITER';if(end){$('msBar').style.width='100%';el=TOT}}
+$('msPlay').onclick=()=>playing?stop():play();
+$('msRe').onclick=()=>{el=0;cur=-1;play()};
+chipsEl.querySelectorAll('button').forEach(b=>b.onclick=()=>{const i=+b.dataset.i;el=SC.slice(0,i).reduce((a,s)=>a+s.t,0)+.01;cur=-1;play()});
+show(0);$('msTime').textContent=`0 / ${Math.round(TOT)} S`;
+let seen=false;if('IntersectionObserver' in window){const io=new IntersectionObserver(es=>{if(!seen&&es.some(e=>e.isIntersecting)){seen=true;io.disconnect();play()}},{threshold:.5});io.observe(st)}
+})();
+
 /* Einsatzbereitschaft */
 const rdyBtn=document.getElementById('rdyBtn'),rdyN=document.getElementById('rdyN'),rdyBar=document.getElementById('rdyBar');
 function rdyParts(){const days=plans[curPlan].days,bks=[...new Set(days.flatMap(d=>d.items.filter(x=>x.bk).map(x=>x.bk)))],bkOk=bks.filter(k=>(S.get('bk',{})[k]||0)===2).length,lic=S.get('lic',0);
@@ -3733,7 +3864,7 @@ window.readiness=()=>{clearTimeout(rdyT);rdyT=setTimeout(()=>{const ps=rdyParts(
   rdyN.textContent=`BEREIT ${v} %`;rdyBar.style.width=v+'%';rdyBtn.classList.toggle('ok',v>=100);rdyBtn.setAttribute('aria-label',`Einsatzbereitschaft ${v} Prozent`)},30)};
 const _set=S.set;S.set=(k,v)=>{_set(k,v);if(window.readiness)readiness()};readiness();
 const kh=document.createElement('div');kh.className='khelp';kh.hidden=true;kh.setAttribute('role','dialog');kh.setAttribute('aria-modal','true');kh.setAttribute('aria-label','Lagebericht und Tastenkürzel');document.body.appendChild(kh);
-const JUMP={'1':['tx','Einsatzbefehl'],'2':['targets','Zielobjekte'],'3':['maps','Lagekarten'],'4':['world-sec','Weltlage'],'5':['ops','Einsatzplan'],'6':['assets','Assets'],'7':['garage','Qs Garage'],'8':['qlab','Q-Lab'],'g':['garage','Qs Garage'],'p':['persons','Personenakten'],'q':['qlab','Q-Lab']};
+const JUMP={'1':['tx','Einsatzbefehl'],'2':['targets','Zielobjekte'],'3':['maps','Lagekarten'],'4':['world-sec','Weltlage'],'5':['ops','Einsatzplan'],'6':['assets','Assets'],'7':['garage','Qs Garage'],'8':['qlab','Q-Lab'],'g':['garage','Qs Garage'],'p':['persons','Personenakten'],'b':['mission','Briefing'],'q':['qlab','Q-Lab']};
 function khShow(){const ps=rdyParts(),v=Math.round(ps.reduce((a,p)=>a+p[1]*Math.min(1,p[2]),0)),open=ps.filter(p=>p[2]<1);
   kh.innerHTML=`<div class="kh"><h3>LAGEBERICHT · BEREIT ${v} %</h3><p>${v>=100?'M: Vollständig. Ich bin beinahe beeindruckt. Fahren Sie.':open.length<=2?'M: Fast. „Fast“ hat noch keinen Einsatz gerettet.':'M: Das ist kein Reiseplan, das ist eine Absichtserklärung.'}</p>
   <ul class="rd">${ps.map(p=>`<li class="${p[2]>=1?'ok':''}"><b>${p[0]}</b><span>${p[3]}</span></li>`).join('')}</ul>
