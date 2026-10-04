@@ -112,4 +112,9 @@ Freigabe: „Anyone with the link“ ist aktiv. Wer die Seite offen hat, sieht n
   Maßstab DB5 als Vergleich, Vollbild (am Handy hochkant gedreht), Pfeiltasten. Fuhrparkbuch `GZB` für alle 25 Filme,
   Leistungsvergleich. Nur belegte Werte im Datenblatt; geschätzte Zeichnungsmaße sind mit ≈ markiert (`est`).
   Gewähltes Fahrzeug unter `ops5-car`. Intro läuft jetzt bei **jedem** Laden (kein `ops5-intro` mehr).
+- Version 14 (04.10.2026): Modul 03-P „Personenakten“ (`#persons`, nach den Lagekarten, Kürzel P): elf Akten zu den
+  Zielpersonen aus `PP`. Zeichengenerator `PA.sheet()` (Front- und Profilansicht, Konstruktionslinien, Haare, Brauen,
+  Iris, Bart, Brille, Kleidung, Schraffur, Fingerabdruck, nummerierte Merkmale `mk`), Merkmale und Akte in `PAX`
+  (Rolle, Erstkontakt, Merkmale, Vorgehen, Schwachstelle, Ausrüstung, Status, Darsteller, Gefährdung, Drehorte, M-Notiz).
+  Verknüpft mit Lagekarte („Auf der Lagekarte verfolgen“, in der Karte „Akte öffnen“) und den Zielobjekten. Auswahl unter `ops5-pa`.
 - Tests: Playwright-Skripte müssen vor dem Laden `window.__NOINTRO=1` per `addInitScript` setzen, sonst läuft das Intro.

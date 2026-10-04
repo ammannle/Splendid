@@ -935,6 +935,43 @@ body.boot .ph .st{animation:flick .9s 1s steps(2) 2}
 @media (max-width:680px){.gzdraw{padding:8px}.gzbays{grid-auto-columns:128px}.gzspec dl{grid-template-columns:90px 1fr}.gztools .qbtn{padding:6px 8px}}
 @media (prefers-reduced-motion:reduce){.gzs.idle .car,.gzs.drive .whl,.gzs.drive .rd{animation:none}}
 
+/* Personenakten */
+.pawrap{display:grid;grid-template-columns:250px minmax(0,1fr);gap:12px}
+.palist{display:grid;grid-template-columns:1fr;gap:6px;align-content:start;max-height:900px;overflow:auto;padding:10px}
+.pac{display:grid;grid-template-columns:52px 1fr;grid-template-rows:auto auto auto;column-gap:10px;align-items:center;text-align:left;background:linear-gradient(180deg,var(--panel2),var(--panel));border:1px solid var(--line);border-radius:2px;padding:6px 8px;color:var(--ink);font:inherit;cursor:pointer}
+.pac:hover{border-color:var(--line2)}.pac[aria-pressed="true"]{border-color:var(--amber);box-shadow:0 0 0 1px var(--amber)}
+.pac .pam{grid-row:1/4;width:52px;height:56px;background:color-mix(in srgb,var(--cyan) 4%,var(--mapbg));border:1px solid var(--line);border-radius:2px}
+.pac .pcd{font-family:var(--mono);font-size:.6rem;color:var(--cyan);letter-spacing:.1em}.pac b{font-family:var(--head);font-size:.92rem;font-weight:600;line-height:1.1}
+.pac small{font-family:var(--mono);font-size:.56rem;letter-spacing:.08em}.f-h{color:var(--red)}.f-a{color:var(--green)}.f-u{color:var(--amber)}
+.pamain{display:grid;grid-template-columns:1fr;gap:0;min-width:0}
+.pasheet{padding:12px;border-bottom:1px solid var(--line);min-width:0}
+.pas{display:block;width:100%;height:auto;background:color-mix(in srgb,var(--cyan) 4%,var(--mapbg));border:1px solid var(--line);border-radius:2px}
+.pas .ln{fill:none;stroke:var(--cyan);stroke-width:.9;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:1;stroke-dashoffset:0}
+.pas .ln.fn{stroke-width:.5;stroke-opacity:.75}.pas .ln.thick{stroke-width:1.6}.pas .ln.face{stroke-width:1.3}.pas .ln.satin{stroke-width:1.2}
+.pas .hr{fill:none;stroke:var(--cyan);stroke-width:.45;stroke-opacity:.7}.pas .hr.lt{stroke-opacity:.5}.pas .irs{stroke:var(--cyan);stroke-width:.35}.pas .dot{fill:var(--cyan);opacity:.6}
+.pas .sh{stroke:var(--cyan);stroke-width:.4;stroke-opacity:.45}
+.pas .ln.fill{fill:color-mix(in srgb,var(--cyan) 18%,transparent)}.pas .ln.blk{fill:var(--bg);fill-opacity:1}.pas .ln.wht{fill:var(--mapbg);stroke:none}
+.pas .ln.red{stroke:var(--red)}.pas .ln.acc{stroke:var(--amber)}
+.pas .cons line{stroke:var(--cyan);stroke-opacity:.22;stroke-dasharray:6 3 1 3;stroke-width:.5}.pas .tx{font-family:var(--mono);font-size:7px;fill:var(--mute)}.pas .tx.big{font-size:13px;fill:var(--ink)}.pas .tx.lbl{font-size:8px}
+.pas .pgrid{stroke:var(--mapgrid)}.pas .fp{fill:none;stroke:var(--cyan);stroke-width:.5;opacity:.6}.pas .fpo{fill:none;stroke:var(--mute);stroke-width:.6}
+.pas .ptb rect{fill:var(--mapbg);stroke:var(--mute);stroke-width:.6}.pas .pmk .lead{stroke:var(--amber);stroke-width:.6;fill:none}.pas .pmk .cc{fill:var(--mapbg);stroke:var(--amber)}.pas .pmk .cn{fill:var(--amber);font-size:9px}.pas .pmk .dot2{fill:var(--amber)}
+.pas.draw .ln{animation:gzdraw .7s cubic-bezier(.4,0,.2,1) both;animation-delay:var(--d)}
+.pas.draw .hr,.pas.draw .irs,.pas.draw .dot,.pas.draw .sh,.pas.draw .fpg{animation:gzfade .8s ease both;animation-delay:2.2s}
+.pas.draw .pmk,.pas.draw .ptb,.pas.draw .cons text{animation:gzfade .6s ease both;animation-delay:2.8s}
+.pam .ln{stroke-dasharray:none;vector-effect:non-scaling-stroke;stroke-width:.8}.pam .ln.fn,.pam .hr,.pam .sh,.pam .irs,.pam .dot{display:none}
+.patext{padding:14px 16px;font-size:.86rem;min-width:0;display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:0 24px;align-items:start}.patext .pah{grid-column:1/-1}
+.pah{display:flex;gap:12px;align-items:center;margin-bottom:8px}.pah b{display:block;font-family:var(--head);font-size:1.4rem;line-height:1.1}
+.pcd.big{font-family:var(--mono);font-size:1.1rem;color:var(--cyan);border:1px solid var(--line2);padding:6px 8px;border-radius:2px}
+.padl{display:grid;grid-template-columns:118px 1fr;gap:6px 10px;margin:10px 0}.padl dt{font-family:var(--mono);font-size:.6rem;color:var(--mute);letter-spacing:.06em;padding-top:3px}.padl dd{margin:0;line-height:1.4}
+.pgef{display:inline-flex;gap:3px}.pgef i{width:14px;height:6px;border:1px solid var(--red);display:block}.pgef i.on{background:var(--red)}
+.patext h4{font-family:var(--mono);font-size:.64rem;color:var(--amber);letter-spacing:.12em;margin:14px 0 6px;font-weight:600}
+.pamk{list-style:none;margin:0;padding:0}.pamk li{display:flex;gap:8px;padding:3px 0;border-bottom:1px dashed var(--line);font-size:.82rem}.pamk b{flex:none;width:18px;height:18px;border:1px solid var(--amber);border-radius:50%;display:grid;place-items:center;font-family:var(--mono);font-size:.6rem;color:var(--amber)}
+.paorte{display:flex;flex-wrap:wrap;gap:6px}.pmute{color:var(--mute);font-size:.8rem}
+.patext .mnote{font-family:var(--mono);font-size:.74rem;color:var(--amber);line-height:1.5;margin:12px 0}
+@media (max-width:1000px){.patext{grid-template-columns:1fr}}
+@media (max-width:760px){.pawrap{grid-template-columns:1fr}.palist{grid-template-columns:repeat(auto-fill,minmax(150px,1fr));max-height:none}.padl{grid-template-columns:96px 1fr}}
+@media (prefers-reduced-motion:reduce){.pas.draw .ln,.pas.draw *{animation:none!important}}
+
 /* gun barrel */
 .gb{position:fixed;inset:0;z-index:100;background:#000;overflow:hidden;cursor:pointer}
 .gb[hidden]{display:none}
@@ -1032,7 +1069,7 @@ body.boot .ph .st{animation:flick .9s 1s steps(2) 2}
   <button class="rdy" type="button" id="rdyBtn" title="Einsatzbereitschaft (Taste ?: Kürzel)"><i><b id="rdyBar"></b></i><span id="rdyN">BEREIT –</span></button>
   <span class="hide-s">MI6 · 00-SEKTION · OPS-ZENTRALE</span>
   <span class="hide-m clk" id="clk" aria-label="Ortszeit London und Prag">LDN --:-- · PRG --:--</span>
-  <nav aria-label="Module"><a href="#tx">Befehl</a><a href="#targets">Ziele</a><a href="#maps">Lage</a><a href="#world-sec">Welt</a><a href="#ops">Einsatzplan</a><a href="#org">Orga</a><a href="#assets">Assets</a><a href="#regs">Protokoll</a><a href="#field">Handbuch</a><a href="#garage">Garage</a><a href="#qlab">Q-Lab</a></nav>
+  <nav aria-label="Module"><a href="#tx">Befehl</a><a href="#targets">Ziele</a><a href="#maps">Lage</a><a href="#persons">Personen</a><a href="#world-sec">Welt</a><a href="#ops">Einsatzplan</a><a href="#org">Orga</a><a href="#assets">Assets</a><a href="#regs">Protokoll</a><a href="#field">Handbuch</a><a href="#garage">Garage</a><a href="#qlab">Q-Lab</a></nav>
   <button class="theme-btn" id="themeBtn" type="button">Tag / Nacht</button>
 </div>
 
@@ -1127,6 +1164,14 @@ body.boot .ph .st{animation:flick .9s 1s steps(2) 2}
       <div class="ppl" id="ppl"></div>
       <div class="mapinfo" id="mapinfo" aria-live="polite"></div>
       <div class="mapfoot"><span class="legend"><span><i style="width:12px;height:12px;border:2px solid var(--red);border-radius:50%"></i>Zielobjekt</span><span><i style="width:9px;height:9px;background:var(--green)"></i>Asset</span><span><i style="width:11px;height:11px;border-radius:50%;background:var(--green)"></i>Verbündet</span><span><i style="width:10px;height:10px;background:var(--red);transform:rotate(45deg)"></i>Feindlich</span><span><i style="width:11px;height:11px;border-radius:50%;background:var(--amber)"></i>00-Einheit</span><span id="legRoute"></span></span><span>ZOOM: + / − · DOPPELKLICK · ZIEHEN · SCHEMATISCH, NICHT ZUR NAVIGATION</span></div>
+    </div>
+  </section>
+
+  <section id="persons">
+    <div class="sh"><div><div class="ix">MODUL 03-P // ZIELPERSONEN</div><h2>Personenakten</h2></div><p>Elf Akten aus dem Einsatz Casino Royale. Gezeichnet nach Beobachtung, frontal und im Profil, mit Erkennungsmerkmalen.</p></div>
+    <div class="panel"><div class="ph"><b>REGISTRATUR // PERSONEN</b><span class="st">11 AKTEN · OFFICIAL–SENSITIVE</span></div>
+      <div class="pawrap"><div class="palist" id="paList" aria-label="Personen"></div>
+        <div class="pamain"><div class="pasheet" id="paSheet"></div><div class="patext" id="paText" aria-live="polite"></div></div></div>
     </div>
   </section>
 
@@ -2227,7 +2272,7 @@ function selP(id){sel=id;MV.follow=id;const info=document.getElementById('mapinf
   if(!id){mapSvg.classList.remove('focus');return}
   mapSvg.classList.add('focus');
   const p=PP[id],a=list.find(x=>x.id===id);
-  info.innerHTML=`<b>ZIELPERSON // ${p.n.toUpperCase()}</b> <span class="ptag f-${p.f}">${PF[p.f]} · ${p.t}</span><br>${p.d}<br><span class="psee">LETZTE SICHTUNG: ${a?a.where:'unbekannt'}${RM?'':' · Karte folgt der Person, Ziehen beendet die Verfolgung.'}</span>`;
+  info.innerHTML=`<b>ZIELPERSON // ${p.n.toUpperCase()}</b> <span class="ptag f-${p.f}">${PF[p.f]} · ${p.t}</span><br>${p.d}<br><span class="psee">LETZTE SICHTUNG: ${a?a.where:'unbekannt'}${RM?'':' · Karte folgt der Person, Ziehen beendet die Verfolgung.'}</span>${window.paOpen&&id!=='unit'?` <button type="button" class="ref" onclick="paOpen('${id}')">AKTE ÖFFNEN</button>`:''}`;
   if(a&&MV.w>(innerWidth<680?400:640))MV.to(a.x,a.y,innerWidth<680?380:520)}
 mapSvg.addEventListener('click',e=>{if(sel&&!e.target.closest('.pp,.mk'))selP(null)});
 
@@ -3536,6 +3581,305 @@ let first=true;const io='IntersectionObserver' in window?new IntersectionObserve
 sel(cur.id,false);if(io)io.observe(svg);else{svg.classList.remove('pre');render(true)}
 })();
 
+/* Personenakten: Zeichengenerator (Front + Profil) */
+const PA=(function(){
+const r1=v=>Math.round(v*10)/10;
+let dl=0;const D=()=>`style="--d:${(dl+=.01).toFixed(2)}s"`;
+const P=(d,c='')=>`<path d="${d}" pathLength="1" class="ln ${c}" ${D()}/>`;
+const C=(x,y,r,c='')=>`<circle cx="${r1(x)}" cy="${r1(y)}" r="${r1(r)}" pathLength="1" class="ln ${c}" ${D()}/>`;
+function rng(seed){let s=0;for(const ch of seed)s=(s*31+ch.charCodeAt(0))>>>0;return()=>((s=(s*1664525+1013904223)>>>0)/4294967296)}
+/* Spiegeln um die Gesichtsachse */
+function mir(d,X){const t=d.match(/[a-zA-Z]|-?\d*\.?\d+/g);let out='',cmd='',k=0;const NP={M:2,L:2,C:6,Q:4,S:4,T:2,H:1,V:1,A:7,Z:0};
+  for(const v of t){if(/[a-zA-Z]/.test(v)){cmd=v;k=0;out+=v;continue}const n=+v,U=cmd.toUpperCase(),abs=cmd===U,np=NP[U]||2;let r=n;
+    if(U==='H')r=abs?2*X-n:-n;else if(U==='V')r=n;else if(U==='A'){const i=k%7;r=i===5?(abs?2*X-n:-n):i===4?1-n:n}else if(k%2===0)r=abs?2*X-n:-n;
+    out+=(out.match(/[a-zA-Z]$/)?'':' ')+r1(r);k++}
+  return out}
+/* ---------- Frontansicht ---------- */
+function front(p,X){const o=[],R=rng(p.id),f=p.g==='f',a=p.age||0,jw=p.jaw||1,dark=p.tone==='dark',H=p.hair;
+  const x=v=>r1(X+v);
+  /* Hals und Schultern */
+  o.push(P(`M${x(-29)} 206L${x(-33)} 258M${x(29)} 206L${x(33)} 258`,''));
+  if(!f)o.push(P(`M${x(-5)} 236q5 4 10 0`,'fn'));
+  o.push(P(`M${x(-33)} 248Q${x(-72)} 262 ${x(-124)} 282Q${x(-140)} 292 ${x(-146)} 340M${x(33)} 248Q${x(72)} 262 ${x(124)} 282Q${x(140)} 292 ${x(146)} 340`,''));
+  o.push(P(`M${x(-12)} 262q12 6 24 0`,'fn'));
+  /* Kopfform */
+  const half=f?`M${x(0)} 224C${x(-10)} 224 ${x(-24)} 219 ${x(-32)} 210C${x(-44)} 196 ${x(-50)} 182 ${x(-57)} 164C${x(-62)} 146 ${x(-62)} 120 ${x(-60)} 98`
+             :`M${x(0)} 227C${x(-12)} 227 ${x(-28)} 222 ${x(-38)} 212C${x(-50*jw)} 198 ${x(-56*jw)} 186 ${x(-62)} 166C${x(-66)} 148 ${x(-67)} 122 ${x(-65)} 98`;
+  o.push(P(half,'face'),P(mir(half,X),'face'));
+  /* Ohren */
+  const ear=`M${x(-62)} 120C${x(-76)} 108 ${x(-82)} 126 ${x(-79)} 142C${x(-77)} 156 ${x(-72)} 166 ${x(-62)} 168`;
+  o.push(P(ear,''),P(mir(ear,X),''),P(`M${x(-66)} 126c-6 2 -8 12 -6 20c2 6 4 10 2 14`,'fn'),P(mir(`M${x(-66)} 126c-6 2 -8 12 -6 20c2 6 4 10 2 14`,X),'fn'));
+  if(p.earring){o.push(C(X-74,176,3.2,'acc'),C(X+74,176,3.2,'acc'),P(`M${x(-74)} 168v5M${x(74)} 168v5`,'fn'))}
+  /* Augenbrauen */
+  const bw=p.brow||1;
+  const brow=`M${x(-11)} 114C${x(-18)} ${108-2*bw} ${x(-32)} ${105-3*bw} ${x(-44)} 112`;
+  o.push(P(brow,'thick'),P(mir(brow,X),'thick'));
+  for(let i=0;i<9;i++){const t=i/8,bx=-12-t*31,by=113-Math.sin(t*Math.PI)*(6+2*bw);o.push(P(`M${x(bx)} ${r1(by+2)}l${r1(-3-2*t)} ${r1(-3)}M${x(-bx)} ${r1(by+2)}l${r1(3+2*t)} ${r1(-3)}`,'hr'))}
+  /* Augen */
+  [-1,1].forEach(s=>{const ex=X+s*27,ey=131;
+    o.push(P(`M${r1(ex-s*15)} ${ey+1}C${r1(ex-s*8)} ${ey-8} ${r1(ex+s*6)} ${ey-9} ${r1(ex+s*16)} ${ey-1}`,''));
+    o.push(P(`M${r1(ex-s*15)} ${ey+1}C${r1(ex-s*6)} ${ey+6} ${r1(ex+s*8)} ${ey+6} ${r1(ex+s*16)} ${ey-1}`,'fn'));
+    o.push(P(`M${r1(ex-s*13)} ${ey-6}C${r1(ex-s*4)} ${ey-14} ${r1(ex+s*8)} ${ey-13} ${r1(ex+s*16)} ${ey-6}`,'fn'));
+    if(p.lens&&s===p.lens){o.push(C(ex,ey,5.8,'fill blk'));return}
+    o.push(C(ex,ey,5.8,''),C(ex,ey,2.5,'fill blk'),C(ex+1.8,ey-1.8,1,'fill wht'));
+    for(let i=0;i<12;i++){const t=i/12*Math.PI*2;o.push(`<line x1="${r1(ex+Math.cos(t)*2.9)}" y1="${r1(ey+Math.sin(t)*2.9)}" x2="${r1(ex+Math.cos(t)*5.4)}" y2="${r1(ey+Math.sin(t)*5.4)}" class="irs"/>`)}
+    if(f)for(let i=0;i<6;i++){const t=.25+i*.15,lx=ex+s*(-15+31*t),ly=ey-1-Math.sin(t*Math.PI)*8;o.push(P(`M${r1(lx)} ${r1(ly)}l${r1(s*(2+i*.6))} ${r1(-3-i*.3)}`,'hr'))}
+    if(a>.35)o.push(P(`M${r1(ex+s*18)} ${ey-2}l${s*5} -3M${r1(ex+s*18)} ${ey+1}l${s*6} 1M${r1(ex+s*17)} ${ey+4}l${s*5} 4`,'fn'));
+    if(a>.5)o.push(P(`M${r1(ex-s*10)} ${ey+9}C${r1(ex-s*2)} ${ey+13} ${r1(ex+s*8)} ${ey+12} ${r1(ex+s*13)} ${ey+7}`,'fn'));
+    if(p.scar&&s===p.scar){o.push(P(`M${r1(ex+s*4)} ${ey-22}L${r1(ex+s*9)} ${ey-6}M${r1(ex+s*9)} ${ey+4}L${r1(ex+s*12)} ${ey+16}`,'red thick'),P(`M${r1(ex+s*2)} ${ey+7}q1 8 -1 16`,'red'))}});
+  /* Nase */
+  const nl=p.nose||1;
+  o.push(P(`M${x(-8)} 122C${x(-8)} 138 ${x(-10)} 150 ${x(-12)} ${158+nl*2}M${x(8)} 122C${x(8)} 138 ${x(10)} 150 ${x(12)} ${158+nl*2}`,'fn'));
+  const ala=`M${x(-6)} ${169+nl*2}C${x(-12)} ${171+nl*2} ${x(-19)} ${167+nl*2} ${x(-17)} ${160+nl*2}C${x(-16)} ${155+nl*2} ${x(-12)} ${154+nl*2} ${x(-10)} 156`;
+  o.push(P(ala,''),P(mir(ala,X),''),P(`M${x(-6)} ${169+nl*2}Q${x(0)} ${173+nl*2} ${x(6)} ${169+nl*2}`,''),P(`M${x(-9)} ${166+nl*2}q2 2 5 1M${x(9)} ${166+nl*2}q-2 2 -5 1`,'fn'));
+  /* Mund */
+  const lu=f?3:0,ll=f?4:0,my=187;
+  o.push(P(`M${x(-21)} ${my}C${x(-14)} ${my-4-lu} ${x(-7)} ${my-6-lu} ${x(-3)} ${my-5-lu}Q${x(0)} ${my-3-lu} ${x(3)} ${my-5-lu}C${x(7)} ${my-6-lu} ${x(14)} ${my-4-lu} ${x(21)} ${my}`,''));
+  o.push(P(`M${x(-21)} ${my}Q${x(0)} ${my+3} ${x(21)} ${my}`,'thick'));
+  o.push(P(`M${x(-17)} ${my+2}C${x(-10)} ${my+10+ll} ${x(10)} ${my+10+ll} ${x(17)} ${my+2}`,''));
+  o.push(P(`M${x(-4)} ${176}l1 6M${x(4)} 176l-1 6`,'fn'));
+  if(f)for(let i=-3;i<=3;i++)o.push(P(`M${x(i*4)} ${my+3}l${r1(i*.3)} ${4+ll*.6}`,'hr'));
+  o.push(P(`M${x(-9)} ${210}q9 4 18 0`,'fn'));
+  if(a>.25)o.push(P(`M${x(-19)} 162C${x(-27)} 172 ${x(-28)} 182 ${x(-25)} 194`,'fn'),P(mir(`M${x(-19)} 162C${x(-27)} 172 ${x(-28)} 182 ${x(-25)} 194`,X),'fn'));
+  if(a>.5)for(let i=0;i<3;i++)o.push(P(`M${x(-30+i*3)} ${88+i*6}Q${x(0)} ${84+i*6} ${x(30-i*3)} ${88+i*6}`,'fn'));
+  /* Schattierung (Licht von rechts oben) */
+  for(let i=0;i<9;i++)o.push(`<line x1="${x(-56+i*1.2)}" y1="${r1(140+i*7)}" x2="${x(-47+i*1.4)}" y2="${r1(134+i*7)}" class="sh"/>`);
+  for(let i=0;i<8;i++)o.push(`<line x1="${x(-44+i*5)}" y1="${r1(214+Math.abs(-44+i*5)*-.1+i*.3)}" x2="${x(-40+i*5)}" y2="${r1(208+i*.3)}" class="sh"/>`);
+  for(let i=0;i<10;i++)o.push(`<line x1="${x(-26+i*5)}" y1="${r1(230)}" x2="${x(-22+i*5)}" y2="${r1(240+(i%3)*3)}" class="sh"/>`);
+  for(let i=0;i<5;i++)o.push(`<line x1="${x(-14)}" y1="${r1(140+i*4)}" x2="${x(-10)}" y2="${r1(137+i*4)}" class="sh"/>`);
+  for(let i=0;i<5;i++)o.push(`<line x1="${x(-38+i*4)}" y1="${r1(120+i*.5)}" x2="${x(-35+i*4)}" y2="${r1(124+i*.5)}" class="sh"/>`);
+  for(let i=0;i<4;i++)o.push(`<line x1="${x(-8+i*4)}" y1="${r1(200)}" x2="${x(-6+i*4)}" y2="${r1(204)}" class="sh"/>`);
+  /* Bart */
+  if(p.beard==='full'){const bd=`M${x(-62)} 150C${x(-62)} 176 ${x(-52)} 200 ${x(-36)} 216C${x(-22)} 230 ${x(-8)} 236 ${x(0)} 236`;o.push(P(bd,''),P(mir(bd,X),''));
+    for(let i=0;i<70;i++){const t=R(),side=R()<.5?-1:1,bx=side*(10+R()*50),by=170+R()*60;if(by>238-Math.abs(bx)*.5)continue;if(Math.abs(bx)<24&&by<200)continue;o.push(`<line x1="${x(bx)}" y1="${r1(by)}" x2="${x(bx+side*1.5)}" y2="${r1(by+3)}" class="hr"/>`)}}
+  if(p.beard==='full'||p.beard==='mous'){o.push(P(`M${x(-22)} 182C${x(-14)} 174 ${x(-4)} 176 ${x(0)} 179C${x(4)} 176 ${x(14)} 174 ${x(22)} 182`,'thick'));for(let i=-5;i<=5;i++)o.push(P(`M${x(i*3.8)} 178l${r1(i*.5)} 4`,'hr'))}
+  if(p.beard==='goatee'){o.push(P(`M${x(-14)} 200C${x(-14)} 214 ${x(-8)} 222 ${x(0)} 224C${x(8)} 222 ${x(14)} 214 ${x(14)} 200`,''),P(`M${x(-20)} 182C${x(-12)} 175 ${x(12)} 175 ${x(20)} 182`,''));for(let i=0;i<24;i++){const bx=-12+R()*24,by=202+R()*18;o.push(`<line x1="${x(bx)}" y1="${r1(by)}" x2="${x(bx)}" y2="${r1(by+3)}" class="hr"/>`)}}
+  if(p.beard==='stubble')for(let i=0;i<120;i++){const bx=(R()-.5)*112,by=172+R()*52;if(by>226-Math.abs(bx)*.35||(Math.abs(bx)<22&&by<197))continue;o.push(`<circle cx="${x(bx)}" cy="${r1(by)}" r=".5" class="dot"/>`)}
+  /* Brille */
+  if(p.glasses){o.push(`<rect x="${X-44}" y="121" width="31" height="21" rx="9" pathLength="1" class="ln" ${D()}/><rect x="${X+13}" y="121" width="31" height="21" rx="9" pathLength="1" class="ln" ${D()}/>`,P(`M${x(-13)} 128q13 -6 26 0M${x(-44)} 128L${x(-64)} 124M${x(44)} 128L${x(64)} 124`,''));
+    if(p.lens){const lx=p.lens<0?X-44:X+13;o.push(`<rect x="${lx}" y="121" width="31" height="21" rx="9" pathLength="1" class="ln fill blk" ${D()}/>`)}}
+  /* Haare */
+  o.push(hairFront(p,X,R));
+  /* Kleidung */
+  o.push(attire(p,X,R));
+  return o.join('')}
+function strands(n,R,fn){let o='';for(let i=0;i<n;i++)o+=fn(i/n,R());return o}
+function hairFront(p,X,R){const x=v=>r1(X+v),o=[],H=p.hair,cls=p.tone==='light'?'hr lt':'hr';
+  const skull=(w,top)=>`M${x(-w)} 104C${x(-w-4)} 74 ${x(-w+6)} 46 ${x(-34)} ${top+8}C${x(-16)} ${top} ${x(16)} ${top} ${x(34)} ${top+8}C${x(w-6)} 46 ${x(w+4)} 74 ${x(w)} 104`;
+  if(H==='short'){o.push(P(skull(68,24),''),P(`M${x(-62)} 100C${x(-58)} 76 ${x(-40)} 66 ${x(-14)} 64C${x(0)} 62 ${x(20)} 64 ${x(40)} 68C${x(56)} 74 ${x(62)} 86 ${x(62)} 100`,''));
+    o.push(strands(40,R,(t,q)=>{const sx=-58+t*116,sy=66+Math.abs(sx)*.12;return P(`M${x(sx)} ${r1(sy)}q${r1(-4+q*8)} -10 ${r1(-2+q*4)} ${r1(-16-q*12)}`,cls)}))}
+  if(H==='slick'){o.push(P(skull(67,28),''),P(`M${x(-62)} 102C${x(-60)} 80 ${x(-44)} 64 ${x(-22)} 60C${x(0)} 58 ${x(24)} 60 ${x(44)} 66C${x(58)} 74 ${x(63)} 88 ${x(63)} 102`,''),P(`M${x(-22)} 60C${x(-26)} 50 ${x(-28)} 42 ${x(-30)} 34`,'fn'));
+    o.push(strands(36,R,(t,q)=>{const sx=-56+t*112,dir=sx<-22?-1:1;return P(`M${x(sx)} ${r1(64+Math.abs(sx)*.08)}C${x(sx*.92)} ${r1(50)} ${x(sx*.7)} 40 ${x(sx*.45+dir*q*4)} ${r1(32+q*4)}`,cls)}))}
+  if(H==='long'){const L=`M${x(-12)} 30C${x(-46)} 30 ${x(-74)} 54 ${x(-76)} 96C${x(-80)} 150 ${x(-82)} 210 ${x(-96)} 262C${x(-104)} 290 ${x(-112)} 316 ${x(-108)} 336`;
+    const Rr=`M${x(-12)} 30C${x(26)} 28 ${x(72)} 44 ${x(78)} 96C${x(82)} 150 ${x(84)} 210 ${x(98)} 262C${x(106)} 290 ${x(110)} 316 ${x(104)} 336`;
+    o.push(P(L,''),P(Rr,''),P(`M${x(-12)} 32C${x(-40)} 48 ${x(-58)} 74 ${x(-62)} 104C${x(-66)} 150 ${x(-70)} 214 ${x(-76)} 262`,''),P(`M${x(-12)} 32C${x(20)} 40 ${x(50)} 60 ${x(60)} 100C${x(68)} 150 ${x(70)} 214 ${x(78)} 262`,''));
+    o.push(strands(30,R,(t,q)=>{const s=t<.5?-1:1,k=(t%.5)*2;return P(`M${x(-12+s*(3+k*14))} ${r1(32+k*3)}C${x(s*(46+k*24))} ${r1(38+q*6)} ${x(s*(68+k*18))} ${r1(110+q*20)} ${x(s*(72+k*28+q*6))} ${r1(250+k*70)}`,cls)}))}
+  if(H==='updo'){o.push(P(skull(65,30),''),C(X+18,26,22,''),C(X+18,26,12,'fn'),P(`M${x(-60)} 100C${x(-56)} 76 ${x(-36)} 62 ${x(-6)} 60C${x(24)} 60 ${x(52)} 70 ${x(60)} 100`,''),P(`M${x(-62)} 104q-6 22 -2 40M${x(62)} 104q6 22 2 40`,'fn'));
+    o.push(strands(30,R,(t,q)=>{const sx=-56+t*112;return P(`M${x(sx)} ${r1(62+Math.abs(sx)*.1)}Q${x(sx*.5)} ${r1(40)} ${x(14+q*8)} ${r1(30+q*8)}`,cls)}),strands(14,R,(t,q)=>{const a=t*Math.PI*2;return P(`M${r1(X+18+Math.cos(a)*12)} ${r1(26+Math.sin(a)*12)}Q${r1(X+18+Math.cos(a+.6)*20)} ${r1(26+Math.sin(a+.6)*20)} ${r1(X+18+Math.cos(a+1.2)*21)} ${r1(26+Math.sin(a+1.2)*21)}`,cls)}))}
+  if(H==='pixie'){o.push(P(skull(66,28),''),P(`M${x(-62)} 104C${x(-60)} 86 ${x(-50)} 72 ${x(-30)} 70l6 6l6 -8l8 6l6 -8l8 6l6 -6l10 6C${x(50)} 74 ${x(60)} 88 ${x(62)} 104`,''));
+    o.push(strands(44,R,(t,q)=>{const sx=-60+t*120;return P(`M${x(sx)} ${r1(72+Math.abs(sx)*.15)}l${r1(-3+q*6)} ${r1(-10-q*14)}`,cls)}))}
+  if(H==='wavy'){o.push(P(skull(70,30),''),P(`M${x(-64)} 104C${x(-62)} 80 ${x(-52)} 64 ${x(-30)} 58C${x(-10)} 52 ${x(10)} 54 ${x(30)} 58C${x(52)} 64 ${x(62)} 80 ${x(64)} 104`,''),P(`M${x(-66)} 104q-4 12 0 22M${x(66)} 104q4 12 0 22`,''));
+    o.push(strands(34,R,(t,q)=>{const sx=-60+t*120;return P(`M${x(sx)} ${r1(60+Math.abs(sx)*.1)}c${r1(4+q*3)} -6 ${r1(-4)} -12 ${r1(2)} ${r1(-20-q*8)}`,cls)}))}
+  if(H==='crop'){o.push(P(skull(66,30),'fn'),P(`M${x(-61)} 100C${x(-58)} 80 ${x(-42)} 68 ${x(-18)} 66C${x(0)} 64 ${x(20)} 66 ${x(42)} 70C${x(56)} 78 ${x(61)} 88 ${x(61)} 100`,'fn'));
+    for(let i=0;i<190;i++){const a=R()*Math.PI,rr=R(),px=-60*Math.cos(a)*rr-((1-rr)*0),py=36+(1-Math.sin(a))*58*rr+R()*30;const yy=Math.min(py,66+Math.abs(px)*.4);o.push(`<circle cx="${x(-62+R()*124)}" cy="${r1(34+R()*36+0*yy)}" r=".55" class="dot"/>`)}}
+  if(H==='thin'){o.push(P(skull(66,30),'fn'),P(`M${x(-62)} 100C${x(-60)} 84 ${x(-56)} 70 ${x(-44)} 62M${x(62)} 100C${x(60)} 84 ${x(56)} 70 ${x(44)} 62`,''),P(`M${x(-40)} 60C${x(-28)} 48 ${x(-10)} 46 ${x(0)} 46C${x(12)} 46 ${x(28)} 48 ${x(40)} 60`,'fn'));
+    o.push(strands(26,R,(t,q)=>{const sx=-42+t*84;return P(`M${x(sx)} ${r1(50+Math.abs(sx)*.2)}q${r1(q*4-2)} -10 ${r1(q*6-3)} -18`,cls)}))}
+  if(H==='part'){o.push(P(skull(67,28),''),P(`M${x(-62)} 102C${x(-60)} 80 ${x(-48)} 66 ${x(-28)} 60C${x(-8)} 56 ${x(22)} 58 ${x(44)} 64C${x(58)} 72 ${x(63)} 86 ${x(63)} 102`,''),P(`M${x(-30)} 60L${x(-34)} 32`,'fn'));
+    o.push(strands(36,R,(t,q)=>{const sx=-28+t*90;return P(`M${x(-30)} ${r1(36+t*20)}Q${x(sx*.6)} ${r1(40+q*6)} ${x(sx)} ${r1(62+Math.abs(sx)*.1)}`,cls)}),strands(8,R,(t,q)=>P(`M${x(-32)} ${r1(36+t*22)}q-16 6 ${r1(-26-q*4)} ${r1(30+t*10)}`,cls)))}
+  if(H==='dark'){o.push(P(skull(70,26),''),P(`M${x(-64)} 104C${x(-62)} 78 ${x(-48)} 62 ${x(-20)} 58C${x(4)} 54 ${x(32)} 58 ${x(50)} 66C${x(62)} 76 ${x(66)} 90 ${x(64)} 104`,''));
+    o.push(strands(48,R,(t,q)=>{const sx=-62+t*124;return P(`M${x(sx)} ${r1(60+Math.abs(sx)*.12)}c${r1(-6+q*4)} -8 ${r1(6)} -14 ${r1(-2+q*6)} ${r1(-24-q*8)}`,cls)}))}
+  return o.join('')}
+function attire(p,X,R){const x=v=>r1(X+v),o=[],A=p.att;
+  if(A==='tux'||A==='suit'){
+    o.push(P(`M${x(-33)} 252L${x(-16)} 290L${x(-8)} 340M${x(33)} 252L${x(16)} 290L${x(8)} 340`,''));
+    o.push(P(`M${x(-33)} 252L${x(-62)} 286L${x(-40)} 300L${x(-14)} 340M${x(33)} 252L${x(62)} 286L${x(40)} 300L${x(14)} 340`,A==='tux'?'satin':''));
+    if(A==='tux')for(let i=0;i<10;i++){o.push(P(`M${x(-36-i*2)} ${256+i*4}l${r1(10+i)} ${r1(14+i*2)}M${x(36+i*2)} ${256+i*4}l${r1(-10-i)} ${r1(14+i*2)}`,'hr'))}
+    o.push(P(`M${x(-26)} 254L${x(-6)} 278L${x(0)} 268L${x(6)} 278L${x(26)} 254`,''));
+    if(A==='tux'||p.bow){o.push(P(`M${x(-3)} 270L${x(-22)} 262L${x(-24)} 280L${x(-3)} 274ZM${x(3)} 270L${x(22)} 262L${x(24)} 280L${x(3)} 274Z`,'fill'),`<rect x="${X-4}" y="267" width="8" height="9" rx="2" pathLength="1" class="ln fill" ${D()}/>`,P(`M${x(-18)} 266l6 6M${x(18)} 266l-6 6`,'fn'));
+      o.push(C(X,296,1.8,''),C(X,314,1.8,''),C(X,332,1.8,''),P(`M${x(-5)} 282V340M${x(5)} 282V340`,'fn'))}
+    else{o.push(P(`M${x(-6)} 270L${x(6)} 270L${x(4)} 282L${x(-4)} 282ZM${x(-4)} 282L${x(-10)} 336L${x(0)} 344L${x(10)} 336L${x(4)} 282`,'fill'));for(let i=0;i<6;i++)o.push(P(`M${x(-8)} ${290+i*8}l16 -6`,'hr'))}
+    o.push(P(`M${x(70)} 300l26 -4l2 4l-26 4z`,'fn'),P(`M${x(76)} 297l4 -9l5 8l5 -10l4 9`,'fn'));
+    o.push(C(X-20,332,2.2,''),P(`M${x(-120)} 300q20 12 26 40M${x(120)} 300q-20 12 -26 40`,'fn'))}
+  if(A==='open'){o.push(P(`M${x(-33)} 252L${x(-20)} 292L${x(0)} 300L${x(20)} 292L${x(33)} 252`,''),P(`M${x(-33)} 252L${x(-58)} 280L${x(-30)} 288L${x(-20)} 292M${x(33)} 252L${x(58)} 280L${x(30)} 288L${x(20)} 292`,''),P(`M${x(0)} 300V340`,'fn'),C(X,318,1.6,''),
+    P(`M${x(-60)} 280L${x(-46)} 340M${x(60)} 280L${x(46)} 340`,''),P(`M${x(-12)} 268q12 18 24 0`,'fn'))}
+  if(A==='dress'){o.push(P(`M${x(-100)} 290C${x(-70)} 296 ${x(-40)} 300 ${x(-22)} 312C${x(-10)} 322 ${x(-4)} 336 ${x(0)} 344C${x(4)} 336 ${x(10)} 322 ${x(22)} 312C${x(40)} 300 ${x(70)} 296 ${x(100)} 290`,''),P(`M${x(-66)} 270L${x(-60)} 296M${x(66)} 270L${x(60)} 296`,''),
+    P(`M${x(-40)} 306q8 14 4 34M${x(40)} 306q-8 14 -4 34`,'fn'));for(let i=0;i<8;i++)o.push(P(`M${x(-90+i*6)} ${294+i}q4 20 ${r1(2+i)} 46M${x(90-i*6)} ${294+i}q-4 20 ${r1(-2-i)} 46`,'hr'))}
+  if(A==='blouse'){o.push(P(`M${x(-33)} 252C${x(-26)} 270 ${x(-12)} 284 ${x(0)} 290C${x(12)} 284 ${x(26)} 270 ${x(33)} 252`,''),P(`M${x(-33)} 252L${x(-66)} 282L${x(-36)} 300L${x(-14)} 340M${x(33)} 252L${x(66)} 282L${x(36)} 300L${x(14)} 340`,''),P(`M${x(-6)} 290L${x(-4)} 340M${x(6)} 290L${x(4)} 340`,'fn'))}
+  if(p.pearls)for(let i=0;i<19;i++){const t=(i/18-.5)*2.2,px=X+Math.sin(t)*30,py=258+Math.cos(t*.9)*-1+ (1-Math.cos(t))*-0+Math.cos(t)*18;o.push(C(px,py,2.3,'fn'))}
+  if(p.knot){o.push(P(`M${x(-26)} 254Q${x(0)} 292 ${x(26)} 254`,'fn acc'));const k=`M${x(0)} 284c-8 -8 -12 4 -4 8c8 4 12 -8 4 -12c-8 -4 -12 8 -4 12c4 2 8 6 4 12c-4 -6 0 -10 4 -12c8 -4 4 -16 -4 -12`;o.push(P(k,'acc'),P(mir(k,X),'acc'))}
+  if(p.pin)o.push(C(X-48,300,3,'acc'));
+  return o.join('')}
+/* ---------- Profilansicht (Blick nach links) ---------- */
+function profile(p,X){const o=[],f=p.g==='f',x=v=>r1(X+v),n=p.nose||1,R=rng(p.id+'p');
+  const face=`M${x(30)} 34C${x(4)} 30 ${x(-28)} 44 ${x(-38)} 78C${x(-42)} 92 ${x(-42)} 104 ${x(-40)} 114C${x(-46)} 118 ${x(-46)} 122 ${x(-44)} 126C${x(-50-n*4)} 142 ${x(-56-n*6)} 156 ${x(-56-n*6)} 162C${x(-56-n*5)} 166 ${x(-50)} 168 ${x(-42)} 168C${x(-42)} 172 ${x(-46)} 176 ${x(-46)} ${f?182:180}C${x(-46)} 184 ${x(-42)} 186 ${x(-43)} 188C${x(-46)} 192 ${x(-44)} 198 ${x(-38)} 200C${x(-40)} 206 ${x(-42)} 214 ${x(-36)} 222C${x(-28)} 230 ${x(-10)} 230 ${x(4)} 218`;
+  o.push(P(face,'face'),P(`M${x(4)} 218C${x(14)} 210 ${x(26)} 200 ${x(30)} 188`,''));
+  o.push(P(`M${x(-14)} 222L${x(-18)} 258M${x(46)} 196C${x(50)} 220 ${x(54)} 240 ${x(58)} 258`,''));
+  if(!f)o.push(P(`M${x(-17)} 232q-5 4 -2 9`,'fn'));
+  o.push(P(`M${x(-18)} 258Q${x(-26)} 290 ${x(-30)} 340M${x(58)} 258Q${x(86)} 284 ${x(96)} 340`,''));
+  o.push(P(`M${x(30)} 34C${x(62)} 36 ${x(78)} 66 ${x(76)} 110C${x(74)} 150 ${x(62)} 176 ${x(46)} 196`,'face'));
+  const ex=-28,ey=129;o.push(P(`M${x(ex-8)} ${ey}L${x(ex+4)} ${ey-5}M${x(ex-8)} ${ey}L${x(ex+3)} ${ey+3}`,''),P(`M${x(ex-6)} ${ey-9}Q${x(ex)} ${ey-12} ${x(ex+8)} ${ey-7}`,'fn'),P(`M${x(-40)} 113Q${x(-26)} 104 ${x(-8)} 110`,'thick'));
+  if(p.lens||p.glasses)o.push(`<rect x="${X-42}" y="118" width="20" height="21" rx="7" pathLength="1" class="ln ${p.lens?'':''}" ${D()}/>`,P(`M${x(-22)} 126L${x(22)} 124`,''));
+  o.push(P(`M${x(14)} 118C${x(24)} 106 ${x(36)} 116 ${x(34)} 140C${x(32)} 156 ${x(26)} 166 ${x(16)} 166C${x(12)} 160 ${x(14)} 150 ${x(18)} 144`,''),P(`M${x(20)} 126c6 2 8 10 6 18`,'fn'));
+  o.push(P(`M${x(-50-n*4)} 162q4 4 10 2`,'fn'),P(`M${x(-46)} 186L${x(-30)} 188`,'fn'));
+  if(p.earring)o.push(C(X+18,176,3,'acc'));
+  if(a(p)>.3)o.push(P(`M${x(-38)} 164q4 12 2 24`,'fn'));
+  if(p.scar===1)o.push(P(`M${x(-26)} 112L${x(-22)} 124M${x(-22)} 134L${x(-20)} 146`,'red thick'));
+  /* Haar im Profil */
+  const H=p.hair,cls=p.tone==='light'?'hr lt':'hr';
+  if(H==='long'){o.push(P(`M${x(-34)} 66C${x(-10)} 22 ${x(60)} 20 ${x(80)} 80C${x(90)} 150 ${x(88)} 230 ${x(104)} 300C${x(106)} 320 ${x(100)} 336 ${x(96)} 340`,''),P(`M${x(-34)} 66C${x(-14)} 52 ${x(6)} 60 ${x(12)} 96C${x(14)} 120 ${x(40)} 200 ${x(52)} 260`,''));
+    for(let i=0;i<22;i++){const t=i/22;o.push(P(`M${x(-24+t*70)} ${r1(48+t*4)}C${x(40+t*30)} ${r1(80+t*20)} ${x(60+t*24)} 180 ${x(70+t*30)} ${r1(260+t*60)}`,cls))}}
+  else if(H==='updo'){o.push(P(`M${x(-36)} 70C${x(-20)} 26 ${x(50)} 22 ${x(74)} 70`,''),C(X+64,44,22,''),C(X+64,44,12,'fn'));for(let i=0;i<16;i++){const t=i/16;o.push(P(`M${x(-30+t*20)} ${r1(66-t*20)}Q${x(20+t*20)} ${r1(30)} ${x(54)} ${r1(40+t*8)}`,cls))}}
+  else if(H!=='crop'){const top=H==='thin'?42:H==='wavy'||H==='dark'?24:28;
+    o.push(P(`M${x(-36)} ${H==='thin'?82:70}C${x(-24)} ${top+10} ${x(10)} ${top} ${x(40)} ${top+2}C${x(70)} ${top+8} ${x(82)} 60 ${x(80)} 100C${x(80)} 118 ${x(74)} 132 ${x(66)} 146`,''));
+    for(let i=0;i<30;i++){const t=i/30;o.push(P(`M${x(-30+t*12)} ${r1((H==='thin'?78:66)-t*30)}C${x(0+t*20)} ${r1(top+6+t*4)} ${x(50+t*10)} ${r1(top+10+t*10)} ${x(66+t*12+R()*4)} ${r1(70+t*60)}`,cls))}}
+  else for(let i=0;i<140;i++)o.push(`<circle cx="${x(-30+R()*104)}" cy="${r1(34+R()*70)}" r=".55" class="dot"/>`);
+  if(p.beard==='full'){o.push(P(`M${x(10)} 150C${x(6)} 190 ${x(-10)} 226 ${x(-38)} 228C${x(-46)} 216 ${x(-44)} 196 ${x(-40)} 190`,''));for(let i=0;i<60;i++){const bx=-38+R()*44,by=172+R()*52;if(by>226-(bx+38)*.2)continue;o.push(`<line x1="${x(bx)}" y1="${r1(by)}" x2="${x(bx+1)}" y2="${r1(by+3)}" class="hr"/>`)}}
+  if(p.beard==='goatee')o.push(P(`M${x(-38)} 200C${x(-40)} 214 ${x(-30)} 226 ${x(-20)} 226`,''),P(`M${x(-44)} 176q10 -2 16 2`,'thick'));
+  if(p.beard==='mous'||p.beard==='full')o.push(P(`M${x(-46)} 176q10 -3 18 2`,'thick'));
+  /* Kleidung im Profil */
+  if(p.att==='tux'||p.att==='suit'||p.att==='blouse'||p.att==='open')o.push(P(`M${x(-20)} 248L${x(-6)} 262L${x(20)} 256M${x(-24)} 256L${x(-6)} 300L${x(-14)} 340M${x(48)} 256C${x(70)} 270 ${x(84)} 300 ${x(90)} 340`,''),P(`M${x(-6)} 300L${x(30)} 286`,'fn'));
+  if(p.att==='tux'||p.bow)o.push(P(`M${x(-22)} 262l-6 -6v14z`,'fill'));
+  if(p.att==='dress')o.push(P(`M${x(-26)} 300C${x(-10)} 300 ${x(30)} 296 ${x(70)} 290M${x(-26)} 300Q${x(-34)} 320 ${x(-32)} 340`,''));
+  if(p.pearls)for(let i=0;i<8;i++)o.push(C(X-18+i*4,248+i*1.2,2.1,'fn'));
+  return o.join('')}
+const a=p=>p.age||0;
+/* Fingerabdruck */
+function finger(id,cx,cy){const R=rng(id+'f');let o='';const k=.6+R()*.5,tw=R()*.6-.3;for(let i=1;i<15;i++){const rx=i*2.1,ry=i*2.9;o+=`<ellipse cx="${r1(cx+tw*i)}" cy="${r1(cy+i*.4)}" rx="${r1(rx)}" ry="${r1(ry*k+i)}" class="fp" stroke-dasharray="${r1(6+R()*10)} ${r1(1+R()*3)}" transform="rotate(${r1(R()*20-10)} ${cx} ${cy})"/>`}return `<g clip-path="url(#paFp)">${o}</g>`}
+/* Gesamtblatt */
+function sheet(p,idx,tot,mini){dl=0;const F=150,S=400;
+  const body=front(p,F),side=profile(p,S);
+  if(mini)return `<svg class="pas pam" viewBox="40 14 222 236" aria-hidden="true" focusable="false"><g class="fig">${body}</g></svg>`;
+  const lines=[[30,'SCHEITEL'],[64,'HAARANSATZ'],[131,'AUGEN'],[166,'NASE'],[187,'MUND'],[227,'KINN']];
+  const g=`<g class="cons">${lines.map(([y,l])=>`<line x1="40" y1="${y}" x2="490" y2="${y}"/><text x="${(F+S)/2}" y="${y-2}" class="tx" text-anchor="middle">${l}</text>`).join('')}<line x1="${F}" y1="14" x2="${F}" y2="340"/><line x1="${S}" y1="14" x2="${S}" y2="340"/></g>`;
+  const marks=(p.mk||[]).map((m,i)=>{const lx=18,ly=40+i*30;return `<g class="pmk"><path d="M${lx+9} ${ly}L${lx+16} ${ly}L${m[0]} ${m[1]}" class="lead"/><circle cx="${m[0]}" cy="${m[1]}" r="2" class="dot2"/><circle cx="${lx}" cy="${ly}" r="9" class="cc"/><text x="${lx}" y="${ly+3.5}" class="tx cn" text-anchor="middle">${i+1}</text></g>`}).join('');
+  return `<svg class="pas" viewBox="0 0 580 360" role="img" aria-label="Personenakte ${p.n}"><defs><pattern id="paG" width="12" height="12" patternUnits="userSpaceOnUse"><path d="M12 0H0V12" fill="none" class="pgrid"/></pattern><clipPath id="paFp"><ellipse cx="536" cy="300" rx="26" ry="34"/></clipPath></defs>
+   <rect width="580" height="360" fill="url(#paG)"/>${g}<g class="fig">${body}${side}</g>${marks}
+   <text x="${F}" y="354" class="tx lbl" text-anchor="middle">FRONTAL</text><text x="${S}" y="354" class="tx lbl" text-anchor="middle">PROFIL LINKS</text>
+   <g class="fpg">${finger(p.id,536,300)}<ellipse cx="536" cy="300" rx="26" ry="34" class="fpo"/><text x="536" y="346" class="tx" text-anchor="middle">R. ZEIGEFINGER</text></g>
+   <g class="ptb"><rect x="510" y="14" width="64" height="58"/><text x="516" y="26" class="tx">AKTE</text><text x="516" y="40" class="tx big">${p.c}</text><text x="516" y="54" class="tx">${String(idx+1).padStart(2,'0')}/${String(tot).padStart(2,'0')}</text><text x="516" y="66" class="tx">${p.f==='h'?'FEINDLICH':'VERBÜNDET'}</text></g></svg>`}
+return{sheet}})();
+
+/* Personenakten: Merkmale für die Zeichnung (g, age, jaw, hair, tone, att, ...), Merkmalspunkte mk [x,y,Text], Akte */
+const PAX={
+ bond:{g:'m',age:.3,jaw:1.08,hair:'short',tone:'light',att:'tux',brow:1.1,nose:1,
+  mk:[[150,66,'Kurzes, helles Haar, seitlich kurz geschnitten'],[177,131,'Blaue Augen, Blick wie eine Kalkulation'],[150,272,'Smoking mit Fliege, gebunden, nicht geclippt'],[100,212,'Kantiger Kiefer, mehrfach gebrochene Nase möglich']],
+  a:{rolle:'Agent mit der Lizenz zum Töten, frisch zur Doppelnull befördert. Erster Einsatz in dieser Funktion.',erst:'Prag, Büro des Sektionschefs Dryden (Danube House, Karlín). Dort erwirbt er den Doppelnull-Status.',
+   orte:[['danube','Danube House, Karlín'],['mlyn','Mühlbrunnkolonnade: Ankunft in „Montenegro“'],['pupp','Grandhotel Pupp: Hotel Splendide'],['kaiserbad','Kaiserbad: Casino Royale'],['loket','Marktplatz Loket: Treffen mit Mathis'],['plana','Planá: Genesung im Krankenhaus']],
+   merk:'Athletisch, kurzes helles Haar, blaue Augen. Trägt Smoking am Spieltisch so selbstverständlich wie Badehose am Strand.',
+   mo:'Direkt, improvisierend, wenig Respekt vor Botschaftsgeländen. Spielt Poker nach Tells, nicht nach Wahrscheinlichkeiten.',
+   schwach:'Ego. Und Vesper Lynd.',ausr:'Walther P99, Aston Martin DBS V12 mit Defibrillator, Mobiltelefon mit Ortung.',
+   status:'Aktiv. Am Ende am Comer See, mit Mr. White zu Füßen.',dar:'Daniel Craig',gef:3,
+   m:'Ich wusste, dass es zu früh war, ihn zu befördern. Ich habe es trotzdem getan. Bitte erinnern Sie mich nicht daran.'}},
+ vesper:{g:'f',age:.15,hair:'long',tone:'dark',att:'dress',knot:1,brow:1,nose:.8,
+  mk:[[150,284,'Halskette: algerischer Liebesknoten'],[110,90,'Langes, dunkles Haar, Seitenscheitel'],[177,131,'Dunkle Augen, kontrollierter Blick'],[150,320,'Abendkleid, tiefer Ausschnitt']],
+  a:{rolle:'Verbindungsbeamtin des Schatzamts. Verwaltet die zehn Millionen Dollar Einsatz (plus fünf auf Nachschuss).',erst:'Im Zug nach Montenegro: „Ich bin das Geld.“',
+   orte:[['mlyn','Mühlbrunnkolonnade: Ankunft mit Bond'],['pupp','Grandhotel Pupp: Hotel Splendide'],['kaiserbad','Kaiserbad: Casino Royale'],['plana','Planá: Krankenhaus']],
+   merk:'Dunkles Haar, dunkle Augen, trägt einen algerischen Liebesknoten an einer Kette. Liest Menschen schneller als Bilanzen.',
+   mo:'Präzise, misstrauisch, rhetorisch überlegen. Lässt Bond im Zug gut aussehen und schlecht dastehen.',
+   schwach:'Wird von der Organisation erpresst. Der Grund trägt den Namen Yusef.',ausr:'Kontovollmacht, Abendgarderobe in der Größe, die Bond geschätzt hat.',
+   status:'In Venedig ertrunken. Hinterlässt Bond eine Telefonnummer.',dar:'Eva Green',gef:2,
+   m:'Sie hat das Geld übergeben. An die Falschen. Ich lese ihre Akte trotzdem jedes Jahr einmal.'}},
+ mathis:{g:'m',age:.75,jaw:1,hair:'wavy',tone:'light',att:'suit',beard:'mous',nose:1.2,brow:1.2,
+  mk:[[150,180,'Gepflegter Schnurrbart'],[110,62,'Graues, gewelltes Haar'],[150,276,'Anzug mit Krawatte, stets korrekt'],[180,150,'Lachfalten: kennt jeden Polizisten der Stadt']],
+  a:{rolle:'MI6-Kontaktmann in Montenegro. Pensioniert, aber nicht im Ruhestand.',erst:'Straßencafé am Dorfplatz (gedreht am Marktplatz in Loket).',
+   orte:[['loket','Marktplatz Loket: erstes Treffen'],['kaiserbad','Kaiserbad: Casino Royale']],
+   merk:'Älterer Herr, graues gewelltes Haar, Schnurrbart, tadelloser Anzug. Lächelt, bevor er Informationen preisgibt.',
+   mo:'Beziehungen statt Waffen. Lässt den örtlichen Polizeichef vor Bonds Augen abführen.',
+   schwach:'Steht nach Le Chiffres Verhör unter Verdacht. Zu Unrecht, wie sich später zeigt.',ausr:'Ein Telefonbuch im Kopf.',
+   status:'Von Bond mit dem Elektroschocker außer Gefecht gesetzt und festgenommen. Später rehabilitiert.',dar:'Giancarlo Giannini',gef:1,
+   m:'Ein Kontakt, kein Freund. Ich habe 007 den Unterschied erklärt. Er hat nicht zugehört.'}},
+ leiter:{g:'m',age:.35,jaw:1.05,hair:'crop',tone:'dark',att:'tux',beard:'goatee',nose:1.1,
+  mk:[[150,212,'Kinnbart'],[150,46,'Sehr kurz geschnittenes Haar'],[150,272,'Smoking, sitzt mit am Spieltisch'],[123,131,'Ruhiger Blick, verrät am Tisch nichts']],
+  a:{rolle:'CIA-Agent, Mitspieler am Pokertisch des Casino Royale.',erst:'Am Spieltisch, als Bond pleite ist.',
+   orte:[['kaiserbad','Kaiserbad: Casino Royale']],
+   merk:'Sehr kurzes Haar, Kinnbart, Smoking. Spricht wenig, beobachtet viel.',
+   mo:'Hält sich zurück, bis er gebraucht wird. Finanziert Bond nach dessen Ausscheiden mit dem Geld der CIA.',
+   schwach:'Will Le Chiffre unbedingt in amerikanischem Gewahrsam.',ausr:'Ein Koffer voller Dollar.',
+   status:'Aktiv. Hat sein Geld zurückbekommen. Den Gefangenen nicht.',dar:'Jeffrey Wright',gef:1,
+   m:'Ein Amerikaner, der bezahlt und den Mund hält. Ich lasse das einrahmen.'}},
+ m:{g:'f',age:.85,hair:'pixie',tone:'light',att:'blouse',pearls:1,nose:1,brow:.8,
+  mk:[[150,62,'Kurzes weißes Haar'],[150,270,'Perlenkette'],[180,140,'Blick, der Spesenabrechnungen kürzt'],[150,300,'Jacke, dunkel, ohne Firlefanz']],
+  a:{rolle:'Leiterin des MI6. Vorgesetzte von 007. Unterschreibt seine Beförderung und bereut es zeitweise.',erst:'London, nach dem Vorfall in der Botschaft auf Madagaskar.',
+   orte:[],merk:'Kurzes weißes Haar, Perlenkette, dunkle Jacke. Spricht in vollständigen Sätzen, meistens in Vorwürfen.',
+   mo:'Delegiert, kontrolliert, kürzt. Ruft an, wenn es am wenigsten passt.',schwach:'Mag 007 mehr, als sie zugibt.',ausr:'Ein Telefon, das immer klingelt.',
+   status:'Im Amt.',dar:'Judi Dench',gef:0,m:'Kein Kommentar zu meiner eigenen Akte. Ich habe sie geschrieben.'}},
+ lechiffre:{g:'m',age:.4,jaw:1,hair:'slick',tone:'dark',att:'tux',scar:1,nose:1.1,brow:1.1,
+  mk:[[184,124,'Vernarbtes linkes Auge, weint Blut'],[127,60,'Glatt zurückgekämmtes Haar'],[150,272,'Smoking, schwarze Fliege'],[230,300,'Asthma-Inhalator in der Innentasche']],
+  a:{rolle:'Privatbankier internationaler Terrororganisationen. Hat das Geld seiner Kunden verspekuliert.',erst:'Bahamas, beim Treffen mit Dimitrios. Dann am Pokertisch.',
+   orte:[['kaiserbad','Kaiserbad: Casino Royale, Texas Hold’em']],
+   merk:'Narbe über dem linken Auge, Tränen aus Blut. Glatt zurückgekämmtes Haar, Smoking. Inhalator stets griffbereit.',
+   mo:'Rechnet in Wahrscheinlichkeiten, spielt auf Zeit, blufft nicht schlecht. Wenn Spielen nicht reicht: Gift, Messer, Seil.',
+   schwach:'Schulden bei Leuten, die nicht stunden. Und ein Tell: Er fasst sich an die Narbe.',ausr:'Inhalator, Digitalis (über Valenka), ein Stuhl ohne Sitzfläche.',
+   status:'Von Mr. White erschossen, bevor er Bond töten kann.',dar:'Mads Mikkelsen',gef:5,
+   m:'Ein Mann, der mit fremdem Geld spielt. In der Verwaltung kennen wir den Typ. Wir befördern ihn meistens.'}},
+ valenka:{g:'f',age:.2,hair:'updo',tone:'light',att:'dress',earring:1,nose:.9,
+  mk:[[168,24,'Blondes Haar, hochgesteckt'],[76,176,'Ohrringe'],[150,320,'Abendkleid'],[123,131,'Beobachtet Bonds Glas, nicht Bond']],
+  a:{rolle:'Begleiterin und Komplizin von Le Chiffre.',erst:'Bahamas, an Le Chiffres Seite. Danach im Casino.',
+   orte:[['kaiserbad','Kaiserbad: Casino Royale']],
+   merk:'Blond, hochgestecktes Haar, Ohrringe, Abendkleid. Steht immer einen halben Schritt hinter Le Chiffre.',
+   mo:'Mischt Digitalis in Bonds Martini. Freundlich bis zum letzten Tropfen.',schwach:'Unterschätzt Vesper und den Defibrillator.',ausr:'Ein Fläschchen Digitalis.',
+   status:'Unbekannt.',dar:'Ivana Miličević',gef:3,m:'Sie hat einen Martini vergiftet. Ich habe Martinis seither aus der Spesenliste gestrichen. Das war ein Scherz. Teilweise.'}},
+ white:{g:'m',age:.7,jaw:1,hair:'thin',tone:'light',att:'suit',nose:1.1,brow:.9,
+  mk:[[150,46,'Hohe Stirn, schütteres Haar'],[123,131,'Unauffälliger Blick'],[150,276,'Anzug, Krawatte, nichts Auffälliges'],[100,190,'Spricht leise']],
+  a:{rolle:'Vertreter der Organisation, die Le Chiffre finanziert. Taucht auf, wenn Geld fehlt.',erst:'Uganda, beim Geldtransfer an die Rebellen.',
+   orte:[],
+   merk:'Schütteres, graues Haar, hohe Stirn, unauffälliger Anzug. Geht nie zuerst und nie zuletzt.',
+   mo:'Lässt andere arbeiten. Erscheint am Ende, um Schulden einzutreiben oder Schuldner zu beseitigen.',schwach:'Unterschätzt, wie gut Vesper Telefonnummern hinterlässt.',ausr:'Schalldämpfer, Geduld.',
+   status:'Von Bond am Comer See ins Bein geschossen. „Der Name ist Bond. James Bond.“',dar:'Jesper Christensen',gef:5,
+   m:'Ein Mann ohne Eigenschaften. Die gefährlichste Sorte. Wir wissen nicht einmal, wer seine Spesen bezahlt.'}},
+ dimitrios:{g:'m',age:.4,jaw:1.05,hair:'dark',tone:'dark',att:'open',beard:'full',nose:1.2,brow:1.2,
+  mk:[[150,226,'Kurzer, dunkler Vollbart'],[150,58,'Dunkles, dichtes Haar'],[150,292,'Offenes Hemd, Sakko'],[176,131,'Spielt Poker auf den Bahamas']],
+  a:{rolle:'Mittelsmann für Le Chiffre. Vermittelt Anschläge, kassiert Provisionen.',erst:'Bahamas, am Pokertisch im Ocean Club.',
+   orte:[['ministry','Verkehrsministerium: Miami, Body-Worlds-Ausstellung (außen)'],['vitkov','Nationaldenkmal Vítkov: Body Worlds (innen)']],
+   merk:'Dunkles Haar, kurzer Vollbart, offenes Hemd. Fährt ein Auto, das ihm bald nicht mehr gehört.',mo:'Delegiert Gewalt an Bombenleger. Hält sich selbst die Hände sauber.',
+   schwach:'Spielt Poker gegen einen Mann, der nichts zu verlieren hat. Verliert dabei seinen Aston Martin DB5.',ausr:'Mobiltelefon, Ehefrau, Aston Martin DB5 (bis zur Partie).',
+   status:'Von Bond in Miami getötet.',dar:'Simon Abkarian',gef:3,m:'Er hat ein Auto verloren und dann alles andere. Eine Lektion für jeden, der am Tisch Firmeneigentum einsetzt.'}},
+ dryden:{g:'m',age:.65,jaw:.95,hair:'part',tone:'light',att:'suit',nose:1.1,brow:.9,
+  mk:[[118,60,'Akkurater Seitenscheitel'],[150,276,'Anzug, Krawatte, Büroausstattung'],[123,131,'Erwartet niemanden'],[100,180,'Selbstsicher bis zur letzten Sekunde']],
+  a:{rolle:'MI6-Sektionschef in Prag. Verkauft Geheimnisse.',erst:'Schwarzweiß-Prolog: Er kommt spät abends in sein Büro.',orte:[['danube','Danube House, Karlín: Drydens Büro']],
+   merk:'Graues, akkurat gescheiteltes Haar, Anzug, Krawatte. Dienstwagen, Dienstbüro, Dienstverrat.',mo:'Verkauft Informationen und glaubt, dass Doppelnull-Status zwei Tötungen braucht. Er hat recht.',
+   schwach:'Hat seinen Kontaktmann unterschätzt. Und 007.',ausr:'Revolver in der Schreibtischschublade, ungeladen.',status:'Von Bond in seinem Büro erschossen. Die zweite Tötung.',dar:'Malcolm Sinclair',gef:2,
+   m:'Er hat M für dumm gehalten. Ein verbreiteter Fehler. Selten zweimal.'}},
+ gettler:{g:'m',age:.5,jaw:1.05,hair:'crop',tone:'light',att:'suit',glasses:1,lens:-1,nose:1.1,brow:.9,
+  mk:[[105,131,'Brille, ein Glas abgeklebt'],[150,46,'Sehr kurzes, helles Haar'],[150,276,'Anzug'],[195,131,'Beobachtet, ohne zu blinzeln']],
+  a:{rolle:'Agent der Organisation. Überwacht Vesper.',erst:'Montenegro, beim Casino. Später in Venedig.',
+   orte:[['kaiserbad','Kaiserbad: Casino Royale'],['mlyn','Mühlbrunnkolonnade']],
+   merk:'Sehr kurzes, helles Haar, Brille mit einem abgeklebten Glas, Anzug. Fällt auf, obwohl er nicht auffallen will.',
+   mo:'Beobachtet aus der zweiten Reihe. Übernimmt die Geldübergabe in Venedig.',schwach:'Die Brille. Man sieht ihn kommen.',ausr:'Geldkoffer, Schusswaffe.',
+   status:'Von Bond in Venedig getötet.',dar:'Richard Sammel',gef:3,m:'Ein Mann mit einem Auge im Spiel. Das zweite hätte geholfen.'}}
+};
+
+/* Personenakten: Oberfläche */
+(function(){
+const $=id=>document.getElementById(id),ids=Object.keys(PAX),list=$('paList'),box=$('paSheet'),txt=$('paText');
+const full=id=>Object.assign({id},PP[id],PAX[id]);
+list.innerHTML=ids.map((id,i)=>{const p=full(id);return `<button type="button" class="pac" data-id="${id}" aria-pressed="false">${PA.sheet(p,i,ids.length,true)}<span class="pcd">${p.c}</span><b>${p.n}</b><small class="f-${p.f}">${PF[p.f]}</small></button>`}).join('');
+let cur=S.get('pa','lechiffre');if(!PAX[cur])cur=ids[0];
+function onMap(id){return ['route','kv','prg'].find(k=>(maps[k].people||[]).some(q=>q[0]===id))}
+function open(id,anim){const p=full(id),A=p.a,i=ids.indexOf(id);cur=id;S.set('pa',id);
+  list.querySelectorAll('.pac').forEach(b=>b.setAttribute('aria-pressed',b.dataset.id===id));
+  box.innerHTML=PA.sheet(p,i,ids.length,false);const sv=box.querySelector('svg');
+  if(anim!==false&&!RM){sv.classList.add('draw')}
+  const gef=`<span class="pgef" aria-label="Gefährdung ${A.gef} von 5">${[1,2,3,4,5].map(n=>`<i class="${n<=A.gef?'on':''}"></i>`).join('')}</span>`;
+  const mk=p.mk.map((m,j)=>`<li><b>${j+1}</b>${m[2]}</li>`).join('');
+  const orte=A.orte.length?A.orte.map(([t,l])=>`<button type="button" class="ref" data-t="${t}">${l}</button>`).join(''):'<span class="pmute">Keine Drehorte auf dieser Route.</span>';
+  const mp=onMap(id);
+  txt.innerHTML=`<div class="pah"><span class="pcd big">${p.c}</span><div><b>${p.n}</b><span class="ptag f-${p.f}">${PF[p.f]} · ${p.t}</span></div></div>
+   <dl class="padl"><dt>GEFÄHRDUNG</dt><dd>${gef}</dd><dt>ROLLE</dt><dd>${A.rolle}</dd><dt>ERSTKONTAKT</dt><dd>${A.erst}</dd><dt>MERKMALE</dt><dd>${A.merk}</dd>
+   <dt>VORGEHEN</dt><dd>${A.mo}</dd><dt>SCHWACHSTELLE</dt><dd>${A.schwach}</dd><dt>AUSRÜSTUNG</dt><dd>${A.ausr}</dd><dt>STATUS</dt><dd>${A.status}</dd><dt>DARGESTELLT VON</dt><dd>${A.dar}</dd></dl>
+   <div class="parest"><h4 style="margin-top:4px">ERKENNUNGSMERKMALE</h4><ol class="pamk">${mk}</ol>
+   <h4>SCHAUPLÄTZE AUF DIESER ROUTE</h4><div class="paorte">${orte}</div>
+   <p class="mnote"><b>M:</b> ${A.m}</p>
+   <div class="qbtns"><button type="button" class="qbtn" id="paRe">NEU ZEICHNEN</button>${mp?`<button type="button" class="qbtn go" id="paMap">AUF DER LAGEKARTE VERFOLGEN</button>`:''}<button type="button" class="qbtn" id="paPrev">‹ VORIGE</button><button type="button" class="qbtn" id="paNext">NÄCHSTE ›</button></div></div>`;
+  txt.querySelectorAll('.ref[data-t]').forEach(b=>b.onclick=()=>showCard(b.dataset.t,true));
+  $('paRe').onclick=()=>open(cur,true);$('paPrev').onclick=()=>open(ids[(i-1+ids.length)%ids.length],true);$('paNext').onclick=()=>open(ids[(i+1)%ids.length],true);
+  if(mp)$('paMap').onclick=()=>{if(curMap!==mp)draw(mapSvg,mp);$('maps').scrollIntoView({behavior:RM?'auto':'smooth'});setTimeout(()=>selP(id),RM?0:500)}}
+list.querySelectorAll('.pac').forEach(b=>b.onclick=()=>{open(b.dataset.id,true);if(innerWidth<900)box.scrollIntoView({behavior:RM?'auto':'smooth',block:'start'})});
+window.paOpen=id=>{if(!PAX[id])return;open(id,true);$('persons').scrollIntoView({behavior:RM?'auto':'smooth'})};
+open(cur,false);
+const io='IntersectionObserver' in window?new IntersectionObserver(es=>{if(es.some(e=>e.isIntersecting)){io.disconnect();open(cur,true)}},{threshold:.3}):null;if(io)io.observe(box);
+})();
+
 /* Einsatzbereitschaft */
 const rdyBtn=document.getElementById('rdyBtn'),rdyN=document.getElementById('rdyN'),rdyBar=document.getElementById('rdyBar');
 function rdyParts(){const days=plans[curPlan].days,bks=[...new Set(days.flatMap(d=>d.items.filter(x=>x.bk).map(x=>x.bk)))],bkOk=bks.filter(k=>(S.get('bk',{})[k]||0)===2).length;
@@ -3549,7 +3893,7 @@ window.readiness=()=>{clearTimeout(rdyT);rdyT=setTimeout(()=>{const ps=rdyParts(
   rdyN.textContent=`BEREIT ${v} %`;rdyBar.style.width=v+'%';rdyBtn.classList.toggle('ok',v>=100);rdyBtn.setAttribute('aria-label',`Einsatzbereitschaft ${v} Prozent`)},30)};
 const _set=S.set;S.set=(k,v)=>{_set(k,v);if(window.readiness)readiness()};readiness();
 const kh=document.createElement('div');kh.className='khelp';kh.hidden=true;kh.setAttribute('role','dialog');kh.setAttribute('aria-modal','true');kh.setAttribute('aria-label','Lagebericht und Tastenkürzel');document.body.appendChild(kh);
-const JUMP={'1':['tx','Einsatzbefehl'],'2':['targets','Zielobjekte'],'3':['maps','Lagekarten'],'4':['world-sec','Weltlage'],'5':['ops','Einsatzplan'],'6':['org','Disposition'],'7':['assets','Assets'],'8':['regs','Protokoll'],'9':['field','Feldhandbuch'],'g':['garage','Qs Garage'],'q':['qlab','Q-Lab']};
+const JUMP={'1':['tx','Einsatzbefehl'],'2':['targets','Zielobjekte'],'3':['maps','Lagekarten'],'4':['world-sec','Weltlage'],'5':['ops','Einsatzplan'],'6':['org','Disposition'],'7':['assets','Assets'],'8':['regs','Protokoll'],'9':['field','Feldhandbuch'],'g':['garage','Qs Garage'],'p':['persons','Personenakten'],'q':['qlab','Q-Lab']};
 function khShow(){const ps=rdyParts(),v=Math.round(ps.reduce((a,p)=>a+p[1]*Math.min(1,p[2]),0)),open=ps.filter(p=>p[2]<1);
   kh.innerHTML=`<div class="kh"><h3>LAGEBERICHT · BEREIT ${v} %</h3><p>${v>=100?'M: Vollständig. Ich bin beinahe beeindruckt. Fahren Sie.':open.length<=2?'M: Fast. „Fast“ hat noch keinen Einsatz gerettet.':'M: Das ist kein Reiseplan, das ist eine Absichtserklärung.'}</p>
   <ul class="rd">${ps.map(p=>`<li class="${p[2]>=1?'ok':''}"><b>${p[0]}</b><span>${p[3]}</span></li>`).join('')}</ul>
