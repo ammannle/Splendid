@@ -75,3 +75,8 @@ Freigabe: „Anyone with the link“ ist aktiv. Wer die Seite offen hat, sieht n
   Innenleben (`i`) mit nummerierten Markierungen und pulsierender Filmszene erscheint. Schriftfeld, Maßstabsfigur.
   Erweiterte Akten in `XT` (Baujahr, Architekt, Stil, Fakten, Besuch, Fotospot, Auftrag, Q-Notiz, Bewertung),
   nächstes Zielobjekt mit berechneter Entfernung, Aufträge abhakbar (`ops5-tasks`). Zahlen nur, wo belegt.
+- Version 10 (04.10.2026): Weltkarte deutlich langsamer (`fly` 6–11 E/s, Aufenthalte 4–12 s, ruhigeres Umhertreten).
+  Intro beim ersten Besuch (`#intro`, `runIntro`): Terminal, Netzhaut-Scan, Stempel, „Zugang gewährt“, Panzertore,
+  danach gestaffelter Seitenaufbau (`body.boot`) und gezeichnete Route (`heroDraw`). Merkt sich `ops5-intro`;
+  überspringbar per Knopf, Klick, Esc; „Intro wiederholen“ im Footer. Zustandsklassen heißen `i-*` (nicht `stamp`!).
+- Tests: Playwright-Skripte müssen vor dem Laden `localStorage ops5-intro=1` setzen, sonst blockiert das Intro.
