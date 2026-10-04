@@ -147,21 +147,72 @@ section{margin-top:56px}
 .tbtn[aria-selected="true"]{background:var(--cyan);color:var(--bg);font-weight:600}
 
 /* map */
-.mapscroll{overflow-x:auto}
-#map{display:block;width:100%;min-width:660px;height:auto}
-.mapinfo{border-top:1px solid var(--line);padding:12px 16px;min-height:52px;font-size:.9rem}
+.mapbox{position:relative}
+#map{display:block;width:100%;height:auto;aspect-ratio:1000/640;touch-action:pan-y;user-select:none;-webkit-user-select:none}
+#map.pan{cursor:grab} #map.zoomed{touch-action:none}
+#map.drag{cursor:grabbing}
+.zctl{position:absolute;right:12px;top:12px;z-index:2;display:flex;flex-direction:column;align-items:stretch;border:1px solid var(--line2);border-radius:3px;background:color-mix(in srgb,var(--panel) 90%,transparent);backdrop-filter:blur(4px)}
+.zctl button{background:none;border:none;border-bottom:1px solid var(--line);color:var(--ink);font-family:var(--mono);font-size:1.1rem;width:40px;height:38px;cursor:pointer;line-height:1}
+.zctl button:last-child{border-bottom:none;font-size:1rem}
+.zctl button:hover{color:var(--cyan);background:rgba(143,215,232,.08)}
+.zctl span{font-family:var(--mono);font-size:.6rem;color:var(--amber);text-align:center;padding:3px 0;border-bottom:1px solid var(--line)}
+.mapinfo{border-top:1px solid var(--line);padding:12px 16px;min-height:52px;font-size:.92rem;line-height:1.55}
+.mapinfo .ptag{font-family:var(--mono);font-size:.66rem;padding:1px 6px;border:1px solid;border-radius:2px;margin-left:6px;white-space:nowrap}
+.mapinfo .ptag.f-a{color:var(--green)} .mapinfo .ptag.f-h{color:var(--red)} .mapinfo .ptag.f-u{color:var(--amber)}
+.mapinfo .psee{font-family:var(--mono);font-size:.72rem;color:var(--amber)}
+.ppl{display:flex;flex-wrap:wrap;align-items:center;gap:6px;padding:10px 16px;border-top:1px solid var(--line)}
+.ppl:empty{display:none}
+.pplh{font-family:var(--mono);font-size:.64rem;color:var(--mute);letter-spacing:.08em;margin-right:4px}
+.pchip{display:inline-flex;align-items:center;gap:7px;background:none;border:1px solid var(--line2);color:var(--ink);font-family:var(--mono);font-size:.72rem;padding:5px 10px;border-radius:2px;cursor:pointer}
+.pchip i{width:9px;height:9px;border-radius:50%;background:var(--green)}
+.pchip.f-h i{background:var(--red);border-radius:0;transform:rotate(45deg)} .pchip.f-u i{background:var(--amber)}
+.pchip:hover{border-color:var(--cyan)}
+.pchip[aria-pressed="true"]{border-color:var(--amber);color:var(--amber);background:rgba(242,182,94,.08)}
 .mapfoot{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;padding:8px 16px;border-top:1px solid var(--line);font-family:var(--mono);font-size:.68rem;color:var(--mute)}
 .legend{display:flex;gap:14px;flex-wrap:wrap}
 .legend i{display:inline-block;vertical-align:middle;margin-right:5px}
 /* svg map classes */
-.m-bg{fill:var(--mapbg)} .m-grid{stroke:var(--mapgrid)} .m-gt{fill:var(--mute);font-family:var(--mono);font-size:11px}
+.m-bg{fill:var(--mapbg)} .m-grid{stroke:var(--mapgrid)} .m-grid.maj{stroke-width:1.6} .m-gt{fill:var(--mute);font-family:var(--mono);font-size:12.5px}
+.m-land{fill:var(--ink);opacity:.13;font-family:var(--head);font-weight:700;font-size:44px;letter-spacing:.3em}
+.m-street{stroke:var(--mapline);opacity:.16}
+.m-strt{fill:var(--mute);font-family:var(--mono);font-size:12px;letter-spacing:.28em}
+.m-road{fill:var(--cyan);font-family:var(--mono);font-size:13px;font-weight:600}
+.plate{fill:var(--mapbg);fill-opacity:.9;stroke:var(--line);stroke-width:1}
+.plate.road{stroke:var(--cyan);stroke-opacity:.7}
+.plate.tg{stroke:color-mix(in srgb,var(--red) 55%,transparent)}
+.plate.xt{stroke:color-mix(in srgb,var(--green) 55%,transparent)}
+.plate.edge{stroke:var(--amber);stroke-opacity:.6}
+.plate.lm{stroke:none;fill-opacity:.75}
+.m-lmk{fill:none;stroke:var(--mute);stroke-width:1.4}
+.m-lmt{fill:var(--mute);font-family:var(--sans);font-size:13.5px;font-style:italic}
+.m-xt{fill:var(--green);font-family:var(--mono);font-size:13px;font-weight:600}
+.m-scale{stroke:var(--ink);opacity:.7} .m-north{fill:var(--amber)}
+.m-trail{opacity:.32} .m-trail.f-a{stroke:var(--green)} .m-trail.f-h{stroke:var(--red)} .m-trail.f-u{stroke:var(--amber)}
+.m-trail.sel{opacity:.95;stroke-width:3;stroke-dasharray:2 7}
+#map.focus .m-trail:not(.sel){opacity:.08}
+.pp{cursor:pointer}
+.pp .pp-body{stroke:var(--mapbg);stroke-width:2.5}
+.pp.f-a .pp-body{fill:var(--green)} .pp.f-h .pp-body{fill:var(--red)} .pp.f-u .pp-body{fill:var(--amber)}
+.pp .pp-ring{fill:none;stroke-width:2;stroke:currentColor;opacity:0;animation:ppr 2.2s ease-out infinite;transform-box:fill-box;transform-origin:center}
+.pp.f-a{color:var(--green)} .pp.f-h{color:var(--red)} .pp.f-u{color:var(--amber)}
+@keyframes ppr{0%{transform:scale(.6);opacity:.8}100%{transform:scale(1.7);opacity:0}}
+.pp-code{fill:var(--mapbg);font-family:var(--mono);font-size:11px;font-weight:700;pointer-events:none}
+.pp-name{fill:var(--ink);font-family:var(--mono);font-size:13px;font-weight:600;letter-spacing:.06em}
+.pp .pp-name,.pp .pp-plate{opacity:0;transition:opacity .2s}
+.pp:hover .pp-name,.pp:hover .pp-plate,.pp:focus .pp-name,.pp:focus .pp-plate,.pp.sel .pp-name,.pp.sel .pp-plate{opacity:1}
+.plate.pp-plate.f-a{stroke:var(--green)} .plate.pp-plate.f-h{stroke:var(--red)} .plate.pp-plate.f-u{stroke:var(--amber)}
+.pp.sel .pp-body{stroke:var(--ink);stroke-width:3}
+.pp:focus{outline:none} .pp:focus-visible .pp-body{stroke:var(--amber);stroke-width:3}
+#map.focus .pp:not(.sel){opacity:.45}
+#heroMap .pp-ring{animation:none}
+@media (prefers-reduced-motion: reduce){.pp .pp-ring{animation:none}}
 .m-river{stroke:var(--river)} .m-rivt{fill:var(--cyan);opacity:.7;font-family:var(--mono);font-size:13px;letter-spacing:.2em}
 .m-border{stroke:var(--mapline)} .m-out{stroke:var(--cyan)} .m-back{stroke:var(--amber)} .m-walk{stroke:var(--amber)}
-.m-town{fill:var(--ink)} .m-townt{fill:var(--ink);font-family:var(--mono);font-size:12.5px;letter-spacing:.06em}
-.m-tg{stroke:var(--red);fill:none} .m-tgf{fill:var(--red)} .m-lab{fill:var(--ink);font-family:var(--head);font-size:16px;font-weight:600}
-.m-code{fill:var(--red);font-family:var(--mono);font-size:12px;font-weight:600}
+.m-town{fill:var(--ink)} .m-townt{fill:var(--ink);font-family:var(--mono);font-size:14px;font-weight:500;letter-spacing:.06em}
+.m-tg{stroke:var(--red);fill:none} .m-tgf{fill:var(--red)} .m-lab{fill:var(--ink);font-family:var(--head);font-size:19px;font-weight:600}
+.m-code{fill:var(--red);font-family:var(--mono);font-size:14px;font-weight:600}
 .m-ext{fill:var(--green)} .m-halo{paint-order:stroke;stroke:var(--mapbg);stroke-width:5px;stroke-linejoin:round}
-.m-edge{fill:var(--amber);font-family:var(--mono);font-size:12px;font-weight:600}
+.m-edge{fill:var(--amber);font-family:var(--mono);font-size:13.5px;font-weight:600}
 .m-sweep{fill:url(#sweepGrad)}
 .pulse{animation:pulse 2.4s ease-out infinite;transform-box:fill-box;transform-origin:center}
 @keyframes pulse{0%{transform:scale(.6);opacity:.9}100%{transform:scale(2.2);opacity:0}}
@@ -416,6 +467,9 @@ footer{margin:60px auto 0;padding:18px 20px 40px;max-width:1240px;border-top:1px
   .log li .ref{grid-column:2;justify-self:start}
   .grid{grid-template-columns:repeat(auto-fill,minmax(150px,1fr))}
   .msg{padding:18px}
+  #map{aspect-ratio:auto;height:min(64vh,440px)}
+  .zctl{right:8px;top:8px}
+  .zctl button{width:34px;height:32px}
   .dpick{grid-template-columns:1fr auto}
   .dpick label{grid-column:1/-1}
   .dpick input{width:100%}
@@ -425,7 +479,7 @@ footer{margin:60px auto 0;padding:18px 20px 40px;max-width:1240px;border-top:1px
 @media print{
   :root,:root[data-theme]{--bg:#fff;--bg2:#fff;--panel:#fff;--panel2:#fff;--ink:#111;--mute:#555;--cyan:#0E6E86;--green:#11895A;--amber:#9A5B00;--red:#B3261E;--line:#ccc;--line2:#999;--mapbg:#fff}
   body{background:#fff;font-size:11pt}
-  .sys,.gb,.toast,#qlab,.wave,.w-main,.w-list,.fbar,.ack .qbtn,.dpick .qbtn,#detail,.ghint,.mapscroll+.mapinfo{display:none!important}
+  .sys,.gb,.toast,#qlab,.wave,.w-main,.w-list,.fbar,.ack .qbtn,.dpick .qbtn,#detail,.ghint,.zctl,.ppl,.pp,.m-trail{display:none!important}
   .panel::after{display:none}
   .panel,section{break-inside:avoid}
   section{margin-top:24px}
@@ -463,7 +517,7 @@ footer{margin:60px auto 0;padding:18px 20px 40px;max-width:1240px;border-top:1px
     </div>
     <div class="panel w-main">
       <div class="ph"><b>LAGE // ANMARSCH WESTBÖHMEN</b><span class="st">SCAN LÄUFT</span></div>
-      <div class="svgbox"><svg id="heroMap" viewBox="0 0 1000 620" preserveAspectRatio="xMidYMid slice" aria-label="Lagekarte Route Augsburg bis Prag" role="img"></svg></div>
+      <div class="svgbox"><svg id="heroMap" viewBox="0 0 1000 620" data-w="1000" data-h="620"preserveAspectRatio="xMidYMid slice" aria-label="Lagekarte Route Augsburg bis Prag" role="img"></svg></div>
       <div class="w-title"><div class="k">OPERATION // OS-26/CZ</div><h1>Operation<br>Splendide</h1></div>
     </div>
     <div class="panel w-list">
@@ -529,9 +583,12 @@ footer{margin:60px auto 0;padding:18px 20px 40px;max-width:1240px;border-top:1px
     <div class="sh"><div><div class="ix">MODUL 03 // KARTOGRAFIE</div><h2>Lagekarten</h2></div><div class="tabs" role="tablist" id="mapTabs"></div></div>
     <div class="panel">
       <div class="ph"><b id="mapTitle">LAGE</b><span id="mapCode"></span></div>
-      <div class="mapscroll"><svg id="map" viewBox="0 0 1000 640" role="img" aria-label="Lagekarte"></svg></div>
-      <div class="mapinfo" id="mapinfo"></div>
-      <div class="mapfoot"><span class="legend"><span><i style="width:12px;height:12px;border:2px solid var(--red);border-radius:50%"></i>Zielobjekt</span><span><i style="width:9px;height:9px;background:var(--green)"></i>Asset</span><span id="legRoute"></span></span><span>SCHEMATISCH · NICHT ZUR NAVIGATION</span></div>
+      <div class="mapbox"><svg id="map" viewBox="0 0 1000 640" data-w="1000" data-h="640" role="img" aria-label="Lagekarte"></svg>
+        <div class="zctl" aria-label="Zoom"><button type="button" id="zIn" aria-label="Hineinzoomen">+</button><span id="zLvl">1,0×</span><button type="button" id="zOut" aria-label="Herauszoomen">−</button><button type="button" id="zReset" aria-label="Ganze Karte">⤢</button></div>
+      </div>
+      <div class="ppl" id="ppl"></div>
+      <div class="mapinfo" id="mapinfo" aria-live="polite"></div>
+      <div class="mapfoot"><span class="legend"><span><i style="width:12px;height:12px;border:2px solid var(--red);border-radius:50%"></i>Zielobjekt</span><span><i style="width:9px;height:9px;background:var(--green)"></i>Asset</span><span><i style="width:11px;height:11px;border-radius:50%;background:var(--green)"></i>Verbündet</span><span><i style="width:10px;height:10px;background:var(--red);transform:rotate(45deg)"></i>Feindlich</span><span><i style="width:11px;height:11px;border-radius:50%;background:var(--amber)"></i>00-Einheit</span><span id="legRoute"></span></span><span>ZOOM: + / − · DOPPELKLICK · ZIEHEN · SCHEMATISCH, NICHT ZUR NAVIGATION</span></div>
     </div>
   </section>
 
@@ -759,11 +816,11 @@ const X=[
 const NS='http://www.w3.org/2000/svg';
 const maps={
  route:{label:'Route Augsburg–Prag',b:[48.15,50.42,10.55,14.75],
-   towns:[['Augsburg',48.3705,10.8978],['Nürnberg',49.4521,11.0767],['Marktredwitz',50.003,12.087],['Cheb',50.0796,12.3739],['Karlsbad',50.2306,12.8711],['Prag',50.0755,14.4378],['Pilsen',49.7384,13.3736],['Waidhaus',49.642,12.495]],
+   towns:[['Augsburg',48.3705,10.8978],['Nürnberg',49.4521,11.0767],['Marktredwitz',50.003,12.087,'l'],['Cheb',50.0796,12.3739],['Karlsbad',50.2306,12.8711],['Prag',50.0755,14.4378],['Pilsen',49.7384,13.3736],['Waidhaus · Grenze',49.642,12.495]],
    out:[[48.3705,10.8978],[48.76,11.42],[49.45,11.08],[49.66,11.55],[50.003,12.087],[50.0796,12.3739],[50.1866,12.754],[50.2306,12.8711],[50.17,13.40],[50.1069,14.2663],[50.0755,14.4378]],
    back:[[50.0755,14.4378],[49.95,14.0],[49.7384,13.3736],[49.70,12.90],[49.642,12.495],[49.55,12.10],[49.45,11.08],[48.76,11.42],[48.3705,10.8978]],
    border:[[50.42,12.30],[50.30,12.10],[50.18,12.17],[50.09,12.25],[49.97,12.44],[49.80,12.47],[49.65,12.53],[49.46,12.70],[49.25,12.95],[49.05,13.20],[48.85,13.45],[48.60,13.80]],
-   cards:['loket','plana'], extras:[], pos:{loket:'l'}, note:'Hin über Cheb (ca. 4 h bis Loket), zurück über Pilsen und Waidhaus (ca. 4,5 h)'},
+   cards:['loket','plana'], extras:[], pos:{loket:'tl',plana:'l'}, note:'Hin über Cheb (ca. 4 h bis Loket), zurück über Pilsen und Waidhaus (ca. 4,5 h)'},
  kv:{label:'Karlsbad · „Montenegro"',b:[50.2148,50.2292,12.8648,12.9001],
    river:[[50.2140,12.8800],[50.2165,12.8810],[50.2185,12.8820],[50.2205,12.8827],[50.2230,12.8823],[50.2255,12.8816],[50.2276,12.8808],[50.2300,12.8790]],
    riverName:['Teplá',50.2208,12.8846],
@@ -863,69 +920,204 @@ function showCard(id,scroll){const c=L.find(x=>x.id===id);if(!c)return;const[s,k
 showCard('pupp',false);secSync();
 
 /* maps */
+/* Zielpersonen: f = a (verbündet), h (feindlich), u (eigene Einheit) */
+const PP={
+ bond:{c:'007',n:'James Bond',f:'a',t:'MI6 · 00-SEKTION',d:'Frisch beförderter Doppelnull. Zwei bestätigte Tötungen, beide in Prag. M nennt ihn unberechenbar, und sie meint es nicht als Kompliment.'},
+ vesper:{c:'VL',n:'Vesper Lynd',f:'a',t:'SCHATZAMT',d:'Verwaltet die zehn Millionen Einsatz. Reist mit Bond als Ehepaar getarnt. Prüft jede Quittung.'},
+ mathis:{c:'RM',n:'René Mathis',f:'a',t:'KONTAKT MONTENEGRO',d:'Kennt jeden Polizisten der Stadt und dessen Preis. Loyalität: wird noch geprüft.'},
+ leiter:{c:'FL',n:'Felix Leiter',f:'a',t:'CIA',d:'Sitzt mit am Spieltisch und springt mit dem Geld ein, als Bond pleite ist. Verlangt dafür nur die Festnahme.'},
+ m:{c:'M',n:'M',f:'a',t:'LEITUNG',d:'Vermisst den Kalten Krieg. Liest Ihre Spesenabrechnung persönlich.'},
+ lechiffre:{c:'LC',n:'Le Chiffre',f:'h',t:'BANKIER DES TERRORS',d:'Hat das Geld seiner Kunden verspekuliert und muss es am Spieltisch zurückholen. Asthmatiker, Inhalator immer griffbereit. Blutet aus dem vernarbten Auge.'},
+ valenka:{c:'VA',n:'Valenka',f:'h',t:'BEGLEITUNG',d:'Weicht Le Chiffre nicht von der Seite. Mischt das Digitalis in den Martini.'},
+ white:{c:'MW',n:'Mr. White',f:'h',t:'DIE ORGANISATION',d:'Taucht auf, wenn Geld fehlt. Spricht leise, verschwindet schnell, hinterlässt keine Spuren.'},
+ dimitrios:{c:'AD',n:'Alex Dimitrios',f:'h',t:'MITTELSMANN',d:'Vermittelt Aufträge für Le Chiffre. Verliert beim Poker seinen Aston Martin DB5 an Bond.'},
+ dryden:{c:'DR',n:'Dryden',f:'h',t:'SEKTIONSCHEF PRAG',d:'Verkauft Geheimnisse. Erwartet niemanden in seinem Büro. Irrtum.'},
+ gettler:{c:'GE',n:'Gettler',f:'h',t:'BEOBACHTER',d:'Ein Brillenglas abgedeckt. Folgt in Montenegro und Venedig. Fällt auf, will aber nicht auffallen.'},
+ unit:{c:'00',n:'00-Einheit',f:'u',t:'IHR FAHRZEUG',d:'Vier Agenten, ein Fahrzeug. Q möchte es unbeschädigt zurück.'}
+};
+const PF={a:'VERBÜNDET',h:'FEINDLICH',u:'EIGENE EINHEIT'};
+/* [id, Wegpunkte, Sekunden pro Runde, pp = hin und zurück | loop, Sichtung] */
+maps.route.people=[
+ ['unit',maps.route.out.concat(maps.route.back.slice(1)),110,'loop','Auf der Route Augsburg – Prag und zurück.'],
+ ['white',[[50.0755,14.4378],[49.95,14.0],[49.7384,13.3736],[49.70,12.90],[49.642,12.495]],80,'pp','Auf der Rückroute über Pilsen. Folgt niemandem. Angeblich.'],
+ ['mathis',[[50.1866,12.754],[50.205,12.80],[50.2306,12.8711]],26,'pp','Pendelt zwischen Loket und Karlsbad.']];
+maps.kv.people=[
+ ['bond',[[50.2262,12.8812],[50.2250,12.8822],[50.2238,12.8830],[50.2215,12.8820],[50.2195,12.8812],[50.2183,12.8807],[50.2186,12.8825],[50.2190,12.8838]],50,'pp','Filmstrecke Kolonnade → Hotel → Casino.'],
+ ['vesper',[[50.2183,12.8807],[50.2200,12.8815],[50.2222,12.8824],[50.2238,12.8830]],34,'pp','Hat das Dinner im Pupp verlassen. Richtung Tržiště.'],
+ ['lechiffre',[[50.2190,12.8838],[50.2186,12.8822],[50.2179,12.8800]],22,'pp','Pendelt zwischen Kaiserbad und Casino. Inhalator dabei.'],
+ ['valenka',[[50.2184,12.8814],[50.2189,12.8822],[50.2183,12.8829],[50.2178,12.8820],[50.2184,12.8814]],16,'loop','Kreist um Becher\'s Bar. Bestellt Martini, trinkt keinen.'],
+ ['leiter',[[50.2179,12.8800],[50.2171,12.8814],[50.2176,12.8832],[50.2190,12.8838]],30,'pp','Zwischen Casino und Kaiserbad. Hat Geld dabei.'],
+ ['gettler',[[50.2272,12.8798],[50.2260,12.8786],[50.2246,12.8803],[50.2257,12.8826],[50.2272,12.8798]],40,'loop','Umrundet die Mühlbrunnkolonnade. Langsam.'],
+ ['mathis',[[50.2160,12.8668],[50.2195,12.8752],[50.2222,12.8812],[50.2238,12.8830]],44,'pp','Kommt aus Richtung Loket, 12 km südwestlich.']];
+maps.prg.people=[
+ ['dryden',[[50.0935,14.4310],[50.0929,14.4352],[50.0923,14.4395]],26,'pp','Fährt vom Ministerium zum Danube House. Nachts.'],
+ ['bond',[[50.0923,14.4395],[50.0917,14.4407],[50.0911,14.4393],[50.0923,14.4395]],22,'loop','Wartet im Büro im Danube House.'],
+ ['dimitrios',[[50.0935,14.4310],[50.0916,14.4360],[50.0900,14.4420],[50.0882,14.4486]],42,'pp','Zwischen Ausstellung außen (Ministerium) und innen (Vítkov).'],
+ ['m',[[50.0862,14.3880],[50.0870,14.3868],[50.0857,14.3862],[50.0862,14.3880]],20,'loop','Im Committee Room, Strahov. Vermisst den Kalten Krieg.'],
+ ['white',[[50.0909,14.4005],[50.0880,14.4060],[50.0865,14.4114],[50.0870,14.4170],[50.0875,14.4213]],60,'pp','Von der Burg über die Karlsbrücke in die Altstadt.'],
+ ['gettler',[[50.0789,14.4307],[50.0805,14.4285],[50.0822,14.4262],[50.0805,14.4285]],30,'loop','Am Wenzelsplatz. Venedig liegt hier im Museum.'],
+ ['vesper',[[50.0789,14.4307],[50.0779,14.4331],[50.0770,14.4301],[50.0789,14.4307]],28,'loop','Am Nationalmuseum, der „Venedig“-Lobby.']];
+/* Orientierungspunkte, Straßen, Beschriftungen */
+maps.route.focus=[49.75,12.4];
+maps.route.lands=[['DEUTSCHLAND',48.85,11.55],['ČESKO',49.35,13.85]];
+maps.route.roads=[['A9',49.08,11.27],['A6',49.53,11.70],['D6',50.17,13.55],['D5',49.93,13.97],['E48',50.06,12.20]];
+maps.kv.focus=[50.2205,12.8815];
+maps.kv.marks=[['Sprudelkolonnade',50.2227,12.8826,'l'],['Parkkolonnade',50.2283,12.8797,'l'],['Stará louka',50.2207,12.8798,'l']];
+maps.prg.focus=[50.0860,14.4250];
+maps.prg.marks=[['Prager Burg',50.0909,14.4005,'r'],['Karlsbrücke',50.0865,14.4114,'t'],['Hauptbahnhof',50.0831,14.4353,'r'],['Negrelli-Viadukt',50.0942,14.4352,'t']];
+maps.prg.lines=[[[50.0795,14.4300],[50.0838,14.4240]]];
+maps.prg.lineLab=['WENZELSPLATZ',50.0820,14.4262];
+maps.prg.pos={strahov:'r',ministry:'l',danube:'r',vitkov:'b',museum:'r'};
+maps.prg.xpos={jalta:'l',ranger:'r',hemingway:'l',advent:'t'};
+maps.kv.pos={pupp:'l',kaiserbad:'r',mlyn:'r',trziste:'r'};
+maps.kv.xpos={casino:'b'};
+
 function mk(svgEl){return function(t,a,p){const e=document.createElementNS(NS,t);for(const k in a)e.setAttribute(k,a[k]);(p||svgEl).appendChild(e);return e}}
+/* Schild hinter Text, damit Beschriftungen über Raster und Linien lesbar bleiben */
+function plate(t,cls,pad){const b=t.getBBox();if(!b.width)return;const px=pad||5;const r=document.createElementNS(NS,'rect');
+  r.setAttribute('x',(b.x-px).toFixed(1));r.setAttribute('y',(b.y-px/2-1).toFixed(1));r.setAttribute('width',(b.width+px*2).toFixed(1));r.setAttribute('height',(b.height+px+2).toFixed(1));r.setAttribute('rx',2);
+  r.setAttribute('class','plate'+(cls?' '+cls:''));t.parentNode.insertBefore(r,t);return r}
+const anims=new Map();let curMap='route',sel=null;
+function placeAt(a,now){let u=((now/1000+a.off)/a.dur)%1;if(a.mode==='pp')u=u<.5?u*2:2-u*2;
+  // weich an den Wendepunkten
+  u=u*u*(3-2*u)*.35+u*.65;let d=u*a.len,i=1;while(i<a.cum.length-1&&a.cum[i]<d)i++;
+  const s0=a.cum[i-1],s1=a.cum[i],f=s1>s0?(d-s0)/(s1-s0):0,p0=a.pts[i-1],p1=a.pts[i];a.x=p0[0]+(p1[0]-p0[0])*f;a.y=p0[1]+(p1[1]-p0[1])*f;
+  a.g.setAttribute('transform',`translate(${a.x.toFixed(1)} ${a.y.toFixed(1)})`)}
 function draw(svgEl,key,opts){
-  opts=opts||{};const el=mk(svgEl);const m=maps[key];svgEl.innerHTML='';
-  const vb=svgEl.viewBox.baseVal,W=vb.width,H=vb.height,pad=60,[la0,la1,lo0,lo1]=m.b,k=Math.cos((la0+la1)/2*Math.PI/180);
+  opts=opts||{};const el=mk(svgEl);const m=maps[key];svgEl.innerHTML='';const hero=!!opts.hero;
+  const W=+svgEl.dataset.w,H=+svgEl.dataset.h,pad=60,[la0,la1,lo0,lo1]=m.b,k=Math.cos((la0+la1)/2*Math.PI/180);
   const s=Math.min((W-2*pad)/((lo1-lo0)*k),(H-2*pad)/(la1-la0));
   const ox=(W-(lo1-lo0)*k*s)/2,oy=(H-(la1-la0)*s)/2;
   const P=(la,lo)=>[ox+(lo-lo0)*k*s,oy+(la1-la)*s];
   const path=pts=>pts.map((p,i)=>{const[x,y]=P(p[0],p[1]);return(i?'L':'M')+x.toFixed(1)+' '+y.toFixed(1)}).join(' ');
   const T=(x,y,str,cls,extra,p)=>{const t=el('text',Object.assign({x,y,class:cls},extra||{}),p);t.textContent=str;return t};
+  const lab=(x,y,ps,off)=>ps==='tl'?{x:x-off*.7,y:y-off*.8,a:'end'}:ps==='l'?{x:x-off,y:y+5,a:'end'}:ps==='b'?{x,y:y+off+12,a:'middle'}:ps==='t'?{x,y:y-off,a:'middle'}:{x:x+off,y:y+5,a:'start'};
   const defs=el('defs',{});
-  const rg=el('radialGradient',{id:'sweepGrad',cx:'0',cy:'0',r:'1',gradientUnits:'userSpaceOnUse'},defs);
   el('rect',{x:0,y:0,width:W,height:H,class:'m-bg'});
-  for(let x=0;x<=W;x+=40)el('line',{x1:x,y1:0,x2:x,y2:H,class:'m-grid'});
-  for(let y=0;y<=H;y+=40)el('line',{x1:0,y1:y,x2:W,y2:y,class:'m-grid'});
-  // corner brackets
+  for(let x=0;x<=W;x+=40)el('line',{x1:x,y1:0,x2:x,y2:H,class:'m-grid'+(x%200?'':' maj')});
+  for(let y=0;y<=H;y+=40)el('line',{x1:0,y1:y,x2:W,y2:y,class:'m-grid'+(y%200?'':' maj')});
   [[14,14,1,1],[W-14,14,-1,1],[14,H-14,1,-1],[W-14,H-14,-1,-1]].forEach(([x,y,dx,dy])=>el('path',{d:`M${x} ${y+24*dy} L${x} ${y} L${x+24*dx} ${y}`,fill:'none',class:'m-out','stroke-width':2}));
-  if(!opts.hero){'ABCDEFGHIJ'.split('').forEach((c,i)=>T(i*100+50,32,c,'m-gt',{'text-anchor':'middle'}));for(let j=1;j<=6;j++)T(30,j*100+4,String(j),'m-gt')}
+  if(!hero){'ABCDEFGHIJ'.split('').forEach((c,i)=>T(i*100+50,34,c,'m-gt',{'text-anchor':'middle'}));for(let j=1;j<=6;j++)T(30,j*100+4,String(j),'m-gt')}
+  if(m.lands&&!hero)m.lands.forEach(([n,la,lo])=>{const[x,y]=P(la,lo);T(x,y,n,'m-land',{'text-anchor':'middle'})});
   if(m.river){el('path',{d:path(m.river),fill:'none',class:'m-river','stroke-width':key==='kv'?16:18,'stroke-linecap':'round','stroke-linejoin':'round'});
     const[rx,ry]=P(m.riverName[1],m.riverName[2]);T(rx,ry,m.riverName[0].toUpperCase(),'m-rivt')}
-  if(m.border){el('path',{d:path(m.border),fill:'none',class:'m-border','stroke-width':1.2,'stroke-dasharray':'2 5'});const[bx,by]=P(49.30,12.64);T(bx,by,'GRENZE DE / CZ','m-gt')}
-  if(m.out){el('path',{d:path(m.out),fill:'none',class:'m-out','stroke-width':3,'stroke-linejoin':'round',style:'filter:drop-shadow(0 0 4px currentColor)'});
-    el('path',{d:path(m.back),fill:'none',class:'m-back','stroke-width':2.4,'stroke-dasharray':'9 7','stroke-linejoin':'round'});
-    if(!opts.hero)document.getElementById('legRoute').innerHTML='<span><i style="width:18px;height:3px;background:var(--cyan)"></i>Anmarsch</span> <span><i style="width:18px;border-top:3px dashed var(--amber)"></i>Rückzug</span>'}
-  else if(!opts.hero)document.getElementById('legRoute').innerHTML='';
-  if(m.walk){const pts=m.walk.map(id=>{const c=L.find(x=>x.id===id);return[c.lat,c.lon]});el('path',{d:path(pts),fill:'none',class:'m-walk','stroke-width':2,'stroke-dasharray':'2 6','stroke-linecap':'round'})}
-  if(m.towns)m.towns.forEach(([n,la,lo])=>{const[x,y]=P(la,lo);el('rect',{x:x-3,y:y-3,width:6,height:6,class:'m-town'});T(x+9,y-7,n.toUpperCase(),'m-townt m-halo')});
+  if(m.lines)m.lines.forEach(l=>el('path',{d:path(l),fill:'none',class:'m-street','stroke-width':14,'stroke-linecap':'round'}));
+  if(m.lineLab&&!hero){const[x,y]=P(m.lineLab[1],m.lineLab[2]);T(x+14,y-8,m.lineLab[0],'m-strt',{transform:`rotate(-52 ${x+14} ${y-8})`})}
+  if(m.border){el('path',{d:path(m.border),fill:'none',class:'m-border','stroke-width':1.4,'stroke-dasharray':'2 5'});if(!hero){const[bx,by]=P(49.30,12.64);T(bx,by,'GRENZE DE / CZ','m-gt')}}
+  if(m.out){el('path',{d:path(m.out),fill:'none',class:'m-out','stroke-width':3.4,'stroke-linejoin':'round',style:'filter:drop-shadow(0 0 4px currentColor)'});
+    el('path',{d:path(m.back),fill:'none',class:'m-back','stroke-width':2.6,'stroke-dasharray':'9 7','stroke-linejoin':'round'});
+    if(!hero)document.getElementById('legRoute').innerHTML='<span><i style="width:18px;height:3px;background:var(--cyan)"></i>Anmarsch</span> <span><i style="width:18px;border-top:3px dashed var(--amber)"></i>Rückzug</span>'}
+  else if(!hero)document.getElementById('legRoute').innerHTML='';
+  if(m.walk){const pts=m.walk.map(id=>{const c=L.find(x=>x.id===id);return[c.lat,c.lon]});el('path',{d:path(pts),fill:'none',class:'m-walk','stroke-width':2.4,'stroke-dasharray':'2 6','stroke-linecap':'round'})}
+  if(m.roads&&!hero)m.roads.forEach(([n,la,lo])=>{const[x,y]=P(la,lo);const t=T(x,y+4,n,'m-road',{'text-anchor':'middle'});plate(t,'road',4)});
+  if(m.towns)m.towns.forEach(([n,la,lo,ps])=>{const[x,y]=P(la,lo);el('rect',{x:x-3.5,y:y-3.5,width:7,height:7,class:'m-town'});if(hero){T(x+9,y-7,n.split(' ')[0].toUpperCase(),'m-townt m-halo');return}
+    const t=ps==='l'?T(x-10,y-9,n.toUpperCase(),'m-townt',{'text-anchor':'end'}):T(x+10,y-9,n.toUpperCase(),'m-townt');plate(t,'',4)});
+  if(m.marks&&!hero)m.marks.forEach(([n,la,lo,ps])=>{const[x,y]=P(la,lo);el('path',{d:`M${x} ${y-5} L${x+5} ${y} L${x} ${y+5} L${x-5} ${y} Z`,class:'m-lmk'});const l=lab(x,y,ps,10);const t=T(l.x,l.y,n,'m-lmt',{'text-anchor':l.a});plate(t,'lm',3)});
   const info=document.getElementById('mapinfo');
-  if(!opts.hero)(m.extras||[]).forEach(id=>{const e=X.find(x=>x.id===id);const[x,y]=P(e.lat,e.lon);const g=el('g',{class:'mk',tabindex:0,role:'button','aria-label':e.name});
+  if(!hero)(m.extras||[]).forEach(id=>{const e=X.find(x=>x.id===id);const[x,y]=P(e.lat,e.lon);const g=el('g',{class:'mk',tabindex:0,role:'button','aria-label':e.name});
     el('rect',{x:x-6,y:y-6,width:12,height:12,class:'m-ext'},g);el('rect',{x:x-10,y:y-10,width:20,height:20,fill:'none',class:'m-out','stroke-width':1,opacity:.6},g);
-    const act=()=>{info.innerHTML=`<b>ASSET // ${e.name}</b> — ${e.meta}<br>${e.txt} <a href="${gm(e.lat,e.lon)}" target="_blank" rel="noopener">Koordinaten</a>`};
+    const l=lab(x,y,(m.xpos||{})[id]||'r',16);const t=T(l.x,l.y,e.name,'m-xt',{'text-anchor':l.a},g);plate(t,'xt',4);
+    const act=()=>{selP(null);info.innerHTML=`<b>ASSET // ${e.name}</b> — ${e.meta}<br>${e.txt} <a href="${gm(e.lat,e.lon)}" target="_blank" rel="noopener">Koordinaten</a>`};
     g.addEventListener('click',act);g.addEventListener('keydown',ev=>{if(ev.key==='Enter'||ev.key===' '){ev.preventDefault();act()}})});
-  const ids=opts.hero?['loket','pupp','airport']:m.cards;
-  ids.forEach(id=>{const c=L.find(x=>x.id===id);const[x,y]=P(c.lat,c.lon);const g=el('g',{class:'mk',tabindex:opts.hero?-1:0,role:opts.hero?'img':'button','aria-label':c.name});
+  const ids=hero?['loket','pupp','airport']:m.cards;
+  ids.forEach(id=>{const c=L.find(x=>x.id===id);const[x,y]=P(c.lat,c.lon);const g=el('g',{class:'mk',tabindex:hero?-1:0,role:hero?'img':'button','aria-label':c.name});
     el('circle',{cx:x,cy:y,r:12,class:'m-tg pulse','stroke-width':2},g);
     el('circle',{cx:x,cy:y,r:12,class:'m-tg','stroke-width':2},g);el('circle',{cx:x,cy:y,r:2.5,class:'m-tgf'},g);
     [[-20,-8,0,0],[8,20,0,0],[0,0,-20,-8],[0,0,8,20]].forEach(([a,b,c2,d])=>el('line',{x1:x+a,x2:x+b,y1:y+c2,y2:y+d,class:'m-tg','stroke-width':1.6},g));
-    if(opts.hero)return;
-    const ps=(m.pos||{})[id]||'r';const la=ps==='l'?{x:x-26,a:'end'}:{x:x+26,a:'start'};
-    const t=el('text',{x:la.x,y:y+5,'text-anchor':la.a,class:'m-lab m-halo'},g);
-    const ts=document.createElementNS(NS,'tspan');ts.setAttribute('class','m-code');ts.textContent=c.r+c.s+'  ';t.appendChild(ts);t.appendChild(document.createTextNode(c.name));
-    const act=()=>{info.innerHTML=`<b>${code(c)} // ${c.name}</b> — Deckname: ${c.as}. <a href="#targets" data-c="${c.id}">Lagebericht</a> · <a href="${gm(c.lat,c.lon)}" target="_blank" rel="noopener">Koordinaten</a>`;info.querySelector('[data-c]').onclick=()=>showCard(c.id,false)};
+    if(hero)return;
+    const l=lab(x,y,(m.pos||{})[id]||'r',26);
+    const t=el('text',{x:l.x,y:l.y,'text-anchor':l.a,class:'m-lab'},g);
+    const ts=document.createElementNS(NS,'tspan');ts.setAttribute('class','m-code');ts.textContent=c.r+c.s+' ';t.appendChild(ts);t.appendChild(document.createTextNode(c.name));plate(t,'tg',5);
+    const act=()=>{selP(null);info.innerHTML=`<b>${code(c)} // ${c.name}</b> — Deckname: ${c.as}. ${SEC.has(c.id)?'<span class="s-ok">✓ Gesichert.</span> ':''}<a href="#targets" data-c="${c.id}">Lagebericht</a> · <a href="${gm(c.lat,c.lon)}" target="_blank" rel="noopener">Koordinaten</a>`;info.querySelector('[data-c]').onclick=()=>showCard(c.id,false)};
     g.addEventListener('click',act);g.addEventListener('keydown',ev=>{if(ev.key==='Enter'||ev.key===' '){ev.preventDefault();act()}})});
-  if(m.edge&&!opts.hero){T(24,200,'◂ OBJ 6♣ FLUGHAFEN · 12 KM','m-edge m-halo');T(380,560,'▾ OBJ Q♠ BARRANDOV · 6 KM SÜD','m-edge m-halo')}
-  if(opts.hero){ // radar sweep centred on Karlsbad
+  if(m.edge&&!hero){plate(T(28,200,'◂ OBJ 6♣ FLUGHAFEN · 12 KM','m-edge'),'edge',5);plate(T(360,580,'▾ OBJ Q♠ BARRANDOV · 6 KM SÜD','m-edge'),'edge',5)}
+  if(!hero){ // Maßstab und Nordpfeil
+    const kmPx=s/111,opts2=[.1,.2,.25,.5,1,2,5,10,20,25,50,100];const km=opts2.find(v=>v*kmPx>=90)||100,len=km*kmPx;
+    const sx=W-60-len,sy=H-34;el('path',{d:`M${sx} ${sy-6} L${sx} ${sy} L${sx+len} ${sy} L${sx+len} ${sy-6}`,class:'m-scale',fill:'none','stroke-width':2});
+    el('line',{x1:sx+len/2,y1:sy,x2:sx+len/2,y2:sy-4,class:'m-scale','stroke-width':1.5});
+    T(sx+len/2,sy-10,km<1?(km*1000)+' M':km+' KM','m-gt',{'text-anchor':'middle'});
+    const nx=W-52,ny=66;el('path',{d:`M${nx} ${ny-20} L${nx+8} ${ny+4} L${nx} ${ny-2} L${nx-8} ${ny+4} Z`,class:'m-north'});T(nx,ny+20,'N','m-gt',{'text-anchor':'middle'})}
+  if(hero){ // Radar um Karlsbad
     const[cx,cy]=P(50.2306,12.8711);const R=260;
     const sg=el('g',{});
     const lg=el('linearGradient',{id:'swg',x1:'0',y1:'0',x2:'1',y2:'0'},defs);el('stop',{offset:'0','stop-color':'#4BE39A','stop-opacity':'0'},lg);el('stop',{offset:'1','stop-color':'#4BE39A','stop-opacity':'.28'},lg);
     [80,160,240].forEach(r=>el('circle',{cx,cy,r,fill:'none',class:'m-out','stroke-width':.8,opacity:.35}));
-    const wedge=el('path',{d:`M${cx} ${cy} L${cx+R} ${cy} A${R} ${R} 0 0 0 ${cx+R*Math.cos(-0.6)} ${cy+R*Math.sin(-0.6)} Z`,fill:'url(#swg)'},sg);
+    el('path',{d:`M${cx} ${cy} L${cx+R} ${cy} A${R} ${R} 0 0 0 ${cx+R*Math.cos(-0.6)} ${cy+R*Math.sin(-0.6)} Z`,fill:'url(#swg)'},sg);
     if(!RM){const at=document.createElementNS(NS,'animateTransform');at.setAttribute('attributeName','transform');at.setAttribute('type','rotate');at.setAttribute('from',`0 ${cx} ${cy}`);at.setAttribute('to',`360 ${cx} ${cy}`);at.setAttribute('dur','6s');at.setAttribute('repeatCount','indefinite');sg.appendChild(at)}
     else sg.setAttribute('transform',`rotate(-40 ${cx} ${cy})`);
   }
-  if(!opts.hero){document.getElementById('mapTitle').textContent='LAGE // '+m.label.toUpperCase();document.getElementById('mapCode').textContent='KARTE '+m.code;info.textContent=m.note;
+  // Zielpersonen
+  const list=[];const people=hero?m.people.filter(p=>p[0]==='unit'):(m.people||[]);
+  const trails=el('g',{class:'trails'});const pl=el('g',{class:'ppl-layer'});
+  people.forEach(([id,wp,dur,mode,where],i)=>{const p=PP[id];const pts=wp.map(q=>P(q[0],q[1]));const cum=[0];for(let j=1;j<pts.length;j++)cum.push(cum[j-1]+Math.hypot(pts[j][0]-pts[j-1][0],pts[j][1]-pts[j-1][1]));
+    const tr=el('path',{d:path(wp),class:'m-trail f-'+p.f,fill:'none','stroke-width':2,'stroke-dasharray':'1 6','stroke-linecap':'round'},trails);
+    const g=el('g',{class:'pp f-'+p.f,tabindex:hero?-1:0,role:hero?'img':'button','aria-label':`${p.n}, ${PF[p.f]}`},pl);
+    el('circle',{r:20,class:'pp-ring'},g);
+    if(p.f==='h')el('path',{d:'M0 -14 L14 0 L0 14 L-14 0 Z',class:'pp-body'},g);else el('circle',{r:p.f==='u'?14:12.5,class:'pp-body'},g);
+    T(0,4,p.c,'pp-code',{'text-anchor':'middle'},g);
+    const nl=T(0,-24,p.n.toUpperCase(),'pp-name',{'text-anchor':'middle'},g);plate(nl,'pp-plate f-'+p.f,4);
+    const a={id,g,tr,pts,cum,len:cum[cum.length-1],dur,mode,where,off:i*7.3+dur*.37*i,x:pts[0][0],y:pts[0][1]};list.push(a);placeAt(a,RM?0:performance.now());
+    if(!hero){const act=()=>selP(sel===id?null:id);g.addEventListener('click',e=>{e.stopPropagation();act()});g.addEventListener('keydown',ev=>{if(ev.key==='Enter'||ev.key===' '){ev.preventDefault();act()}})}});
+  anims.set(svgEl,list);
+  if(!hero){curMap=key;sel=null;document.getElementById('mapTitle').textContent='LAGE // '+m.label.toUpperCase();document.getElementById('mapCode').textContent='KARTE '+m.code;info.textContent=m.note;
     document.querySelectorAll('#mapTabs .tbtn').forEach(b=>b.setAttribute('aria-selected',b.dataset.k===key?'true':'false'));
-    const sc=document.querySelector('.mapscroll');if(sc)sc.scrollLeft=(sc.scrollWidth-sc.clientWidth)/2}
+    const pe=document.getElementById('ppl');pe.innerHTML='<span class="pplh">ZIELPERSONEN</span>'+people.map(([id])=>{const p=PP[id];return `<button type="button" class="pchip f-${p.f}" data-p="${id}" aria-pressed="false"><i></i>${p.n}</button>`}).join('');
+    pe.querySelectorAll('.pchip').forEach(b=>b.onclick=()=>selP(sel===b.dataset.p?null:b.dataset.p));
+    mapFocus=P(m.focus[0],m.focus[1]);zHome()}
 }
 maps.route.code='B-1';maps.kv.code='B-2';maps.prg.code='B-3';
 maps.route.label='Anmarsch & Rückzug';maps.kv.label='Karlsbad = Montenegro';maps.prg.label='Prag = London, Miami, Venedig';
-const mapSvg=document.getElementById('map');
+const mapSvg=document.getElementById('map'),heroSvg=document.getElementById('heroMap');
+
+/* Zoom und Verschieben */
+let Z={x:0,y:0,w:1000,h:640},mapFocus=[500,320];
+function zHome(){const w=innerWidth<680?520:1000;setZ(mapFocus[0]-w/2,mapFocus[1]-w*mapA()/2,w)}const zLvl=document.getElementById('zLvl');
+/* Seitenverhältnis folgt dem Element: am Handy ist die Karte höher als breit und zeigt einen Ausschnitt */
+const mapA=()=>mapSvg.clientWidth?mapSvg.clientHeight/mapSvg.clientWidth:.64;
+function setZ(x,y,w,now){const W=1000,H=640,A=mapA();w=Math.max(220,Math.min(W,H/A,w));const h=w*A;x=Math.max(0,Math.min(W-w,x));y=Math.max(0,Math.min(H-h,y));Z={x,y,w,h};
+  mapSvg.setAttribute('viewBox',`${x.toFixed(1)} ${y.toFixed(1)} ${w.toFixed(1)} ${h.toFixed(1)}`);mapSvg.classList.toggle('zoomed',w<Math.min(W,H/A)-1);mapSvg.classList.toggle('pan',w<W-1);zLvl.textContent=(W/w).toFixed(1).replace('.',',')+'×'}
+function zoomBy(f,cx,cy){if(cx==null){cx=Z.x+Z.w/2;cy=Z.y+Z.h/2}const w=Z.w/f;setZ(cx-(cx-Z.x)*w/Z.w,cy-(cy-Z.y)*w/Z.w,w)}
+function svgPt(e){const r=mapSvg.getBoundingClientRect();return[Z.x+(e.clientX-r.left)/r.width*Z.w,Z.y+(e.clientY-r.top)/r.height*Z.h]}
+document.getElementById('zIn').onclick=()=>zoomBy(1.5);
+document.getElementById('zOut').onclick=()=>{sel&&selP(null);zoomBy(1/1.5)};
+document.getElementById('zReset').onclick=()=>{selP(null);zHome()};
+mapSvg.addEventListener('dblclick',e=>{e.preventDefault();const[x,y]=svgPt(e);zoomBy(1.8,x,y)});
+mapSvg.addEventListener('wheel',e=>{if(!e.ctrlKey&&!e.metaKey)return;e.preventDefault();const[x,y]=svgPt(e);zoomBy(Math.exp(-e.deltaY*.01),x,y)},{passive:false});
+let drag=null;
+addEventListener('resize',()=>setZ(Z.x,Z.y,Z.w));
+mapSvg.addEventListener('pointerdown',e=>{if(!mapSvg.classList.contains('pan')||e.button>0)return;drag={sx:e.clientX,sy:e.clientY,z:{...Z},id:e.pointerId,on:false}});
+mapSvg.addEventListener('pointermove',e=>{if(!drag||e.pointerId!==drag.id)return;const dx=e.clientX-drag.sx,dy=e.clientY-drag.sy;
+  if(!drag.on){if(Math.hypot(dx,dy)<6)return;drag.on=true;follow=null;mapSvg.setPointerCapture(e.pointerId);mapSvg.classList.add('drag')}
+  const r=mapSvg.getBoundingClientRect();setZ(drag.z.x-dx/r.width*drag.z.w,drag.z.y-dy/r.height*drag.z.h,drag.z.w)});
+const endDrag=e=>{if(drag&&drag.on){mapSvg.releasePointerCapture(drag.id);mapSvg.classList.remove('drag')}drag=null};
+mapSvg.addEventListener('pointerup',endDrag);mapSvg.addEventListener('pointercancel',endDrag);
+
+/* Auswahl und Verfolgung */
+let follow=null;
+function selP(id){sel=id;follow=id;const info=document.getElementById('mapinfo');const list=anims.get(mapSvg)||[];
+  list.forEach(a=>{const on=a.id===id;a.g.classList.toggle('sel',on);a.tr.classList.toggle('sel',on);if(on)a.g.parentNode.appendChild(a.g)});
+  document.querySelectorAll('#ppl .pchip').forEach(b=>b.setAttribute('aria-pressed',b.dataset.p===id?'true':'false'));
+  if(!id){mapSvg.classList.remove('focus');return}
+  mapSvg.classList.add('focus');
+  const p=PP[id],a=list.find(x=>x.id===id);
+  info.innerHTML=`<b>ZIELPERSON // ${p.n.toUpperCase()}</b> <span class="ptag f-${p.f}">${PF[p.f]} · ${p.t}</span><br>${p.d}<br><span class="psee">LETZTE SICHTUNG: ${a?a.where:'unbekannt'}${RM?'':' · Karte folgt der Person, Ziehen beendet die Verfolgung.'}</span>`;
+  if(a&&Z.w>(innerWidth<680?400:640)){const w=innerWidth<680?380:520;setZ(a.x-w/2,a.y-w*mapA()/2,w)}}
+mapSvg.addEventListener('click',e=>{if(sel&&!e.target.closest('.pp,.mk'))selP(null)});
+
+/* Animation, nur für sichtbare Karten */
+const vis=new Set();
+if('IntersectionObserver' in window){const io=new IntersectionObserver(es=>es.forEach(e=>e.isIntersecting?vis.add(e.target):vis.delete(e.target)));io.observe(mapSvg);io.observe(heroSvg)}else{vis.add(mapSvg);vis.add(heroSvg)}
+function frame(now){for(const[svg,list]of anims){if(!vis.has(svg))continue;list.forEach(a=>placeAt(a,now))}
+  if(follow&&vis.has(mapSvg)){const a=(anims.get(mapSvg)||[]).find(x=>x.id===follow);if(a)setZ(Z.x+(a.x-Z.w/2-Z.x)*.06,Z.y+(a.y-Z.h/2-Z.y)*.06,Z.w)}
+  requestAnimationFrame(frame)}
+if(!RM)requestAnimationFrame(frame);
+
 const mt=document.getElementById('mapTabs');
 [['route','B-1 ROUTE'],['kv','B-2 KARLSBAD'],['prg','B-3 PRAG']].forEach(([k,l])=>{const b=document.createElement('button');b.className='tbtn';b.type='button';b.setAttribute('role','tab');b.dataset.k=k;b.textContent=l;b.onclick=()=>draw(mapSvg,k);mt.appendChild(b)});
 draw(mapSvg,'route');
-draw(document.getElementById('heroMap'),'route',{hero:true});
+draw(heroSvg,'route',{hero:true});
+/* Schilder nach dem Laden der Schriften neu vermessen */
+if(document.fonts&&document.fonts.ready)document.fonts.ready.then(()=>{const z={...Z},s=sel;draw(mapSvg,curMap);draw(heroSvg,'route',{hero:true});setZ(z.x,z.y,z.w);if(s)selP(s)});
 
 /* waveform */
 (function(){const p=document.getElementById('wavePath');let d='M0 29';for(let x=0;x<=400;x+=4){const y=29+Math.sin(x/9)*8*Math.sin(x/53)+(Math.sin(x*1.7)*3);d+=` L${x} ${y.toFixed(1)}`}p.setAttribute('d',d)})();
