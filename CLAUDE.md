@@ -121,4 +121,9 @@ Freigabe: „Anyone with the link“ ist aktiv. Wer die Seite offen hat, sieht n
   auf Wunsch entfernt. Bereitschaft zählt nur noch Buchungen, Datum, Quittung, Lizenz. Garage: DB5, Esprit, 2CV nach
   CC0-Vektorvorlagen, Alpine nach Foto nachgezeichnet (`TRC`). Maßfigur 007 im Smoking (`BF`, `bondFig`) ersetzt alle
   Strichmännchen; ab 110 px Höhe mit nachgezeichnetem Craig-Gesicht (`BF.T`). Porträts nach Fotos in `PT` (`traced()`).
+- Version 16 (05.10.2026): Alle 18 Fahrzeuge der Garage nach Vorlagen nachgezeichnet (`TRC`: Silhouette `sil`, Linien `tl`,
+  Glas `tg`, Maße über den echten Radstand geeicht). Quellen: Wikimedia-Commons-Fotos und CC0-Vektoren, für DB10, DBS V12,
+  Z8 und V12 Vanquish vom Nutzer gelieferte Bauplan-Zeichnungen (Quelle steht im Datenblatt). Porträts in `PT` von Hand nach
+  Fotos digitalisiert (wenige klare Linien; Bond bewusst reduziert). Missionsbriefing (`#mission`) als Rohfassung vorhanden,
+  wird nach Fertigstellung aller Zeichnungen ausgebaut.
 - Tests: Playwright-Skripte müssen vor dem Laden `window.__NOINTRO=1` per `addInitScript` setzen, sonst läuft das Intro.
