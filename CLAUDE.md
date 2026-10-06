@@ -200,4 +200,10 @@ Freigabe: „Anyone with the link“ ist aktiv. Wer die Seite offen hat, sieht n
   Personenakten: Organisationen `OG` (MI6, Schatzamt, CIA, Quantum, SPECTRE) mit Abzeichen (SPECTRE, Quantum, MI6-Emblem und CIA-Siegel
   vom Nutzer, vektorisiert in Seitenfarben `LG`/`LG2`; Schatzamt eigenes Abzeichen), Akte, Mitglieder (→ `paOpen`), Organigramm `#ogSvg` (Befehlsweg, Geld,
   Feindkontakt; Hover hebt Verbindungen hervor), Auswahl `ops5-org`.
+- Version 27 (06.10.2026): Briefing v3. Drehbuch mit Story: Cold Open, Lagebild 1–4 aus dem Organigramm (`orgScene`/`orgOn`, Kamera über
+  `vbTo`, `OGB`/`OGL`; Markup über `window.ogMarkup`), Konto VESPER (`acct`, `TX`), dann Titel und Tage. Kernsätze neu verankert.
+  Routenkarten neu (`rmap`/`rdrive`, Etappen `RL`): Gelände/Flüsse/Grenze/Orte aus `maps.route` (`rbase(fz)`), Kamera folgt dem Fahrzeug,
+  Live-Werte Distanz/Uhrzeit/Tempo, Wegpunkte, Grenzübertritt, Ankunft; Schrift skaliert mit `--fz`. Überlappungstest über alle Szenen
+  (Desktop/Handy) und Korrekturen. Stimme: Chatterbox mit natürlicher Studio-Referenz (XTTS-Sprecherin, synthetisch), Tempo 1,12
+  (~150 Wörter/min), fehlerhafte Clips satzweise mit Spracherkennungs-Kontrolle neu erzeugt. Faktenkorrektur: Dimitrios stirbt auf den Bahamas.
 - Tests: Playwright-Skripte müssen vor dem Laden `window.__NOINTRO=1` per `addInitScript` setzen, sonst läuft das Intro.
