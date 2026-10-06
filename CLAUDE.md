@@ -194,7 +194,7 @@ Freigabe: „Anyone with the link“ ist aktiv. Wer die Seite offen hat, sieht n
   Stimme), Text `#msCapT`, Lagestufe `#msLage`. Musik standardmäßig an. Stimme jetzt Chatterbox Multilingual (`tools/tts_chatterbox.py`,
   synthetische Piper-Referenzen, Satz für Satz, `SEED` für Nachbesserung), danach `tools/tts.py --wavdir` (dezenter Klang `radio(light)`).
   Prüfung per Spracherkennung (faster-whisper). Qs Gadgets: Baupläne für 18 von 19 (fehlt: Walther PPK/S Skyfall), GDA `g10`–`g18`.
-  Personenakten: Organisationen `OG` (MI6, Schatzamt, CIA, Quantum, SPECTRE) mit Abzeichen (SPECTRE/Quantum vom Nutzer vektorisiert,
-  MI6/Schatzamt/CIA eigene Abzeichen, keine Behördenwappen), Akte, Mitglieder (→ `paOpen`), Organigramm `#ogSvg` (Befehlsweg, Geld,
+  Personenakten: Organisationen `OG` (MI6, Schatzamt, CIA, Quantum, SPECTRE) mit Abzeichen (SPECTRE, Quantum, MI6-Emblem und CIA-Siegel
+  vom Nutzer, vektorisiert in Seitenfarben `LG`/`LG2`; Schatzamt eigenes Abzeichen), Akte, Mitglieder (→ `paOpen`), Organigramm `#ogSvg` (Befehlsweg, Geld,
   Feindkontakt; Hover hebt Verbindungen hervor), Auswahl `ops5-org`.
 - Tests: Playwright-Skripte müssen vor dem Laden `window.__NOINTRO=1` per `addInitScript` setzen, sonst läuft das Intro.
