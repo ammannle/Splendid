@@ -126,4 +126,7 @@ Freigabe: „Anyone with the link“ ist aktiv. Wer die Seite offen hat, sieht n
   Z8 und V12 Vanquish vom Nutzer gelieferte Bauplan-Zeichnungen (Quelle steht im Datenblatt). Porträts in `PT` von Hand nach
   Fotos digitalisiert (wenige klare Linien; Bond bewusst reduziert). Missionsbriefing (`#mission`) als Rohfassung vorhanden,
   wird nach Fertigstellung aller Zeichnungen ausgebaut.
+- Version 17 (06.10.2026): Porträts aller elf Personenakten und die Maßfigur 007 im Smoking nach vom Nutzer gelieferten
+  Grafiken, in Tonstufen vektorisiert (`PS` je Person: `bb` + Ebenen `L` [s,1,2,3,i,r], Zeichner `stencil()`; Figur `BFS` als
+  `<symbol id="bfSym">`, `bondFig()` setzt nur `<use>`). Farben `.pst-*`. Mustang Mach 1 und BMW 750iL nach Nutzer-Vorlagen neu.
 - Tests: Playwright-Skripte müssen vor dem Laden `window.__NOINTRO=1` per `addInitScript` setzen, sonst läuft das Intro.
