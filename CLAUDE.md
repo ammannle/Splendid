@@ -206,4 +206,11 @@ Freigabe: „Anyone with the link“ ist aktiv. Wer die Seite offen hat, sieht n
   Live-Werte Distanz/Uhrzeit/Tempo, Wegpunkte, Grenzübertritt, Ankunft; Schrift skaliert mit `--fz`. Überlappungstest über alle Szenen
   (Desktop/Handy) und Korrekturen. Stimme: Chatterbox mit natürlicher Studio-Referenz (XTTS-Sprecherin, synthetisch), Tempo 1,12
   (~150 Wörter/min), fehlerhafte Clips satzweise mit Spracherkennungs-Kontrolle neu erzeugt. Faktenkorrektur: Dimitrios stirbt auf den Bahamas.
+- Version 28 (06.10.2026): Briefing v4, ca. 3:10 min. Auftrag (~60 s): Cold Open, Lagebild 1–3 (Organigramm, Szene 2 mit zweiter
+  Kamerafahrt `og2`), Konto VESPER, Titel. Danach 13 Zielobjekte entlang der Route (`ZIELOBJEKT 01–13 / 13` statt Tag/Uhrzeit), Fahrten
+  a–d (HUD zeigt Fahrzeit), Pokertisch nach dem Kaiserbad, Finale. Kapitel-Chips AUFTRAG · LOKET · KARLSBAD · PRAG · RÜCKWEG · FINALE.
+  Texteinblendungen (Kernsätze) auf Wunsch entfernt. Musik: fünf Orchester-Stücke per MusicGen (`tools/music.py`, `#muData`:
+  brief, title, drive, casino, final), Auswahl `cueOf()`, Überblendung und nahtlose Schleifen in `SND.cue`; Synthese nur noch als Fallback.
+  Stimme: `tools/tts_robust.py` (ganzer Text bis 3 Versuche, sonst Satz für Satz bis 6, Whisper-medium-Kontrolle, Annahme ab 97 %,
+  Eigennamen müssen hörbar sein, Kürzung erfundener Silben am Ende, `SEEDOFF` für neue Zufallswerte), Tempo 1,17 in `tools/tts.py`.
 - Tests: Playwright-Skripte müssen vor dem Laden `window.__NOINTRO=1` per `addInitScript` setzen, sonst läuft das Intro.
