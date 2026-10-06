@@ -147,4 +147,11 @@ Freigabe: „Anyone with the link“ ist aktiv. Wer die Seite offen hat, sieht n
   („KARLOVY VARY, TSCHECHIEN · TAG 1 · 14:00 MEZ“), Sprecherkennung „M“ im Untertitel. Ton `SND` rein synthetisch per WebAudio
   (Grundton, Akkord-Stich, Schlag, Wischen, Herzschlag im Casino, Ping bei Zielerfassung, Tippen), standardmäßig aus, Knopf `#msSnd`,
   Wahl unter `ops5-mssnd`. Pause hält auch den Ton an.
+- Version 20 (06.10.2026): Modul 08-X „Qs Gadgets“ (`#gadgets`, nach der Garage, Kürzel X, Nav „Gadgets“), Aufbau wie die Garage
+  (Klassen `gz*` wiederverwendet): neun Gadgets in `GD` (Kugelschreiber-Granate, Omega Seamaster, Defibrillator, Fabergé-Ei,
+  Bell Rocket Belt, Little Nellie, Goldener Colt, Walther PPK, Q-Boot) mit Film, Basis, Funktion, Bedienung, Einsatz,
+  Rückgabeprotokoll, Q- und M-Notiz. Baupläne aus vom Nutzer gelieferten Zeichnungen in `GDA` (vektorisiert, Zeichenanimation),
+  Blatt mit Legende und Schriftfeld, nummerierte Merkmale `pts` mit Vorführeffekten (`FX`: shot, torpedo, laser, thrust, rotor,
+  spin, waves, charge, defib, click, boom), „Vorführen“ spielt alle nacheinander. Filter nach Kategorie, Vollbild,
+  Ausgabe quittieren (`ops5-gdq`), Ausgabebuch; gewähltes Gadget unter `ops5-gd`.
 - Tests: Playwright-Skripte müssen vor dem Laden `window.__NOINTRO=1` per `addInitScript` setzen, sonst läuft das Intro.
