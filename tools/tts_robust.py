@@ -99,7 +99,7 @@ def main(ref, outdir, only=None):
         f = os.path.join(outdir, f'm_{tts.key(c)}.wav')
         if os.path.exists(f) and not only: continue
         text = norm(c)
-        sc, a, hyp = best_of(text, 6, 7 + i * 13)
+        sc, a, hyp = best_of(text, 3, 7 + i * 13)
         if sc < .95 and len(sentences(text)) > 1:
             parts = []
             for j, snt in enumerate(sentences(text)):
