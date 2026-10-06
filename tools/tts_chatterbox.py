@@ -48,7 +48,7 @@ def main(outdir, ref_m, ref_s, only=None):
             if not c: continue
             f = os.path.join(outdir, f'{vk}_{tts.key(c)}.wav')
             if os.path.exists(f): continue
-            torch.manual_seed(7 + i)
+            torch.manual_seed(int(os.environ.get('SEED', 7)) + i)
             pieces = []
             for snt in sentences(norm(c)):
                 w = model.generate(snt, language_id='de', audio_prompt_path=ref, **VOICE[vk])
