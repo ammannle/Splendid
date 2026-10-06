@@ -32,7 +32,7 @@ def sentences(t):
     parts = re.split(r'(?<=[.!?])\s+', t.strip())
     out = []
     for p in parts:  # sehr kurze Sätze an den vorigen hängen
-        if out and len(p) < 18: out[-1] += ' ' + p
+        if out and (len(p) < 18 or len(out[-1]) < 25): out[-1] += ' ' + p
         else: out.append(p)
     return out
 
