@@ -54,7 +54,7 @@ def radio(w, mp, br, light=False):
     harte Kompression, Rauschteppich, Kanal öffnet mit Rauschstoß und Piepton, endet mit Quittungston."""
     sr = 'aformat=sample_rates=22050:channel_layouts=mono'
     voice = (
-        (f'[0:a]{sr},highpass=f=120,lowpass=f=7000,equalizer=f=2500:t=q:w=1:g=2.5,'  # realistisch: nur sanft gefärbt
+        (f'[0:a]{sr},rubberband=tempo=1.12:formant=preserved,highpass=f=120,lowpass=f=7000,equalizer=f=2500:t=q:w=1:g=2.5,'  # realistisch: nur sanft gefärbt
          'acompressor=threshold=-22dB:ratio=3:attack=5:release=100:makeup=2,'
          'aecho=0.9:0.35:11|23:0.08|0.05,loudnorm=I=-16:TP=-1.5,apad=pad_dur=0.12[v];' if light else
          f'[0:a]{sr},rubberband=pitch=0.94:formant=preserved,highpass=f=260,lowpass=f=3900,'

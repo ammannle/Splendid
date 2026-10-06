@@ -3,7 +3,7 @@
 
 Aufruf (in einer Umgebung mit torch + chatterbox-tts):
   python tools/tts_chatterbox.py <Ausgabeordner> <Referenz-M.wav> <Referenz-Erzähler.wav>
-Als Referenz dienen synthetische Piper-Stimmen (keine echten Personen). Danach:
+Als Referenz dient eine synthetische Studiostimme (XTTS-v2-Sprecherin „Claribel Dervla“, keine echte Person). Danach:
   python3 tools/tts.py --wavdir <Ausgabeordner>
 Erzeugt je Szene und Stimme <vk>_<key>.wav, Satz für Satz (stabiler), mit kurzen Pausen dazwischen.
 """
@@ -16,7 +16,8 @@ from chatterbox.mtl_tts import ChatterboxMultilingualTTS
 # Nur Zahlen, Abkürzungen und Zeichen ausschreiben; Namen bleiben im Original (das Modell spricht sie selbst)
 LIGHT = [(r'\bMr\. ', 'Mister '), (r'\bD6\b', 'D sechs'), (r'\bDBS\b', 'D B S'), (r'\bQ\b', 'Kju'), ('Modul 07', 'Modul null sieben'),
          (r'\bTag 1\b', 'Tag eins'), (r'\bTag 2\b', 'Tag zwei'), (r'\bTag 3\b', 'Tag drei'), (r'\bTerminal 1\b', 'Terminal eins'), ('Dritter Tag. Venedig, Kalter Krieg, Heimfahrt.', 'Tag drei. Wenedig. Kalter Krieg. Heimfahrt.'),
-         ('Doppelnull-Einheit. Hier spricht M.', 'Doppel-Null-Einheit, hier spricht M.')]
+         ('Doppelnull-Einheit. Hier spricht M.', 'Doppel-Null-Einheit, hier spricht M.'),
+         ('Kennwort: VESPER', 'Kennwort, Vesper'), (r'\bVESPER\b', 'Vesper'), ('SPECTRE', 'Spectre'), (r'\b2006\b', 'zweitausendsechs')]
 NUM = {1:'eins',2:'zwei',3:'drei',4:'vier',5:'fünf',6:'sechs',7:'sieben',8:'acht',9:'neun',10:'zehn',11:'elf',12:'zwölf',13:'dreizehn',14:'vierzehn',
        15:'fünfzehn',16:'sechzehn',17:'siebzehn',18:'achtzehn',19:'neunzehn',20:'zwanzig',21:'einundzwanzig',22:'zweiundzwanzig',30:'dreißig',45:'fünfundvierzig'}
 
@@ -37,7 +38,7 @@ def sentences(t):
         else: out.append(p)
     return out
 
-VOICE = {'m': dict(exaggeration=0.62, cfg_weight=0.45, temperature=0.7), 's': dict(exaggeration=0.55, cfg_weight=0.45, temperature=0.7)}
+VOICE = {'m': dict(exaggeration=0.5, cfg_weight=0.5, temperature=0.7), 's': dict(exaggeration=0.55, cfg_weight=0.45, temperature=0.7)}
 
 def main(outdir, ref_m, ref_s, only=None):
     os.makedirs(outdir, exist_ok=True)
@@ -53,7 +54,7 @@ def main(outdir, ref_m, ref_s, only=None):
             pieces = []
             for snt in sentences(norm(c)):
                 w = model.generate(snt, language_id='de', audio_prompt_path=ref, **VOICE[vk])
-                pieces += [w, torch.zeros(1, int(model.sr * 0.2))]
+                pieces += [w, torch.zeros(1, int(model.sr * 0.16))]
             ta.save(f, torch.cat(pieces[:-1], dim=1), model.sr)
             print(vk, i, norm(c)[:70], flush=True)
 

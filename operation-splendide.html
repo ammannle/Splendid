@@ -1312,7 +1312,9 @@ html.msfull{overflow:hidden}
 .ms-acmap text{font-family:var(--mono);font-size:11px;letter-spacing:.12em;fill:var(--ink)}.ms-acmap .src{fill:var(--mute)}
 .ms-rm{position:absolute;inset:0;background:var(--mapbg);overflow:hidden}
 .ms-rm svg{position:absolute;inset:0;width:100%;height:100%}
-.ms-rm .m-townt{font-size:7.5px}.ms-rm .m-tn2{font-size:6px}.ms-rm .m-rng{font-size:5.5px}.ms-rm .m-rivt{font-size:5.5px}.ms-rm .m-road{font-size:5.5px}.ms-rm .rm-cty{font-family:var(--mono);font-size:7px;letter-spacing:.3em;fill:var(--mute);opacity:.7}
+.ms-rm .m-townt{font-size:calc(7.5px*var(--fz,1))}.ms-rm .m-tn2{font-size:calc(6px*var(--fz,1))}.ms-rm .m-rng{font-size:calc(5.5px*var(--fz,1))}.ms-rm .m-rivt{font-size:calc(5.5px*var(--fz,1))}.ms-rm .m-road{font-size:calc(5.5px*var(--fz,1))}.ms-rm .rm-cty{font-family:var(--mono);font-size:calc(7px*var(--fz,1));letter-spacing:.3em;fill:var(--mute);opacity:.7}
+.ms-rm .m-river,.ms-rm .m-border,.ms-rm .rm-all,.ms-rm .m-grid,.ms-rm .plate,.ms-rm .m-town,.ms-rm .m-town2{vector-effect:non-scaling-stroke}.ms-rm .m-river{stroke-width:2.4px}
+.ms-rm .rm-lab{font-family:var(--mono);font-size:calc(8px*var(--fz,1));font-weight:600;letter-spacing:.08em;fill:var(--red);paint-order:stroke;stroke:var(--mapbg);stroke-width:3px;vector-effect:non-scaling-stroke}
 .ms-rm .rm-all{fill:none;stroke:var(--cyan);stroke-width:1.4;opacity:.25;stroke-linejoin:round}
 .ms-rm .rm-ahead{fill:none;stroke:var(--amber);stroke-width:2;stroke-dasharray:5 5;opacity:.75;stroke-linejoin:round;vector-effect:non-scaling-stroke}
 .ms-rm .rm-done{fill:none;stroke:var(--amber);stroke-width:3.2;stroke-linejoin:round;stroke-linecap:round;filter:drop-shadow(0 0 3px var(--amber));vector-effect:non-scaling-stroke}
@@ -4535,8 +4537,8 @@ const RL={a:{f:'aug',t:'loket',set:'out',km:335,t0:'07:30',t1:'11:30',via:'A8 ·
 const RT={aug:'AUGSBURG',loket:'LOKET',kv:'KARLSBAD',prg:'PRAG'};
 function rproj(){const m=maps.route,[la0,la1,lo0,lo1]=m.b,k=Math.cos((la0+la1)/2*Math.PI/180),W=1000,H=470,pad=24,sc=Math.min((W-2*pad)/((lo1-lo0)*k),(H-2*pad)/(la1-la0)),ox=(W-(lo1-lo0)*k*sc)/2,oy=(H-(la1-la0)*sc)/2;
   return{P:(la,lo)=>[ox+(lo-lo0)*k*sc,oy+(la1-la)*sc],sc}}
-let RMB=null;
-function rbase(){if(RMB)return RMB;const m=maps.route,{P}=rproj(),W=1000,H=470,pth=pts=>'M'+pts.map(q=>P(q[0],q[1]).map(v=>v.toFixed(1)).join(' ')).join('L');let o='';
+const RMB={};
+function rbase(fz){fz=+fz||1;if(RMB[fz])return RMB[fz];const m=maps.route,{P}=rproj(),W=1000,H=470,pth=pts=>'M'+pts.map(q=>P(q[0],q[1]).map(v=>v.toFixed(1)).join(' ')).join('L');let o='';
   for(let x=0;x<=W;x+=25)o+=`<line x1="${x}" y1="0" x2="${x}" y2="${H}" class="m-grid${x%125?'':' maj'}"/>`;for(let y=0;y<=H;y+=25)o+=`<line x1="0" y1="${y}" x2="${W}" y2="${y}" class="m-grid${y%125?'':' maj'}"/>`;
   if(m.hills){const H2=m.hills.map(([la,lo,h,sg])=>{const[x,y]=P(la,lo);return[x,y,h,2*sg*sg*.62]}),f=(x,y)=>{let v=.07*Math.sin(x/37+1.3)*Math.cos(y/29)+.05*Math.sin((x+y)/53);for(const[a,b,h,q]of H2)v+=h*Math.exp(-((x-a)**2+(y-b)**2)/q);return v};
     const st=7,nx=Math.ceil(W/st)+1,ny=Math.ceil(H/st)+1,V=[];for(let j=0;j<ny;j++){const r=[];for(let i=0;i<nx;i++)r.push(f(i*st,j*st));V.push(r)}
@@ -4545,14 +4547,14 @@ function rbase(){if(RMB)return RMB;const m=maps.route,{P}=rproj(),W=1000,H=470,p
       ({1:[[Lf,B]],2:[[B,Rr]],3:[[Lf,Rr]],4:[[T,Rr]],5:[[Lf,T],[B,Rr]],6:[[T,B]],7:[[Lf,T]],8:[[Lf,T]],9:[[T,B]],10:[[T,Rr],[Lf,B]],11:[[T,Rr]],12:[[Lf,Rr]],13:[[B,Rr]],14:[[Lf,B]]})[c].forEach(([p,q])=>d+=sg(p,q))}
       if(d)o+=`<path d="${d}" class="m-cont${li%2?'':' maj'}"/>`})}
   (m.ranges||[]).forEach(([n,la,lo])=>{const[x,y]=P(la,lo);o+=`<text x="${x}" y="${y}" class="m-rng" text-anchor="middle">${n}</text>`});
-  (m.rivers||[]).forEach(([pts,n,lp])=>{o+=`<path d="${pth(pts)}" fill="none" class="m-river" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>`;const[x,y]=P(lp[0],lp[1]);o+=`<text x="${x}" y="${y+9}" class="m-rivt sm" text-anchor="middle">${n}</text>`});
+  (m.rivers||[]).forEach(([pts,n,lp])=>{o+=`<path d="${pth(pts)}" fill="none" class="m-river" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>`;const[x,y]=P(lp[0],lp[1]);o+=`<text x="${x}" y="${y+9*fz}" class="m-rivt sm" text-anchor="middle">${n}</text>`});
   if(m.border)o+=`<path d="${pth(m.border)}" fill="none" class="m-border" stroke-width="1.2" stroke-dasharray="2 4"/>`;
   {const[x,y]=P(49.05,11.95);o+=`<text x="${x}" y="${y}" class="rm-cty">DEUTSCHLAND</text>`;const[x2,y2]=P(49.45,13.75);o+=`<text x="${x2}" y="${y2}" class="rm-cty">ČESKÁ REPUBLIKA</text>`}
   o+=`<path d="${pth(m.out)}" class="rm-all"/><path d="${pth(m.back)}" class="rm-all" stroke-dasharray="4 4"/>`;
-  (m.roads||[]).forEach(([n,la,lo])=>{const[x,y]=P(la,lo);o+=`<rect x="${x-8}" y="${y-4.5}" width="16" height="8" rx="1.5" class="plate road"/><text x="${x}" y="${y+2}" class="m-road" text-anchor="middle">${n}</text>`});
-  (m.towns2||[]).forEach(([n,la,lo])=>{const[x,y]=P(la,lo);o+=`<circle cx="${x}" cy="${y}" r="1.6" class="m-town2"/><text x="${x+4}" y="${y+2.5}" class="m-tn2">${n}</text>`});
-  m.towns.forEach(([n,la,lo,ps])=>{const[x,y]=P(la,lo),l=ps==='l';o+=`<rect x="${x-2}" y="${y-2}" width="4" height="4" class="m-town"/><text x="${l?x-5:x+5}" y="${y-4}" class="m-townt" ${l?'text-anchor="end"':''}>${n.toUpperCase()}</text>`});
-  return RMB=o}
+  (m.roads||[]).forEach(([n,la,lo])=>{const[x,y]=P(la,lo);o+=`<rect x="${x-8*fz}" y="${y-4.5*fz}" width="${16*fz}" height="${8*fz}" rx="1.5" class="plate road"/><text x="${x}" y="${y+2*fz}" class="m-road" text-anchor="middle">${n}</text>`});
+  (m.towns2||[]).forEach(([n,la,lo])=>{const[x,y]=P(la,lo);o+=`<circle cx="${x}" cy="${y}" r="${1.6*fz}" class="m-town2"/><text x="${x+4*fz}" y="${y+2.5*fz}" class="m-tn2">${n}</text>`});
+  m.towns.forEach(([n,la,lo,ps])=>{const[x,y]=P(la,lo),l=ps==='l';o+=`<rect x="${x-2*fz}" y="${y-2*fz}" width="${4*fz}" height="${4*fz}" class="m-town"/><text x="${l?x-5*fz:x+5*fz}" y="${y-4*fz}" class="m-townt" ${l?'text-anchor="end"':''}>${n.toUpperCase()}</text>`});
+  return RMB[fz]=o}
 function rleg(k){const L=RL[k],m=maps.route,{P}=rproj(),src=L.set==='out'?m.out:m.back,C={aug:[48.3705,10.8978],loket:[50.1866,12.754],kv:[50.2306,12.8711],prg:[50.0755,14.4378]};
   const near=c=>{let b=0,bd=1e9;src.forEach((q,i)=>{const d=(q[0]-c[0])**2+(q[1]-c[1])**2;if(d<bd){bd=d;b=i}});return b};let a=near(C[L.f]),b=near(C[L.t]);if(L.set==='back'&&b===0)b=src.length-1;
   const raw=(a<=b?src.slice(a,b+1):src.slice(b,a+1).reverse()).map(q=>P(q[0],q[1]));
@@ -4566,11 +4568,12 @@ function rleg(k){const L=RL[k],m=maps.route,{P}=rproj(),src=L.set==='out'?m.out:
 function rmap(k){const R2=rleg(k),L=R2.L,[dx,dy]=R2.pts[R2.pts.length-1];
   const tk0=[...R2.wps.filter(w=>w[1]>.06&&w[1]<.94).map(w=>[w[0].toUpperCase(),w[1],'']),...(R2.bf!=null&&!R2.wps.some(w=>Math.abs(w[1]-R2.bf)<.06)?[['GRENZE',R2.bf,'']]:[])].sort((a,b)=>a[1]-b[1]),ticks=[[RT[L.f],0,'s']];
   tk0.forEach(t=>{if(t[1]-ticks[ticks.length-1][1]>.09&&t[1]<.91)ticks.push(t)});ticks.push([RT[L.t],1,'e']);
-  return `<div class="ms-rm" data-leg="${k}"><svg viewBox="0 0 1000 470" preserveAspectRatio="xMidYMid slice" aria-hidden="true">${rbase()}
+  const fz=(L.z/400).toFixed(3),known=maps.route.towns.some(t=>t[0].toUpperCase().startsWith(RT[L.t]));
+  return `<div class="ms-rm" data-leg="${k}"><svg viewBox="0 0 1000 470" preserveAspectRatio="xMidYMid slice" aria-hidden="true" style="--fz:${fz}">${rbase(fz)}
     <path d="${R2.d}" class="rm-ahead"/><path d="${R2.d}" class="rm-done" pathLength="1" stroke-dasharray="0 1"/>
-    ${R2.wps.map(w=>`<g class="rm-wp" data-f="${w[1].toFixed(3)}"><circle cx="${w[2].toFixed(1)}" cy="${w[3].toFixed(1)}" r="3.2"/></g>`).join('')}
-    <circle class="rm-dest" cx="${dx.toFixed(1)}" cy="${dy.toFixed(1)}" r="9"/>
-    <g class="rm-car"><circle class="halo" r="10"/><circle r="6"/><path d="M7 0L-5 -5L-2.5 0L-5 5Z"/></g></svg>
+    ${R2.wps.map(w=>`<g class="rm-wp" data-f="${w[1].toFixed(3)}"><circle cx="${w[2].toFixed(1)}" cy="${w[3].toFixed(1)}" r="${(3.2*fz).toFixed(2)}"/></g>`).join('')}
+    <circle class="rm-dest" cx="${dx.toFixed(1)}" cy="${dy.toFixed(1)}" r="${(9*fz).toFixed(2)}"/>${known?'':`<text class="rm-lab" x="${(dx-6*fz).toFixed(1)}" y="${(dy+12*fz).toFixed(1)}" text-anchor="end">${RT[L.t]}</text>`}
+    <g class="rm-car"><g transform="scale(${fz})"><circle class="halo" r="10"/><circle r="6"/><path d="M7 0L-5 -5L-2.5 0L-5 5Z"/></g></g></svg>
     <div class="rm-hud"><div class="rm-tl"><span>ETAPPE ${k.toUpperCase()} · ${L.via}</span><b>${RT[L.f]} → ${RT[L.t]}</b></div>
     <div class="rm-tr"><div><i>DISTANZ</i><b class="v-km">0 KM</b></div><div><i>UHRZEIT</i><b class="v-t">${L.t0}</b></div><div><i>TEMPO</i><b class="v-v">0</b></div></div>
     <div class="rm-ban"></div><div class="rm-bot">${ticks.map(t=>`<span class="rm-tk ${t[2]}" data-f="${t[1].toFixed(3)}" style="left:${(t[1]*100).toFixed(1)}%">${t[0]}</span>`).join('')}<div class="rm-bar"><i></i></div></div></div></div>`}
