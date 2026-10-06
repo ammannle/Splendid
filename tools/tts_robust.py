@@ -24,11 +24,11 @@ from faster_whisper import WhisperModel
 NUM = {1:'eins',2:'zwei',3:'drei',4:'vier',5:'fünf',6:'sechs',7:'sieben',8:'acht',9:'neun',10:'zehn',11:'elf',12:'zwölf',13:'dreizehn',
        14:'vierzehn',15:'fünfzehn',16:'sechzehn',17:'siebzehn',18:'achtzehn',19:'neunzehn',20:'zwanzig',21:'einundzwanzig',22:'zweiundzwanzig',30:'dreißig',45:'fünfundvierzig'}
 # Aussprache: Namen so geschrieben, wie eine deutsche Stimme sie richtig spricht
-SAY = [(r'\bMr\. ', 'Mister '), ('00-Einheit', 'Doppelnull-Einheit'), ('Doppelnull-Einheit. Hier spricht M.', 'Doppel-Null-Einheit. Hier spricht Emm.'),
+SAY = [(r'\bMr\. ', 'Mister '), ('00-Einheit', 'Doppelnull-Einheit'), ('Doppelnull-Einheit, hier spricht M.', 'Doppel-Null-Einheit, hier spricht Emm.'), (r'\bDoppelnull\b', 'Doppel-Null'),
        ('Kennwort: VESPER.', 'Das Kennwort lautet Wesper.'), (r'\bVESPER\b', 'Wesper'), (r'\bVesper\b', 'Wesper'), ('SPECTRE', 'Spekter'),
        (r'\b2006\b', 'zweitausendsechs'), ('Le Chiffre', 'Lö Schiffre'), ('Cheb', 'Chepp'), ('Tržiště', 'Trschischtje'),
        ('Vítkov', 'Wietkoff'), ('Planá', 'Plahna'), ('Strahov', 'Strachoff'), ('Karlín', 'Karliin'), ('Barrandov', 'Barrandoff'),
-       ('Danube House', 'Dänjub Haus'), ('Splendide', 'Splondiehd'), ('Straight Flush', 'Streht Flasch'), ('Casino Royale', 'Kasino Roajal'),
+       ('Danube House', 'Dänjub Haus'), ('Splendide', 'Splondiehd'), ('Straight Flush', 'Streht Flasch'), ('Casino Royale', 'Kasino Roajal'), (r'\bCasino\b', 'Kasino'),
        (r'\bBond\b', 'Bond'), ('Quantum', 'Kwantum'), ('Pupp', 'Pupp')]
 NAMES = {'chepp','trschischtje','wietkoff','plahna','strachoff','karliin','barrandoff','dänjub','splondiehd','streht','flasch','lö','schiffre',
          'kwantum','spekter','wesper','loket','pupp','kasino','roajal','emm','m'}

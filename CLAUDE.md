@@ -213,4 +213,10 @@ Freigabe: „Anyone with the link“ ist aktiv. Wer die Seite offen hat, sieht n
   brief, title, drive, casino, final), Auswahl `cueOf()`, Überblendung und nahtlose Schleifen in `SND.cue`; Synthese nur noch als Fallback.
   Stimme: `tools/tts_robust.py` (ganzer Text bis 3 Versuche, sonst Satz für Satz bis 6, Whisper-medium-Kontrolle, Annahme ab 97 %,
   Eigennamen müssen hörbar sein, Kürzung erfundener Silben am Ende, `SEEDOFF` für neue Zufallswerte), Tempo 1,17 in `tools/tts.py`.
+- Version 29 (06.10.2026): Briefing-Drehbuch komplett neu (Ms Stimme, Missionsbriefing statt Reiseführer: Lage, Konto VESPER, Auftrag
+  „Folgen Sie dem Geld“, je Zielobjekt ein Auftrag/Risiko). Längen wie v28 (Auftrag ~60–90 s, 13 Zielobjekte, Fahrten a–d).
+  Deutsche Namen, wo sie sicher ausgesprochen werden (Karolinenthal, Veitsberg, Plan, Markt unter dem Schlossturm).
+  Stimme: `tools/tts_perfect.py` (Wort-für-Wort-Prüfung per Ausrichtung gegen faster-whisper medium: jedes Soll-Wort vorhanden,
+  kein Zusatzwort, korrektes Ende, keine Pause > 0,9 s, Tempo plausibel; am Stück, sonst satzweise, mehrere Runden; Bericht
+  `report.txt`). Lautschrift weiter in `SAY` (tools/tts_robust.py), Erkennungs-Schreibweisen in `ALT`.
 - Tests: Playwright-Skripte müssen vor dem Laden `window.__NOINTRO=1` per `addInitScript` setzen, sonst läuft das Intro.
