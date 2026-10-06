@@ -1345,6 +1345,8 @@ html.msfull{overflow:hidden}
 @media (max-width:700px){.ms-sup{top:30px;bottom:auto;left:10px}.ms-sup b{font-size:.85rem;letter-spacing:.1em}.ms-x{display:none}.ms-hud .tl,.ms-hud .bl{display:none}
  .ms-lock span{font-size:.5rem;max-width:46vw;white-space:normal}.ma-k{font-size:.56rem;letter-spacing:.22em}.ma-s{font-size:.56rem;letter-spacing:.06em}.ma-h{letter-spacing:.04em}
  .ms-open.clean .mo-k{font-size:.5rem;letter-spacing:.16em;max-width:92%;text-align:center}.mo-sub{font-size:.5rem;letter-spacing:.1em;padding:0 8px}.rm-ban{font-size:.66rem;letter-spacing:.08em;padding:4px 8px}.ms-chap{gap:8px}}
+.ms-sup{bottom:54px}
+@media (max-width:700px){.ms-bpl .ms-side,.ms-split .ms-side{display:none}.ms-lock span{display:none}.ms-stamp{top:24%;font-size:1.1rem;padding:4px 12px}.ms-sup{bottom:auto}}
 /* v26 Dramaturgie: Handkamera, Schärfe ziehen, Kernsätze, Akt-Montage, Cold Open, Stempel, Verbindungsende, Oszilloskop, Lagestufe */
 .ms-hh{position:absolute;inset:0;scale:1.012;animation:msRack .9s ease-out both,msDrift 13s ease-in-out infinite alternate}
 @keyframes msRack{from{filter:blur(7px)}to{filter:none}}
@@ -4573,7 +4575,7 @@ function rmap(k){const R2=rleg(k),L=R2.L,[dx,dy]=R2.pts[R2.pts.length-1];
   return `<div class="ms-rm" data-leg="${k}"><svg viewBox="0 0 1000 470" preserveAspectRatio="xMidYMid slice" aria-hidden="true" style="--fz:${fz}">${rbase(fz)}
     <path d="${R2.d}" class="rm-ahead"/><path d="${R2.d}" class="rm-done" pathLength="1" stroke-dasharray="0 1"/>
     ${R2.wps.map(w=>`<g class="rm-wp" data-f="${w[1].toFixed(3)}"><circle cx="${w[2].toFixed(1)}" cy="${w[3].toFixed(1)}" r="${(3.2*fz).toFixed(2)}"/></g>`).join('')}
-    <circle class="rm-dest" cx="${dx.toFixed(1)}" cy="${dy.toFixed(1)}" r="${(9*fz).toFixed(2)}"/>${known?'':`<text class="rm-lab" x="${(dx-6*fz).toFixed(1)}" y="${(dy+12*fz).toFixed(1)}" text-anchor="end">${RT[L.t]}</text>`}
+    <circle class="rm-dest" cx="${dx.toFixed(1)}" cy="${dy.toFixed(1)}" r="${(9*fz).toFixed(2)}"/>${known?'':`<text class="rm-lab" x="${(dx+7*fz).toFixed(1)}" y="${(dy+13*fz).toFixed(1)}">${RT[L.t]}</text>`}
     <g class="rm-car"><g transform="scale(${fz})"><circle class="halo" r="10"/><circle r="6"/><path d="M7 0L-5 -5L-2.5 0L-5 5Z"/></g></g></svg>
     <div class="rm-hud"><div class="rm-tl"><span>ETAPPE ${k.toUpperCase()} · ${L.via}</span><b>${RT[L.f]} → ${RT[L.t]}</b></div>
     <div class="rm-tr"><div><i>DISTANZ</i><b class="v-km">0 KM</b></div><div><i>FAHRZEIT</i><b class="v-t">0:00</b></div><div><i>TEMPO</i><b class="v-v">0</b></div></div>
