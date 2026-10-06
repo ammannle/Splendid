@@ -68,12 +68,11 @@ def judge(asr, ref_text, wav, sr):
     # Satzanfang darf nicht fehlen
     if ref and hyp and difflib.SequenceMatcher(None, ref[0], hyp[0]).ratio() < .4 and ref[0] not in hyp[:3]: score -= .15
     # Ende: letztes Erkennungswort, das zu den letzten Soll-Wörtern passt
-    end = None
-    tail = set(ref[-3:])
+    # Ende: letztes Erkennungswort, das dem letzten Soll-Wort ähnelt (auch Namen); sonst das letzte erkannte Wort
+    end = hw[-1].end if hw else None
     for k in range(len(hw) - 1, -1, -1):
-        if hyp[k] in tail or difflib.SequenceMatcher(None, hyp[k], ref[-1]).ratio() > .6:
+        if hyp[k] and difflib.SequenceMatcher(None, hyp[k], ref[-1]).ratio() > .45:
             end = hw[k].end; break
-    if end is None and hw: end = hw[-1].end
     a, s0 = ta.load(wav)
     if end is not None:
         cut = min(a.shape[-1], int((end + 0.12) * s0))
