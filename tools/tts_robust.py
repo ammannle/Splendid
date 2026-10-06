@@ -25,7 +25,7 @@ NUM = {1:'eins',2:'zwei',3:'drei',4:'vier',5:'fünf',6:'sechs',7:'sieben',8:'ach
        14:'vierzehn',15:'fünfzehn',16:'sechzehn',17:'siebzehn',18:'achtzehn',19:'neunzehn',20:'zwanzig',21:'einundzwanzig',22:'zweiundzwanzig',30:'dreißig',45:'fünfundvierzig'}
 # Aussprache: Namen so geschrieben, wie eine deutsche Stimme sie richtig spricht
 SAY = [(r'\bMr\. ', 'Mister '), ('00-Einheit', 'Doppelnull-Einheit'), ('Doppelnull-Einheit. Hier spricht M.', 'Doppel-Null-Einheit. Hier spricht Emm.'),
-       ('Kennwort: VESPER', 'Kennwort, Wesper'), (r'\bVESPER\b', 'Wesper'), (r'\bVesper\b', 'Wesper'), ('SPECTRE', 'Spekter'),
+       ('Kennwort: VESPER.', 'Das Kennwort lautet Wesper.'), (r'\bVESPER\b', 'Wesper'), (r'\bVesper\b', 'Wesper'), ('SPECTRE', 'Spekter'),
        (r'\b2006\b', 'zweitausendsechs'), ('Le Chiffre', 'Lö Schiffre'), ('Cheb', 'Chepp'), ('Tržiště', 'Trschischtje'),
        ('Vítkov', 'Wietkoff'), ('Planá', 'Plahna'), ('Strahov', 'Strachoff'), ('Karlín', 'Karliin'), ('Barrandov', 'Barrandoff'),
        ('Danube House', 'Dänjub Haus'), ('Splendide', 'Splondiehd'), ('Straight Flush', 'Streht Flasch'), ('Casino Royale', 'Kasino Roajal'),
@@ -92,7 +92,7 @@ def main(ref, outdir, only=None):
     def best_of(text, n, seed):
         best = None
         for k in range(n):
-            torch.manual_seed(seed + k * 101)
+            torch.manual_seed(seed + k * 101 + int(os.environ.get('SEEDOFF', 0)))
             w = m.generate(text, language_id='de', audio_prompt_path=ref, **V)
             ta.save(tmp, w, m.sr)
             sc, a, hyp = judge(asr, text, tmp, m.sr)
