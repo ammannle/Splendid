@@ -15,7 +15,7 @@ from chatterbox.mtl_tts import ChatterboxMultilingualTTS
 
 # Nur Zahlen, Abkürzungen und Zeichen ausschreiben; Namen bleiben im Original (das Modell spricht sie selbst)
 LIGHT = [(r'\bMr\. ', 'Mister '), (r'\bD6\b', 'D sechs'), (r'\bDBS\b', 'D B S'), (r'\bQ\b', 'Kju'), ('Modul 07', 'Modul null sieben'),
-         (r'\bTag 1\b', 'Tag eins'), (r'\bTag 2\b', 'Tag zwei'), (r'\bTag 3\b', 'Tag drei'), (r'\bTerminal 1\b', 'Terminal eins')]
+         (r'\bTag 1\b', 'Tag eins'), (r'\bTag 2\b', 'Tag zwei'), (r'\bTag 3\b', 'Tag drei'), (r'\bTerminal 1\b', 'Terminal eins'), ('Dritter Tag. Venedig', 'Tag drei. Venedig')]
 NUM = {1:'eins',2:'zwei',3:'drei',4:'vier',5:'fünf',6:'sechs',7:'sieben',8:'acht',9:'neun',10:'zehn',11:'elf',12:'zwölf',13:'dreizehn',14:'vierzehn',
        15:'fünfzehn',16:'sechzehn',17:'siebzehn',18:'achtzehn',19:'neunzehn',20:'zwanzig',21:'einundzwanzig',22:'zweiundzwanzig',30:'dreißig',45:'fünfundvierzig'}
 
@@ -42,7 +42,7 @@ def main(outdir, ref_m, ref_s, only=None):
     os.makedirs(outdir, exist_ok=True)
     caps = tts.captions(open(tts.HTML, encoding='utf-8').read())
     model = ChatterboxMultilingualTTS.from_pretrained(device='cpu')
-    for vk, ref in (('m', ref_m), ('s', ref_s)):
+    for vk, ref in (('m', ref_m),):  # nur M (Erzähler auf Wunsch entfernt)
         if only and vk != only: continue
         for i, c in enumerate(caps):
             if not c: continue

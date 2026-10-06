@@ -907,7 +907,11 @@ body.boot .ph .st{animation:flick .9s 1s steps(2) 2}
 .gzs .fxg{stroke:var(--amber);stroke-width:1.6;fill:var(--amber)}.gzs .fxg.thick{stroke-width:2.4}
 .gzs .fxf{fill:#fff;stroke:var(--amber);stroke-width:1}.gzs .fxr{fill:var(--ink);stroke:var(--red)}.gzs .fxs{stroke:var(--mute);stroke-width:2;stroke-dasharray:3 3}
 .gzs .fxsh{fill:color-mix(in srgb,var(--amber) 25%,transparent);stroke:var(--amber);stroke-width:1}
-.gzs .fxe{fill:var(--amber);stroke:var(--ink)}.gzs .fxsm{fill:var(--mute);opacity:.6}
+.gzs .fx .fxseat,.gzs .fx .fxseat *{transform-box:view-box;transform-origin:0 0}
+.gzs .fxe{fill:var(--amber);stroke:var(--ink);stroke-width:30;stroke-linejoin:round}.gzs .fxman{fill:#1d2f3a;stroke:var(--ink);stroke-width:22;stroke-linejoin:round}.gzs .fxrk{fill:var(--mute);stroke:var(--ink);stroke-width:20}
+.gzs .fxjet{fill:#ffcf6a;stroke:var(--red);stroke-width:24;transform-box:fill-box;transform-origin:50% 0}.gzs .fxhatch{fill:var(--panel);stroke:var(--ink);stroke-width:1.2}
+.gzs .fxcan{fill:color-mix(in srgb,var(--amber) 70%,transparent);stroke:var(--ink);stroke-width:22}.gzs .fxcord{fill:none;stroke:var(--ink);stroke-width:8}
+.gzs .fxshp{fill:color-mix(in srgb,var(--cyan) 30%,var(--panel));stroke:var(--ink);stroke-width:1.4}.gzs .fxshl{stroke:var(--ink);stroke-width:.8;opacity:.7}.gzs .fxsm{fill:var(--mute);opacity:.6}
 .gzs .fxl{stroke:var(--red);stroke-width:1.6;fill:none}.gzs .fxfl{fill:var(--amber);stroke:var(--red)}
 .gzs .fxb{fill:none;stroke:var(--amber);stroke-width:2}.gzs .fxra{fill:none;stroke:var(--green);stroke-width:1}
 .gzs .fxt{font-size:11px;fill:var(--amber);font-weight:600}.gzs .fxsaw{fill:none;stroke:var(--red);stroke-width:1.4}
@@ -1505,7 +1509,7 @@ html.msfull{overflow:hidden}
     <div class="panel ms"><div class="ph"><b>BRIEFING // OPERATION SPLENDIDE</b><span class="st" id="msTime"></span></div>
       <div class="ms-stage" id="msStage" aria-live="off"></div>
       <div class="ms-cap" id="msCap"><canvas class="ms-scope" id="msScope" aria-hidden="true"></canvas><div class="ms-ct" id="msCapT" aria-live="polite"></div><div class="ms-lage" id="msLage" aria-hidden="true"></div></div>
-      <div class="ms-ctl"><button type="button" class="qbtn go" id="msPlay">▶ ABSPIELEN</button><button type="button" class="qbtn" id="msPrev" aria-label="Vorherige Szene">‹ SZENE</button><button type="button" class="qbtn" id="msNext" aria-label="Nächste Szene">SZENE ›</button><button type="button" class="qbtn" id="msRe">↺ VON VORN</button><button type="button" class="qbtn" id="msVox" aria-pressed="false" title="Sprachausgabe">STIMME AUS</button><button type="button" class="qbtn" id="msVoice" title="Sprecher wechseln" hidden>SPRECHER: M</button><button type="button" class="qbtn" id="msSnd" aria-pressed="false" title="Musik und Effekte">♪ MUSIK AUS</button><button type="button" class="qbtn" id="msFull" aria-pressed="false" title="Vollbild (F)">⛶ VOLLBILD</button><span class="ms-time" id="msScene"></span><div class="ms-prog"><i id="msBar"></i></div></div>
+      <div class="ms-ctl"><button type="button" class="qbtn go" id="msPlay">▶ ABSPIELEN</button><button type="button" class="qbtn" id="msPrev" aria-label="Vorherige Szene">‹ SZENE</button><button type="button" class="qbtn" id="msNext" aria-label="Nächste Szene">SZENE ›</button><button type="button" class="qbtn" id="msRe">↺ VON VORN</button><button type="button" class="qbtn" id="msVox" aria-pressed="false" title="Sprachausgabe">STIMME AUS</button><button type="button" class="qbtn" id="msSnd" aria-pressed="false" title="Musik und Effekte">♪ MUSIK AUS</button><button type="button" class="qbtn" id="msFull" aria-pressed="false" title="Vollbild (F)">⛶ VOLLBILD</button><span class="ms-time" id="msScene"></span><div class="ms-prog"><i id="msBar"></i></div></div>
       <div class="ms-chips" id="msChips"></div>
     </div>
   </section>
@@ -3683,9 +3687,10 @@ const QV=(()=>{const NS='http://www.w3.org/2000/svg',RMq=matchMedia('(prefers-re
     if(RMq){o.run&&o.run();return}
     if(o.lower)lower(svg,o.lower[0],o.lower[1]);
     const z=o.zoom||1;if(z>1.05){snd('whoosh');await cam(svg,zoomBox(base,o.x,o.y,z),650)}
+    else if(z<.95){const w=base[2]/z,h=base[3]/z;await cam(svg,[o.x-w/2,base[1]+base[3]-h,w,h],650)}
     if(o.lockTxt!==false){const g=lock(L,o.x,o.y,o.lockTxt||'ZIEL ERFASST',o.ls||Math.max(.6,1.25/z));await new Promise(r=>setTimeout(r,520));an(g,[{opacity:1},{opacity:0}],{duration:400,delay:200});rm(g,700)}
     o.run&&o.run();await new Promise(r=>setTimeout(r,o.hold||1800));
-    if(z>1.05&&!o.keep)await cam(svg,base,700)}
+    if((z>1.05||z<.95)&&!o.keep)await cam(svg,base,700)}
   return{defs,cam,zoomBox,hud,lower,count,lock,flash,sparks,fire,smoke,shock,boom,whiteout,shake,arcs,tracer,casing,stage,snd,R,vbOf,ov}})();
 
 /* Qs Garage: Seitenrisse */
@@ -3846,8 +3851,36 @@ const FX={
  rocket(x,y,dx=-1,dy=0){const r=mk('g',{});mk('path',{d:`M${x} ${y}l${-dx*16} -3v6z`,class:'fxr'},r);const tr=mk('path',{d:`M${x-dx*16} ${y}h${-dx*30}`,class:'fxs'},r);
    anim(r,[{transform:'translate(0,0)'},{transform:`translate(${dx*520}px,${dy*520}px)`}],{duration:1300,easing:'ease-in'});done(r,1400)},
  rocketUp(x,y){FX.rocket(x,y,-.6,-.8)},torpedo(x,y){FX.rocket(x,y+8,-1,0)},
- shield(x,y){const s=mk('rect',{x:x-30,y:y,width:60,height:4,class:'fxsh'});anim(s,[{transform:'translateY(0) scaleY(1)'},{transform:'translateY(-26px)'}],{duration:500});setTimeout(()=>anim(s,[{opacity:1},{opacity:0}],{duration:600}),2600);done(s,3300)},
- eject(x,y){const s=mk('path',{d:`M${x-6} ${y}h12l-2 -16h-8z`,class:'fxe'});anim(s,[{transform:'translate(0,0) rotate(0)'},{transform:`translate(24px,${-Math.max(40,y-14)}px) rotate(160deg)`,offset:.6},{transform:`translate(40px,${-Math.max(40,y-14)+30}px) rotate(180deg)`,opacity:.3}],{duration:2200,easing:'ease-out'});done(s,2300);toast('<b>Q:</b> Schleudersitz. Ich scherze nie über meine Arbeit.')},
+ shield(x,y){/* Panzerschild hinter der Heckscheibe: fährt senkrecht aus, Treffer prallen ab */const g=G(),h=Math.max(38,y-g.Y(cur.H)+10),w=Math.max(7,60*g.k),sg=mk('g',{class:'fxshg'});
+   mk('rect',{x:x-w/2,y:y-h,width:w,height:h,rx:1,class:'fxshp'},sg);for(let i=1;i<5;i++)mk('path',{d:`M${x-w/2} ${(y-h*i/5).toFixed(1)}h${w}`,class:'fxshl'},sg);
+   mk('path',{d:`M${x-w/2-3} ${y}h${w+6}`,class:'fxshl'},sg);sg.style.transformBox='view-box';sg.style.transformOrigin=`${x}px ${y}px`;
+   anim(sg,[{transform:'scaleY(0)'},{transform:'scaleY(1.06)',offset:.75},{transform:'scaleY(1)'}],{duration:600,easing:'cubic-bezier(.3,.9,.3,1)',fill:'forwards'});
+   setTimeout(()=>anim(sg,[{transform:'scaleY(1)'},{transform:'scaleY(0)'}],{duration:500,easing:'ease-in',fill:'forwards'}),3700);done(sg,4300);
+   const L=fxL();for(let n=0;n<7;n++)setTimeout(()=>{const yy=y-h*(.15+Math.random()*.75);QV.tracer(L,Math.min(995,x+420),yy,-1,0,410,svg);setTimeout(()=>{QV.sparks(L,x+w/2+1,yy,10,0,.9,70,svg);QV.flash(L,x+w/2+2,yy,7,svg);if(n%2===0)QV.snd('tick')},230)},800+n*330)},
+ eject(x,y){/* Schleudersitz in Fahrzeugmaßstab (mm, Fahrtrichtung links): Dachluke fliegt ab, Sitz mit Insasse steigt auf Raketenstrahl, Fallschirm falls vorhanden */
+   const g=G(),k=g.k,q=cur.g.find(e=>e[4]==='eject'),chute=!!(q&&/Fallschirm/.test(q[3])),base=y+820*k,hw=430*k,dur=chute?4600:3000;
+   const hatch=mk('path',{d:`M${x-hw} ${y+2}h${2*hw}l-${14*k} ${-40*k}h${-2*hw+28*k}z`,class:'fxhatch'});hatch.style.transformBox='view-box';hatch.style.transformOrigin=`${x}px ${y}px`;
+   anim(hatch,[{transform:'translate(0,0) rotate(0)',opacity:1},{transform:`translate(${80+hw}px,${-Math.min(y-10,160)}px) rotate(130deg)`,opacity:1,offset:.6},{transform:`translate(${150+hw}px,${-Math.min(y-10,160)+60}px) rotate(250deg)`,opacity:0}],{duration:1500,easing:'cubic-bezier(.15,.7,.4,1)'});done(hatch,1600);
+   const sg=mk('g',{class:'fxseat'}),I=mk('g',{transform:`translate(${x} ${base}) scale(${k})`},sg);
+   if(chute){const cg=mk('g',{class:'fxchute'},I);mk('path',{d:'M140 -760L-600 -1700M240 -760L50 -1820M240 -760L700 -1700',class:'fxcord'},cg);
+     mk('path',{d:'M-700 -1690Q20 -2500 760 -1690Q560 -1780 380 -1700Q200 -1790 30 -1705Q-160 -1790 -330 -1700Q-520 -1780 -700 -1690Z',class:'fxcan'},cg);cg.style.transformBox='fill-box';cg.style.transformOrigin='50% 100%'}
+   const fl=mk('path',{d:'M-150 -10Q-60 220 0 520Q60 220 150 -10Z',class:'fxjet'},I);fl.style.transformBox='fill-box';fl.style.transformOrigin='50% 0';
+   mk('path',{d:'M-230 0H230V-70H-230Z',class:'fxrk'},I);
+   mk('path',{d:'M-260 -70H240Q275 -70 275 -115V-160H-235Q-262 -160 -262 -130Z',class:'fxe'},I);
+   mk('path',{d:'M160 -160L245 -160L345 -760Q350 -800 312 -806L250 -806Q222 -800 216 -768Z',class:'fxe'},I);
+   mk('path',{d:'M236 -830L330 -830L340 -955L248 -960Z',class:'fxe'},I);
+   mk('path',{d:'M-230 -185L170 -200L175 -305L-225 -290ZM-250 -290L-165 -295L-195 140L-280 135ZM115 -175L250 -180L285 -700Q270 -770 200 -780L105 -760Q50 -560 115 -175ZM185 -715L-70 -470L-100 -505L150 -760Z',class:'fxman'},I);
+   mk('circle',{cx:180,cy:-890,r:108,class:'fxman'},I);
+   /* Flugbahn per SVG-Attribut (Nutzerkoordinaten, unabhängig vom Kamera-Zoom): [Anteil, dx, dy, Drehung, Deckkraft] */
+   const cy0=base-420*k,top=(chute?-150:-140)-cy0,K=chute?[[0,0,0,0,1],[.12,-6,top*.55,-6,1],[.27,4,top,4,1],[.45,40,top+26,-5,1],[.65,95,top+80,5,1],[.85,160,top+140,-4,1],[1,200,top+170,2,0]]
+     :[[0,0,0,0,1],[.16,-4,top*.6,-10,1],[.36,30,top,70,1],[.55,120,top+30,220,1],[.86,240,GG-base-6,350,1],[1,270,GG-base-6,360,0]];
+   const ease=t=>t<.5?2*t*t:1-Math.pow(-2*t+2,2)/2,t0=performance.now();
+   (function step(now){const f=Math.min(1,(now-t0)/dur);let i=0;while(i<K.length-2&&f>K[i+1][0])i++;const a=K[i],b=K[i+1],u=ease(Math.min(1,(f-a[0])/(b[0]-a[0]))),L2=(j)=>a[j]+(b[j]-a[j])*u;
+     sg.setAttribute('transform',`translate(${L2(1).toFixed(1)} ${L2(2).toFixed(1)}) rotate(${L2(3).toFixed(1)} ${x} ${cy0.toFixed(1)})`);sg.setAttribute('opacity',L2(4).toFixed(2));if(f<1&&sg.isConnected)requestAnimationFrame(step)})(t0);
+   if(fl.animate)fl.animate([{opacity:1,transform:'scaleY(.6)'},{opacity:1,transform:'scaleY(1.2)'},{opacity:.9,transform:'scaleY(.8)'},{opacity:1,transform:'scaleY(1.3)'},{opacity:0,transform:'scaleY(.2)'}],{duration:dur*.3,fill:'forwards'});
+   if(chute){const cg=sg.querySelector('.fxchute');cg.animate&&cg.animate([{transform:'scale(0)',opacity:0},{transform:'scale(0)',opacity:0,offset:.26},{transform:'scale(1.1,.5)',opacity:1,offset:.33},{transform:'scale(1)',opacity:1}],{duration:dur,fill:'forwards'})}
+   if(!chute)setTimeout(()=>{const L=fxL();if(L){QV.sparks(L,x+240,GG-4,14,-Math.PI/2,1.1,80,svg);QV.smoke(L,x+240,GG-4,8,1,-.3,50,svg,500);QV.snd('hit')}},dur*.86);
+   done(sg,dur+100);toast(chute?'<b>Q:</b> Schleudersitz mit Fallschirm. Landung nicht inbegriffen.':'<b>Q:</b> Schleudersitz. Ich scherze nie über meine Arbeit.')},
  smoke(x,y,dir){dir=dir||(x>GW/2?1:-1);for(let i=0;i<9;i++){const c=mk('circle',{cx:x,cy:y,r:4,class:'fxsm'});anim(c,[{transform:'translate(0,0) scale(1)',opacity:.9},{transform:`translate(${dir*(40+i*14)}px,${-6-i*3}px) scale(${3+i*.4})`,opacity:0}],{duration:1600,delay:i*120});done(c,3000)}},
  spray(x,y){FX.smoke(x,y,-1)},
  spike(x,y){const g=G(),ax=[cur.fo,cur.fo+cur.WB].map(a=>g.X(a)).sort((a,b)=>Math.abs(a-x)-Math.abs(b-x))[0],cy=g.Y(cur.r),R=cur.r*g.k;
@@ -3891,9 +3924,10 @@ const FX={
    anim(s,[{transform:'translateX(-40px)'},{transform:`translateX(${f1(cur.L*g.k+80)}px)`}],{duration:2400,delay:i*300,easing:'linear'});done(s,3000)}
    setTimeout(()=>{const c=carG(),cl=c.cloneNode(true);cl.classList.add('half');c.parentNode.insertBefore(cl,c);anim(cl,[{transform:'translate(0,0)',opacity:.6},{transform:'translate(18px,-14px)',opacity:.6},{transform:'translate(18px,-14px)',opacity:.6},{transform:'translate(0,0)',opacity:0}],{duration:3200});setTimeout(()=>cl.remove(),3300)},2200)},
  none(){toast('<b>Q:</b> Keine Vorrichtung. Nur Fahrer und Glück.')}};
-const ZM={gun:2,gunR:2,rocket:1.4,rocketUp:1.4,torpedo:1.4,laser:1.6,smoke:1.6,spray:1.6,flame:1.8,radar:1.8,radio:1.8,defib:2.1,zap:2.1,blade:2.1,caltrop:1.5,mine:1.5,chute:1.6,plate:2.2,eject:1.4,shield:1.8,spike:1.6,boom:1.25};
-const HOLD={roll7:4700,sub:5100,shear:3600,saw:5600,cloak:3800,tilt:3200,spiral:2000,flip:2400,eject:2400,boom:2700,gun:1500,gunR:1500,rocket:2200,rocketUp:2200,torpedo:2200,laser:1800,defib:2000};
+const ZM={gun:2,gunR:2,rocket:1.4,rocketUp:1.4,torpedo:1.4,laser:1.6,smoke:1.6,spray:1.6,flame:1.8,radar:1.8,radio:1.8,defib:2.1,zap:2.1,blade:2.1,caltrop:1.5,mine:1.5,chute:1.6,plate:2.2,eject:.58,shield:1.5,spike:1.6,boom:1.25};
+const HOLD={roll7:4700,sub:5100,shear:3600,saw:5600,cloak:3800,tilt:3200,spiral:2000,flip:2400,eject:4700,shield:4300,boom:2700,gun:1500,gunR:1500,rocket:2200,rocketUp:2200,torpedo:2200,laser:1800,defib:2000};
 const gzBase=()=>mq.matches&&!gzd.classList.contains('full')?[40,18,880,380]:[0,0,1000,420];
+const R2=(a,b)=>a+Math.random()*(b-a);
 function boost(k,x,y){const L=fxL();if(!L)return;const g=G(),gy=GG-2;
   switch(k){
   case 'gun':case 'gunR':{const d=k==='gun'?-1:1;for(let i=0;i<6;i++)setTimeout(()=>{QV.flash(L,x+d*4,y,13,svg);QV.tracer(L,x,y,d,0,440,svg);QV.casing(L,x,y-3,svg);if(i%2===0)QV.snd('tick')},i*160);QV.shake(svg,1.4,1000);
@@ -3907,7 +3941,8 @@ function boost(k,x,y){const L=fxL();if(!L)return;const g=G(),gy=GG-2;
   case 'radar':case 'radio':{for(let i=0;i<3;i++)setTimeout(()=>QV.shock(L,x,y,90,svg),i*380);break}
   case 'defib':case 'zap':{QV.arcs(L,x-36,y-6,x+36,y+6,svg,900);setTimeout(()=>QV.whiteout(L,svg,.25),500);break}
   case 'boom':{QV.boom(L,x,y,1.5,svg);QV.shake(svg,6,800);QV.whiteout(L,svg,.45);break}
-  case 'eject':{QV.flash(L,x,y,16,svg);QV.smoke(L,x,y,14,0,1,40,svg,600);QV.snd('hit');break}
+  case 'eject':{const yb=y+820*g.k;QV.flash(L,x,y,26,svg);QV.sparks(L,x,y,22,-Math.PI/2,1.2,120,svg);QV.whiteout(L,svg,.18);QV.shake(svg,4,600);QV.snd('hit');setTimeout(()=>QV.snd('whoosh'),120);
+    for(let i=0;i<9;i++)setTimeout(()=>QV.smoke(L,x+R2(-6,6),Math.max(20,yb-i*28),4,R2(-.2,.2),.4,60,svg,900),60+i*70);QV.fire(L,x,y,22,0,1,50,svg,600);break}
   case 'caltrop':case 'mine':{setTimeout(()=>QV.sparks(L,x+60,gy,18,-Math.PI/2,1.2,70,svg),700);break}
   case 'roll7':case 'spiral':case 'flip':{for(let i=0;i<6;i++)setTimeout(()=>{QV.smoke(L,g.X(cur.fo+cur.WB/2)-i*40,gy,5,1,-.3,60,svg,300);QV.sparks(L,g.X(cur.fo+cur.WB/2)-i*40,gy,6,-Math.PI/2,1,70,svg)},i*(k==='roll7'?600:300));QV.shake(svg,2,1200);break}
   case 'shear':case 'saw':{for(let i=0;i<10;i++)setTimeout(()=>QV.sparks(L,g.X(cur.L*(i/10)),g.Y(k==='shear'?2900:cur.H)-4,6,-Math.PI/2,1.3,70,svg),(k==='saw'?200:0)+i*200);break}
@@ -4655,9 +4690,6 @@ const voxBtn=$('msVox');let voxArmed=false;
 function voxSet(v,say){VOX.set(v);S.set('msvox',v?1:0);voxBtn.setAttribute('aria-pressed',String(VOX.on));voxBtn.textContent=VOX.on?'STIMME AN':'STIMME AUS';voxArmed=VOX.on;if(VOX.on&&say&&cur>=0)VOX.speak(SC[cur].c);if(!VOX.on)VOX.cancel()}
 if(!VOX.has){voxBtn.disabled=true;voxBtn.title='Sprachausgabe wird von diesem Browser nicht unterstützt';voxBtn.textContent='STIMME –'}else if(S.get('msvox',1))voxBtn.textContent='STIMME AN (KLICK)';
 voxBtn.onclick=()=>voxSet(!VOX.on,true);
-const vcBtn=$('msVoice'),vcTxt=()=>{vcBtn.textContent=VOX.voice==='s'?'SPRECHER: ERZÄHLER':'SPRECHER: M'};
-vcBtn.onclick=()=>{VOX.voice=VOX.voice==='s'?'m':'s';vcTxt();if(VOX.on&&cur>=0)VOX.speak(SC[cur].c)};
-{const vcInit=()=>{if(VOX.rec&&VOX.voices.length>1){vcBtn.hidden=false;vcTxt()}};document.readyState==='loading'?document.addEventListener('DOMContentLoaded',vcInit):vcInit()}
 $('msPlay').onclick=()=>{if(S.get('mssnd',1)&&!SND.on)sndSet(true);const first=!voxArmed&&VOX.has&&S.get('msvox',1);if(first)voxSet(true,false);
   if(playing&&first){VOX.speak(SC[cur].c);return}playing?stop():(play(),first&&cur>=0&&VOX.speak(SC[cur].c))};
 $('msRe').onclick=()=>jump(0);

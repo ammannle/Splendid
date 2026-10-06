@@ -11,7 +11,6 @@ import base64, json, os, re, subprocess, sys, tempfile, wave
 HTML = os.path.join(os.path.dirname(__file__), '..', 'operation-splendide.html')
 VOICES = {  # Kennung: (Modell, Sprechtempo, Bitrate)
     'm': ('de_DE-kerstin-low', 0.96, '40k'),
-    's': ('de_DE-thorsten-high', 0.93, '40k'),
 }
 # Aussprache: englische und tschechische Namen für eine deutsche Stimme umschreiben
 SAY = [
