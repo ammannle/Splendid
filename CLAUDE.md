@@ -179,4 +179,9 @@ Freigabe: „Anyone with the link“ ist aktiv. Wer die Seite offen hat, sieht n
   `ops5-msvox` (Standard an, startet mit dem ersten Klick auf Abspielen). Musik live per WebAudio (`SND.mood(0–4)`: e-Moll i–VI–iv–V,
   92 BPM; Flächen, Bass-Ostinato, Puls, Pauken, Trommeln, Streicher-Tremolo, Blechstich), Stufe je Szene über `moodOf()`
   (Casino 3, DBS-Überschlag 4), wird unter der Stimme abgesenkt (`SND.duck`). Knopf `#msSnd` heißt jetzt „Musik“.
+- Version 25 (06.10.2026): Briefing-Stimme neu: statt Gerätestimme vorab erzeugte neuronale Aufnahmen (Piper, `tools/tts.py`),
+  zwei Sprecher (`m` Kerstin = M, Standard; `s` Thorsten = Erzähler, Knopf `#msVoice`, Wahl `ops5-msvoice`), als MP3/Base64 in
+  `<script type="application/json" id="vxData">` am Seitenende, Schlüssel = Prüfsumme des Szenentexts (`key()` in `VOX`, gleich in Python).
+  Wiedergabe per WebAudio, Musik wird darunter abgesenkt. Aussprache-Umschreibungen in `SAY` (tools/tts.py). **Nach jeder Änderung
+  an Szenentexten `SC[].c` das Skript erneut ausführen**, sonst liest für diese Szene die Gerätestimme (Fallback).
 - Tests: Playwright-Skripte müssen vor dem Laden `window.__NOINTRO=1` per `addInitScript` setzen, sonst läuft das Intro.
