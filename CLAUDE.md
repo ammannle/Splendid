@@ -140,4 +140,11 @@ Freigabe: „Anyone with the link“ ist aktiv. Wer die Seite offen hat, sieht n
   Barrandov, Planá, Pokertisch, Personen-Dossier, Finale. Startet automatisch, sobald sichtbar.
   Vollbild (`#msFull`, Taste F): echtes Fullscreen per `requestFullscreen`, sonst Overlay `.ms.full`; Esc beendet,
   Leertaste Pause, Pfeiltasten Szene; die laufende Szene wird in der neuen Größe neu aufgebaut (`redo()`).
+- Version 19 (06.10.2026): Briefing auf Kino-Niveau: Titelsequenz (`opening()`: Tinte, Kartensymbole, Silhouette 007 aus `#bfSym`,
+  Vorspann „MI6 · Q-Abteilung präsentiert“, „In den Hauptrollen Agent 01–04“, Titel-Schlag), Akt-Karten vor Tag 1–3 (`actCard()`),
+  Abspann (`credits()`, „Die 00-Einheit kehrt zurück“). Szenenübergänge `TRS` (dissolve, whip, cut, glitch, flash) mit Ausblendung des
+  alten Knotens (`.ms-old`), Letterbox in Titel/Karten/Abspann, Filmkorn und Vignette, Ortseinblendung `ms-sup` bei Ortswechsel
+  („KARLOVY VARY, TSCHECHIEN · TAG 1 · 14:00 MEZ“), Sprecherkennung „M“ im Untertitel. Ton `SND` rein synthetisch per WebAudio
+  (Grundton, Akkord-Stich, Schlag, Wischen, Herzschlag im Casino, Ping bei Zielerfassung, Tippen), standardmäßig aus, Knopf `#msSnd`,
+  Wahl unter `ops5-mssnd`. Pause hält auch den Ton an.
 - Tests: Playwright-Skripte müssen vor dem Laden `window.__NOINTRO=1` per `addInitScript` setzen, sonst läuft das Intro.
