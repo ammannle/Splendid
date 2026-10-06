@@ -1371,10 +1371,10 @@ html.msfull{overflow:hidden}
 .ms-stage .ms-hud{font-size:.76rem}.ms-stage .ms-k2,.ms-stage .ms-tt i{font-size:.74rem}.ms-stage .ms-as{font-size:.76rem}
 .ms-stage .ms-co{font-size:.74rem;color:color-mix(in srgb,var(--ink) 78%,var(--bg))}
 .ms-stage .rm-tk{font-size:clamp(.66rem,.95vw,.76rem);color:color-mix(in srgb,var(--ink) 70%,var(--bg))}.ms-stage .rm-tk.on{color:var(--green)}
-.ms-stage .rm-tl span{font-size:clamp(.66rem,1vw,.76rem)}.ms-stage .rm-tr i{font-size:clamp(.62rem,.9vw,.72rem);color:color-mix(in srgb,var(--ink) 70%,var(--bg))}
+.ms-stage .rm-tl span{font-size:clamp(.66rem,1vw,.76rem)}.ms-stage .rm-tr i{font-size:clamp(.66rem,.9vw,.74rem);color:color-mix(in srgb,var(--ink) 70%,var(--bg))}
 .ms-stage .ms-chap{font-size:clamp(.68rem,1.1vw,.8rem)}.ms-stage .ms-led{font-size:clamp(.66rem,1.15vw,.8rem)}.ms-stage .ms-led .sub{font-size:1em}
-.ms-stage .ms-open.clean .mo-k{font-size:.78rem}.ms-stage .mc-live,.ms-stage .ml-s{font-size:.78rem}.ms-stage .ms-face figcaption{color:var(--ink)}
-.ms-stage .ogsv.hl .e,.ms-stage .ogsv.hl .el,.ms-stage .ogsv.hl .pn,.ms-stage .ogsv.hl .on{opacity:.56}.ms-stage .ogsv.hl .lit{opacity:1}
+.ms-stage .ms-open.clean .mo-k{font-size:.78rem}.ms-stage .mc-live,.ms-stage .ml-s{font-size:.78rem}.ms-stage .mc-term{font-size:clamp(.68rem,1.4vw,.82rem)}.panel.ms.full .ms-stage .ms-hud{font-size:.72rem}.ms-stage .ms-face figcaption{color:var(--ink)}
+.ms-stage .ogsv.hl .e,.ms-stage .ogsv.hl .el,.ms-stage .ogsv.hl .pn,.ms-stage .ogsv.hl .on{opacity:.66}.ms-stage .ogsv.hl .lit{opacity:1}
 .ms-stage svg text.lgh{paint-order:stroke fill;stroke:var(--bg);stroke-linejoin:round;stroke-opacity:.92}
 /* Handy hochkant im Vollbild: Briefing quer gedreht, damit alle Schrift groß genug bleibt */
 .panel.ms.full.rot{inset:auto;left:0;top:0;width:100dvh;height:100vw;transform-origin:0 0;transform:translateX(100vw) rotate(90deg);padding:0 env(safe-area-inset-top,0px)}
@@ -4789,9 +4789,13 @@ function legib(node){if(!node||!node.isConnected)return;const inl=innerWidth<=70
       let m=1;const sp=t.closest('g[transform],text[transform]');if(sp&&sp.transform&&sp.transform.baseVal.numberOfItems){const c=sp.transform.baseVal.consolidate();if(c)m=Math.hypot(c.matrix.a,c.matrix.b)}
       const px=fs*k*m;t.dataset.lg=1;if(inl&&MIN/px>2.4){t.style.visibility='hidden';return}if(px<MIN)t.style.fontSize=(fs*MIN/px).toFixed(2)+'px';
       t.classList.add('lgh');t.style.strokeWidth=(2.6/(k*m)).toFixed(2)+'px'});
+    svg.querySelectorAll('svg text').forEach(t=>{const h=t.getBoundingClientRect().height;if(h>0&&h<7)t.style.visibility='hidden'});
     /* vergrößerte Schrift darf nichts überdecken: bei Kollision bleibt die größere (bzw. frühere) Beschriftung */
     const T=[...svg.querySelectorAll('text[data-lg]')].filter(t=>t.ownerSVGElement===svg&&t.style.visibility!=='hidden'&&t.style.fontSize).map(t=>({t,b:t.getBoundingClientRect(),f:parseFloat(t.style.fontSize)})).filter(q=>q.b.width>0);
     const ok=[];T.sort((a,b)=>b.f-a.f).forEach(q=>{const hit=ok.some(o=>o.b.left<q.b.right-1&&q.b.left<o.b.right-1&&o.b.top<q.b.bottom-2&&q.b.top<o.b.bottom-2);if(hit)q.t.style.visibility='hidden';else ok.push(q)})})}
+/* neue Inhalte einer Szene (Aufriss, Zeichnung, Karte) sofort nachprüfen */
+let legMo=null,legT=0;function legWatch(node){if(legMo)legMo.disconnect();const run=()=>{clearTimeout(legT);legT=setTimeout(()=>legib(node),40)};
+  legMo=new MutationObserver(run);legMo.observe(node,{childList:true,subtree:true});run();[700,2000,4000].forEach(d=>later(()=>legib(node),d))}
 function show(i){clear();cur=i;const s=SC[i],tr=RM?'cut':(s.tr||TRS[i%TRS.length]);
   st.querySelectorAll('.ms-old').forEach(n=>n.remove());const prev=st.querySelector('.ms-sc');
   if(prev&&tr!=='cut'){prev.classList.remove('in');prev.classList.add('ms-old','o-'+tr);setTimeout(()=>prev.remove(),700)}else if(prev)prev.remove();
@@ -4806,7 +4810,7 @@ function show(i){clear();cur=i;const s=SC[i],tr=RM?'cut':(s.tr||TRS[i%TRS.length
   chipsEl.querySelectorAll('button').forEach(b=>b.classList.toggle('on',+b.dataset.c===s.ch));
   $('msScene').textContent=`${String(i+1).padStart(2,'0')}/${SC.length}`;
   const svg=node.querySelector('.bp');if(svg){svg.classList.add('draw');if(RM)svg.classList.add('open','done')}
-  if(s.on)s.on(node,s);[60,700,1500,2500,3600,4800,6000,7500,9000,11000].forEach(d=>later(()=>{if(cur===i)legib(node)},d))}
+  if(s.on)s.on(node,s);legWatch(node)}
 function open(root){const svg=root.querySelector('.bp');later(()=>svg&&svg.classList.add('open'),1500)}
 /* Kernsätze (Kinetik-Typo) synchron zur Stimme: s.pw = [[Anker im Text, Einblendung, Klassen]] */
 function punch(node,txt,cls){cls=cls||'';if(/big/.test(cls)&&txt.length>9)cls+=' long';const e=document.createElement('div');e.className='ms-pw '+cls;e.textContent=txt;node.appendChild(e);setTimeout(()=>e.remove(),2600);
