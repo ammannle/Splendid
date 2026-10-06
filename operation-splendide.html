@@ -4646,14 +4646,7 @@ const SC=[
 SC.forEach(s=>{if(!s.art)return;
   if(s.bp)s.h=()=>`<div class="ms-two"><div class="ms-split ms-bpl">${bp(s.bp)}${side(Object.assign({},s,{face:null,car:null,x:null,k:s.k+' · AUFRISS'}))}</div><div class="ms-artl"></div></div>`,s.on=two;
   else s.h=()=>shot(s),s.on=art});
-/* Kernsätze: Anker im Sprechtext → Einblendung (r rot, a amber, big groß und zentriert, boom Einschlag) */
-[['nicht verziehen','NICHT VERZIEHEN.','r'],['zwei nachgewachsen','ZWEI NACHGEWACHSEN.','r'],['uns Vesper gekostet','ES HAT UNS VESPER GEKOSTET.','a'],
- ['Kennwort: VESPER','KENNWORT: VESPER','r big'],['Folgen Sie dem Geld','FOLGEN SIE DEM GELD.','a big'],['Männer am Fenster','ZÄHLEN SIE DIE MÄNNER AM FENSTER.','r'],
- ['Daher der Name','HOTEL SPLENDIDE','a big'],['größter Fehler','BONDS GRÖSSTER FEHLER.','r'],['auf Kur','SIE SIND AUF KUR.','a'],['zuletzt bewegt','KONTO VESPER: ZULETZT AKTIV','r'],
- ['Sie nicht.','SIE NICHT.','r big'],['über Nacht weitergezogen','DIE SPUR IST FRISCH.','a'],['zu früh am Gate','WER STEHT ZU FRÜH AM GATE?',''],['Nur Fotos','KEINE FRAGEN. NUR FOTOS.',''],
- ['zum Doppelnull','00','r big'],['Montags geschlossen','MONTAGS GESCHLOSSEN.','a'],['zu spät ist','ZU SPÄT.','r'],['mitten in einer Kulisse','ENDE DER SPUR.','r big'],
- ['nur im Notfall','NUR IM NOTFALL.',''],['zu schnell vertraut','TRAUEN SIE NIEMANDEM.','r big']
-].forEach(([an,txt,cls])=>{const sc=SC.find(x=>(x.c||'').includes(an));if(sc)(sc.pw=sc.pw||[]).push([an,txt,cls])});
+/* Kernsätze (Texteinblendungen) auf Wunsch entfernt */
 const CITY2={zug:'UNTERWEGS',bahn:'WESTBÖHMEN',tepla:'KARLOVY VARY',crash:'KARLOVY VARY',prague:'PRAHA'},CZ={Loket:'LOKET',Karlsbad:'KARLOVY VARY',Prag:'PRAHA',Westböhmen:'WESTBÖHMEN'};
 {let last='';SC.forEach(s=>{if(!s.art)return;const c=CITY2[s.art]||(s.id&&CZ[T(s.id).city])||'';if(c&&c!==last){s.sup=[c+(c==='UNTERWEGS'?'':', TSCHECHIEN'),s.k.replace(/ · (AUFRISS|CHECK-IN|DÄMMERUNG|HAUPTZIEL|KARLÍN|FÜHRUNG|FOTOSTOPP)$/,'')+(/\d\d:\d\d/.test(s.k)?' MEZ':'')]}if(c)last=c})}
 /* Ton: synthetisch per WebAudio (keine Dateien). Grundton, Akkord-Stich (Moll mit großer Septime), Schlag, Wischen, Herzschlag, Ortungs-Ping, Tippen */
