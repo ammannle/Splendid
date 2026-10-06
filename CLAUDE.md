@@ -131,10 +131,11 @@ Freigabe: „Anyone with the link“ ist aktiv. Wer die Seite offen hat, sieht n
   `<symbol id="bfSym">`, `bondFig()` setzt nur `<use>`). Farben `.pst-*`. Mustang Mach 1 und BMW 750iL nach Nutzer-Vorlagen neu.
   Danach zwölf Fahrzeuge (Vanquish, DB10, 750iL, Mustang, Hornet, DBS 1969, Bentley, AEC-Bus, Esprit Turbo, DBS V12, 2000GT, Z8)
   nach neuen Nutzer-Seitenrissen: Maßlinien entfernt, Linien zusammengefasst und vereinfacht, Höhe auf Werksmaß geeicht.
-- Version 18 (06.10.2026): Missionsbriefing (`#mission`) fertig: 31 Szenen, ca. 4:20 min (inkl. DB5, Mondeo, Zug, Range Rover, Pokerrunde, DBS-Überschlag), Kapitel in Reihenfolge der Route AUFTRAG · LOKET ·
-  KARLSBAD · CASINO · PRAG · FINALE (Planá als Rückweg im Finale) (Chips springen zum Kapitel, ‹ SZENE / SZENE › einzeln). 23 vom Nutzer gelieferte Strichzeichnungen
-  der Drehorte in `MSA` (skelettiert, 2x-Einheiten, Gruppen `G` werden nacheinander gezeichnet, Linienstärke `--sw` je Zoom),
-  Kamerafahrt per Web Animations über den Überstand (wie object-fit: cover), HUD mit Objektcode/Koordinaten, Seitenpanel mit
-  Zielobjekt, Personen-Porträt oder Fahrzeug (`side()`). Dazu Route mit fahrendem DB5, Aufrisse Kaiserbad/Planá/Barrandov,
-  Pokertisch, Personen-Dossier, Finale. Startet automatisch, sobald sichtbar.
+- Version 18 (06.10.2026): Missionsbriefing (`#mission`) fertig: 34 Szenen, ca. 5:20 min, in Reihenfolge des Einsatzplans (3 Tage):
+  Kapitel AUFTRAG · TAG 1 · TAG 2 · TAG 3 · FINALE (Chips springen zum Kapitel, ‹ SZENE / SZENE › einzeln). 23 vom Nutzer gelieferte
+  Strichzeichnungen in `MSA` (skelettiert, 2x-Einheiten, Gruppen `G`, Linienstärke `--sw` je Zoom). Einblendungen je Szene `fx`:
+  draw, zoomout, zoomin, iris, scan, wipe, tiles, lock (Zielerfassung mit Fokuspunkt `f`); Kamera über `.ms-cam` per Web Animations.
+  Szenen mit `bp` zeigen erst den Gebäude-Aufriss (zeichnen, öffnen) und blenden dann in die Zeichnung über (`two()`).
+  Fahrt-Etappen `LEGS` a–d auf der Routenkarte: nur der aktive Abschnitt leuchtet, der DB5 fährt ihn ab. Dazu Aufrisse Kaiserbad,
+  Barrandov, Planá, Pokertisch, Personen-Dossier, Finale. Startet automatisch, sobald sichtbar.
 - Tests: Playwright-Skripte müssen vor dem Laden `window.__NOINTRO=1` per `addInitScript` setzen, sonst läuft das Intro.
