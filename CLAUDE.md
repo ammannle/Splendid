@@ -194,6 +194,9 @@ Freigabe: „Anyone with the link“ ist aktiv. Wer die Seite offen hat, sieht n
   Stimme), Text `#msCapT`, Lagestufe `#msLage`. Musik standardmäßig an. Stimme jetzt Chatterbox Multilingual (`tools/tts_chatterbox.py`,
   synthetische Piper-Referenzen, Satz für Satz, `SEED` für Nachbesserung), danach `tools/tts.py --wavdir` (dezenter Klang `radio(light)`).
   Prüfung per Spracherkennung (faster-whisper). Qs Gadgets: Baupläne für 18 von 19 (fehlt: Walther PPK/S Skyfall), GDA `g10`–`g18`.
+  Intro: statt des eigenen Emblems das MI6-Logo (Nutzer-Vorlage) als Blaupause gezeichnet, gefüllt, Leuchten (`.el.lg`, `.lgf`, `.lgm`).
+  Garage: Schleudersitz in Fahrzeugmaßstab (Flugbahn per rAF, Kamera zoomt heraus: `stage` mit zoom < 1), DB5-Schild senkrecht.
+  Briefing nur mit M (kein Erzähler, kein Sprecher-Knopf).
   Personenakten: Organisationen `OG` (MI6, Schatzamt, CIA, Quantum, SPECTRE) mit Abzeichen (SPECTRE, Quantum, MI6-Emblem und CIA-Siegel
   vom Nutzer, vektorisiert in Seitenfarben `LG`/`LG2`; Schatzamt eigenes Abzeichen), Akte, Mitglieder (→ `paOpen`), Organigramm `#ogSvg` (Befehlsweg, Geld,
   Feindkontakt; Hover hebt Verbindungen hervor), Auswahl `ops5-org`.
