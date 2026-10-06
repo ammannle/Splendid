@@ -186,4 +186,15 @@ Freigabe: „Anyone with the link“ ist aktiv. Wer die Seite offen hat, sieht n
   an Szenentexten `SC[].c` das Skript erneut ausführen**, sonst liest für diese Szene die Gerätestimme (Fallback).
   Klang (`radio()` in tools/tts.py): abhörsichere Funkverbindung – Stimme ca. 1 Halbton tiefer, Funkband 260–3900 Hz, Sättigung,
   Kompression, Rauschteppich, Rauschstoß + Piepton beim Öffnen, Quittungston am Ende; Tempo `m` 0.96, `s` 0.93.
+- Version 26 (06.10.2026): Briefing-Dramaturgie: Cold Open `coldOpen()` (eingehende Übertragung, Stimme startet verzögert `vd`), Kernsätze
+  `s.pw` [Anker, Text, Klassen r/a/big/boom] synchron zur Stimme (Anteil des Ankers im Text × Cliplänge, `punch()`), Akt-Montagen
+  (`actCard(...,arts)`, Schnitte mit Verschluss-Ton), Poker-Höhepunkt (Musik leise `SND.hush`, Herzschlag, roter Blitz, „STRAIGHT FLUSH“),
+  Einschlag `impact()` (Blitz + Bildwackeln + `SND.boom`), Finale mit Stempel „AUFTRAG ERTEILT“ und T-minus, Schlussszene `lost()`
+  „Übertragung beendet“. Handkamera und Schärfe ziehen über Wrapper `.ms-hh`. Untertitelzeile: Oszilloskop `#msScope` (Analyser der
+  Stimme), Text `#msCapT`, Lagestufe `#msLage`. Musik standardmäßig an. Stimme jetzt Chatterbox Multilingual (`tools/tts_chatterbox.py`,
+  synthetische Piper-Referenzen, Satz für Satz, `SEED` für Nachbesserung), danach `tools/tts.py --wavdir` (dezenter Klang `radio(light)`).
+  Prüfung per Spracherkennung (faster-whisper). Qs Gadgets: Baupläne für 18 von 19 (fehlt: Walther PPK/S Skyfall), GDA `g10`–`g18`.
+  Personenakten: Organisationen `OG` (MI6, Schatzamt, CIA, Quantum, SPECTRE) mit Abzeichen (SPECTRE/Quantum vom Nutzer vektorisiert,
+  MI6/Schatzamt/CIA eigene Abzeichen, keine Behördenwappen), Akte, Mitglieder (→ `paOpen`), Organigramm `#ogSvg` (Befehlsweg, Geld,
+  Feindkontakt; Hover hebt Verbindungen hervor), Auswahl `ops5-org`.
 - Tests: Playwright-Skripte müssen vor dem Laden `window.__NOINTRO=1` per `addInitScript` setzen, sonst läuft das Intro.
