@@ -95,6 +95,7 @@ def main(vdir, wavdir=None):
                 radio(w, mp, br)
                 data[vk][key(c)] = base64.b64encode(open(mp, 'rb').read()).decode()
                 print(vk, i, round(os.path.getsize(mp) / 1024), 'KB', norm(c)[:60])
+    data = {k: v for k, v in data.items() if v}
     blob = json.dumps(data, separators=(',', ':'))
     tag = f'<script type="application/json" id="vxData">{blob}</script>'
     src = re.sub(r'<script type="application/json" id="vxData">.*?</script>', lambda m: tag, src, flags=re.S) \

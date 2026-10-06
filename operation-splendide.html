@@ -4415,7 +4415,7 @@ const VOX=(()=>{const WS='speechSynthesis' in window&&'SpeechSynthesisUtterance'
     me.onstart=()=>{if(u===me){SND.duck(true);cb&&cb(x.length*.068,0)}};me.onend=me.onerror=()=>{if(u===me)done()};busy=true;setTimeout(()=>{if(u===me)speechSynthesis.speak(me)},80);
     setTimeout(()=>{if(u===me&&busy&&!speechSynthesis.speaking&&!speechSynthesis.pending){busy=false;doneAt=0}},2500)}
   return{get has(){return has},get rec(){return rec()},get on(){return on},get busy(){return on&&(busy||performance.now()-doneAt<650)},
-    get voice(){return dat()&&dat()[vk]?vk:'m'},set voice(v){if(dat()&&D[v]){vk=v;S.set('msvoice',v)}},
+    get voices(){const d=dat();return d?Object.keys(d).filter(k=>Object.keys(d[k]).length):[]},get voice(){return dat()&&dat()[vk]&&Object.keys(D[vk]).length?vk:'m'},set voice(v){if(dat()&&D[v]&&Object.keys(D[v]).length){vk=v;S.set('msvoice',v)}},
     set(v){on=!!v&&has;if(on)prime();else{halt();SND.duck(false)}},
     wave(b){if(!an||!src)return false;an.getFloatTimeDomainData(b);return true},
     speak(t,cb){if(!on)return;halt();if(!t)return;const k=key(t);
@@ -4521,7 +4521,7 @@ if(!VOX.has){voxBtn.disabled=true;voxBtn.title='Sprachausgabe wird von diesem Br
 voxBtn.onclick=()=>voxSet(!VOX.on,true);
 const vcBtn=$('msVoice'),vcTxt=()=>{vcBtn.textContent=VOX.voice==='s'?'SPRECHER: ERZÄHLER':'SPRECHER: M'};
 vcBtn.onclick=()=>{VOX.voice=VOX.voice==='s'?'m':'s';vcTxt();if(VOX.on&&cur>=0)VOX.speak(SC[cur].c)};
-{const vcInit=()=>{if(VOX.rec){vcBtn.hidden=false;vcTxt()}};document.readyState==='loading'?document.addEventListener('DOMContentLoaded',vcInit):vcInit()}
+{const vcInit=()=>{if(VOX.rec&&VOX.voices.length>1){vcBtn.hidden=false;vcTxt()}};document.readyState==='loading'?document.addEventListener('DOMContentLoaded',vcInit):vcInit()}
 $('msPlay').onclick=()=>{if(S.get('mssnd',1)&&!SND.on)sndSet(true);const first=!voxArmed&&VOX.has&&S.get('msvox',1);if(first)voxSet(true,false);
   if(playing&&first){VOX.speak(SC[cur].c);return}playing?stop():(play(),first&&cur>=0&&VOX.speak(SC[cur].c))};
 $('msRe').onclick=()=>jump(0);
