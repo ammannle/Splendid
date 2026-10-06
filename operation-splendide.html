@@ -4512,13 +4512,14 @@ const shot=s=>`<div class="ms-shot fx-${s.fx||'draw'} ${MSA[s.art].w/MSA[s.art].
 /* Lagebild: Organigramm aus den Personenakten, Kamera fährt auf die Beteiligten */
 const OGB={le:[340,240,700,330],qu:[560,110,480,226],sp:[480,14,620,292],al:[-20,22,720,338],all:[0,0,1000,560]};
 const OGL={le:['lechiffre','dimitrios','valenka','white'],qu:['quantum','white','gettler','vesper','lechiffre'],sp:['spectre','quantum','white'],al:['mi6','treasury','cia','m','bond','vesper','leiter','mathis','dryden']};
-function orgScene(k,n,t){return `<div class="ms-orgsc"><svg class="ogsv" viewBox="0 0 1000 560" preserveAspectRatio="xMidYMid meet" aria-hidden="true">${window.ogMarkup?window.ogMarkup():''}</svg><div class="ms-chap">LAGEBILD ${n} / 4 <b>${t}</b></div></div>`}
+function orgScene(k,n,t){return `<div class="ms-orgsc"><svg class="ogsv" viewBox="0 0 1000 560" preserveAspectRatio="xMidYMid meet" aria-hidden="true">${window.ogMarkup?window.ogMarkup():''}</svg><div class="ms-chap">LAGEBILD ${n} / 3 <b>${t}</b></div></div>`}
 function vbTo(svg,to,ms){const fr=svg.getAttribute('viewBox').split(/\s+/).map(Number),t0=performance.now(),me=cur,e=u=>u<.5?4*u*u*u:1-Math.pow(-2*u+2,3)/2;
   (function st(now){const u=RM?1:Math.min(1,(now-t0)/ms),q=e(u);svg.setAttribute('viewBox',fr.map((v,i)=>(v+(to[i]-v)*q).toFixed(1)).join(' '));if(u<1&&cur===me)requestAnimationFrame(st)})(t0)}
 function orgOn(root,s){const svg=root.querySelector('.ogsv');if(!svg)return;const set=new Set(OGL[s.og]);
   later(()=>{svg.classList.add('hl');svg.querySelectorAll('.on,.pn').forEach(g=>g.classList.toggle('lit',set.has(g.dataset.o||g.dataset.p)));
     svg.querySelectorAll('.e,.el').forEach(e=>e.classList.toggle('lit',set.has(e.dataset.a)&&set.has(e.dataset.b)))},s.og==='le'?1500:500);
   if(s.og==='le'){svg.setAttribute('viewBox',OGB.all.join(' '));later(()=>vbTo(svg,OGB.le,2600),1300)}else{svg.setAttribute('viewBox',(SC[SC.indexOf(s)-1].og?OGB[SC[SC.indexOf(s)-1].og]:OGB.all).join(' '));vbTo(svg,OGB[s.og],2200)}
+  if(s.og2)later(()=>{const set2=new Set(OGL[s.og2].concat(OGL[s.og]));svg.querySelectorAll('.on,.pn').forEach(g=>g.classList.toggle('lit',set2.has(g.dataset.o||g.dataset.p)));svg.querySelectorAll('.e,.el').forEach(e=>e.classList.toggle('lit',set2.has(e.dataset.a)&&set2.has(e.dataset.b)));vbTo(svg,OGB[s.og2],2200);SND.ping()},3300);
   later(()=>SND.ping(),s.og==='le'?1700:700)}
 /* Konto VESPER: Kontobewegungen und Ziele in Böhmen */
 const TX=[['14.09. 02:13','ZÜRICH → KARLOVY VARY','1.200.000'],['14.09. 02:41','LIECHTENSTEIN → LOKET','480.000'],['15.09. 23:05','NASSAU → KARLOVY VARY','2.150.000'],['17.09. 04:12','ZYPERN → PRAHA','900.000'],
@@ -4575,13 +4576,13 @@ function rmap(k){const R2=rleg(k),L=R2.L,[dx,dy]=R2.pts[R2.pts.length-1];
     <circle class="rm-dest" cx="${dx.toFixed(1)}" cy="${dy.toFixed(1)}" r="${(9*fz).toFixed(2)}"/>${known?'':`<text class="rm-lab" x="${(dx-6*fz).toFixed(1)}" y="${(dy+12*fz).toFixed(1)}" text-anchor="end">${RT[L.t]}</text>`}
     <g class="rm-car"><g transform="scale(${fz})"><circle class="halo" r="10"/><circle r="6"/><path d="M7 0L-5 -5L-2.5 0L-5 5Z"/></g></g></svg>
     <div class="rm-hud"><div class="rm-tl"><span>ETAPPE ${k.toUpperCase()} · ${L.via}</span><b>${RT[L.f]} → ${RT[L.t]}</b></div>
-    <div class="rm-tr"><div><i>DISTANZ</i><b class="v-km">0 KM</b></div><div><i>UHRZEIT</i><b class="v-t">${L.t0}</b></div><div><i>TEMPO</i><b class="v-v">0</b></div></div>
+    <div class="rm-tr"><div><i>DISTANZ</i><b class="v-km">0 KM</b></div><div><i>FAHRZEIT</i><b class="v-t">0:00</b></div><div><i>TEMPO</i><b class="v-v">0</b></div></div>
     <div class="rm-ban"></div><div class="rm-bot">${ticks.map(t=>`<span class="rm-tk ${t[2]}" data-f="${t[1].toFixed(3)}" style="left:${(t[1]*100).toFixed(1)}%">${t[0]}</span>`).join('')}<div class="rm-bar"><i></i></div></div></div></div>`}
 function rdrive(root,s){const box=root.querySelector('.ms-rm');if(!box)return;const k=box.dataset.leg,R2=rleg(k),L=R2.L,svg=box.querySelector('svg'),car=svg.querySelector('.rm-car'),done=svg.querySelector('.rm-done'),me=cur;
   const km=box.querySelector('.v-km'),tm=box.querySelector('.v-t'),vv=box.querySelector('.v-v'),bar=box.querySelector('.rm-bar i'),ban=box.querySelector('.rm-ban'),tks=[...box.querySelectorAll('.rm-tk')],wps=[...svg.querySelectorAll('.rm-wp')];
   const m0=(t=>{const[h,mm]=t.split(':').map(Number);return h*60+mm})(L.t0),m1=(t=>{const[h,mm]=t.split(':').map(Number);return h*60+mm})(L.t1),hhmm=v=>`${String(Math.floor(v/60)%24).padStart(2,'0')}:${String(Math.floor(v%60)).padStart(2,'0')}`;
   const full=[0,0,1000,470],Z=L.z,ZH=Z*470/1000,[sx,sy]=R2.pts[0],[ex,ey]=R2.pts[R2.pts.length-1],cl=(x,y,w,h)=>[Math.max(-60,Math.min(1060-w,x-w/2)),Math.max(-40,Math.min(510-h,y-h/2)),w,h];
-  const D=RM?0:Math.max(5200,Math.min(8200,(s.t||8)*1000-2600)),T1=1100,T2=2100,T3=T2+D;let banQ=[],last=-1,cx=sx,cy=sy,vs=0;
+  const D=RM?0:Math.max(4200,Math.min(6400,(s.t||7)*1000-2300)),T1=900,T2=1800,T3=T2+D;let banQ=[],last=-1,cx=sx,cy=sy,vs=0;
   const show=(txt,red)=>{ban.textContent=txt;ban.className='rm-ban'+(red?' r':'');void ban.offsetWidth;ban.classList.add('go')};
   const P2=u=>{const a=.1;if(u<a)return u*u/(2*a)/(1-a);if(u>1-a)return 1-(1-u)*(1-u)/(2*a)/(1-a);return (u-a/2)/(1-a)};
   const t0=performance.now();svg.setAttribute('viewBox',full.join(' '));
@@ -4592,12 +4593,12 @@ function rdrive(root,s){const box=root.querySelector('.ms-rm');if(!box)return;co
     if(t<T1)vb=full;else if(t<T2){const u=(t-T1)/(T2-T1),q=u<.5?4*u*u*u:1-Math.pow(-2*u+2,3)/2,tg=cl(sx,sy,Z,ZH);vb=full.map((v,i)=>v+(tg[i]-v)*q);cx=sx;cy=sy}
     else if(f<1)vb=cl(cx,cy,Z,ZH);else{const u=Math.min(1,(t-T3)/900),w=Z*(1+.25*u);vb=cl(ex,ey,w,w*.47)}
     svg.setAttribute('viewBox',vb.map(v=>v.toFixed(1)).join(' '));
-    km.textContent=Math.round(f*L.km)+' KM';tm.textContent=hhmm(m0+(m1-m0)*f);
+    km.textContent=Math.round(f*L.km)+' KM';{const e=(m1-m0)*f;tm.textContent=`${Math.floor(e/60)}:${String(Math.floor(e%60)).padStart(2,'0')}`}
     const sp=t>T2&&f<1?(L.km/((m1-m0)/60))*(f<.1||f>.9?(f<.1?f/.1:(1-f)/.1)*.9+.1:1)*(1+.06*Math.sin(now/700)):0;vs+=(sp-vs)*.08;vv.textContent=Math.round(vs);
     bar.style.width=(f*100).toFixed(1)+'%';tks.forEach(e=>e.classList.toggle('on',+e.dataset.f<=f+.002));wps.forEach(e=>e.classList.toggle('on',+e.dataset.f<=f));
     R2.wps.forEach((w,i)=>{if(i>last&&w[1]>.04&&w[1]<.96&&f>=w[1]){last=i;SND.ping()}});
     if(R2.bf!=null&&!banQ.b&&f>=R2.bf){banQ.b=1;show(L.set==='back'?'GRENZE · DEUTSCHLAND':'GRENZE · TSCHECHIEN');SND.ping()}
-    if(f>=1&&!banQ.e){banQ.e=1;svg.querySelector('.rm-dest').classList.add('on');later(()=>show(`ANKUNFT ${L.t1} · ${RT[L.t]}`),R2.bf!=null&&f-R2.bf<.2?900:0)}
+    if(f>=1&&!banQ.e){banQ.e=1;svg.querySelector('.rm-dest').classList.add('on');later(()=>show(`ANKUNFT · ${RT[L.t]}`),R2.bf!=null&&f-R2.bf<.2?900:0)}
     if(t<T3+2600)requestAnimationFrame(step)})(t0);
   later(()=>SND.whoosh(.15),T1)}
 
@@ -4615,64 +4616,43 @@ function tminus(){const now=new Date();now.setHours(0,0,0,0);const n=Math.round(
 /* Szenen nach dem Einsatzplan (3 Tage). fx = Einblendung, f = Fokuspunkt [x,y] relativ, bp = Aufriss zuerst */
 const A=(k,o)=>Object.assign({art:k,t:9},o);
 const SC=[
- {ch:0,t:9.5,tr:'cut',h:coldOpen,vd:2100,c:'M: 00-Einheit. Hier spricht M. Diese Leitung existiert nicht, und dieses Gespräch hat nie stattgefunden. Hören Sie zu.'},
- {ch:0,t:9,tr:'cut',og:'le',h:()=>orgScene('le',1,'DER BANKIER'),on:orgOn,c:'M: Vor zwanzig Jahren saß in Montenegro ein Mann am Pokertisch, der das Geld von Terroristen verwaltete. Le Chiffre. Er hatte es verspielt, und er brauchte es zurück. Bis zum Morgen.'},
- {ch:0,t:8,tr:'cut',og:'qu',h:()=>orgScene('qu',2,'DIE ORGANISATION'),on:orgOn,c:'M: Hinter ihm stand eine Organisation, die damals noch keinen Namen hatte. Quantum. Mr. White brachte Le Chiffre die Kunden. Und als das Geld weg war, brachte er ihm eine Kugel.'},
- {ch:0,t:7,tr:'cut',og:'sp',h:()=>orgScene('sp',3,'DER KRAKE'),on:orgOn,c:'M: Und hinter Quantum: SPECTRE. Ein Krake. Wir haben ihm damals einen Arm abgeschlagen. Es sind zwei nachgewachsen.'},
- {ch:0,t:9,tr:'cut',og:'al',h:()=>orgScene('al',4,'UNSERE SEITE'),on:orgOn,c:'M: Auf unserer Seite: ein frisch beförderter Doppelnull, eine Beamtin des Schatzamts mit zu viel Verstand und ein Amerikaner mit zu viel Geld. Es hat gereicht. Knapp. Und es hat uns Vesper gekostet.'},
- {ch:0,t:10,tr:'cut',h:acct,on:acctOn,c:'M: Vor drei Wochen hat sich ein Konto der Organisation wieder bewegt. Seit 2006 eingefroren, Kennwort: VESPER. Neun Überweisungen, alle nach Böhmen. An genau die Orte, die der Welt damals als Montenegro verkauft wurden.'},
- {ch:0,t:8,tr:'cut',h:opening,on:openSnd,c:'M: Jemand spielt das alte Spiel noch einmal. Ich will wissen, wer. Ihr Auftrag: Operation Splendide. Folgen Sie dem Geld. Drei Tage, dreizehn Orte, ein Casino.'},
- {ch:1,t:5.5,tr:'cut',h:()=>actCard('♠','AKT I · TAG 1','MONTENEGRO','Augsburg · Loket · Karlsbad · Casino Royale',['loket','pupp','bar','casino','tisch','crash']),on:actSnd,c:'M: Erster Tag. Montenegro. Dass es in Böhmen liegt, muss niemand erfahren.'},
- {ch:1,t:10,leg:'a',h:()=>rmap('a'),c:'07:30, Abfahrt Augsburg. Vier Stunden über Nürnberg und Marktredwitz bis zur Grenze. Ab Cheb sind Sie im Einsatzgebiet. Und ab Cheb gilt die E-Vignette, auch für Doppelnull-Agenten.',on:rdrive},
- A('zug',{ch:1,fx:'iris',f:[.48,.27],code:'ORT',name:'Im Zug nach Montenegro',as:'Speisewagen',k:'TAG 1 · UNTERWEGS',face:'vesper',fc:'„Ich bin das Geld.“ Und sie meint es so.',c:'Damals kam Vesper mit dem Zug und hat Bond in fünf Minuten durchschaut. Sie haben vier Stunden Autobahn. Nutzen Sie sie, um Ihre Tarngeschichte zu lernen.'}),
- A('bahn',{ch:1,fx:'scan',f:[.48,.38],code:'ORT',name:'Strecke nach Montenegro',as:'Anfahrt mit dem Zug',k:'TAG 1 · UNTERWEGS',x:'Im Film fährt der Zug durch Wald und Täler nach Montenegro. Sie fahren über die Grenze nach Westböhmen.',c:'Westböhmen. Wald, Täler, Funklöcher. Wenn Ihr Telefon schweigt, ist das kein Defekt. Es ist die Ruhe vor dem, was kommt.'}),
- A('loket',{ch:1,t:13,bp:'loket',fx:'lock',f:[.73,.62],id:'loket',k:'TAG 1 · 11:30',face:'mathis',fc:'Kontakt vor Ort. Kennt jeden Polizisten der Stadt.',c:'11:30, Loket. Im Film Montenegro, für Sie der erste Kontaktpunkt. Hier ließ Mathis den Polizeichef abführen, während Bond Kaffee trank. Sie trinken Kaffee. Und zählen die Männer, die zu lange am Fenster stehen.'}),
- {ch:1,t:10,leg:'b',h:()=>rmap('b'),c:'14:00, weiter nach Karlsbad. Zwölf Kilometer, zwanzig Minuten. Ihr Empfangskomitee ist bereits informiert. Leider nicht von mir.',on:rdrive},
- A('tepla',{ch:1,fx:'zoomin',f:[.55,.45],code:'ORT',name:'Karlsbad · Teplá',pos:[50.2262,12.8812],k:'TAG 1 · 14:00',x:'Dreizehn Heilquellen, ein Casino, eine Nacht. Die Promenade an der Teplá verbindet alle Zielobjekte zu Fuß.',c:'Karlsbad. Dreizehn Heilquellen, ein Casino, und seit drei Wochen sehr viel fremdes Geld. Ab hier gehen Sie zu Fuß. Wer läuft, sieht mehr und wird weniger gesehen.'}),
- A('pupp',{ch:1,fx:'wipe',f:[.56,.72],id:'pupp',k:'TAG 1 · 14:00 · CHECK-IN',car:'dbs12',cc:'Steht im Film vor dem Hotel. Ihres nicht.',c:'Das Grandhotel Pupp. Im Film das Hotel Splendide, daher der Name dieser Operation. Bond parkt hier den DBS. Sie parken, wo man Sie lässt, und merken sich den Fluchtweg.'}),
- A('rover',{ch:1,fx:'tiles',f:[.68,.3],code:'FAHRZEUG',name:'Range Rover Sport',as:'Abholung am Bahnhof',k:'TAG 1 · 14:00',x:'Ein Fahrer holt Bond und Vesper am Bahnhof ab. Sonnenbrille, kein Wort.',c:'Achten Sie auf Wagen, die zweimal vorbeifahren. Im Film holt ein Range Rover die beiden ab, und der Fahrer sagt kein Wort. Das ist nie ein gutes Zeichen.'}),
- A('lobby',{ch:1,fx:'lock',f:[.7,.68],id:'pupp',name:'Grandhotel Pupp · Lobby',k:'TAG 1 · 14:00',face:'vesper',fc:'Tarnname: Stephanie Broadchest. Nicht ihre Wahl.',c:'Die Lobby. Mr. Arlington Beech und Miss Stephanie Broadchest checken ein. Ich habe die Namen nicht ausgesucht. Ab jetzt ist Abendgarderobe Dienstkleidung.'}),
- {ch:1,t:8,h:()=>`<div class="ms-split">${bp('kaiserbad')}${side({id:'kaiserbad',k:'TAG 1 · 15:00 · FÜHRUNG',face:'lechiffre',fc:'Bankier des Terrors. Rechnet schneller, als er lügt.'})}</div>`,c:'15:00, das Kaiserbad. Die Fassade des Casino Royale, die Welt kennt sie vom Plakat. Von außen sehen Sie, was alle sehen. Ich will wissen, was dahinter liegt.',on:open},
- A('trziste',{ch:1,t:13,bp:'trziste',fx:'zoomout',f:[.4,.3],id:'trziste',k:'TAG 1 · 16:15 · DÄMMERUNG',x:'Dreifaltigkeitssäule und Schlossturm im Rücken: genau die Einstellung aus der Limousinenfahrt.',c:'16:15, Dämmerung über Tržiště. Hier haben Bond und Vesper ihre Tarngeschichte gebaut. Bauen Sie Ihre. Wer fragt: Sie sind auf Kur.'}),
- A('mlyn',{ch:1,t:13,bp:'mlyn',fx:'iris',f:[.5,.7],id:'mlyn',k:'TAG 1 · 16:15 · DÄMMERUNG',face:'vesper',fc:'Schatzamt. Verwaltet Ihr Spielgeld.',c:'Die Mühlbrunnkolonnade, im Film der Bahnhof von Montenegro. Hier steigt Vesper aus dem Zug. Und hier beginnt der einzige Fehler, den Bond nie wieder gemacht hat.'}),
- A('dinner',{ch:1,fx:'zoomout',f:[.5,.6],id:'pupp',name:'Grandrestaurant',k:'TAG 1 · 19:30',face:'mathis',fc:'Überbringt Nachrichten. Selten gute.',c:'19:30, Dinner im Grandrestaurant. Damals stand Vesper mitten im Essen auf und ging. Sie bleiben sitzen. Hauptgang, Dessert, und die Augen an der Tür.'}),
- A('bar',{ch:1,fx:'scan',f:[.5,.5],id:'pupp',name:'Becher\'s Bar',k:'TAG 1 · 21:00',face:'bond',fc:'Bestellt präzise. Trinkt weniger, als man denkt.',c:'21:00, Becher\'s Bar. Drei Teile Gordon\'s, ein Teil Wodka, ein halber Kina Lillet. Schütteln, bis es eiskalt ist. Ein Glas pro Agent. Ich zähle mit.'}),
- A('casino',{ch:1,fx:'lock',f:[.5,.62],id:'barrandov',name:'Spielsaal',as:'Casino Royale (innen)',k:'TAG 1 · 22:00 · HAUPTZIEL',face:'lechiffre',fc:'Blutet aus dem linken Auge, wenn er blufft.',c:'22:00. Hauptziel: das Casino. Heute Nacht wird an diesen Tischen das Konto VESPER bewegt. Spielen Sie das Blatt. Nicht den Mann.'}),
- A('tisch',{ch:1,fx:'tiles',f:[.45,.55],id:'barrandov',name:'Der Pokertisch',as:'Texas Hold\'em, 10 Mio. $ Einsatz',k:'TAG 1 · 22:00',face:'white',fc:'Beobachtet. Bezahlt. Verschwindet.',c:'Zehn Spieler, zehn Millionen Einsatz, Rebuy fünf. Damals saß Le Chiffre am Kopfende und Mr. White im Schatten. Heute sitzt dort jemand anderes. Finden Sie ihn.'}),
- {ch:1,t:8,h:()=>`<div class="ms-split pkw">${poker()}${face('leiter','CIA. Finanziert den Rebuy. Fragt nicht zweimal.')}</div>`,c:'Die Schlusshand. Vier bis acht Pik, Straight Flush. Die Wahrscheinlichkeit ist lächerlich gering. Verlassen Sie sich nicht darauf. Bond hat es getan, und es hätte ihn fast das Leben gekostet.',on:pk},
- A('crash',{ch:1,fx:'zoomin',f:[.57,.27],code:'ORT',name:'Landstraße bei Nacht',as:'Montenegro: Überschlag des DBS',k:'TAG 1 · NACHT',car:'dbs12',cc:'Siebenfacher Überschlag. Weltrekord. Totalschaden.',c:'Danach die Landstraße. Der DBS überschlägt sich sieben Mal, ein Weltrekord. Sie gehen zu Fuß ins Hotel zurück. Das ist ein Befehl.'}),
- {ch:2,t:5.5,tr:'cut',h:()=>actCard('♦','AKT II · TAG 2','LONDON & MIAMI','Karlsbad · Prag · Flughafen · Strahov · Karlín',['airport','strahov','prague','ministry','danube']),on:actSnd,c:'M: Zweiter Tag. Prag spielt London und Miami. Sie spielen Touristen. Überzeugend, bitte.'},
- {ch:2,t:10,leg:'c',h:()=>rmap('c'),c:'09:30, Abfahrt nach Prag. Das Geld hat Karlsbad über Nacht verlassen. Sie folgen ihm. Die Spur ist frisch.',on:rdrive},
- A('airport',{ch:2,t:13,bp:'airport',fx:'wipe',f:[.3,.65],id:'airport',k:'TAG 2 · 11:15',x:'Im Film soll hier der Skyfleet-Prototyp gesprengt werden. Bond verhindert es mit Tanklaster und Schlüsselbund.',c:'11:15, Terminal 1, im Film Miami. Hier sollte der Skyfleet-Prototyp explodieren, damit Le Chiffre an der Börse gewinnt. Bond hat es verhindert. Sehen Sie nach, wer zu früh am Gate steht.'}),
- A('strahov',{ch:2,t:13,bp:'strahov',fx:'iris',f:[.5,.45],id:'strahov',k:'TAG 2 · 13:00',face:'m',fc:'Leitung. Erwartet Ergebnisse, keine Ausreden.',c:'13:00, Strahov-Bibliothek. Im Film mein Ausschuss in London, der mir Fragen stellte, die ich nicht hören wollte. Sie stellen keine Fragen. Sie fotografieren.'}),
- A('prague',{ch:2,fx:'wipe',f:[.37,.25],code:'ORT',name:'Burgviertel · Karlsbrücke',pos:[50.0865,14.4114],k:'TAG 2 · 15:30',x:'Burgviertel, Kleinseite, Karlsbrücke. Zu Fuß, mit Fotostopps.',c:'15:30. Burgviertel, Kleinseite, Karlsbrücke. Zweitausend Touristen pro Stunde. Die perfekte Deckung. Für Sie. Und für jeden, der Ihnen folgt.'}),
- A('ministry',{ch:2,t:13,bp:'ministry',fx:'zoomout',f:[.48,.55],id:'ministry',k:'TAG 2 · 17:45 · KARLÍN',face:'dimitrios',fc:'Waffenhändler. Verliert beim Poker ein Auto.',c:'17:45, Karlín. Im Film das Museum in Miami mit der Körperwelten-Ausstellung. Hier folgt Bond dem Bombenleger Carlos. Sie folgen niemandem. Noch nicht.'}),
- A('danube',{ch:2,t:13,bp:'danube',fx:'scan',f:[.4,.4],id:'danube',k:'TAG 2 · 17:45 · KARLÍN',face:'dryden',fc:'Sektionschef. Verkauft, was ihm nicht gehört.',c:'Danube House, gleich daneben. Hier verdient sich Bond im Prolog die Doppelnull: zwei Tote, ein Verräter. Dryden war nicht beeindruckt. Ich auch nicht.'}),
- {ch:3,t:5.5,tr:'cut',h:()=>actCard('♣','AKT III · TAG 3','VENEDIG & KALTER KRIEG','Vítkov · Nationalmuseum · Barrandov · Heimfahrt',['vitkov','museum','prague','vitkov']),on:actSnd,c:'M: Dritter Tag. Venedig, Kalter Krieg, Heimfahrt. In dieser Reihenfolge.'},
- A('vitkov',{ch:3,t:13,bp:'vitkov',fx:'zoomin',f:[.5,.42],id:'vitkov',k:'TAG 3 · 10:00',x:'Nationaldenkmal Vítkov. Montags geschlossen.',c:'10:00, Vítkov. Im Film das Innere der Körperwelten-Ausstellung, wo Bond Carlos gegenübersteht. Montags geschlossen. Wer am Montag kommt, hat die Akte nicht gelesen.'}),
- A('museum',{ch:3,t:13,bp:'museum',fx:'lock',f:[.5,.55],id:'museum',k:'TAG 3 · 11:30',face:'gettler',fc:'Sonnenbrille mit nur einem Glas. Achten Sie auf Hüte.',c:'11:30, Nationalmuseum, im Film Venedig. Hier beobachtet Gettler Vesper, mit einer Brille, die nur ein Glas hat. Wer Sie beobachtet, sehen Sie erst, wenn es zu spät ist.'}),
- {ch:3,t:8,h:()=>`<div class="ms-split">${bp('barrandov')}${side({id:'barrandov',k:'TAG 3 · 16:00 · FOTOSTOPP',face:'white',fc:'Die Organisation. Hat Geduld. Viel Geduld.'})}</div>`,c:'16:00, Barrandov. Die Filmstudios. Hier wurden die Spielsäle gebaut, alles Kulisse. Und genau hier endet die Spur des Kontos. Merkwürdig, nicht wahr?',on:open},
- {ch:3,t:10,leg:'d',h:()=>rmap('d'),c:'Heimfahrt über Pilsen und Waidhaus, viereinhalb Stunden. Bericht an mich bis Montag. Fotos genügen. Ausreden nicht.',on:rdrive},
- {ch:3,t:8,h:()=>`<div class="ms-split">${bp('plana')}${side({id:'plana',k:'TAG 3 · RÜCKWEG',face:'valenka',fc:'Begleiterin von Le Chiffre. Unterschätzt man einmal.'})}</div>`,c:'Planá liegt an der Route. Im Film das Krankenhaus, in dem Bond wieder zu sich kommt. Halten Sie dort nur, wenn es medizinisch notwendig ist.',on:open},
- {ch:4,t:7,h:()=>`<div class="ms-dos">${['bond','vesper','mathis','leiter','m','lechiffre','valenka','white','dimitrios','dryden','gettler'].map((id,i)=>{const p=P2(id);return `<figure style="--i:${i}" class="${p.f==='h'?'h':''}"><div>${PA.sheet(p,0,1,true)}</div><figcaption>${p.n}</figcaption></figure>`}).join('')}</div>`,c:'Das sind die Gesichter. Lernen Sie sie. Einer von ihnen ist nicht der, für den Sie ihn halten. Das war damals so. Das ist heute so.'},
- {ch:4,h:()=>`<div class="ms-fin"><svg class="gzs draw" viewBox="0 0 1000 420">${window.gzDraw?gzDraw(db5,false):''}</svg><div class="ms-end"><b>IHRE MISSION BEGINNT ${depTxt(1)}</b><span>Ein Vesper. Nicht drei. — M</span>${tminus()}</div><div class="ms-stamp">AUFTRAG ERTEILT</div></div>`,on:fin,t:9,c:'Die Mission beginnt im November. Das Fahrzeug kommt in einem Stück zurück. Q lässt grüßen. Viel Glück, 00-Einheit. Ende der Übertragung.'},
- {ch:4,t:5,tr:'cut',h:lost,on:lostOn,c:''}
+ {ch:0,t:7,tr:'cut',h:coldOpen,vd:1600,c:'M: 00-Einheit. Hier spricht M. Diese Leitung existiert nicht. Hören Sie zu.'},
+ {ch:0,t:8,tr:'cut',og:'le',h:()=>orgScene('le',1,'DER BANKIER'),on:orgOn,c:'M: Vor zwanzig Jahren verspielte ein Bankier namens Le Chiffre in Montenegro das Geld seiner Kunden. Terroristen. Sie haben ihm das nicht verziehen.'},
+ {ch:0,t:8,tr:'cut',og:'qu',og2:'sp',h:()=>orgScene('qu',2,'DIE ORGANISATION'),on:orgOn,c:'M: Hinter ihm stand Quantum. Hinter Quantum: SPECTRE. Wir haben dem Kraken damals einen Arm abgeschlagen. Es sind zwei nachgewachsen.'},
+ {ch:0,t:8,tr:'cut',og:'al',h:()=>orgScene('al',3,'UNSERE SEITE'),on:orgOn,c:'M: Auf unserer Seite: ein Doppelnull, eine Beamtin des Schatzamts und ein Amerikaner mit Geld. Es hat gereicht. Knapp. Und es hat uns Vesper gekostet.'},
+ {ch:0,t:10,tr:'cut',h:acct,on:acctOn,c:'M: Vor drei Wochen hat sich ein Konto der Organisation wieder bewegt. Seit 2006 eingefroren. Kennwort: VESPER. Neun Überweisungen, alle nach Böhmen. An die Orte, die der Welt damals als Montenegro verkauft wurden.'},
+ {ch:0,t:8,tr:'cut',h:opening,on:openSnd,c:'M: Jemand spielt das alte Spiel noch einmal. Ihr Auftrag: Operation Splendide. Dreizehn Zielobjekte, eine Route. Folgen Sie dem Geld.'},
+ {ch:1,t:7,leg:'a',h:()=>rmap('a'),on:rdrive,c:'Die Route beginnt in Augsburg. Ab Cheb sind Sie im Einsatzgebiet.'},
+ A('loket',{ch:1,t:7,bp:'loket',fx:'lock',f:[.73,.62],id:'loket',k:'ZIELOBJEKT 01 / 13',face:'mathis',fc:'Kontakt vor Ort. Kennt jeden Polizisten der Stadt.',c:'Zielobjekt eins: Loket, im Film Montenegro. Hier ging die erste Überweisung ein. Zählen Sie die Männer am Fenster.'}),
+ {ch:1,t:6,leg:'b',h:()=>rmap('b'),on:rdrive,c:'Zwölf Kilometer weiter: Karlsbad.'},
+ A('pupp',{ch:1,t:6.5,fx:'wipe',f:[.56,.72],id:'pupp',k:'ZIELOBJEKT 02 / 13',car:'dbs12',cc:'Steht im Film vor dem Hotel. Ihres nicht.',c:'Das Grandhotel Pupp, im Film das Hotel Splendide. Daher der Name dieser Operation. Merken Sie sich die Fluchtwege.'}),
+ A('mlyn',{ch:1,t:6.5,bp:'mlyn',fx:'iris',f:[.5,.7],id:'mlyn',k:'ZIELOBJEKT 03 / 13',face:'vesper',fc:'Schatzamt. Verwaltet Ihr Spielgeld.',c:'Die Mühlbrunnkolonnade. Hier stieg Vesper aus dem Zug. Und hier begann Bonds größter Fehler.'}),
+ A('trziste',{ch:1,t:6,bp:'trziste',fx:'zoomout',f:[.4,.3],id:'trziste',k:'ZIELOBJEKT 04 / 13',x:'Dreifaltigkeitssäule und Schlossturm im Rücken: genau die Einstellung aus der Limousinenfahrt.',c:'Tržiště, der Schlossturm im Rücken. Wer fragt: Sie sind auf Kur.'}),
+ {ch:1,t:7,h:()=>`<div class="ms-split">${bp('kaiserbad')}${side({id:'kaiserbad',k:'ZIELOBJEKT 05 / 13',face:'lechiffre',fc:'Bankier des Terrors. Rechnet schneller, als er lügt.'})}</div>`,on:open,c:'Das Kaiserbad, die Fassade des Casino Royale. Dahinter wurde das Konto zuletzt bewegt.'},
+ {ch:1,t:7,h:()=>`<div class="ms-split pkw">${poker()}${face('leiter','CIA. Finanziert den Rebuy. Fragt nicht zweimal.')}</div>`,on:pk,c:'Zehn Millionen, Straight Flush. Bond hat alles auf eine Karte gesetzt. Sie nicht.'},
+ {ch:2,t:6.5,leg:'c',h:()=>rmap('c'),on:rdrive,c:'Dann Prag. Das Geld ist über Nacht weitergezogen.'},
+ A('airport',{ch:2,t:6.5,bp:'airport',fx:'wipe',f:[.3,.65],id:'airport',k:'ZIELOBJEKT 06 / 13',x:'Im Film soll hier der Skyfleet-Prototyp gesprengt werden. Bond verhindert es mit Tanklaster und Schlüsselbund.',c:'Der Flughafen, im Film Miami. Achten Sie darauf, wer zu früh am Gate steht.'}),
+ A('strahov',{ch:2,t:6,bp:'strahov',fx:'iris',f:[.5,.45],id:'strahov',k:'ZIELOBJEKT 07 / 13',face:'m',fc:'Leitung. Erwartet Ergebnisse, keine Ausreden.',c:'Die Strahov-Bibliothek, im Film mein Ausschuss. Keine Fragen. Nur Fotos.'}),
+ A('ministry',{ch:2,t:6,bp:'ministry',fx:'zoomout',f:[.48,.55],id:'ministry',k:'ZIELOBJEKT 08 / 13',face:'dimitrios',fc:'Waffenhändler. Verliert beim Poker ein Auto.',c:'Karlín. Das Ministerium spielt das Museum in Miami. Hier jagt Bond den Bombenleger.'}),
+ A('danube',{ch:2,t:5.5,bp:'danube',fx:'scan',f:[.4,.4],id:'danube',k:'ZIELOBJEKT 09 / 13',face:'dryden',fc:'Sektionschef. Verkauft, was ihm nicht gehört.',c:'Daneben das Danube House. Hier wurde Bond zum Doppelnull.'}),
+ A('vitkov',{ch:2,t:6,bp:'vitkov',fx:'zoomin',f:[.5,.42],id:'vitkov',k:'ZIELOBJEKT 10 / 13',x:'Nationaldenkmal Vítkov. Montags geschlossen.',c:'Vítkov, das Denkmal über der Stadt. Montags geschlossen. Wer am Montag kommt, hat die Akte nicht gelesen.'}),
+ A('museum',{ch:2,t:6.5,bp:'museum',fx:'lock',f:[.5,.55],id:'museum',k:'ZIELOBJEKT 11 / 13',face:'gettler',fc:'Sonnenbrille mit nur einem Glas. Achten Sie auf Hüte.',c:'Das Nationalmuseum, im Film Venedig. Wer Sie beobachtet, sehen Sie erst, wenn es zu spät ist.'}),
+ {ch:2,t:7,h:()=>`<div class="ms-split">${bp('barrandov')}${side({id:'barrandov',k:'ZIELOBJEKT 12 / 13',face:'white',fc:'Die Organisation. Hat Geduld. Viel Geduld.'})}</div>`,on:open,c:'Und Barrandov. Die Filmstudios. Hier endet die Spur des Kontos, mitten in einer Kulisse. Merkwürdig, nicht wahr?'},
+ {ch:3,t:6.5,leg:'d',h:()=>rmap('d'),on:rdrive,c:'Die Heimfahrt führt über Pilsen.'},
+ {ch:3,t:6,h:()=>`<div class="ms-split">${bp('plana')}${side({id:'plana',k:'ZIELOBJEKT 13 / 13',face:'valenka',fc:'Begleiterin von Le Chiffre. Unterschätzt man einmal.'})}</div>`,on:open,c:'Zielobjekt dreizehn: Planá. Im Film das Krankenhaus. Halten Sie dort nur im Notfall.'},
+ {ch:4,h:()=>`<div class="ms-fin"><svg class="gzs draw" viewBox="0 0 1000 420">${window.gzDraw?gzDraw(db5,false):''}</svg><div class="ms-end"><b>IHRE MISSION BEGINNT ${depTxt(1)}</b><span>Ein Vesper. Nicht drei. — M</span>${tminus()}</div><div class="ms-stamp">AUFTRAG ERTEILT</div></div>`,on:fin,t:8,c:'Trauen Sie niemandem, der Ihnen zu schnell vertraut. Viel Glück, 00-Einheit. Ende der Übertragung.'},
+ {ch:4,t:3.5,tr:'cut',h:lost,on:lostOn,c:''}
 ];
 SC.forEach(s=>{if(!s.art)return;
   if(s.bp)s.h=()=>`<div class="ms-two"><div class="ms-split ms-bpl">${bp(s.bp)}${side(Object.assign({},s,{face:null,car:null,x:null,k:s.k+' · AUFRISS'}))}</div><div class="ms-artl"></div></div>`,s.on=two;
   else s.h=()=>shot(s),s.on=art});
 /* Kernsätze: Anker im Sprechtext → Einblendung (r rot, a amber, big groß und zentriert, boom Einschlag) */
-[['Bis zum Morgen','BIS ZUM MORGEN.','r'],['eine Kugel','EINE KUGEL.','r big'],['zwei nachgewachsen','ZWEI NACHGEWACHSEN.','r'],['uns Vesper gekostet','ES HAT UNS VESPER GEKOSTET.','a'],
- ['Kennwort: VESPER','KENNWORT: VESPER','r big'],['Folgen Sie dem Geld','FOLGEN SIE DEM GELD.','a big'],['auch für Doppelnull','AUCH FÜR 00-AGENTEN.','a'],['Tarngeschichte zu lernen','LERNEN SIE IHRE TARNUNG.',''],
- ['Ruhe vor dem','DIE RUHE DAVOR.',''],['zu lange am Fenster','ZÄHLEN SIE DIE MÄNNER AM FENSTER.','r'],['Leider nicht von mir','LEIDER NICHT VON MIR.','r'],['Wer läuft','WER LÄUFT, SIEHT MEHR.',''],
- ['daher der Name','HOTEL SPLENDIDE','a big'],['den Fluchtweg','MERKEN SIE SICH DEN FLUCHTWEG.',''],['zweimal vorbeifahren','WAGEN, DIE ZWEIMAL VORBEIFAHREN.','r'],['Ab jetzt ist Abendgarderobe','ABENDGARDEROBE IST DIENSTKLEIDUNG.','a'],
- ['was dahinter liegt','WAS LIEGT DAHINTER?',''],['auf Kur','SIE SIND AUF KUR.','a'],['einzige Fehler','DER EINZIGE FEHLER.','r'],['Augen an der Tür','DIE AUGEN AN DER TÜR.',''],
- ['Drei Teile','3 GORDON’S · 1 WODKA · ½ KINA LILLET','a'],['Schütteln','GESCHÜTTELT.',''],['Ich zähle mit','ICH ZÄHLE MIT.','r'],
- ['22:00. Hauptziel','22:00 · HAUPTZIEL','r big'],['Konto VESPER bewegt','KONTO VESPER: AKTIV','r'],['Spielen Sie das Blatt','SPIELEN SIE DAS BLATT.',''],
- ['zehn Millionen','10 MIO. $','a big'],['Finden Sie ihn','FINDEN SIE IHN.','r'],['sieben Mal','7× ÜBERSCHLAG','r big boom'],['Das ist ein Befehl','DAS IST EIN BEFEHL.',''],
- ['Die Spur ist frisch','DIE SPUR IST FRISCH.','a'],['zu früh am Gate','WER STEHT ZU FRÜH AM GATE?',''],['Sie fotografieren','SIE FOTOGRAFIEREN.',''],['Und für jeden','UND FÜR JEDEN, DER IHNEN FOLGT.','r'],
- ['Noch nicht','NOCH NICHT.','r'],['die Doppelnull:','00','r big'],['Ich auch nicht','ICH AUCH NICHT.',''],['Montags geschlossen','MONTAGS GESCHLOSSEN.','a'],['zu spät ist','ZU SPÄT.','r'],
- ['endet die Spur','ENDE DER SPUR.','r big'],['Ausreden nicht','AUSREDEN NICHT.','a'],['medizinisch notwendig','NUR IM NOTFALL.',''],['nicht der, für den','EINER LÜGT.','r big'],['Viel Glück','VIEL GLÜCK, 00-EINHEIT.','a']
+[['nicht verziehen','NICHT VERZIEHEN.','r'],['zwei nachgewachsen','ZWEI NACHGEWACHSEN.','r'],['uns Vesper gekostet','ES HAT UNS VESPER GEKOSTET.','a'],
+ ['Kennwort: VESPER','KENNWORT: VESPER','r big'],['Folgen Sie dem Geld','FOLGEN SIE DEM GELD.','a big'],['Männer am Fenster','ZÄHLEN SIE DIE MÄNNER AM FENSTER.','r'],
+ ['Daher der Name','HOTEL SPLENDIDE','a big'],['größter Fehler','BONDS GRÖSSTER FEHLER.','r'],['auf Kur','SIE SIND AUF KUR.','a'],['zuletzt bewegt','KONTO VESPER: ZULETZT AKTIV','r'],
+ ['Sie nicht.','SIE NICHT.','r big'],['über Nacht weitergezogen','DIE SPUR IST FRISCH.','a'],['zu früh am Gate','WER STEHT ZU FRÜH AM GATE?',''],['Nur Fotos','KEINE FRAGEN. NUR FOTOS.',''],
+ ['zum Doppelnull','00','r big'],['Montags geschlossen','MONTAGS GESCHLOSSEN.','a'],['zu spät ist','ZU SPÄT.','r'],['mitten in einer Kulisse','ENDE DER SPUR.','r big'],
+ ['nur im Notfall','NUR IM NOTFALL.',''],['zu schnell vertraut','TRAUEN SIE NIEMANDEM.','r big']
 ].forEach(([an,txt,cls])=>{const sc=SC.find(x=>(x.c||'').includes(an));if(sc)(sc.pw=sc.pw||[]).push([an,txt,cls])});
 const CITY2={zug:'UNTERWEGS',bahn:'WESTBÖHMEN',tepla:'KARLOVY VARY',crash:'KARLOVY VARY',prague:'PRAHA'},CZ={Loket:'LOKET',Karlsbad:'KARLOVY VARY',Prag:'PRAHA',Westböhmen:'WESTBÖHMEN'};
 {let last='';SC.forEach(s=>{if(!s.art)return;const c=CITY2[s.art]||(s.id&&CZ[T(s.id).city])||'';if(c&&c!==last){s.sup=[c+(c==='UNTERWEGS'?'':', TSCHECHIEN'),s.k.replace(/ · (AUFRISS|CHECK-IN|DÄMMERUNG|HAUPTZIEL|KARLÍN|FÜHRUNG|FOTOSTOPP)$/,'')+(/\d\d:\d\d/.test(s.k)?' MEZ':'')]}if(c)last=c})}
@@ -4725,8 +4705,22 @@ const SND=(()=>{let ac=null,on=false,master=null,drone=null,nb=null;
   A.mood=m=>{if(!ok())return;if(!bus){bus=ac.createGain();bus.gain.value=.9;bus.connect(master)}if(!timer){next=ac.currentTime+.1;step=0;timer=setInterval(sched,25)}
     if(m>mood&&m>=3)A.hit();mood=m;setTrem(m>=3)};
   A.hush=on=>{if(bus)bus.gain.setTargetAtTime(on?.07:.9,ac.currentTime,on?.35:.04)};
-  A.musicOff=()=>{mood=0;clearInterval(timer);timer=0;if(ac)setTrem(false)};
-  A.duck=on=>{if(bus)bus.gain.setTargetAtTime(on?.38:.9,ac.currentTime,.25)};
+  /* Filmmusik: vorab erzeugte Orchester-Stücke (MusicGen, tools/music.py) in #muData; je Szene ein Stück, weich überblendet, nahtlos geschleift */
+  let MD,cueN=null,cueG=null,cueT=0;const MB={},LOOP={brief:1,drive:1,casino:1};
+  const mdat=()=>{if(MD===undefined){const el=document.getElementById('muData');try{MD=el?JSON.parse(el.textContent):null}catch(e){MD=null}}return MD};
+  const mbuf=k=>MB[k]||(MB[k]=new Promise((res,rej)=>{const b=atob(mdat()[k]),a=new Uint8Array(b.length);for(let i=0;i<b.length;i++)a[i]=b.charCodeAt(i);ac.decodeAudioData(a.buffer,res,rej)}));
+  A.hasScore=()=>!!mdat();
+  A.cue=k=>{if(!ok())return;if(!bus){bus=ac.createGain();bus.gain.value=.9;bus.connect(master)}if(k===cueN)return;cueN=k;clearTimeout(cueT);
+    const old=cueG,t=ac.currentTime;if(old){old.gain.cancelScheduledValues(t);old.gain.setTargetAtTime(0,t,.45);setTimeout(()=>{try{old.disconnect()}catch(e){}},4000)}cueG=null;
+    if(!k||!mdat()||!MD[k])return;const g=ac.createGain();g.gain.setValueAtTime(0,t);g.gain.linearRampToValueAtTime(1,t+(LOOP[k]?1.4:.08));g.connect(bus);cueG=g;
+    mbuf(k).then(buf=>{if(cueN!==k||cueG!==g)return;let at=ac.currentTime+.05,first=true;const XF=2;
+      const loop=()=>{if(cueN!==k||cueG!==g)return;if(at-ac.currentTime>4){cueT=setTimeout(loop,1000);return}
+        const sg=ac.createGain(),src=ac.createBufferSource();src.buffer=buf;src.connect(sg);sg.connect(g);
+        if(first||!LOOP[k])sg.gain.setValueAtTime(1,at);else{sg.gain.setValueAtTime(0,at);sg.gain.linearRampToValueAtTime(1,at+XF)}
+        if(LOOP[k]){sg.gain.setValueAtTime(1,at+buf.duration-XF);sg.gain.linearRampToValueAtTime(0,at+buf.duration)}
+        src.start(at);first=false;if(LOOP[k]){at+=buf.duration-XF;cueT=setTimeout(loop,Math.max(0,(at-ac.currentTime-2)*1000))}};loop()}).catch(()=>{})};
+  A.musicOff=()=>{mood=0;clearInterval(timer);timer=0;if(ac)setTrem(false);A.cue(null)};
+  A.duck=on=>{if(bus)bus.gain.setTargetAtTime(on?.32:.9,ac.currentTime,.3)};
   const _set=A.set;A.set=v=>{_set(v);if(!v)A.musicOff()};
   return A})();
 /* Sprachausgabe: Ms Texte als vorab erzeugte Aufnahmen (Piper, neuronale Stimmen, erzeugt mit tools/tts.py, eingebettet in #vxData).
@@ -4759,9 +4753,9 @@ const VOX=(()=>{const WS='speechSynthesis' in window&&'SpeechSynthesisUtterance'
     resume(){if(!on)return;if(ac)ac.resume();if(WS)speechSynthesis.resume()},
     cancel(){halt();SND.duck(false)}}})();
 window.SND=SND;
-function openSnd(){SND.hit();later(()=>SND.sting(),900)}
+function openSnd(){SND.hit();if(!SND.hasScore())later(()=>SND.sting(),900)}
 function actSnd(root){const n=root.querySelectorAll('.ma-mont>div').length;for(let i=0;i<n;i++)later(()=>SND.shutter(),i*190);later(()=>{SND.hit();SND.sting()},n?950:0)}
-const CH=['AUFTRAG','TAG 1','TAG 2','TAG 3','FINALE'];
+const CH=['AUFTRAG','LOKET · KARLSBAD','PRAG','RÜCKWEG','FINALE'];
 function depTxt(up){const d=typeof dep!=='undefined'&&dep?new Date(dep+'T12:00'):null;return d?(up?'AM ':'')+ddmm(d)+'.2026':(up?'IM ':'')+'NOVEMBER 2026'}
 const TOT=SC.reduce((a,s)=>a+s.t,0),mmss=v=>`${Math.floor(v/60)}:${String(Math.floor(v%60)).padStart(2,'0')}`;
 const chipsEl=$('msChips');chipsEl.innerHTML=CH.map((n,i)=>`<button type="button" data-c="${i}">${n}</button>`).join('');
@@ -4770,13 +4764,16 @@ function clear(){timers.forEach(clearTimeout);timers=[];anims.forEach(a=>a.cance
 function later(f,ms){timers.push(setTimeout(f,RM?0:ms))}
 const TRS=['dissolve','cut','dissolve','cut'];
 const HB=new Set(['casino','tisch']);
+/* Musikstück je Szene */
+function cueOf(s){if(s.h===lost)return null;if(s.og||s.h===acct||s.h===coldOpen)return 'brief';if(s.h===opening)return 'title';if(s.on===fin)return 'final';
+  if(s.on===pk||s.h.toString().includes("bp('kaiserbad')"))return 'casino';return 'drive'}
 function moodOf(s){if(s.h===coldOpen||s.h===lost)return 0;if(s.og)return s.og==='al'?1:2;if(s.h===acct)return 2;if(s.art==='crash')return 4;if(HB.has(s.art)||s.h.toString().includes('poker()')||s.h.toString().includes("bp('kaiserbad')"))return 3;if(s.on===actSnd||s.leg||s.h===opening)return 2;return 1}
 function show(i){clear();cur=i;const s=SC[i],tr=RM?'cut':(s.tr||TRS[i%TRS.length]);
   st.querySelectorAll('.ms-old').forEach(n=>n.remove());const prev=st.querySelector('.ms-sc');
   if(prev&&tr!=='cut'){prev.classList.remove('in');prev.classList.add('ms-old','o-'+tr);setTimeout(()=>prev.remove(),700)}else if(prev)prev.remove();
   st.insertAdjacentHTML('beforeend',`<div class="ms-sc in tr-${tr}"><div class="ms-hh">${s.h()}</div></div>`);const node=st.lastElementChild;
   if(tr==='flash'){const f=document.createElement('i');f.className='ms-flash';st.appendChild(f);setTimeout(()=>f.remove(),700)}
-  if(tr!=='cut'&&i>0)SND.whoosh();const md=moodOf(s);SND.mood(md);lage(md);
+  if(tr!=='cut'&&i>0)SND.whoosh();const md=moodOf(s);SND.hasScore()?SND.cue(cueOf(s)):SND.mood(md);lage(md);
   const me=i,pwGo=(dur,lead)=>{const body=(s.c||'').replace(/^M:\s*/,'');(s.pw||[]).forEach(([an,txt,cls])=>{const f=Math.max(0,body.indexOf(an))/Math.max(1,body.length);later(()=>{if(cur===me)punch(node,txt,cls)},Math.round(((lead||0)+.25+f*dur)*1000))})};
   const say=()=>{if(cur!==me)return;if(VOX.on&&s.c)VOX.speak(s.c,(d,l)=>{if(cur===me)pwGo(d,l)});else{VOX.speak('');pwGo(s.t*.82,0)}};
   if(s.vd)later(say,s.vd);else say();scopeGo();
@@ -4791,7 +4788,7 @@ function open(root){const svg=root.querySelector('.bp');later(()=>svg&&svg.class
 function punch(node,txt,cls){cls=cls||'';if(/big/.test(cls)&&txt.length>9)cls+=' long';const e=document.createElement('div');e.className='ms-pw '+cls;e.textContent=txt;node.appendChild(e);setTimeout(()=>e.remove(),2600);
   if(/big/.test(cls))SND.thud();else SND.whoosh(.07);if(/boom/.test(cls))impact('w')}
 function impact(c){const f=document.createElement('i');f.className='ms-flash'+(c==='r'?' r':'');st.appendChild(f);setTimeout(()=>f.remove(),700);
-  if(!RM){st.classList.remove('ms-shake');void st.offsetWidth;st.classList.add('ms-shake');setTimeout(()=>st.classList.remove('ms-shake'),500)}c==='r'?(SND.hit(),SND.sting()):SND.boom()}
+  if(!RM){st.classList.remove('ms-shake');void st.offsetWidth;st.classList.add('ms-shake');setTimeout(()=>st.classList.remove('ms-shake'),500)}c==='r'?(SND.hit(),SND.hasScore()||SND.sting()):SND.boom()}
 function fin(root){later(()=>{SND.thud();SND.hit();if(!RM){st.classList.remove('ms-shake');void st.offsetWidth;st.classList.add('ms-shake')}},2650)}
 function lostOn(){SND.lost();later(()=>SND.musicOff(),300)}
 function lage(m){const n=Math.max(1,Math.min(5,m+1));$('msLage').innerHTML='<b>LAGE</b>'+[1,2,3,4,5].map(k=>`<i class="${k<=n?'on':''}${k>=4?' hi':''}"></i>`).join('')}
@@ -4846,8 +4843,8 @@ function frame(now){if(!playing)return;el=Math.min(TOT,(now-t0)/1000);
 function play(){if(el>=TOT)el=0;playing=true;scopeGo();SND.resume();VOX.resume();t0=performance.now()-el*1000;$('msPlay').textContent='❚❚ PAUSE';cancelAnimationFrame(raf);raf=requestAnimationFrame(frame);anims.forEach(a=>a.play())}
 function stop(end){playing=false;SND.pause();VOX.pause();if(end){VOX.cancel();SND.musicOff()}cancelAnimationFrame(raf);anims.forEach(a=>a.pause());$('msPlay').textContent=end?'↺ NOCHMAL':'▶ WEITER';if(end){$('msBar').style.width='100%';el=TOT}}
 const jump=i=>{VOX.cancel();el=SC.slice(0,i).reduce((a,s)=>a+s.t,0)+.01;cur=-1;play()};
-const sndBtn=$('msSnd');function sndSet(v){SND.set(v);S.set('mssnd',v?1:0);sndBtn.setAttribute('aria-pressed',String(SND.on));sndBtn.textContent=SND.on?'♪ MUSIK AN':'♪ MUSIK AUS';if(SND.on&&cur>=0&&SC[cur].ch>0)SND.droneOn()}
-sndBtn.onclick=()=>{sndSet(!SND.on);if(SND.on&&cur>=0)SND.mood(moodOf(SC[cur]))};if(S.get('mssnd',1))sndBtn.textContent='♪ MUSIK AN (KLICK)';
+const sndBtn=$('msSnd');function sndSet(v){SND.set(v);S.set('mssnd',v?1:0);sndBtn.setAttribute('aria-pressed',String(SND.on));sndBtn.textContent=SND.on?'♪ MUSIK AN':'♪ MUSIK AUS';if(SND.on&&cur>=0&&SC[cur].ch>0&&!SND.hasScore())SND.droneOn()}
+sndBtn.onclick=()=>{sndSet(!SND.on);if(SND.on&&cur>=0)SND.hasScore()?SND.cue(cueOf(SC[cur])):SND.mood(moodOf(SC[cur]))};if(S.get('mssnd',1))sndBtn.textContent='♪ MUSIK AN (KLICK)';
 const voxBtn=$('msVox');let voxArmed=false;
 function voxSet(v,say){VOX.set(v);S.set('msvox',v?1:0);voxBtn.setAttribute('aria-pressed',String(VOX.on));voxBtn.textContent=VOX.on?'STIMME AN':'STIMME AUS';voxArmed=VOX.on;if(VOX.on&&say&&cur>=0)VOX.speak(SC[cur].c);if(!VOX.on)VOX.cancel()}
 if(!VOX.has){voxBtn.disabled=true;voxBtn.title='Sprachausgabe wird von diesem Browser nicht unterstützt';voxBtn.textContent='STIMME –'}else if(S.get('msvox',1))voxBtn.textContent='STIMME AN (KLICK)';
