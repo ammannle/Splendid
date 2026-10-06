@@ -25,12 +25,12 @@ NUM = {1:'eins',2:'zwei',3:'drei',4:'vier',5:'fünf',6:'sechs',7:'sieben',8:'ach
        14:'vierzehn',15:'fünfzehn',16:'sechzehn',17:'siebzehn',18:'achtzehn',19:'neunzehn',20:'zwanzig',21:'einundzwanzig',22:'zweiundzwanzig',30:'dreißig',45:'fünfundvierzig'}
 # Aussprache: Namen so geschrieben, wie eine deutsche Stimme sie richtig spricht
 SAY = [(r'\bMr\. ', 'Mister '), ('00-Einheit', 'Doppelnull-Einheit'), ('Doppelnull-Einheit. Hier spricht M.', 'Doppel-Null-Einheit. Hier spricht Emm.'),
-       ('Kennwort: VESPER', 'Kennwort: Wesper'), (r'\bVESPER\b', 'Wesper'), (r'\bVesper\b', 'Wesper'), ('SPECTRE', 'Spekter'),
+       ('Kennwort: VESPER', 'Kennwort, Wesper'), (r'\bVESPER\b', 'Wesper'), (r'\bVesper\b', 'Wesper'), ('SPECTRE', 'Spekter'),
        (r'\b2006\b', 'zweitausendsechs'), ('Le Chiffre', 'Lö Schiffre'), ('Cheb', 'Chepp'), ('Tržiště', 'Trschischtje'),
-       ('Vítkov', 'Wiitkoff'), ('Planá', 'Plahna'), ('Strahov', 'Strachoff'), ('Karlín', 'Karliin'), ('Barrandov', 'Barrandoff'),
+       ('Vítkov', 'Wietkoff'), ('Planá', 'Plahna'), ('Strahov', 'Strachoff'), ('Karlín', 'Karliin'), ('Barrandov', 'Barrandoff'),
        ('Danube House', 'Dänjub Haus'), ('Splendide', 'Splondiehd'), ('Straight Flush', 'Streht Flasch'), ('Casino Royale', 'Kasino Roajal'),
        (r'\bBond\b', 'Bond'), ('Quantum', 'Kwantum'), ('Pupp', 'Pupp')]
-NAMES = {'chepp','trschischtje','wiitkoff','plahna','strachoff','karliin','barrandoff','dänjub','splondiehd','streht','flasch','lö','schiffre',
+NAMES = {'chepp','trschischtje','wietkoff','plahna','strachoff','karliin','barrandoff','dänjub','splondiehd','streht','flasch','lö','schiffre',
          'kwantum','spekter','wesper','loket','pupp','kasino','roajal','emm','m'}
 
 def norm(t):
@@ -62,6 +62,11 @@ def judge(asr, ref_text, wav, sr):
     sm = difflib.SequenceMatcher(None, r2, h2)
     extra = sum((j2 - j1) for op, i1, i2, j1, j2 in sm.get_opcodes() if op in ('insert', 'replace') and (j2 - j1) > (i2 - i1))
     score = sm.ratio() - 0.12 * extra
+    # Eigennamen müssen hörbar vorkommen (ähnliches Wort in der Erkennung)
+    for nm in [w for w in ref if w in NAMES and len(w) > 2]:
+        if not any(difflib.SequenceMatcher(None, nm, h).ratio() > .45 for h in hyp if h): score -= .25
+    # Satzanfang darf nicht fehlen
+    if ref and hyp and difflib.SequenceMatcher(None, ref[0], hyp[0]).ratio() < .4 and ref[0] not in hyp[:3]: score -= .15
     # Ende: letztes Erkennungswort, das zu den letzten Soll-Wörtern passt
     end = None
     tail = set(ref[-3:])
