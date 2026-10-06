@@ -1343,8 +1343,8 @@ html.msfull{overflow:hidden}
 .ms-act .ma-h,.ms-act .ma-s,.ms-act .ma-k{max-width:92%;text-align:center}
 .rm-ban{top:auto;bottom:46px}
 @media (max-width:700px){.ms-sup{top:30px;bottom:auto;left:10px}.ms-sup b{font-size:.85rem;letter-spacing:.1em}.ms-x{display:none}.ms-hud .tl,.ms-hud .bl{display:none}
- .ms-lock span{font-size:.5rem;max-width:46vw;white-space:normal}.ma-k{font-size:.56rem;letter-spacing:.22em}.ma-s{font-size:.56rem;letter-spacing:.06em}.ma-h{letter-spacing:.04em}
- .ms-open.clean .mo-k{font-size:.5rem;letter-spacing:.16em;max-width:92%;text-align:center}.mo-sub{font-size:.5rem;letter-spacing:.1em;padding:0 8px}.rm-ban{font-size:.66rem;letter-spacing:.08em;padding:4px 8px}.ms-chap{gap:8px}}
+ .ms-lock span{font-size:.64rem;max-width:46vw;white-space:normal}.ma-k{font-size:.64rem;letter-spacing:.18em}.ma-s{font-size:.64rem;letter-spacing:.06em}.ma-h{letter-spacing:.04em}
+ .ms-open.clean .mo-k{font-size:.64rem;letter-spacing:.12em;max-width:92%;text-align:center}.mo-sub{font-size:.64rem;letter-spacing:.06em;padding:0 8px}.rm-ban{font-size:.66rem;letter-spacing:.08em;padding:4px 8px}.ms-chap{gap:8px}}
 .ms-sup{bottom:54px}
 @media (max-width:700px){.ms-bpl .ms-side,.ms-split .ms-side{display:none}.ms-lock span{display:none}.ms-stamp{top:24%;font-size:1.1rem;padding:4px 12px}.ms-sup{bottom:auto}}
 /* v26 Dramaturgie: Handkamera, Schärfe ziehen, Kernsätze, Akt-Montage, Cold Open, Stempel, Verbindungsende, Oszilloskop, Lagestufe */
@@ -1367,6 +1367,23 @@ html.msfull{overflow:hidden}
 @keyframes maMont{0%{opacity:1}100%{opacity:0}}@keyframes maFl{to{opacity:0}}
 .ms-act.mt>.ma-su,.ms-act.mt>.ma-k,.ms-act.mt>.ma-h,.ms-act.mt>.ma-line,.ms-act.mt>.ma-s{position:relative;z-index:1}
 .ms-act.mt .ma-su{animation-delay:.95s!important}.ms-act.mt .ma-k{animation-delay:1.4s}.ms-act.mt .ma-h{animation-delay:1.5s}.ms-act.mt .ma-line{animation-delay:2.1s}.ms-act.mt .ma-s{animation-delay:2.6s}
+/* v29 Lesbarkeit im Briefing: Mindestgrößen, Kontrast, Halo gegen Linien */
+.ms-stage .ms-hud{font-size:.76rem}.ms-stage .ms-k2,.ms-stage .ms-tt i{font-size:.74rem}.ms-stage .ms-as{font-size:.76rem}
+.ms-stage .ms-co{font-size:.74rem;color:color-mix(in srgb,var(--ink) 78%,var(--bg))}
+.ms-stage .rm-tk{font-size:clamp(.66rem,.95vw,.76rem);color:color-mix(in srgb,var(--ink) 70%,var(--bg))}.ms-stage .rm-tk.on{color:var(--green)}
+.ms-stage .rm-tl span{font-size:clamp(.66rem,1vw,.76rem)}.ms-stage .rm-tr i{font-size:clamp(.62rem,.9vw,.72rem);color:color-mix(in srgb,var(--ink) 70%,var(--bg))}
+.ms-stage .ms-chap{font-size:clamp(.68rem,1.1vw,.8rem)}.ms-stage .ms-led{font-size:clamp(.66rem,1.15vw,.8rem)}.ms-stage .ms-led .sub{font-size:1em}
+.ms-stage .ms-open.clean .mo-k{font-size:.78rem}.ms-stage .mc-live,.ms-stage .ml-s{font-size:.78rem}.ms-stage .ms-face figcaption{color:var(--ink)}
+.ms-stage .ogsv.hl .e,.ms-stage .ogsv.hl .el,.ms-stage .ogsv.hl .pn,.ms-stage .ogsv.hl .on{opacity:.56}.ms-stage .ogsv.hl .lit{opacity:1}
+.ms-stage svg text.lgh{paint-order:stroke fill;stroke:var(--bg);stroke-linejoin:round;stroke-opacity:.92}
+/* Handy hochkant im Vollbild: Briefing quer gedreht, damit alle Schrift groß genug bleibt */
+.panel.ms.full.rot{inset:auto;left:0;top:0;width:100dvh;height:100vw;transform-origin:0 0;transform:translateX(100vw) rotate(90deg);padding:0 env(safe-area-inset-top,0px)}
+.panel.ms.full.rot>.ph,.panel.ms.full.rot .ms-chips{display:none}
+.panel.ms.full.rot .ms-stage{flex:1 1 auto;width:100%;aspect-ratio:auto;min-height:0}
+.panel.ms.full.rot .ms-cap{min-height:0;padding:4px 10px;font-size:.8rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.panel.ms.full.rot .ms-ctl{padding:4px 8px;gap:4px}.panel.ms.full.rot .ms-ctl .qbtn{padding:4px 8px;font-size:.66rem}
+.ms-rhint{display:none}
+@media (max-width:700px) and (orientation:portrait){.ms-rhint{display:block;position:absolute;right:8px;bottom:8px;z-index:6;padding:4px 8px;font-family:var(--mono);font-size:.66rem;letter-spacing:.06em;color:var(--amber);background:color-mix(in srgb,var(--bg) 85%,transparent);border:1px solid var(--amber);cursor:pointer}.panel.ms.full .ms-rhint{display:none}}
 .ms-cold,.ms-lost{position:absolute;inset:0;background:#020507;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;overflow:hidden}
 .mc-term{font-family:var(--mono);font-size:clamp(.6rem,1.4vw,.8rem);letter-spacing:.16em;color:var(--cyan);width:min(560px,86%)}
 .mc-term p{margin:0 0 4px;opacity:0;white-space:nowrap;overflow:hidden;animation:msType .5s steps(24) calc(.2s + var(--i)*.38s) both,gzfade .01s calc(.2s + var(--i)*.38s) forwards}
@@ -1568,7 +1585,7 @@ html.msfull{overflow:hidden}
   <section id="mission">
     <div class="sh"><div><div class="ix">MODUL 02 // BRIEFING</div><h2>Missionsbriefing</h2></div><p>Gut sechs Minuten, in der Reihenfolge des Einsatzplans: Auftrag, Tag 1 bis Tag 3, Finale. M hat darauf bestanden, dass Sie es sich ansehen.</p></div>
     <div class="panel ms"><div class="ph"><b>BRIEFING // OPERATION SPLENDIDE</b><span class="st" id="msTime"></span></div>
-      <div class="ms-stage" id="msStage" aria-live="off"></div>
+      <div class="ms-stage" id="msStage" aria-live="off"><button type="button" class="ms-rhint" id="msRot">⤢ QUER</button></div>
       <div class="ms-cap" id="msCap"><canvas class="ms-scope" id="msScope" aria-hidden="true"></canvas><div class="ms-ct" id="msCapT" aria-live="polite"></div><div class="ms-lage" id="msLage" aria-hidden="true"></div></div>
       <div class="ms-ctl"><button type="button" class="qbtn go" id="msPlay">▶ ABSPIELEN</button><button type="button" class="qbtn" id="msPrev" aria-label="Vorherige Szene">‹ SZENE</button><button type="button" class="qbtn" id="msNext" aria-label="Nächste Szene">SZENE ›</button><button type="button" class="qbtn" id="msRe">↺ VON VORN</button><button type="button" class="qbtn" id="msVox" aria-pressed="false" title="Sprachausgabe">STIMME AUS</button><button type="button" class="qbtn" id="msSnd" aria-pressed="false" title="Musik und Effekte">♪ MUSIK AUS</button><button type="button" class="qbtn" id="msFull" aria-pressed="false" title="Vollbild (F)">⛶ VOLLBILD</button><span class="ms-time" id="msScene"></span><div class="ms-prog"><i id="msBar"></i></div></div>
       <div class="ms-chips" id="msChips"></div>
@@ -4763,6 +4780,18 @@ const HB=new Set(['casino','tisch']);
 function cueOf(s){if(s.h===lost)return null;if(s.og||s.h===acct||s.h===coldOpen)return 'brief';if(s.h===opening)return 'title';if(s.on===fin)return 'final';
   if(s.on===pk||s.h.toString().includes("bp('kaiserbad')"))return 'casino';return 'drive'}
 function moodOf(s){if(s.h===coldOpen||s.h===lost)return 0;if(s.og)return s.og==='al'?1:2;if(s.h===acct)return 2;if(s.art==='crash')return 4;if(HB.has(s.art)||s.h.toString().includes('poker()')||s.h.toString().includes("bp('kaiserbad')"))return 3;if(s.on===actSnd||s.leg||s.h===opening)return 2;return 1}
+/* Lesbarkeit: SVG-Schrift im Briefing nie kleiner als MIN px (Bezug: Grundmaßstab ohne Kamerazoom), Halo gegen Linien.
+   Mikroschrift in Abzeichen (unter 4,5 px) bleibt Grafik. */
+function legib(node){if(!node||!node.isConnected)return;const inl=innerWidth<=700&&!st.closest('.ms').classList.contains('full'),MIN=inl?9.5:innerWidth<700?10.5:12;
+  node.querySelectorAll('svg').forEach(svg=>{if(svg.ownerSVGElement)return;const vb0=svg.viewBox&&svg.viewBox.baseVal,vb=svg.classList.contains('ogsv')?{width:1000,height:560}:vb0;if(!vb||!vb.width||!svg.clientWidth)return;
+    const ar=svg.preserveAspectRatio.baseVal.meetOrSlice===2?Math.max:Math.min,k=ar(svg.clientWidth/vb.width,(svg.clientHeight||svg.clientWidth)/vb.height);
+    svg.querySelectorAll('text').forEach(t=>{if(t.dataset.lg||t.ownerSVGElement!==svg)return;if(t.closest('symbol,.ogl,.lgb,defs')||t.querySelector('textPath'))return;const fs=parseFloat(getComputedStyle(t).fontSize);if(!fs)return;
+      let m=1;const sp=t.closest('g[transform],text[transform]');if(sp&&sp.transform&&sp.transform.baseVal.numberOfItems){const c=sp.transform.baseVal.consolidate();if(c)m=Math.hypot(c.matrix.a,c.matrix.b)}
+      const px=fs*k*m;t.dataset.lg=1;if(inl&&MIN/px>2.4){t.style.visibility='hidden';return}if(px<MIN)t.style.fontSize=(fs*MIN/px).toFixed(2)+'px';
+      t.classList.add('lgh');t.style.strokeWidth=(2.6/(k*m)).toFixed(2)+'px'});
+    /* vergrößerte Schrift darf nichts überdecken: bei Kollision bleibt die größere (bzw. frühere) Beschriftung */
+    const T=[...svg.querySelectorAll('text[data-lg]')].filter(t=>t.ownerSVGElement===svg&&t.style.visibility!=='hidden'&&t.style.fontSize).map(t=>({t,b:t.getBoundingClientRect(),f:parseFloat(t.style.fontSize)})).filter(q=>q.b.width>0);
+    const ok=[];T.sort((a,b)=>b.f-a.f).forEach(q=>{const hit=ok.some(o=>o.b.left<q.b.right-1&&q.b.left<o.b.right-1&&o.b.top<q.b.bottom-2&&q.b.top<o.b.bottom-2);if(hit)q.t.style.visibility='hidden';else ok.push(q)})})}
 function show(i){clear();cur=i;const s=SC[i],tr=RM?'cut':(s.tr||TRS[i%TRS.length]);
   st.querySelectorAll('.ms-old').forEach(n=>n.remove());const prev=st.querySelector('.ms-sc');
   if(prev&&tr!=='cut'){prev.classList.remove('in');prev.classList.add('ms-old','o-'+tr);setTimeout(()=>prev.remove(),700)}else if(prev)prev.remove();
@@ -4777,7 +4806,7 @@ function show(i){clear();cur=i;const s=SC[i],tr=RM?'cut':(s.tr||TRS[i%TRS.length
   chipsEl.querySelectorAll('button').forEach(b=>b.classList.toggle('on',+b.dataset.c===s.ch));
   $('msScene').textContent=`${String(i+1).padStart(2,'0')}/${SC.length}`;
   const svg=node.querySelector('.bp');if(svg){svg.classList.add('draw');if(RM)svg.classList.add('open','done')}
-  if(s.on)s.on(node,s)}
+  if(s.on)s.on(node,s);[60,700,1500,2500,3600,4800,6000,7500,9000,11000].forEach(d=>later(()=>{if(cur===i)legib(node)},d))}
 function open(root){const svg=root.querySelector('.bp');later(()=>svg&&svg.classList.add('open'),1500)}
 /* Kernsätze (Kinetik-Typo) synchron zur Stimme: s.pw = [[Anker im Text, Einblendung, Klassen]] */
 function punch(node,txt,cls){cls=cls||'';if(/big/.test(cls)&&txt.length>9)cls+=' long';const e=document.createElement('div');e.className='ms-pw '+cls;e.textContent=txt;node.appendChild(e);setTimeout(()=>e.remove(),2600);
@@ -4853,13 +4882,19 @@ chipsEl.querySelectorAll('button').forEach(b=>b.onclick=()=>jump(SC.findIndex(s=
 const msP=st.closest('.ms'),fsOk=!!(msP.requestFullscreen&&document.fullscreenEnabled);
 function redo(){if(cur<0)return;show(cur);if(!playing)anims.forEach(a=>a.pause())}
 let msY=0;
+const portrait=()=>innerWidth<=700&&innerHeight>innerWidth;
+function rotFix(){const r=msP.classList.contains('full')&&portrait();if(msP.classList.contains('rot')!==r){msP.classList.toggle('rot',r);setTimeout(redo,RM?0:150)}}
+addEventListener('resize',()=>{if(msP.classList.contains('full'))rotFix()});
 function setFull(on){if(msP.classList.contains('full')===on)return;if(on)msY=scrollY;msP.classList.toggle('full',on);document.documentElement.classList.toggle('msfull',on);
+  if(on&&portrait())msP.classList.add('rot');if(!on)msP.classList.remove('rot');
   const b=$('msFull');b.textContent=on?'✕ VOLLBILD BEENDEN':'⛶ VOLLBILD';b.setAttribute('aria-pressed',String(on));
-  if(on&&fsOk&&!document.fullscreenElement)msP.requestFullscreen().catch(()=>{});
+  if(on&&fsOk&&!document.fullscreenElement)msP.requestFullscreen().then(()=>{const o=screen.orientation;if(o&&o.lock&&innerWidth<=700)return o.lock('landscape').then(()=>setTimeout(rotFix,250))}).catch(()=>{});
+  if(!on){try{screen.orientation&&screen.orientation.unlock&&screen.orientation.unlock()}catch(e){}}
   if(!on&&document.fullscreenElement===msP)document.exitFullscreen().catch(()=>{});
   if(!on)requestAnimationFrame(()=>scrollTo({top:msY,behavior:'instant'}));
   setTimeout(redo,RM?0:120)}
 $('msFull').onclick=()=>setFull(!msP.classList.contains('full'));
+$('msRot').onclick=()=>{setFull(true);if(!playing)play()};
 document.addEventListener('fullscreenchange',()=>{if(!document.fullscreenElement&&msP.classList.contains('full'))setFull(false)});
 document.addEventListener('keydown',e=>{const t=e.target;if(t&&(t.isContentEditable||/^(INPUT|TEXTAREA|SELECT)$/.test(t.tagName)))return;
   if(e.key==='Escape'&&msP.classList.contains('full')){setFull(false);e.stopPropagation()}
