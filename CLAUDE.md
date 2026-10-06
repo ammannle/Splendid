@@ -138,4 +138,6 @@ Freigabe: „Anyone with the link“ ist aktiv. Wer die Seite offen hat, sieht n
   Szenen mit `bp` zeigen erst den Gebäude-Aufriss (zeichnen, öffnen) und blenden dann in die Zeichnung über (`two()`).
   Fahrt-Etappen `LEGS` a–d auf der Routenkarte: nur der aktive Abschnitt leuchtet, der DB5 fährt ihn ab. Dazu Aufrisse Kaiserbad,
   Barrandov, Planá, Pokertisch, Personen-Dossier, Finale. Startet automatisch, sobald sichtbar.
+  Vollbild (`#msFull`, Taste F): echtes Fullscreen per `requestFullscreen`, sonst Overlay `.ms.full`; Esc beendet,
+  Leertaste Pause, Pfeiltasten Szene; die laufende Szene wird in der neuen Größe neu aufgebaut (`redo()`).
 - Tests: Playwright-Skripte müssen vor dem Laden `window.__NOINTRO=1` per `addInitScript` setzen, sonst läuft das Intro.

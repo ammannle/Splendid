@@ -1081,6 +1081,19 @@ body.boot .ph .st{animation:flick .9s 1s steps(2) 2}
 .ms-lock span{position:absolute;left:52px;top:-74px;white-space:nowrap;font-family:var(--mono);font-size:11px;letter-spacing:.14em;color:var(--red);background:color-mix(in srgb,var(--bg) 80%,transparent);padding:2px 6px;opacity:0;animation:gzfade .4s ease 2.6s forwards}
 @keyframes msLock{0%{opacity:0;transform:scale(3) rotate(45deg)}60%{opacity:1;transform:scale(.8) rotate(0)}80%{transform:scale(1.08)}100%{opacity:1;transform:scale(1)}}
 @media (prefers-reduced-motion:reduce){.ms-tiles{display:none}.ms-lock i,.ms-lock span{animation:none;opacity:1}}
+html.msfull{overflow:hidden}
+.panel.ms.full{position:fixed;inset:0;z-index:160;margin:0;border:0;border-radius:0;display:flex;flex-direction:column;justify-content:center;background:var(--bg);padding:env(safe-area-inset-top,0px) env(safe-area-inset-right,0px) env(safe-area-inset-bottom,0px) env(safe-area-inset-left,0px)}
+.panel.ms.full:fullscreen{width:100%;height:100%}
+.panel.ms.full>.ph{flex:none}
+.panel.ms.full .ms-stage{flex:none;width:min(100%,calc((100dvh - 168px)*1000/470));margin:0 auto;border:1px solid var(--line)}
+.panel.ms.full .ms-cap{flex:none;width:min(100%,calc((100dvh - 168px)*1000/470));margin:0 auto;font-size:.95rem}
+.panel.ms.full .ms-ctl,.panel.ms.full .ms-chips{flex:none;width:min(100%,calc((100dvh - 168px)*1000/470));margin:0 auto}
+.panel.ms.full .ms-tt{font-size:clamp(1rem,2.2vw,2rem)}.panel.ms.full .ms-x{font-size:.95rem}.panel.ms.full .ms-hud{font-size:.72rem}
+#msFull[aria-pressed="true"]{background:none;border-color:var(--amber);color:var(--amber);font-weight:600}
+@media (max-height:540px){.panel.ms.full>.ph,.panel.ms.full .ms-chips{display:none}.panel.ms.full .ms-stage,.panel.ms.full .ms-cap,.panel.ms.full .ms-ctl{width:min(100%,calc((100dvh - 84px)*1000/470))}
+ .panel.ms.full .ms-cap{min-height:0;padding:4px 10px;font-size:.72rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.panel.ms.full .ms-ctl{padding:4px 8px;gap:4px}.panel.ms.full .ms-ctl .qbtn{padding:4px 8px;font-size:.64rem}
+ .panel.ms.full .ms-x,.panel.ms.full .ms-as,.panel.ms.full .ms-co,.panel.ms.full .ms-side figcaption{display:none}.panel.ms.full .ms-tt{font-size:.95rem}.panel.ms.full .ms-side{padding:8px 10px}.panel.ms.full .ms-hud{font-size:.56rem}}
+@media (max-width:700px){.panel.ms.full .ms-stage,.panel.ms.full .ms-cap,.panel.ms.full .ms-ctl,.panel.ms.full .ms-chips{width:100%}.panel.ms.full .ms-stage{flex:1 1 auto;aspect-ratio:auto;min-height:0}}
 .ms-cap{min-height:2.6em;padding:10px 14px;font-family:var(--mono);font-size:.82rem;color:var(--ink);border-bottom:1px solid var(--line)}
 .ms-ctl{display:flex;flex-wrap:wrap;gap:8px;align-items:center;padding:10px 12px}
 .ms-prog{flex:1 1 180px;height:4px;background:var(--line)}.ms-prog i{display:block;height:100%;width:0;background:var(--amber)}
@@ -1269,7 +1282,7 @@ body.boot .ph .st{animation:flick .9s 1s steps(2) 2}
     <div class="panel ms"><div class="ph"><b>BRIEFING // OPERATION SPLENDIDE</b><span class="st" id="msTime"></span></div>
       <div class="ms-stage" id="msStage" aria-live="off"></div>
       <div class="ms-cap" id="msCap" aria-live="polite"></div>
-      <div class="ms-ctl"><button type="button" class="qbtn go" id="msPlay">▶ ABSPIELEN</button><button type="button" class="qbtn" id="msPrev" aria-label="Vorherige Szene">‹ SZENE</button><button type="button" class="qbtn" id="msNext" aria-label="Nächste Szene">SZENE ›</button><button type="button" class="qbtn" id="msRe">↺ VON VORN</button><span class="ms-time" id="msScene"></span><div class="ms-prog"><i id="msBar"></i></div></div>
+      <div class="ms-ctl"><button type="button" class="qbtn go" id="msPlay">▶ ABSPIELEN</button><button type="button" class="qbtn" id="msPrev" aria-label="Vorherige Szene">‹ SZENE</button><button type="button" class="qbtn" id="msNext" aria-label="Nächste Szene">SZENE ›</button><button type="button" class="qbtn" id="msRe">↺ VON VORN</button><button type="button" class="qbtn" id="msFull" aria-pressed="false" title="Vollbild (F)">⛶ VOLLBILD</button><span class="ms-time" id="msScene"></span><div class="ms-prog"><i id="msBar"></i></div></div>
       <div class="ms-chips" id="msChips"></div>
     </div>
   </section>
@@ -4009,6 +4022,23 @@ $('msPlay').onclick=()=>playing?stop():play();
 $('msRe').onclick=()=>jump(0);
 $('msPrev').onclick=()=>jump(Math.max(0,cur-1));$('msNext').onclick=()=>jump(Math.min(SC.length-1,cur+1));
 chipsEl.querySelectorAll('button').forEach(b=>b.onclick=()=>jump(SC.findIndex(s=>s.ch===+b.dataset.c)));
+/* Vollbild: echtes Fullscreen, wo erlaubt; sonst (z. B. im eingebetteten Viewer) als Overlay über die ganze Seite */
+const msP=st.closest('.ms'),fsOk=!!(msP.requestFullscreen&&document.fullscreenEnabled);
+function redo(){if(cur<0)return;show(cur);if(!playing)anims.forEach(a=>a.pause())}
+let msY=0;
+function setFull(on){if(msP.classList.contains('full')===on)return;if(on)msY=scrollY;msP.classList.toggle('full',on);document.documentElement.classList.toggle('msfull',on);
+  const b=$('msFull');b.textContent=on?'✕ VOLLBILD BEENDEN':'⛶ VOLLBILD';b.setAttribute('aria-pressed',String(on));
+  if(on&&fsOk&&!document.fullscreenElement)msP.requestFullscreen().catch(()=>{});
+  if(!on&&document.fullscreenElement===msP)document.exitFullscreen().catch(()=>{});
+  if(!on)requestAnimationFrame(()=>scrollTo({top:msY,behavior:'instant'}));
+  setTimeout(redo,RM?0:120)}
+$('msFull').onclick=()=>setFull(!msP.classList.contains('full'));
+document.addEventListener('fullscreenchange',()=>{if(!document.fullscreenElement&&msP.classList.contains('full'))setFull(false)});
+document.addEventListener('keydown',e=>{const t=e.target;if(t&&(t.isContentEditable||/^(INPUT|TEXTAREA|SELECT)$/.test(t.tagName)))return;
+  if(e.key==='Escape'&&msP.classList.contains('full')){setFull(false);e.stopPropagation()}
+  else if(msP.classList.contains('full')&&(e.key===' '||e.key==='ArrowRight'||e.key==='ArrowLeft')){e.preventDefault();e.stopPropagation();if(e.key===' ')playing?stop():play();else if(e.key==='ArrowRight')$('msNext').click();else $('msPrev').click()}
+  else if((e.key==='f'||e.key==='F')&&!e.ctrlKey&&!e.metaKey&&!e.altKey){const r=st.getBoundingClientRect();if(msP.classList.contains('full')||(r.bottom>0&&r.top<innerHeight)){e.preventDefault();setFull(!msP.classList.contains('full'))}}},true);
+let rzT=0;addEventListener('resize',()=>{if(!msP.classList.contains('full'))return;clearTimeout(rzT);rzT=setTimeout(redo,200)});
 show(0);$('msTime').textContent=`0:00 / ${mmss(TOT)}`;
 let seen=false;if('IntersectionObserver' in window){const io=new IntersectionObserver(es=>{if(!seen&&es.some(e=>e.isIntersecting)){seen=true;io.disconnect();play()}},{threshold:.5});io.observe(st)}
 })();
