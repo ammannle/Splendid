@@ -166,4 +166,11 @@ Freigabe: „Anyone with the link“ ist aktiv. Wer die Seite offen hat, sieht n
   darüber. Qs Gadgets um zehn Einträge ohne Bild erweitert (`art:null`, Platzhalter-Blatt `sheetPh`, „Bauplan folgt“, Vorführung aus):
   Aktenkoffer, Rolex Submariner, Seiko-Fernschreiber, Skistock-Gewehr, Schlüsselfinder, Signatur-Gewehr, Ericsson-Handy (Link zum 750iL),
   Röntgenbrille, Ultraschallring, Walther PPK/S (Skyfall). Bilder liefert der Nutzer nach; dann `art` und Punkte `pts` mit x/y/Effekt setzen.
+- Version 23 (06.10.2026): Lagekarten überarbeitet. Gelände: Höhenlinien per Marching Squares aus Gauß-Hügeln (`hills`, Route/Prag)
+  bzw. Talabstand zur Teplá (`valley`, Karlsbad); Flüsse `rivers` (Donau, Ohře, Vltava, Berounka), Gebirgsnamen `ranges`, weitere Orte
+  `towns2`, Bebauung entlang der Teplá (`blocks`, schematisch), Moldaubrücken `bridges`, mehr Orientierungspunkte in Prag.
+  Animation: radiales Einblenden `reveal()` vom Fokus, Route wird gezeichnet (`m-draw`), Fließrichtung `m-flow`, Marker rasten
+  gestaffelt ein, Scan-Balken, Leuchtspur hinter dem Fahrzeug (`m-comet`), Kamerafahrt `V.fly()` im Viewer, Zielerfassung `lockOn()`
+  mit Peillinien und Koordinaten beim Klick auf Ziel/Asset, Tab-Wechsel mit Ausblendung (`switchMap`). HUD: Uplink-Zeile mit UTC-Uhr,
+  Koordinaten-Fadenkreuz unter der Maus (`svg._inv` = Rückprojektion).
 - Tests: Playwright-Skripte müssen vor dem Laden `window.__NOINTRO=1` per `addInitScript` setzen, sonst läuft das Intro.

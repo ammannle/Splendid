@@ -250,6 +250,29 @@ section{margin-top:56px}
 
 /* svg map classes */
 .m-bg{fill:var(--mapbg)} .m-grid{stroke:var(--mapgrid)} .m-grid.maj{stroke-width:1.6} .m-gt{fill:var(--mute);font-family:var(--mono);font-size:12.5px}
+.m-cont{fill:none;stroke:var(--cyan);stroke-width:.7;opacity:.16;vector-effect:non-scaling-stroke}.m-cont.maj{opacity:.28;stroke-width:.9}
+.m-rng{fill:var(--mute);font-family:var(--mono);font-size:11px;letter-spacing:.42em;opacity:.75;font-style:italic}
+.m-rivt.sm{font-size:10.5px;letter-spacing:.3em}
+.m-town2{fill:var(--mapbg);stroke:var(--ink);stroke-width:1.2}.m-tn2{fill:var(--mute);font-family:var(--mono);font-size:11px}
+.m-bld{fill:color-mix(in srgb,var(--cyan) 9%,var(--mapbg));stroke:var(--cyan);stroke-width:.6;opacity:.55}
+.m-brg{fill:none;stroke:var(--ink);stroke-width:1.2;opacity:.7}
+.m-flow{stroke:#fff;stroke-width:2;stroke-dasharray:3 34;stroke-linecap:round;opacity:.75;animation:mFlow 2.4s linear infinite}.m-flow.b{stroke:var(--amber);animation-direction:normal;opacity:.6}
+@keyframes mFlow{to{stroke-dashoffset:-74}}
+#map.rv .m-draw{stroke-dasharray:1;animation:mDraw 2.6s cubic-bezier(.4,0,.2,1) .4s both}@keyframes mDraw{from{stroke-dashoffset:1}to{stroke-dashoffset:0}}
+#map.rv .mk{animation:mPop .55s cubic-bezier(.2,1.5,.4,1) both;animation-delay:calc(.9s + var(--i,0)*.14s);transform-box:fill-box;transform-origin:center}
+@keyframes mPop{from{opacity:0;transform:scale(2.4) rotate(30deg)}to{opacity:1;transform:none}}
+#map.rv .m-conts{animation:gzfade 1.6s ease both .3s}#map.rv .m-blds{animation:gzfade 1.2s ease both .5s}
+.m-scan{pointer-events:none;animation:mScan 9s linear infinite}@keyframes mScan{from{transform:translateX(0)}to{transform:translateX(1320px)}}
+.m-hudt .m-dot{fill:var(--green);animation:msBlink 1.4s steps(2) infinite}.m-hudt{pointer-events:none}
+.m-comet{fill:none;stroke:var(--cyan);stroke-width:5;stroke-linecap:round;stroke-linejoin:round;opacity:.35;filter:blur(1.5px)}
+.m-xh{pointer-events:none;opacity:0;transition:opacity .2s}.m-xh.on{opacity:1}.m-xh line{stroke:var(--amber);stroke-width:.8;stroke-dasharray:4 4;vector-effect:non-scaling-stroke;opacity:.7}
+.m-xhb{fill:var(--mapbg);stroke:var(--amber);stroke-width:.8;vector-effect:non-scaling-stroke;opacity:.92}.m-xht{fill:var(--amber);font-family:var(--mono);letter-spacing:.08em}.m-xhc{fill:none;stroke:var(--amber);stroke-width:1.2;vector-effect:non-scaling-stroke}
+.m-lock{pointer-events:none}.m-lock .tl{fill:none;stroke:var(--red);stroke-width:1;stroke-dasharray:3 5;vector-effect:non-scaling-stroke;opacity:.6;animation:gzfade .5s ease both .35s}
+.m-lock .br path{fill:none;stroke:var(--red);stroke-width:2.6}.m-lock .br{animation:mLock .55s cubic-bezier(.2,.8,.2,1) both}
+@keyframes mLock{from{transform:scale(3) rotate(45deg);opacity:0}70%{transform:scale(.9) rotate(0);opacity:1}to{transform:none;opacity:1}}
+.m-lkt{fill:var(--red);font-family:var(--mono);font-size:12px;font-weight:600;letter-spacing:.1em;paint-order:stroke;stroke:var(--mapbg);stroke-width:4px;animation:gzfade .4s ease both .45s}
+.m-lock.g .tl,.m-lock.g .br path{stroke:var(--green)}.m-lock.g .m-lkt{fill:var(--green)}
+@media (prefers-reduced-motion:reduce){.m-flow,.m-scan{animation:none}.m-scan{display:none}}
 .m-land{fill:var(--ink);opacity:.13;font-family:var(--head);font-weight:700;font-size:44px;letter-spacing:.3em}
 .m-street{stroke:var(--mapline);opacity:.16}
 .m-strt{fill:var(--mute);font-family:var(--mono);font-size:12px;letter-spacing:.28em}
@@ -2276,11 +2299,22 @@ maps.prg.people=[
 /* Orientierungspunkte, Straßen, Beschriftungen */
 maps.route.focus=[49.75,12.4];
 maps.route.lands=[['DEUTSCHLAND',48.85,11.55],['ČESKO',49.35,13.85]];
+maps.route.towns2=[['Ingolstadt',48.7665,11.4258],['Weiden',49.677,12.156]];
+maps.route.rivers=[[[[48.72,10.95],[48.735,11.2],[48.765,11.43],[48.80,11.68],[48.88,11.88],[48.98,12.08],[49.02,12.12]],'DONAU',[48.70,11.62]],
+ [[[50.07,12.30],[50.09,12.42],[50.15,12.55],[50.18,12.64],[50.186,12.754],[50.23,12.87],[50.27,13.00],[50.33,13.10],[50.40,13.22]],'OHŘE',[50.28,12.98]],
+ [[[49.72,14.36],[49.86,14.39],[49.98,14.40],[50.05,14.41],[50.0755,14.42],[50.10,14.44],[50.17,14.41],[50.30,14.40]],'VLTAVA',[49.88,14.47]],
+ [[[49.74,13.10],[49.745,13.25],[49.75,13.37],[49.80,13.45],[49.86,13.60],[49.92,13.75],[50.00,13.95]],'BEROUNKA',[49.93,13.80]]];
+maps.route.ranges=[['FICHTELGEBIRGE',50.05,11.86],['ERZGEBIRGE · KRUŠNÉ HORY',50.38,12.95],['OBERPFÄLZER WALD',49.62,12.40],['BÖHMERWALD · ŠUMAVA',49.02,13.30],['BRDY',49.72,13.95]];
+maps.route.hills=[[50.03,11.85,1,70],[50.45,12.6,1,85],[50.5,13.0,1,85],[50.55,13.4,.9,85],[49.65,12.45,.8,60],[49.45,12.65,.75,60],[49.15,13.15,1,75],[48.95,13.5,1,80],[48.8,13.85,.9,80],[50.05,12.74,.7,45],[50.27,13.12,.6,45],[49.74,13.95,.6,55],[49.75,11.35,.5,55]];
+maps.prg.hills=[[50.0836,14.3951,1,95],[50.0905,14.395,.6,80],[50.097,14.425,.55,80],[50.0882,14.4486,.8,55],[50.075,14.445,.45,120]];
+maps.prg.bridges=[[50.0865,14.4114,'Karlův most'],[50.0897,14.4136,''],[50.0813,14.4120,''],[50.0925,14.4182,''],[50.0950,14.4280,''],[50.0745,14.4130,'']];
+maps.kv.blocks=1;maps.kv.valley=1;
 maps.route.roads=[['A9',49.08,11.27],['A6',49.53,11.70],['D6',50.17,13.55],['D5',49.93,13.97],['E48',50.06,12.20]];
 maps.kv.focus=[50.2205,12.8815];
 maps.kv.marks=[['Sprudelkolonnade',50.2227,12.8826,'l'],['Parkkolonnade',50.2283,12.8797,'l'],['Stará louka',50.2207,12.8798,'l']];
 maps.prg.focus=[50.0860,14.4250];
 maps.prg.marks=[['Prager Burg',50.0909,14.4005,'r'],['Karlsbrücke',50.0865,14.4114,'t'],['Hauptbahnhof',50.0831,14.4353,'r'],['Negrelli-Viadukt',50.0942,14.4352,'t']];
+maps.prg.marks.push(['Altstädter Ring',50.0875,14.4213,'r'],['Tanzendes Haus',50.0755,14.4141,'r'],['Petřín',50.0836,14.3951,'b'],['Letná',50.0975,14.4225,'t']);
 maps.prg.lines=[[[50.0795,14.4300],[50.0838,14.4240]]];
 maps.prg.lineLab=['WENZELSPLATZ',50.0820,14.4262];
 maps.prg.pos={strahov:'r',ministry:'l',danube:'r',vitkov:'b',museum:'r'};
@@ -2349,18 +2383,40 @@ function draw(svgEl,key,opts){
   for(let y=0;y<=H;y+=40)el('line',{x1:0,y1:y,x2:W,y2:y,class:'m-grid'+(y%200?'':' maj')});
   [[14,14,1,1],[W-14,14,-1,1],[14,H-14,1,-1],[W-14,H-14,-1,-1]].forEach(([x,y,dx,dy])=>el('path',{d:`M${x} ${y+24*dy} L${x} ${y} L${x+24*dx} ${y}`,fill:'none',class:'m-out','stroke-width':2}));
   if(!hero){'ABCDEFGHIJ'.split('').forEach((c,i)=>T(i*100+50,34,c,'m-gt',{'text-anchor':'middle'}));for(let j=1;j<=6;j++)T(30,j*100+4,String(j),'m-gt')}
+  /* Gelände: Höhenlinien aus einem glatten Höhenfeld (Gauß-Hügel bzw. Talabstand) per Marching Squares */
+  {let f=null;const nz=(x,y)=>.07*Math.sin(x/37+1.3)*Math.cos(y/29)+.05*Math.sin((x+y)/53);
+    if(m.hills){const H2=m.hills.map(([la,lo,h,sg])=>{const[x,y]=P(la,lo);return[x,y,h,2*sg*sg]});f=(x,y)=>{let v=nz(x,y);for(const[a,b,h,q]of H2)v+=h*Math.exp(-((x-a)**2+(y-b)**2)/q);return v}}
+    else if(m.valley&&m.river){const R2=m.river.map(p=>P(p[0],p[1]));f=(x,y)=>{let d=1e9;for(let i=1;i<R2.length;i++){const[a,b]=R2[i-1],[c,e]=R2[i],dx=c-a,dy=e-b,t=Math.max(0,Math.min(1,((x-a)*dx+(y-b)*dy)/(dx*dx+dy*dy))),q=Math.hypot(x-a-t*dx,y-b-t*dy);if(q<d)d=q}return d/320+nz(x,y)*.6}}
+    if(f){const st=hero?16:10,nx=Math.ceil(W/st)+1,ny=Math.ceil(H/st)+1,V=[];for(let j=0;j<ny;j++){const r=[];for(let i=0;i<nx;i++)r.push(f(i*st,j*st));V.push(r)}
+      const lv=m.hills?[.18,.32,.46,.6,.74,.88]:[.2,.36,.52,.7,.9];const cg=el('g',{class:'m-conts'});
+      lv.forEach((L0,li)=>{let d='';const it=(a,b)=>(L0-a)/(b-a);
+        for(let j=0;j<ny-1;j++)for(let i=0;i<nx-1;i++){const tl=V[j][i],tr=V[j][i+1],br=V[j+1][i+1],bl=V[j+1][i];const c=(tl>L0?8:0)|(tr>L0?4:0)|(br>L0?2:0)|(bl>L0?1:0);if(!c||c===15)continue;
+          const x0=i*st,y0=j*st,T=[x0+it(tl,tr)*st,y0],Rr=[x0+st,y0+it(tr,br)*st],B=[x0+it(bl,br)*st,y0+st],Lf=[x0,y0+it(tl,bl)*st],sg=(p,q)=>`M${p[0].toFixed(1)} ${p[1].toFixed(1)}L${q[0].toFixed(1)} ${q[1].toFixed(1)}`;
+          const S={1:[[Lf,B]],2:[[B,Rr]],3:[[Lf,Rr]],4:[[T,Rr]],5:[[Lf,T],[B,Rr]],6:[[T,B]],7:[[Lf,T]],8:[[Lf,T]],9:[[T,B]],10:[[T,Rr],[Lf,B]],11:[[T,Rr]],12:[[Lf,Rr]],13:[[B,Rr]],14:[[Lf,B]]}[c];S.forEach(([p,q])=>d+=sg(p,q))}
+        if(d)el('path',{d,class:'m-cont'+(li%2?'':' maj')},cg)})}}
+  if(m.ranges&&!hero)m.ranges.forEach(([n,la,lo])=>{const[x,y]=P(la,lo);T(x,y,n,'m-rng',{'text-anchor':'middle'})});
+  if(m.rivers)m.rivers.forEach(([pts,n,lp])=>{el('path',{d:path(pts),fill:'none',class:'m-river','stroke-width':hero?4:6,'stroke-linecap':'round','stroke-linejoin':'round'});if(!hero){const[x,y]=P(lp[0],lp[1]);T(x,y,n,'m-rivt sm',{'text-anchor':'middle'})}});
   if(m.lands&&!hero)m.lands.forEach(([n,la,lo])=>{const[x,y]=P(la,lo);T(x,y,n,'m-land',{'text-anchor':'middle'})});
   if(m.river){el('path',{d:path(m.river),fill:'none',class:'m-river','stroke-width':key==='kv'?16:18,'stroke-linecap':'round','stroke-linejoin':'round'});
     const[rx,ry]=P(m.riverName[1],m.riverName[2]);T(rx,ry,m.riverName[0].toUpperCase(),'m-rivt')}
   if(m.lines)m.lines.forEach(l=>el('path',{d:path(l),fill:'none',class:'m-street','stroke-width':14,'stroke-linecap':'round'}));
+  /* Bebauung entlang der Teplá (schematisch) */
+  if(m.blocks&&m.river&&!hero){const R2=m.river.map(p=>P(p[0],p[1])),bg=el('g',{class:'m-blds'});let sd=7;const rr=()=>{sd=(sd*9301+49297)%233280;return sd/233280};
+    for(let i=1;i<R2.length;i++){const[a,b]=R2[i-1],[c,e]=R2[i],L1=Math.hypot(c-a,e-b),ux=(c-a)/L1,uy=(e-b)/L1,ang=Math.atan2(uy,ux)*180/Math.PI;
+      for(let t=8;t<L1;t+=24)[-1,1].forEach(sdn=>{for(let row=0;row<2;row++){const off=(30+row*26+rr()*6)*sdn,x=a+ux*t-uy*off,y=b+uy*t+ux*off,w=14+rr()*8,h=10+rr()*6;
+        el('rect',{x:(x-w/2).toFixed(1),y:(y-h/2).toFixed(1),width:w.toFixed(1),height:h.toFixed(1),transform:`rotate(${ang.toFixed(1)} ${x.toFixed(1)} ${y.toFixed(1)})`,class:'m-bld'},bg)}})}}
+  /* Brücken über die Moldau */
+  if(m.bridges&&!hero)m.bridges.forEach(([la,lo,n])=>{const[x,y]=P(la,lo);el('path',{d:`M${x-22} ${y}h44M${x-22} ${y-4}h44M${x-22} ${y+4}h44`,class:'m-brg'});if(n){const t=T(x-28,y+4,n,'m-lmt',{'text-anchor':'end'});plate(t,'lm',3)}});
   if(m.lineLab&&!hero){const[x,y]=P(m.lineLab[1],m.lineLab[2]);T(x+14,y-8,m.lineLab[0],'m-strt',{transform:`rotate(-52 ${x+14} ${y-8})`})}
   if(m.border){el('path',{d:path(m.border),fill:'none',class:'m-border','stroke-width':1.4,'stroke-dasharray':'2 5'});if(!hero){const[bx,by]=P(49.30,12.64);T(bx,by,'GRENZE DE / CZ','m-gt')}}
-  if(m.out){el('path',{d:path(m.out),fill:'none',class:'m-out'+(hero?' rt':''),'stroke-width':3.4,'stroke-linejoin':'round',style:'filter:drop-shadow(0 0 4px currentColor)'});
+  if(m.out){el('path',Object.assign({d:path(m.out),fill:'none',class:'m-out'+(hero?' rt':' m-draw'),'stroke-width':3.4,'stroke-linejoin':'round',style:'filter:drop-shadow(0 0 4px currentColor)'},hero?{}:{pathLength:1}));
     el('path',{d:path(m.back),fill:'none',class:'m-back','stroke-width':2.6,'stroke-dasharray':'9 7','stroke-linejoin':'round'});
+    if(!hero){el('path',{d:path(m.out),fill:'none',class:'m-flow'});el('path',{d:path(m.back),fill:'none',class:'m-flow b'})}
     if(!hero)document.getElementById('legRoute').innerHTML='<span><i style="width:18px;height:3px;background:var(--cyan)"></i>Anmarsch</span> <span><i style="width:18px;border-top:3px dashed var(--amber)"></i>Rückzug</span>'}
   else if(!hero)document.getElementById('legRoute').innerHTML='';
   if(m.walk){const pts=m.walk.map(id=>{const c=L.find(x=>x.id===id);return[c.lat,c.lon]});el('path',{d:path(pts),fill:'none',class:'m-walk','stroke-width':2.4,'stroke-dasharray':'2 6','stroke-linecap':'round'})}
   if(m.roads&&!hero)m.roads.forEach(([n,la,lo])=>{const[x,y]=P(la,lo);const t=T(x,y+4,n,'m-road',{'text-anchor':'middle'});plate(t,'road',4)});
+  if(m.towns2&&!hero)m.towns2.forEach(([n,la,lo,ps])=>{const[x,y]=P(la,lo);el('circle',{cx:x,cy:y,r:3,class:'m-town2'});const t=ps==='l'?T(x-8,y+4,n,'m-tn2',{'text-anchor':'end'}):T(x+8,y+4,n,'m-tn2');plate(t,'lm',3)});
   if(m.towns)m.towns.forEach(([n,la,lo,ps])=>{const[x,y]=P(la,lo);el('rect',{x:x-3.5,y:y-3.5,width:7,height:7,class:'m-town'});if(hero){T(x+9,y-7,n.split(' ')[0].toUpperCase(),'m-townt m-halo');return}
     const t=ps==='l'?T(x-10,y-9,n.toUpperCase(),'m-townt',{'text-anchor':'end'}):T(x+10,y-9,n.toUpperCase(),'m-townt');plate(t,'',4)});
   if(m.marks&&!hero)m.marks.forEach(([n,la,lo,ps])=>{const[x,y]=P(la,lo);el('path',{d:`M${x} ${y-5} L${x+5} ${y} L${x} ${y+5} L${x-5} ${y} Z`,class:'m-lmk'});const l=lab(x,y,ps,10);const t=T(l.x,l.y,n,'m-lmt',{'text-anchor':l.a});plate(t,'lm',3)});
@@ -2368,10 +2424,10 @@ function draw(svgEl,key,opts){
   if(!hero)(m.extras||[]).forEach(id=>{const e=X.find(x=>x.id===id);const[x,y]=P(e.lat,e.lon);const g=el('g',{class:'mk',tabindex:0,role:'button','aria-label':e.name});
     el('rect',{x:x-6,y:y-6,width:12,height:12,class:'m-ext'},g);el('rect',{x:x-10,y:y-10,width:20,height:20,fill:'none',class:'m-out','stroke-width':1,opacity:.6},g);
     const l=lab(x,y,(m.xpos||{})[id]||'r',16);const t=T(l.x,l.y,e.name,'m-xt',{'text-anchor':l.a},g);plate(t,'xt',4);
-    const act=()=>{selP(null);info.innerHTML=`<b>ASSET // ${e.name}</b> — ${e.meta}<br>${e.txt} <a href="${gm(e.lat,e.lon)}" target="_blank" rel="noopener">Koordinaten</a>`};
+    const act=()=>{selP(null);lockOn(svgEl,x,y,`ASSET · ${e.lat.toFixed(4)} N ${e.lon.toFixed(4)} E`,'g');info.innerHTML=`<b>ASSET // ${e.name}</b> — ${e.meta}<br>${e.txt} <a href="${gm(e.lat,e.lon)}" target="_blank" rel="noopener">Koordinaten</a>`};
     g.addEventListener('click',act);g.addEventListener('keydown',ev=>{if(ev.key==='Enter'||ev.key===' '){ev.preventDefault();act()}})});
   const ids=hero?['loket','pupp','airport']:m.cards;
-  ids.forEach(id=>{const c=L.find(x=>x.id===id);const[x,y]=P(c.lat,c.lon);const g=el('g',{class:'mk',tabindex:hero?-1:0,role:hero?'img':'button','aria-label':c.name});
+  ids.forEach((id,ii)=>{const c=L.find(x=>x.id===id);const[x,y]=P(c.lat,c.lon);const g=el('g',{class:'mk',tabindex:hero?-1:0,role:hero?'img':'button','aria-label':c.name,style:`--i:${ii}`});
     el('circle',{cx:x,cy:y,r:12,class:'m-tg pulse','stroke-width':2},g);
     el('circle',{cx:x,cy:y,r:12,class:'m-tg','stroke-width':2},g);el('circle',{cx:x,cy:y,r:2.5,class:'m-tgf'},g);
     [[-20,-8,0,0],[8,20,0,0],[0,0,-20,-8],[0,0,8,20]].forEach(([a,b,c2,d])=>el('line',{x1:x+a,x2:x+b,y1:y+c2,y2:y+d,class:'m-tg','stroke-width':1.6},g));
@@ -2379,7 +2435,7 @@ function draw(svgEl,key,opts){
     const l=lab(x,y,(m.pos||{})[id]||'r',26);
     const t=el('text',{x:l.x,y:l.y,'text-anchor':l.a,class:'m-lab'},g);
     const ts=document.createElementNS(NS,'tspan');ts.setAttribute('class','m-code');ts.textContent=c.r+c.s+' ';t.appendChild(ts);t.appendChild(document.createTextNode(c.name));plate(t,'tg',5);
-    const act=()=>{selP(null);info.innerHTML=`<b>${code(c)} // ${c.name}</b> — Deckname: ${c.as}. ${SEC.has(c.id)?'<span class="s-ok">✓ Gesichert.</span> ':''}<a href="#targets" data-c="${c.id}">Lagebericht</a> · <a href="${gm(c.lat,c.lon)}" target="_blank" rel="noopener">Koordinaten</a>`;info.querySelector('[data-c]').onclick=()=>showCard(c.id,false)};
+    const act=()=>{selP(null);lockOn(svgEl,x,y,`${code(c)} · ${c.lat.toFixed(4)} N ${c.lon.toFixed(4)} E`);info.innerHTML=`<b>${code(c)} // ${c.name}</b> — Deckname: ${c.as}. ${SEC.has(c.id)?'<span class="s-ok">✓ Gesichert.</span> ':''}<a href="#targets" data-c="${c.id}">Lagebericht</a> · <a href="${gm(c.lat,c.lon)}" target="_blank" rel="noopener">Koordinaten</a>`;info.querySelector('[data-c]').onclick=()=>showCard(c.id,false)};
     g.addEventListener('click',act);g.addEventListener('keydown',ev=>{if(ev.key==='Enter'||ev.key===' '){ev.preventDefault();act()}})});
   if(m.edge&&!hero){plate(T(28,200,'◂ OBJ 6♣ FLUGHAFEN · 12 KM','m-edge'),'edge',5);plate(T(360,580,'▾ OBJ Q♠ BARRANDOV · 6 KM SÜD','m-edge'),'edge',5)}
   if(!hero){ // Maßstab und Nordpfeil
@@ -2410,12 +2466,28 @@ function draw(svgEl,key,opts){
     const road=key==='route'||id==='dryden',a=setMotion({id,g,tr,pts,cum,len:cum[cum.length-1],dur,mode,where,loop:mode==='loop'&&road,x:pts[0][0],y:pts[0][1]},road?'road':'roam',road?({unit:34,white:22,mathis:15,dryden:16}[id]||18):rnd(4,8));list.push(a);placeAt(a,RM?0:performance.now());
     if(!hero){const act=()=>selP(sel===id?null:id);g.addEventListener('click',e=>{e.stopPropagation();act()});g.addEventListener('keydown',ev=>{if(ev.key==='Enter'||ev.key===' '){ev.preventDefault();act()}})}});
   anims.set(svgEl,list);
+  const uA=list.find(a=>a.id==='unit');if(uA){uA.cm=el('path',{class:'m-comet'});trails.parentNode.insertBefore(uA.cm,pl);uA.hist=[]}
+  svgEl._inv=(x,y)=>[la1-(y-oy)/s,lo0+(x-ox)/(k*s)];
+  if(!hero){const sd2=el('linearGradient',{id:'scanG',x1:'0',y1:'0',x2:'1',y2:'0'},defs);el('stop',{offset:'0','stop-color':'#8FD7E8','stop-opacity':'0'},sd2);el('stop',{offset:'.85','stop-color':'#8FD7E8','stop-opacity':'.04'},sd2);el('stop',{offset:'1','stop-color':'#8FD7E8','stop-opacity':'.16'},sd2);
+    el('rect',{x:-90,y:0,width:90,height:H,fill:'url(#scanG)',class:'m-scan'});
+    const hg=el('g',{class:'m-hudt'});const ht=T(56,H-16,'','m-gt',{},hg);ht.innerHTML=`<tspan class="m-dot">●</tspan> SAT-UPLINK AKTIV · KARTE ${m.code||''} · <tspan class="m-clock"></tspan>`;
+    const xh=el('g',{class:'m-xh'});el('line',{x1:0,y1:0,x2:W,y2:0,class:'h'},xh);el('line',{x1:0,y1:0,x2:0,y2:H,class:'v'},xh);el('rect',{class:'m-xhb',rx:2},xh);el('text',{class:'m-xht'},xh);el('circle',{r:5,class:'m-xhc'},xh)}
   if(!hero){curMap=key;sel=null;document.getElementById('mapTitle').textContent='LAGE // '+m.label.toUpperCase();document.getElementById('mapCode').textContent='KARTE '+m.code;info.textContent=m.note;
     document.querySelectorAll('#mapTabs .tbtn').forEach(b=>b.setAttribute('aria-selected',b.dataset.k===key?'true':'false'));
     const pe=document.getElementById('ppl');pe.innerHTML='<span class="pplh">ZIELPERSONEN</span>'+people.map(([id])=>{const p=PP[id];return `<button type="button" class="pchip f-${p.f}" data-p="${id}" aria-pressed="false"><i></i>${p.n}</button>`}).join('');
     pe.querySelectorAll('.pchip').forEach(b=>b.onclick=()=>selP(sel===b.dataset.p?null:b.dataset.p));
     MV.focus=P(m.focus[0],m.focus[1]);MV.home()}
 }
+/* Zielerfassung auf der Karte: Klammern rasten ein, Peillinien zu den Rändern, Koordinaten */
+function lockOn(svgEl,x,y,txt,cls){svgEl.querySelectorAll('.m-lock').forEach(e=>e.remove());const W=+svgEl.dataset.w,H=+svgEl.dataset.h,g=document.createElementNS(NS,'g');g.setAttribute('class','m-lock '+(cls||''));
+  const d=26;g.innerHTML=`<path class="tl" d="M${x-W} ${y}H${x-d-6}M${x+d+6} ${y}H${x+W}M${x} ${y-H}V${y-d-6}M${x} ${y+d+6}V${y+H}"/><g class="br" style="transform-origin:${x}px ${y}px"><path d="M${x-d} ${y-d+9}v-9h9M${x+d-9} ${y-d}h9v9M${x+d} ${y+d-9}v9h-9M${x-d+9} ${y+d}h-9v-9"/></g><text x="${x+d+10}" y="${y-d-6}" class="m-lkt">${txt}</text>`;
+  (svgEl.querySelector('.ppl-layer')||svgEl).before?svgEl.insertBefore(g,svgEl.querySelector('.m-scan')||null):svgEl.appendChild(g);
+  const V=VIEW.get(svgEl);if(V&&V.fly&&!RM)V.fly(x,y,Math.min(V.w,innerWidth<680?380:560))}
+/* Einblenden einer Karte: radial vom Fokus, Route wird gezeichnet, Marker rasten nacheinander ein */
+function reveal(svgEl){if(RM||!svgEl.animate)return;const V=VIEW.get(svgEl);svgEl.classList.remove('rv');void svgEl.getBoundingClientRect();svgEl.classList.add('rv');
+  const fx=V?((V.focus[0]-V.x)/V.w*100).toFixed(0):50,fy=V?((V.focus[1]-V.y)/V.h*100).toFixed(0):50;
+  svgEl.animate([{clipPath:`circle(0% at ${fx}% ${fy}%)`},{clipPath:`circle(130% at ${fx}% ${fy}%)`}],{duration:1500,easing:'cubic-bezier(.3,0,.2,1)'})}
+setInterval(()=>{const t=new Date(),z=n=>String(n).padStart(2,'0'),u=`${z(t.getUTCHours())}:${z(t.getUTCMinutes())}:${z(t.getUTCSeconds())} UTC`;document.querySelectorAll('#map .m-clock').forEach(e=>e.textContent=u)},1000);
 maps.route.code='B-1';maps.kv.code='B-2';maps.prg.code='B-3';
 maps.route.label='Anmarsch & Rückzug';maps.kv.label='Karlsbad = Montenegro';maps.prg.label='Prag = London, Miami, Venedig';
 const mapSvg=document.getElementById('map'),heroSvg=document.getElementById('heroMap');
@@ -2431,6 +2503,8 @@ function viewer(svg,BW,BH,lvl,o){
   V.home=()=>{const w=o.homeW();V.set(V.focus[0]-w/2,V.focus[1]-w*V.A()/2,w)};
   V.zoomBy=(f,cx,cy)=>{if(cx==null){cx=V.x+V.w/2;cy=V.y+V.h/2}const w=V.w/f;V.set(cx-(cx-V.x)*w/V.w,cy-(cy-V.y)*w/V.w,w)};
   V.to=(cx,cy,w)=>V.set(cx-w/2,cy-w*V.A()/2,w);
+  V.fly=(cx,cy,w,ms)=>{cancelAnimationFrame(V._f);const A=V.A(),s0=[V.x+V.w/2,V.y+V.h/2,V.w],t0=performance.now(),D=ms||900,e=t=>t<.5?4*t*t*t:1-Math.pow(-2*t+2,3)/2;
+    (function st(n){const t=Math.min(1,(n-t0)/D),q=e(t),ww=s0[2]+(w-s0[2])*q-Math.sin(Math.PI*t)*Math.min(s0[2],w)*.18,cx2=s0[0]+(cx-s0[0])*q,cy2=s0[1]+(cy-s0[1])*q;V.set(cx2-ww/2,cy2-ww*A/2,ww);if(t<1)V._f=requestAnimationFrame(st)})(t0)};
   V.pt=e=>{const r=svg.getBoundingClientRect();return[V.x+(e.clientX-r.left)/r.width*V.w,V.y+(e.clientY-r.top)/r.height*V.h]};
   V.chase=(px,py)=>V.set(V.x+(px-V.w/2-V.x)*.06,V.y+(py-V.h/2-V.y)*.06,V.w);
   svg.addEventListener('dblclick',e=>{e.preventDefault();const[x,y]=V.pt(e);V.zoomBy(1.8,x,y)});
@@ -2458,22 +2532,29 @@ function selP(id){sel=id;MV.follow=id;const info=document.getElementById('mapinf
   mapSvg.classList.add('focus');
   const p=PP[id],a=list.find(x=>x.id===id);
   info.innerHTML=`<b>ZIELPERSON // ${p.n.toUpperCase()}</b> <span class="ptag f-${p.f}">${PF[p.f]} · ${p.t}</span><br>${p.d}<br><span class="psee">LETZTE SICHTUNG: ${a?a.where:'unbekannt'}${RM?'':' · Karte folgt der Person, Ziehen beendet die Verfolgung.'}</span>${window.paOpen&&id!=='unit'?` <button type="button" class="ref" onclick="paOpen('${id}')">AKTE ÖFFNEN</button>`:''}`;
-  if(a&&MV.w>(innerWidth<680?400:640))MV.to(a.x,a.y,innerWidth<680?380:520)}
+  if(a&&MV.w>(innerWidth<680?400:640)){if(RM)MV.to(a.x,a.y,innerWidth<680?380:520);else{MV.follow=null;MV.fly(a.x,a.y,innerWidth<680?380:520,900);setTimeout(()=>{if(sel===id)MV.follow=id},900)}}}
 mapSvg.addEventListener('click',e=>{if(sel&&!e.target.closest('.pp,.mk'))selP(null)});
+/* Koordinaten-Fadenkreuz (nur mit Maus) */
+if(matchMedia('(hover:hover)').matches){mapSvg.addEventListener('pointermove',e=>{const xh=mapSvg.querySelector('.m-xh');if(!xh||!mapSvg._inv)return;const[x,y]=MV.pt(e),[la,lo]=mapSvg._inv(x,y),sc=MV.w/1000;
+  xh.classList.add('on');const[h,v]=xh.querySelectorAll('line');h.setAttribute('y1',y);h.setAttribute('y2',y);v.setAttribute('x1',x);v.setAttribute('x2',x);xh.querySelector('circle').setAttribute('cx',x);xh.querySelector('circle').setAttribute('cy',y);
+  const t=xh.querySelector('text');t.textContent=`${la.toFixed(4)} N · ${lo.toFixed(4)} E`;t.setAttribute('x',x+14*sc);t.setAttribute('y',y-12*sc);t.style.fontSize=(11*sc)+'px';const b=t.getBBox(),r=xh.querySelector('rect');r.setAttribute('x',b.x-4*sc);r.setAttribute('y',b.y-2*sc);r.setAttribute('width',b.width+8*sc);r.setAttribute('height',b.height+4*sc)});
+  mapSvg.addEventListener('pointerleave',()=>{const xh=mapSvg.querySelector('.m-xh');if(xh)xh.classList.remove('on')})}
 
 /* Animation, nur für sichtbare Karten; jede Karte mit Viewer kann einer Person folgen */
 const vis=new Set(),VIEW=new Map([[mapSvg,MV]]);
 const watchVis=el=>{if(!('IntersectionObserver' in window)){vis.add(el);return}(watchVis.io||(watchVis.io=new IntersectionObserver(es=>es.forEach(e=>e.isIntersecting?vis.add(e.target):vis.delete(e.target))))).observe(el)};
 watchVis(mapSvg);watchVis(heroSvg);
-function frame(now){for(const[svg,list]of anims){if(!vis.has(svg))continue;list.forEach(a=>placeAt(a,now));
+function frame(now){for(const[svg,list]of anims){if(!vis.has(svg))continue;list.forEach(a=>{placeAt(a,now);if(a.cm){const h=a.hist,l=h[h.length-1];if(!l||Math.hypot(l[0]-a.x,l[1]-a.y)>2){h.push([a.x,a.y]);if(h.length>46)h.shift();a.cm.setAttribute('d',h.length>1?'M'+h.map(p=>p[0].toFixed(1)+' '+p[1].toFixed(1)).join('L'):'')}}});
     const V=VIEW.get(svg);if(V&&V.follow){const a=list.find(x=>x.id===V.follow);if(a)V.chase(a.x,a.y)}}
   requestAnimationFrame(frame)}
 if(!RM)requestAnimationFrame(frame);
 
 const mt=document.getElementById('mapTabs');
-[['route','B-1 ROUTE'],['kv','B-2 KARLSBAD'],['prg','B-3 PRAG']].forEach(([k,l])=>{const b=document.createElement('button');b.className='tbtn';b.type='button';b.setAttribute('role','tab');b.dataset.k=k;b.textContent=l;b.onclick=()=>draw(mapSvg,k);mt.appendChild(b)});
+[['route','B-1 ROUTE'],['kv','B-2 KARLSBAD'],['prg','B-3 PRAG']].forEach(([k,l])=>{const b=document.createElement('button');b.className='tbtn';b.type='button';b.setAttribute('role','tab');b.dataset.k=k;b.textContent=l;b.onclick=()=>switchMap(k);mt.appendChild(b)});
+function switchMap(k){if(RM||!mapSvg.animate){draw(mapSvg,k);return}const a=mapSvg.animate([{opacity:1,filter:'none'},{opacity:0,filter:'blur(3px) brightness(1.6)'}],{duration:220,easing:'ease-in'});a.onfinish=()=>{draw(mapSvg,k);reveal(mapSvg)}}
 draw(mapSvg,'route');
 draw(heroSvg,'route',{hero:true});
+if('IntersectionObserver' in window){const io2=new IntersectionObserver(es=>{if(es.some(e=>e.isIntersecting)){io2.disconnect();reveal(mapSvg)}},{threshold:.3});io2.observe(mapSvg)}
 /* Schilder nach dem Laden der Schriften neu vermessen */
 if(document.fonts&&document.fonts.ready)document.fonts.ready.then(()=>{const z={x:MV.x,y:MV.y,w:MV.w},s=sel;draw(mapSvg,curMap);draw(heroSvg,'route',{hero:true});MV.set(z.x,z.y,z.w);if(s)selP(s)});
 
