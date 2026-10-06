@@ -173,4 +173,10 @@ Freigabe: „Anyone with the link“ ist aktiv. Wer die Seite offen hat, sieht n
   gestaffelt ein, Scan-Balken, Leuchtspur hinter dem Fahrzeug (`m-comet`), Kamerafahrt `V.fly()` im Viewer, Zielerfassung `lockOn()`
   mit Peillinien und Koordinaten beim Klick auf Ziel/Asset, Tab-Wechsel mit Ausblendung (`switchMap`). HUD: Uplink-Zeile mit UTC-Uhr,
   Koordinaten-Fadenkreuz unter der Maus (`svg._inv` = Rückprojektion).
+- Version 24 (06.10.2026): Briefing ohne Kitsch: Abspann und Vorspann-Credits entfernt, schlichter Titel (`opening()`), Akt-Karten ohne
+  Drehen, Übergänge nur noch Überblendung und Schnitt. Sprachausgabe `VOX` (Web Speech API, deutsche Gerätestimme, Text über `norm()`
+  aufbereitet: Uhrzeiten, 00-Einheit, 007); die Zeitleiste hält jede Szene, bis M zu Ende gesprochen hat. Knopf `#msVox`, Wahl
+  `ops5-msvox` (Standard an, startet mit dem ersten Klick auf Abspielen). Musik live per WebAudio (`SND.mood(0–4)`: e-Moll i–VI–iv–V,
+  92 BPM; Flächen, Bass-Ostinato, Puls, Pauken, Trommeln, Streicher-Tremolo, Blechstich), Stufe je Szene über `moodOf()`
+  (Casino 3, DBS-Überschlag 4), wird unter der Stimme abgesenkt (`SND.duck`). Knopf `#msSnd` heißt jetzt „Musik“.
 - Tests: Playwright-Skripte müssen vor dem Laden `window.__NOINTRO=1` per `addInitScript` setzen, sonst läuft das Intro.
