@@ -1335,6 +1335,14 @@ html.msfull{overflow:hidden}
 .rm-ban.go{animation:rmBan 2.4s ease forwards}.rm-ban.r{color:var(--red);border-color:var(--red)}
 @keyframes rmBan{0%{opacity:0;transform:translate(-50%,-6px)}12%{opacity:1;transform:translate(-50%,0)}80%{opacity:1}100%{opacity:0}}
 @media (max-width:700px){.rm-tr{grid-template-columns:repeat(3,auto)}.rm-tr div{padding:3px 6px}.rm-tl{max-width:40%}.rm-tk:not(.s):not(.e){display:none}.ms-acct{grid-template-columns:1fr}.ms-acmap{display:none}}
+/* Briefing v3: keine Überlappungen */
+.ms-pw.big.long{font-size:clamp(1.6rem,5.6vw,4.2rem);max-width:92%;left:4%;right:4%;white-space:normal}
+.ma-h.long{font-size:clamp(1.3rem,4.4vw,3.2rem)}
+.ms-act .ma-h,.ms-act .ma-s,.ms-act .ma-k{max-width:92%;text-align:center}
+.rm-ban{top:auto;bottom:46px}
+@media (max-width:700px){.ms-sup{top:30px;bottom:auto;left:10px}.ms-sup b{font-size:.85rem;letter-spacing:.1em}.ms-x{display:none}.ms-hud .tl,.ms-hud .bl{display:none}
+ .ms-lock span{font-size:.5rem;max-width:46vw;white-space:normal}.ma-k{font-size:.56rem;letter-spacing:.22em}.ma-s{font-size:.56rem;letter-spacing:.06em}.ma-h{letter-spacing:.04em}
+ .ms-open.clean .mo-k{font-size:.5rem;letter-spacing:.16em;max-width:92%;text-align:center}.mo-sub{font-size:.5rem;letter-spacing:.1em;padding:0 8px}.rm-ban{font-size:.66rem;letter-spacing:.08em;padding:4px 8px}.ms-chap{gap:8px}}
 /* v26 Dramaturgie: Handkamera, Schärfe ziehen, Kernsätze, Akt-Montage, Cold Open, Stempel, Verbindungsende, Oszilloskop, Lagestufe */
 .ms-hh{position:absolute;inset:0;scale:1.012;animation:msRack .9s ease-out both,msDrift 13s ease-in-out infinite alternate}
 @keyframes msRack{from{filter:blur(7px)}to{filter:none}}
@@ -4585,7 +4593,7 @@ function rdrive(root,s){const box=root.querySelector('.ms-rm');if(!box)return;co
     const sp=t>T2&&f<1?(L.km/((m1-m0)/60))*(f<.1||f>.9?(f<.1?f/.1:(1-f)/.1)*.9+.1:1)*(1+.06*Math.sin(now/700)):0;vs+=(sp-vs)*.08;vv.textContent=Math.round(vs);
     bar.style.width=(f*100).toFixed(1)+'%';tks.forEach(e=>e.classList.toggle('on',+e.dataset.f<=f+.002));wps.forEach(e=>e.classList.toggle('on',+e.dataset.f<=f));
     R2.wps.forEach((w,i)=>{if(i>last&&w[1]>.04&&w[1]<.96&&f>=w[1]){last=i;SND.ping()}});
-    if(R2.bf!=null&&!banQ.b&&f>=R2.bf){banQ.b=1;show(L.set==='back'?'GRENZE · BUNDESREPUBLIK DEUTSCHLAND':'GRENZE · ČESKÁ REPUBLIKA');SND.ping()}
+    if(R2.bf!=null&&!banQ.b&&f>=R2.bf){banQ.b=1;show(L.set==='back'?'GRENZE · DEUTSCHLAND':'GRENZE · TSCHECHIEN');SND.ping()}
     if(f>=1&&!banQ.e){banQ.e=1;svg.querySelector('.rm-dest').classList.add('on');later(()=>show(`ANKUNFT ${L.t1} · ${RT[L.t]}`),R2.bf!=null&&f-R2.bf<.2?900:0)}
     if(t<T3+2600)requestAnimationFrame(step)})(t0);
   later(()=>SND.whoosh(.15),T1)}
@@ -4594,8 +4602,8 @@ function rdrive(root,s){const box=root.querySelector('.ms-rm');if(!box)return;co
 const lb='<i class="ms-lb t"></i><i class="ms-lb b"></i>';
 const cr=(a,d,html,cls)=>`<div class="mo-cr ${cls||''}" style="--a:${a}s;--d:${d}s">${html}</div>`;
 function opening(){return `<div class="ms-open clean">${lb}<div class="mo-k">SECRET INTELLIGENCE SERVICE · EINSATZBESPRECHUNG</div><div class="mo-title"><span>OPERATION</span><span>SPLENDIDE</span></div><div class="mo-line"></div><div class="mo-sub">AKTE 007 · ${depTxt()} · LOKET · KARLOVY VARY · PRAHA</div></div>`}
-function actCard(su,k,h,sub,arts){const mt=arts&&!RM?`<div class="ma-mont">${arts.map((a,i)=>`<div style="--i:${i}">${artSVG(a).replace('class="ms-asv"','class="ms-asv done" preserveAspectRatio="xMidYMid slice"')}</div>`).join('')}</div>`:'';
-  return `<div class="ms-act${mt?' mt':''}">${mt}${lb}<div class="ma-su${su==='♥'||su==='♦'?' r':''}">${su}</div><div class="ma-k">${k}</div><div class="ma-h">${h}</div><div class="ma-line"></div><div class="ma-s">${sub}</div></div>`}
+function actCard(su,k,h,sub,arts){const lg=h.length>14;const mt=arts&&!RM?`<div class="ma-mont">${arts.map((a,i)=>`<div style="--i:${i}">${artSVG(a).replace('class="ms-asv"','class="ms-asv done" preserveAspectRatio="xMidYMid slice"')}</div>`).join('')}</div>`:'';
+  return `<div class="ms-act${mt?' mt':''}">${mt}${lb}<div class="ma-su${su==='♥'||su==='♦'?' r':''}">${su}</div><div class="ma-k">${k}</div><div class="ma-h${lg?' long':''}">${h}</div><div class="ma-line"></div><div class="ma-s">${sub}</div></div>`}
 /* Cold Open: eingehende Übertragung aus Vauxhall Cross; Verbindungsende nach dem Finale */
 function coldOpen(){const L=['&gt; EINGEHENDE ÜBERTRAGUNG','&gt; URSPRUNG: VAUXHALL CROSS · LONDON','&gt; KANAL 7 · VERSCHLÜSSELT','&gt; EMPFÄNGER: 00-EINHEIT · AGENT 01–04'];
   return `<div class="ms-cold"><div class="mc-term">${L.map((t,i)=>`<p style="--i:${i}">${t}</p>`).join('')}<p style="--i:4" class="ok">&gt; VERBINDUNG STEHT</p></div><canvas class="ms-scope" aria-hidden="true"></canvas><div class="mc-live"><i></i>LIVE · M</div></div>`}
@@ -4777,7 +4785,7 @@ function show(i){clear();cur=i;const s=SC[i],tr=RM?'cut':(s.tr||TRS[i%TRS.length
   if(s.on)s.on(node,s)}
 function open(root){const svg=root.querySelector('.bp');later(()=>svg&&svg.classList.add('open'),1500)}
 /* Kernsätze (Kinetik-Typo) synchron zur Stimme: s.pw = [[Anker im Text, Einblendung, Klassen]] */
-function punch(node,txt,cls){cls=cls||'';const e=document.createElement('div');e.className='ms-pw '+cls;e.textContent=txt;node.appendChild(e);setTimeout(()=>e.remove(),2600);
+function punch(node,txt,cls){cls=cls||'';if(/big/.test(cls)&&txt.length>9)cls+=' long';const e=document.createElement('div');e.className='ms-pw '+cls;e.textContent=txt;node.appendChild(e);setTimeout(()=>e.remove(),2600);
   if(/big/.test(cls))SND.thud();else SND.whoosh(.07);if(/boom/.test(cls))impact('w')}
 function impact(c){const f=document.createElement('i');f.className='ms-flash'+(c==='r'?' r':'');st.appendChild(f);setTimeout(()=>f.remove(),700);
   if(!RM){st.classList.remove('ms-shake');void st.offsetWidth;st.classList.add('ms-shake');setTimeout(()=>st.classList.remove('ms-shake'),500)}c==='r'?(SND.hit(),SND.sting()):SND.boom()}
@@ -4794,7 +4802,7 @@ function scope(now){scRaf=0;const live=VOX.wave(wbuf);msP.querySelectorAll('canv
   if(playing||VOX.busy)scRaf=requestAnimationFrame(scope)}
 function pk(root){const g=root.querySelector('.pk'),me=cur;const steps=['bd0','bd1','bd2','bd3','bd4','lch','bh','pk-win'];SND.hush(true);
   for(let b=0;b<6;b++)later(()=>SND.beat(),400+b*(820-b*70));
-  steps.forEach((c,i)=>later(()=>{g.classList.add('s-'+c);if(c==='pk-win'&&cur===me){SND.hush(false);impact('r');punch(root,'STRAIGHT FLUSH','r big')}else if(i<7)SND.shutter()},300+i*(i<6?560:780)))}
+  steps.forEach((c,i)=>later(()=>{g.classList.add('s-'+c);if(c==='pk-win'&&cur===me){SND.hush(false);impact('r')}else if(i<7)SND.shutter()},300+i*(i<6?560:780)))}
 /* Aufriss zuerst (zeichnen, öffnen), dann Überblendung in die Zeichnung des Ortes */
 function two(root,s){const me=cur;open(root);later(()=>{if(cur!==me)return;const w=root.querySelector('.ms-two'),l=root.querySelector('.ms-artl');l.innerHTML=shot(s);w.classList.add('flip');art(l,s)},Math.round(s.t*1000*.42))}
 /* Zeichnung: Bühne füllen (wie object-fit: cover), Einblendung je nach fx, dann Kamerafahrt */
