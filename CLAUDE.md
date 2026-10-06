@@ -132,7 +132,7 @@ Freigabe: „Anyone with the link“ ist aktiv. Wer die Seite offen hat, sieht n
   Danach zwölf Fahrzeuge (Vanquish, DB10, 750iL, Mustang, Hornet, DBS 1969, Bentley, AEC-Bus, Esprit Turbo, DBS V12, 2000GT, Z8)
   nach neuen Nutzer-Seitenrissen: Maßlinien entfernt, Linien zusammengefasst und vereinfacht, Höhe auf Werksmaß geeicht.
 - Version 18 (06.10.2026): Missionsbriefing (`#mission`) fertig: 32 Szenen, ca. 5:00 min (ohne Fahrzeugvorstellung am Start), in Reihenfolge des Einsatzplans (3 Tage):
-  Kapitel AUFTRAG · TAG 1 · TAG 2 · TAG 3 · FINALE (Chips springen zum Kapitel, ‹ SZENE / SZENE › einzeln). 23 vom Nutzer gelieferte
+  Kapitel AUFTRAG · TAG 1 · TAG 2 · TAG 3 · FINALE (Chips springen zum Kapitel, ‹ SZENE / SZENE › einzeln). 21 vom Nutzer gelieferte
   Strichzeichnungen in `MSA` (skelettiert, 2x-Einheiten, Gruppen `G`, Linienstärke `--sw` je Zoom). Einblendungen je Szene `fx`:
   draw, zoomout, zoomin, iris, scan, wipe, tiles, lock (Zielerfassung mit Fokuspunkt `f`); Kamera über `.ms-cam` per Web Animations.
   Szenen mit `bp` zeigen erst den Gebäude-Aufriss (zeichnen, öffnen) und blenden dann in die Zeichnung über (`two()`).
