@@ -81,7 +81,7 @@ def main(ref, outdir, only=None):
     os.makedirs(outdir, exist_ok=True)
     caps = [c for c in tts.captions(open(tts.HTML, encoding='utf-8').read()) if c]
     m = ChatterboxMultilingualTTS.from_pretrained(device='cpu')
-    asr = WhisperModel('small', device='cpu', compute_type='int8')
+    asr = WhisperModel('medium', device='cpu', compute_type='int8')
     V = dict(exaggeration=0.5, cfg_weight=0.5, temperature=0.65)
     tmp = os.path.join(outdir, '_tmp.wav')
     def best_of(text, n, seed):
@@ -92,18 +92,18 @@ def main(ref, outdir, only=None):
             ta.save(tmp, w, m.sr)
             sc, a, hyp = judge(asr, text, tmp, m.sr)
             if best is None or sc > best[0]: best = (sc, a, hyp)
-            if sc >= .92: break
+            if sc >= .97: break
         return best
     for i, c in enumerate(caps):
         if only and i not in only: continue
         f = os.path.join(outdir, f'm_{tts.key(c)}.wav')
         if os.path.exists(f) and not only: continue
         text = norm(c)
-        sc, a, hyp = best_of(text, 3, 7 + i * 13)
-        if sc < .86 and len(sentences(text)) > 1:
+        sc, a, hyp = best_of(text, 6, 7 + i * 13)
+        if sc < .95 and len(sentences(text)) > 1:
             parts = []
             for j, snt in enumerate(sentences(text)):
-                s2, a2, h2 = best_of(snt, 3, 900 + i * 31 + j * 7)
+                s2, a2, h2 = best_of(snt, 6, 900 + i * 31 + j * 7)
                 parts += [a2, torch.zeros(1, int(m.sr * 0.18))]
             a = torch.cat(parts[:-1], 1); sc = -1; hyp = '(satzweise)'
         ta.save(f, a, m.sr)
