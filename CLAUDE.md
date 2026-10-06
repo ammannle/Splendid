@@ -129,4 +129,6 @@ Freigabe: „Anyone with the link“ ist aktiv. Wer die Seite offen hat, sieht n
 - Version 17 (06.10.2026): Porträts aller elf Personenakten und die Maßfigur 007 im Smoking nach vom Nutzer gelieferten
   Grafiken, in Tonstufen vektorisiert (`PS` je Person: `bb` + Ebenen `L` [s,1,2,3,i,r], Zeichner `stencil()`; Figur `BFS` als
   `<symbol id="bfSym">`, `bondFig()` setzt nur `<use>`). Farben `.pst-*`. Mustang Mach 1 und BMW 750iL nach Nutzer-Vorlagen neu.
+  Danach zwölf Fahrzeuge (Vanquish, DB10, 750iL, Mustang, Hornet, DBS 1969, Bentley, AEC-Bus, Esprit Turbo, DBS V12, 2000GT, Z8)
+  nach neuen Nutzer-Seitenrissen: Maßlinien entfernt, Linien zusammengefasst und vereinfacht, Höhe auf Werksmaß geeicht.
 - Tests: Playwright-Skripte müssen vor dem Laden `window.__NOINTRO=1` per `addInitScript` setzen, sonst läuft das Intro.
