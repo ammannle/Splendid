@@ -154,4 +154,8 @@ Freigabe: „Anyone with the link“ ist aktiv. Wer die Seite offen hat, sieht n
   Blatt mit Legende und Schriftfeld, nummerierte Merkmale `pts` mit Vorführeffekten (`FX`: shot, torpedo, laser, thrust, rotor,
   spin, waves, charge, defib, click, boom), „Vorführen“ spielt alle nacheinander. Filter nach Kategorie, Vollbild,
   Ausgabe quittieren (`ops5-gdq`), Ausgabebuch; gewähltes Gadget unter `ops5-gd`.
+- Version 21 (06.10.2026): Seite neu geordnet nach Ablauf einer Mission: 01 Einsatzbefehl (`#tx`), 02 Missionsbriefing (`#mission`),
+  03 Einsatzplan (`#ops`), 04 Quartiere & Assets (`#assets`), 05 Zielobjekte (`#targets`), 06 Lagekarten (`#maps`),
+  07 Personenakten (`#persons`), 08 Qs Garage, 09 Qs Gadgets, 10 Trainingsprogramm (`#qlab`), 11 Das Archiv (`#world-sec`).
+  Navigation in derselben Reihenfolge; Tastenkürzel 1–9 folgen den Modulnummern, dazu Q (Q-Lab), W (Archiv), B, P, G, X.
 - Tests: Playwright-Skripte müssen vor dem Laden `window.__NOINTRO=1` per `addInitScript` setzen, sonst läuft das Intro.

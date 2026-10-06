@@ -1284,7 +1284,7 @@ html.msfull{overflow:hidden}
   <button class="rdy" type="button" id="rdyBtn" title="Einsatzbereitschaft (Taste ?: Kürzel)"><i><b id="rdyBar"></b></i><span id="rdyN">BEREIT –</span></button>
   <span class="hide-s">MI6 · 00-SEKTION · OPS-ZENTRALE</span>
   <span class="hide-m clk" id="clk" aria-label="Ortszeit London und Prag">LDN --:-- · PRG --:--</span>
-  <nav aria-label="Module"><a href="#tx">Befehl</a><a href="#mission">Briefing</a><a href="#targets">Ziele</a><a href="#maps">Lage</a><a href="#persons">Personen</a><a href="#world-sec">Welt</a><a href="#ops">Einsatzplan</a><a href="#assets">Assets</a><a href="#garage">Garage</a><a href="#gadgets">Gadgets</a><a href="#qlab">Q-Lab</a></nav>
+  <nav aria-label="Module"><a href="#tx">Befehl</a><a href="#mission">Briefing</a><a href="#ops">Einsatzplan</a><a href="#assets">Quartiere</a><a href="#targets">Ziele</a><a href="#maps">Lage</a><a href="#persons">Personen</a><a href="#garage">Garage</a><a href="#gadgets">Gadgets</a><a href="#qlab">Q-Lab</a><a href="#world-sec">Archiv</a></nav>
   <button class="theme-btn" id="themeBtn" type="button">Tag / Nacht</button>
 </div>
 
@@ -1364,7 +1364,7 @@ html.msfull{overflow:hidden}
   </section>
 
   <section id="mission">
-    <div class="sh"><div><div class="ix">MODUL 01-B // BRIEFING</div><h2>Missionsbriefing</h2></div><p>Gut fünf Minuten, in der Reihenfolge des Einsatzplans: Auftrag, Tag 1 bis Tag 3, Finale. M hat darauf bestanden, dass Sie es sich ansehen.</p></div>
+    <div class="sh"><div><div class="ix">MODUL 02 // BRIEFING</div><h2>Missionsbriefing</h2></div><p>Gut fünf Minuten, in der Reihenfolge des Einsatzplans: Auftrag, Tag 1 bis Tag 3, Finale. M hat darauf bestanden, dass Sie es sich ansehen.</p></div>
     <div class="panel ms"><div class="ph"><b>BRIEFING // OPERATION SPLENDIDE</b><span class="st" id="msTime"></span></div>
       <div class="ms-stage" id="msStage" aria-live="off"></div>
       <div class="ms-cap" id="msCap" aria-live="polite"></div>
@@ -1373,49 +1373,8 @@ html.msfull{overflow:hidden}
     </div>
   </section>
 
-  <section id="targets">
-    <div class="sh"><div><div class="ix">MODUL 02 // ZIELERFASSUNG</div><h2>Zielobjekte</h2></div><p>Dreizehn Drehorte in Reihenfolge der Route. Ziel auswählen für Lagebericht und Koordinaten.</p></div>
-    <div class="grid" id="deck"></div>
-    <div class="panel detail" id="detail" aria-live="polite"></div>
-  </section>
-
-  <section id="maps">
-    <div class="sh"><div><div class="ix">MODUL 03 // KARTOGRAFIE</div><h2>Lagekarten</h2></div><div class="tabs" role="tablist" id="mapTabs"></div></div>
-    <div class="panel">
-      <div class="ph"><b id="mapTitle">LAGE</b><span id="mapCode"></span></div>
-      <div class="mapbox"><svg id="map" viewBox="0 0 1000 640" data-w="1000" data-h="640" role="img" aria-label="Lagekarte"></svg>
-        <div class="zctl" aria-label="Zoom"><button type="button" id="zIn" aria-label="Hineinzoomen">+</button><span id="zLvl">1,0×</span><button type="button" id="zOut" aria-label="Herauszoomen">−</button><button type="button" id="zReset" aria-label="Ganze Karte">⤢</button></div>
-      </div>
-      <div class="ppl" id="ppl"></div>
-      <div class="mapinfo" id="mapinfo" aria-live="polite"></div>
-      <div class="mapfoot"><span class="legend"><span><i style="width:12px;height:12px;border:2px solid var(--red);border-radius:50%"></i>Zielobjekt</span><span><i style="width:9px;height:9px;background:var(--green)"></i>Asset</span><span><i style="width:11px;height:11px;border-radius:50%;background:var(--green)"></i>Verbündet</span><span><i style="width:10px;height:10px;background:var(--red);transform:rotate(45deg)"></i>Feindlich</span><span><i style="width:11px;height:11px;border-radius:50%;background:var(--amber)"></i>00-Einheit</span><span id="legRoute"></span></span><span>ZOOM: + / − · DOPPELKLICK · ZIEHEN · SCHEMATISCH, NICHT ZUR NAVIGATION</span></div>
-    </div>
-  </section>
-
-  <section id="persons">
-    <div class="sh"><div><div class="ix">MODUL 03-P // ZIELPERSONEN</div><h2>Personenakten</h2></div><p>Elf Akten aus dem Einsatz Casino Royale. Gezeichnet nach Beobachtung, frontal und im Profil, mit Erkennungsmerkmalen.</p></div>
-    <div class="panel"><div class="ph"><b>REGISTRATUR // PERSONEN</b><span class="st">11 AKTEN · OFFICIAL–SENSITIVE</span></div>
-      <div class="pawrap"><div class="palist" id="paList" aria-label="Personen"></div>
-        <div class="pamain"><div class="pasheet" id="paSheet"></div><div class="patext" id="paText" aria-live="polite"></div></div></div>
-    </div>
-  </section>
-
-  <section id="world-sec">
-    <div class="sh"><div><div class="ix">MODUL 03-W // WELTLAGE</div><h2>Das Archiv</h2></div><p>Alle Einsätze seit 1962 auf einer Karte. Jede Linie ist ein Film, jeder Punkt ein Schauplatz der Handlung, und die Figuren sind unterwegs. Film wählen oder Chronologie abspielen.</p></div>
-    <div class="panel">
-      <div class="ph"><b id="wTitle">WELTLAGE</b><span id="wStat"></span></div>
-      <div class="fstrip" id="wFilms" aria-label="Filme"></div>
-      <div class="mapbox"><svg id="world" viewBox="0 0 1800 710" role="img" aria-label="Weltkarte aller Schauplätze"></svg>
-        <div class="zctl" aria-label="Zoom"><button type="button" id="wzIn" aria-label="Hineinzoomen">+</button><span id="wzLvl">1,0×</span><button type="button" id="wzOut" aria-label="Herauszoomen">−</button><button type="button" id="wzReset" aria-label="Ganze Welt">⤢</button></div>
-      </div>
-      <div class="ppl" id="wPpl"></div>
-      <div class="mapinfo" id="wInfo" aria-live="polite"></div>
-      <div class="mapfoot"><span class="legend"><span><i style="width:10px;height:10px;border-radius:50%;border:2px solid var(--red)"></i>Schauplatz (Zahl = Filme)</span><span><i style="width:9px;height:9px;border:2px solid var(--red);transform:rotate(45deg)"></i>fiktiv</span><span><i style="width:10px;height:10px;border-radius:50%;background:var(--green)"></i>Verbündet</span><span><i style="width:9px;height:9px;background:var(--red);transform:rotate(45deg)"></i>Feindlich</span><span><i style="width:10px;height:10px;border-radius:50%;background:var(--cyan)"></i>Undurchsichtig</span><span><i style="width:10px;height:10px;background:var(--amber);clip-path:polygon(50% 0,61% 35%,98% 35%,68% 57%,79% 91%,50% 70%,21% 91%,32% 57%,2% 35%,39% 35%)"></i>Ihr Einsatz</span></span><span>* INOFFIZIELL · SCHAUPLÄTZE LAUT HANDLUNG · KARTE: NATURAL EARTH</span></div>
-    </div>
-  </section>
-
   <section id="ops">
-    <div class="sh"><div><div class="ix">MODUL 04 // OPERATIONSPLANUNG</div><h2>Einsatzplan</h2></div><div class="tabs" role="tablist" id="planTabs"></div></div>
+    <div class="sh"><div><div class="ix">MODUL 03 // OPERATIONSPLANUNG</div><h2>Einsatzplan</h2></div><div class="tabs" role="tablist" id="planTabs"></div></div>
     <p class="plannote" id="planNote"></p>
     <div class="panel dpick">
       <label for="dep"><b>ABREISE TAG 1</b><span>Datum wählen: Wochentage, Sonnenuntergang und Warnungen erscheinen im Plan.</span></label>
@@ -1428,7 +1387,7 @@ html.msfull{overflow:hidden}
   </section>
 
   <section id="assets">
-    <div class="sh"><div><div class="ix">MODUL 05 // LOGISTIK</div><h2>Quartiere &amp; Assets</h2></div><p>Vier Agenten, zwei Zimmer pro Quartier. Karlsbad ist befohlen, Prag nach Lage.</p></div>
+    <div class="sh"><div><div class="ix">MODUL 04 // LOGISTIK</div><h2>Quartiere &amp; Assets</h2></div><p>Vier Agenten, zwei Zimmer pro Quartier. Karlsbad ist befohlen, Prag nach Lage.</p></div>
     <div class="cards" id="hotelList"></div>
     <div class="cards" id="extras" style="margin-top:10px"></div>
     <div class="panel recipe">
@@ -1437,8 +1396,35 @@ html.msfull{overflow:hidden}
     </div>
   </section>
 
+  <section id="targets">
+    <div class="sh"><div><div class="ix">MODUL 05 // ZIELERFASSUNG</div><h2>Zielobjekte</h2></div><p>Dreizehn Drehorte in Reihenfolge der Route. Ziel auswählen für Lagebericht und Koordinaten.</p></div>
+    <div class="grid" id="deck"></div>
+    <div class="panel detail" id="detail" aria-live="polite"></div>
+  </section>
+
+  <section id="maps">
+    <div class="sh"><div><div class="ix">MODUL 06 // KARTOGRAFIE</div><h2>Lagekarten</h2></div><div class="tabs" role="tablist" id="mapTabs"></div></div>
+    <div class="panel">
+      <div class="ph"><b id="mapTitle">LAGE</b><span id="mapCode"></span></div>
+      <div class="mapbox"><svg id="map" viewBox="0 0 1000 640" data-w="1000" data-h="640" role="img" aria-label="Lagekarte"></svg>
+        <div class="zctl" aria-label="Zoom"><button type="button" id="zIn" aria-label="Hineinzoomen">+</button><span id="zLvl">1,0×</span><button type="button" id="zOut" aria-label="Herauszoomen">−</button><button type="button" id="zReset" aria-label="Ganze Karte">⤢</button></div>
+      </div>
+      <div class="ppl" id="ppl"></div>
+      <div class="mapinfo" id="mapinfo" aria-live="polite"></div>
+      <div class="mapfoot"><span class="legend"><span><i style="width:12px;height:12px;border:2px solid var(--red);border-radius:50%"></i>Zielobjekt</span><span><i style="width:9px;height:9px;background:var(--green)"></i>Asset</span><span><i style="width:11px;height:11px;border-radius:50%;background:var(--green)"></i>Verbündet</span><span><i style="width:10px;height:10px;background:var(--red);transform:rotate(45deg)"></i>Feindlich</span><span><i style="width:11px;height:11px;border-radius:50%;background:var(--amber)"></i>00-Einheit</span><span id="legRoute"></span></span><span>ZOOM: + / − · DOPPELKLICK · ZIEHEN · SCHEMATISCH, NICHT ZUR NAVIGATION</span></div>
+    </div>
+  </section>
+
+  <section id="persons">
+    <div class="sh"><div><div class="ix">MODUL 07 // ZIELPERSONEN</div><h2>Personenakten</h2></div><p>Elf Akten aus dem Einsatz Casino Royale. Gezeichnet nach Beobachtung, frontal und im Profil, mit Erkennungsmerkmalen.</p></div>
+    <div class="panel"><div class="ph"><b>REGISTRATUR // PERSONEN</b><span class="st">11 AKTEN · OFFICIAL–SENSITIVE</span></div>
+      <div class="pawrap"><div class="palist" id="paList" aria-label="Personen"></div>
+        <div class="pamain"><div class="pasheet" id="paSheet"></div><div class="patext" id="paText" aria-live="polite"></div></div></div>
+    </div>
+  </section>
+
   <section id="garage">
-    <div class="sh"><div><div class="ix">MODUL 08-G // Q-ABTEILUNG · FUHRPARK</div><h2>Qs Garage</h2></div><p>Jedes Fahrzeug, das 007 im Dienst bewegt hat, als Seitenriss mit Datenblatt, Ausstattung und Rückgabeprotokoll. Bitte nichts anfassen.</p></div>
+    <div class="sh"><div><div class="ix">MODUL 08 // Q-ABTEILUNG · FUHRPARK</div><h2>Qs Garage</h2></div><p>Jedes Fahrzeug, das 007 im Dienst bewegt hat, als Seitenriss mit Datenblatt, Ausstattung und Rückgabeprotokoll. Bitte nichts anfassen.</p></div>
     <div class="panel gz">
       <div class="ph"><b>FUHRPARK // SEITENRISSE</b><span class="st" id="gzState"></span></div>
       <div class="gzf" id="gzFlt" role="group" aria-label="Hersteller"><button type="button" aria-pressed="true" data-f="Alle">ALLE</button><button type="button" aria-pressed="false" data-f="Aston Martin">ASTON MARTIN</button><button type="button" aria-pressed="false" data-f="BMW">BMW</button><button type="button" aria-pressed="false" data-f="Lotus">LOTUS</button><button type="button" aria-pressed="false" data-f="Andere">ANDERE</button></div>
@@ -1463,7 +1449,7 @@ html.msfull{overflow:hidden}
   </section>
 
   <section id="gadgets">
-    <div class="sh"><div><div class="ix">MODUL 08-X // Q-ABTEILUNG · AUSRÜSTUNG</div><h2>Qs Gadgets</h2></div><p>Ausrüstung aus sechs Jahrzehnten, als Bauplan mit Datenblatt, Vorführung und Rückgabeprotokoll. Quittieren Sie, was Sie mitnehmen.</p></div>
+    <div class="sh"><div><div class="ix">MODUL 09 // Q-ABTEILUNG · AUSRÜSTUNG</div><h2>Qs Gadgets</h2></div><p>Ausrüstung aus sechs Jahrzehnten, als Bauplan mit Datenblatt, Vorführung und Rückgabeprotokoll. Quittieren Sie, was Sie mitnehmen.</p></div>
     <div class="panel gz gd">
       <div class="ph"><b>AUSRÜSTUNG // BAUPLÄNE</b><span class="st" id="gdState"></span></div>
       <div class="gzf" id="gdFlt" role="group" aria-label="Kategorie"></div>
@@ -1484,7 +1470,7 @@ html.msfull{overflow:hidden}
   </section>
 
   <section id="qlab">
-    <div class="sh"><div><div class="ix">MODUL 08 // Q-ABTEILUNG</div><h2>Trainingsprogramm</h2></div><p>Vorbereitung auf den Einsatz. Gespielt wird mit Übungsgeld des Schatzamts.</p></div>
+    <div class="sh"><div><div class="ix">MODUL 10 // Q-ABTEILUNG · TRAINING</div><h2>Trainingsprogramm</h2></div><p>Vorbereitung auf den Einsatz. Gespielt wird mit Übungsgeld des Schatzamts.</p></div>
     <div class="panel rt">
       <div class="ph"><b>SPIELTISCH // ROULETTE · EUROPÄISCH, EINE ZERO</b><span class="st" id="rtState">FAITES VOS JEUX</span></div>
       <div class="rtb">
@@ -1560,6 +1546,20 @@ html.msfull{overflow:hidden}
       </div>
     </div>
     <p class="qhint">Q-HINWEIS: Auf der Tastatur <b>007</b> tippen oder dreimal auf die Unterschrift von M tippen. Auf dieser Seite sind noch weitere Dinge anklickbar, die nicht danach aussehen. Manche Wörter darf man auch einfach tippen.</p>
+  </section>
+
+  <section id="world-sec">
+    <div class="sh"><div><div class="ix">MODUL 11 // WELTLAGE</div><h2>Das Archiv</h2></div><p>Alle Einsätze seit 1962 auf einer Karte. Jede Linie ist ein Film, jeder Punkt ein Schauplatz der Handlung, und die Figuren sind unterwegs. Film wählen oder Chronologie abspielen.</p></div>
+    <div class="panel">
+      <div class="ph"><b id="wTitle">WELTLAGE</b><span id="wStat"></span></div>
+      <div class="fstrip" id="wFilms" aria-label="Filme"></div>
+      <div class="mapbox"><svg id="world" viewBox="0 0 1800 710" role="img" aria-label="Weltkarte aller Schauplätze"></svg>
+        <div class="zctl" aria-label="Zoom"><button type="button" id="wzIn" aria-label="Hineinzoomen">+</button><span id="wzLvl">1,0×</span><button type="button" id="wzOut" aria-label="Herauszoomen">−</button><button type="button" id="wzReset" aria-label="Ganze Welt">⤢</button></div>
+      </div>
+      <div class="ppl" id="wPpl"></div>
+      <div class="mapinfo" id="wInfo" aria-live="polite"></div>
+      <div class="mapfoot"><span class="legend"><span><i style="width:10px;height:10px;border-radius:50%;border:2px solid var(--red)"></i>Schauplatz (Zahl = Filme)</span><span><i style="width:9px;height:9px;border:2px solid var(--red);transform:rotate(45deg)"></i>fiktiv</span><span><i style="width:10px;height:10px;border-radius:50%;background:var(--green)"></i>Verbündet</span><span><i style="width:9px;height:9px;background:var(--red);transform:rotate(45deg)"></i>Feindlich</span><span><i style="width:10px;height:10px;border-radius:50%;background:var(--cyan)"></i>Undurchsichtig</span><span><i style="width:10px;height:10px;background:var(--amber);clip-path:polygon(50% 0,61% 35%,98% 35%,68% 57%,79% 91%,50% 70%,21% 91%,32% 57%,2% 35%,39% 35%)"></i>Ihr Einsatz</span></span><span>* INOFFIZIELL · SCHAUPLÄTZE LAUT HANDLUNG · KARTE: NATURAL EARTH</span></div>
+    </div>
   </section>
 </div>
 
@@ -4083,7 +4083,7 @@ const SC=[
  {ch:3,t:8,h:()=>`<div class="ms-split">${bp('barrandov')}${side({id:'barrandov',k:'TAG 3 · 16:00 · FOTOSTOPP',face:'white',fc:'Die Organisation. Hat Geduld. Viel Geduld.'})}</div>`,c:'16:00, Fotostopp Barrandov. Casino-Säle und meine Wohnung, alles Kulisse. Ich wohne nicht so. Mr. White übrigens auch nicht.',on:open},
  {ch:3,t:7.5,leg:'d',h:()=>route('d'),c:'Heimfahrt über Pilsen und Waidhaus, gut viereinhalb Stunden. Bericht an mich bis Montag. Fotos genügen.',on:car},
  {ch:3,t:8,h:()=>`<div class="ms-split">${bp('plana')}${side({id:'plana',k:'TAG 3 · RÜCKWEG',face:'valenka',fc:'Begleiterin von Le Chiffre. Unterschätzt man einmal.'})}</div>`,c:'Planá liegt nahe der Route. Im Film das Krankenhaus, in dem Bond wieder zu sich kommt. Halten Sie nur an, wenn es medizinisch notwendig ist.',on:open},
- {ch:4,t:7,h:()=>`<div class="ms-dos">${['bond','vesper','mathis','leiter','m','lechiffre','valenka','white','dimitrios','dryden','gettler'].map((id,i)=>{const p=P2(id);return `<figure style="--i:${i}" class="${p.f==='h'?'h':''}"><div>${PA.sheet(p,0,1,true)}</div><figcaption>${p.n}</figcaption></figure>`}).join('')}</div>`,c:'Das sind die Gesichter. Lernen Sie sie. Die Akten liegen in Modul 03-P, falls Sie lesen können.'},
+ {ch:4,t:7,h:()=>`<div class="ms-dos">${['bond','vesper','mathis','leiter','m','lechiffre','valenka','white','dimitrios','dryden','gettler'].map((id,i)=>{const p=P2(id);return `<figure style="--i:${i}" class="${p.f==='h'?'h':''}"><div>${PA.sheet(p,0,1,true)}</div><figcaption>${p.n}</figcaption></figure>`}).join('')}</div>`,c:'Das sind die Gesichter. Lernen Sie sie. Die Akten liegen in Modul 07, falls Sie lesen können.'},
  {ch:4,t:6,h:()=>`<div class="ms-fin"><svg class="gzs draw" viewBox="0 0 1000 420">${window.gzDraw?gzDraw(db5,false):''}</svg><div class="ms-end"><b>IHRE MISSION BEGINNT ${depTxt(1)}</b><span>Ein Vesper. Nicht drei. — M</span></div></div>`,c:'Rückgabe des Fahrzeugs bitte in einem Stück. Q lässt grüßen.'},
  {ch:4,t:16,tr:'dissolve',h:credits,on:credSnd,c:''}
 ];
@@ -4390,7 +4390,7 @@ window.readiness=()=>{clearTimeout(rdyT);rdyT=setTimeout(()=>{const ps=rdyParts(
   rdyN.textContent=`BEREIT ${v} %`;rdyBar.style.width=v+'%';rdyBtn.classList.toggle('ok',v>=100);rdyBtn.setAttribute('aria-label',`Einsatzbereitschaft ${v} Prozent`)},30)};
 const _set=S.set;S.set=(k,v)=>{_set(k,v);if(window.readiness)readiness()};readiness();
 const kh=document.createElement('div');kh.className='khelp';kh.hidden=true;kh.setAttribute('role','dialog');kh.setAttribute('aria-modal','true');kh.setAttribute('aria-label','Lagebericht und Tastenkürzel');document.body.appendChild(kh);
-const JUMP={'1':['tx','Einsatzbefehl'],'2':['targets','Zielobjekte'],'3':['maps','Lagekarten'],'4':['world-sec','Weltlage'],'5':['ops','Einsatzplan'],'6':['assets','Assets'],'7':['garage','Qs Garage'],'8':['qlab','Q-Lab'],'g':['garage','Qs Garage'],'x':['gadgets','Qs Gadgets'],'p':['persons','Personenakten'],'b':['mission','Briefing'],'q':['qlab','Q-Lab']};
+const JUMP={'1':['tx','Einsatzbefehl'],'2':['mission','Missionsbriefing'],'3':['ops','Einsatzplan'],'4':['assets','Quartiere & Assets'],'5':['targets','Zielobjekte'],'6':['maps','Lagekarten'],'7':['persons','Personenakten'],'8':['garage','Qs Garage'],'9':['gadgets','Qs Gadgets'],'q':['qlab','Q-Lab'],'w':['world-sec','Das Archiv'],'b':['mission','Briefing'],'p':['persons','Personenakten'],'g':['garage','Qs Garage'],'x':['gadgets','Qs Gadgets']};
 function khShow(){const ps=rdyParts(),v=Math.round(ps.reduce((a,p)=>a+p[1]*Math.min(1,p[2]),0)),open=ps.filter(p=>p[2]<1);
   kh.innerHTML=`<div class="kh"><h3>LAGEBERICHT · BEREIT ${v} %</h3><p>${v>=100?'M: Vollständig. Ich bin beinahe beeindruckt. Fahren Sie.':open.length<=2?'M: Fast. „Fast“ hat noch keinen Einsatz gerettet.':'M: Das ist kein Reiseplan, das ist eine Absichtserklärung.'}</p>
   <ul class="rd">${ps.map(p=>`<li class="${p[2]>=1?'ok':''}"><b>${p[0]}</b><span>${p[3]}</span></li>`).join('')}</ul>
