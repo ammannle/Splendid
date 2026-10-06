@@ -184,4 +184,6 @@ Freigabe: „Anyone with the link“ ist aktiv. Wer die Seite offen hat, sieht n
   `<script type="application/json" id="vxData">` am Seitenende, Schlüssel = Prüfsumme des Szenentexts (`key()` in `VOX`, gleich in Python).
   Wiedergabe per WebAudio, Musik wird darunter abgesenkt. Aussprache-Umschreibungen in `SAY` (tools/tts.py). **Nach jeder Änderung
   an Szenentexten `SC[].c` das Skript erneut ausführen**, sonst liest für diese Szene die Gerätestimme (Fallback).
+  Klang (`radio()` in tools/tts.py): abhörsichere Funkverbindung – Stimme ca. 1 Halbton tiefer, Funkband 260–3900 Hz, Sättigung,
+  Kompression, Rauschteppich, Rauschstoß + Piepton beim Öffnen, Quittungston am Ende; Tempo `m` 0.96, `s` 0.93.
 - Tests: Playwright-Skripte müssen vor dem Laden `window.__NOINTRO=1` per `addInitScript` setzen, sonst läuft das Intro.
