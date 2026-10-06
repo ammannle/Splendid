@@ -913,6 +913,23 @@ body.boot .ph .st{animation:flick .9s 1s steps(2) 2}
 .gzdraw.full{position:fixed;inset:0;z-index:150;background:var(--bg);overflow:auto;padding:max(16px,env(safe-area-inset-top)) 16px 16px;display:flex;flex-direction:column;justify-content:center}
 .gzdraw.full .gzs{max-height:calc(100vh - 150px);width:auto;max-width:100%;margin:0 auto}
 @media (orientation:portrait) and (max-width:680px){.gzdraw.full .gzg{display:none}.gzdraw.full .gzs#gzSvg{position:fixed;left:50%;top:calc(50% - 40px);width:calc(100vh - 150px);max-width:none;max-height:none;transform:translate(-50%,-50%) rotate(90deg)}.gzdraw.full .gztools{position:fixed;left:16px;right:16px;bottom:max(12px,env(safe-area-inset-bottom));justify-content:center}}
+/* Q-Vorführung */
+.gzdraw{position:relative}
+.qv-ov{position:absolute;pointer-events:none;z-index:3;overflow:hidden}
+.qv-lb{position:absolute;left:0;right:0;height:0;background:#000;transition:height .5s cubic-bezier(.6,0,.2,1)}.qv-lb.t{top:0}.qv-lb.b{bottom:0}.qv-ov.on .qv-lb{height:8%}
+.qv-id,.qv-rec,.qv-sc{position:absolute;z-index:1;font-family:var(--mono);font-size:.6rem;letter-spacing:.16em;opacity:0;transition:opacity .4s .3s;white-space:nowrap}
+.qv-id{left:10px;top:1.4%;color:var(--amber);max-width:70%;overflow:hidden;text-overflow:ellipsis}.qv-rec{right:10px;top:1.4%;color:var(--red)}.qv-rec b{color:var(--ink);font-weight:500;margin-left:4px}
+.qv-rec i{display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--red);margin-right:5px;animation:msBlink 1s steps(2) infinite}
+.qv-sc{right:10px;bottom:1.6%;color:var(--cyan)}.qv-ov.on .qv-id,.qv-ov.on .qv-rec,.qv-ov.on .qv-sc{opacity:1}
+.qv-lt{position:absolute;left:14px;bottom:11%;opacity:0;padding:4px 10px 5px;border-left:3px solid var(--amber);background:color-mix(in srgb,var(--bg) 82%,transparent);max-width:70%}
+.qv-lt small{display:block;font-family:var(--mono);font-size:.58rem;letter-spacing:.18em;color:var(--amber)}.qv-lt b{display:block;font-family:var(--head);font-weight:600;font-size:clamp(.85rem,1.6vw,1.1rem);color:var(--ink);line-height:1.2}
+.qv-lt.in{animation:qvLt 3.4s ease forwards}@keyframes qvLt{0%{opacity:0;transform:translateX(-14px)}10%{opacity:1;transform:none}85%{opacity:1}100%{opacity:0}}
+.qv-lock path{fill:none;stroke:var(--red);stroke-width:2.2}.qv-lock .qv-tk{stroke-width:1.2}.qv-dot{fill:var(--red)}.qv-lt2{fill:var(--red);font-family:var(--mono);letter-spacing:.14em;font-weight:600;paint-order:stroke;stroke:var(--mapbg);stroke-width:3px}
+.qv-mz{fill:#FFE6B0;stroke:var(--amber);stroke-width:1}.qv-sp{stroke:#FFD27A;stroke-width:1.8;stroke-linecap:round}.qv-fire{mix-blend-mode:screen}.qv-smk{fill:#8FA3AC;opacity:.55}
+.qv-shk{fill:none;stroke:#FFE6B0}.qv-deb{fill:var(--ink)}.qv-wo{fill:#fff;pointer-events:none}.qv-arc{fill:none;stroke:#CDEFFF;stroke-width:2.4}.qv-tr{stroke:#FFD27A;stroke-width:2.6;stroke-linecap:round}.qv-cas{fill:var(--amber)}
+.gds .gdfr{fill:none;stroke:var(--line2);stroke-width:1.2;stroke-dasharray:8 6}.gds .gdx{stroke:var(--line);stroke-width:1}.gds .gdhat{stroke:var(--cyan);stroke-width:1;opacity:.25}.gds .gdbx{fill:var(--mapbg);stroke:var(--amber);stroke-width:1}
+.gds .gdscan{stroke:var(--cyan);stroke-width:2;opacity:.6;animation:gdScan 3.2s ease-in-out infinite alternate}@keyframes gdScan{to{transform:translateY(476px)}}
+@media (prefers-reduced-motion:reduce){.gds .gdscan{animation:none}.qv-lt.in{animation:none;opacity:1}}
 /* Qs Gadgets */
 .gds#gdSvg{display:block;width:100%;height:auto;background:color-mix(in srgb,var(--cyan) 4%,var(--mapbg));border:1px solid var(--line);border-radius:2px}
 .gds .gp{fill:none;stroke:var(--cyan);stroke-width:var(--sw,2);stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:1;stroke-dashoffset:0}
@@ -3419,6 +3436,76 @@ const GZB=[[1962,'James Bond jagt Dr. No',[['alpine','Sunbeam Alpine']]],[1963,'
  [1999,'Die Welt ist nicht genug',[['z8','BMW Z8'],[0,'Q-Boot auf der Themse']]],[2002,'Stirb an einem anderen Tag',[['vanq','Aston Martin V12 Vanquish']]],[2006,'Casino Royale',[['dbs12','Aston Martin DBS V12'],['db5','Aston Martin DB5'],[0,'Ford Mondeo']]],
  [2008,'Ein Quantum Trost',[['dbs12','Aston Martin DBS V12']]],[2012,'Skyfall',[['db5','Aston Martin DB5']]],[2015,'Spectre',[['db10','Aston Martin DB10'],['db5','Aston Martin DB5']]],[2021,'Keine Zeit zu sterben',[['db5','Aston Martin DB5'],['v8','Aston Martin V8']]]];
 
+/* Q-Vorführung (QV): gemeinsamer Baukasten für Garage und Gadgets.
+   Kamerafahrt über die viewBox, Kino-Overlay (Letterbox, Kennung, Zeitcode, Einblendung), Zielerfassung,
+   Partikel (Funken, Feuer, Rauch, Trümmer, Hülsen), Mündungsblitz, Druckwelle, Lichtbogen, Bildwackeln, Ton über SND. */
+const QV=(()=>{const NS='http://www.w3.org/2000/svg',RMq=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const snd=k=>{try{const s=window.SND;if(s&&s.on&&s[k])s[k]()}catch(e){}};
+  const ease=t=>t<.5?4*t*t*t:1-Math.pow(-2*t+2,3)/2;
+  const vbOf=svg=>svg.getAttribute('viewBox').split(/[\s,]+/).map(Number);
+  function defs(svg){if(svg.querySelector('#qvGlow'+svg.id))return;let d=svg.querySelector('defs');if(!d){d=document.createElementNS(NS,'defs');svg.insertBefore(d,svg.firstChild)}
+    d.insertAdjacentHTML('beforeend',`<filter id="qvGlow${svg.id}" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="3" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+      <filter id="qvBlur${svg.id}" x="-80%" y="-80%" width="260%" height="260%"><feGaussianBlur stdDeviation="5"/></filter>
+      <radialGradient id="qvFire${svg.id}"><stop offset="0" stop-color="#fff"/><stop offset=".35" stop-color="#FFD27A"/><stop offset=".7" stop-color="#F2B65E"/><stop offset="1" stop-color="#F0554A" stop-opacity="0"/></radialGradient>`)}
+  /* Kamera */
+  const cams=new WeakMap();
+  function cam(svg,to,ms){return new Promise(res=>{const from=vbOf(svg);cancelAnimationFrame(cams.get(svg));if(RMq||!ms){svg.setAttribute('viewBox',to.join(' '));res();return}
+    const t0=performance.now();(function st(n){n=Math.max(n,t0);const t=Math.min(1,(n-t0)/ms),e=ease(t);svg.setAttribute('viewBox',from.map((v,i)=>(v+(to[i]-v)*e).toFixed(2)).join(' '));if(t<1)cams.set(svg,requestAnimationFrame(st));else res()})(t0)})}
+  function zoomBox(base,x,y,z){const w=base[2]/z,h=base[3]/z;let bx=x-w/2,by=y-h/2;bx=Math.max(base[0],Math.min(base[0]+base[2]-w,bx));by=Math.max(base[1],Math.min(base[1]+base[3]-h,by));return[bx,by,w,h]}
+  /* Overlay über dem SVG */
+  function ov(svg){let o=svg.parentElement.querySelector(':scope>.qv-ov');if(!o){o=document.createElement('div');o.className='qv-ov';o.setAttribute('aria-hidden','true');
+      o.innerHTML='<i class="qv-lb t"></i><i class="qv-lb b"></i><span class="qv-id"></span><span class="qv-rec"><i></i>REC <b>00:00:00</b></span><span class="qv-lt"><small></small><b></b></span><span class="qv-sc"></span>';svg.parentElement.appendChild(o)}
+    const pe=svg.parentElement,pr=pe.getBoundingClientRect(),r=svg.getBoundingClientRect();o.style.left=(r.left-pr.left-pe.clientLeft)+'px';o.style.top=(r.top-pr.top-pe.clientTop+pe.scrollTop)+'px';o.style.width=r.width+'px';o.style.height=r.height+'px';return o}
+  let tcT=0;
+  function hud(svg,on,id){const o=ov(svg);o.classList.toggle('on',on);clearInterval(tcT);if(!on)return;o.querySelector('.qv-id').textContent=id||'Q-ABTEILUNG · VORFÜHRUNG';const t0=Date.now(),tc=o.querySelector('.qv-rec b');
+    tcT=setInterval(()=>{const s=(Date.now()-t0)/1000,f=Math.floor(s*25)%25;tc.textContent=`00:${String(Math.floor(s)).padStart(2,'0')}:${String(f).padStart(2,'0')}`},40)}
+  function lower(svg,k,txt){const o=ov(svg),l=o.querySelector('.qv-lt');l.classList.remove('in');void l.offsetWidth;l.querySelector('small').textContent=k;l.querySelector('b').textContent=txt;l.classList.add('in')}
+  function count(svg,s){ov(svg).querySelector('.qv-sc').textContent=s||''}
+  /* Elemente */
+  const mk=(L,tag,at)=>{const e=document.createElementNS(NS,tag);for(const k in at)e.setAttribute(k,at[k]);L.appendChild(e);return e};
+  const an=(e,kf,o)=>e.animate?e.animate(kf,Object.assign({duration:800,easing:'ease-out',fill:'forwards'},o)):null;
+  const rm=(e,ms)=>setTimeout(()=>e.remove(),ms);
+  const R=(a,b)=>a+Math.random()*(b-a);
+  function lock(L,x,y,txt,s){s=s||1;const g=mk(L,'g',{class:'qv-lock'});const d=22*s,c=8*s;
+    mk(g,'path',{d:`M${x-d} ${y-d+c}v${-c}h${c}M${x+d-c} ${y-d}h${c}v${c}M${x+d} ${y+d-c}v${c}h${-c}M${x-d+c} ${y+d}h${-c}v${-c}`});
+    mk(g,'circle',{cx:x,cy:y,r:2.2*s,class:'qv-dot'});mk(g,'path',{d:`M${x-d-10*s} ${y}h${8*s}M${x+d+2*s} ${y}h${8*s}M${x} ${y-d-10*s}v${8*s}M${x} ${y+d+2*s}v${8*s}`,class:'qv-tk'});
+    if(txt){const t=mk(g,'text',{x:x+d+8*s,y:y-d-4*s,class:'qv-lt2','font-size':11*s});t.textContent=txt}
+    g.style.transformOrigin=`${x}px ${y}px`;an(g,[{transform:'scale(2.6) rotate(45deg)',opacity:0},{transform:'scale(.92) rotate(0)',opacity:1,offset:.7},{transform:'scale(1)',opacity:1}],{duration:520,easing:'cubic-bezier(.2,.8,.2,1)'});
+    snd('ping');return g}
+  function flash(L,x,y,r,svg){const g=mk(L,'g',{});const n=8,pts=[];for(let i=0;i<n*2;i++){const a=i/(n*2)*Math.PI*2,rr=i%2?r*.35:r*R(.8,1.25);pts.push(`${(x+Math.cos(a)*rr).toFixed(1)},${(y+Math.sin(a)*rr).toFixed(1)}`)}
+    mk(g,'polygon',{points:pts.join(' '),class:'qv-mz',filter:`url(#qvGlow${svg.id})`});mk(g,'circle',{cx:x,cy:y,r:r*.45,fill:`url(#qvFire${svg.id})`});
+    g.style.transformOrigin=`${x}px ${y}px`;an(g,[{opacity:1,transform:'scale(.4)'},{opacity:1,transform:'scale(1.1)',offset:.25},{opacity:0,transform:'scale(1.3)'}],{duration:220});rm(g,260)}
+  function sparks(L,x,y,n,dir,spread,speed,svg){for(let i=0;i<n;i++){const a=(dir==null?R(0,6.283):dir+R(-spread,spread)),v=R(.5,1)*(speed||120),dx=Math.cos(a)*v,dy=Math.sin(a)*v;
+    const s=mk(L,'path',Object.assign({d:`M${x} ${y}l${(dx*.08).toFixed(1)} ${(dy*.08).toFixed(1)}`,class:'qv-sp'},svg?{filter:`url(#qvGlow${svg.id})`}:{}));
+    an(s,[{transform:'translate(0,0)',opacity:1},{transform:`translate(${dx.toFixed(1)}px,${(dy+v*.5).toFixed(1)}px)`,opacity:0}],{duration:R(380,720),easing:'cubic-bezier(.1,.6,.4,1)'});rm(s,800)}}
+  function fire(L,x,y,n,dx,dy,len,svg,dur){for(let i=0;i<n;i++){const r=R(4,10),c=mk(L,'circle',{cx:x,cy:y,r,fill:`url(#qvFire${svg.id})`,class:'qv-fire'});const s=R(.6,1.2),j=R(-.35,.35);
+    an(c,[{transform:'translate(0,0) scale(.5)',opacity:1},{transform:`translate(${((dx+j*dy)*len*s).toFixed(1)}px,${((dy+j*dx)*len*s).toFixed(1)}px) scale(${R(1.6,2.8).toFixed(2)})`,opacity:0}],{duration:R(380,640),delay:i*(dur||900)/n,easing:'ease-out'});rm(c,(dur||900)+800)}}
+  function smoke(L,x,y,n,dx,dy,len,svg,dur){for(let i=0;i<n;i++){const c=mk(L,'circle',{cx:x,cy:y,r:R(5,9),class:'qv-smk',filter:`url(#qvBlur${svg.id})`});const s=R(.6,1.3),j=R(-.5,.5);
+    an(c,[{transform:'translate(0,0) scale(.6)',opacity:.75},{transform:`translate(${((dx+j*dy)*len*s).toFixed(1)}px,${((dy+j*dx)*len*s-R(10,40)).toFixed(1)}px) scale(${R(3,5.5).toFixed(2)})`,opacity:0}],{duration:R(1300,2100),delay:i*(dur||1200)/n,easing:'cubic-bezier(.2,.6,.3,1)'});rm(c,(dur||1200)+2300)}}
+  function shock(L,x,y,r,svg){const c=mk(L,'circle',{cx:x,cy:y,r:4,class:'qv-shk'});an(c,[{r:4,opacity:.95,strokeWidth:10},{r,opacity:0,strokeWidth:1}],{duration:700,easing:'cubic-bezier(.1,.7,.3,1)'});rm(c,760)}
+  function boom(L,x,y,size,svg){size=size||1;snd('hit');const fb=mk(L,'circle',{cx:x,cy:y,r:10,fill:`url(#qvFire${svg.id})`,filter:`url(#qvGlow${svg.id})`});
+    an(fb,[{r:6*size,opacity:1},{r:70*size,opacity:.95,offset:.25},{r:95*size,opacity:0}],{duration:900});rm(fb,950);shock(L,x,y,160*size,svg);setTimeout(()=>shock(L,x,y,110*size,svg),120);
+    sparks(L,x,y,26,null,0,180*size,svg);fire(L,x,y,18,0,-1,70*size,svg,300);smoke(L,x,y,14,0,-1,90*size,svg,700);
+    for(let i=0;i<10;i++){const a=R(0,6.283),v=R(80,200)*size,d=mk(L,'rect',{x:x-2,y:y-2,width:R(3,7),height:R(2,5),class:'qv-deb'});
+      an(d,[{transform:'translate(0,0) rotate(0)',opacity:1},{transform:`translate(${(Math.cos(a)*v).toFixed(0)}px,${(Math.sin(a)*v+v*.6).toFixed(0)}px) rotate(${R(-540,540).toFixed(0)}deg)`,opacity:0}],{duration:R(700,1100),easing:'cubic-bezier(.2,.6,.4,1)'});d.style.transformBox='fill-box';d.style.transformOrigin='center';rm(d,1200)}}
+  function whiteout(L,svg,o){const v=vbOf(svg),r=mk(L,'rect',{x:v[0],y:v[1],width:v[2],height:v[3],class:'qv-wo'});an(r,[{opacity:0},{opacity:o||.5,offset:.15},{opacity:0}],{duration:420});rm(r,460)}
+  function shake(svg,a,ms){if(RMq||!svg.animate)return;const k=[];for(let i=0;i<8;i++)k.push({transform:`translate(${R(-a,a).toFixed(1)}px,${R(-a,a).toFixed(1)}px)`});k.push({transform:'translate(0,0)'});svg.animate(k,{duration:ms||420,easing:'linear'})}
+  function arcs(L,x1,y1,x2,y2,svg,ms){const n=Math.max(6,Math.round(Math.hypot(x2-x1,y2-y1)/14));let k=0;const p=mk(L,'path',{class:'qv-arc',filter:`url(#qvGlow${svg.id})`});
+    const iv=setInterval(()=>{let d=`M${x1} ${y1}`;for(let i=1;i<n;i++){const t=i/n,j=R(-12,12);d+=`L${(x1+(x2-x1)*t+j*(y2-y1)/Math.hypot(x2-x1,y2-y1)).toFixed(1)} ${(y1+(y2-y1)*t-j*(x2-x1)/Math.hypot(x2-x1,y2-y1)).toFixed(1)}`}p.setAttribute('d',d+`L${x2} ${y2}`);if(++k>(ms||700)/45){clearInterval(iv);p.remove()}},45)}
+  function tracer(L,x,y,dx,dy,len,svg,delay){const l=mk(L,'path',{d:`M${x} ${y}l${(dx*26).toFixed(1)} ${(dy*26).toFixed(1)}`,class:'qv-tr',filter:`url(#qvGlow${svg.id})`});
+    an(l,[{transform:'translate(0,0)',opacity:1},{transform:`translate(${(dx*len).toFixed(0)}px,${(dy*len).toFixed(0)}px)`,opacity:.2}],{duration:260,delay:delay||0,easing:'linear'});rm(l,(delay||0)+300)}
+  function casing(L,x,y,svg,delay){const c=mk(L,'rect',{x:x-2,y:y-1,width:5,height:2.4,class:'qv-cas'});c.style.transformBox='fill-box';c.style.transformOrigin='center';
+    an(c,[{transform:'translate(0,0) rotate(0)',opacity:1},{transform:`translate(${R(10,24).toFixed(0)}px,-${R(26,40).toFixed(0)}px) rotate(300deg)`,offset:.45},{transform:`translate(${R(26,44).toFixed(0)}px,${R(30,60).toFixed(0)}px) rotate(720deg)`,opacity:0}],{duration:900,delay:delay||0,easing:'cubic-bezier(.3,.1,.5,1)'});rm(c,(delay||0)+950)}
+  /* Ablauf eines Vorführpunkts: Kamera hin, Erfassung, Effekt, Kamera zurück */
+  async function stage(o){const svg=o.svg,base=o.base||vbOf(svg);defs(svg);const L=o.layer;
+    if(RMq){o.run&&o.run();return}
+    if(o.lower)lower(svg,o.lower[0],o.lower[1]);
+    const z=o.zoom||1;if(z>1.05){snd('whoosh');await cam(svg,zoomBox(base,o.x,o.y,z),650)}
+    if(o.lockTxt!==false){const g=lock(L,o.x,o.y,o.lockTxt||'ZIEL ERFASST',o.ls||Math.max(.6,1.25/z));await new Promise(r=>setTimeout(r,520));an(g,[{opacity:1},{opacity:0}],{duration:400,delay:200});rm(g,700)}
+    o.run&&o.run();await new Promise(r=>setTimeout(r,o.hold||1800));
+    if(z>1.05&&!o.keep)await cam(svg,base,700)}
+  return{defs,cam,zoomBox,hud,lower,count,lock,flash,sparks,fire,smoke,shock,boom,whiteout,shake,arcs,tracer,casing,stage,snd,R,vbOf,ov}})();
+
 /* Qs Garage: Seitenrisse */
 (function(){
 const $=id=>document.getElementById(id);
@@ -3622,12 +3709,39 @@ const FX={
    anim(s,[{transform:'translateX(-40px)'},{transform:`translateX(${f1(cur.L*g.k+80)}px)`}],{duration:2400,delay:i*300,easing:'linear'});done(s,3000)}
    setTimeout(()=>{const c=carG(),cl=c.cloneNode(true);cl.classList.add('half');c.parentNode.insertBefore(cl,c);anim(cl,[{transform:'translate(0,0)',opacity:.6},{transform:'translate(18px,-14px)',opacity:.6},{transform:'translate(18px,-14px)',opacity:.6},{transform:'translate(0,0)',opacity:0}],{duration:3200});setTimeout(()=>cl.remove(),3300)},2200)},
  none(){toast('<b>Q:</b> Keine Vorrichtung. Nur Fahrer und Glück.')}};
-function gadget(q){if(!q)return;const g=G(),x=g.X(q[1]),y=g.Y(q[2]);
+const ZM={gun:2,gunR:2,rocket:1.4,rocketUp:1.4,torpedo:1.4,laser:1.6,smoke:1.6,spray:1.6,flame:1.8,radar:1.8,radio:1.8,defib:2.1,zap:2.1,blade:2.1,caltrop:1.5,mine:1.5,chute:1.6,plate:2.2,eject:1.4,shield:1.8,spike:1.6,boom:1.25};
+const HOLD={roll7:4700,sub:5100,shear:3600,saw:5600,cloak:3800,tilt:3200,spiral:2000,flip:2400,eject:2400,boom:2700,gun:1500,gunR:1500,rocket:2200,rocketUp:2200,torpedo:2200,laser:1800,defib:2000};
+const gzBase=()=>mq.matches&&!gzd.classList.contains('full')?[40,18,880,380]:[0,0,1000,420];
+function boost(k,x,y){const L=fxL();if(!L)return;const g=G(),gy=GG-2;
+  switch(k){
+  case 'gun':case 'gunR':{const d=k==='gun'?-1:1;for(let i=0;i<6;i++)setTimeout(()=>{QV.flash(L,x+d*4,y,13,svg);QV.tracer(L,x,y,d,0,440,svg);QV.casing(L,x,y-3,svg);if(i%2===0)QV.snd('tick')},i*160);QV.shake(svg,1.4,1000);
+    setTimeout(()=>QV.sparks(L,x+d*330,y,16,d>0?Math.PI:0,.8,90,svg),320);break}
+  case 'rocket':case 'rocketUp':case 'torpedo':{const dx=k==='rocketUp'?-.6:-1,dy=k==='rocketUp'?-.8:0,y0=k==='torpedo'?y+8:y;QV.flash(L,x,y0,18,svg);QV.smoke(L,x,y0,12,-dx,-dy,60,svg,500);QV.snd('whoosh');
+    const ex=Math.max(30,Math.min(970,x+dx*520)),ey=Math.max(30,Math.min(GG-10,y0+dy*520));setTimeout(()=>{QV.boom(L,ex,ey,.9,svg);QV.shake(svg,3,500)},1250);break}
+  case 'laser':{const l=document.createElementNS(NS,'path');l.setAttribute('d',`M${x} ${y}h-420`);l.setAttribute('class','qv-arc');l.setAttribute('filter',`url(#qvGlow${svg.id})`);l.style.stroke='var(--red)';L.appendChild(l);
+    l.animate&&l.animate([{opacity:0},{opacity:1},{opacity:.5},{opacity:1},{opacity:0}],{duration:1400,fill:'forwards'});setTimeout(()=>l.remove(),1500);for(let i=0;i<5;i++)setTimeout(()=>QV.sparks(L,x-420,y,6,0,.9,60,svg),200+i*220);break}
+  case 'smoke':case 'spray':{const d=k==='spray'?-1:(x>GW/2?1:-1);QV.smoke(L,x,y,26,d,-.1,160,svg,1600);break}
+  case 'flame':{QV.fire(L,x,y,40,1,0,110,svg,1600);QV.smoke(L,x+60,y,10,1,-.3,80,svg,1600);break}
+  case 'radar':case 'radio':{for(let i=0;i<3;i++)setTimeout(()=>QV.shock(L,x,y,90,svg),i*380);break}
+  case 'defib':case 'zap':{QV.arcs(L,x-36,y-6,x+36,y+6,svg,900);setTimeout(()=>QV.whiteout(L,svg,.25),500);break}
+  case 'boom':{QV.boom(L,x,y,1.5,svg);QV.shake(svg,6,800);QV.whiteout(L,svg,.45);break}
+  case 'eject':{QV.flash(L,x,y,16,svg);QV.smoke(L,x,y,14,0,1,40,svg,600);QV.snd('hit');break}
+  case 'caltrop':case 'mine':{setTimeout(()=>QV.sparks(L,x+60,gy,18,-Math.PI/2,1.2,70,svg),700);break}
+  case 'roll7':case 'spiral':case 'flip':{for(let i=0;i<6;i++)setTimeout(()=>{QV.smoke(L,g.X(cur.fo+cur.WB/2)-i*40,gy,5,1,-.3,60,svg,300);QV.sparks(L,g.X(cur.fo+cur.WB/2)-i*40,gy,6,-Math.PI/2,1,70,svg)},i*(k==='roll7'?600:300));QV.shake(svg,2,1200);break}
+  case 'shear':case 'saw':{for(let i=0;i<10;i++)setTimeout(()=>QV.sparks(L,g.X(cur.L*(i/10)),g.Y(k==='shear'?2900:cur.H)-4,6,-Math.PI/2,1.3,70,svg),(k==='saw'?200:0)+i*200);break}
+  case 'cloak':{QV.whiteout(L,svg,.12);setTimeout(()=>QV.whiteout(L,svg,.12),2600);break}
+  }}
+let busy=false;
+async function gadget(q,inDemo){if(!q)return;const g=G(),x=g.X(q[1]),y=g.Y(q[2]);
   svg.querySelectorAll('.co').forEach(e=>e.classList.toggle('hot',+e.dataset.n===q[0]));glist.querySelectorAll('button').forEach(b=>b.classList.toggle('hot',+b.dataset.n===q[0]));
   if(RM){toast(`<b>Q:</b> ${q[3]}.`);return}
-  (FX[q[4]]||FX.none)(x,y);
-  if(q[4]==='gunR')setTimeout(()=>toast('<b>Q:</b> Ungeladen. Der Knopf „Atmos“ spielt Musik. Ich war dagegen.'),500)}
-async function demo(){const gs=cur.g.filter(q=>q[4]!=='none');if(!gs.length){FX.none();return}for(const q of gs){gadget(q);await new Promise(r=>setTimeout(r,q[4]==='roll7'?4600:q[4]==='sub'?5000:1900))}}
+  const k=q[4];await QV.stage({svg,layer:fxL(),x,y,base:gzBase(),zoom:ZM[k]||1,lockTxt:k==='none'?false:undefined,lower:[`Q-AUSSTATTUNG · ${String(q[0]).padStart(2,'0')}`,q[3]],hold:HOLD[k]||1900,
+    run:()=>{(FX[k]||FX.none)(x,y);boost(k,x,y)}});
+  if(k==='gunR')setTimeout(()=>toast('<b>Q:</b> Ungeladen. Der Knopf „Atmos“ spielt Musik. Ich war dagegen.'),500)}
+async function demo(){if(busy)return;const gs=cur.g.filter(q=>q[4]!=='none');if(!gs.length){FX.none();return}busy=true;$('gzDemo').disabled=true;
+  QV.hud(svg,true,`Q-ABTEILUNG · VORFÜHRUNG · ${cur.n.toUpperCase()}`);
+  for(let i=0;i<gs.length;i++){QV.count(svg,`${String(i+1).padStart(2,'0')} / ${String(gs.length).padStart(2,'0')}`);await gadget(gs[i],true);await new Promise(r=>setTimeout(r,250))}
+  QV.hud(svg,false);QV.count(svg,'');busy=false;$('gzDemo').disabled=false}
 /* Zündung und Probefahrt */
 function puff(){const g=G(),ex=(cur.ft||[]).find(t=>t[0]==='ex');const x=ex?g.X(ex[1]+ex[3]):g.X(cur.L),y=ex?g.Y(ex[2]):g.Y(300);
   const c=mk('circle',{cx:x,cy:y,r:2,class:'fxsm'});anim(c,[{transform:'translate(0,0) scale(1)',opacity:.7},{transform:`translate(${drive?60:22}px,-8px) scale(4)`,opacity:0}],{duration:900});done(c,950)}
@@ -4112,6 +4226,7 @@ const SND=(()=>{let ac=null,on=false,master=null,drone=null,nb=null;
     ping(){if(!ok())return;const t=ac.currentTime,o=ac.createOscillator();o.frequency.value=1320;env(o,t,.005,.09,1.1);o.start(t);o.stop(t+1.2)},
     tick(){if(!ok())return;const t=ac.currentTime,o=ac.createOscillator();o.type='square';o.frequency.value=1700+Math.random()*500;env(o,t,.001,.012,.025);o.start(t);o.stop(t+.04)}};
   return A})();
+window.SND=SND;
 function openSnd(){SND.droneOn();later(()=>SND.whoosh(),300);later(()=>SND.whoosh(),3000);later(()=>SND.whoosh(),5700);later(()=>{SND.hit();SND.sting()},8400)}
 function actSnd(){SND.hit();later(()=>SND.sting(),150)}
 function credSnd(){later(()=>SND.whoosh(),200);later(()=>{SND.hit();SND.sting()},12000);later(()=>SND.droneOff(),14500)}
@@ -4260,6 +4375,56 @@ const GD=[
   ret:'Waffe ausgegeben, Munition gezählt. Holster fehlt.',
   q:'Leicht, zuverlässig, unauffällig unter dem Smoking.',m:'Sie tragen sie, Sie benutzen sie nicht. Nicht in Karlsbad.',
   pts:[['Lauf',.15,.42,['shot',-1,.22,.14,.42]],['Schlitten',.45,.25,null],['Abzug',.42,.5,null],['Griffschalen',.72,.55,null],['Magazin',.75,.85,null]]},
+ {id:'case',n:'Aktenkoffer',film:'Liebesgrüße aus Moskau',y:1963,cat:'Kleingerät',base:'Lederaktenkoffer der Q-Abteilung',art:null,
+  fn:'Koffer mit Tränengaspatrone, Wurfmesser, 50 Goldsovereigns und zerlegbarem Scharfschützengewehr mit Infrarot-Zielfernrohr.',use:'Die Verschlüsse richtig drehen, sonst löst die Tränengaspatrone aus.',
+  mis:'Im Orient-Express überlistet Bond mit dem Koffer den Killer Grant: Er bietet ihm die Goldmünzen an, öffnet den Koffer und lässt das Gas los.',
+  ret:'Ein Messer fehlt. Die Sovereigns auch.',q:'Bitte die Verschlüsse in der richtigen Stellung öffnen. Ich wiederhole: in der richtigen.',m:'Fünfzig Goldsovereigns. Das Schatzamt möchte sie zurück. Alle fünfzig.',
+  pts:[['Tränengaspatrone im Deckel'],['Wurfmesser'],['50 Goldsovereigns'],['Zerlegbares Gewehr mit Infrarot-Zielfernrohr']]},
+ {id:'rolex',n:'Rolex Submariner mit Magnet',film:'Leben und sterben lassen',y:1973,cat:'Kleingerät',base:'Rolex Submariner',art:null,
+  fn:'Elektromagnet, laut Q stark genug, um eine Kugel abzulenken, und eine drehbare Lünette als Kreissäge.',use:'Krone ziehen: Magnet. Lünette drehen: Säge.',
+  mis:'Bond öffnet mit dem Magneten das Kleid von Miss Caruso und sägt sich später mit der Lünette von den Fesseln los.',
+  ret:'Zurück mit stumpfer Lünette.',q:'Bitte nicht in der Nähe von Herzschrittmachern.',m:'Ich habe nicht gefragt, wofür Sie den Magneten benutzt haben. Ich frage auch jetzt nicht.',
+  pts:[['Elektromagnet'],['Lünette als Kreissäge']]},
+ {id:'seiko',n:'Seiko mit Fernschreiber',film:'Der Spion, der mich liebte',y:1977,cat:'Kleingerät',base:'Seiko-Quarzuhr',art:null,
+  fn:'Armbanduhr, die eine Nachricht des Hauptquartiers als Papierstreifen ausdruckt.',use:'Der Streifen läuft aus dem Gehäuse. Lesen, dann vernichten.',
+  mis:'Im Chalet in Österreich ruft der Streifen Bond zum Einsatz, bevor die Skiverfolgung beginnt.',
+  ret:'Papierrolle aufgebraucht.',q:'Bitte lesen Sie die Nachricht, bevor Sie zurückschreiben. Was Sie nicht können.',m:'Ich schreibe kurz. Lesen Sie schneller.',
+  pts:[['Ausgabeschlitz für den Streifen'],['Quarzwerk']]},
+ {id:'skipole',n:'Skistock-Gewehr',film:'Der Spion, der mich liebte',y:1977,cat:'Waffen',base:'Skistock',art:null,
+  fn:'Einschüssiges Gewehr im Skistock.',use:'Stock anlegen, Griff drücken.',
+  mis:'In den Alpen schießt Bond damit einen Verfolger ab, springt über eine Klippe und öffnet einen Fallschirm im Union-Jack-Muster.',
+  ret:'Ein Stock verloren, Fallschirm nicht zurückgegeben.',q:'Der Fallschirm war nicht meine Idee.',m:'Der Union Jack war Ihre Idee. Ich habe es gesehen. Alle haben es gesehen.',
+  pts:[['Lauf im Stockrohr'],['Abzug im Griff']]},
+ {id:'keyring',n:'Schlüsselfinder',film:'Der Hauch des Todes',y:1987,cat:'Kleingerät',base:'Philips-Schlüsselanhänger',art:null,
+  fn:'Schlüsselring mit Betäubungsgas, Sprengladung und Universaldietrich, ausgelöst durch Pfeifen.',use:'„Rule, Britannia!“ pfeifen: Gas. Anerkennend pfeifen: Sprengladung.',
+  mis:'Bond nutzt Gas und Sprengladung, um aus einer Zelle in Afghanistan zu entkommen.',
+  ret:'Gas verbraucht, Sprengladung gezündet. Ring verbogen.',q:'Bitte nicht in Gesellschaft pfeifen.',m:'Ein Agent, der auf Kommando pfeift. Ich hätte nie gedacht, dass ich das erlebe.',
+  pts:[['Betäubungsgas'],['Sprengladung'],['Universaldietrich']]},
+ {id:'signature',n:'Signatur-Gewehr',film:'Lizenz zum Töten',y:1989,cat:'Waffen',base:'Gewehr, getarnt als Kamera',art:null,
+  fn:'Zerlegbares Scharfschützengewehr mit optischem Handflächenleser: schießt nur für Bond.',use:'Griff mit der eigenen Hand umfassen. Fremde Hände: kein Schuss.',
+  mis:'Q bringt es Bond nach Isthmus City, inoffiziell und auf Urlaub. Bond versucht damit, Sanchez zu erschießen.',
+  ret:'Beschlagnahmt, später zurückgegeben.',q:'Ich war im Urlaub. Offiziell.',m:'Q war im Urlaub. Ich weiß, wo.',
+  pts:[['Handflächenleser im Griff'],['Kameragehäuse'],['Zerlegbarer Lauf']]},
+ {id:'phone',n:'Ericsson-Mobiltelefon',film:'Der Morgen stirbt nie',y:1997,cat:'Kleingerät',base:'Ericsson-Handy',art:null,
+  fn:'Fernsteuerung für den BMW 750iL, Fingerabdruckscanner, Elektroschocker mit 20.000 Volt und Dietrich.',use:'Display aufklappen, Wagen über das Touchpad steuern.',
+  mis:'Bond lenkt den 750iL vom Rücksitz aus durch ein Parkhaus in Hamburg und lässt ihn vom Dach in eine Autovermietung stürzen.',
+  ret:'Telefon intakt. Auto nicht.',q:'Der Wagen ist ferngesteuert. Sie bitte nicht.',m:'Eine Verbindung in der Tiefgarage. Das schafft meine Leitung nicht.',
+  pts:[['Fernsteuerung für den BMW'],['Fingerabdruckscanner'],['Elektroschocker'],['Dietrich']],link:'e38'},
+ {id:'xray',n:'Röntgenbrille',film:'Die Welt ist nicht genug',y:1999,cat:'Kleingerät',base:'Sonnenbrille mit Röntgenoptik',art:null,
+  fn:'Brille, die Kleidung durchleuchtet und versteckte Waffen sichtbar macht.',use:'Aufsetzen und unauffällig umsehen.',
+  mis:'In Zukovskys Casino in Baku erkennt Bond damit, wer bewaffnet ist.',
+  ret:'Zurück, Gläser verkratzt.',q:'Für Waffen. Ausschließlich für Waffen.',m:'Ich weiß, wofür Sie sie benutzt haben.',
+  pts:[['Röntgenoptik'],['Gestell']]},
+ {id:'ring',n:'Ultraschallring',film:'Stirb an einem anderen Tag',y:2002,cat:'Kleingerät',base:'Siegelring',art:null,
+  fn:'Hochfrequenzring, der Panzerglas zerspringen lässt.',use:'Ring drehen, gegen das Glas halten.',
+  mis:'In Graves’ Eispalast zerspringt die Glasscheibe, Bond springt durch das Dach.',
+  ret:'Zurück. Ein Fenster weniger auf Island.',q:'Bitte nicht an Ihrem Martiniglas.',m:'Die Rechnung für das Glas kam aus Island. In Kronen.',
+  pts:[['Frequenzgeber'],['Drehbare Fassung']]},
+ {id:'ppks',n:'Walther PPK/S mit Handflächenerkennung',film:'Skyfall',y:2012,cat:'Waffen',base:'Walther PPK/S, 9 mm kurz',art:null,
+  fn:'Pistole mit Handflächensensor, nur Bond kann sie abfeuern. Dazu ein kleiner Funksender.',use:'Waffe greifen, der Sensor erkennt die Hand.',
+  mis:'Q übergibt beides in der National Gallery in London. Ein Kommodowaran in Macau stellt fest, dass die Waffe nicht für ihn gedacht ist.',
+  ret:'Waffe verloren, an einen Waran.',q:'Erwarteten Sie einen explodierenden Kugelschreiber? So etwas machen wir nicht mehr.',m:'Q hat einen Kugelschreiber im Archiv. Er weiß es.',
+  pts:[['Handflächensensor im Griff'],['Funksender']]},
  {id:'qboat',n:'Q-Boot',film:'Die Welt ist nicht genug',y:1999,cat:'Fahr- und Fluggerät',base:'Jetboot, Einzelanfertigung der Q-Abteilung',art:'g1',
   fn:'Kleines Jetboot mit Torpedos. Eigentlich Qs Boot für den Ruhestand.',use:'Zündung im Cockpit, Torpedos über die Bugrohre.',
   mis:'Bond springt aus der MI6-Zentrale in Vauxhall Cross in die Themse und jagt die Attentäterin bis zum Millennium Dome. Unterwegs fährt er durch eine Straße und ein Restaurant.',
@@ -4275,10 +4440,20 @@ const Q=new Set(S.get('gdq',[]));
 const BX=[20,20,740,560];
 function fit(a){const k=Math.min(BX[2]/a.w,BX[3]/a.h),w=a.w*k,h=a.h*k;return{k,ox:BX[0]+(BX[2]-w)/2,oy:BX[1]+(BX[3]-h)/2,w,h}}
 const P=(f,x,y)=>[f.ox+x*f.w,f.oy+y*f.h];
-function sheet(g){const a=GDA[g.art],f=fit(a),n=a.G.length,i=GD.indexOf(g);
+function sheetPh(g){const i=GD.indexOf(g);
+  let o=`<defs><pattern id="gdGrid" width="20" height="20" patternUnits="userSpaceOnUse"><path d="M20 0H0V20" fill="none" class="gzgrid"/></pattern><pattern id="gdHat" width="10" height="10" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><path d="M0 0V10" class="gdhat"/></pattern></defs><rect width="1000" height="600" fill="url(#gdGrid)"/>`;
+  o+=`<g class="gdph"><rect x="60" y="60" width="660" height="480" class="gdfr"/><rect x="60" y="60" width="660" height="480" fill="url(#gdHat)" opacity=".35"/><path d="M60 60L720 540M720 60L60 540" class="gdx"/>
+   <circle cx="390" cy="300" r="70" class="gdfr"/><path d="M390 210v40M390 350v40M300 300h40M440 300h40" class="gdfr"/><rect x="215" y="270" width="350" height="60" class="gdbx"/>
+   <text x="390" y="296" class="tx gdt a" text-anchor="middle">BAUPLAN AUSSTEHEND</text><text x="390" y="316" class="tx gdt" text-anchor="middle" font-size="10">ZEICHNUNG FOLGT DURCH DIE 00-EINHEIT</text><line x1="62" y1="62" x2="718" y2="62" class="gdscan"/></g>`;
+  o+=`<g class="tb"><rect x="776" y="20" width="204" height="${30+g.pts.length*30}"/><text x="788" y="38" class="tx tbt">MERKMALE</text>${g.pts.map((p,j)=>`<text x="788" y="${62+j*30}" class="tx tbn">${j+1}</text><text x="806" y="${62+j*30}" class="tx dt">${wrap(p[0],30).map((l,k)=>`<tspan x="806" dy="${k?11:0}">${l}</tspan>`).join('')}</text>`).join('')}</g>`;
+  o+=`<g class="tb"><rect x="776" y="470" width="204" height="110"/><line x1="776" y1="492" x2="980" y2="492"/><line x1="776" y1="540" x2="980" y2="540"/><line x1="878" y1="540" x2="878" y2="580"/>
+   <text x="786" y="485" class="tx tbt">Q-ABTEILUNG · AUSRÜSTUNG</text><text x="786" y="510" class="tx tbn">${g.n}</text><text x="786" y="528" class="tx tbs">${g.film} (${g.y})</text>
+   <text x="786" y="556" class="tx tbs">BLATT</text><text x="786" y="571" class="tx tbn">${String(i+1).padStart(2,'0')} / ${String(GD.length).padStart(2,'0')}</text><text x="888" y="556" class="tx tbs">STATUS</text><text x="888" y="571" class="tx tbn">ENTWURF</text></g>`;
+  return o+'<g class="gdfx"></g>'}
+function sheet(g){if(!g.art)return sheetPh(g);const a=GDA[g.art],f=fit(a),n=a.G.length,i=GD.indexOf(g);
   let o=`<defs><pattern id="gdGrid" width="20" height="20" patternUnits="userSpaceOnUse"><path d="M20 0H0V20" fill="none" class="gzgrid"/></pattern></defs><rect width="1000" height="600" fill="url(#gdGrid)"/>`;
   o+=`<g class="gdart" transform="translate(${f.ox.toFixed(1)} ${f.oy.toFixed(1)}) scale(${f.k.toFixed(4)})" style="--sw:${(1.05/f.k).toFixed(2)}">${a.G.map((d,j)=>`<path d="${d}" pathLength="1" class="gp" style="--d:${(j*1.6/n).toFixed(2)}s"/>`).join('')}</g>`;
-  o+=`<g class="callouts">${g.pts.map((p,j)=>{const [x,y]=P(f,p[1],p[2]),lx=x+(x<f.ox+f.w/2?-1:1)*26,ly=y-22;return `<g class="co${p[3]?' act':''}" data-n="${j}" tabindex="0" role="button" aria-label="${j+1}: ${p[0]}"><path d="M${x.toFixed(1)} ${y.toFixed(1)}L${lx.toFixed(1)} ${ly.toFixed(1)}" class="lead"/><circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="3" class="dot"/><circle cx="${lx.toFixed(1)}" cy="${ly.toFixed(1)}" r="10" class="cc"/><text x="${lx.toFixed(1)}" y="${(ly+3.5).toFixed(1)}" class="tx cn" text-anchor="middle">${j+1}</text></g>`}).join('')}</g>`;
+  o+=`<g class="callouts">${g.pts.map((p,j)=>{if(p[1]==null)return'';const [x,y]=P(f,p[1],p[2]),lx=x+(x<f.ox+f.w/2?-1:1)*26,ly=y-22;return `<g class="co${p[3]?' act':''}" data-n="${j}" tabindex="0" role="button" aria-label="${j+1}: ${p[0]}"><path d="M${x.toFixed(1)} ${y.toFixed(1)}L${lx.toFixed(1)} ${ly.toFixed(1)}" class="lead"/><circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="3" class="dot"/><circle cx="${lx.toFixed(1)}" cy="${ly.toFixed(1)}" r="10" class="cc"/><text x="${lx.toFixed(1)}" y="${(ly+3.5).toFixed(1)}" class="tx cn" text-anchor="middle">${j+1}</text></g>`}).join('')}</g>`;
   o+=`<g class="tb"><rect x="776" y="20" width="204" height="${30+g.pts.length*30}"/><text x="788" y="38" class="tx tbt">LEGENDE</text>${g.pts.map((p,j)=>`<text x="788" y="${62+j*30}" class="tx tbn">${j+1}</text><text x="806" y="${62+j*30}" class="tx dt">${wrap(p[0],30).map((l,k)=>`<tspan x="806" dy="${k?11:0}">${l}</tspan>`).join('')}</text>`).join('')}</g>`;
   o+=`<g class="tb"><rect x="776" y="470" width="204" height="110"/><line x1="776" y1="492" x2="980" y2="492"/><line x1="776" y1="540" x2="980" y2="540"/><line x1="878" y1="540" x2="878" y2="580"/>
    <text x="786" y="485" class="tx tbt">Q-ABTEILUNG · AUSRÜSTUNG</text><text x="786" y="510" class="tx tbn">${g.n}</text><text x="786" y="528" class="tx tbs">${g.film} (${g.y})</text>
@@ -4290,10 +4465,11 @@ function specRows(g){const rows=[['FILM',`${g.film} (${g.y})`],['BASIS',g.base],
   <div class="gzret"><span>RÜCKGABEPROTOKOLL</span>${g.ret}</div><p class="qnote"><b>Q:</b> ${g.q}</p><p class="mnote"><b>M:</b> ${g.m}</p>
   <button type="button" class="qbtn gdq" id="gdQ" aria-pressed="${Q.has(g.id)}">${Q.has(g.id)?'✓ AUSGABE QUITTIERT':'AUSGABE QUITTIEREN'}</button>
   ${g.id==='defib'?'<p class="gzest">Selbst ausprobieren: Defibrillator-Training im <a href="#qlab">Q-Lab</a>.</p>':''}
-  <p class="gzest">Bauplan nach Vorlage der 00-Einheit, nachgezeichnet; Maßangaben im Plan nicht verbindlich.${g.note?' '+g.note:''}</p>`}
-function thumb(cv,g){const a=GDA[g.art],c=cv.getContext('2d'),W=cv.width,H=cv.height,k=Math.min(W/a.w,H/a.h)*.94;c.clearRect(0,0,W,H);c.save();c.translate((W-a.w*k)/2,(H-a.h*k)/2);c.scale(k,k);
+  ${g.link?`<p class="gzest">Das Fahrzeug dazu steht in <a href="#garage" data-car="${g.link}">Qs Garage</a>.</p>`:''}<p class="gzest">${g.art?'Bauplan nach Vorlage der 00-Einheit, nachgezeichnet; Maßangaben im Plan nicht verbindlich.':'Bauplan steht noch aus. Vorführung folgt mit der Zeichnung.'}</p>`}
+function thumb(cv,g){const c0=cv.getContext('2d');if(!g.art){const W=cv.width,H=cv.height;c0.clearRect(0,0,W,H);c0.strokeStyle=getComputedStyle(cv).color||'#8FD7E8';c0.setLineDash([6,5]);c0.lineWidth=1.5;c0.strokeRect(40,14,W-80,H-28);c0.setLineDash([]);c0.font='600 34px monospace';c0.textAlign='center';c0.fillStyle=c0.strokeStyle;c0.fillText('?',W/2,H/2+12);return}
+  const a=GDA[g.art],c=cv.getContext('2d'),W=cv.width,H=cv.height,k=Math.min(W/a.w,H/a.h)*.94;c.clearRect(0,0,W,H);c.save();c.translate((W-a.w*k)/2,(H-a.h*k)/2);c.scale(k,k);
   c.strokeStyle=getComputedStyle(cv).color||'#8FD7E8';c.lineWidth=1.3/k;c.lineJoin='round';c.lineCap='round';try{a.G.forEach(d=>c.stroke(new Path2D(d)))}catch(e){}c.restore()}
-bays.innerHTML=GD.map((g,i)=>`<button type="button" class="bay" data-id="${g.id}" aria-pressed="false"><span class="bn">FACH ${String(i+1).padStart(2,'0')} · ${g.y}</span><canvas class="gdm" width="268" height="112" aria-hidden="true"></canvas><b>${g.n}</b><small>${g.film}</small></button>`).join('');
+bays.innerHTML=GD.map((g,i)=>`<button type="button" class="bay" data-id="${g.id}" aria-pressed="false"><span class="bn">FACH ${String(i+1).padStart(2,'0')} · ${g.y}</span><canvas class="gdm" width="268" height="112" aria-hidden="true"></canvas><b>${g.n}</b><small>${g.film}${g.art?'':' · Bauplan folgt'}</small></button>`).join('');
 bays.querySelectorAll('.bay').forEach(b=>{b.onclick=()=>sel(b.dataset.id,true);thumb(b.querySelector('canvas'),GD.find(g=>g.id===b.dataset.id))});
 $('gdFlt').innerHTML=CATS.map(c=>`<button type="button" aria-pressed="${c==='Alle'}" data-f="${c}">${c.toUpperCase()}</button>`).join('');
 $('gdFlt').querySelectorAll('button').forEach(b=>b.onclick=()=>{flt=b.dataset.f;$('gdFlt').querySelectorAll('button').forEach(x=>x.setAttribute('aria-pressed',x===b));
@@ -4303,7 +4479,8 @@ function render(redraw){svg.innerHTML=sheet(cur);svg.setAttribute('aria-label','
   svg.querySelectorAll('.co').forEach(c=>{const go=()=>point(+c.dataset.n);c.onclick=go;c.onkeydown=e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();go()}}})}
 function sel(id,user){const g=GD.find(x=>x.id===id);if(!g)return;if(user){first=false;svg.classList.remove('pre')}clearFx();cur=g;S.set('gd',id);
   bays.querySelectorAll('.bay').forEach(b=>b.setAttribute('aria-pressed',b.dataset.id===id));render();spec.innerHTML=specRows(g);
-  glist.innerHTML=g.pts.map((p,j)=>`<li><button type="button" data-n="${j}"${p[3]?' class="act"':''}><b>${j+1}</b>${p[0]}${p[3]?' <i>▶</i>':''}</button></li>`).join('');
+  glist.innerHTML=g.pts.map((p,j)=>`<li><button type="button" data-n="${j}"${p[3]?' class="act"':''}><b>${j+1}</b>${p[0]}${p[3]?' <i>▶</i>':''}</button></li>`).join('');$('gdDemo').disabled=!g.art||busy;$('gdDemo').title=g.art?'':'Vorführung folgt mit dem Bauplan';
+  const gl=spec.querySelector('a[data-car]');if(gl)gl.onclick=e=>{const b=document.querySelector(`#gzBays .bay[data-id="${gl.dataset.car}"]`);if(b)b.click()};
   glist.querySelectorAll('button').forEach(b=>b.onclick=()=>point(+b.dataset.n));
   $('gdQ').onclick=()=>{Q.has(g.id)?Q.delete(g.id):Q.add(g.id);S.set('gdq',[...Q]);spec.innerHTML=specRows(g);sel(g.id,false);bookR()};
   stEl.textContent=`FACH ${String(GD.indexOf(g)+1).padStart(2,'0')} / ${GD.length}`;
@@ -4363,10 +4540,33 @@ function runAct(p){const f=F(),pt=P(f,p[1],p[2]),a=p[3];if(!a)return;const t=a[0
   else if(t==='defib')FX.defib();
   else if(t==='click')FX.click(pt);
   else if(t==='boom')FX.boom(P(f,a[1],a[2]))}
-function point(j){svg.classList.remove('pre');clearFx();const p=cur.pts[j];const c=svg.querySelector(`.co[data-n="${j}"]`);if(c)c.classList.add('hot');
-  const b=glist.querySelector(`[data-n="${j}"]`);if(b)b.classList.add('hot');runAct(p);
-  $('gdLog').textContent=p[3]?`Vorführung: ${p[0]}`:`Markiert: ${p[0]}`}
-function demo(){svg.classList.remove('pre');clearFx();let t=0;cur.pts.forEach((p,j)=>{if(!p[3])return;later(()=>{svg.querySelectorAll('.co.hot').forEach(c=>c.classList.remove('hot'));const c=svg.querySelector(`.co[data-n="${j}"]`);if(c)c.classList.add('hot');runAct(p);$('gdLog').textContent=`Vorführung: ${p[0]}`},t);t+=p[3][0]==='defib'||p[3][0]==='click'?5200:2900})}
+const ZG={shot:2,torpedo:1.45,laser:1.6,thrust:1.5,thrust2:1.15,rotor:1.25,spin:1.8,waves:1.5,charge:2,defib:1.15,click:2.1,boom:1.2};
+const HG={shot:1500,torpedo:2600,laser:2300,thrust:2500,thrust2:2600,rotor:2700,spin:1900,waves:2900,charge:1500,defib:5300,click:1500,boom:1500};
+function gboost(p){const a=p[3];if(!a||!cur.art)return;const L=svg.querySelector('.gdfx'),f=F(),pt=P(f,p[1],p[2]);
+  switch(a[0]){
+  case 'shot':{const o=a.length>3?P(f,a[3],a[4]):pt,l=Math.hypot(a[1],a[2]),dx=a[1]/l,dy=a[2]/l;for(let i=0;i<3;i++)later(()=>{QV.flash(L,o[0],o[1],22,svg);QV.tracer(L,o[0],o[1],dx,dy,440,svg);QV.casing(L,o[0]-dx*60,o[1]-dy*60-8,svg);QV.snd('tick')},i*170);QV.shake(svg,2,700);
+    later(()=>QV.smoke(L,o[0],o[1],10,dx,dy-.3,50,svg,500),200);break}
+  case 'torpedo':{QV.flash(L,pt[0],pt[1],16,svg);QV.smoke(L,pt[0],pt[1],10,-a[1],-a[2],40,svg,400);later(()=>{const e=[pt[0]+a[1]*380/Math.hypot(a[1],a[2]),pt[1]+a[2]*380/Math.hypot(a[1],a[2])];QV.boom(L,Math.min(985,e[0]),Math.min(585,e[1]),.8,svg);QV.shake(svg,3,500)},1700);break}
+  case 'laser':{const q=P(f,a[1],a[2]);for(let i=0;i<7;i++)later(()=>QV.sparks(L,q[0],q[1],7,Math.PI,1.1,70,svg),450+i*220);QV.smoke(L,q[0],q[1],8,0,-1,30,svg,1400);break}
+  case 'thrust':QV.fire(L,pt[0],pt[1],60,a[1],a[2],170,svg,1900);QV.smoke(L,pt[0],pt[1],22,a[1],a[2],220,svg,1900);QV.shake(svg,1.2,1900);break;
+  case 'thrust2':{[[a[1],a[2]],[a[3],a[4]]].forEach(([x,y])=>{const q=P(f,x,y);QV.fire(L,q[0],q[1],46,0,1,150,svg,2000);QV.smoke(L,q[0],q[1],18,0,1,200,svg,2000)});QV.shake(svg,1.5,2000);break}
+  case 'waves':{const q=P(f,a[1],a[2]);for(let i=0;i<4;i++)later(()=>QV.shock(L,q[0],q[1],230,svg),i*420);break}
+  case 'defib':later(()=>{QV.arcs(L,...P(f,.2,.72),...P(f,.78,.67),svg,700);QV.whiteout(L,svg,.35);QV.snd('hit');QV.shake(svg,3,400)},2250);break;
+  case 'click':later(()=>{const q=P(f,.5,.5);QV.boom(L,q[0],q[1],1.8,svg);QV.shake(svg,7,900);QV.whiteout(L,svg,.55)},3700);break;
+  case 'boom':{const q=P(f,a[1],a[2]);QV.boom(L,q[0],q[1],1.6,svg);QV.shake(svg,6,800);QV.whiteout(L,svg,.45);break}
+  }}
+let busy=false;
+async function point(j,inDemo){if(!cur.art)return;svg.classList.remove('pre');if(!inDemo)clearFx();svg.querySelectorAll('.co.hot').forEach(c=>c.classList.remove('hot'));glist.querySelectorAll('.hot').forEach(c=>c.classList.remove('hot'));
+  const p=cur.pts[j];const c=svg.querySelector(`.co[data-n="${j}"]`);if(c)c.classList.add('hot');const b=glist.querySelector(`[data-n="${j}"]`);if(b)b.classList.add('hot');
+  $('gdLog').textContent=p[3]?`Vorführung: ${p[0]}`:`Markiert: ${p[0]}`;if(RM||p[1]==null){if(p[3])runAct(p);return}
+  const f=F(),pt=P(f,p[1],p[2]),k=p[3]&&p[3][0];
+  await QV.stage({svg,layer:svg.querySelector('.gdfx'),x:pt[0],y:pt[1],base:[0,0,1000,600],zoom:k?ZG[k]||1.4:1.6,lockTxt:p[3]?undefined:p[0].toUpperCase(),lower:[`MERKMAL ${String(j+1).padStart(2,'0')} · ${cur.n.toUpperCase()}`,p[0]],hold:k?HG[k]||2000:1300,
+    run:()=>{if(p[3]){runAct(p);gboost(p)}}});
+  if(k==='click'&&inDemo)await new Promise(r=>setTimeout(r,3000))}
+async function demo(){if(busy||!cur.art)return;busy=true;$('gdDemo').disabled=true;svg.classList.remove('pre');clearFx();const acts=cur.pts.map((p,j)=>[p,j]).filter(([p])=>p[3]);
+  QV.hud(svg,true,`Q-ABTEILUNG · VORFÜHRUNG · ${cur.n.toUpperCase()}`);
+  for(let i=0;i<acts.length;i++){QV.count(svg,`${String(i+1).padStart(2,'0')} / ${String(acts.length).padStart(2,'0')}`);await point(acts[i][1],true);await new Promise(r=>setTimeout(r,250))}
+  QV.hud(svg,false);QV.count(svg,'');busy=false;$('gdDemo').disabled=!cur.art}
 $('gdDemo').onclick=demo;$('gdRe').onclick=()=>{clearFx();svg.classList.remove('pre');render(true)};
 $('gdPrev').onclick=()=>{const v=GD.filter(g=>flt==='Alle'||g.cat===flt),i=v.indexOf(cur);sel((v[(i-1+v.length)%v.length]||GD[0]).id,true)};
 $('gdNext').onclick=()=>{const v=GD.filter(g=>flt==='Alle'||g.cat===flt),i=v.indexOf(cur);sel((v[(i+1)%v.length]||GD[0]).id,true)};

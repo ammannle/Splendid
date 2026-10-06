@@ -158,4 +158,12 @@ Freigabe: „Anyone with the link“ ist aktiv. Wer die Seite offen hat, sieht n
   03 Einsatzplan (`#ops`), 04 Quartiere & Assets (`#assets`), 05 Zielobjekte (`#targets`), 06 Lagekarten (`#maps`),
   07 Personenakten (`#persons`), 08 Qs Garage, 09 Qs Gadgets, 10 Trainingsprogramm (`#qlab`), 11 Das Archiv (`#world-sec`).
   Navigation in derselben Reihenfolge; Tastenkürzel 1–9 folgen den Modulnummern, dazu Q (Q-Lab), W (Archiv), B, P, G, X.
+- Version 22 (06.10.2026): Vorführbaukasten `QV` (vor der Garage, global): Kamerafahrt über die viewBox (`cam`, `zoomBox`), Kino-Overlay
+  `.qv-ov` (Letterbox, Kennung, REC-Zeitcode, Zähler, Bauchbinde `lower`), Zielerfassung `lock`, Mündungsblitz, Leuchtspur, Hülsen,
+  Funken, Feuer, Rauch (SVG-Filter `qvGlow`/`qvBlur`/`qvFire` je SVG), Druckwelle, Explosion mit Trümmern, Lichtbogen, Weißblitz,
+  Bildwackeln; Ton über `window.SND` (aus dem Briefing, nur wenn eingeschaltet). Ablauf je Punkt `QV.stage()`: Kamera hin, Erfassung,
+  Effekt + Verstärkung (`boost` in der Garage, `gboost` bei Gadgets), Kamera zurück. Garage-Vorführung und Gadget-Vorführung laufen
+  darüber. Qs Gadgets um zehn Einträge ohne Bild erweitert (`art:null`, Platzhalter-Blatt `sheetPh`, „Bauplan folgt“, Vorführung aus):
+  Aktenkoffer, Rolex Submariner, Seiko-Fernschreiber, Skistock-Gewehr, Schlüsselfinder, Signatur-Gewehr, Ericsson-Handy (Link zum 750iL),
+  Röntgenbrille, Ultraschallring, Walther PPK/S (Skyfall). Bilder liefert der Nutzer nach; dann `art` und Punkte `pts` mit x/y/Effekt setzen.
 - Tests: Playwright-Skripte müssen vor dem Laden `window.__NOINTRO=1` per `addInitScript` setzen, sonst läuft das Intro.
