@@ -248,4 +248,9 @@ Freigabe: „Anyone with the link“ ist aktiv. Wer die Seite offen hat, sieht n
 - Version 35 (07.10.2026): Pokertisch im technisch gezeichneten Stil (wie Aufrisse): Raster, Tisch als Cyan-Kontur mit Schraffur, Achsen,
   Maßketten (2 400 / 1 200), nummerierte Plätze, Karten mit Linienrahmen und schraffierter Rückseite, Chips als gestrichelte Konturstapel;
   Gewinnkarten amber. Animation und Ablauf unverändert (CSS-Block „Pokertisch im technisch gezeichneten Stil“).
+- Version 36 (07.10.2026): Pokertisch noch technischer: Giftglas, Lichtkegel, Rauch, rote Blitze und Herzschlag-Vignette entfernt.
+  Tisch als Konstruktionszeichnung, die wie vom Plotter gezogen wird (`.p3draw`: Außen-/Innenkontur, Setzlinie, Achsen, Maßketten,
+  Platzkreise 1–8, Beschriftung). „Gift im Glas“ jetzt als Befund-Kasten mit Hinweislinie zum Sitz von Bond und EKG (`.p3call`, `.p3ov`),
+  Handauswertung als Tabelle (`.p3eval`), Gewinn mit Messringen und Scanlinie statt Leuchten. Kamera-Einstellungen nach links versetzt,
+  damit rechts Platz für die Auswertung bleibt; Farbstimmung der Szene cyan statt rot.
 - Tests: Playwright-Skripte müssen vor dem Laden `window.__NOINTRO=1` per `addInitScript` setzen, sonst läuft das Intro.

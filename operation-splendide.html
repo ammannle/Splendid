@@ -1716,6 +1716,56 @@ html.msfull{overflow:hidden}
 .p3pl{font-size:15px;color:rgba(143,215,232,.75)}
 .p3vig{background:radial-gradient(ellipse at 50% 55%,transparent 55%,rgba(0,0,0,.5) 100%)}
 .pk3.hb .p3vig{animation:p3hb .55s ease-out}
+/* Pokertisch v36: Konstruktionszeichnung, Befund statt Glas, Handauswertung */
+.pk3.tech .p3felt{border:0;border-radius:190px}
+.p3draw{position:absolute;left:-90px;top:-70px;width:960px;height:580px;overflow:visible}
+.p3draw path{fill:none;stroke:var(--cyan);stroke-width:1;stroke-dasharray:1;stroke-dashoffset:1;stroke-linecap:round}
+.pk3.in .p3draw path{animation:p3plot 1s cubic-bezier(.4,0,.2,1) forwards;animation-delay:calc(var(--k)*.07s)}
+@keyframes p3plot{to{stroke-dashoffset:0}}
+.p3draw .o{stroke-width:2.2;stroke-opacity:.95}.p3draw .f{stroke-opacity:.45}.p3draw .m{stroke-width:1.3;stroke-opacity:.75}
+.p3draw .d,.p3draw .ax{stroke-dasharray:none;stroke-dashoffset:0;opacity:0}.pk3.in .p3draw .d,.pk3.in .p3draw .ax{animation:gzfade .8s ease 1s forwards}
+.p3draw .d{stroke:var(--amber);stroke-opacity:.55;stroke-dasharray:7 6}.p3draw .ax{stroke-opacity:.3;stroke-dasharray:14 5 2 5}
+.p3draw .dm{stroke-opacity:.6}.p3draw .st{stroke-opacity:.75}
+.p3draw text{font-family:var(--mono);fill:var(--cyan);text-anchor:middle;opacity:0;animation:gzfade .5s ease 1.3s forwards}
+.p3draw .sn{font-size:13px}.p3draw .dt{font-size:14px;letter-spacing:.1em}.p3draw .dt.sm{font-size:12px;letter-spacing:.24em;fill-opacity:.7}.p3draw .lg{font-size:14px;letter-spacing:.45em;fill-opacity:.45}
+.p3ov{position:absolute;left:0;top:0;width:1000px;height:470px;z-index:5;pointer-events:none;overflow:visible}
+.p3ov .ld{fill:none;stroke:var(--amber);stroke-width:1.2;opacity:0;transition:opacity .3s}.p3ov .ldp{fill:var(--amber);opacity:0;transition:opacity .3s}
+.pk3.st-gift .p3ov .ld,.pk3.st-gift .p3ov .ldp{opacity:1}.pk3.st-b0 .p3ov .ld,.pk3.st-b0 .p3ov .ldp{opacity:0}
+.p3call,.p3eval{position:absolute;bottom:26px;z-index:6;width:300px;padding:10px 12px 8px;background:rgba(5,12,18,.9);border:1px solid rgba(143,215,232,.55);font-family:var(--mono);color:var(--ink);opacity:0;transform:translateY(10px);transition:opacity .4s,transform .5s cubic-bezier(.2,.8,.2,1)}
+.p3call::before,.p3eval::before{content:"";position:absolute;left:-4px;top:-4px;width:12px;height:12px;border-left:2px solid var(--amber);border-top:2px solid var(--amber)}
+.p3call::after,.p3eval::after{content:"";position:absolute;right:-4px;bottom:-4px;width:12px;height:12px;border-right:2px solid var(--amber);border-bottom:2px solid var(--amber)}
+.p3call{left:28px}.p3eval{right:28px}
+.p3call .ch,.p3eval .eh{display:flex;justify-content:space-between;font-size:12px;letter-spacing:.22em;color:var(--amber);padding-bottom:6px;margin-bottom:6px;border-bottom:1px solid rgba(143,215,232,.25)}
+.p3call .ch span{color:var(--mute);letter-spacing:.14em}
+.p3call .cr{display:flex;justify-content:space-between;gap:10px;font-size:12px;letter-spacing:.08em;padding:2px 0}.p3call .cr i{font-style:normal;color:var(--mute)}
+.p3call .hr{color:var(--red);font-weight:600}.pk3.st-calm .p3call .hr{color:var(--green)}
+.p3call svg{display:block;width:100%;height:44px;margin-top:4px;border-top:1px dashed rgba(143,215,232,.2)}
+.p3call .e{fill:none;stroke:var(--red);stroke-width:1.6;stroke-linejoin:round}.pk3.st-calm .p3call .e{stroke:var(--green)}
+.pk3.st-gift .p3call{opacity:1;transform:none}.pk3.st-b0 .p3call{opacity:0;transform:translateY(10px)}
+.p3eval .er{display:grid;grid-template-columns:6.4em 3.4em 1fr;white-space:nowrap;gap:8px;align-items:baseline;font-size:12px;letter-spacing:.06em;padding:4px 0;opacity:0;transform:translateX(12px);transition:opacity .35s,transform .45s,color .4s}
+.p3eval .er i{font-style:normal;color:var(--mute)}.p3eval .er b{font-family:var(--head);font-size:15px;color:var(--ink)}.p3eval .er span{text-align:right}
+.p3eval .lc span{color:var(--red)}
+.pk3.st-lc .p3eval{opacity:1;transform:none}.pk3.st-lc .p3eval .lc,.pk3.st-m1 .p3eval .bd{opacity:1;transform:none}
+.pk3.st-win .p3eval .bd{color:var(--amber);background:linear-gradient(90deg,rgba(242,182,94,.14),transparent)}.pk3.st-win .p3eval .bd b{color:var(--amber)}
+.pk3.st-win .p3eval .lc{opacity:.45;text-decoration:line-through}
+.pk3.st-seat .p3eval{opacity:0;transform:translateY(10px)}
+.pk3.tech .p3pot .v{text-shadow:none;font-family:var(--mono);font-weight:600;font-size:30px}
+.pk3.tech .p3pot{padding:6px 16px;border-left:2px solid var(--amber);border-right:2px solid var(--amber)}
+.pk3.tech .p3win span{font-family:var(--mono);font-weight:600;font-size:34px;letter-spacing:.38em;color:var(--amber);text-shadow:none}
+.pk3.tech .p3win small{letter-spacing:.32em;color:var(--cyan)}
+.pk3.tech .p3win::before,.pk3.tech .p3win::after{content:"";position:absolute;top:22px;width:12%;border-top:1px solid var(--amber)}.pk3.tech .p3win::before{left:4%}.pk3.tech .p3win::after{right:4%}
+@keyframes p3win{0%{opacity:0;transform:scaleX(1.25);letter-spacing:.8em}10%{opacity:1;transform:none}82%{opacity:1}100%{opacity:0}}
+.pk3.tech.st-win .p3c.w .fc{box-shadow:0 0 0 1px var(--amber),0 0 10px rgba(242,182,94,.3)}
+.p3burst{background:none!important}
+.p3burst i{position:absolute;inset:0;border:1.5px solid var(--amber);border-radius:50%;opacity:0}
+.pk3.st-win .p3burst{animation:none;opacity:1}
+.pk3.st-win .p3burst i{animation:p3ring 1.3s cubic-bezier(.1,.7,.2,1) forwards}.pk3.st-win .p3burst i:nth-child(2){animation-delay:.15s}.pk3.st-win .p3burst i:nth-child(3){animation-delay:.3s}
+@keyframes p3ring{0%{opacity:1;transform:scale(.15)}100%{opacity:0;transform:scale(1.4)}}
+.p3sw{position:absolute;left:0;right:0;top:0;height:2px;z-index:7;background:linear-gradient(90deg,transparent,var(--amber),transparent);opacity:0;pointer-events:none}
+.pk3.st-win .p3sw{animation:p3sw .9s cubic-bezier(.4,0,.2,1)}
+@keyframes p3sw{0%{opacity:1;top:0}100%{opacity:0;top:100%}}
+@media (max-width:700px){.p3call,.p3eval{display:none}}
+.p3call{left:28px;top:26px;bottom:auto;width:270px}.p3eval{right:24px;top:110px;bottom:auto;width:290px}.pk3.tech .p3win span{font-size:30px;letter-spacing:.32em}.pk3.tech .p3win::before,.pk3.tech .p3win::after{display:none}
 .ms-cold,.ms-lost{position:absolute;inset:0;background:#020507;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;overflow:hidden}
 .mc-term{font-family:var(--mono);font-size:clamp(.6rem,1.4vw,.8rem);letter-spacing:.16em;color:var(--cyan);width:min(560px,86%)}
 .mc-term p{margin:0 0 4px;opacity:0;white-space:nowrap;overflow:hidden;animation:msType .5s steps(24) calc(.2s + var(--i)*.38s) both,gzfade .01s calc(.2s + var(--i)*.38s) forwards}
@@ -5212,7 +5262,7 @@ function dustF(){dRaf=0;const r=st.getBoundingClientRect(),dp=Math.min(2,deviceP
   DP.forEach(q=>{if(playing){q.x+=.00009*q.z*(1+q.s);q.y-=.00004*q.z;q.p+=.018*q.s}if(q.x>1.02)q.x=-.02;if(q.y<-.02)q.y=1.02;
     const a=(.08+.3*q.z)*(.55+.45*Math.sin(q.p));c.fillStyle=`rgba(${dCol},${a.toFixed(3)})`;c.beginPath();c.arc(q.x*W,q.y*H,(.5+1.5*q.z)*dp,0,6.283);c.fill()});
   if(playing)dRaf=requestAnimationFrame(dustF)}
-function grade(s){const m=moodOf(s),k=s.h===coldOpen||s.h===lost?'k':m>=3?'r':s.h===opening||s.leg?'a':'c';cxGrade.className='cx-grade g-'+k;
+function grade(s){const m=moodOf(s),k=s.h===coldOpen||s.h===lost?'k':s.on===pk?'c':m>=3?'r':s.h===opening||s.leg?'a':'c';cxGrade.className='cx-grade g-'+k;
   dCol=k==='r'?'240,85,74':k==='a'?'242,182,94':'143,215,232'}
 /* Übergänge: Lichtstreifen über das Bild bei jedem Schnitt */
 function streak(){if(RM)return;cxStreak.classList.remove('go');void cxStreak.offsetWidth;cxStreak.classList.add('go')}
@@ -5381,57 +5431,69 @@ function scope(now){scRaf=0;const live=VOX.wave(wbuf);msP.querySelectorAll('canv
 const PKB=[['A','♠'],['8','♠'],['6','♠'],['4','♠'],['A','♥']],PKL=[['A','♦'],['6','♦']],PKD=[['5','♠'],['7','♠']];
 function pcard(cls,r,s,x,y,rot,win){const red=s==='♥'||s==='♦';return `<div class="p3c ${cls}${win?' w':''}" style="--x:${x}px;--y:${y}px;--r:${rot||0}deg"><div class="p3i"><i class="fc${red?' rd':''}"><b>${r}<em>${s}</em></b><span>${s}</span><b class="bt">${r}<em>${s}</em></b></i><i class="bk"></i></div></div>`}
 function pstack(cls,x,y,n,col,px,py,sx,sy){let o='';for(let i=0;i<n;i++)o+=`<i style="--z:${i*3}px"></i>`;return `<div class="p3s ${cls} ${col||''}" style="--x:${x}px;--y:${y}px;--px:${(px||x)-x}px;--py:${(py||y)-y}px;--sx:${(sx||x)-x}px;--sy:${(sy||y)-y}px">${o}</div>`}
+function p3stad(d){const W=760+2*d,H=380+2*d,r=190+d,x=-d,y=-d;return `M${x+r} ${y}H${x+W-r}A${r} ${r} 0 0 1 ${x+W-r} ${y+H}H${x+r}A${r} ${r} 0 0 1 ${x+r} ${y}Z`}
 function poker(){let t='';
   PKB.forEach(([r,s],i)=>t+=pcard('bd b'+i,r,s,262+i*62,138,0,i<4));
   PKL.forEach(([r,s],i)=>t+=pcard('lc l'+i,r,s,214+i*50,26,-8+i*14));
   PKD.forEach(([r,s],i)=>t+=pcard('me m'+i,r,s,316+i*52,262,-6+i*12,1));
   t+=pstack('bet a',470,300,9,'r',590,200,612,300)+pstack('bet b',500,306,7,'k',622,210,646,312)+pstack('bet c',488,282,8,'a',606,182,628,282)+pstack('lcs a2',150,70,10,'k',640,186,664,292)+pstack('lcs b2',178,62,8,'r',652,214,676,318)+pstack('own',700,300,5,'a');
-  t+=`<i class="p3ax h"></i><i class="p3ax v"></i><div class="p3dim b"><span>2 400</span></div><div class="p3dim r"><span>1 200</span></div>`;
-  [[380,-40],[640,-10],[800,190],[640,410],[380,430],[120,410],[-40,190],[120,-10]].forEach(([x,y],i)=>t+=`<span class="p3no" style="--x:${x}px;--y:${y}px">${i+1}</span>`);
+  /* Konstruktionszeichnung des Tisches (wird wie vom Plotter gezogen) */
+  let g='',k=0;const L=(d,c)=>g+=`<path d="${d}" pathLength="1" class="${c||''}" style="--k:${k++}"/>`;
+  L(p3stad(26),'o');L(p3stad(19),'f');L(p3stad(0),'m');L(p3stad(-34),'d');
+  L('M-70 190H830','ax');L('M380 -70V450','ax');
+  L('M-26 455V485M786 455V485M-26 474H786','dm');L('M816 -26H846M816 406H846M835 -26V406','dm');
+  L('M262 128V118H572V128','dm');[[262,138],[572,138]].forEach(([x,y])=>L(`M${x} ${y-6}l0 -6`,'dm'));
+  const seats=[[380,-44],[640,-12],[808,190],[640,392],[380,424],[120,392],[-48,190],[120,-12]];
+  seats.forEach(([x,y])=>L(`M${x+14} ${y}A14 14 0 1 1 ${x+14-.01} ${y}`,'st'));
+  let tx=seats.map(([x,y],i)=>`<text x="${x}" y="${y+4.5}" class="sn">${i+1}</text>`).join('');
+  tx+=`<text x="380" y="489" class="dt">2 400</text><text x="852" y="196" class="dt" transform="rotate(-90 852 190)">1 200</text><text x="417" y="114" class="dt sm">GEMEINSCHAFTSKARTEN</text><text x="380" y="248" class="lg">CASINO ROYALE · TISCH 1</text>`;
+  t+=`<svg class="p3draw" viewBox="-90 -70 960 580" aria-hidden="true">${g}${tx}</svg>`;
   t+=`<div class="p3pl lcp" style="--x:180px;--y:-14px">LE CHIFFRE</div><div class="p3pl bdp" style="--x:300px;--y:356px">BOND</div><div class="p3pl usp" style="--x:600px;--y:356px">00-EINHEIT</div>
     <div class="p3seat" style="--x:640px;--y:322px"><svg viewBox="-50 -50 100 100"><circle r="40" class="o"/><circle r="26" class="i"/><path d="M-48 0h14M34 0h14M0 -48v14M0 34v14"/></svg></div>
-    <div class="p3burst" style="--x:342px;--y:300px"></div>`;
-  return `<div class="pk3"><div class="p3in"><canvas class="p3haze" aria-hidden="true"></canvas><i class="p3spot"></i>
-    <div class="p3view"><div class="p3cam"><div class="p3tab"><i class="p3rail"></i><i class="p3felt"></i><i class="p3ln"></i><span class="p3logo">CASINO ROYALE</span>${t}</div></div></div>
-    <svg class="p3gl" viewBox="0 0 120 200" aria-hidden="true"><defs><linearGradient id="p3liq" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#cfe9ee" stop-opacity=".55"/><stop offset="1" stop-color="#8FD7E8" stop-opacity=".2"/></linearGradient></defs>
-      <path d="M14 30L106 30L60 92Z" class="lq"/><path d="M10 26L110 26L60 94L60 170M30 178L90 178" class="ln"/><circle cx="74" cy="44" r="5" class="ol"/><path d="M74 44L92 14" class="pk"/>
-      <circle cx="60" cy="-10" r="4" class="dr"/><circle cx="60" cy="40" r="2" class="rp"/></svg>
-    <svg class="p3ecg" viewBox="0 0 300 60" aria-hidden="true"><path d="" class="e"/></svg>
-    <div class="p3pot"><b>EINSATZ</b><span class="v">0 $</span></div><div class="p3hand lc"><b>LE CHIFFRE</b>FULL HOUSE · ASSE ÜBER SECHSEN</div>
-    <div class="p3win"><span>STRAIGHT FLUSH</span><small>4 BIS 8 PIK</small></div><i class="p3fl"></i><i class="p3vig"></i></div></div>`}
+    <div class="p3burst" style="--x:342px;--y:300px"><i></i><i></i><i></i></div>`;
+  return `<div class="pk3 tech"><div class="p3in">
+    <div class="p3view"><div class="p3cam"><div class="p3tab"><i class="p3felt"></i>${t}</div></div></div>
+    <svg class="p3ov" viewBox="0 0 1000 470" aria-hidden="true"><path class="ld" d=""/><circle class="ldp" r="4"/></svg>
+    <div class="p3pot"><b>EINSATZ</b><span class="v">0 $</span></div>
+    <div class="p3call"><div class="ch"><b>BEFUND 01</b><span>SITZ 5 · BOND</span></div><div class="cr"><i>SUBSTANZ</i><span>DIGITALIS · MARTINI</span></div>
+      <div class="cr"><i>HERZRHYTHMUS</i><span class="hr">KAMMERFLIMMERN</span></div><svg viewBox="0 0 300 50"><path class="e" d=""/></svg></div>
+    <div class="p3eval"><div class="eh">HANDAUSWERTUNG</div>
+      <div class="er lc"><i>LE CHIFFRE</i><b>A♦ 6♦</b><span>FULL HOUSE · A/6</span></div>
+      <div class="er bd"><i>BOND</i><b>5♠ 7♠</b><span>STRAIGHT FLUSH 4–8</span></div></div>
+    <div class="p3win"><span>STRAIGHT FLUSH</span><small>4 BIS 8 PIK · SITZ 5</small></div><i class="p3sw"></i></div></div>`}
 /* Kamera-Einstellungen (Tischebene) */
-const P3={wide:{rx:62,rz:0,s:.86,x:0,y:24},bet:{rx:55,rz:-3,s:1.1,x:-40,y:-10},board:{rx:47,rz:0,s:1.16,x:0,y:22},lc:{rx:50,rz:4,s:1.5,x:210,y:150},
-  show:{rx:40,rz:-2,s:1.55,x:40,y:-120},win:{rx:44,rz:0,s:1.25,x:30,y:-40},seat:{rx:60,rz:-10,s:1.05,x:-170,y:-60},end:{rx:58,rz:-12,s:1.28,x:-250,y:-110}};
+const P3={wide:{rx:62,rz:0,s:.86,x:0,y:24},bet:{rx:55,rz:-3,s:1.1,x:-40,y:-10},board:{rx:47,rz:0,s:1.1,x:-120,y:22},lc:{rx:50,rz:4,s:1.4,x:90,y:140},
+  show:{rx:40,rz:-2,s:1.45,x:-90,y:-110},win:{rx:44,rz:0,s:1.15,x:-110,y:-34},seat:{rx:60,rz:-10,s:1.05,x:-170,y:-60},end:{rx:58,rz:-12,s:1.28,x:-250,y:-110}};
 const p3tf=p=>`translate(${p.x}px,${p.y}px) scale(${p.s}) rotateX(${p.rx}deg) rotateZ(${p.rz}deg)`;
 function pk(root){const w=root.querySelector('.pk3');if(!w)return;const me=cur,inn=w.querySelector('.p3in');
-  const fit=()=>{const k=w.clientWidth/1000;inn.style.transform=`scale(${k})`;inn.style.top=Math.max(0,(w.clientHeight-470*k)/2)+'px'};fit();
-  const cam=w.querySelector('.p3cam');let pose=P3.wide;cam.style.transform=p3tf(pose);w.dataset.cam='wide';
+  let k=1;const fit=()=>{k=w.clientWidth/1000;inn.style.transform=`scale(${k})`;inn.style.top=Math.max(0,(w.clientHeight-470*k)/2)+'px'};fit();
+  const cam=w.querySelector('.p3cam');let pose=P3.wide;cam.style.transform=p3tf(pose);
   SND.hush(true);
-  if(RM){w.classList.add('st-bet','st-flop','st-lc','st-me','st-win','st-seat');cam.style.transform=p3tf(P3.win);w.querySelector('.p3pot .v').textContent='10.000.000 $';return}
-  w._go=(to,ms,ease)=>{const fr=pose;pose=P3[to];w.dataset.cam=to;anims.push(cam.animate([{transform:p3tf(fr)},{transform:p3tf(pose)}],{duration:ms,easing:ease||'cubic-bezier(.45,0,.2,1)',fill:'forwards'}))};
+  if(RM){w.classList.add('in','st-bet','st-b0','st-b1','st-b2','st-b3','st-b4','st-lc','st-m0','st-m1','st-win');cam.style.transform=p3tf(P3.win);w.querySelector('.p3pot .v').textContent='10.000.000 $';return}
+  w._go=(to,ms,ease)=>{const fr=pose;pose=P3[to];anims.push(cam.animate([{transform:p3tf(fr)},{transform:p3tf(pose)}],{duration:ms,easing:ease||'cubic-bezier(.45,0,.2,1)',fill:'forwards'}))};
   later(()=>w.classList.add('in'),60);w._go('bet',3200,'cubic-bezier(.3,0,.3,1)');
-  /* Rauch im Lichtkegel */
-  const cv=w.querySelector('.p3haze'),cx=cv.getContext('2d'),B=Array.from({length:14},()=>({x:380+Math.random()*240,y:40+Math.random()*360,r:60+Math.random()*90,vx:(Math.random()-.5)*.15,vy:-.05-Math.random()*.12,a:.04+Math.random()*.05}));
-  cv.width=1000;cv.height=470;const ck=cxClock();
-  /* EKG */
-  const ecg=w.querySelector('.p3ecg .e');let bpm=58,phase=0,trace=[];
-  (function f(now){if(cur!==me||!w.isConnected)return;const t=ck(now);cx.clearRect(0,0,1000,470);cx.globalCompositeOperation='lighter';
-    B.forEach(b=>{if(playing){b.x+=b.vx;b.y+=b.vy}if(b.y<-80)b.y=500;const g=cx.createRadialGradient(b.x,b.y,0,b.x,b.y,b.r);g.addColorStop(0,`rgba(200,225,230,${b.a})`);g.addColorStop(1,'rgba(200,225,230,0)');cx.fillStyle=g;cx.fillRect(b.x-b.r,b.y-b.r,2*b.r,2*b.r)});
-    if(playing){phase+=bpm/60/60;const ph=phase%1,v=w.classList.contains('st-gift')&&!w.classList.contains('st-calm')?(Math.random()-.5)*14+(ph<.08?-22:0):ph<.04?-4:ph<.07?24:ph<.1?-30:ph<.13?10:ph>.3&&ph<.4?-5*Math.sin((ph-.3)/.1*Math.PI):0;trace.push(v);if(trace.length>150)trace.shift()}
-    ecg.setAttribute('d','M'+trace.map((v,i)=>`${i*2} ${(30+v).toFixed(1)}`).join('L'));requestAnimationFrame(f)})(performance.now());
-  for(let b=0;b<14;b++)later(()=>{if(cur!==me)return;SND.beat();w.classList.remove('hb');void w.offsetWidth;w.classList.add('hb')},300+b*640)}
+  /* Befund: Hinweislinie vom Sitz zum Kasten, EKG im Kasten */
+  const ld=w.querySelector('.p3ov .ld'),ldp=w.querySelector('.p3ov .ldp'),plate=w.querySelector('.p3pl.bdp'),box=w.querySelector('.p3call'),ecg=w.querySelector('.p3call .e'),ck=cxClock();let phase=0,trace=[];
+  (function f(now){if(cur!==me||!w.isConnected)return;ck(now);
+    if(w.classList.contains('st-gift')&&!w.classList.contains('st-b0')){const ir=inn.getBoundingClientRect(),pr=plate.getBoundingClientRect(),br=box.getBoundingClientRect();
+      const px=(pr.left+pr.width/2-ir.left)/k,py=(pr.top-ir.top)/k,bx=(br.right-ir.left)/k,by=(br.top+18*k-ir.top)/k,ex=bx+40;
+      ld.setAttribute('d',`M${px.toFixed(1)} ${py.toFixed(1)}L${ex.toFixed(1)} ${by.toFixed(1)}L${bx.toFixed(1)} ${by.toFixed(1)}`);ldp.setAttribute('cx',px.toFixed(1));ldp.setAttribute('cy',py.toFixed(1))}
+    if(playing){phase+=58/60/60;const ph=phase%1,bad=w.classList.contains('st-gift')&&!w.classList.contains('st-calm'),v=bad?(Math.random()-.5)*16+(ph<.08?-18:0):ph<.04?-3:ph<.07?18:ph<.1?-20:ph<.13?7:ph>.3&&ph<.4?-4*Math.sin((ph-.3)/.1*Math.PI):0;trace.push(v);if(trace.length>150)trace.shift()}
+    ecg.setAttribute('d','M'+trace.map((v,i)=>`${i*2} ${(25+v).toFixed(1)}`).join('L'));requestAnimationFrame(f)})(performance.now());
+  for(let b=0;b<14;b++)later(()=>{if(cur===me)SND.beat()},300+b*640)}
 /* Ablauf zu den Worten: zehn Millionen Einsatz · Gift im Glas · das Blatt seines Lebens · Wer heute am Tisch sitzt · spielt um mehr */
 function pkCue(root,at){const w=root.querySelector('.pk3');if(!w||RM)return;const me=cur,ok=()=>cur===me&&w.isConnected,add=c=>ok()&&w.classList.add(c);
   const tz=at('zehn'),tg=at('Gift'),tb=at('Blatt'),tw=at('Wer'),ts=at('spielt');
   later(()=>{add('st-bet');SND.whoosh(.2);countUp(w.querySelector('.p3pot .v'),10000000,1300,' $')},tz);
-  later(()=>{add('st-gift');SND.ping()},tg);later(()=>add('st-calm'),tg+1500);
+  later(()=>{add('st-gift');SND.ping()},tg);later(()=>{add('st-calm');const h=w.querySelector('.p3call .hr');if(h&&ok())h.textContent='STABILISIERT · DEFIBRILLIERT'},tg+1500);
   later(()=>ok()&&w._go('board',600),tb-250);
   [0,1,2].forEach(i=>later(()=>{add('st-b'+i);SND.shutter()},tb+i*100));later(()=>{add('st-b3');SND.shutter()},tb+380);later(()=>{add('st-b4');SND.shutter()},tb+560);
   later(()=>ok()&&w._go('lc',500),tb+450);later(()=>{add('st-lc');SND.shutter()},tb+700);
   later(()=>ok()&&w._go('show',700,'cubic-bezier(.2,0,.1,1)'),tb+1050);later(()=>{add('st-m0');SND.shutter()},tb+1300);later(()=>{add('st-m1');SND.shutter()},tb+1650);
-  later(()=>{add('st-win');SND.hush(false);impact('r');ok()&&w._go('win',900,'cubic-bezier(.2,.8,.2,1)')},tb+2000);
+  later(()=>{add('st-win');SND.hush(false);SND.hit();ok()&&w._go('win',900,'cubic-bezier(.2,.8,.2,1)')},tb+2000);
   later(()=>{add('st-seat');ok()&&w._go('seat',1500)},Math.max(tb+2900,tw+500));
   later(()=>{add('st-end');ok()&&w._go('end',2600,'cubic-bezier(.3,0,.2,1)')},Math.max(tb+3800,ts))}
+
 
 /* Aufriss zuerst (zeichnen, öffnen), dann Überblendung in die Zeichnung des Ortes */
 function two(root,s){const me=cur;open(root);later(()=>{if(cur!==me)return;const w=root.querySelector('.ms-two'),l=root.querySelector('.ms-artl');l.innerHTML=shot(s);w.classList.add('flip');art(l,s)},Math.round(s.t*1000*.42))}
