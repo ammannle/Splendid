@@ -245,4 +245,7 @@ Freigabe: „Anyone with the link“ ist aktiv. Wer die Seite offen hat, sieht n
 - Version 34 (07.10.2026): Keine künstliche Drehung mehr im Briefing-Vollbild (`.rot` und Orientierungssperre entfernt, Knopf „Quer lesen“
   ausgeblendet): Hochformat zeigt das Bild aufrecht in 4:3 mit Steuerung darunter, Querformat bildschirmfüllend. Kennwort-Tor erscheint
   sofort über dem Intro (keine Türöffnung mehr, die Seite blitzt nicht auf); beim Freigeben startet das Briefing unter dem Tor, das dann ausblendet.
+- Version 35 (07.10.2026): Pokertisch im technisch gezeichneten Stil (wie Aufrisse): Raster, Tisch als Cyan-Kontur mit Schraffur, Achsen,
+  Maßketten (2 400 / 1 200), nummerierte Plätze, Karten mit Linienrahmen und schraffierter Rückseite, Chips als gestrichelte Konturstapel;
+  Gewinnkarten amber. Animation und Ablauf unverändert (CSS-Block „Pokertisch im technisch gezeichneten Stil“).
 - Tests: Playwright-Skripte müssen vor dem Laden `window.__NOINTRO=1` per `addInitScript` setzen, sonst läuft das Intro.
