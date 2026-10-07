@@ -2318,43 +2318,6 @@ html.msfull{overflow:hidden}
         <div class="barlist" id="barList"></div>
       </div>
     </div>
-    <div class="qgrid">
-      <div class="panel qp">
-        <div class="ph"><b>POKER // LE CHIFFRES TELL</b><span id="tlBest">BESTZEIT –</span></div>
-        <div class="qb">
-          <p>Le Chiffre verrät seinen Bluff, wenn er sich ans Auge fasst. Feld antippen, warten, und erst beim roten Signal so schnell wie möglich callen.</p>
-          <button class="tell" type="button" id="tell">Runde starten</button>
-          <div class="qout" id="tlOut" aria-live="polite">Wer zu früh callt, verliert die Hand.</div>
-        </div>
-      </div>
-      <div class="panel qp">
-        <div class="ph"><b>ASTON MARTIN // DEFIBRILLATOR</b><span class="st warn" id="dfState">KAMMERFLIMMERN</span></div>
-        <div class="qb">
-          <svg class="ecg vf" id="ecg" viewBox="0 0 300 56" preserveAspectRatio="none" aria-hidden="true"><path id="ecgPath"/></svg>
-          <div class="meter" aria-hidden="true"><div class="zone" id="dfZone"></div><div class="needle" id="dfNeedle"></div></div>
-          <div class="pulse3" aria-label="Treffer"><span>SCHOCKS</span><i></i><i></i><i></i></div>
-          <div class="qbtns"><button class="qbtn go" type="button" id="dfBtn">SCHOCK AUSLÖSEN</button><button class="qbtn" type="button" id="dfReset">NEU</button></div>
-          <div class="qout" id="dfOut" aria-live="polite">Gift im Glas. Drei Schocks im grünen Bereich bringen Sie zurück an den Tisch.</div>
-        </div>
-      </div>
-      <div class="panel qp">
-        <div class="ph"><b>BANK // KONTOPASSWORT</b><span id="pwState">6 VERSUCHE</span></div>
-        <div class="qb">
-          <p>Das Passwort für das Konto hat sechs Buchstaben und stammt aus Bonds Welt. Grün sitzt richtig, Amber kommt vor.</p>
-          <div class="pwg" id="pwGrid" aria-live="polite"></div>
-          <form class="pwin" id="pwForm" autocomplete="off"><input id="pwIn" maxlength="6" aria-label="Passwort, sechs Buchstaben" placeholder="······"><button class="qbtn go" type="submit">PRÜFEN</button><button class="qbtn" type="button" id="pwNew">NEUES KONTO</button></form>
-          <div class="qout" id="pwOut">Sechs Versuche, dann sperrt die Bank.</div>
-        </div>
-      </div>
-      <div class="panel qp">
-        <div class="ph"><b>Q // AUSRÜSTUNGSAUSGABE</b><span id="gearState">4 AGENTEN</span></div>
-        <div class="qb">
-          <p>Q teilt jedem Agenten ein Gerät zu. Rückgabe bitte unbeschädigt.</p>
-          <ul class="gear" id="gear" aria-live="polite"></ul>
-          <button class="qbtn go" type="button" id="gearBtn">NEU ZUTEILEN</button>
-        </div>
-      </div>
-    </div>
     <div class="panel qp quiz">
       <div class="ph"><b>MI6 // LIZENZPRÜFUNG</b><span id="qzState">FRAGE 1/9</span></div>
       <div class="qb">
@@ -3799,66 +3762,10 @@ document.getElementById('barSkip').onclick=()=>{skip=true};
 total();say('Wählen Sie ein Getränk. Der Barkeeper hört zu, nickt und fragt nicht nach.');
 })();
 
-/* q-lab: gadgets */
-const GEAR=['Manschettenknöpfe mit Wanze, nur auf Tschechisch geeicht','Armbanduhr mit Laser. Zeigt zuverlässig die Uhrzeit.','Kugelschreiber, drei Klicks, Funktion unbekannt','Defibrillator im Handschuhfach (Attrappe)','Schusssicherer Smoking, leider nur in Größe M','Peilsender für das Fahrzeug, damit Q es wiederfindet','Pokerface, Trainingsversion 0.7','Ersatzausweis für den Casino-Einlass','Fernbedienung für den Aston Martin. Batterien fehlen.','Stadtplan von Montenegro. Zeigt Karlsbad.','Bademantel des Hotel Splendide als Tarnanzug','Kompass, der stets zum nächsten Kolonnadencafé zeigt'];
-const gearEl=document.getElementById('gear');const GL='█▓▒░#%&@$*+=<>/ABCDEFGHJKLMNPQRSTUVWXYZ0123456789';
-function deal(){const pool=GEAR.slice();const pick=[1,2,3,4].map(()=>pool.splice(Math.random()*pool.length|0,1)[0]);
-  gearEl.innerHTML=pick.map((g,i)=>`<li><span>AGENT 0${i+1}</span><span data-t="${g}">${g}</span></li>`).join('');
-  if(RM)return;const els=[...gearEl.querySelectorAll('[data-t]')];const t0=performance.now();
-  (function step(t){const f=Math.min(1,(t-t0)/700);els.forEach(e=>{const o=e.dataset.t,n=Math.floor(o.length*f);e.textContent=o.slice(0,n)+o.slice(n).replace(/\S/g,()=>GL[Math.random()*GL.length|0])});if(f<1)requestAnimationFrame(step)})(t0)}
-document.getElementById('gearBtn').onclick=deal;deal();
-
 /* toast */
 let toastEl,toastT;
 function toast(html){if(!toastEl){toastEl=document.createElement('div');toastEl.className='toast';toastEl.setAttribute('role','status');document.body.appendChild(toastEl)}
   toastEl.innerHTML=html;toastEl.hidden=false;clearTimeout(toastT);toastT=setTimeout(()=>toastEl.hidden=true,3200)}
-
-/* q-lab: tell */
-const tell=document.getElementById('tell'),tlOut=document.getElementById('tlOut'),tlBest=document.getElementById('tlBest');
-let tlState='idle',tlT,tlT0,best=null;
-tell.addEventListener('pointerdown',e=>{e.preventDefault();tellHit()});
-tell.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();tellHit()}});
-function tellHit(){
-  if(tlState==='idle'||tlState==='done'){tlState='wait';tell.className='tell wait';tell.textContent='Beobachten …';tlOut.className='qout';tlOut.textContent='Le Chiffre mustert seine Karten.';
-    tlT=setTimeout(()=>{tlState='now';tell.className='tell now';tell.textContent='Tell! Jetzt callen';tlT0=performance.now()},1200+Math.random()*3200);return}
-  if(tlState==='wait'){clearTimeout(tlT);tlState='idle';tell.className='tell';tell.textContent='Noch einmal';tlOut.className='qout lose';tlOut.textContent='Zu früh gecallt. Le Chiffre lächelt und nimmt den Pot.';return}
-  if(tlState==='now'){const ms=Math.round(performance.now()-tlT0);tlState='done';tell.className='tell done';tell.textContent=ms+' ms';
-    if(best===null||ms<best){best=ms;tlBest.textContent='BESTZEIT '+ms+' MS'}
-    tlOut.className='qout '+(ms<400?'win':'');tlOut.textContent=ms<250?'Bond-Niveau. Le Chiffre blutet aus dem Auge und aus der Kasse.':ms<400?'Solide gelesen. Mathis nickt anerkennend.':ms<700?'Knapp. Vesper hätte es schneller gesehen.':'Zu langsam. Le Chiffre hat längst nachgelegt.'}}
-
-/* q-lab: defibrillator */
-const ecg=document.getElementById('ecg'),ecgPath=document.getElementById('ecgPath'),dfZone=document.getElementById('dfZone'),dfNeedle=document.getElementById('dfNeedle'),dfBtn=document.getElementById('dfBtn'),dfOut=document.getElementById('dfOut'),dfState=document.getElementById('dfState'),pips=[...document.querySelectorAll('.pulse3 i')];
-let cable=false,hits=0,zone=[0,0],pos=0,dir=1,speed=.55,dfLast=0,dfDone=false;
-function ecgDraw(ok){let d='M0 28';if(ok){for(let x=0;x<300;x+=60)d+=` L${x+18} 28 L${x+22} 22 L${x+26} 28 L${x+30} 28 L${x+33} 6 L${x+36} 48 L${x+39} 28 L${x+50} 28 L${x+54} 20 L${x+58} 28`}
-  else{for(let x=0;x<=300;x+=5)d+=` L${x} ${(28+Math.sin(x/7)*12*Math.sin(x/31)+(Math.random()*10-5)).toFixed(1)}`}ecgPath.setAttribute('d',d)}
-function newZone(){const w=Math.max(10,22-hits*5),st=8+Math.random()*(84-w);zone=[st,st+w];dfZone.style.left=st+'%';dfZone.style.width=w+'%'}
-function dfReset(){cable=false;hits=0;dfDone=false;speed=.55;pips.forEach(p=>p.classList.remove('on'));ecg.setAttribute('class','ecg vf');dfState.textContent='KAMMERFLIMMERN';dfState.className='st warn';dfBtn.textContent='SCHOCK AUSLÖSEN';dfOut.className='qout';dfOut.textContent='Gift im Glas. Drei Schocks im grünen Bereich bringen Sie zurück an den Tisch.';newZone();ecgDraw(false)}
-function dfLoop(t){const dt=Math.min(50,t-(dfLast||t));dfLast=t;if(!dfDone){pos+=dir*speed*dt/10;if(pos>100){pos=100;dir=-1}if(pos<0){pos=0;dir=1}dfNeedle.style.left=pos+'%';if(!RM&&Math.random()<.15)ecgDraw(false)}requestAnimationFrame(dfLoop)}
-dfBtn.onclick=()=>{if(dfDone){dfReset();return}
-  if(!cable){cable=true;dfOut.className='qout lose';dfOut.textContent='Kein Strom. Ein Kabel ist lose. Vesper steckt es fest, jetzt noch einmal.';dfBtn.textContent='SCHOCK AUSLÖSEN';return}
-  if(pos>=zone[0]&&pos<=zone[1]){hits++;pips[hits-1].classList.add('on');speed+=.25;
-    if(hits>=3){dfDone=true;ecg.setAttribute('class','ecg ok');ecgDraw(true);dfState.textContent='SINUSRHYTHMUS';dfState.className='st';dfOut.className='qout win';dfOut.textContent='Puls stabil. Zurück an den Tisch, Le Chiffre wartet schon.';dfBtn.textContent='NOCHMAL VERGIFTEN';return}
-    dfOut.className='qout win';dfOut.textContent=`Treffer ${hits} von 3. Der Bereich wird kleiner.`;newZone()}
-  else{dfOut.className='qout lose';dfOut.textContent='Daneben. Der Bildschirm wird kurz schwarz.';if(hits>0){hits--;pips[hits].classList.remove('on')}}};
-document.getElementById('dfReset').onclick=dfReset;
-dfReset();requestAnimationFrame(dfLoop);
-
-/* q-lab: password */
-const PW=['VESPER','ROYALE','CASINO','MATHIS','POKERN','LILLET','KARTEN'];
-const pwGrid=document.getElementById('pwGrid'),pwIn=document.getElementById('pwIn'),pwOut=document.getElementById('pwOut'),pwState=document.getElementById('pwState');
-let pwAns,pwTries,pwOver;
-function pwNew(){pwAns=PW[Math.random()*PW.length|0];pwTries=[];pwOver=false;pwIn.disabled=false;pwIn.value='';pwOut.className='qout';pwOut.textContent='Sechs Versuche, dann sperrt die Bank.';pwRender()}
-function pwRender(){let h='';for(let r=0;r<6;r++){const g=pwTries[r];h+='<div class="pwr">';for(let i=0;i<6;i++){if(!g){h+='<span></span>';continue}
-    const c=g[i],cls=pwAns[i]===c?'h':pwAns.includes(c)?'p':'m';h+=`<span class="${cls}">${c}</span>`}h+='</div>'}
-  pwGrid.innerHTML=h;pwState.textContent=(6-pwTries.length)+' VERSUCHE'}
-document.getElementById('pwForm').addEventListener('submit',e=>{e.preventDefault();if(pwOver)return;
-  const g=pwIn.value.toUpperCase().replace(/Ä/g,'AE').replace(/Ö/g,'OE').replace(/Ü/g,'UE');
-  if(!/^[A-Z]{6}$/.test(g)){pwOut.className='qout lose';pwOut.textContent='Genau sechs Buchstaben eingeben, ohne Zahlen.';return}
-  pwTries.push(g);pwIn.value='';pwRender();
-  if(g===pwAns){pwOver=true;pwIn.disabled=true;pwOut.className='qout win';pwOut.textContent=`Zugang gewährt. ${pwTries.length===1?'Beim ersten Versuch, Q ist beunruhigt.':'Die Überweisung läuft.'}`;return}
-  if(pwTries.length>=6){pwOver=true;pwIn.disabled=true;pwOut.className='qout lose';pwOut.textContent=`Konto gesperrt. Das Passwort war ${pwAns}.`;return}
-  pwOut.className='qout';pwOut.textContent='Falsch. Die Bank wird ungeduldig.'});
-document.getElementById('pwNew').onclick=pwNew;pwNew();
 
 /* micro eggs */
 const STAT=['BEREIT','AM SPIELTISCH','AN DER BAR','BESCHATTET ZIEL','IM SMOKING','IM KAISERBAD','SCHLÄFT'];
