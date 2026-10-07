@@ -260,4 +260,5 @@ Freigabe: „Anyone with the link“ ist aktiv. Wer die Seite offen hat, sieht n
 - Version 38 (07.10.2026): Zielobjekte technischer: Seitenleiste als Datenblatt (`side()`: Bau und Stil aus `XT`, Risikostufe `RISK`
   als Ms Einschätzung, Lageskizze der Route mit allen 13 Zielen `locMini()`), im HUD 3D-Abgleich mit Fortschritt (`.cx-ab`), Scanband
   (`.cx-band`), Tracking abwechselnd als Messlinie mit Maß (`.cx-dim`) und technische Kennungen (`TRK`).
+- Version 39 (07.10.2026): Intro ohne die drei Zielerfassungen (Augsburg, Karlsbad, Prag); nach dem Netzhaut-Scan direkt „Verbindung steht“, Kennwort-Tor nach ca. 10 s statt 17 s.
 - Tests: Playwright-Skripte müssen vor dem Laden `window.__NOINTRO=1` per `addInitScript` setzen, sonst läuft das Intro.
