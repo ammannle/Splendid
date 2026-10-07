@@ -1949,6 +1949,14 @@ html.msfull{overflow:hidden}
   .op-par{grid-template-columns:repeat(3,1fr);height:21%;bottom:5%}.op-c[data-k="a"],.op-c[data-k="r"]{display:none}.op-c:nth-child(3){border-left:0}.op-c{padding:0 6px}.op-mh .op-src{display:none}}
 @media (prefers-reduced-motion:reduce){.op2 *{transition:none!important;animation:none!important}}
 /* Lageskizze v44 */
+.op-lsk .scl{stroke:var(--cyan);stroke-width:1.4;opacity:0}
+
+.op-lsk .lgp{fill:none;stroke:var(--amber);stroke-width:4;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:1;stroke-dashoffset:1;opacity:0}
+.op-lsk .lgp.on{opacity:1;animation:bxPlot .55s cubic-bezier(.4,0,.2,1) forwards}.op-lsk .lgp.done{opacity:.55;stroke-width:2.6}
+.op-lsk .ltag{opacity:0;transition:opacity .3s}.op-lsk .ltag.on{opacity:1}.op-lsk .ltag path{stroke:rgba(242,182,94,.7);stroke-width:1}.op-lsk .ltag rect{fill:#03080b;stroke:var(--amber);stroke-width:1.2}
+.op-lsk .ltag text{fill:var(--amber);font-size:13px;font-weight:600;letter-spacing:0}.op-lsk .ltag.cur rect{fill:var(--amber)}.op-lsk .ltag.cur text{fill:#03080b}
+.op-km.lg{color:var(--amber)}
+
 .op-map svg.op-lsk{flex:1;min-height:0;width:100%}
 .op-lsk *{vector-effect:non-scaling-stroke}
 .op-lsk text{font-family:var(--mono);fill:var(--mute);font-size:17px;letter-spacing:.08em}
@@ -1966,6 +1974,7 @@ html.msfull{overflow:hidden}
 .op-lsk .r-out{fill:none;stroke:var(--cyan);stroke-width:2.6;stroke-dasharray:1;stroke-dashoffset:1}
 .op-lsk .r-bk{fill:none;stroke:rgba(143,215,232,.75);stroke-width:1.8;stroke-dasharray:1;stroke-dashoffset:1}
 .op2.s-dr .op-lsk .r-bk{stroke-dasharray:6 5;stroke-dashoffset:0!important}
+.op2 .op-lsk .r-out{stroke-dasharray:none;stroke-dashoffset:0}.op2 .op-lsk .r-bk{stroke-dasharray:6 5;stroke-dashoffset:0}
 .op-lsk .r-hl{fill:none;stroke:var(--amber);stroke-width:3.4;stroke-dasharray:.05 .95;stroke-dashoffset:.05;opacity:0}
 .op2.s-r .op-lsk .r-hl{opacity:1;animation:opRun 2.2s cubic-bezier(.45,0,.2,1) forwards}
 .op-lsk .kt{opacity:0;transition:opacity .25s}.op-lsk .kt.on{opacity:1}.op-lsk .kt path{stroke:var(--ink);stroke-width:1.2}.op-lsk .kt text{font-size:14px;fill:var(--ink)}
@@ -5531,6 +5540,8 @@ function opMap(){const G=opGeo(),{P}=G,m=maps.route,[la0,la1,lo0,lo1]=G.FB,F=v=>
     if(maj){gr+=`M${F(x)} ${F(Y0)}V${F(Y1)}`;if(lo%1===0)tx+=`<text x="${F(x)}" y="${F(Y1+20)}" class="g-lt" text-anchor="middle">${Math.floor(lo)}°${lo%1?'30′':'00′'}E</text>`}
     o+=`<path d="M${F(x)} ${F(Y0)}v${maj?-10:-5}M${F(x)} ${F(Y1)}v${maj?10:5}" class="g-tk"/>`}
   o=`<path d="${gr}" class="g-gr" pathLength="1"/>`+o+`<path d="M${F(X0)} ${F(Y0)}H${F(X1)}V${F(Y1)}H${F(X0)}Z" class="g-nl" pathLength="1"/><path d="M${F(X0-4)} ${F(Y0-4)}H${F(X1+4)}V${F(Y1+4)}H${F(X0-4)}Z" class="g-nl2"/>`+tx;
+  /* Inhalt wird von einer Scanlinie aufgebaut */
+  o+=`<clipPath id="opScan"><rect class="scr" x="${F(X0-302)}" y="${F(Y0-40)}" width="0" height="${F(Y1-Y0+80)}"/></clipPath><g clip-path="url(#opScan)" class="scn">`;
   /* Gelände, Flüsse, Grenze aus der Grundkarte */
   const B=rbase(1),pick=re=>(B.match(re)||[]).join('');
   o+=`<g class="g-geo"><clipPath id="opClip"><path d="M${F(X0)} ${F(Y0)}H${F(X1)}V${F(Y1)}H${F(X0)}Z"/></clipPath><g clip-path="url(#opClip)">${pick(/<path d="[^"]*" class="m-cont(?: maj)?"\/>/g)}${pick(/<path d="[^"]*" fill="none" class="m-river"[^>]*\/>/g)}${pick(/<path d="[^"]*" fill="none" class="m-border"[^>]*\/>/g)}</g></g>`;
@@ -5538,13 +5549,16 @@ function opMap(){const G=opGeo(),{P}=G,m=maps.route,[la0,la1,lo0,lo1]=G.FB,F=v=>
   /* Route: Doppellinie, km-Teilung */
   const pd=a=>'M'+a.map(q=>F(q[0])+' '+F(q[1])).join('L');
   o+=`<path d="${pd(G.out)}" class="r-cs"/><path d="${pd(G.back)}" class="r-cs b"/><path d="${pd(G.back)}" class="r-bk" pathLength="1"/><path d="${pd(G.out)}" class="r-out" pathLength="1"/>`;
-  o+=`<path d="${pd(G.out.concat(G.back.slice(1)))}" class="r-hl" pathLength="1"/>`;
+  /* Etappen A–D mit Kennbuchstaben */
+  ['a','b','c','d'].forEach(k=>{const R2=rleg(k),[mx,my,ma]=R2.at(k==='b'?.5:.55),nx=-Math.sin(ma),ny=Math.cos(ma),off=k==='d'?18:-18,tx2=mx+nx*off,ty2=my+ny*off;
+    o+=`<path d="${R2.d}" class="lgp" data-k="${k}" pathLength="1"/><g class="ltag" data-k="${k}"><path d="M${F(mx)} ${F(my)}L${F(tx2)} ${F(ty2)}"/><rect x="${F(tx2-9)}" y="${F(ty2-9)}" width="18" height="18"/><text x="${F(tx2)}" y="${F(ty2+5.5)}" text-anchor="middle">${k.toUpperCase()}</text></g>`});
   const ticks=(a,c,km,cls,lab)=>{let t='';const T=c[c.length-1];for(let k=50;k<km;k+=50){const L2=T*k/km;let i=c.findIndex(v=>v>=L2);if(i<1)i=1;const u=(L2-c[i-1])/(c[i]-c[i-1]||1),x=a[i-1][0]+(a[i][0]-a[i-1][0])*u,y=a[i-1][1]+(a[i][1]-a[i-1][1])*u,dx=a[i][0]-a[i-1][0],dy=a[i][1]-a[i-1][1],d=Math.hypot(dx,dy)||1,nx=-dy/d,ny=dx/d;
       t+=`<g class="kt ${cls}" data-f="${(k/km).toFixed(3)}"><path d="M${F(x-nx*6)} ${F(y-ny*6)}L${F(x+nx*6)} ${F(y+ny*6)}"/>${lab&&k%100===0?`<text x="${F(x+nx*(cls==='b'?-18:18))}" y="${F(y+ny*(cls==='b'?-18:18)+5)}" text-anchor="middle">${k}</text>`:''}</g>`}return t};
   o+=ticks(G.out,G.oc,475,'o',0)+ticks(G.back,G.bc,425,'b',0);
   /* Orte */
   [['AUGSBURG',48.3705,10.8978,'e'],['NÜRNBERG',49.4521,11.0767,'w'],['CHEB',50.0796,12.3739,'s'],['PILSEN',49.7384,13.3736,'s']].forEach(([n,la,lo,al],i)=>{const [x,y]=P(la,lo);
     o+=`<g class="tw" style="--i:${i}"><rect x="${F(x-4)}" y="${F(y-4)}" width="8" height="8"/><text x="${F(al==='w'?x-12:al==='e'?x+12:x)}" y="${F(al==='s'?y+26:y+6)}" text-anchor="${al==='w'?'end':al==='e'?'start':'middle'}">${n}</text></g>`});
+  o+=`</g><path class="scl" d="M0 ${F(Y0-40)}V${F(Y1+40)}"/>`;
   const L1=G.tg[0];
   /* Zielobjekte auf der Hauptkarte: 01, 13 direkt, Gruppen A/B als Bezugskreise */
   const mk1=(i,x,y,lx,ly,an)=>`<g class="tp" data-i="${i}"><circle cx="${F(x)}" cy="${F(y)}" r="9" class="rg"/><circle cx="${F(x)}" cy="${F(y)}" r="3.6" class="pt"/><text x="${F(lx)}" y="${F(ly)}" text-anchor="${an}"><tspan class="n">${String(i+1).padStart(2,'0')}</tspan> ${i?'PLANÁ':'LOKET'}</text></g>`;
@@ -5569,7 +5583,6 @@ function opMap(){const G=opGeo(),{P}=G,m=maps.route,[la0,la1,lo0,lo1]=G.FB,F=v=>
   /* Fadenkreuz */
   o+=`<g class="ret"><circle r="18" class="o"/><circle r="8"/><path d="M-28 0h12M16 0h12M0 -28v12M0 16v12"/><text x="-24" y="40" class="rq" text-anchor="end">EMPFÄNGER ?</text></g>`;
   /* Kopf der Strecke beim Zeichnen */
-  o+=`<g class="hd"><circle r="5"/><circle r="11" class="o"/></g>`;
   return `<svg class="op-lsk nolg" viewBox="${F(X0-302)} ${F(Y0-34)} ${F(X1-X0+604)} ${F(Y1-Y0+66)}" preserveAspectRatio="xMidYMid meet" aria-hidden="true">${o}</svg>`}
 function opening(){const cell=(k,l,v)=>`<div class="op-c" data-k="${k}"><i>${l}</i><b>${v}</b><u></u></div>`;
   return `<div class="ms-open op2"><i class="op-fr" aria-hidden="true"><i></i><i></i><i></i><i></i></i>
@@ -5577,26 +5590,21 @@ function opening(){const cell=(k,l,v)=>`<div class="op-c" data-k="${k}"><i>${l}<
   <div class="op-body"><section class="op-tb"><div class="op-k">EINSATZBEFEHL<span class="op-x"> · CODENAME</span></div>
     <div class="op-ttl"><div class="op-l1">OPERATION</div><div class="op-l2"><span>SPLENDIDE</span><i class="cl t"></i><i class="cl b"></i><i class="cv l"></i><i class="cv r"></i></div><div class="op-dim"><i></i><span>9 ZEICHEN · NACH HOTEL SPLENDIDE</span></div></div>
     <dl class="op-meta"><dt>EINSATZRAUM</dt><dd>LOKET · KARLOVY VARY · PRAHA</dd><dt>ZEITRAUM</dt><dd>${depTxt()}</dd><dt>EINHEIT</dt><dd>00-EINHEIT · AGENT 01–04</dd><dt>FREIGABE</dt><dd>M</dd></dl></section>
-    <section class="op-map"><div class="op-mh"><b>LAGESKIZZE · ROUTE AUGSBURG – PRAHA</b><span class="op-km">STRECKE <b>0</b> KM</span></div>${opMap()}<div class="op-co">50.0000 N · 12.0000 E</div></section></div>
+    <section class="op-map"><div class="op-mh"><b>LAGESKIZZE · ROUTE AUGSBURG – PRAHA</b><span class="op-km">STRECKE <b>900</b> KM</span></div>${opMap()}<div class="op-co">50.0000 N · 12.0000 E</div></section></div>
   <div class="op-par">${cell('a','AUFTRAG','—')}${cell('z','ZIELOBJEKTE','00')}${cell('r','ROUTE','—')}${cell('e','EMPFÄNGER','—')}${cell('p','PROFIL','—')}</div></div>`}
 function openFx(root){const o=root.querySelector('.op2');if(!o)return;const me=cur,ck=cxClock(),utc=o.querySelector('.op-utc');
   const t=()=>{const d=new Date();utc.textContent=d.toISOString().slice(11,19)+' UTC'};t();const iv=setInterval(()=>{if(cur!==me||!o.isConnected)return clearInterval(iv);t()},1000);
-  const svg=o.querySelector('.op-lsk'),G=opGeo(),NS='http://www.w3.org/2000/svg',out=svg.querySelector('.r-out'),bk=svg.querySelector('.r-bk'),hd=svg.querySelector('.hd'),kts=[...svg.querySelectorAll('.kt')],km=o.querySelector('.op-km b');
-  const Lo=out.getTotalLength(),Lb=bk.getTotalLength();
-  later(()=>o.classList.add('in'),40);
-  if(RM){o.classList.add('in','s-a','s-z','s-r','s-e','s-p','s-dr');OP_SET(o,'all');svg.querySelectorAll('.tp').forEach(g=>g.classList.add('on'));kts.forEach(k=>k.classList.add('on'));out.style.strokeDashoffset=0;bk.style.strokeDashoffset=0;if(km)km.textContent='900';return}
+  const svg=o.querySelector('.op-lsk'),G=opGeo(),kts=[...svg.querySelectorAll('.kt')],scr=svg.querySelector('.scr'),scl=svg.querySelector('.scl'),vb=svg.viewBox.baseVal;
+  kts.forEach(k=>k.classList.add('on'));later(()=>o.classList.add('in'),40);
+  if(RM){o.classList.add('in','s-a','s-z','s-r','s-e','s-p','s-dr');OP_SET(o,'all');svg.querySelectorAll('.tp').forEach(g=>g.classList.add('on'));scr.setAttribute('width',vb.width+40);svg.querySelectorAll('.lgp,.ltag').forEach(e=>e.classList.add('on','done'));return}
   later(()=>decode(o.querySelector('.op-l2 span'),1300),700);later(()=>decode(o.querySelector('.op-l1'),700),400);
   const co=o.querySelector('.op-co'),ret=svg.querySelector('.ret');
   o._ret={x:G.ins[1].cx,y:G.ins[1].cy,tx:G.ins[1].cx,ty:G.ins[1].cy};
-  const D0=900,D1=2400,D2=1500;
+  const D0=500,D1=2200;
   (function f(now){if(cur!==me||!o.isConnected)return;const tm=ck(now);
-    /* Strecke wird gezeichnet: hin, dann zurück; Kopf und km-Teilung laufen mit */
-    const u1=Math.max(0,Math.min(1,(tm-D0)/D1)),u2=Math.max(0,Math.min(1,(tm-D0-D1)/D2)),e1=1-Math.pow(1-u1,2),e2=1-Math.pow(1-u2,2);
-    out.style.strokeDashoffset=(1-e1).toFixed(4);bk.style.strokeDashoffset=(1-e2).toFixed(4);
-    if(u2<1&&u1>0){const p=u1<1?out.getPointAtLength(Lo*e1):bk.getPointAtLength(Lb*e2);hd.setAttribute('transform',`translate(${p.x.toFixed(1)} ${p.y.toFixed(1)})`);hd.style.opacity=1}else hd.style.opacity=0;
-    kts.forEach(k=>{const fr=+k.dataset.f;if(!k.classList.contains('on')&&((k.classList.contains('o')&&e1>=fr)||(k.classList.contains('b')&&e2>=fr)))k.classList.add('on')});
-    if(km){const v=Math.round(475*e1+425*e2);if(km._v!==v){km._v=v;km.textContent=v}}
-    if(u2>=1&&!o.classList.contains('s-dr'))o.classList.add('s-dr');
+    /* Scanlinie baut die Karte von links nach rechts auf */
+    const u=Math.max(0,Math.min(1,(tm-D0)/D1)),e=u<.5?2*u*u:1-Math.pow(-2*u+2,2)/2,xx=vb.x+(vb.width+20)*e;scr.setAttribute('width',(xx-vb.x).toFixed(1));
+    scl.setAttribute('transform',`translate(${xx.toFixed(1)} 0)`);scl.style.opacity=u>0&&u<1?1:0;if(u>=1&&!o.classList.contains('s-dr'))o.classList.add('s-dr');
     const R=o._ret;R.x+=(R.tx-R.x)*.12;R.y+=(R.ty-R.y)*.12;ret.setAttribute('transform',`translate(${R.x.toFixed(1)} ${R.y.toFixed(1)})`);ret.querySelector('.o').setAttribute('transform',`rotate(${(tm/30%360).toFixed(1)})`);
     if(o.classList.contains('s-e')&&R.ll)co.textContent=`${R.ll[0].toFixed(4)} N · ${R.ll[1].toFixed(4)} E`;
     requestAnimationFrame(f)})(performance.now())}
@@ -5606,7 +5614,10 @@ function openCue(root,at){const o=root.querySelector('.op2');if(!o||RM)return;co
   const tg=at('Geld'),td=at('Dreizehn'),tr=at('Route'),te=at('Empfänger'),ts=at('sehen');
   later(()=>{add('s-a');if(!ok())return;OP_SET(o,'a');decode(o.querySelector('.op-c[data-k="a"] b'),600);SND.whoosh(.15)},tg);
   later(()=>{add('s-z');if(!ok())return;countUp(o.querySelector('.op-c[data-k="z"] b'),13,1300,'');for(let i=0;i<13;i++)later(()=>{if(ok()){o.querySelector(`.op-lsk .tp[data-i="${i}"]`)?.classList.add('on');SND.tick&&SND.tick()}},500+i*95)},td);
-  later(()=>{add('s-r');if(!ok())return;OP_SET(o,'r');decode(o.querySelector('.op-c[data-k="r"] b'),500)},tr);
+  later(()=>{add('s-r');if(!ok())return;OP_SET(o,'r');decode(o.querySelector('.op-c[data-k="r"] b'),500);const km=o.querySelector('.op-km');
+    ['a','b','c','d'].forEach((k,i)=>later(()=>{if(!ok())return;const L=RL[k];o.querySelectorAll('.op-lsk .lgp.cur,.op-lsk .ltag.cur').forEach(e=>{e.classList.remove('cur');e.classList.add('done')});
+      o.querySelectorAll(`.op-lsk [data-k="${k}"]`).forEach(e=>e.classList.add('on','cur'));if(km){km.innerHTML=`ETAPPE <b>${k.toUpperCase()}</b> · ${RT[L.f]} → ${RT[L.t]} · <b>${L.km} KM</b> · ${L.t0}–${L.t1}`;km.classList.add('lg')}SND.tick&&SND.tick()},i*620));
+    later(()=>{if(!ok())return;o.querySelectorAll('.op-lsk .cur').forEach(e=>{e.classList.remove('cur');e.classList.add('done')});if(km){km.innerHTML='STRECKE <b>900</b> KM · 4 ETAPPEN';km.classList.remove('lg')}},4*620+400)},tr);
   later(()=>{add('s-e');if(!ok())return;OP_SET(o,'e');decode(o.querySelector('.op-c[data-k="e"] b'),700);SND.ping();const G=opGeo(),R=o._ret,B=G.ins[1],A2=G.ins[0],seq=[[A2,1],[A2,3],[B,0],[B,4],[B,6]];
     seq.forEach(([I,k],i)=>later(()=>{if(!ok())return;const [x,y]=I.p[k],t=G.tg[I.ix[k]];R.tx=x;R.ty=y;R.ll=[t.lat,t.lon]},i*380));later(()=>add('s-lk'),seq.length*380)},te);
   later(()=>{add('s-p');if(!ok())return;OP_SET(o,'p');decode(o.querySelector('.op-c[data-k="p"] b'),500)},ts)}
