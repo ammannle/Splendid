@@ -1838,13 +1838,12 @@ html.msfull{overflow:hidden}
 .og-ld{fill:none;stroke:var(--amber);stroke-width:1.2}
 .og-xh{fill:none;stroke:rgba(240,85,74,.35);stroke-width:1;stroke-dasharray:3 5}
 .og-ret circle,.og-ret path{fill:none;stroke:var(--red);stroke-width:1.4}.og-ret .o{stroke-dasharray:9 5}.og-ret .i{opacity:.6}
-.ms-orgsc .ogsv.hl .e.lit{stroke-dasharray:6 5;animation:ogFlow 1.2s linear infinite}
-@keyframes ogFlow{to{stroke-dashoffset:-22}}
+.ms-orgsc .ogsv.hl .e.lit{animation:none;stroke-dashoffset:0}
 .ms-orgsc .ogsv .cx-pk,.ms-orgsc .ogsv .cx-pk.r,.ms-orgsc .ogsv .cx-pk.a{filter:none}
 .ms-orgsc .ogsv.hl .pn.lit circle{animation:none;stroke-width:2}
 .ms-orgsc .ogsv.hl .on.lit rect{animation:none;stroke-width:1.8}
 @media (max-width:700px){.og-col{display:none}.ms-orgsc.dos .ogsv{left:0;width:100%}.og-ld{display:none}}
-@media (prefers-reduced-motion:reduce){.og-bars i,.ms-orgsc .ogsv.hl .e.lit{animation:none}}
+@media (prefers-reduced-motion:reduce){.og-bars i{animation:none}}
 /* Operationsblatt v41 */
 .ms-open.op2{container-type:size;font-family:var(--mono);color:var(--ink);background:color-mix(in srgb,var(--cyan) 3%,#03080b);background-image:linear-gradient(rgba(143,215,232,.045) 1px,transparent 1px),linear-gradient(90deg,rgba(143,215,232,.045) 1px,transparent 1px);background-size:26px 26px}
 .op-fr{position:absolute;inset:2.4%;pointer-events:none;border:1px solid rgba(143,215,232,.14);opacity:0;transition:opacity .6s}
@@ -1915,6 +1914,43 @@ html.msfull{overflow:hidden}
 @container (max-width:640px){.op-hd{letter-spacing:.1em;white-space:nowrap}.op-hd span:last-child,.op2 .op-x{display:none}.op-k{letter-spacing:.14em;white-space:nowrap}.op-mh,.op-co,.op-map .cl text,.op-map .as text{display:none}.op-map svg{padding:4px}.op-meta,.op-dim{display:none}.op-body{top:14%;bottom:30%;grid-template-columns:1fr 1.25fr;gap:3%}.op-l1{letter-spacing:.3em}.op-l2{font-size:max(22px,6.6cqw)}
   .op-par{grid-template-columns:repeat(3,1fr);height:21%;bottom:5%}.op-c[data-k="a"],.op-c[data-k="r"]{display:none}.op-c:nth-child(3){border-left:0}.op-c{padding:0 6px}.op-mh .op-src{display:none}}
 @media (prefers-reduced-motion:reduce){.op2 *{transition:none!important;animation:none!important}}
+/* Konto VESPER v42 */
+.ms-acct.ac2{display:block;container-type:size;font-family:var(--mono);color:var(--ink);background:color-mix(in srgb,var(--cyan) 3%,#03080b);background-image:linear-gradient(rgba(143,215,232,.045) 1px,transparent 1px),linear-gradient(90deg,rgba(143,215,232,.045) 1px,transparent 1px);background-size:26px 26px}
+.ac2.in .op-fr{opacity:1}
+.ac-hd{position:absolute;left:4.5%;right:4.5%;top:5%;display:flex;justify-content:space-between;gap:12px;white-space:nowrap;font-size:max(11px,1.05cqw);letter-spacing:.2em;color:var(--mute);border-bottom:1px solid rgba(143,215,232,.22);padding-bottom:6px;opacity:0;transition:opacity .5s .1s}
+.ac-hd b{color:var(--amber);font-weight:600}.ac-hd em{font-style:normal;color:var(--cyan);font-variant-numeric:tabular-nums}.ac2.in .ac-hd{opacity:1}
+.ac-led{position:absolute;left:4.5%;top:14%;bottom:6%;width:46%;display:flex;flex-direction:column;gap:1.6cqh;min-height:0}
+.ac-acc,.ac-tb,.ac-sum{position:relative;border:1px solid rgba(143,215,232,.35);background:rgba(5,12,18,.82);opacity:0;transform:translateX(-10px);transition:opacity .5s,transform .6s cubic-bezier(.2,.8,.2,1)}
+.ac2.in .ac-acc{opacity:1;transform:none;transition-delay:.2s}.ac2.in .ac-tb{opacity:1;transform:none;transition-delay:.45s}.ac2.in .ac-sum{opacity:1;transform:none;transition-delay:.7s}
+.ac-acc::before{content:"";position:absolute;left:-3px;top:-3px;width:10px;height:10px;border-left:2px solid var(--amber);border-top:2px solid var(--amber)}
+.ac-acc{padding:.8cqh 12px;display:grid;gap:.5cqh}
+.ac-r{display:grid;grid-template-columns:7.5em 1fr;align-items:center;gap:10px;font-size:max(11px,1.05cqw)}
+.ac-r i{font-style:normal;color:var(--mute);letter-spacing:.18em}.ac-r b{font-weight:600;letter-spacing:.08em}
+.ac-st{position:relative;display:grid}.ac-st span{grid-area:1/1;transition:opacity .4s,transform .4s}.ac-st .a{color:var(--cyan)}.ac-st .b{color:var(--red);opacity:0;transform:translateY(6px)}
+.ac2.s-re .ac-st .a{opacity:0;transform:translateY(-6px)}.ac2.s-re .ac-st .b{opacity:1;transform:none}
+.ac-pw{display:flex;gap:5px}
+.ac-pw u{display:grid;place-items:center;width:max(20px,2.1cqw);height:max(24px,2.5cqw);border:1px solid rgba(143,215,232,.4);text-decoration:none;font-family:var(--head);font-weight:600;font-size:max(13px,1.3cqw);color:var(--red);position:relative;overflow:hidden}
+.ac-pw u span{opacity:0;transform:translateY(-60%);transition:opacity .2s,transform .3s cubic-bezier(.2,.8,.2,1)}
+.ac-pw u::after{content:"";position:absolute;left:3px;right:3px;bottom:3px;height:1px;background:var(--cyan);opacity:.6}
+.ac-pw u.on{border-color:var(--red)}.ac-pw u.on span{opacity:1;transform:none}
+.ac-tb{flex:1;min-height:0;overflow:hidden;padding:.6cqh 12px}
+.ac-th,.ac-row{display:grid;grid-template-columns:9.6em minmax(0,1fr) 8.6em;gap:10px;font-size:max(10.5px,.98cqw);line-height:1.5}
+.ac-th{color:var(--mute);letter-spacing:.16em;border-bottom:1px solid rgba(143,215,232,.25);padding-bottom:3px;margin-bottom:2px}.ac-th i{font-style:normal}.ac-th i:last-child,.ac-row b{text-align:right}
+.ac-row{border-bottom:1px dashed rgba(143,215,232,.14);opacity:0;transform:translateX(-8px);transition:opacity .25s,transform .35s,background .4s}
+.ac-row i{font-style:normal;color:var(--mute);font-variant-numeric:tabular-nums;white-space:nowrap}.ac-row span{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.ac-row b{font-weight:600;color:var(--amber);font-variant-numeric:tabular-nums}
+.ac-row.on{opacity:1;transform:none}.ac-row.cur{background:rgba(242,182,94,.12)}
+.ac-sum{display:flex;justify-content:space-between;align-items:center;padding:.9cqh 12px;font-size:max(11px,1.05cqw)}
+.ac-sum i{font-style:normal;color:var(--mute);letter-spacing:.16em}.ac-sum b{font-family:var(--head);font-size:max(15px,1.7cqw);color:rgba(220,235,239,.35);font-variant-numeric:tabular-nums;transition:color .3s}
+.ac2.s-sum .ac-sum b{color:var(--red)}.ac2.s-sum .ac-sum{border-color:rgba(240,85,74,.6)}
+.ac-glw{position:absolute;right:4.5%;top:14%;bottom:6%;width:45%;display:flex;flex-direction:column;border:1px solid rgba(143,215,232,.35);background:rgba(5,12,18,.6);opacity:0;transition:opacity .6s .3s}
+.ac2.in .ac-glw{opacity:1}
+.ac-glw::before{content:"";position:absolute;right:-3px;top:-3px;width:10px;height:10px;border-right:2px solid var(--amber);border-top:2px solid var(--amber)}
+.ac-gh,.ac-gf{display:flex;justify-content:space-between;gap:8px;padding:5px 10px;font-size:max(10.5px,.9cqw);letter-spacing:.18em;color:var(--mute);white-space:nowrap}
+.ac-gh{border-bottom:1px solid rgba(143,215,232,.2)}.ac-gh b{color:var(--cyan);font-weight:600}.ac-gf{border-top:1px solid rgba(143,215,232,.2);font-variant-numeric:tabular-nums}
+.ac2.s-bo .ac-dst{color:var(--red)}
+.ac-gl{flex:1;min-height:0;width:100%;display:block}
+@container (max-width:640px){.ac2 .ac-x,.ac-tb,.ac-r:first-child,.ac-gh span,.ac-gf .ac-ll{display:none}.ac-sum{flex-direction:column;align-items:flex-start;gap:2px}.ac-gf,.ac-gh{letter-spacing:.06em;font-size:10px;overflow:hidden}.ac-led{justify-content:center}.ac-led{width:45%;gap:6px;top:13%}.ac-glw{width:45%;top:13%}
+  .ac-row{grid-template-columns:minmax(0,1fr) auto}.ac-row span{font-size:10px}.ac-r{grid-template-columns:1fr;gap:2px;font-size:10.5px}.ac-sum i{font-size:10px;letter-spacing:.06em}.ac-pw{gap:3px}.ac-pw u{width:16px;height:20px;font-size:12px}}
 .ms-cold,.ms-lost{position:absolute;inset:0;background:#020507;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;overflow:hidden}
 .mc-term{font-family:var(--mono);font-size:clamp(.6rem,1.4vw,.8rem);letter-spacing:.16em;color:var(--cyan);width:min(560px,86%)}
 .mc-term p{margin:0 0 4px;opacity:0;white-space:nowrap;overflow:hidden;animation:msType .5s steps(24) calc(.2s + var(--i)*.38s) both,gzfade .01s calc(.2s + var(--i)*.38s) forwards}
@@ -5095,13 +5131,83 @@ function orgOn(root,s){const svg=root.querySelector('.ogsv');if(!svg)return;cons
 const TX=[['14.09. 02:13','ZÜRICH → KARLOVY VARY','1.200.000'],['14.09. 02:41','LIECHTENSTEIN → LOKET','480.000'],['15.09. 23:05','NASSAU → KARLOVY VARY','2.150.000'],['17.09. 04:12','ZYPERN → PRAHA','900.000'],
  ['19.09. 01:58','ZÜRICH → PRAHA','1.750.000'],['21.09. 03:33','LUXEMBURG → KARLOVY VARY','640.000'],['23.09. 22:47','NASSAU → PRAHA','1.100.000'],['26.09. 02:02','ZYPERN → PLZEŇ','310.000'],
  ['29.09. 05:20','ZÜRICH → PRAHA-BARRANDOV','2.870.000']];
-function acct(){const D=[['KARLOVY VARY',.48,.38],['LOKET',.36,.46],['PRAHA',.8,.42],['PLZEŇ',.62,.62],['BARRANDOV',.82,.56]],S2=[['ZÜRICH',.05,.86],['NASSAU',.05,.12],['ZYPERN',.95,.9],['LIECHTENSTEIN',.05,.5],['LUXEMBURG',.05,.3]];
-  const pos=n=>{const d=D.find(q=>n.includes(q[0]))||D[0];return[d[1]*600,d[2]*470]},src=n=>{const q=S2.find(z=>n.startsWith(z[0]))||S2[0];return[q[1]*600,q[2]*470]};
-  let m='';TX.forEach((t,i)=>{const [a,b]=src(t[1]),[c,d]=pos(t[1].split('→ ')[1]);m+=`<path class="lnk" d="M${a} ${b}Q${(a+c)/2} ${Math.min(b,d)-60} ${c} ${d}" pathLength="1" style="--i:${i}"/>`});
-  D.forEach(([n,x,y],i)=>{m+=`<circle class="rg" cx="${x*600}" cy="${y*470}" r="10" style="--i:${i*2}"/><circle class="pt" cx="${x*600}" cy="${y*470}" r="4" style="--i:${i*2}"/><text x="${x*600+9}" y="${y*470-8}">${n}</text>`});
-  S2.forEach(([n,x,y])=>m+=`<text class="src" x="${x*600}" y="${y*470+(y>.5?-6:14)}" text-anchor="${x<.5?'start':'end'}">${n}</text>`);
-  return `<div class="ms-acct"><div class="ms-led"><h4>KONTO 7714-V · REAKTIVIERT</h4><div class="sub">EINGEFROREN SEIT 11/2006 · KENNWORT</div><div class="pw">VESPER</div><div style="height:10px"></div>${TX.map((t,i)=>`<div class="row" style="--i:${i}"><i>${t[0]}</i><span>${t[1]}</span><b>${t[2]} €</b></div>`).join('')}<div class="sum" style="--n:${TX.length}">SUMME 11.400.000 € · ZIEL: BÖHMEN</div></div><div class="ms-acmap"><svg viewBox="0 0 600 470" preserveAspectRatio="xMidYMid meet">${m}</svg></div></div>`}
-function acctOn(){TX.forEach((t,i)=>later(()=>SND.tick(),1200+i*420));later(()=>SND.ping(),1300+TX.length*420)}
+/* Konto VESPER (v42): Kontoblatt mit Kennwortfeldern und Buchungsjournal, rechts Weltkugel (orthografisch, technisch) mit Geldflüssen
+   als Großkreisbögen von den Quellen nach Böhmen; zum Schluss Zoom auf die Empfänger. Ablauf synchron zu Ms Worten (acctCue). */
+const ACS={'ZÜRICH':[8.54,47.37],'LIECHTENSTEIN':[9.52,47.14],'LUXEMBURG':[6.13,49.61],'NASSAU':[-77.35,25.06],'ZYPERN':[33.36,35.17]};
+const ACD={'KARLOVY VARY':[12.87,50.23],'LOKET':[12.75,50.19],'PRAHA-BARRANDOV':[14.40,50.03],'PRAHA':[14.42,50.08],'PLZEŇ':[13.38,49.75]};
+const ACSL={'ZÜRICH':[-96,8],'LIECHTENSTEIN':[-40,46],'LUXEMBURG':[-100,-34],'NASSAU':[-20,-34],'ZYPERN':[30,30]};
+const ACDL={'KARLOVY VARY':[-40,-46],'LOKET':[-60,40],'PRAHA':[40,-46],'PRAHA-BARRANDOV':[40,48],'PLZEŇ':[-50,52]};
+function acct(){const rows=TX.map((t,i)=>`<div class="ac-row" data-i="${i}"><i>${t[0]}</i><span>${t[1]}</span><b>${t[2]} €</b></div>`).join('');
+  return `<div class="ms-acct ac2"><i class="op-fr" aria-hidden="true"><i></i><i></i><i></i><i></i></i>
+  <div class="ac-hd"><span><b>SIS</b><span class="ac-x"> · FINANZAUFKLÄRUNG</span> · KONTO 7714-V</span><span><span class="ac-x">ZAHLUNGSVERKEHR · ABGRIFF · </span><em class="ac-utc">--:--:-- UTC</em></span></div>
+  <section class="ac-led"><div class="ac-acc">
+      <div class="ac-r"><i>KONTO</i><b>7714-V · ORGANISATION</b></div>
+      <div class="ac-r"><i>STATUS</i><b class="ac-st"><span class="a">EINGEFROREN SEIT 11/2006</span><span class="b">REAKTIVIERT</span></b></div>
+      <div class="ac-r"><i>KENNWORT</i><span class="ac-pw">${'VESPER'.split('').map((ch,i)=>`<u style="--i:${i}"><span>${ch}</span></u>`).join('')}</span></div></div>
+    <div class="ac-tb"><div class="ac-th"><i>DATUM</i><i>QUELLE → EMPFÄNGER</i><i>BETRAG</i></div>${rows}</div>
+    <div class="ac-sum"><i>SUMME · <span class="ac-n">0</span> / 9 ÜBERWEISUNGEN</i><b class="ac-tot">0 €</b></div></section>
+  <section class="ac-glw"><div class="ac-gh"><b>GELDFLUSS<span class="ac-x"> · ORTHOGRAFISCH</span></b><span class="ac-zm">M 1:1</span></div><canvas class="ac-gl" aria-hidden="true"></canvas>
+    <div class="ac-gf"><span class="ac-ll">λ 0.00° · φ 0.00°</span><span class="ac-dst">EMPFÄNGER · —</span></div></section></div>`}
+function acctOn(){}
+function acctFx(root){const o=root.querySelector('.ac2');if(!o)return;const me=cur,ck=cxClock(),cv=o.querySelector('.ac-gl'),utc=o.querySelector('.ac-utc'),ll=o.querySelector('.ac-ll'),zm=o.querySelector('.ac-zm');
+  const tu=()=>{utc.textContent=new Date().toISOString().slice(11,19)+' UTC'};tu();const iv=setInterval(()=>{if(cur!==me||!o.isConnected)return clearInterval(iv);tu()},1000);
+  later(()=>o.classList.add('in'),40);
+  const A=o._A={tx:1e9,bo:1e9};o._t=()=>ck(performance.now());if(RM){A.tx=-1e5;A.bo=-1e5;o.classList.add('in','s-re','s-pw','s-tx','s-sum','s-bo');o.querySelectorAll('.ac-row').forEach(r=>r.classList.add('on'));o.querySelector('.ac-tot').textContent='11.400.000 €';o.querySelector('.ac-n').textContent='9';o.querySelector('.ac-dst').textContent='EMPFÄNGER · BÖHMEN'}
+  const D=Math.PI/180,E=u=>{u=Math.min(1,Math.max(0,u));return u<.5?4*u*u*u:1-Math.pow(-2*u+2,3)/2},TR=TX.map(t=>{const [a,b]=t[1].split(' → ');return{s:ACS[a],d:ACD[b]||ACD.PRAHA,sn:a,dn:b}});
+  const v3=([lo,la])=>[Math.cos(la*D)*Math.cos(lo*D),Math.cos(la*D)*Math.sin(lo*D),Math.sin(la*D)];
+  const gc=(a,b,u)=>{const p=v3(a),q=v3(b),w=Math.acos(Math.min(1,p[0]*q[0]+p[1]*q[1]+p[2]*q[2])),s=Math.sin(w)||1,k1=Math.sin((1-u)*w)/s,k2=Math.sin(u*w)/s,x=k1*p[0]+k2*q[0],y=k1*p[1]+k2*q[1],z=k1*p[2]+k2*q[2];return[Math.atan2(y,x)/D,Math.asin(Math.max(-1,Math.min(1,z)))/D,w]};
+  (function f(now){if(cur!==me||!cv.isConnected)return;const r=cv.getBoundingClientRect(),dp=Math.min(2,devicePixelRatio||1),W=Math.round(r.width*dp),H=Math.round(r.height*dp);if(!W||!H){requestAnimationFrame(f);return}
+    if(cv.width!==W||cv.height!==H){cv.width=W;cv.height=H}const c=cv.getContext('2d'),t=RM?99999:ck(now),mob=r.width<420;
+    /* Kamera: Atlantik → Europa (ab erster Überweisung) → Böhmen (Zoom) */
+    const u1=E((t-A.tx+400)/2600),u2=E((t-A.bo)/2000),up=E((t-A.bo)/1200),lon0=-28+(6+28)*u1+(13.55-6)*up,lat0=30+(44-30)*u1+(50.0-44)*up,Z=Math.exp(u2*Math.log(95)),R0=Math.min(W,H)*.41,R=R0*Z,cx=W/2,cy=H/2+(mob?0:4*dp);
+    const sp=Math.sin(lat0*D),cp=Math.cos(lat0*D);
+    const P=(lo,la,h)=>{const cl=Math.cos(la*D),dl=(lo-lon0)*D,k=(h||1)*R;return[cx+k*cl*Math.sin(dl),cy-k*(cp*Math.sin(la*D)-sp*cl*Math.cos(dl)),sp*Math.sin(la*D)+cp*cl*Math.cos(dl)]};
+    const C='143,215,232',Am='242,182,94',Rd='240,85,74',font=(s,w)=>`${w||500} ${s*dp}px "IBM Plex Mono",monospace`,intro=E(t/1200);
+    c.clearRect(0,0,W,H);c.save();
+    /* Scheibe, Rand, Gradring (nur in der Totale) */
+    c.fillStyle='rgba(6,18,26,.92)';c.beginPath();c.arc(cx,cy,R,0,6.283);c.fill();
+    c.lineWidth=1.3*dp;c.strokeStyle=`rgba(${C},.8)`;c.beginPath();c.arc(cx,cy,R,-Math.PI/2,-Math.PI/2+6.283*intro);c.stroke();
+    const ga=1-u2;if(ga>.02){c.globalAlpha=ga;const rr=R0*1.1;c.lineWidth=1*dp;c.strokeStyle=`rgba(${C},.45)`;c.beginPath();c.arc(cx,cy,rr,0,6.283*intro);c.stroke();
+      for(let a=0;a<360;a+=5){if(a/360>intro)break;const q=a*D-t/12000,l=a%30?4:a%90?8:12;c.strokeStyle=`rgba(${C},${a%30?.3:.75})`;c.beginPath();c.moveTo(cx+Math.cos(q)*rr,cy+Math.sin(q)*rr);c.lineTo(cx+Math.cos(q)*(rr+l*dp),cy+Math.sin(q)*(rr+l*dp));c.stroke()}c.globalAlpha=1}
+    c.beginPath();c.arc(cx,cy,R,0,6.283);c.clip();
+    /* Gradnetz: 15° in der Totale, 1° im Zoom */
+    const grid=(st,al,b)=>{b=b||[-180,180,-88,88];c.lineWidth=.8*dp;c.strokeStyle=`rgba(${C},${al})`;for(let la=Math.ceil(Math.max(-89,b[2])/st)*st;la<=b[3];la+=st){c.beginPath();let pen=0;for(let lo=b[0];lo<=b[1];lo+=Math.min(3,st/2)){const q=P(lo,la);if(q[2]>0){pen?c.lineTo(q[0],q[1]):c.moveTo(q[0],q[1]);pen=1}else pen=0}c.stroke()}
+      for(let lo=Math.ceil(b[0]/st)*st;lo<b[1];lo+=st){c.beginPath();let pen=0;for(let la=b[2];la<=b[3];la+=Math.min(3,st/2)){const q=P(lo,la);if(q[2]>0){pen?c.lineTo(q[0],q[1]):c.moveTo(q[0],q[1]);pen=1}else pen=0}c.stroke()}};
+    if(u2<1)grid(15,.13*(1-u2));if(u2>0){c.globalAlpha=1;grid(Z>30?.5:1,.16*u2,[lon0-12,lon0+12,lat0-8,lat0+8])}
+    /* Küsten gestrichelt */
+    if(t>300){c.globalAlpha=Math.min(1,(t-300)/900);c.setLineDash([2*dp,2.5*dp]);c.strokeStyle=`rgba(${C},.8)`;c.lineWidth=1*dp;c.fillStyle=`rgba(${C},.045)`;
+      wld().forEach(pl=>{c.beginPath();let pen=0,vis=0;pl.forEach(([lo,la])=>{const q=P(lo/D,la/D);if(q[2]>0){pen?c.lineTo(q[0],q[1]):c.moveTo(q[0],q[1]);pen=1;vis=1}else pen=0});if(vis){c.fill();c.stroke()}});c.setLineDash([]);c.globalAlpha=1}
+    c.restore();
+    /* Überweisungen als Großkreisbögen mit Höhe; Paket läuft */
+    let n=0;const lab=[];
+    TR.forEach((q,i)=>{const t0=A.tx+i*380;if(t<t0)return;n++;const u=E((t-t0)/800),w=gc(q.s,q.d,0)[2],hk=.06+.16*Math.min(1,w/.5),al=1-u2*.75;
+      c.lineWidth=(i===TR.length-1?1.6:1.2)*dp;c.strokeStyle=`rgba(${Am},${(.85*al).toFixed(2)})`;c.beginPath();let pen=0;
+      for(let k=0;k<=48*u;k++){const v=k/48,g=gc(q.s,q.d,v),p=P(g[0],g[1],1+hk*Math.sin(Math.PI*v)*(1/Z));if(p[2]>-.2){pen?c.lineTo(p[0],p[1]):c.moveTo(p[0],p[1]);pen=1}else pen=0}c.stroke();
+      if(u>=1&&!RM){const v=((t-t0-800)/1400+i*.13)%1,g=gc(q.s,q.d,v),p=P(g[0],g[1],1+hk*Math.sin(Math.PI*v)*(1/Z));if(p[2]>-.2){c.fillStyle=`rgba(255,226,180,${al})`;c.beginPath();c.arc(p[0],p[1],2.4*dp,0,6.283);c.fill()}}});
+    /* Quellen (Totale) und Empfänger (Zoom) mit Hinweislinien */
+    const pin=(ll,col,name,off,on)=>{const p=P(ll[0],ll[1]);if(p[2]<=0||p[0]<-20||p[0]>W+20||p[1]<-20||p[1]>H+20)return;c.fillStyle=`rgba(${col},1)`;c.beginPath();c.arc(p[0],p[1],3*dp,0,6.283);c.fill();
+      c.strokeStyle=`rgba(${col},.9)`;c.lineWidth=1*dp;c.beginPath();c.arc(p[0],p[1],7*dp,0,6.283);c.stroke();
+      if(!name||mob)return;const lx=p[0]+off[0]*dp,ly=p[1]+off[1]*dp;c.strokeStyle=`rgba(${col},.55)`;c.beginPath();c.moveTo(p[0]+(off[0]>0?6:-6)*dp,p[1]+(off[1]>0?5:-5)*dp);c.lineTo(lx,ly);c.lineTo(lx+(off[0]>0?8:-8)*dp,ly);c.stroke();
+      c.font=font(12,on?600:500);c.fillStyle=`rgba(${on?col:C},1)`;c.textAlign=off[0]>0?'left':'right';c.textBaseline='middle';c.fillText(name,lx+(off[0]>0?12:-12)*dp,ly)};
+    if(u2<.6){c.globalAlpha=1-u2/.6;const vis=Object.entries(ACS).map(([k,ll])=>({k,p:P(ll[0],ll[1]),on:TR.some((q,i)=>q.sn===k&&t>=A.tx+i*380)})).filter(q=>q.p[2]>0);
+      vis.forEach(q=>{c.fillStyle=`rgba(${Am},1)`;c.beginPath();c.arc(q.p[0],q.p[1],3*dp,0,6.283);c.fill();c.strokeStyle=`rgba(${Am},.9)`;c.lineWidth=1*dp;c.beginPath();c.arc(q.p[0],q.p[1],7*dp,0,6.283);c.stroke()});
+      if(!mob){const side=q=>q.p[0]>cx+R0*.15?1:-1,gap=22*dp;[-1,1].forEach(sd=>{const g=vis.filter(q=>side(q)===sd).sort((a,b)=>a.p[1]-b.p[1]);let y0=g.length?g.reduce((a,q)=>a+q.p[1],0)/g.length-(g.length-1)*gap/2:0;
+        g.forEach((q,j)=>{const ly=y0+j*gap,lx=cx+sd*R0*1.24;c.strokeStyle=`rgba(${Am},.55)`;c.lineWidth=1*dp;c.beginPath();c.moveTo(q.p[0]+sd*7*dp,q.p[1]);c.lineTo(lx-sd*14*dp,ly);c.lineTo(lx,ly);c.stroke();
+          c.font=font(12,q.on?600:500);c.fillStyle=q.on?`rgba(${Am},1)`:`rgba(${C},.85)`;c.textAlign=sd>0?'left':'right';c.textBaseline='middle';c.fillText(q.k,lx+sd*5*dp,ly)})})}if(t>A.tx){const p=P(13.6,50);if(p[2]>0){c.fillStyle=`rgba(${Rd},1)`;c.beginPath();c.arc(p[0],p[1],3.4*dp,0,6.283);c.fill();if(!mob){c.font=font(12,600);c.textAlign='left';c.textBaseline='middle';c.fillText('BÖHMEN',p[0]+14*dp,p[1]-14*dp)}}}c.globalAlpha=1}
+    if(u2>.35){c.globalAlpha=Math.min(1,(u2-.35)/.4);Object.entries(ACD).forEach(([k,ll])=>{pin(ll,Rd,k==='PRAHA-BARRANDOV'?'BARRANDOV':k,ACDL[k],1);const p=P(ll[0],ll[1]);c.strokeStyle=`rgba(${Rd},.8)`;c.lineWidth=1*dp;c.beginPath();c.moveTo(p[0]-16*dp,p[1]);c.lineTo(p[0]-9*dp,p[1]);c.moveTo(p[0]+9*dp,p[1]);c.lineTo(p[0]+16*dp,p[1]);c.moveTo(p[0],p[1]-16*dp);c.lineTo(p[0],p[1]-9*dp);c.moveTo(p[0],p[1]+9*dp);c.lineTo(p[0],p[1]+16*dp);c.stroke()});
+      const p=P(13.6,50.0),k=(t/1600)%1;c.strokeStyle=`rgba(${Rd},${(.6*(1-k)).toFixed(2)})`;c.setLineDash([4*dp,4*dp]);c.beginPath();c.arc(p[0],p[1],(110+50*k)*dp*(mob?.45:1),0,6.283);c.stroke();c.setLineDash([]);c.globalAlpha=1}
+    if(o._n!==n){o._n=n;o.querySelector('.ac-n').textContent=n}
+    ll.textContent=`λ ${lon0.toFixed(2)}° · φ ${lat0.toFixed(2)}°`;zm.textContent=`ZOOM ${Z.toFixed(1)}×`;
+    if(!RM)requestAnimationFrame(f)})(performance.now())}
+/* Ablauf zu den Worten: reaktiviert · VESPER · Neun Überweisungen · elf Millionen · Böhmen */
+function acctCue(root,at){const o=root.querySelector('.ac2');if(!o||RM)return;const me=cur,ok=()=>cur===me&&o.isConnected,add=c=>ok()&&o.classList.add(c),A=o._A;
+  const tr=at('reaktiviert'),tp=at('VESPER'),tn=at('Neun'),te=at('elf'),tb=at('Alle');
+  later(()=>{add('s-re');ok()&&SND.ping()},tr);
+  later(()=>{add('s-pw');if(!ok())return;o.querySelectorAll('.ac-pw u').forEach((u,i)=>later(()=>{if(ok()){u.classList.add('on');SND.tick&&SND.tick()}},i*110))},tp-200);
+  later(()=>{if(!ok())return;add('s-tx');A.tx=o._t?o._t():0;const rows=o.querySelectorAll('.ac-row');
+    rows.forEach((r,i)=>later(()=>{if(!ok())return;r.classList.add('on','cur');later(()=>r.classList.remove('cur'),600);const b=r.querySelector('b'),v=+b.textContent.replace(/\D/g,'');countUp(b,v,500,' €');SND.tick&&SND.tick()},i*380))},tn);
+  later(()=>{add('s-sum');ok()&&countUp(o.querySelector('.ac-tot'),11400000,1400,' €')},Math.max(te,tn+9*380));
+  later(()=>{if(!ok())return;add('s-bo');A.bo=o._t?o._t():0;SND.whoosh(.2);later(()=>{if(ok()){o.querySelector('.ac-dst').textContent='EMPFÄNGER · BÖHMEN · 5 ORTE';SND.ping()}},1600)},Math.max(tb-200,te+900))}
 /* Routenkarte: Gelände der Lagekarte, Kamera folgt dem Fahrzeug, Live-Werte, Wegpunkte, Grenzübertritt */
 const RL={a:{f:'aug',t:'loket',set:'out',km:335,t0:'07:30',t1:'11:30',via:'A8 · A9 · A93 · E48',z:400},b:{f:'loket',t:'kv',set:'out',km:12,t0:'14:00',t1:'14:20',via:'OHŘE-TAL',z:110},
   c:{f:'kv',t:'prg',set:'out',km:128,t0:'09:30',t1:'11:15',via:'D6',z:360},d:{f:'prg',t:'aug',set:'back',km:425,t0:'16:00',t1:'20:30',via:'D5 · A6 · A93 · A9',z:440}};
@@ -5297,7 +5403,7 @@ const SC=[
  {ch:0,t:8,tr:'cut',og:'le',h:()=>orgScene('le',1,'DER BANKIER'),on:orgOn,c:'M: Lage. Vor zwanzig Jahren hat ein Bankier namens Le Chiffre das Geld von Terroristen verspielt. Seine Auftraggeber haben ihn dafür beseitigt.'},
  {ch:0,t:8,tr:'cut',og:'qu',og2:'sp',h:()=>orgScene('qu',2,'DIE ORGANISATION'),on:orgOn,c:'M: Hinter ihm stand Quantum. Hinter Quantum stand SPECTRE. Wir haben ihnen damals einen Arm abgeschlagen. Es sind zwei nachgewachsen.'},
  {ch:0,t:8,tr:'cut',og:'al',h:()=>orgScene('al',3,'UNSERE SEITE'),on:orgOn,c:'M: Damals hat uns das fast einen Agenten gekostet. Und eine Frau namens Vesper das Leben. Diesmal verlieren wir niemanden.'},
- {ch:0,t:13,tr:'cut',h:acct,on:acctOn,c:'M: Vor einundzwanzig Tagen wurde ein eingefrorenes Konto der Organisation reaktiviert. Kennwort: VESPER. Neun Überweisungen, über elf Millionen Euro. Alle Empfänger sitzen in Böhmen.'},
+ {ch:0,t:13,tr:'cut',h:acct,on:acctOn,cue:acctCue,c:'M: Vor einundzwanzig Tagen wurde ein eingefrorenes Konto der Organisation reaktiviert. Kennwort: VESPER. Neun Überweisungen, über elf Millionen Euro. Alle Empfänger sitzen in Böhmen.'},
  {ch:0,t:12,tr:'cut',h:opening,on:openSnd,cue:openCue,c:'M: Ihr Auftrag: Operation Splendide. Folgen Sie dem Geld. Dreizehn Zielobjekte, eine Route. Finden Sie den Empfänger, und lassen Sie sich nicht sehen.'},
  {ch:1,t:6.5,leg:'a',h:()=>rmap('a'),on:rdrive,c:'Abfahrt Augsburg. Ab der tschechischen Grenze gilt Funkstille.'},
  A('loket',{ch:1,t:7,bp:'loket',fx:'lock',f:[.73,.62],id:'loket',k:'ZIELOBJEKT 01 / 13',face:'mathis',fc:'Kontakt vor Ort. Kennt jeden Polizisten der Stadt.',c:'Zielobjekt eins: Loket. Hier ging die erste Überweisung ein und wurde bar abgehoben. Finden Sie heraus, wer neu in der Stadt ist.'}),
@@ -5530,7 +5636,7 @@ function orgFx(root,s){const svg=root.querySelector('.ogsv');if(!svg||RM)return;
     const lit=svg.querySelectorAll('.pn.lit,.on.lit').length,el=svg.querySelectorAll('.e.lit').length,dn=Math.round(100*el/Math.max(1,lit*(lit-1)/2));
     box.querySelectorAll('.og-c').forEach(c=>{const v=c.dataset.k==='n'?lit:c.dataset.k==='e'?el:dn;countUp(c,v,900,c.dataset.k==='d'?' %':'')})},tOn);
   (function f(now){if(cur!==me||!svg.isConnected)return;const t=ck(now);
-    if(t-last>260&&t>1800){last=t;const es=[...svg.querySelectorAll('.e.lit')];if(es.length){const e=es[(Math.random()*es.length)|0],c=document.createElementNS(NS,'circle');c.setAttribute('r','3');c.setAttribute('class','cx-pk'+(e.classList.contains('r')?' r':e.classList.contains('a')?' a':''));svg.appendChild(c);live.push({c,e,L:e.getTotalLength(),t0:t,d:900+Math.random()*700,rev:Math.random()<.4})}}
+    if(t-last>700&&t>2200){last=t;const es=[...svg.querySelectorAll('.e.lit')];if(es.length){const e=es[(Math.random()*es.length)|0],c=document.createElementNS(NS,'circle');c.setAttribute('r','3');c.setAttribute('class','cx-pk'+(e.classList.contains('r')?' r':e.classList.contains('a')?' a':''));svg.appendChild(c);live.push({c,e,L:e.getTotalLength(),t0:t,d:1800+Math.random()*600,rev:Math.random()<.4})}}
     for(let i=live.length-1;i>=0;i--){const q=live[i],u=(t-q.t0)/q.d;if(u>=1){q.c.remove();live.splice(i,1);continue}const p=q.e.getPointAtLength(q.L*(q.rev?1-u:u));q.c.setAttribute('cx',p.x.toFixed(1));q.c.setAttribute('cy',p.y.toFixed(1));q.c.style.opacity=Math.min(1,u*5,(1-u)*5).toFixed(2)}
     if(node&&ov&&box.classList.contains('og-on')){const B=box.getBoundingClientRect(),r=node.getBoundingClientRect(),x=r.left+r.width/2-B.left,y=r.top+r.height/2-B.top,dr=dos.getBoundingClientRect(),dx=dr.right-B.left,dy=dr.top+40-B.top;
       ov.setAttribute('viewBox',`0 0 ${B.width.toFixed(0)} ${B.height.toFixed(0)}`);ret.setAttribute('transform',`translate(${x.toFixed(1)} ${y.toFixed(1)}) rotate(${(t/30%360).toFixed(1)})`);
@@ -5538,15 +5644,6 @@ function orgFx(root,s){const svg=root.querySelector('.ogsv');if(!svg||RM)return;
     requestAnimationFrame(f)})(performance.now())}
 
 /* ---- Konto VESPER: Beträge zählen hoch, Geld fließt sichtbar nach Böhmen ---- */
-function acctFx(root){const me=cur,NS='http://www.w3.org/2000/svg';const rows=[...root.querySelectorAll('.ms-led .row b')];
-  rows.forEach((b,i)=>{const v=+b.textContent.replace(/\D/g,'');b.textContent='0 €';later(()=>countUp(b,v,520,' €'),1200+i*420)});
-  const sum=root.querySelector('.ms-led .sum');if(sum){const html=sum.innerHTML;later(()=>{if(cur!==me)return;sum.innerHTML='SUMME <span class="cx-sum">0</span> € · ZIEL: BÖHMEN';countUp(sum.querySelector('.cx-sum'),11400000,1400)},1200+TX.length*420)}
-  later(()=>decode(root.querySelector('.ms-led .pw'),900),700);
-  const svg=root.querySelector('.ms-acmap svg');if(!svg||RM)return;const ln=[...svg.querySelectorAll('.lnk')],ck=cxClock(),live=[];let last=0;
-  (function f(now){if(cur!==me||!svg.isConnected)return;const t=ck(now);
-    if(t-last>120){last=t;const ok=ln.filter((e,i)=>t>2000+i*420);if(ok.length){const e=ok[(Math.random()*ok.length)|0],c=document.createElementNS(NS,'circle');c.setAttribute('r','2.6');c.setAttribute('class','cx-mn');svg.appendChild(c);live.push({c,e,L:e.getTotalLength(),t0:t,d:1100+Math.random()*500})}}
-    for(let i=live.length-1;i>=0;i--){const q=live[i],u=(t-q.t0)/q.d;if(u>=1){q.c.remove();live.splice(i,1);continue}const p=q.e.getPointAtLength(q.L*u);q.c.setAttribute('cx',p.x.toFixed(1));q.c.setAttribute('cy',p.y.toFixed(1))}
-    requestAnimationFrame(f)})(performance.now())}
 
 /* ---- Titel: Buchstaben entschlüsseln, Lichtkante, 13 Zielpunkte zünden auf einer Linie ---- */
 
