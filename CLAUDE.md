@@ -265,4 +265,9 @@ Freigabe: „Anyone with the link“ ist aktiv. Wer die Seite offen hat, sieht n
   (`orgDos`, `OGK`: Dossier der Zielperson mit Porträt aus `PA.sheet`, Scanlinie, Rolle/Status/Gefahr; Netzwerkanalyse mit hochzählenden
   Knoten/Kanten/Dichte und Pegelbalken). Zielerfassung im Netz (`orgFx(root,s)`): rotierendes Fadenkreuz am Schlüsselknoten, Amber-Hinweislinie
   vom Dossier, gestrichelte Peillinien; aktive Verbindungen mit Fließ-Strichelung, Datenpakete ohne Glühen. Handy: Spalte ausgeblendet.
+- Version 41 (07.10.2026): Titelszene „Ihr Auftrag: Operation Splendide“ als technisches Operationsblatt (`opening()`, Klasse `.op2`,
+  Container-Abfragen): Kopfzeile mit UTC-Uhr und Rahmenmarken, Codename als Kontur mit Konstruktions- und Maßlinien, die sich füllt, Stammdaten;
+  Lageskizze der Route (`opGeo()` aus `LOCB`, Reihenfolge `OPO`, Gruppen `OPC`) mit Geldspur aus Konto 7714-V (Datenpakete), 13 Zielpunkten,
+  Gruppenbeschriftung, Lauflicht über die Route und Fadenkreuz, das den Empfänger sucht (Koordinaten live); unten Auftragsparameter
+  (AUFTRAG, ZIELOBJEKTE, ROUTE, EMPFÄNGER, PROFIL). Ablauf synchron zu Ms Worten über `cue:openCue`. Lichtkante, Ringe und Leuchten entfernt.
 - Tests: Playwright-Skripte müssen vor dem Laden `window.__NOINTRO=1` per `addInitScript` setzen, sonst läuft das Intro.

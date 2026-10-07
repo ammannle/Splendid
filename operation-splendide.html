@@ -1845,6 +1845,76 @@ html.msfull{overflow:hidden}
 .ms-orgsc .ogsv.hl .on.lit rect{animation:none;stroke-width:1.8}
 @media (max-width:700px){.og-col{display:none}.ms-orgsc.dos .ogsv{left:0;width:100%}.og-ld{display:none}}
 @media (prefers-reduced-motion:reduce){.og-bars i,.ms-orgsc .ogsv.hl .e.lit{animation:none}}
+/* Operationsblatt v41 */
+.ms-open.op2{container-type:size;font-family:var(--mono);color:var(--ink);background:color-mix(in srgb,var(--cyan) 3%,#03080b);background-image:linear-gradient(rgba(143,215,232,.045) 1px,transparent 1px),linear-gradient(90deg,rgba(143,215,232,.045) 1px,transparent 1px);background-size:26px 26px}
+.op-fr{position:absolute;inset:2.4%;pointer-events:none;border:1px solid rgba(143,215,232,.14);opacity:0;transition:opacity .6s}
+.op-fr i{position:absolute;width:16px;height:16px;border:0 solid var(--cyan)}
+.op-fr i:nth-child(1){left:-1px;top:-1px;border-width:2px 0 0 2px}.op-fr i:nth-child(2){right:-1px;top:-1px;border-width:2px 2px 0 0}.op-fr i:nth-child(3){left:-1px;bottom:-1px;border-width:0 0 2px 2px}.op-fr i:nth-child(4){right:-1px;bottom:-1px;border-width:0 2px 2px 0}
+.op2.in .op-fr{opacity:1}
+.op-hd{position:absolute;left:4.5%;right:4.5%;top:5%;display:flex;justify-content:space-between;gap:12px;font-size:max(11px,1.05cqw);letter-spacing:.2em;color:var(--mute);border-bottom:1px solid rgba(143,215,232,.22);padding-bottom:6px;opacity:0;transform:translateY(-6px);transition:opacity .5s .1s,transform .6s .1s}
+.op-hd b{color:var(--amber);font-weight:600}.op-hd em{font-style:normal;color:var(--cyan);font-variant-numeric:tabular-nums}
+.op2.in .op-hd{opacity:1;transform:none}
+.op-body{position:absolute;left:4.5%;right:4.5%;top:13%;bottom:25%;display:grid;grid-template-columns:1fr 1.1fr;grid-template-rows:minmax(0,1fr);gap:3.5%}
+.op-tb{display:flex;flex-direction:column;justify-content:center;min-width:0;min-height:0;overflow:hidden}
+.op-k{font-size:max(11px,1cqw);letter-spacing:.3em;color:var(--amber);opacity:0;transition:opacity .5s .3s}
+.op2.in .op-k{opacity:1}
+.op-ttl{position:relative;margin:1.2cqh 0 2cqh}
+.op-l1{font-family:var(--head);font-weight:600;font-size:max(14px,2.3cqw);letter-spacing:.55em;color:var(--cyan)}
+.op-l2{position:relative;display:inline-block;font-family:var(--head);font-weight:700;font-size:max(28px,6cqw);line-height:1.02;letter-spacing:.04em;color:transparent;-webkit-text-stroke:1px var(--cyan);transition:color 1s ease 2.2s,-webkit-text-stroke-color 1s ease 2.2s}
+.op2.in .op-l2{color:var(--ink);-webkit-text-stroke-color:transparent}
+.op-l2 .cl{position:absolute;left:-5%;right:-5%;height:0;border-top:1px dashed rgba(143,215,232,.5);transform:scaleX(0);transform-origin:left;transition:transform 1s cubic-bezier(.4,0,.2,1) .3s}
+.op-l2 .cl.t{top:17%}.op-l2 .cl.b{bottom:17%;border-top-style:solid;border-color:rgba(242,182,94,.6)}
+.op-l2 .cv{position:absolute;top:-12%;bottom:-12%;width:0;border-left:1px dashed rgba(143,215,232,.45);transform:scaleY(0);transition:transform .8s cubic-bezier(.4,0,.2,1) .7s}.op-l2 .cv.l{left:0}.op-l2 .cv.r{right:.04em}
+.op2.in .op-l2 .cl{transform:none}.op2.in .op-l2 .cv{transform:none}
+.op-dim{position:relative;display:flex;align-items:center;gap:10px;font-size:max(10.5px,.9cqw);letter-spacing:.2em;color:var(--mute);opacity:0;transition:opacity .6s 1.6s}
+.op-dim i{flex:none;width:clamp(60px,14cqw,200px);height:9px;border-left:1px solid var(--cyan);border-right:1px solid var(--cyan);background:linear-gradient(var(--cyan),var(--cyan)) center/100% 1px no-repeat}
+.op2.in .op-dim{opacity:1}
+.op-meta{display:grid;grid-template-columns:auto 1fr;gap:5px 14px;margin:0;font-size:max(11px,1cqw);line-height:1.25;border-top:1px solid rgba(143,215,232,.2);padding-top:1.6cqh}
+.op-meta dt{color:var(--mute);letter-spacing:.18em}.op-meta dd{margin:0;color:var(--ink);letter-spacing:.06em}
+.op-meta dt,.op-meta dd{opacity:0;transform:translateX(-6px);transition:opacity .4s,transform .5s}
+.op2.in .op-meta dt,.op2.in .op-meta dd{opacity:1;transform:none}
+.op-meta dt:nth-of-type(1),.op-meta dd:nth-of-type(1){transition-delay:1.9s}.op-meta dt:nth-of-type(2),.op-meta dd:nth-of-type(2){transition-delay:2.1s}.op-meta dt:nth-of-type(3),.op-meta dd:nth-of-type(3){transition-delay:2.3s}.op-meta dt:nth-of-type(4),.op-meta dd:nth-of-type(4){transition-delay:2.5s}
+.op-map{position:relative;min-width:0;min-height:0;overflow:hidden;display:flex;flex-direction:column;border:1px solid rgba(143,215,232,.35);background:rgba(5,12,18,.75);opacity:0;transition:opacity .6s .4s}
+.op2.in .op-map{opacity:1}
+.op-map::before{content:"";position:absolute;left:-3px;top:-3px;width:10px;height:10px;border-left:2px solid var(--amber);border-top:2px solid var(--amber)}
+.op-mh{display:flex;justify-content:space-between;gap:8px;padding:6px 10px;font-size:max(10.5px,.9cqw);letter-spacing:.2em;color:var(--mute);border-bottom:1px solid rgba(143,215,232,.2)}.op-mh b{color:var(--cyan);font-weight:600}
+.op-src{color:var(--amber);opacity:0;transition:opacity .4s}.op2.s-a .op-src{opacity:1}
+.op-map svg{flex:1;min-height:0;width:100%}
+.op-map svg *{vector-effect:non-scaling-stroke}
+.op-map .rt{fill:none;stroke:rgba(143,215,232,.75);stroke-width:1.3;stroke-dasharray:1;stroke-dashoffset:1;transition:stroke-dashoffset 2.2s cubic-bezier(.4,0,.2,1) .7s}
+.op2.in .op-map .rt{stroke-dashoffset:0}
+.op-map .rh{fill:none;stroke:var(--amber);stroke-width:2.2;stroke-dasharray:.06 .94;stroke-dashoffset:.06;opacity:0}
+.op2.s-r .op-map .rh{opacity:1;animation:opRun 1.8s cubic-bezier(.45,0,.2,1) forwards}
+@keyframes opRun{from{stroke-dashoffset:.06}to{stroke-dashoffset:-.94;opacity:.9}}
+.op-map .mo path{fill:none;stroke:var(--amber);stroke-width:1;stroke-dasharray:.012 .012;opacity:0;transition:opacity .5s}
+.op2.s-a .op-map .mo path{opacity:.7;animation:opMo 1.4s linear infinite}
+@keyframes opMo{to{stroke-dashoffset:-.048}}
+.op-map .pk{fill:var(--amber)}
+.op-map .as circle{fill:none;stroke:var(--cyan);stroke-width:1.2}.op-map text{fill:var(--mute);font-family:var(--mono);letter-spacing:.12em}
+.op-map .tp .pt{fill:rgba(143,215,232,.35);transition:fill .2s}.op-map .tp .rg{fill:none;stroke:var(--red);stroke-width:1.1;opacity:0;transform-box:fill-box;transform-origin:center;transform:scale(2.4)}
+.op-map .tp.on .pt{fill:var(--red)}.op-map .tp.on .rg{animation:opRg .5s cubic-bezier(.2,.8,.2,1) forwards}
+@keyframes opRg{to{opacity:.9;transform:none}}
+.op-map .cl path{stroke:rgba(143,215,232,.5);stroke-width:1;fill:none}.op-map .cl{opacity:0;transition:opacity .4s;transition-delay:calc(var(--k)*.25s + .9s)}
+.op2.s-z .op-map .cl{opacity:1}.op-map .cl text{fill:var(--ink)}.op-map .cl .n{fill:var(--red);font-weight:600}
+.op-map .ret{opacity:0;transition:opacity .3s}.op-map .ret *{fill:none;stroke:var(--red);stroke-width:1.3}.op-map .ret .o{stroke-dasharray:4 3}
+.op2.s-e .op-map .ret{opacity:1}
+.op-co{position:absolute;right:10px;bottom:6px;font-size:max(10.5px,.9cqw);letter-spacing:.14em;color:var(--mute);font-variant-numeric:tabular-nums;opacity:0;transition:opacity .3s}
+.op2.s-e .op-co{opacity:1;color:var(--red)}
+.op-par{position:absolute;left:4.5%;right:4.5%;bottom:6%;height:14%;display:grid;grid-template-columns:repeat(5,1fr);border:1px solid rgba(143,215,232,.3);background:rgba(5,12,18,.8);opacity:0;transform:translateY(8px);transition:opacity .5s 1.2s,transform .6s 1.2s}
+.op2.in .op-par{opacity:1;transform:none}
+.op-c{position:relative;display:flex;flex-direction:column;justify-content:center;gap:4px;padding:0 12px;border-left:1px solid rgba(143,215,232,.2);min-width:0}
+.op-c:first-child{border-left:0}
+.op-c i{font-style:normal;font-size:max(10.5px,.85cqw);letter-spacing:.2em;color:var(--mute)}
+.op-c b{font-family:var(--head);font-weight:600;font-size:max(12px,1.45cqw);letter-spacing:.06em;color:rgba(220,235,239,.35);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;transition:color .3s}
+.op-c u{position:absolute;left:0;right:0;bottom:0;height:2px;background:var(--cyan);transform:scaleX(0);transform-origin:left;transition:transform .7s cubic-bezier(.4,0,.2,1)}
+.op2.s-a [data-k="a"] b,.op2.s-z [data-k="z"] b,.op2.s-r [data-k="r"] b{color:var(--ink)}
+.op2.s-e [data-k="e"] b{color:var(--red)}.op2.s-p [data-k="p"] b{color:var(--amber)}
+.op2.s-a [data-k="a"] u,.op2.s-z [data-k="z"] u,.op2.s-r [data-k="r"] u{transform:none}
+.op2.s-e [data-k="e"] u{transform:none;background:var(--red)}.op2.s-p [data-k="p"] u{transform:none;background:var(--amber)}
+.op2.s-p .op-map .rt{stroke:rgba(143,215,232,.35);transition:stroke 1.2s}
+@container (max-width:640px){.op-hd{letter-spacing:.1em;white-space:nowrap}.op-hd span:last-child,.op2 .op-x{display:none}.op-k{letter-spacing:.14em;white-space:nowrap}.op-mh,.op-co,.op-map .cl text,.op-map .as text{display:none}.op-map svg{padding:4px}.op-meta,.op-dim{display:none}.op-body{top:14%;bottom:30%;grid-template-columns:1fr 1.25fr;gap:3%}.op-l1{letter-spacing:.3em}.op-l2{font-size:max(22px,6.6cqw)}
+  .op-par{grid-template-columns:repeat(3,1fr);height:21%;bottom:5%}.op-c[data-k="a"],.op-c[data-k="r"]{display:none}.op-c:nth-child(3){border-left:0}.op-c{padding:0 6px}.op-mh .op-src{display:none}}
+@media (prefers-reduced-motion:reduce){.op2 *{transition:none!important;animation:none!important}}
 .ms-cold,.ms-lost{position:absolute;inset:0;background:#020507;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;overflow:hidden}
 .mc-term{font-family:var(--mono);font-size:clamp(.6rem,1.4vw,.8rem);letter-spacing:.16em;color:var(--cyan);width:min(560px,86%)}
 .mc-term p{margin:0 0 4px;opacity:0;white-space:nowrap;overflow:hidden;animation:msType .5s steps(24) calc(.2s + var(--i)*.38s) both,gzfade .01s calc(.2s + var(--i)*.38s) forwards}
@@ -5159,7 +5229,55 @@ function rdrive(root,s){const box=root.querySelector('.ms-rm');if(!box)return;co
 /* Kino-Bausteine: Titelsequenz, Akt-Karten, Abspann, Ortseinblendung */
 const lb='<i class="ms-lb t"></i><i class="ms-lb b"></i>';
 const cr=(a,d,html,cls)=>`<div class="mo-cr ${cls||''}" style="--a:${a}s;--d:${d}s">${html}</div>`;
-function opening(){return `<div class="ms-open clean">${lb}<div class="mo-k">SECRET INTELLIGENCE SERVICE · EINSATZBESPRECHUNG</div><div class="mo-title"><span>OPERATION</span><span>SPLENDIDE</span></div><div class="mo-line"></div><div class="mo-sub">AKTE 007 · ${depTxt()} · LOKET · KARLOVY VARY · PRAHA</div></div>`}
+/* Operationsblatt (v41): Titel als technisches Einsatzblatt. Links Codename mit Konstruktionslinien und Stammdaten, rechts Lageskizze der Route
+   mit 13 Zielobjekten, Geldspur aus Konto 7714-V und Suche nach dem Empfänger; unten Auftragsparameter. Ablauf synchron zu Ms Worten (openCue). */
+const OPO=['loket','pupp','mlyn','trziste','kaiserbad','airport','strahov','ministry','danube','vitkov','museum','barrandov','plana'];
+const OPC=[['LOKET',[0]],['KARLOVY VARY',[1,2,3,4]],['PRAHA',[5,6,7,8,9,10,11]],['PLANÁ',[12]]];
+function opGeo(){locMini('');const B=LOCB,[x0,y0,w,h]=B.vb.split(' ').map(Number),u=h/96,P=Object.fromEntries(B.tg.map(([i,x,y])=>[i,[x,y]]));
+  const pts=OPO.map(id=>P[id]),cl=OPC.map(([n,ix])=>{const q=ix.map(i=>pts[i]);return[n,ix,q.reduce((a,p)=>a+p[0],0)/q.length,q.reduce((a,p)=>a+p[1],0)/q.length]});
+  return{B,x0,y0,w,h,u,pts,cl}}
+function opening(){const G=opGeo(),{u}=G,f=v=>(v*u).toFixed(2),a=maps.route.out[0],{P}=rproj(),[ax,ay]=P(a[0],a[1]);
+  const lbl={LOKET:[-1.9,.9],'KARLOVY VARY':[.5,-1.5],PRAHA:[0,1],'PLANÁ':[0,1]};
+  let m=`<path d="${G.B.d}" class="rt" pathLength="1"/><path d="${G.B.d}" class="rh" pathLength="1"/>`;
+  m+=`<g class="mo"><path d="M${G.x0} ${(G.y0+G.h*.18).toFixed(1)}C${(G.x0+G.w*.25).toFixed(1)} ${(G.y0+G.h*.1).toFixed(1)} ${(G.cl[0][2]-G.w*.1).toFixed(1)} ${(G.cl[0][3]-G.h*.3).toFixed(1)} ${G.cl[0][2].toFixed(1)} ${G.cl[0][3].toFixed(1)}" pathLength="1"/>`+
+    G.cl.slice(1,3).map(c=>`<path d="M${G.x0} ${(G.y0+G.h*.18).toFixed(1)}Q${((G.x0+c[2])/2).toFixed(1)} ${(G.y0-G.h*.04).toFixed(1)} ${c[2].toFixed(1)} ${c[3].toFixed(1)}" pathLength="1"/>`).join('')+`</g>`;
+  m+=`<g class="as"><circle cx="${ax.toFixed(1)}" cy="${ay.toFixed(1)}" r="${f(2.6)}"/><text x="${ax.toFixed(1)}" y="${(ay+9*u).toFixed(1)}" text-anchor="middle" style="font-size:${f(6)}px">AUGSBURG</text></g>`;
+  m+=G.pts.map((p,i)=>`<g class="tp" style="--i:${i}"><circle cx="${p[0].toFixed(1)}" cy="${p[1].toFixed(1)}" r="${f(5)}" class="rg"/><circle cx="${p[0].toFixed(1)}" cy="${p[1].toFixed(1)}" r="${f(1.9)}" class="pt"/></g>`).join('');
+  m+=G.cl.map(([n,ix,x,y],k)=>{const [dx,dy]=lbl[n],lx=x+dx*14*u,ly=y+dy*16*u,r=ix.length>1?`${String(ix[0]+1).padStart(2,'0')}–${String(ix[ix.length-1]+1).padStart(2,'0')}`:String(ix[0]+1).padStart(2,'0');
+    return `<g class="cl" style="--k:${k}"><path d="M${x.toFixed(1)} ${y.toFixed(1)}L${lx.toFixed(1)} ${ly.toFixed(1)}"/><text x="${lx.toFixed(1)}" y="${(ly+(dy<0?-2*u:7*u)).toFixed(1)}" text-anchor="middle" style="font-size:${f(6)}px"><tspan class="n">${r}</tspan> ${n}</text></g>`}).join('');
+  m+=`<g class="ret"><circle r="${f(9)}" class="o"/><circle r="${f(4.5)}"/><path d="M${f(-15)} 0h${f(8)}M${f(7)} 0h${f(8)}M0 ${f(-15)}v${f(8)}M0 ${f(7)}v${f(8)}"/></g>`;
+  const pad=G.w*.04,vb=`${(G.x0-pad).toFixed(0)} ${(G.y0-G.h*.32).toFixed(0)} ${(G.w+2*pad).toFixed(0)} ${(G.h*1.42).toFixed(0)}`;
+  const cell=(k,l,v)=>`<div class="op-c" data-k="${k}"><i>${l}</i><b>${v}</b><u></u></div>`;
+  return `<div class="ms-open op2"><i class="op-fr" aria-hidden="true"><i></i><i></i><i></i><i></i></i>
+  <div class="op-hd"><span><b>SIS</b><span class="op-x"> · EINSATZBESPRECHUNG</span> · OFFICIAL–SENSITIVE</span><span>AKTE 007/26 · BLATT 06 · <em class="op-utc">--:--:-- UTC</em></span></div>
+  <div class="op-body"><section class="op-tb"><div class="op-k">EINSATZBEFEHL<span class="op-x"> · CODENAME</span></div>
+    <div class="op-ttl"><div class="op-l1">OPERATION</div><div class="op-l2"><span>SPLENDIDE</span><i class="cl t"></i><i class="cl b"></i><i class="cv l"></i><i class="cv r"></i></div><div class="op-dim"><i></i><span>9 ZEICHEN · NACH HOTEL SPLENDIDE</span></div></div>
+    <dl class="op-meta"><dt>EINSATZRAUM</dt><dd>LOKET · KARLOVY VARY · PRAHA</dd><dt>ZEITRAUM</dt><dd>${depTxt()}</dd><dt>EINHEIT</dt><dd>00-EINHEIT · AGENT 01–04</dd><dt>FREIGABE</dt><dd>M</dd></dl></section>
+    <section class="op-map"><div class="op-mh"><b>LAGESKIZZE · ROUTE</b><span class="op-src">QUELLE · KONTO 7714-V</span></div><svg viewBox="${vb}" preserveAspectRatio="xMidYMid meet" aria-hidden="true" style="--u:${u.toFixed(3)}">${m}</svg><div class="op-co">50.0000 N · 12.0000 E</div></section></div>
+  <div class="op-par">${cell('a','AUFTRAG','—')}${cell('z','ZIELOBJEKTE','00')}${cell('r','ROUTE','—')}${cell('e','EMPFÄNGER','—')}${cell('p','PROFIL','—')}</div></div>`}
+function openFx(root){const o=root.querySelector('.op2');if(!o)return;const me=cur,ck=cxClock(),utc=o.querySelector('.op-utc');
+  const t=()=>{const d=new Date();utc.textContent=d.toISOString().slice(11,19)+' UTC'};t();const iv=setInterval(()=>{if(cur!==me||!o.isConnected)return clearInterval(iv);t()},1000);
+  later(()=>o.classList.add('in'),40);if(RM){o.classList.add('in','s-a','s-z','s-r','s-e','s-p');OP_SET(o,'all');o.querySelectorAll('.op-map .tp').forEach(g=>g.classList.add('on'));return}
+  later(()=>decode(o.querySelector('.op-l2 span'),1300),700);later(()=>decode(o.querySelector('.op-l1'),700),400);
+  /* Datenpakete auf der Geldspur, Fadenkreuz-Koordinaten */
+  const svg=o.querySelector('.op-map svg'),NS='http://www.w3.org/2000/svg',mo=[...svg.querySelectorAll('.mo path')],live=[],G=opGeo(),co=o.querySelector('.op-co'),ret=svg.querySelector('.ret');let last=0;
+  o._ret={x:G.cl[0][2],y:G.cl[0][3],tx:G.cl[0][2],ty:G.cl[0][3]};
+  (function f(now){if(cur!==me||!o.isConnected)return;const tm=ck(now);
+    if(o.classList.contains('s-a')&&tm-last>220){last=tm;const e=mo[(Math.random()*mo.length)|0],c=document.createElementNS(NS,'circle');c.setAttribute('r',(1.6*G.u).toFixed(2));c.setAttribute('class','pk');svg.insertBefore(c,ret);live.push({c,e,L:e.getTotalLength(),t0:tm,d:1100+Math.random()*600})}
+    for(let i=live.length-1;i>=0;i--){const q=live[i],u=(tm-q.t0)/q.d;if(u>=1){q.c.remove();live.splice(i,1);continue}const p=q.e.getPointAtLength(q.L*u);q.c.setAttribute('cx',p.x.toFixed(1));q.c.setAttribute('cy',p.y.toFixed(1))}
+    const R=o._ret;R.x+=(R.tx-R.x)*.12;R.y+=(R.ty-R.y)*.12;ret.setAttribute('transform',`translate(${R.x.toFixed(1)} ${R.y.toFixed(1)}) rotate(${(tm/40%360).toFixed(1)})`);
+    if(o.classList.contains('s-e')){const {P}=rproj(),m=maps.route.b,inv=(x,y)=>{const [a0,b0]=P(m[1],m[2]),[a1,b1]=P(m[0],m[3]);return[m[1]-(y-b0)/(b1-b0)*(m[1]-m[0]),m[2]+(x-a0)/(a1-a0)*(m[3]-m[2])]},[la,lo]=inv(R.x,R.y);co.textContent=`${la.toFixed(4)} N · ${lo.toFixed(4)} E`}
+    requestAnimationFrame(f)})(performance.now())}
+function OP_SET(o,k){const v={a:'GELDSPUR · 7714-V',z:'13',r:'1 · RUNDKURS',e:'UNBEKANNT',p:'VERDECKT'};(k==='all'?Object.keys(v):[k]).forEach(q=>{const b=o.querySelector(`.op-c[data-k="${q}"] b`);if(b)b.textContent=v[q]})}
+/* Ablauf zu den Worten: Auftrag · Geld · Dreizehn · Route · Empfänger · sehen */
+function openCue(root,at){const o=root.querySelector('.op2');if(!o||RM)return;const me=cur,ok=()=>cur===me&&o.isConnected,add=c=>ok()&&o.classList.add(c);
+  const tg=at('Geld'),td=at('Dreizehn'),tr=at('Route'),te=at('Empfänger'),ts=at('sehen');
+  later(()=>{add('s-a');if(!ok())return;OP_SET(o,'a');decode(o.querySelector('.op-c[data-k="a"] b'),600);SND.whoosh(.15)},tg);
+  later(()=>{add('s-z');if(!ok())return;countUp(o.querySelector('.op-c[data-k="z"] b'),13,1300,'');for(let i=0;i<13;i++)later(()=>{if(ok()){o.querySelectorAll('.op-map .tp')[i]?.classList.add('on');SND.tick&&SND.tick()}},i*95)},td);
+  later(()=>{add('s-r');if(!ok())return;OP_SET(o,'r');decode(o.querySelector('.op-c[data-k="r"] b'),500)},tr);
+  later(()=>{add('s-e');if(!ok())return;OP_SET(o,'e');decode(o.querySelector('.op-c[data-k="e"] b'),700);SND.ping();const G=opGeo(),R=o._ret,seq=[1,2,0,2];
+    seq.forEach((c,i)=>later(()=>{if(ok()){R.tx=G.cl[c][2]+(i<3?(Math.random()-.5)*14*G.u:0);R.ty=G.cl[c][3]+(i<3?(Math.random()-.5)*10*G.u:0)}},i*420));later(()=>add('s-lk'),seq.length*420)},te);
+  later(()=>{add('s-p');if(!ok())return;OP_SET(o,'p');decode(o.querySelector('.op-c[data-k="p"] b'),500)},ts)}
 function actCard(su,k,h,sub,arts){const lg=h.length>14;const mt=arts&&!RM?`<div class="ma-mont">${arts.map((a,i)=>`<div style="--i:${i}">${artSVG(a).replace('class="ms-asv"','class="ms-asv done" preserveAspectRatio="xMidYMid slice"')}</div>`).join('')}</div>`:'';
   return `<div class="ms-act${mt?' mt':''}">${mt}${lb}<div class="ma-su${su==='♥'||su==='♦'?' r':''}">${su}</div><div class="ma-k">${k}</div><div class="ma-h${lg?' long':''}">${h}</div><div class="ma-line"></div><div class="ma-s">${sub}</div></div>`}
 /* Cold Open: eingehende Übertragung aus Vauxhall Cross; Verbindungsende nach dem Finale */
@@ -5180,7 +5298,7 @@ const SC=[
  {ch:0,t:8,tr:'cut',og:'qu',og2:'sp',h:()=>orgScene('qu',2,'DIE ORGANISATION'),on:orgOn,c:'M: Hinter ihm stand Quantum. Hinter Quantum stand SPECTRE. Wir haben ihnen damals einen Arm abgeschlagen. Es sind zwei nachgewachsen.'},
  {ch:0,t:8,tr:'cut',og:'al',h:()=>orgScene('al',3,'UNSERE SEITE'),on:orgOn,c:'M: Damals hat uns das fast einen Agenten gekostet. Und eine Frau namens Vesper das Leben. Diesmal verlieren wir niemanden.'},
  {ch:0,t:13,tr:'cut',h:acct,on:acctOn,c:'M: Vor einundzwanzig Tagen wurde ein eingefrorenes Konto der Organisation reaktiviert. Kennwort: VESPER. Neun Überweisungen, über elf Millionen Euro. Alle Empfänger sitzen in Böhmen.'},
- {ch:0,t:12,tr:'cut',h:opening,on:openSnd,c:'M: Ihr Auftrag: Operation Splendide. Folgen Sie dem Geld. Dreizehn Zielobjekte, eine Route. Finden Sie den Empfänger, und lassen Sie sich nicht sehen.'},
+ {ch:0,t:12,tr:'cut',h:opening,on:openSnd,cue:openCue,c:'M: Ihr Auftrag: Operation Splendide. Folgen Sie dem Geld. Dreizehn Zielobjekte, eine Route. Finden Sie den Empfänger, und lassen Sie sich nicht sehen.'},
  {ch:1,t:6.5,leg:'a',h:()=>rmap('a'),on:rdrive,c:'Abfahrt Augsburg. Ab der tschechischen Grenze gilt Funkstille.'},
  A('loket',{ch:1,t:7,bp:'loket',fx:'lock',f:[.73,.62],id:'loket',k:'ZIELOBJEKT 01 / 13',face:'mathis',fc:'Kontakt vor Ort. Kennt jeden Polizisten der Stadt.',c:'Zielobjekt eins: Loket. Hier ging die erste Überweisung ein und wurde bar abgehoben. Finden Sie heraus, wer neu in der Stadt ist.'}),
  {ch:1,t:5.5,leg:'b',h:()=>rmap('b'),on:rdrive,c:'Zwölf Kilometer bis Karlsbad. Ab hier wird es eng.'},
@@ -5348,7 +5466,7 @@ function dustF(){dRaf=0;const r=st.getBoundingClientRect(),dp=Math.min(2,deviceP
   DP.forEach(q=>{if(playing){q.x+=.00009*q.z*(1+q.s);q.y-=.00004*q.z;q.p+=.018*q.s}if(q.x>1.02)q.x=-.02;if(q.y<-.02)q.y=1.02;
     const a=(.08+.3*q.z)*(.55+.45*Math.sin(q.p));c.fillStyle=`rgba(${dCol},${a.toFixed(3)})`;c.beginPath();c.arc(q.x*W,q.y*H,(.5+1.5*q.z)*dp,0,6.283);c.fill()});
   if(playing)dRaf=requestAnimationFrame(dustF)}
-function grade(s){const m=moodOf(s),k=s.h===coldOpen||s.h===lost?'k':s.on===pk?'c':m>=3?'r':s.h===opening||s.leg?'a':'c';cxGrade.className='cx-grade g-'+k;
+function grade(s){const m=moodOf(s),k=s.h===coldOpen||s.h===lost?'k':s.on===pk?'c':m>=3?'r':s.leg?'a':'c';cxGrade.className='cx-grade g-'+k;
   dCol=k==='r'?'240,85,74':k==='a'?'242,182,94':'143,215,232'}
 /* Übergänge: Lichtstreifen über das Bild bei jedem Schnitt */
 function streak(){if(RM)return;cxStreak.classList.remove('go');void cxStreak.offsetWidth;cxStreak.classList.add('go')}
@@ -5431,11 +5549,6 @@ function acctFx(root){const me=cur,NS='http://www.w3.org/2000/svg';const rows=[.
     requestAnimationFrame(f)})(performance.now())}
 
 /* ---- Titel: Buchstaben entschlüsseln, Lichtkante, 13 Zielpunkte zünden auf einer Linie ---- */
-function openFx(root){const o=root.querySelector('.ms-open');if(!o)return;
-  o.insertAdjacentHTML('afterbegin',`<div class="cx-ttl" aria-hidden="true"><svg viewBox="0 0 1000 470" preserveAspectRatio="xMidYMid slice"><circle cx="500" cy="235" r="150" class="r1"/><circle cx="500" cy="235" r="210" class="r2"/><circle cx="500" cy="235" r="300" class="r3"/>
-    <path d="M90 380L910 380" class="ln"/>${Array.from({length:13},(_,i)=>`<g style="--i:${i}"><circle cx="${(90+i*820/12).toFixed(1)}" cy="380" r="4" class="pt"/><circle cx="${(90+i*820/12).toFixed(1)}" cy="380" r="11" class="pr"/></g>`).join('')}</svg></div><i class="cx-flare" aria-hidden="true"></i>`);
-  const sp=o.querySelectorAll('.mo-title span');later(()=>sp.forEach((e,i)=>decode(e,900+i*500)),900);
-  later(()=>{const fl=o.querySelector('.cx-flare');if(fl)fl.classList.add('go')},1900)}
 
 /* ---- Cold Open: Globus, Funkstrecke London → Böhmen ---- */
 let WLD=null;
