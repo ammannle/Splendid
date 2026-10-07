@@ -27,9 +27,9 @@ NAMES = {'schiffre', 'lö', 'kwantum', 'spekter', 'wesper', 'splondiehd', 'roaja
          'karolinenthal', 'karlsbad', 'nassau', 'mühlbrunnkolonnade', 'pilsen', 'augsburg', 'böhmen', 'kaiserbad', 'grandhotel'}
 # Lautschrift -> so schreibt die Erkennung den Namen üblicherweise
 ALT = {'lö': ['le'], 'schiffre': ['chiffre', 'schiffer', 'shiffre'], 'spekter': ['spectre', 'specter', 'spektor'],
-       'kwantum': ['quantum'], 'wesper': ['vesper'], 'splondiehd': ['splendide', 'splendid'], 'kasino': ['casino'],
-       'roajal': ['royale', 'royal'], 'streht': ['straight', 'strait'], 'flasch': ['flush'], 'barrandoff': ['barrandov'],
-       'dänjub': ['danube', 'danjub'], 'haus': ['house'], 'emm': ['m', 'em'], 'loket': ['lokett', 'locket'], 'pupp': ['pup', 'pub'], 'faitsberg': ['veitsberg', 'veitsberk']}
+       'kwantum': ['quantum'], 'wesper': ['vesper', 'vespa'], 'splondiehd': ['splendide', 'splendid'], 'kasino': ['casino'],
+       'roajal': ['royale', 'royal'], 'streht': ['straight', 'strait'], 'flasch': ['flush'], 'barrandoff': ['barrandov', 'barrandow'],
+       'dänjub': ['danube', 'danjub'], 'haus': ['house'], 'emm': ['m', 'em'], 'loket': ['lokett', 'locket', 'loquet', 'lokeet'], 'pupp': ['pup', 'pub'], 'faitsberg': ['veitsberg', 'veitsberk', 'feitsberg', 'faitsberk']}
 FUNC = {'die', 'der', 'das', 'den', 'dem', 'ein', 'und', 'es', 'in', 'an', 'am', 'im', 'zu', 'um', 'so', 'ab'}
 
 def toks(t):
@@ -91,7 +91,7 @@ def check(asr, text, wav):
     errs, last = [], None
     for i, j in align(ref, hyp):
         if i is not None and j is not None:
-            good = (sim(ref[i], hyp[j]) >= .55 and any(hyp[j][:1] == f[:1] for f in [ref[i]] + ALT.get(ref[i], []))) if (ref[i] in ALT or ref[i] in NAMES) else same(ref[i], hyp[j])
+            good = (sim(ref[i], hyp[j]) >= .8 and any(hyp[j][:1] == f[:1] for f in [ref[i]] + ALT.get(ref[i], []))) if (ref[i] in ALT or ref[i] in NAMES) else same(ref[i], hyp[j])
             if good: last = (i, j); continue
             errs.append(f'{ref[i]}≠{hyp[j]}')
         elif i is not None:
