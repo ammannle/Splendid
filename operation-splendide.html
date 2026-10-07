@@ -121,7 +121,9 @@ section{margin-top:56px}
 .msg .sig{font-family:var(--head);font-size:2.6rem;font-weight:700;color:var(--amber);line-height:1;margin-top:8px}
 .redact{background:var(--ink);color:transparent;border-radius:1px;user-select:none}
 .goals{list-style:none;margin:0;padding:6px 0}
-.goals li{display:grid;grid-template-columns:58px 1fr;gap:10px;padding:12px 14px;border-bottom:1px solid var(--line);font-size:.9rem}
+.depd{display:flex;flex-wrap:wrap;align-items:center;gap:8px}.depd input{padding:4px 6px;font-family:var(--mono)}.depd .qbtn{padding:4px 8px}#dflags{flex-basis:100%;color:var(--amber);font-size:.78rem}
+.stamp[hidden]{display:none!important}
+.goals li{display:grid;grid-template-columns:58px 1fr;gap:8px;padding:7px 12px;border-bottom:1px solid var(--line);font-size:.84rem;line-height:1.35}
 .goals li:last-child{border-bottom:none}
 .goals .g{font-family:var(--mono);font-size:.68rem;color:var(--cyan)}
 .goals .g i{display:block;font-style:normal;margin-top:3px}
@@ -468,7 +470,7 @@ footer{margin:60px auto 0;padding:18px 20px 40px;max-width:1240px;border-top:1px
 .dpick{display:grid;grid-template-columns:1fr auto auto;gap:10px 12px;align-items:center;padding:12px 16px;margin-top:12px}
 .dpick label b{display:block;font-family:var(--mono);font-size:.7rem;color:var(--amber);letter-spacing:.08em;font-weight:600}
 .dpick label span{font-size:.86rem;color:var(--mute)}
-.dpick input,.fx input,.fxr input{background:var(--bg2);border:1px solid var(--line2);color:var(--ink);border-radius:2px;color-scheme:dark}
+.dpick input,.depd input,.fx input,.fxr input{background:var(--bg2);border:1px solid var(--line2);color:var(--ink);border-radius:2px;color-scheme:dark}
 :root[data-theme="light"] .dpick input,:root[data-theme="light"] .fx input,:root[data-theme="light"] .fxr input{color-scheme:light}
 .dpick input{font-family:var(--mono);font-size:.9rem;padding:6px 10px}
 .dpick input:focus-visible,.fx input:focus-visible,.fxr input:focus-visible{outline:2px solid var(--amber);outline-offset:1px}
@@ -2082,7 +2084,7 @@ html.msfull{overflow:hidden}
   <button class="rdy" type="button" id="rdyBtn" title="Einsatzbereitschaft (Taste ?: Kürzel)"><i><b id="rdyBar"></b></i><span id="rdyN">BEREIT –</span></button>
   <span class="hide-s">MI6 · 00-SEKTION · OPS-ZENTRALE</span>
   <span class="hide-m clk" id="clk" aria-label="Ortszeit London und Prag">LDN --:-- · PRG --:--</span>
-  <nav aria-label="Module"><a href="#tx">Befehl</a><a href="#mission">Briefing</a><a href="#ops">Einsatzplan</a><a href="#assets">Quartiere</a><a href="#targets">Ziele</a><a href="#maps">Lage</a><a href="#persons">Personen</a><a href="#garage">Garage</a><a href="#gadgets">Gadgets</a><a href="#qlab">Q-Lab</a><a href="#world-sec">Archiv</a></nav>
+  <nav aria-label="Module"><a href="#tx">Befehl</a><a href="#mission">Briefing</a><a href="#assets">Quartiere</a><a href="#targets">Ziele</a><a href="#maps">Lage</a><a href="#persons">Personen</a><a href="#garage">Garage</a><a href="#gadgets">Gadgets</a><a href="#qlab">Q-Lab</a><a href="#world-sec">Archiv</a></nav>
   <button class="theme-btn" id="themeBtn" type="button">Tag / Nacht</button>
 </div>
 
@@ -2133,14 +2135,15 @@ html.msfull{overflow:hidden}
       <div class="panel">
         <div class="ph"><b>ÜBERTRAGUNG // M</b><span class="st" id="decState">ENTSCHLÜSSELT</span></div>
         <div class="msg">
-          <dl class="meta"><dt>AN</dt><dd>00-Einheit · 4 Agenten</dd><dt>VON</dt><dd>M</dd><dt>KOPIE</dt><dd>Q · Schatzamt (zur Kenntnis, widerwillig)</dd><dt>AKTENZEICHEN</dt><dd>OS-26/CZ · Ablage: Vauxhall Cross, 3. UG</dd><dt>BETREFF</dt><dd>Operation Splendide</dd><dt>EINSATZGEBIET</dt><dd>Loket · Karlsbad · Prag</dd><dt>ZEITRAUM</dt><dd>November 2026 · 2–4 Tage</dd></dl>
-          <p data-dec>00-Agenten,</p>
+          <dl class="meta"><dt>AN</dt><dd>00-Einheit · Agent 01–04</dd><dt>VON</dt><dd>M</dd><dt>KOPIE</dt><dd>Q · Schatzamt (zur Kenntnis, widerwillig)</dd><dt>AKTENZEICHEN</dt><dd>OS-26/CZ · Ablage: Vauxhall Cross, 3. UG</dd><dt>BETREFF</dt><dd>Operation Splendide · Konto 7714-V</dd><dt>EINSATZGEBIET</dt><dd>Loket · Karlsbad · Prag</dd><dt>ABREISE</dt><dd class="depd"><input type="date" id="dep" min="2026-11-01" max="2026-11-30" aria-label="Abreisedatum, November 2026"><button class="qbtn" type="button" id="depClr">LEEREN</button><span id="dflags" aria-live="polite"></span></dd></dl>
+          <p data-dec>00-Einheit,</p>
           <p data-dec>ich fasse mich kurz. Sie lesen ohnehin nur die Hälfte.</p>
-          <p data-dec>Ein beträchtlicher Teil unserer jüngeren Geschichte wurde nicht dort gedreht, wo er spielt. Montenegro liegt in Westböhmen. Miami liegt in Prag-Karlín. Venedig ist das Treppenhaus eines Museums, und mein Londoner Sitzungssaal ist eine Klosterbibliothek. Ich habe das aus der Zeitung erfahren. Das gefällt mir nicht.</p>
-          <p data-dec>Sie fahren hin. Sie sichern alle dreizehn Zielobjekte, Sie dokumentieren sie, und Sie fassen nichts an, das älter ist als Sie. Das betrifft in Karlsbad nahezu alles.</p>
-          <p data-dec>Die Unterbringung ist keine Empfehlung. Sie beziehen für eine Nacht Quartier im Grandhotel Pupp, dem Hotel Splendide, und erscheinen am Abend im Casino. Im Smoking, mit gültigem Ausweis und mit einem Limit, das Sie vorher festlegen und hinterher nicht neu verhandeln.</p>
+          <p data-dec>Vor zwanzig Jahren hat ein Bankier namens Le Chiffre das Geld von Terroristen am Spieltisch verspielt. Seine Auftraggeber haben ihn dafür beseitigt. Hinter ihm stand Quantum, hinter Quantum SPECTRE. Wir haben ihnen damals einen Arm abgeschlagen. Es sind zwei nachgewachsen.</p>
+          <p data-dec>Vor einundzwanzig Tagen wurde ein eingefrorenes Konto der Organisation reaktiviert. Konto 7714-V, Kennwort VESPER. Neun Überweisungen aus Zürich, Liechtenstein, Luxemburg, Nassau und Zypern, zusammen 11,4 Millionen Euro. Alle Empfänger sitzen in Böhmen.</p>
+          <p data-dec>Ihr Auftrag: Folgen Sie dem Geld. Dreizehn Zielobjekte, eine Route, von Loket über Karlsbad nach Prag und über Pilsen zurück. Finden Sie den Empfänger, und lassen Sie sich nicht sehen.</p>
+          <p data-dec>Sie beziehen für eine Nacht Quartier im Grandhotel Pupp, dem Hotel Splendide. Am Abend wird gespielt: im Smoking, mit gültigem Ausweis und mit einem Limit, das Sie vorher festlegen und hinterher nicht neu verhandeln.</p>
           <p data-dec>Am 14. November ist es zwanzig Jahre her, dass dieser Einsatz in London uraufgeführt wurde. Ich erwarte keine Feierlichkeiten. Ich erwarte Haltung.</p>
-          <p data-dec>Q lässt ausrichten, dass das Fahrzeug unbeschädigt zurückkommt. Ich lasse ausrichten, dass mich das Fahrzeug weniger interessiert als Ihre Spesenabrechnung.</p>
+          <p data-dec>Ihr Bericht geht nur an mich. Trauen Sie niemandem, der Ihnen zu schnell vertraut. Q lässt ausrichten, dass das Fahrzeug unbeschädigt zurückkommt. Mich interessiert das Fahrzeug weniger als Ihre Spesenabrechnung.</p>
           <p>Über die Spesen sprechen wir, wenn Sie <span class="redact">gewonnen haben</span> zurück sind.</p>
           <div class="sig">M</div>
           <p class="ps" data-dec>P.S. Ein Vesper. Nicht drei. Die Rechnungen landen auf meinem Schreibtisch.</p>
@@ -2148,13 +2151,23 @@ html.msfull{overflow:hidden}
         </div>
       </div>
       <div class="panel">
-        <div class="ph"><b>MISSIONSZIELE</b><span id="goalN">0/5 ERFÜLLT</span></div>
+        <div class="ph"><b>MISSIONSZIELE</b><span id="goalN">0/15 ERFÜLLT</span></div>
         <ul class="goals" id="goals">
-          <li class="must" data-g="1"><span class="g">ZIEL 01<i>PFLICHT</i></span><span>Eine Nacht im Grandhotel Pupp, Karlsbad.<em>Nicht verhandelbar.</em></span></li>
-          <li class="must" data-g="2"><span class="g">ZIEL 02<i>PFLICHT</i></span><span>Einsatz am Spieltisch im Casino des Pupp. Limit vorher festlegen.<em>Das Limit gilt auch nach dem dritten Gewinn.</em></span></li>
-          <li data-g="3"><span class="g">ZIEL 03<i>PRIMÄR</i></span><span>Alle zugänglichen Zielobjekte in Loket, Karlsbad und Prag aufsuchen.<em>Fotos als Nachweis. Keine Selfies vor Ministerien.</em></span></li>
-          <li data-g="4"><span class="g">ZIEL 04<i>SEKUNDÄR</i></span><span>Abhörzentrale unter dem Hotel Jalta inspizieren.<em>Sprechen Sie dort leise. Aus Prinzip.</em></span></li>
-          <li data-g="5"><span class="g">ZIEL 05<i>SEKUNDÄR</i></span><span>Einen korrekt zubereiteten Vesper bestellen. Einen.<em>Siehe P.S.</em></span></li>
+          <li class="must" data-g="pupp"><span class="g">ZIEL 01<i>PFLICHT</i></span><span>Eine Nacht im Grandhotel Pupp, dem Hotel Splendide.<em>Nicht verhandelbar.</em></span></li>
+          <li class="must" data-g="casino"><span class="g">ZIEL 02<i>PFLICHT</i></span><span>Einsatz am Spieltisch im Casino des Pupp, im Smoking und mit Ausweis. Limit vorher festlegen.<em>Das Limit gilt auch nach dem dritten Gewinn.</em></span></li>
+          <li class="" data-g="dinner"><span class="g">ZIEL 03<i>PRIMÄR</i></span><span>Dinner im Grandrestaurant Pupp, am Schauplatz des Dinners mit Vesper. Nach dem Tisch aus der Filmszene fragen.<em>Sie bestellen. Nicht der Kellner.</em></span></li>
+          <li class="" data-g="vesper"><span class="g">ZIEL 04<i>SEKUNDÄR</i></span><span>Einen korrekt zubereiteten Vesper in Becher’s Bar. Einen.<em>Siehe P.S.</em></span></li>
+          <li class="" data-g="loket"><span class="g">ZIEL 05<i>PRIMÄR</i></span><span>Loket: der Marktplatz, auf dem Bond und Vesper Mathis treffen, danach der Blick von der Burg auf die Ohře-Schleife.<em>Finden Sie heraus, wer neu in der Stadt ist.</em></span></li>
+          <li class="" data-g="kaiserbad"><span class="g">ZIEL 06<i>PRIMÄR</i></span><span>Führung im Kaiserbad, der Fassade des Casino Royale.<em>Reservieren. Improvisation ist etwas für Leute ohne Termine.</em></span></li>
+          <li class="" data-g="kolonnade"><span class="g">ZIEL 07<i>SEKUNDÄR</i></span><span>Dämmerungsgang vom Tržiště zur Mühlbrunnkolonnade, die Filmstrecke rückwärts.<em>Viele Säulen, viele Schatten.</em></span></li>
+          <li class="" data-g="strahov"><span class="g">ZIEL 08<i>PRIMÄR</i></span><span>Strahov-Bibliothek, mein Committee Room. Innenführung Wochen vorher anfragen.<em>Fotografieren Sie leise.</em></span></li>
+          <li class="" data-g="karlin"><span class="g">ZIEL 09<i>SEKUNDÄR</i></span><span>Karlín bei Nacht: Danube House und Verkehrsministerium, die Schwarzweiß-Eröffnung.<em>Sie bleiben draußen.</em></span></li>
+          <li class="" data-g="museum"><span class="g">ZIEL 10<i>PRIMÄR</i></span><span>Die Prunktreppe des Nationalmuseums, die „Venedig“-Lobby.<em>Achten Sie darauf, wer Sie beobachtet.</em></span></li>
+          <li class="" data-g="bunker"><span class="g">ZIEL 11<i>SEKUNDÄR</i></span><span>Abhörzentrale im Bunker unter dem Hotel Jalta. Nur mit Reservierung.<em>Sprechen Sie dort leise. Aus Prinzip.</em></span></li>
+          <li class="" data-g="vitkov"><span class="g">ZIEL 12<i>SEKUNDÄR</i></span><span>Dachterrasse des Nationaldenkmals Vítkov, der beste Blick über Prag. Nicht montags.<em>Auch Denkmäler haben einen Ruhetag. Sie nicht.</em></span></li>
+          <li class="" data-g="hemingway"><span class="g">ZIEL 13<i>SEKUNDÄR</i></span><span>Ein Abend in der Hemingway Bar. Diesmal etwas anderes als einen Vesper.<em>Der Barkeeper berät. Sie hören zu.</em></span></li>
+          <li class="" data-g="barrandov"><span class="g">ZIEL 14<i>SEKUNDÄR</i></span><span>Fotostopp am Studioturm Barrandov auf dem Rückweg.<em>Hier endet die Spur des Geldes. Betreten verboten.</em></span></li>
+          <li class="" data-g="walther"><span class="g">ZIEL 15<i>OPTIONAL</i></span><span>Ranger Shooting mit Instruktor. Nach einer Walther fragen.<em>Kein Vesper davor.</em></span></li>
         </ul>
         <p class="ghint">Erfüllte Ziele antippen. Der Stand bleibt auf diesem Gerät gespeichert.</p>
       </div>
@@ -2162,7 +2175,7 @@ html.msfull{overflow:hidden}
   </section>
 
   <section id="mission">
-    <div class="sh"><div><div class="ix">MODUL 02 // BRIEFING</div><h2>Missionsbriefing</h2></div><p>Gut sechs Minuten, in der Reihenfolge des Einsatzplans: Auftrag, Tag 1 bis Tag 3, Finale. M hat darauf bestanden, dass Sie es sich ansehen.</p></div>
+    <div class="sh"><div><div class="ix">MODUL 02 // BRIEFING</div><h2>Missionsbriefing</h2></div><p>Gut drei Minuten: Lage, Konto VESPER, Auftrag und die dreizehn Zielobjekte entlang der Route. M hat darauf bestanden, dass Sie es sich ansehen.</p></div>
     <div class="panel ms"><div class="ph"><b>BRIEFING // OPERATION SPLENDIDE</b><span class="st" id="msTime"></span></div>
       <div class="ms-stage" id="msStage" aria-live="off"></div><button type="button" class="ms-skipb" id="msSkip">BRIEFING ÜBERSPRINGEN ›</button>
       <div class="ms-cap" id="msCap"><canvas class="ms-scope" id="msScope" aria-hidden="true"></canvas><div class="ms-ct" id="msCapT" aria-live="polite"></div><div class="ms-lage" id="msLage" aria-hidden="true"></div></div>
@@ -2171,21 +2184,8 @@ html.msfull{overflow:hidden}
     </div>
   </section>
 
-  <section id="ops">
-    <div class="sh"><div><div class="ix">MODUL 03 // OPERATIONSPLANUNG</div><h2>Einsatzplan</h2></div><div class="tabs" role="tablist" id="planTabs"></div></div>
-    <p class="plannote" id="planNote"></p>
-    <div class="panel dpick">
-      <label for="dep"><b>ABREISE TAG 1</b><span>Datum wählen: Wochentage, Sonnenuntergang und Warnungen erscheinen im Plan.</span></label>
-      <input type="date" id="dep" min="2026-11-01" max="2026-11-30">
-      <button class="qbtn" type="button" id="depClr">LEEREN</button>
-      <div class="dflags" id="dflags" aria-live="polite"></div>
-    </div>
-    <div class="pltools"><div class="plnow" id="planNow" aria-live="polite"></div><div class="qbtns"><button class="qbtn" type="button" id="plExp" aria-pressed="false">ALLE DETAILS</button><button class="qbtn" type="button" id="plOpen" aria-pressed="false">NUR OFFENE</button></div></div>
-    <div id="days"></div>
-  </section>
-
   <section id="assets">
-    <div class="sh"><div><div class="ix">MODUL 04 // LOGISTIK</div><h2>Quartiere &amp; Assets</h2></div><p>Vier Agenten, zwei Zimmer pro Quartier. Karlsbad ist befohlen, Prag nach Lage.</p></div>
+    <div class="sh"><div><div class="ix">MODUL 03 // LOGISTIK</div><h2>Quartiere &amp; Assets</h2></div><p>Vier Agenten, zwei Zimmer pro Quartier. Karlsbad ist befohlen, Prag nach Lage.</p></div>
     <div class="cards" id="hotelList"></div>
     <div class="cards" id="extras" style="margin-top:10px"></div>
     <div class="panel recipe">
@@ -2195,13 +2195,13 @@ html.msfull{overflow:hidden}
   </section>
 
   <section id="targets">
-    <div class="sh"><div><div class="ix">MODUL 05 // ZIELERFASSUNG</div><h2>Zielobjekte</h2></div><p>Dreizehn Drehorte in Reihenfolge der Route. Ziel auswählen für Lagebericht und Koordinaten.</p></div>
+    <div class="sh"><div><div class="ix">MODUL 04 // ZIELERFASSUNG</div><h2>Zielobjekte</h2></div><p>Dreizehn Drehorte in Reihenfolge der Route. Ziel auswählen für Lagebericht und Koordinaten.</p></div>
     <div class="grid" id="deck"></div>
     <div class="panel detail" id="detail" aria-live="polite"></div>
   </section>
 
   <section id="maps">
-    <div class="sh"><div><div class="ix">MODUL 06 // KARTOGRAFIE</div><h2>Lagekarten</h2></div><div class="tabs" role="tablist" id="mapTabs"></div></div>
+    <div class="sh"><div><div class="ix">MODUL 05 // KARTOGRAFIE</div><h2>Lagekarten</h2></div><div class="tabs" role="tablist" id="mapTabs"></div></div>
     <div class="panel">
       <div class="ph"><b id="mapTitle">LAGE</b><span id="mapCode"></span></div>
       <div class="mapbox"><svg id="map" viewBox="0 0 1000 640" data-w="1000" data-h="640" role="img" aria-label="Lagekarte"></svg>
@@ -2214,7 +2214,7 @@ html.msfull{overflow:hidden}
   </section>
 
   <section id="persons">
-    <div class="sh"><div><div class="ix">MODUL 07 // ZIELPERSONEN</div><h2>Personenakten</h2></div><p>Elf Akten aus dem Einsatz Casino Royale, gezeichnet nach Beobachtung, frontal und im Profil, mit Erkennungsmerkmalen. Dazu fünf Organisationen und wer wem gehorcht.</p></div>
+    <div class="sh"><div><div class="ix">MODUL 06 // ZIELPERSONEN</div><h2>Personenakten</h2></div><p>Elf Akten aus dem Einsatz Casino Royale, gezeichnet nach Beobachtung, frontal und im Profil, mit Erkennungsmerkmalen. Dazu fünf Organisationen und wer wem gehorcht.</p></div>
     <div class="panel"><div class="ph"><b>REGISTRATUR // PERSONEN</b><span class="st">11 AKTEN · OFFICIAL–SENSITIVE</span></div>
       <div class="pawrap"><div class="palist" id="paList" aria-label="Personen"></div>
         <div class="pamain"><div class="pasheet" id="paSheet"></div><div class="patext" id="paText" aria-live="polite"></div></div></div>
@@ -2226,7 +2226,7 @@ html.msfull{overflow:hidden}
   </section>
 
   <section id="garage">
-    <div class="sh"><div><div class="ix">MODUL 08 // Q-ABTEILUNG · FUHRPARK</div><h2>Qs Garage</h2></div><p>Jedes Fahrzeug, das 007 im Dienst bewegt hat, als Seitenriss mit Datenblatt, Ausstattung und Rückgabeprotokoll. Bitte nichts anfassen.</p></div>
+    <div class="sh"><div><div class="ix">MODUL 07 // Q-ABTEILUNG · FUHRPARK</div><h2>Qs Garage</h2></div><p>Jedes Fahrzeug, das 007 im Dienst bewegt hat, als Seitenriss mit Datenblatt, Ausstattung und Rückgabeprotokoll. Bitte nichts anfassen.</p></div>
     <div class="panel gz">
       <div class="ph"><b>FUHRPARK // SEITENRISSE</b><span class="st" id="gzState"></span></div>
       <div class="gzf" id="gzFlt" role="group" aria-label="Hersteller"><button type="button" aria-pressed="true" data-f="Alle">ALLE</button><button type="button" aria-pressed="false" data-f="Aston Martin">ASTON MARTIN</button><button type="button" aria-pressed="false" data-f="BMW">BMW</button><button type="button" aria-pressed="false" data-f="Lotus">LOTUS</button><button type="button" aria-pressed="false" data-f="Andere">ANDERE</button></div>
@@ -2251,7 +2251,7 @@ html.msfull{overflow:hidden}
   </section>
 
   <section id="gadgets">
-    <div class="sh"><div><div class="ix">MODUL 09 // Q-ABTEILUNG · AUSRÜSTUNG</div><h2>Qs Gadgets</h2></div><p>Ausrüstung aus sechs Jahrzehnten, als Bauplan mit Datenblatt, Vorführung und Rückgabeprotokoll. Quittieren Sie, was Sie mitnehmen.</p></div>
+    <div class="sh"><div><div class="ix">MODUL 08 // Q-ABTEILUNG · AUSRÜSTUNG</div><h2>Qs Gadgets</h2></div><p>Ausrüstung aus sechs Jahrzehnten, als Bauplan mit Datenblatt, Vorführung und Rückgabeprotokoll. Quittieren Sie, was Sie mitnehmen.</p></div>
     <div class="panel gz gd">
       <div class="ph"><b>AUSRÜSTUNG // BAUPLÄNE</b><span class="st" id="gdState"></span></div>
       <div class="gzf" id="gdFlt" role="group" aria-label="Kategorie"></div>
@@ -2272,7 +2272,7 @@ html.msfull{overflow:hidden}
   </section>
 
   <section id="qlab">
-    <div class="sh"><div><div class="ix">MODUL 10 // Q-ABTEILUNG · TRAINING</div><h2>Trainingsprogramm</h2></div><p>Vorbereitung auf den Einsatz. Gespielt wird mit Übungsgeld des Schatzamts.</p></div>
+    <div class="sh"><div><div class="ix">MODUL 09 // Q-ABTEILUNG · TRAINING</div><h2>Trainingsprogramm</h2></div><p>Vorbereitung auf den Einsatz. Gespielt wird mit Übungsgeld des Schatzamts.</p></div>
     <div class="panel rt">
       <div class="ph"><b>SPIELTISCH // ROULETTE · EUROPÄISCH, EINE ZERO</b><span class="st" id="rtState">FAITES VOS JEUX</span></div>
       <div class="rtb">
@@ -2351,7 +2351,7 @@ html.msfull{overflow:hidden}
   </section>
 
   <section id="world-sec">
-    <div class="sh"><div><div class="ix">MODUL 11 // WELTLAGE</div><h2>Das Archiv</h2></div><p>Alle Einsätze seit 1962 auf einer Karte. Jede Linie ist ein Film, jeder Punkt ein Schauplatz der Handlung, und die Figuren sind unterwegs. Film wählen oder Chronologie abspielen.</p></div>
+    <div class="sh"><div><div class="ix">MODUL 10 // WELTLAGE</div><h2>Das Archiv</h2></div><p>Alle Einsätze seit 1962 auf einer Karte. Jede Linie ist ein Film, jeder Punkt ein Schauplatz der Handlung, und die Figuren sind unterwegs. Film wählen oder Chronologie abspielen.</p></div>
     <div class="panel">
       <div class="ph"><b id="wTitle">WELTLAGE</b><span id="wStat"></span></div>
       <div class="fstrip" id="wFilms" aria-label="Filme"></div>
@@ -2473,81 +2473,6 @@ const maps={
    riverName:['Moldau',50.0745,14.4005],
    cards:['strahov','danube','ministry','museum','vitkov'], extras:['jalta','hemingway','ranger','advent'], pos:{strahov:'r',ministry:'l',danube:'r',vitkov:'l'},
    edge:['airport','Flughafen 12 km →',0], note:'Wenzelsplatz-Cluster: Nationalmuseum, Bunker und Schießstand liegen fußläufig beieinander'}
-};
-/* Einsatzplan: Programmpunkte mit Art, Dauer (Min.), Ort für Karte/Route, Reservierung und Details.
-   k: drive, visit, walk, food, bar, hotel, casino, free · q: Suchbegriff für Google Maps · bk: Reservierungsschlüssel */
-const BK={
- vignette:{n:'E-Vignette Tschechien',w:'vor Abfahrt',h:'Nur über edalnice.cz, an das Kennzeichen gebunden. 10 Tage: 300 CZK.',u:'https://edalnice.cz'},
- pupp:{n:'Grandhotel Pupp · 2 Zimmer',w:'so früh wie möglich',h:'Direkt beim Hotel; nach renovierten Zimmern und dem Filmtisch im Grandrestaurant fragen.'},
- kaiserbad:{n:'Führung Kaiserbad',w:'1–2 Wochen vorher',h:'Führungszeiten für den Anreisetag erfragen; Gruppe 4 Personen.'},
- grandrest:{n:'Tisch Grandrestaurant Pupp',w:'mit der Zimmerbuchung',h:'19:30 Uhr, vier Personen, Smoking erwünscht.'},
- strahov:{n:'Innenführung Strahov-Bibliothek',w:'mehrere Wochen vorher',h:'Per E-Mail an das Kloster; Plätze sind knapp. Ohne Führung nur Blick von der Tür.',u:'https://www.strahovskyklaster.cz/en/for-visitors'},
- prghotel:{n:'Hotel Prag · 2 Zimmer + Garage',w:'früh',h:'Jalta (Bunker im Haus) oder Mandarin Oriental; Garage bestätigen lassen.'},
- dinner2:{n:'Abendessen Karlín',w:'einige Tage vorher',h:'Tisch für vier gegen 19:30 Uhr in Karlín.'},
- hemingway:{n:'Hemingway Bar',w:'einige Tage vorher',h:'Karoliny Světlé 26; ohne Reservierung oft voll.'},
- bunker:{n:'Bunker-Führung Hotel Jalta',w:'mind. 5 Stunden vorher',h:'Max. 7 Personen pro Gruppe, 250 CZK pro Person, ca. 80 Minuten.',u:'https://prague.eu/en/objevujte/cold-war-museum-muzeum-studene-valky/'},
- ranger:{n:'Ranger Shooting (optional)',w:'einige Tage vorher',h:'Paket mit Instruktor, nach einer Walther fragen.'},
- fine:{n:'Fine Dining Prag (4 Tage)',w:'1–2 Wochen vorher',h:'Michelin-Adresse, Smoking passt.'}};
-const P={aug:'Augsburg',loket:'náměstí T. G. Masaryka, Loket',burg:'Hrad Loket',pupp:'Grandhotel Pupp, Karlovy Vary',kaiser:'Císařské lázně, Karlovy Vary',trz:'Tržiště, Karlovy Vary',mlyn:'Mlýnská kolonáda, Karlovy Vary',
- air:'Letiště Václava Havla Praha, Terminal 1',strahov:'Strahovská knihovna, Praha',brau:'Klášterní pivovar Strahov, Praha',karl:'Karlův most, Praha',danube:'Danube House, Karolinská 650/1, Praha',min:'Ministerstvo dopravy, nábřeží Ludvíka Svobody 1222, Praha',
- karlin:'Karlín, Praha',hem:'Hemingway Bar, Karoliny Světlé 26, Praha',vitkov:'Národní památník na Vítkově, Praha',mus:'Národní muzeum, Praha',jalta:'Hotel Jalta, Václavské náměstí 45, Praha',ranger:'Ranger Shooting, Lublaňská 23, Praha',barr:'Barrandov Studios, Praha',altst:'Staroměstské náměstí, Praha'};
-const DRIVE={aug_loket:{km:335,min:240,via:'über Nürnberg, Marktredwitz, Grenze Schirnding/Pomezí, Cheb'},loket_kv:{km:12,min:20},kv_air:{km:115,min:90,via:'D6'},air_prg:{km:18,min:25},prg_aug:{km:425,min:270,via:'D5 über Pilsen, Grenze Rozvadov/Waidhaus, A6 Nürnberg'}};
-const D1={n:'Tag 1',t:'Phase Montenegro',sub:'Augsburg → Loket → Karlsbad · Nacht im Grandhotel Pupp',city:'kv',items:[
- {t:'07:30',k:'drive',x:'Abfahrt Augsburg → Loket',dur:240,from:P.aug,q:P.loket,dr:'aug_loket',bk:'vignette',d:'Ca. 335 km, gut 4 Stunden über Nürnberg und Marktredwitz. Tankpause vor der Grenze, Sprit ist in Tschechien selten teurer. Ab Cheb gilt die E-Vignette.'},
- {t:'11:30',k:'visit',x:'Loket: Marktplatz, Kontakt Mathis',r:'loket',dur:60,q:P.loket,d:'Der Platz mit Dreifaltigkeitssäule, wo Bond und Vesper Mathis treffen. Mittagessen direkt am Platz.'},
- {t:'12:45',k:'visit',x:'Burg Loket',dur:60,q:P.burg,d:'Gotische Burg über der Ohře-Schleife. Bester Blick auf die Dächer und die Flussschleife.'},
- {t:'14:00',k:'drive',x:'Weiter nach Karlsbad, Check-in Pupp',r:'pupp',dur:45,from:P.loket,q:P.pupp,dr:'loket_kv',bk:'pupp',d:'20 Minuten Fahrt. Auto am Hotel abstellen und bis zum nächsten Morgen stehen lassen.'},
- {t:'15:00',k:'visit',x:'Kaiserbad: Führung',r:'kaiserbad',dur:75,q:P.kaiser,bk:'kaiserbad',d:'Die Fassade des Casino Royale, innen Zander-Saal und Kaiserkabine. Liegt gegenüber dem Pupp.'},
- {t:'16:15',k:'walk',x:'Dämmerungsspaziergang Tržiště → Mühlbrunnkolonnade',r:'trziste',dur:50,from:P.pupp,q:P.mlyn,d:'Die Filmstrecke rückwärts, etwa 15 Minuten Gehzeit plus Fotostopps. Die Kolonnaden sind überdacht.'},
- {t:'18:15',k:'free',x:'Zurück im Hotel, Smoking anlegen',dur:60,q:P.pupp,d:'Dresscode für Restaurant und Casino. Ausweise einstecken. Limit festlegen und aufschreiben.'},
- {t:'19:30',k:'food',x:'Dinner im Grandrestaurant Pupp',r:'pupp',dur:90,q:P.pupp,bk:'grandrest',d:'Am Schauplatz des Dinners mit Vesper. Nach dem Tisch aus der Filmszene fragen.'},
- {t:'21:00',k:'bar',x:'Becher’s Bar: ein Vesper',dur:50,q:P.pupp,d:'Ein Vesper pro Agent. Alternativ Beton, die Karlsbader Hausempfehlung.'},
- {t:'22:00',k:'casino',x:'Hauptziel: Casino im Pupp',dur:120,q:P.pupp,d:'Ausweis am Einlass, Limit vorher, Smoking. Roulette und Blackjack. La-partage-Regel beim Croupier erfragen.'},
- {t:'Nacht',k:'hotel',x:'Hotel Splendide',dur:0,q:P.pupp,d:'Rückzug in die Zimmer. Frühstück am Morgen ist Teil des Einsatzes.'}],
- b:'Regen ändert wenig: Kaiserbad, Pupp und Casino sind drinnen, die Kolonnaden überdacht. Bei Sturm die Burg Loket streichen und länger beim Mittagessen bleiben.'};
-const D2={n:'Tag 2',t:'Phase London & Miami',sub:'Karlsbad → Prag · Übernachtung Prag',city:'prg',items:[
- {t:'08:30',k:'food',x:'Frühstück im Pupp',dur:60,q:P.pupp,d:'Ohne Hast. Die Rechnung des Casinos wird hier nicht besprochen.'},
- {t:'09:30',k:'drive',x:'Karlsbad → Prag, über die D6',dur:90,from:P.pupp,q:P.air,dr:'kv_air',d:'Ca. 115 km. Direkt am Flughafen vorbei, daher der Stopp.'},
- {t:'11:15',k:'visit',x:'Terminal 1: Bonds „Miami Airport“',r:'airport',dur:30,q:P.air,d:'Kurzzeitparken, Halle und Abflugtafel. Die Rollfeld-Szenen stammen aus England.'},
- {t:'12:00',k:'drive',x:'Check-in Prag, Auto in die Garage',dur:45,from:P.air,q:P.jalta,dr:'air_prg',bk:'prghotel',d:'Ab hier nur noch zu Fuß, Tram und Taxi. Blaue Parkzonen sind Anwohnern vorbehalten.'},
- {t:'13:00',k:'visit',x:'Strahov-Bibliothek: Ms Committee Room',r:'strahov',dur:75,q:P.strahov,bk:'strahov',d:'Philosophischer Saal. Ohne Innenführung nur von der Tür aus, trotzdem eindrucksvoll.'},
- {t:'14:30',k:'food',x:'Mittagessen Klosterbrauerei Strahov',dur:60,q:P.brau,d:'Gleich nebenan. Ein Bier für M, symbolisch.'},
- {t:'15:30',k:'walk',x:'Burgviertel, Kleinseite, Karlsbrücke',dur:120,from:P.brau,q:P.karl,d:'Bergab durch die Kleinseite, Karlsbrücke zur Dämmerung (Sonnenuntergang siehe oben).'},
- {t:'17:45',k:'visit',x:'Karlín bei Nacht: Ministerium und Danube House',r:'danube',dur:60,from:P.karl,q:P.danube,d:'Die Schwarzweiß-Eröffnung. Tram oder Taxi nach Karlín, dann zu Fuß zum Verkehrsministerium.'},
- {t:'19:30',k:'food',x:'Abendessen in Karlín',dur:90,q:P.karlin,bk:'dinner2',d:'Das Viertel ist seit dem Hochwasser 2002 neu erfunden, die Küche auch.'},
- {t:'21:30',k:'bar',x:'Hemingway Bar',dur:90,q:P.hem,bk:'hemingway',d:'Der Vesper wurde gestern bestellt. Heute etwas anderes, der Barkeeper berät.'}],
- b:'Bei Regen Strahov und Nationalmuseum tauschen (Museum aus Tag 3 vorziehen). Karlín bleibt: Nachtfotos wirken auf nassem Pflaster ohnehin besser.'};
-const D3={n:'Tag 3',t:'Phase Venedig & Kalter Krieg',sub:'Prag → Augsburg',city:'prg',items:[
- {t:'09:00',k:'food',x:'Frühstück, Check-out',dur:60,q:P.jalta,d:'Gepäck ins Auto, das Auto bleibt bis zur Abfahrt in der Garage.'},
- {t:'10:00',k:'visit',x:'Nationaldenkmal Vítkov',r:'vitkov',dur:60,q:P.vitkov,d:'Body-Worlds-Innenräume und Dachterrasse. Montags geschlossen.'},
- {t:'11:30',k:'visit',x:'Nationalmuseum: die „Venedig“-Lobby',r:'museum',dur:80,q:P.mus,d:'Prunktreppe und Pantheon. Mit Museumseintritt.'},
- {t:'13:00',k:'visit',x:'Bunker unter dem Hotel Jalta',dur:80,q:P.jalta,bk:'bunker',cost:250,d:'Abhörzentrale des Kalten Kriegs, 20 m unter dem Wenzelsplatz. 250 CZK pro Person.'},
- {t:'14:30',k:'food',x:'Spätes Mittagessen am Wenzelsplatz',dur:60,q:P.jalta,alt:'Alternativ: Ranger Shooting, 2 Stunden mit Instruktor (dann Abfahrt später).',d:'Kurz und gut, die Heimfahrt ist lang.'},
- {t:'16:00',k:'drive',x:'Abfahrt mit Fotostopp Barrandov',r:'barrandov',dur:270,from:P.jalta,q:P.aug,dr:'prg_aug',d:'Kurzer Halt am Studioturm, dann D5 über Pilsen und Waidhaus, ca. 425 km. Unterwegs liegt Planá (Objekt K) nahe der Route.'},
- {t:'20:30',k:'hotel',x:'Ankunft Augsburg',dur:0,q:P.aug,d:'Bericht an M bis Montag. Fotos genügen.'}],
- b:'Alle Programmpunkte liegen drinnen. Bei Glatteis die Abfahrt vorziehen und Barrandov auslassen.'};
-const plans={
- '2':{label:'2 Tage',note:'M: Kompakt. Die Nacht im Pupp bleibt, Prag wird im Laufschritt erledigt, Heimfahrt am Abend. Vítkov und der Bunker entfallen. Ich bedauere das mehr als Sie.',days:[D1,
-  {n:'Tag 2',t:'Prag im Schnelldurchlauf',sub:'Karlsbad → Prag → Augsburg',city:'prg',items:[
-   {t:'08:00',k:'drive',x:'Abfahrt Karlsbad über die D6',dur:90,from:P.pupp,q:P.air,dr:'kv_air',d:'Früh los, um Prag bei Tageslicht zu haben.'},
-   {t:'09:45',k:'visit',x:'Terminal 1 („Miami“)',r:'airport',dur:25,q:P.air,d:'Kurzer Stopp, Kurzzeitparken.'},
-   {t:'10:45',k:'visit',x:'Strahov-Bibliothek',r:'strahov',dur:75,q:P.strahov,bk:'strahov',d:'Parkhaus in der Nähe suchen oder Taxi.'},
-   {t:'12:15',k:'food',x:'Mittagessen auf der Kleinseite',dur:60,q:P.karl,d:'Schnell, nicht hektisch.'},
-   {t:'13:45',k:'visit',x:'Nationalmuseum am Wenzelsplatz',r:'museum',dur:75,q:P.mus,d:'Die „Venedig“-Lobby.'},
-   {t:'15:30',k:'visit',x:'Karlín zur Dämmerung: Ministerium und Danube House',r:'danube',dur:45,q:P.danube,d:'Gerade noch Dämmerung im November.'},
-   {t:'16:30',k:'drive',x:'Heimfahrt',dur:270,from:P.danube,q:P.aug,dr:'prg_aug',d:'Ankunft gegen 21:00 Uhr.'}],b:'Bei Regen Karlín streichen und früher fahren.'}]},
- '3':{label:'3 Tage',note:'M: Meine Empfehlung, und meine Empfehlungen sind selten Empfehlungen. Alle zugänglichen Zielobjekte ohne Hetze, eine Nacht im Pupp, eine in Prag.',days:[D1,D2,D3]},
- '4':{label:'4 Tage',note:'M: Mit Luft. Zwei Nächte Prag, Fine Dining und ein freier Tag, Ende November mit Adventsmarkt. Genehmigt, weil Sie ihn sich ohnehin genommen hätten.',days:[D1,D2,
-  {n:'Tag 3',t:'Phase Venedig & Kalter Krieg',sub:'Prag · Übernachtung Prag',city:'prg',items:[
-   {t:'10:00',k:'visit',x:'Nationaldenkmal Vítkov',r:'vitkov',dur:60,q:P.vitkov,d:'Montags geschlossen.'},
-   {t:'11:30',k:'visit',x:'Nationalmuseum',r:'museum',dur:80,q:P.mus,d:'Prunktreppe und Pantheon.'},
-   {t:'13:00',k:'visit',x:'Bunker unter dem Hotel Jalta',dur:80,q:P.jalta,bk:'bunker',cost:250,d:'250 CZK pro Person, max. 7 Personen.'},
-   {t:'15:30',k:'visit',x:'Ranger Shooting: 2 Stunden mit Instruktor',dur:120,q:P.ranger,bk:'ranger',d:'Nach einer Walther fragen. Kein Vesper davor.'},
-   {t:'20:00',k:'food',x:'Fine Dining im Smoking',dur:150,q:P.altst,bk:'fine',d:'Michelin-Adresse vorab reservieren.'}],b:'Alles drinnen. Bei Regen ein Taxi mehr.'},
-  {n:'Tag 4',t:'Freier Tag (genehmigt)',sub:'Prag → Augsburg',city:'prg',items:[
-   {t:'10:00',k:'walk',x:'Altstädter Ring, Josefov, ab Ende November Adventsmarkt',dur:150,q:P.altst,d:'Glühwein zwischen Teynkirche und Rathausuhr.'},
-   {t:'13:00',k:'food',x:'Mittagessen in der Altstadt',dur:75,q:P.altst,d:'Ohne Programm, ohne Mission.'},
-   {t:'15:00',k:'drive',x:'Fotostopp Barrandov, dann Heimfahrt',r:'barrandov',dur:270,from:P.altst,q:P.aug,dr:'prg_aug',d:'Ankunft gegen 19:30 Uhr.'}],b:'Bei Regen Nationalgalerie oder Kaffeehaus statt Altstadtbummel.'}]}
 };
 const H=[
  ['Grandhotel Pupp','Karlsbad · 1 Nacht · befohlen','Das echte Hotel Splendide, mit Grandrestaurant, Becher\'s Bar und Casino im Haus. Zwei Zimmer buchen, Tisch im Grandrestaurant gleich mitreservieren. Die Zimmer sind klassisch mit Deckenfresken und Kronleuchtern – bei der Buchung gezielt nach den neuesten, renovierten Kategorien fragen.',1,'Das Zimmer zahlt das Schatzamt. Den Bademantel nicht.'],
@@ -3526,7 +3451,6 @@ if(document.fonts&&document.fonts.ready)document.fonts.ready.then(()=>WV.set(WV.
   io.observe(ps[0].closest('.panel'))})();
 
 /* plans */
-const pt=document.getElementById('planTabs'),days=document.getElementById('days'),note=document.getElementById('planNote');
 /* Sonnenauf- und -untergang (NOAA-Näherung), Ergebnis in MEZ – im November gilt keine Sommerzeit */
 const rad=Math.PI/180;
 function sun(dt,lat,lon,rise){const y=dt.getFullYear(),m=dt.getMonth()+1,d=dt.getDate();
@@ -3539,82 +3463,16 @@ function sun(dt,lat,lon,rise){const y=dt.getFullYear(),m=dt.getMonth()+1,d=dt.ge
 const sunset=(dt,la,lo)=>sun(dt,la,lo,false);
 const DOW=['SO','MO','DI','MI','DO','FR','SA'],DOWL=['Sonntag','Montag','Dienstag','Mittwoch','Donnerstag','Freitag','Samstag'];
 const ddmm=d=>String(d.getDate()).padStart(2,'0')+'.'+String(d.getMonth()+1).padStart(2,'0')+'.';
-let dep=S.get('dep',''),curPlan=S.get('plan','3');
+let dep=S.get('dep','');
 const dayDate=i=>{if(!dep)return null;const d=new Date(dep+'T12:00:00');d.setDate(d.getDate()+i);return d};
-const KIND={drive:'FAHRT',visit:'ZIEL',walk:'ZU FUSS',food:'ESSEN',bar:'BAR',hotel:'QUARTIER',casino:'CASINO',free:'FREI'};
-const BKS=S.get('bk',{}),DONE=S.get('done',{}),NOTES=S.get('notes',{});
-const BKL=['OFFEN','ANGEFRAGT','BESTÄTIGT'];
 const gq=q=>`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(q)}`;
-const gd=(a,b,m)=>`https://www.google.com/maps/dir/?api=1&origin=${encodeURIComponent(a)}&destination=${encodeURIComponent(b)}&travelmode=${m}`;
-const mins=t=>/^\d\d:\d\d$/.test(t)?+t.slice(0,2)*60+ +t.slice(3):null;
-const fdur=m=>m>=60?`${Math.floor(m/60)} h${m%60?' '+m%60+' min':''}`:`${m} min`;
-const ikey=(d,it)=>`${d.n}|${it.t}|${it.x}`;
-const CITY={kv:[50.2306,12.8711],prg:[50.0755,14.4378]};
-function plan(k){curPlan=k;S.set('plan',k);const p=plans[k];note.textContent=p.note;days.innerHTML='';const flags=[];
-  p.days.forEach((d,i)=>{const dt=dayDate(i),[la,lo]=CITY[d.city];let items=d.items.map(x=>({...x}));let ss='',sr='';
-    if(dt){ss=sunset(dt,la,lo);sr=sun(dt,la,lo,true);
-      if(!(i===p.days.length-1&&i>0)){const at=items.findIndex(x=>mins(x.t)!=null&&x.t>ss);const row={t:ss,k:'sun',x:i===0?'Sonnenuntergang in Karlsbad. Ab jetzt leuchten Kolonnaden und Kaiserbad.':'Sonnenuntergang in Prag. Karlín und die Moldau gehören jetzt Ihnen.'};
-        if(at<0)items.splice(items.length-(items[items.length-1].t==='Nacht'?1:0),0,row);else items.splice(at,0,row)}
-      if(dt.getDay()===1&&d.items.some(x=>x.r==='vitkov')){items.unshift({t:'!!',k:'warn',x:'Montag: Vítkov ist geschlossen. Tag oder Reihenfolge tauschen. Das Denkmal tut es nicht.'});flags.push(['r',`${d.n} ist ein Montag – Vítkov geschlossen`])}
-      if(dt.getDate()===14&&dt.getMonth()===10){items.unshift({t:'★',k:'star',x:'Heute vor zwanzig Jahren: Weltpremiere von Casino Royale in London. M: Ein Glas. Eins.'});flags.push(['g',`${d.n} fällt auf den 14.11. – 20 Jahre Casino Royale`])}
-      if((dt.getMonth()===11||(dt.getMonth()===10&&dt.getDate()>=28))&&i>0)flags.push(['w',`${d.n}: Adventsmärkte in Prag voraussichtlich geöffnet`])}
-    const real=items.filter(x=>KIND[x.k]);
-    const drive=real.filter(x=>x.k==='drive').reduce((s,x)=>s+(x.dr?DRIVE[x.dr].min:x.dur),0),km=real.filter(x=>x.dr).reduce((s,x)=>s+DRIVE[x.dr].km,0);
-    const bks=[...new Set(real.filter(x=>x.bk).map(x=>x.bk))],open=bks.filter(b=>(BKS[b]||0)<2).length,czk=real.reduce((s,x)=>s+(x.cost||0),0);
-    const doneN=real.filter(x=>DONE[ikey(d,x)]).length;
-    const seg=real.filter(x=>mins(x.t)!=null&&x.dur).map(x=>{const a=mins(x.t);return`<i class="k-${x.k}" style="left:${((a-420)/1020*100).toFixed(2)}%;width:${(Math.min(x.dur,1440-a)/1020*100).toFixed(2)}%" title="${x.t} ${x.x}"></i>`}).join('');
-    const sunM=ss?mins(ss):null;
-    const div=document.createElement('div');div.className='panel day';div.dataset.i=i;
-    div.innerHTML=`<div class="ph"><h3>${d.n} // ${d.t}</h3><span class="dd"><span>${d.sub}</span>${dt?`<b>${DOWL[dt.getDay()].toUpperCase()} ${ddmm(dt)} · ☀ ${sr} – ${ss}</b>`:''}</span></div>
-     <div class="dsum"><span><b>${real.length}</b> Punkte</span><span><b>${doneN}</b> erledigt</span>${drive?`<span><b>${fdur(drive)}</b> Fahrt${km?` · ${km} km`:''}</span>`:''}<span class="${open?'w':''}"><b>${open}</b> Reservierungen offen</span>${czk?`<span><b>${czk} CZK</b> p. P. bekannt</span>`:''}</div>
-     <div class="dbar" aria-hidden="true"><div class="dbar-in">${seg}${sunM?`<s style="left:${((sunM-420)/1020*100).toFixed(2)}%"></s>`:''}<u></u></div><div class="dbar-h">${[7,9,11,13,15,17,19,21,23].map(h=>`<span style="left:${((h*60-420)/1020*100).toFixed(2)}%">${h}</span>`).join('')}</div></div>
-     <ol class="log">${items.map((x,j)=>{if(!KIND[x.k])return`<li class="${x.k==='sun'?'sun':x.k==='warn'?'warn':'key'}"><time>${x.t}</time><span>${x.x}</span><span></span></li>`;
-       const key=ikey(d,x),c=x.r&&L.find(y=>y.id===x.r),bs=x.bk?(BKS[x.bk]||0):-1,prev=items.slice(0,j).reverse().find(y=>y.q);
-       const from=x.from||(prev&&prev.q!==x.q?prev.q:null),mode=x.k==='drive'?'driving':d.city==='prg'?'transit':'walking',dr=x.dr&&DRIVE[x.dr];
-       return`<li class="it k-${x.k}${DONE[key]?' done':''}${/Pupp|Casino|Kaiserbad|Bunker/.test(x.x)?' key':''}" data-key="${key}"><time>${x.t}</time>
-        <div class="itm"><button type="button" class="it-h" aria-expanded="false"><em>${KIND[x.k]}</em>${x.x}</button>
-         <div class="it-meta">${x.dur?`<span>${fdur(x.dur)}</span>`:''}${dr?`<span>${dr.km} km</span>`:''}${x.cost?`<span>${x.cost} CZK p. P.</span>`:''}${x.bk?`<button type="button" class="bkb s${bs}" data-bk="${x.bk}" title="${BK[x.bk].n}: Status wechseln">${BKL[bs]}</button>`:''}${c?`<button class="ref" type="button" data-r="${x.r}">${code(c)}</button>`:''}</div>
-         <div class="it-d" hidden><p>${x.d||''}</p>${dr&&dr.via?`<p class="it-via">Route: ${dr.via}.</p>`:''}${x.alt?`<p class="it-alt">${x.alt}</p>`:''}${x.bk?`<p class="it-bk"><b>${BK[x.bk].n}:</b> ${BK[x.bk].h} <i>Buchen: ${BK[x.bk].w}.</i>${BK[x.bk].u?` <a href="${BK[x.bk].u}" target="_blank" rel="noopener">Website</a>`:''}</p>`:''}
-          <div class="it-act">${x.q?`<a class="btn" href="${gq(x.q)}" target="_blank" rel="noopener">KARTE</a>`:''}${from&&x.q?`<a class="btn" href="${gd(from,x.q,mode)}" target="_blank" rel="noopener">ROUTE HIERHER</a>`:''}${c?`<button class="btn" type="button" data-r2="${x.r}">ZIELAKTE</button>`:''}</div></div></div>
-        <label class="it-done" title="Erledigt"><input type="checkbox" data-done="${key}"${DONE[key]?' checked':''}><span>✓</span></label></li>`}).join('')}</ol>
-     <div class="dfoot"><details><summary>PLAN B · SCHLECHTWETTER</summary><p>${d.b||'—'}</p></details>
-      <label class="dnote"><span>NOTIZEN ZU ${d.n.toUpperCase()}</span><textarea data-note="${k}|${d.n}" rows="2" placeholder="Reservierungsnummern, Treffpunkte, Kontaktdaten …">${(NOTES[k+'|'+d.n]||'').replace(/</g,'&lt;')}</textarea></label></div>`;
-    days.appendChild(div)});
-  const df=document.getElementById('dflags');
-  if(dep){const a=dayDate(0),b=dayDate(p.days.length-1);df.innerHTML=[['',`${DOWL[a.getDay()]} ${ddmm(a)} bis ${DOWL[b.getDay()]} ${ddmm(b)}`]].concat(flags.length?flags:[['g','Keine Konflikte. M: Selten.']]).map(([c,t])=>`<span class="flag ${c}">${t}</span>`).join('')}
-  else df.innerHTML='';
-  days.querySelectorAll('.ref,[data-r2]').forEach(b=>b.onclick=()=>{showCard(b.dataset.r||b.dataset.r2,false);document.getElementById('targets').scrollIntoView()});
-  days.querySelectorAll('.it-h').forEach(b=>b.onclick=()=>{const dd=b.closest('.itm').querySelector('.it-d');dd.hidden=!dd.hidden;b.setAttribute('aria-expanded',!dd.hidden)});
-  days.querySelectorAll('.bkb').forEach(b=>b.onclick=()=>{const k2=b.dataset.bk,v=((BKS[k2]||0)+1)%3;BKS[k2]=v;S.set('bk',BKS);
-    document.querySelectorAll(`.bkb[data-bk="${k2}"]`).forEach(x=>{x.className='bkb s'+v;x.textContent=BKL[v]});if(v===2)toast(`<b>Q:</b> ${BK[k2].n} bestätigt. Ich habe es mir notiert. Auf Papier.`);sumRefresh();if(window.orgRefresh)orgRefresh()});
-  days.querySelectorAll('[data-done]').forEach(cb=>cb.onchange=()=>{const k2=cb.dataset.done;if(cb.checked)DONE[k2]=1;else delete DONE[k2];S.set('done',DONE);cb.closest('li').classList.toggle('done',cb.checked);sumRefresh()});
-  days.querySelectorAll('[data-note]').forEach(t=>t.oninput=()=>{NOTES[t.dataset.note]=t.value;S.set('notes',NOTES)});
-  pt.querySelectorAll('.tbtn').forEach(b=>b.setAttribute('aria-selected',b.dataset.k===k?'true':'false'));
-  nowMode();if(window.orgRefresh)orgRefresh();if(window.readiness)readiness()}
-function sumRefresh(){const p=plans[curPlan];days.querySelectorAll('.day').forEach((div,i)=>{const d=p.days[i],real=d.items;
-  const bks=[...new Set(real.filter(x=>x.bk).map(x=>x.bk))],open=bks.filter(b=>(BKS[b]||0)<2).length,doneN=real.filter(x=>DONE[ikey(d,x)]).length;
-  const s=div.querySelectorAll('.dsum span');s[1].innerHTML=`<b>${doneN}</b> erledigt`;const o=[...s].find(x=>/Reservierungen/.test(x.textContent));if(o){o.innerHTML=`<b>${open}</b> Reservierungen offen`;o.className=open?'w':''}});if(window.readiness)readiness()}
-/* Jetzt-Modus: während der Reise den laufenden und nächsten Programmpunkt zeigen */
-function nowMode(){const box=document.getElementById('planNow');if(!box)return;const p=plans[curPlan],now=new Date();let html='';
-  days.querySelectorAll('li.now,li.next').forEach(l=>l.classList.remove('now','next'));days.querySelectorAll('.dbar u').forEach(u=>u.style.display='none');
-  if(dep){const i=p.days.findIndex((_,j)=>{const d=dayDate(j);return d&&d.toDateString()===now.toDateString()});
-    if(i>=0){const d=p.days[i],nm=now.getHours()*60+now.getMinutes(),its=d.items.filter(x=>mins(x.t)!=null);let cur=null,nx=null;
-      its.forEach(x=>{const a=mins(x.t);if(a<=nm&&a+(x.dur||0)>nm)cur=x;if(a>nm&&!nx)nx=x});
-      const div=days.querySelector(`.day[data-i="${i}"]`);const u=div&&div.querySelector('.dbar u');if(u&&nm>=420){u.style.display='block';u.style.left=((nm-420)/1020*100).toFixed(2)+'%'}
-      const mark=(x,c)=>{if(!x||!div)return;const li=div.querySelector(`li[data-key="${CSS.escape(ikey(d,x))}"]`);if(li)li.classList.add(c)};mark(cur,'now');mark(nx,'next');
-      html=`<b>EINSATZ LÄUFT · ${d.n.toUpperCase()}</b>${cur?` · Jetzt: ${cur.t} ${cur.x}`:''}${nx?` · Nächster Punkt: ${nx.t} ${nx.x} <i>in ${fdur(mins(nx.t)-nm)}</i>`:' · Für heute ist alles erledigt. M wünscht eine ruhige Nacht. Sie meint es dienstlich.'}`}
-    else{const a=dayDate(0),diff=Math.round((new Date(a.toDateString())-new Date(now.toDateString()))/864e5);
-      html=diff>0?`<b>EINSATZ IN ${diff} ${diff===1?'TAG':'TAGEN'}</b> · Start ${DOWL[a.getDay()]}, ${ddmm(a)} um ${p.days[0].items[0].t} Uhr in Augsburg.`:`<b>EINSATZ ABGESCHLOSSEN</b> · Bericht an M. Fotos genügen, Spesen bitte einzeln.`}}
-  else html='<b>KEIN ABREISEDATUM</b> · Datum oben wählen, dann erscheinen Wochentage, Sonnenzeiten und während der Reise der Jetzt-Modus.';
-  box.innerHTML=html}
-setInterval(nowMode,60000);
-const depIn=document.getElementById('dep');depIn.value=dep;
-depIn.addEventListener('change',()=>{dep=/^2026-11-\d\d$/.test(depIn.value)?depIn.value:'';if(depIn.value&&!dep)toast('<b>M:</b> November 2026. Nicht verhandelbar.');S.set('dep',dep);plan(curPlan);countdown()});
-document.getElementById('depClr').onclick=()=>{dep='';depIn.value='';S.set('dep','');plan(curPlan);countdown()};
-[['2','2 TAGE'],['3','3 TAGE'],['4','4 TAGE']].forEach(([k,l])=>{const b=document.createElement('button');b.className='tbtn';b.type='button';b.setAttribute('role','tab');b.dataset.k=k;b.textContent=l;b.onclick=()=>plan(k);pt.appendChild(b)});
-document.getElementById('plExp').onclick=e=>{const open=e.target.getAttribute('aria-pressed')!=='true';e.target.setAttribute('aria-pressed',open);days.querySelectorAll('.it-d').forEach(d=>d.hidden=!open);days.querySelectorAll('.it-h').forEach(b=>b.setAttribute('aria-expanded',open))};
-document.getElementById('plOpen').onclick=e=>{const on=e.target.getAttribute('aria-pressed')!=='true';e.target.setAttribute('aria-pressed',on);days.classList.toggle('open-only',on)};
-plan(plans[curPlan]?curPlan:'3');
+/* Abreisedatum (Einsatzbefehl): Wochentage, Warnungen */
+function depFlags(){const df=document.getElementById('dflags');if(!df)return;if(!dep){df.textContent='';return}const a=dayDate(0),b=dayDate(2),fl=[];
+  for(let i=0;i<3;i++){const d=dayDate(i);if(d.getDay()===1&&i>0)fl.push('Montag in Prag: Vítkov geschlossen');if(d.getDate()===14)fl.push('14.11.: 20 Jahre Premiere');if(d.getDate()>=27)fl.push('Adventsmärkte möglich')}
+  df.textContent=`${DOW[a.getDay()]} ${ddmm(a)} – ${DOW[b.getDay()]} ${ddmm(b)} · Sonnenuntergang Karlsbad ${sunset(a,50.22,12.88)} MEZ`+(fl.length?' · '+fl.join(' · '):'')}
+const depIn=document.getElementById('dep');depIn.value=dep;depFlags();
+depIn.addEventListener('change',()=>{dep=/^2026-11-\d\d$/.test(depIn.value)?depIn.value:'';if(depIn.value&&!dep)toast('<b>M:</b> November 2026. Nicht verhandelbar.');S.set('dep',dep);depFlags();countdown()});
+document.getElementById('depClr').onclick=()=>{dep='';depIn.value='';S.set('dep','');depFlags();countdown()};
 
 /* assets, regs */
 document.getElementById('hotelList').innerHTML=H.map(h=>`<div class="panel asset${h[3]?' must':''}"><div class="tag">${h[3]?'QUARTIER // BEFOHLEN':'QUARTIER // OPTION'}</div><h3>${h[0]}</h3><div class="meta">${h[1]}</div><p>${h[2]}</p><span class="mnote">${h[4]}</span></div>`).join('');
@@ -3954,10 +3812,10 @@ document.getElementById('clsBtn').onclick=()=>{clsN++;document.body.classList.re
 console.log('%cMI6 // OPS-ZENTRALE','color:#F2B65E;font:600 14px monospace','\nSie lesen den Quelltext. Q ist beeindruckt. M weniger.\nTippen Sie 007. Oder vesper, martini, mathis.');
 
 /* mission goals */
-const GD=new Set(S.get('goals',[]));const goalN=document.getElementById('goalN');
-function goalSync(){document.querySelectorAll('#goals li').forEach(li=>{const i=li.querySelector('.g i');if(!i.dataset.o)i.dataset.o=i.textContent;const on=GD.has(li.dataset.g);li.classList.toggle('done',on);li.setAttribute('aria-pressed',on);i.textContent=on?'ERFÜLLT':i.dataset.o});goalN.textContent=GD.size+'/5 ERFÜLLT'}
+const GD=new Set(S.get('goals2',[]).filter(g=>document.querySelector(`#goals li[data-g="${g}"]`)));const GN=document.querySelectorAll('#goals li').length;const goalN=document.getElementById('goalN');
+function goalSync(){document.querySelectorAll('#goals li').forEach(li=>{const i=li.querySelector('.g i');if(!i.dataset.o)i.dataset.o=i.textContent;const on=GD.has(li.dataset.g);li.classList.toggle('done',on);li.setAttribute('aria-pressed',on);i.textContent=on?'ERFÜLLT':i.dataset.o});goalN.textContent=GD.size+'/'+GN+' ERFÜLLT'}
 document.querySelectorAll('#goals li').forEach(li=>{li.tabIndex=0;li.setAttribute('role','button');
-  const go=()=>{const g=li.dataset.g;if(GD.has(g))GD.delete(g);else{GD.add(g);if(g==='5')toast('<b>M:</b> Einer. Ich zähle mit.');if(GD.size===5)toast('<b>M:</b> Alle Ziele erfüllt. Schreiben Sie keinen Bericht. Ich will Fotos.')}S.set('goals',[...GD]);goalSync()};
+  const go=()=>{const g=li.dataset.g;if(GD.has(g))GD.delete(g);else{GD.add(g);if(g==='vesper')toast('<b>M:</b> Einer. Ich zähle mit.');if(GD.size===GN)toast('<b>M:</b> Alle Ziele erfüllt. Schreiben Sie keinen Bericht. Ich will Fotos.')}S.set('goals2',[...GD]);goalSync()};
   li.onclick=go;li.onkeydown=e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();go()}}});
 goalSync();
 
@@ -6182,15 +6040,15 @@ if(io&&!RM)io.observe(svg);else svg.classList.remove('pre');
 
 /* Einsatzbereitschaft */
 const rdyBtn=document.getElementById('rdyBtn'),rdyN=document.getElementById('rdyN'),rdyBar=document.getElementById('rdyBar');
-function rdyParts(){const days=plans[curPlan].days,bks=[...new Set(days.flatMap(d=>d.items.filter(x=>x.bk).map(x=>x.bk)))],bkOk=bks.filter(k=>(S.get('bk',{})[k]||0)===2).length,lic=S.get('lic',0);
-  return[['Reservierungen bestätigt',50,bks.length?bkOk/bks.length:1,`${bkOk}/${bks.length}`],['Abreisedatum festgelegt',15,S.get('dep','')?1:0,S.get('dep','')?ddmm(new Date(S.get('dep')+'T12:00')):'offen'],
-   ['Einsatzbefehl quittiert',15,S.get('ack',0)?1:0,S.get('ack',0)?'ja':'nein'],['Lizenzprüfung bestanden',20,lic>=7?1:0,lic?`${lic}/9`:'nicht abgelegt']]}
+function rdyParts(){const lic=S.get('lic',0);
+  return[['Abreisedatum festgelegt',30,S.get('dep','')?1:0,S.get('dep','')?ddmm(new Date(S.get('dep')+'T12:00')):'offen'],
+   ['Einsatzbefehl quittiert',30,S.get('ack',0)?1:0,S.get('ack',0)?'ja':'nein'],['Lizenzprüfung bestanden',40,lic>=7?1:0,lic?`${lic}/9`:'nicht abgelegt']]}
 let rdyT=0;
 window.readiness=()=>{clearTimeout(rdyT);rdyT=setTimeout(()=>{const ps=rdyParts(),v=Math.round(ps.reduce((a,p)=>a+p[1]*Math.min(1,p[2]),0));
   rdyN.textContent=`BEREIT ${v} %`;rdyBar.style.width=v+'%';rdyBtn.classList.toggle('ok',v>=100);rdyBtn.setAttribute('aria-label',`Einsatzbereitschaft ${v} Prozent`)},30)};
 const _set=S.set;S.set=(k,v)=>{_set(k,v);if(window.readiness)readiness()};readiness();
 const kh=document.createElement('div');kh.className='khelp';kh.hidden=true;kh.setAttribute('role','dialog');kh.setAttribute('aria-modal','true');kh.setAttribute('aria-label','Lagebericht und Tastenkürzel');document.body.appendChild(kh);
-const JUMP={'1':['tx','Einsatzbefehl'],'2':['mission','Missionsbriefing'],'3':['ops','Einsatzplan'],'4':['assets','Quartiere & Assets'],'5':['targets','Zielobjekte'],'6':['maps','Lagekarten'],'7':['persons','Personenakten'],'8':['garage','Qs Garage'],'9':['gadgets','Qs Gadgets'],'q':['qlab','Q-Lab'],'w':['world-sec','Das Archiv'],'b':['mission','Briefing'],'p':['persons','Personenakten'],'g':['garage','Qs Garage'],'x':['gadgets','Qs Gadgets']};
+const JUMP={'1':['tx','Einsatzbefehl'],'2':['mission','Missionsbriefing'],'3':['assets','Quartiere & Assets'],'4':['targets','Zielobjekte'],'5':['maps','Lagekarten'],'6':['persons','Personenakten'],'7':['garage','Qs Garage'],'8':['gadgets','Qs Gadgets'],'9':['qlab','Trainingsprogramm'],'q':['qlab','Q-Lab'],'w':['world-sec','Das Archiv'],'b':['mission','Briefing'],'p':['persons','Personenakten'],'g':['garage','Qs Garage'],'x':['gadgets','Qs Gadgets']};
 function khShow(){const ps=rdyParts(),v=Math.round(ps.reduce((a,p)=>a+p[1]*Math.min(1,p[2]),0)),open=ps.filter(p=>p[2]<1);
   kh.innerHTML=`<div class="kh"><h3>LAGEBERICHT · BEREIT ${v} %</h3><p>${v>=100?'M: Vollständig. Ich bin beinahe beeindruckt. Fahren Sie.':open.length<=2?'M: Fast. „Fast“ hat noch keinen Einsatz gerettet.':'M: Das ist kein Reiseplan, das ist eine Absichtserklärung.'}</p>
   <ul class="rd">${ps.map(p=>`<li class="${p[2]>=1?'ok':''}"><b>${p[0]}</b><span>${p[3]}</span></li>`).join('')}</ul>
