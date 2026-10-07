@@ -24,12 +24,12 @@ from faster_whisper import WhisperModel
 RUNS, SRUNS, ROUNDS = 5, 8, 4
 # Eigennamen (Lautschrift): Erkennung schreibt sie verschieden, daher unscharfer Abgleich
 NAMES = {'schiffre', 'lö', 'kwantum', 'spekter', 'wesper', 'splondiehd', 'roajal', 'loket', 'pupp', 'barrandoff', 'dänjub', 'emm',
-         'karolinenthal', 'karlsbad', 'nassau', 'mühlbrunnkolonnade', 'veitsberg', 'pilsen', 'augsburg', 'böhmen', 'kaiserbad', 'grandhotel'}
+         'karolinenthal', 'karlsbad', 'nassau', 'mühlbrunnkolonnade', 'pilsen', 'augsburg', 'böhmen', 'kaiserbad', 'grandhotel'}
 # Lautschrift -> so schreibt die Erkennung den Namen üblicherweise
 ALT = {'lö': ['le'], 'schiffre': ['chiffre', 'schiffer', 'shiffre'], 'spekter': ['spectre', 'specter', 'spektor'],
        'kwantum': ['quantum'], 'wesper': ['vesper'], 'splondiehd': ['splendide', 'splendid'], 'kasino': ['casino'],
        'roajal': ['royale', 'royal'], 'streht': ['straight', 'strait'], 'flasch': ['flush'], 'barrandoff': ['barrandov'],
-       'dänjub': ['danube', 'danjub'], 'haus': ['house'], 'emm': ['m', 'em'], 'loket': ['lokett', 'locket'], 'pupp': ['pup', 'pub']}
+       'dänjub': ['danube', 'danjub'], 'haus': ['house'], 'emm': ['m', 'em'], 'loket': ['lokett', 'locket'], 'pupp': ['pup', 'pub'], 'faitsberg': ['veitsberg', 'veitsberk']}
 FUNC = {'die', 'der', 'das', 'den', 'dem', 'ein', 'und', 'es', 'in', 'an', 'am', 'im', 'zu', 'um', 'so', 'ab'}
 
 def toks(t):
@@ -90,7 +90,7 @@ def check(asr, text, wav):
     errs, last = [], None
     for i, j in align(ref, hyp):
         if i is not None and j is not None:
-            good = sim(ref[i], hyp[j]) >= .55 if (ref[i] in ALT or ref[i] in NAMES) else same(ref[i], hyp[j])
+            good = (sim(ref[i], hyp[j]) >= .55 and any(hyp[j][:1] == f[:1] for f in [ref[i]] + ALT.get(ref[i], []))) if (ref[i] in ALT or ref[i] in NAMES) else same(ref[i], hyp[j])
             if good: last = (i, j); continue
             errs.append(f'{ref[i]}≠{hyp[j]}')
         elif i is not None:

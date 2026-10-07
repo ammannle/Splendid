@@ -27,7 +27,7 @@ NUM = {1:'eins',2:'zwei',3:'drei',4:'vier',5:'fünf',6:'sechs',7:'sieben',8:'ach
 SAY = [(r'\bMr\. ', 'Mister '), ('00-Einheit', 'Doppelnull-Einheit'), ('Doppelnull-Einheit, hier spricht M.', 'Doppel-Null-Einheit, hier spricht Emm.'), (r'\bDoppelnull\b', 'Doppel-Null'),
        ('Kennwort: VESPER.', 'Das Kennwort lautet Wesper.'), (r'\bVESPER\b', 'Wesper'), (r'\bVesper\b', 'Wesper'), ('SPECTRE', 'Spekter'),
        (r'\b2006\b', 'zweitausendsechs'), ('Le Chiffre', 'Lö Schiffre'), ('Cheb', 'Chepp'), ('Tržiště', 'Trschischtje'),
-       ('Vítkov', 'Wietkoff'), ('Planá', 'Plahna'), ('Strahov', 'Strachoff'), ('Karlín', 'Karliin'), ('Barrandov', 'Barrandoff'),
+       ('Vítkov', 'Wietkoff'), ('Veitsberg', 'Faitsberg'), ('Planá', 'Plahna'), ('Strahov', 'Strachoff'), ('Karlín', 'Karliin'), ('Barrandov', 'Barrandoff'),
        ('Danube House', 'Dänjub Haus'), ('Splendide', 'Splondiehd'), ('Straight Flush', 'Streht Flasch'), ('Casino Royale', 'Kasino Roajal'), (r'\bCasino\b', 'Kasino'),
        (r'\bBond\b', 'Bond'), ('Quantum', 'Kwantum'), ('Pupp', 'Pupp')]
 NAMES = {'chepp','trschischtje','wietkoff','plahna','strachoff','karliin','barrandoff','dänjub','splondiehd','streht','flasch','lö','schiffre',
