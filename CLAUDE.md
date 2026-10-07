@@ -291,4 +291,11 @@ Freigabe: „Anyone with the link“ ist aktiv. Wer die Seite offen hat, sieht n
   Allgemeine Regel `section{margin-top:56px}` im Briefing neutralisiert (`.ms-stage section{margin:0}`). Bar: Barkeeper wieder da, als technische
   Figur (`BKG`, Maßstab eigener), Arme mit IK `bkIK`, Hände folgen Griffpunkten `grip.L/R` (Flasche, Messbecher, Shaker, Löffel, Sieb, Glas),
   läuft hinter dem Tresen mit; Braue bei „gerührt verlangen“.
+- Version 45 (08.10.2026): Organigramm im Briefing mit technischer Ebene `ogDecor()` (Sektoren A/B schraffiert mit Eckmarken, Ebenenlineal E1–E5,
+  Kennungen ORG-xx/P-xx, Messmarken an Personen, Pfeilspitzen je Verbindungsart, Kästen hinter Kantenbeschriftungen `.elb`, Legende, Einrast-Klammern
+  `.ogk` an aktiven Knoten). Konto-Zoom zeichnet Kartengrund (Grenze, Flüsse, Moldau/Teplá, Route als Straße, Orte, Ländernamen). Titelszene:
+  Geldspur/Quellkasten/Pakete entfernt, rechtwinklige Hinweislinien zu den Detailkreisen, keine km-Zahlen im Kartenbild. Routenkarten: technische
+  Ebene `.rt-x` in Bildschirmpixeln (Gradnetz mit Grad-/Minutenangaben `RP`, Rahmen mit Teilung, km-Teilung an der Strecke, Maßstab, Nordpfeil,
+  Koordinaten des Fahrzeugs), Anzeige KURS, Straße als Doppellinie (`.rm-cas` + Mittellinie), Hinweiskasten statt Banner. Bar in gemeinsamem
+  Maßstab `K=.45` (Gläser, Shaker, Werkzeug in echten Längen, Barkeeper nach Körpermaßen in mm, Arme mit Verkürzung, Ellbogen nach unten).
 - Tests: Playwright-Skripte müssen vor dem Laden `window.__NOINTRO=1` per `addInitScript` setzen, sonst läuft das Intro.

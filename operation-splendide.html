@@ -1850,6 +1850,22 @@ html.msfull{overflow:hidden}
 @media (prefers-reduced-motion:reduce){.cx-band{display:none}}
 .ms-side:has(.ms-locw) .ms-face div,.ms-side:has(.ms-locw) .ms-carm div{max-width:min(100%,150px)}.ms-loc{height:78px}
 /* Lagebild v40 */
+.ms-orgsc .ogx .zn{stroke:rgba(143,215,232,.18);stroke-width:1}.ms-orgsc .ogx .zn.h{stroke:rgba(240,85,74,.22)}
+.ms-orgsc .ogx .zc{fill:none;stroke:var(--cyan);stroke-width:1.6}.ms-orgsc .ogx .zc.h{stroke:var(--red)}
+.ms-orgsc .ogx .zt{font-family:var(--mono);font-size:10px;letter-spacing:.18em;fill:rgba(143,215,232,.55)}.ms-orgsc .ogx .zt.h{fill:rgba(240,85,74,.6)}
+.ms-orgsc .ogx .lv{stroke:rgba(143,215,232,.6);stroke-width:1}.ms-orgsc .ogx .lt{font-family:var(--mono);font-size:10px;fill:rgba(143,215,232,.55);letter-spacing:.1em}
+.ms-orgsc .olg .lb{fill:rgba(3,8,11,.85);stroke:rgba(143,215,232,.35);stroke-width:1}.ms-orgsc .olg .ls{fill:none;stroke-width:1.6}.ms-orgsc .olg .ls.c{stroke:var(--cyan)}.ms-orgsc .olg .ls.a{stroke:var(--amber)}.ms-orgsc .olg .ls.r{stroke:var(--red)}
+.ms-orgsc .olg .lt2{font-family:var(--mono);font-size:9.5px;letter-spacing:.12em;fill:var(--ink)}
+.ms-orgsc .ogsv .elb{fill:rgba(3,8,11,.92);stroke-width:1}.ms-orgsc .ogsv .elb.a{stroke:rgba(242,182,94,.55)}.ms-orgsc .ogsv .elb.r{stroke:rgba(240,85,74,.55)}
+.ms-orgsc .ogsv.hl .elb{opacity:.18;transition:opacity .3s}.ms-orgsc .ogsv.hl .elb.lit{opacity:1}
+.ms-orgsc .ogsv .oid{font-family:var(--mono);font-size:8.5px;letter-spacing:.12em;fill:var(--mute)}
+.ms-orgsc .ogsv .obar{stroke:var(--cyan);stroke-width:2}.ms-orgsc .ogsv .on.h .obar{stroke:var(--red)}
+.ms-orgsc .ogsv .ogr{fill:none;stroke:rgba(143,215,232,.4);stroke-width:1;stroke-dasharray:2 3}.ms-orgsc .ogsv .pn.h .ogr{stroke:rgba(240,85,74,.45)}
+.ms-orgsc .ogsv .ogt{stroke:rgba(143,215,232,.55);stroke-width:1}.ms-orgsc .ogsv .pn.h .ogt{stroke:rgba(240,85,74,.6)}
+.ms-orgsc .ogsv .ogk{opacity:0;transform-box:fill-box;transform-origin:center;transition:opacity .25s}.ms-orgsc .ogsv .ogk path{fill:none;stroke:var(--amber);stroke-width:2}
+.ms-orgsc .ogsv.hl .lit>.ogk{opacity:1;animation:ogLock .5s cubic-bezier(.2,.8,.2,1)}
+@keyframes ogLock{from{transform:scale(1.5);opacity:0}to{transform:none;opacity:1}}
+
 .ms-orgsc{background:color-mix(in srgb,var(--cyan) 3%,var(--mapbg));background-image:linear-gradient(rgba(143,215,232,.045) 1px,transparent 1px),linear-gradient(90deg,rgba(143,215,232,.045) 1px,transparent 1px);background-size:28px 28px}
 .ms-orgsc.dos .ogsv{left:27%;width:73%}
 .og-col{position:absolute;left:2%;top:17%;bottom:4%;width:24%;display:flex;flex-direction:column;gap:10px;z-index:3;font-family:var(--mono)}
@@ -5216,9 +5232,9 @@ function vbTo(svg,to,ms){const fr=svg.getAttribute('viewBox').split(/\s+/).map(N
   (function st(now){const u=RM?1:Math.min(1,(now-t0)/ms),q=e(u);svg.setAttribute('viewBox',fr.map((v,i)=>(v+(to[i]-v)*q).toFixed(1)).join(' '));if(u<1&&cur===me)requestAnimationFrame(st)})(t0)}
 function orgOn(root,s){const svg=root.querySelector('.ogsv');if(!svg)return;const set=new Set(OGL[s.og]);
   later(()=>{svg.classList.add('hl');svg.querySelectorAll('.on,.pn').forEach(g=>g.classList.toggle('lit',set.has(g.dataset.o||g.dataset.p)));
-    svg.querySelectorAll('.e,.el').forEach(e=>e.classList.toggle('lit',set.has(e.dataset.a)&&set.has(e.dataset.b)))},s.og==='le'?1500:500);
+    svg.querySelectorAll('.e,.el,.elb').forEach(e=>e.classList.toggle('lit',set.has(e.dataset.a)&&set.has(e.dataset.b)))},s.og==='le'?1500:500);
   if(s.og==='le'){svg.setAttribute('viewBox',OGB.all.join(' '));later(()=>vbTo(svg,OGB.le,2600),1300)}else{svg.setAttribute('viewBox',(SC[SC.indexOf(s)-1].og?OGB[SC[SC.indexOf(s)-1].og]:OGB.all).join(' '));vbTo(svg,OGB[s.og],2200)}
-  if(s.og2)later(()=>{const set2=new Set(OGL[s.og2].concat(OGL[s.og]));svg.querySelectorAll('.on,.pn').forEach(g=>g.classList.toggle('lit',set2.has(g.dataset.o||g.dataset.p)));svg.querySelectorAll('.e,.el').forEach(e=>e.classList.toggle('lit',set2.has(e.dataset.a)&&set2.has(e.dataset.b)));vbTo(svg,OGB[s.og2],2200);SND.ping()},3300);
+  if(s.og2)later(()=>{const set2=new Set(OGL[s.og2].concat(OGL[s.og]));svg.querySelectorAll('.on,.pn').forEach(g=>g.classList.toggle('lit',set2.has(g.dataset.o||g.dataset.p)));svg.querySelectorAll('.e,.el,.elb').forEach(e=>e.classList.toggle('lit',set2.has(e.dataset.a)&&set2.has(e.dataset.b)));vbTo(svg,OGB[s.og2],2200);SND.ping()},3300);
   later(()=>SND.ping(),s.og==='le'?1700:700)}
 /* Konto VESPER: Kontobewegungen und Ziele in Böhmen */
 const TX=[['14.09. 02:13','ZÜRICH → KARLOVY VARY','1.200.000'],['14.09. 02:41','LIECHTENSTEIN → LOKET','480.000'],['15.09. 23:05','NASSAU → KARLOVY VARY','2.150.000'],['17.09. 04:12','ZYPERN → PRAHA','900.000'],
@@ -5837,7 +5853,30 @@ function orgDos(k){const id=OGK[k],p=P2(id),a=p.a||{},g=a.gef||0,cut2=(v,n)=>{v=
     <dl class="og-dl"><dt>ROLLE</dt><dd>${cut2(a.rolle,70)}</dd><dt>STATUS</dt><dd>${cut2(a.status,60)}</dd>${g?`<dt>GEFAHR</dt><dd class="og-g">${[1,2,3,4,5].map(i=>`<i class="${i<=g?'on':''}"></i>`).join('')}<span>${g}/5</span></dd>`:''}</dl></div>
     <div class="og-st"><div class="og-h"><b>NETZWERKANALYSE</b><span>KANAL 07</span></div><div class="og-kv"><div><i>KNOTEN</i><b class="og-c" data-k="n">0</b></div><div><i>KANTEN</i><b class="og-c" data-k="e">0</b></div><div><i>DICHTE</i><b class="og-c" data-k="d">0 %</b></div></div><div class="og-bars">${Array.from({length:18},(_,i)=>`<i style="--i:${i}"></i>`).join('')}</div></div></aside>
     <svg class="og-ov" aria-hidden="true"><path class="og-ld" d=""/><g class="og-ret"><circle r="22" class="o"/><circle r="15" class="i"/><path d="M-34 0h10M24 0h10M0 -34v10M0 24v10" class="x"/></g><path class="og-xh" d=""/></svg>`}
-function orgFx(root,s){const svg=root.querySelector('.ogsv');if(!svg||RM)return;const me=cur,NS='http://www.w3.org/2000/svg',ck=cxClock();let last=0;const live=[];
+/* Organigramm im Briefing: technische Ebene (Sektoren, Ebenenlineal, Kennungen, Messmarken, Pfeile, beschriftete Kästen, Legende, Einrast-Klammern) */
+function ogDecor(svg){if(svg._dec)return;svg._dec=1;const NS='http://www.w3.org/2000/svg',mk=(t,a,p,tx)=>{const e=document.createElementNS(NS,t);for(const k in a)e.setAttribute(k,a[k]);if(p)p.appendChild(e);if(tx!=null)e.textContent=tx;return e};
+  const id='og'+Math.random().toString(36).slice(2,7),defs=mk('defs',{});svg.insertBefore(defs,svg.firstChild);
+  [['c','#8FD7E8'],['a','#F2B65E'],['r','#F0554A']].forEach(([k,col])=>{const m=mk('marker',{id:id+k,viewBox:'0 0 10 10',refX:9,refY:5,markerWidth:6,markerHeight:6,orient:'auto-start-reverse'},defs);mk('path',{d:'M0 1L10 5L0 9Z',fill:col},m)});
+  [['h','rgba(240,85,74,.07)'],['v','rgba(143,215,232,.05)']].forEach(([k,col])=>{const p=mk('pattern',{id:id+k,width:9,height:9,patternUnits:'userSpaceOnUse',patternTransform:'rotate(45)'},defs);mk('line',{x1:0,y1:0,x2:0,y2:9,stroke:col,'stroke-width':1.2},p)});
+  const bg=mk('g',{class:'ogx'});svg.insertBefore(bg,defs.nextSibling);
+  mk('rect',{x:6,y:28,width:506,height:526,fill:`url(#${id}v)`,class:'zn'},bg);mk('rect',{x:528,y:28,width:466,height:526,fill:`url(#${id}h)`,class:'zn h'},bg);
+  [[6,28,1,1],[512,28,-1,1],[6,554,1,-1],[512,554,-1,-1],[528,28,1,1],[994,28,-1,1],[528,554,1,-1],[994,554,-1,-1]].forEach(([x,y,a,b],i)=>mk('path',{d:`M${x} ${y+b*14}V${y}H${x+a*14}`,class:'zc'+(i>3?' h':'')},bg));
+  mk('text',{x:14,y:548,class:'zt'},bg,'SEKTOR A · MI6 / VERBÜNDETE');mk('text',{x:986,y:548,class:'zt h','text-anchor':'end'},bg,'SEKTOR B · ORGANISATION');
+  [[62,'E1'],[175,'E2'],[290,'E3'],[400,'E4'],[505,'E5']].forEach(([y,t])=>{mk('path',{d:`M0 ${y}h6M994 ${y}h6`,class:'lv'},bg);mk('text',{x:997,y:y-6,class:'lt','text-anchor':'end'},bg,t)});
+  /* Legende */
+  const lg=mk('g',{class:'olg',transform:'translate(822 462)'},bg);mk('rect',{x:0,y:0,width:164,height:62,class:'lb'},lg);
+  [['BEFEHLSWEG','c',''],['GELDFLUSS','a','7 5'],['FEINDKONTAKT','r','7 5']].forEach(([t,k,da],i)=>{const y=16+i*17;mk('path',{d:`M10 ${y}H40`,class:'ls '+k,'stroke-dasharray':da,'marker-end':`url(#${id+k})`},lg);mk('text',{x:48,y:y+3.5,class:'lt2'},lg,t)});
+  /* Pfeile an den Verbindungen, Kästen hinter den Beschriftungen */
+  svg.querySelectorAll('path.e').forEach(e=>e.setAttribute('marker-end',`url(#${id+(e.classList.contains('a')?'a':e.classList.contains('r')?'r':'c')})`));
+  svg.querySelectorAll('text.el').forEach(t=>{try{const b=t.getBBox();if(!b.width)return;const r=mk('rect',{x:(b.x-5).toFixed(1),y:(b.y-2).toFixed(1),width:(b.width+10).toFixed(1),height:(b.height+4).toFixed(1),class:'elb '+(t.classList.contains('r')?'r':'a'),'data-a':t.dataset.a,'data-b':t.dataset.b});t.parentNode.insertBefore(r,t)}catch(e){}});
+  /* Kennungen, Messmarken, Einrast-Klammern */
+  let io=0,ip=0;const br=(g,x0,y0,x1,y1,l)=>{const k=mk('g',{class:'ogk'},g);[[x0,y0,1,1],[x1,y0,-1,1],[x0,y1,1,-1],[x1,y1,-1,-1]].forEach(([x,y,a,b])=>mk('path',{d:`M${x} ${y+b*l}V${y}H${x+a*l}`},k))};
+  svg.querySelectorAll('g.on').forEach(g=>{const r=g.querySelector('rect');if(!r)return;const x=+r.getAttribute('x'),y=+r.getAttribute('y'),w=+r.getAttribute('width'),h=+r.getAttribute('height');
+    mk('text',{x:x+w-16,y:y+h+17,class:'oid','text-anchor':'end'},g,'ORG-'+String(++io).padStart(2,'0'));mk('path',{d:`M${x} ${y+h+4}h${w*.3}`,class:'obar'},g);br(g,x-7,y-7,x+w+7,y+h+7,12)});
+  svg.querySelectorAll('g.pn').forEach(g=>{const c=g.querySelector('circle');if(!c)return;const x=+c.getAttribute('cx'),y=+c.getAttribute('cy'),r=+c.getAttribute('r');
+    mk('circle',{cx:x,cy:y,r:r+6,class:'ogr'},g);mk('path',{d:`M${x-r-12} ${y}h6M${x+r+6} ${y}h6M${x} ${y-r-12}v6`,class:'ogt'},g);
+    mk('text',{x:x+r+15,y:y-r-4,class:'oid'},g,'P-'+String(++ip).padStart(2,'0'));br(g,x-r-11,y-r-11,x+r+11,y+r+11,9)})}
+function orgFx(root,s){const svg=root.querySelector('.ogsv');if(!svg)return;ogDecor(svg);if(RM)return;const me=cur,NS='http://www.w3.org/2000/svg',ck=cxClock();let last=0;const live=[];
   const sc=document.createElement('i');sc.className='cx-osc';root.querySelector('.ms-orgsc').appendChild(sc);
   const box=root.querySelector('.ms-orgsc'),ov=box.querySelector('.og-ov'),ld=ov&&ov.querySelector('.og-ld'),ret=ov&&ov.querySelector('.og-ret'),xh=ov&&ov.querySelector('.og-xh'),dos=box.querySelector('.og-dos'),key=OGK[s.og];
   const node=key&&svg.querySelector(`.pn[data-p="${key}"] circle`);const tOn=s.og==='le'?1700:1300;
