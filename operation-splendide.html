@@ -4787,9 +4787,10 @@ function legib(node){if(!node||!node.isConnected)return;const inl=innerWidth<=70
     const ar=svg.preserveAspectRatio.baseVal.meetOrSlice===2?Math.max:Math.min,k=ar(svg.clientWidth/vb.width,(svg.clientHeight||svg.clientWidth)/vb.height);
     svg.querySelectorAll('text').forEach(t=>{if(t.dataset.lg||t.ownerSVGElement!==svg)return;if(t.closest('symbol,.ogl,.lgb,defs')||t.querySelector('textPath'))return;const fs=parseFloat(getComputedStyle(t).fontSize);if(!fs)return;
       let m=1;const sp=t.closest('g[transform],text[transform]');if(sp&&sp.transform&&sp.transform.baseVal.numberOfItems){const c=sp.transform.baseVal.consolidate();if(c)m=Math.hypot(c.matrix.a,c.matrix.b)}
+      if(!svg.classList.contains('ogsv')){const c=t.getCTM();if(c){m=Math.hypot(c.a,c.b)/k}}
       const px=fs*k*m;t.dataset.lg=1;if(inl&&MIN/px>2.4){t.style.visibility='hidden';return}if(px<MIN)t.style.fontSize=(fs*MIN/px).toFixed(2)+'px';
       t.classList.add('lgh');t.style.strokeWidth=(2.6/(k*m)).toFixed(2)+'px'});
-    svg.querySelectorAll('svg text').forEach(t=>{const h=t.getBoundingClientRect().height;if(h>0&&h<7)t.style.visibility='hidden'});
+    svg.querySelectorAll('text:not([data-lg])').forEach(t=>{if(t.style.visibility==='hidden')return;const c=t.getScreenCTM(),h=c?parseFloat(getComputedStyle(t).fontSize)*Math.hypot(c.a,c.b):0;if(h>0&&h<7)t.style.visibility='hidden'});
     /* vergrößerte Schrift darf nichts überdecken: bei Kollision bleibt die größere (bzw. frühere) Beschriftung */
     const T=[...svg.querySelectorAll('text[data-lg]')].filter(t=>t.ownerSVGElement===svg&&t.style.visibility!=='hidden'&&t.style.fontSize).map(t=>({t,b:t.getBoundingClientRect(),f:parseFloat(t.style.fontSize)})).filter(q=>q.b.width>0);
     const ok=[];T.sort((a,b)=>b.f-a.f).forEach(q=>{const hit=ok.some(o=>o.b.left<q.b.right-1&&q.b.left<o.b.right-1&&o.b.top<q.b.bottom-2&&q.b.top<o.b.bottom-2);if(hit)q.t.style.visibility='hidden';else ok.push(q)})})}
