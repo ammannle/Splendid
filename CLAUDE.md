@@ -261,4 +261,8 @@ Freigabe: „Anyone with the link“ ist aktiv. Wer die Seite offen hat, sieht n
   als Ms Einschätzung, Lageskizze der Route mit allen 13 Zielen `locMini()`), im HUD 3D-Abgleich mit Fortschritt (`.cx-ab`), Scanband
   (`.cx-band`), Tracking abwechselnd als Messlinie mit Maß (`.cx-dim`) und technische Kennungen (`TRK`).
 - Version 39 (07.10.2026): Intro ohne die drei Zielerfassungen (Augsburg, Karlsbad, Prag); nach dem Netzhaut-Scan direkt „Verbindung steht“, Kennwort-Tor nach ca. 10 s statt 17 s.
+- Version 40 (07.10.2026): Lagebild 1–3 im Briefing technischer: Raster-Hintergrund, Organigramm rechts (73 %), links Analysespalte
+  (`orgDos`, `OGK`: Dossier der Zielperson mit Porträt aus `PA.sheet`, Scanlinie, Rolle/Status/Gefahr; Netzwerkanalyse mit hochzählenden
+  Knoten/Kanten/Dichte und Pegelbalken). Zielerfassung im Netz (`orgFx(root,s)`): rotierendes Fadenkreuz am Schlüsselknoten, Amber-Hinweislinie
+  vom Dossier, gestrichelte Peillinien; aktive Verbindungen mit Fließ-Strichelung, Datenpakete ohne Glühen. Handy: Spalte ausgeblendet.
 - Tests: Playwright-Skripte müssen vor dem Laden `window.__NOINTRO=1` per `addInitScript` setzen, sonst läuft das Intro.
