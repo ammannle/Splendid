@@ -308,4 +308,11 @@ Freigabe: „Anyone with the link“ ist aktiv. Wer die Seite offen hat, sieht n
   (je id: w, h, f = Kamera-Fokus, L = Ebenen a/f/h/c/m/r, T = Texte), `DET(k)`/`ART(k)`, Darstellung in `artSVG()` (Klasse `ms-det`),
   in `art()` vollständig sichtbar (contain) links neben dem Panel mit sanfter Fahrt zum Fokus. Generatoren lagen im Scratchpad; MSA-Strichbilder
   bleiben als Rückfall.
+- Version 47 (07.10.2026): Detailzeichnungen global (`DET`, `detSVG`, `detHud` im ersten Inline-Skript vor dem Haupt-IIFE; `#detData` je id
+  zusätzlich `an` Merkmale [Nr, x, y, Hinweis-x, Hinweis-y, Name] aus den Hinweisnummern/-linien der Zeichnung, `tg` Filmszene, `tl` Zielname).
+  Modul Zielobjekte: Umschalter DETAILBLATT / AUFRISS & SCHNITT (`.dvw`, Wahl in `window.__dvw`), `.detbox` mit Zeichnung (`.dsv`), Legende der
+  Merkmale (Hover/Klick misst ein: `hud.focus`), ANALYSE (Merkmale nacheinander, dann Ziel), NEU ZEICHNEN, VOLLBILD (`detView()`).
+  Briefing: Zielerfassung sitzt auf echten Merkmalen der Zeichnung (`detHud` in der Kamera-Ebene, Klammern rasten ein, Hinweislinie, Kennung
+  MESSE → ERFASST, max. 4 Merkmale je ~1 s, dann rotes Fadenkreuz mit Peillinien, „ZIEL ERFASST“, Name und Koordinaten); Anzeige MERKMALE n/m
+  statt 3D-ABGLEICH; zufällige Tracking-Rahmen, ERFASST-Fadenkreuz und Lock-Overlay entfallen bei Detailzeichnungen.
 - Tests: Playwright-Skripte müssen vor dem Laden `window.__NOINTRO=1` per `addInitScript` setzen, sonst läuft das Intro.
