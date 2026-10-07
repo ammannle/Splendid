@@ -215,7 +215,8 @@ Freigabe: „Anyone with the link“ ist aktiv. Wer die Seite offen hat, sieht n
   Eigennamen müssen hörbar sein, Kürzung erfundener Silben am Ende, `SEEDOFF` für neue Zufallswerte), Tempo 1,17 in `tools/tts.py`.
 - Version 29 (06.10.2026): Briefing-Drehbuch komplett neu (Ms Stimme, Missionsbriefing statt Reiseführer: Lage, Konto VESPER, Auftrag
   „Folgen Sie dem Geld“, je Zielobjekt ein Auftrag/Risiko). Längen wie v28 (Auftrag ~60–90 s, 13 Zielobjekte, Fahrten a–d).
-  Deutsche Namen, wo sie sicher ausgesprochen werden (Karolinenthal, Veitsberg, Plan, Markt unter dem Schlossturm).
+  Deutsche Namen, wo sie sicher ausgesprochen werden (Karolinenthal, Plan, Markt unter dem Schlossturm); heikle Begriffe umschrieben (Reiterdenkmal statt Vítkov, „Blatt seines Lebens“ statt Straight Flush, „Lizenz zum Töten“).
+  Lesbarkeit: `legib()` hebt SVG-Schrift im Briefing auf mind. 12 px (Handy 10,5 px), Halo `.lgh`, Kollisionsschutz; Handy hochkant: Vollbild wird quer gedreht (`.rot`, Knopf `#msRot`), unlesbare Feinschrift ausgeblendet.
   Stimme: `tools/tts_perfect.py` (Wort-für-Wort-Prüfung per Ausrichtung gegen faster-whisper medium: jedes Soll-Wort vorhanden,
   kein Zusatzwort, korrektes Ende, keine Pause > 0,9 s, Tempo plausibel; am Stück, sonst satzweise, mehrere Runden; Bericht
   `report.txt`). Lautschrift weiter in `SAY` (tools/tts_robust.py), Erkennungs-Schreibweisen in `ALT`.
