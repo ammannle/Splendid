@@ -253,4 +253,8 @@ Freigabe: „Anyone with the link“ ist aktiv. Wer die Seite offen hat, sieht n
   Platzkreise 1–8, Beschriftung). „Gift im Glas“ jetzt als Befund-Kasten mit Hinweislinie zum Sitz von Bond und EKG (`.p3call`, `.p3ov`),
   Handauswertung als Tabelle (`.p3eval`), Gewinn mit Messringen und Scanlinie statt Leuchten. Kamera-Einstellungen nach links versetzt,
   damit rechts Platz für die Auswertung bleibt; Farbstimmung der Szene cyan statt rot.
+- Version 37 (07.10.2026): Szene 1 (Cold Open) neu als SIGINT-Leitstelle (`coldOpen()`/`globe()`, Klasse `.co2`): Raster, Rahmenmarken,
+  Kopfzeile mit UTC-Uhr, Verbindungsaufbau Zeile für Zeile mit OK-Vermerken, Messwerte (Latenz, Bitrate, Signal, Frequenz), Stimmanalysator
+  „LIVE · M“. Globus technisch: Gradring mit Teilung (dreht), Gradnetz, gestrichelte Küsten, zwei Satellitenbahnen, Relais London → ARGUS-3 →
+  Böhmen mit Datenpaketen, Zielerfassung Böhmen mit Fadenkreuzlinien und Koordinaten, Zoom in den nächsten Schnitt.
 - Tests: Playwright-Skripte müssen vor dem Laden `window.__NOINTRO=1` per `addInitScript` setzen, sonst läuft das Intro.
