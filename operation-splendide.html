@@ -1457,7 +1457,7 @@ html.msfull{overflow:hidden}
 .cx-ret .x{stroke:var(--red);stroke-width:1.6;fill:none}.cx-ret .c{fill:var(--red)}
 @keyframes cxRot{to{transform:rotate(360deg)}}
 .cx-ret span{position:absolute;left:100%;top:8px;margin-left:4px;font-size:.72rem;letter-spacing:.16em;color:var(--red);white-space:nowrap;padding:2px 6px;background:color-mix(in srgb,var(--bg) 78%,transparent);opacity:0;transition:opacity .3s .5s}
-.cx-ret.on span{opacity:1}
+.cx-ret.on span{opacity:1}.cx-ret.lf span{left:auto;right:100%;margin:0 4px 0 0}
 .cx-ret.on{animation:cxRetOut .8s ease 3.4s forwards}
 @keyframes cxRetOut{to{opacity:.35;transform:scale(.7)}}
 /* Plotterkopf über dem Aufriss */
@@ -1523,7 +1523,7 @@ html.msfull{overflow:hidden}
 .cx-noise{position:absolute;inset:0;width:100%;height:100%;z-index:3;image-rendering:pixelated;mix-blend-mode:screen;pointer-events:none}
 .ms-lost.crt>*{animation:cxCrt .7s cubic-bezier(.6,0,.9,.4) forwards}
 @keyframes cxCrt{0%{transform:none;opacity:1}60%{transform:scaleY(.02) scaleX(1.05);opacity:1;filter:brightness(3)}100%{transform:scaleY(.01) scaleX(0);opacity:0}}
-@media (max-width:700px){.cx-tgt{right:0;bottom:38%}.cx-tgt.sp,.cx-tgt.bpp{bottom:0}.cx-md,.cx-co{display:none}.cx-id{left:30px;top:10px}.cx-rec{right:30px;top:12px}.cx-id .cx-n{font-size:1.1rem}.cx-seg i{width:6px}
+@media (max-width:700px){.cx-tgt{right:0;bottom:38%}.cx-tgt.sp{bottom:0}.cx-md,.cx-co,.cx-id b,.cx-tc{display:none}.cx-id{left:26px;top:auto;bottom:10px}.cx-rec{right:26px;top:10px}.cx-id .cx-n{font-size:1.1rem}.cx-seg i{width:6px}
   .cx-ret{width:80px;height:80px;margin:-40px 0 0 -40px}.ms-cold.glb{padding-left:5%}.ms-cold .cx-globe{right:-30%;opacity:.6}.ms-cold.glb .mc-term,.ms-cold.glb .ms-scope,.ms-cold.glb .mc-live{width:80%}}
 @media (prefers-reduced-motion:reduce){.ms-sc .ms-open .mo-title,.ms-open .mo-title span{animation:none;opacity:1}.cx-dust,.cx-streak,.cx-scan,.cx-sweep,.cx-plot,.cx-hb,.cx-burst,.cx-flare{display:none}.cx-ret{opacity:1;transform:none;transition:none}
   .ms-sc .ms-split>.bp,.ms-sc .ms-acmap svg,.ms-sc .pk,.ms-sc .ms-fin>svg{animation:none}.cx-br,.cx-seg i,.cx-id{animation:none;opacity:1}}
@@ -4969,7 +4969,7 @@ function zNum(s){const m=(s.k||'').match(/ZIELOBJEKT (\d+)/)||(s.h?s.h.toString(
 const MODE={draw:'ZEICHNUNG',iris:'OPTIK',scan:'SCANNER',wipe:'AUFKLÄRUNG',tiles:'ENTSCHLÜSSELUNG',zoomout:'TELE',zoomin:'ANNÄHERUNG',lock:'ZIELERFASSUNG'};
 function tgtHud(s,n){const id=s.id||((s.h&&s.h.toString().match(/id:'(\w+)'/))||[])[1],t=id?T(id):null,sp=!s.art,[fx,fy]=s.f||[.5,.46],pos=t?ll(t.lat,t.lon):'';
   const seg=Array.from({length:13},(_,i)=>`<i class="${i<n-1?'d':i===n-1?'n':''}" style="--i:${i}"></i>`).join('');
-  const ret=s.fx==='lock'||!s.art?'':`<div class="cx-ret" style="left:${(fx*100).toFixed(1)}%;top:${(fy*100).toFixed(1)}%"><svg viewBox="-60 -60 120 120"><circle r="44" class="o"/><circle r="30" class="m"/><g class="tk">${Array.from({length:24},(_,i)=>`<line x1="0" y1="-${i%6?48:53}" x2="0" y2="-44" transform="rotate(${i*15})"/>`).join('')}</g><path d="M-58 0h18M40 0h18M0 -58v18M0 40v18" class="x"/><circle r="2.5" class="c"/></svg><span>ERFASST</span></div>`;
+  const ret=s.fx==='lock'||!s.art?'':`<div class="cx-ret${fx>.55?' lf':''}" style="left:${(fx*100).toFixed(1)}%;top:${(fy*100).toFixed(1)}%"><svg viewBox="-60 -60 120 120"><circle r="44" class="o"/><circle r="30" class="m"/><g class="tk">${Array.from({length:24},(_,i)=>`<line x1="0" y1="-${i%6?48:53}" x2="0" y2="-44" transform="rotate(${i*15})"/>`).join('')}</g><path d="M-58 0h18M40 0h18M0 -58v18M0 40v18" class="x"/><circle r="2.5" class="c"/></svg><span>ERFASST</span></div>`;
   return `<div class="cx-tgt${sp?' sp':''}${s.bp?' bpp':''}" aria-hidden="true"><i class="cx-br a"></i><i class="cx-br b"></i><i class="cx-br c"></i><i class="cx-br d"></i>
     <div class="cx-id"><b>ZIELOBJEKT</b><span class="cx-n">${String(n).padStart(2,'0')}</span><em>/ 13</em><div class="cx-seg">${seg}</div></div>
     <div class="cx-rec"><i></i>REC <span class="cx-tc">00:00:00</span></div>
@@ -4981,9 +4981,13 @@ function tgtGo(node,s){const h=node.querySelector('.cx-tgt');if(!h)return;const 
   const a0=s.bp?Math.round(s.t*1000*.42)+700:900;later(()=>{const r=h.querySelector('.cx-ret');if(r){r.classList.add('on');SND.ping()}},a0+300);if(s.art&&!RM)later(()=>track(h,me),a0+1200)}
 /* Beobachtung: kurze Tracking-Rahmen auf markanten Stellen der Zeichnung */
 const TRK=['PERSON · ABGLEICH','ANALYSE 87 %','BEWEGUNG','FAHRZEUG · KZ ?','PROFIL · 3 TREFFER','WÄRME 36,8 °C','GESICHT · 0,92','OBJEKT · STATISCH'];
-function track(h,me){let k=0;const one=()=>{if(cur!==me||!h.isConnected)return;const b=document.createElement('div'),w=36+Math.random()*60;b.className='cx-trk';
-  Object.assign(b.style,{left:(14+Math.random()*62).toFixed(1)+'%',top:(22+Math.random()*50).toFixed(1)+'%',width:w+'px',height:(w*.8).toFixed(0)+'px'});b.innerHTML=`<span>${TRK[(Math.random()*TRK.length)|0]}</span>`;h.appendChild(b);setTimeout(()=>b.remove(),1700);
-  if(++k<6)timers.push(setTimeout(one,900+Math.random()*700))};one()}
+function track(h,me){if(innerWidth<=700)return;let k=0;const busy=()=>[...h.querySelectorAll('.cx-trk,.cx-ret.on,.cx-id,.cx-rec,.cx-co,.cx-md')].concat([...h.parentNode.querySelectorAll('.ms-lock,.ms-sup')]).map(e=>e.getBoundingClientRect());
+  const one=()=>{if(cur!==me||!h.isConnected)return;const R=h.getBoundingClientRect(),B=busy();let pick=null;
+    for(let n=0;n<14&&!pick;n++){const w=40+Math.random()*56,x=R.left+R.width*(.12+Math.random()*.6),y=R.top+R.height*(.2+Math.random()*.48),r={left:x-8,top:y-8,right:x+Math.max(w,150)+8,bottom:y+w*.8+26};
+      if(r.right<R.right-10&&r.bottom<R.bottom-10&&!B.some(b=>b.left<r.right&&r.left<b.right&&b.top<r.bottom&&r.top<b.bottom))pick=[x-R.left,y-R.top,w]}
+    if(pick){const b=document.createElement('div');b.className='cx-trk';Object.assign(b.style,{left:pick[0].toFixed(0)+'px',top:pick[1].toFixed(0)+'px',width:pick[2].toFixed(0)+'px',height:(pick[2]*.8).toFixed(0)+'px'});
+      b.innerHTML=`<span>${TRK[(Math.random()*TRK.length)|0]}</span>`;h.appendChild(b);setTimeout(()=>b.remove(),1700)}
+    if(++k<6)timers.push(setTimeout(one,900+Math.random()*700))};one()}
 
 /* ---- Aufriss: Plotterkopf fährt über das Blatt, während die Linien gezeichnet werden ---- */
 function plotter(node){const bpS=node.querySelector('.bp:not(.bpth)');if(!bpS||RM)return;const nr=node.getBoundingClientRect(),r=bpS.getBoundingClientRect();if(!r.width)return;
