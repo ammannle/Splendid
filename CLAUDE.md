@@ -315,4 +315,7 @@ Freigabe: „Anyone with the link“ ist aktiv. Wer die Seite offen hat, sieht n
   Briefing: Zielerfassung sitzt auf echten Merkmalen der Zeichnung (`detHud` in der Kamera-Ebene, Klammern rasten ein, Hinweislinie, Kennung
   MESSE → ERFASST, max. 4 Merkmale je ~1 s, dann rotes Fadenkreuz mit Peillinien, „ZIEL ERFASST“, Name und Koordinaten); Anzeige MERKMALE n/m
   statt 3D-ABGLEICH; zufällige Tracking-Rahmen, ERFASST-Fadenkreuz und Lock-Overlay entfallen bei Detailzeichnungen.
+- Version 48 (07.10.2026): Detailzeichnungen auch als Miniatur (`detThumb(k)`, Ausschnitt `th` 2:1 je id in `#detData`, nur Ebenen a/f):
+  Zielobjekt-Karten (`thUp()` nach DOMContentLoaded, ersetzt die Aufriss-Miniatur), Detailpanel links („DETAILBLATT“) und Zielstatus-Liste
+  der Startseite (`#tlist .ti`). Kaiserbad, Barrandov, Planá behalten die Aufriss-Miniatur.
 - Tests: Playwright-Skripte müssen vor dem Laden `window.__NOINTRO=1` per `addInitScript` setzen, sonst läuft das Intro.
