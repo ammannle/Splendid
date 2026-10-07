@@ -220,4 +220,11 @@ Freigabe: „Anyone with the link“ ist aktiv. Wer die Seite offen hat, sieht n
   Stimme: `tools/tts_perfect.py` (Wort-für-Wort-Prüfung per Ausrichtung gegen faster-whisper medium: jedes Soll-Wort vorhanden,
   kein Zusatzwort, korrektes Ende, keine Pause > 0,9 s, Tempo plausibel; am Stück, sonst satzweise, mehrere Runden; Bericht
   `report.txt`). Lautschrift weiter in `SAY` (tools/tts_robust.py), Erkennungs-Schreibweisen in `ALT`.
+- Version 30 (07.10.2026): Briefing-Kino-Ebene (`cine()` je Szene, Klassen `cx-*`): Partikel `cx-dust` und Farbstimmung `cx-grade` je Lage,
+  Lichtstreifen bei Schnitten, Übergänge `zoom`/`push`/`glitch`, Kamerafahrt per CSS `scale`/`translate` (`cxDolly`). Cold Open mit
+  3D-Globus (`globe()`, Küsten aus `WORLD`, Funkstrecke London → Böhmen). Ziel-HUD `tgtHud()` (Zähler 01–13, Zeitcode, Koordinaten
+  entschlüsseln, Signal, Fadenkreuz in der Zeichnungsphase, Tracking-Rahmen `track()` ohne Kollision), Plotterkopf über Aufrissen,
+  Datenpakete im Organigramm (`orgFx`), Geldströme und hochzählende Beträge (`acctFx`), Titel entschlüsselt mit Lichtkante und 13 Zielpunkten
+  (`openFx`), Scheinwerferkegel auf der Routenkarte, Kartenwenden und Herzschlag am Pokertisch, Staub beim Stempel (`finFx`), Bildrauschen
+  und Röhre aus am Ende (`lostFx`). Alles respektiert reduzierte Bewegung.
 - Tests: Playwright-Skripte müssen vor dem Laden `window.__NOINTRO=1` per `addInitScript` setzen, sonst läuft das Intro.
