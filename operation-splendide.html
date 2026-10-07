@@ -2018,6 +2018,13 @@ html.msfull{overflow:hidden}
 @container (max-width:640px){.ac2 .ac-x,.ac-tb,.ac-r:first-child,.ac-gh span,.ac-gf .ac-ll{display:none}.ac-sum{flex-direction:column;align-items:flex-start;gap:2px}.ac-gf,.ac-gh{letter-spacing:.06em;font-size:10px;overflow:hidden}.ac-led{justify-content:center}.ac-led{width:45%;gap:6px;top:13%}.ac-glw{width:45%;top:13%}
   .ac-row{grid-template-columns:minmax(0,1fr) auto}.ac-row span{font-size:10px}.ac-r{grid-template-columns:1fr;gap:2px;font-size:10.5px}.ac-sum i{font-size:10px;letter-spacing:.06em}.ac-pw{gap:3px}.ac-pw u{width:16px;height:20px;font-size:12px}}
 /* Bar v43: technische Zeichnung */
+.bk2-o{fill:#05121a;stroke:var(--ink);stroke-width:1.2;stroke-linejoin:round}.bk2-v{fill:url(#bxF);stroke:var(--cyan);stroke-width:1}
+.bk2-l{fill:none;stroke:var(--ink);stroke-width:1;stroke-linecap:round}.bk2-bt{fill:var(--red);stroke:none}.bk2-hr{fill:rgba(220,235,239,.25);stroke:var(--ink);stroke-width:1}
+.bk2-ax{stroke:var(--amber);stroke-width:.8;stroke-dasharray:8 3 2 3;opacity:.7}.bk2-cs{fill:none;stroke:rgba(143,215,232,.35);stroke-width:.8;stroke-dasharray:3 3}
+.bk2-t{font-family:var(--mono);font-size:9.5px;fill:var(--amber);letter-spacing:.1em}
+.bk2-ao{fill:none;stroke:var(--ink);stroke-width:10;stroke-linecap:round;stroke-linejoin:round}.bk2-ai{fill:none;stroke:#05121a;stroke-width:7.6;stroke-linecap:round;stroke-linejoin:round}
+.bk2-j{fill:#05121a;stroke:var(--amber);stroke-width:1}.bk2-h{fill:#05121a;stroke:var(--ink);stroke-width:1.2}
+
 .barb2{padding:14px 16px 16px;display:grid;gap:12px;position:relative;z-index:1}
 #barSvg{width:100%;height:auto;display:block;border:1px solid var(--line);border-radius:2px}
 .bx-bg{fill:color-mix(in srgb,var(--cyan) 3%,var(--mapbg))}
@@ -3818,7 +3825,32 @@ T(TB.x+8,TB.y+17,'Q-ABT. · GETRÄNKELABOR','lbl a sm');const tbN=T(TB.x+8,TB.y+
 T(TB.x+8,TB.y+66,'GLAS','rl');const tbG=T(TB.x+70,TB.y+66,'—','rv');T(TB.x+8,TB.y+92,'JAHR','rl');const tbF=T(TB.x+70,TB.y+92,'—','rv');
 T(TB.x+8,TB.y+110,'BLATT','rl');const tbB=T(TB.x+70,TB.y+110,'—','rv');
 /* Gefäß im Schnitt */
+/* Barkeeper (technische Figur, eigener Maßstab): Körper hinter dem Werkzeug, Arme davor. Hände folgen den Griffpunkten (grip). */
+const BKG=mk('g',{class:'bk2'});const BKB=mk('g',{},BKG);
+mk('path',{d:'M0 -232V8',class:'bk2-ax'},BKB);mk('path',{d:'M-46 -150H46',class:'bk2-ax'},BKB);mk('circle',{cx:0,cy:-196,r:30,class:'bk2-cs'},BKB);
+mk('path',{d:'M-27 0L-30 -100Q-36 -140 -34 -150Q-20 -160 -8 -162H8Q20 -160 34 -150Q36 -140 30 -100L27 0',class:'bk2-o'},BKB);
+mk('path',{d:'M-24 0L-26 -100L-12 -150L0 -112L12 -150L26 -100L24 0Z',class:'bk2-v'},BKB);
+mk('path',{d:'M-12 -150L-6 -160M12 -150L6 -160M0 -112V0',class:'bk2-l'},BKB);[-92,-70,-48,-26].forEach(y=>mk('circle',{cx:0,cy:y,r:2,class:'bk2-l'},BKB));
+mk('path',{d:'M-11 -164L-2 -159L-11 -154ZM11 -164L2 -159L11 -154Z',class:'bk2-bt'},BKB);mk('rect',{x:-2.5,y:-161.5,width:5,height:5,class:'bk2-bt'},BKB);
+mk('path',{d:'M-7 -162V-174M7 -162V-174',class:'bk2-o'},BKB);
+const BKH=mk('g',{},BKB);mk('ellipse',{cx:0,cy:-196,rx:17,ry:22,class:'bk2-o'},BKH);mk('path',{d:'M-17 -200Q-17 -222 0 -220Q17 -222 17 -200Q14 -212 0 -212Q-12 -212 -17 -200Z',class:'bk2-hr'},BKH);
+mk('path',{d:'M17 -198q5 0 4 6q-1 5 -5 4',class:'bk2-l'},BKH);mk('path',{d:'M-17 -198q-5 0 -4 6q1 5 5 4',class:'bk2-l'},BKH);
+mk('path',{d:'M-9 -194h5M4 -194h5M0 -192v8M-5 -180q5 2 10 0',class:'bk2-l'},BKH);const BROW=mk('path',{d:'M-10 -199h7M3 -199h7',class:'bk2-l'},BKH);
+mk('text',{x:-40,y:-196,class:'bk2-t','text-anchor':'end'},BKB,'BARKEEPER · M 1:8');
 const DL=mk('g',{class:'bx-dyn'});
+const ARM=mk('g',{class:'bk2-arm'}),AU=[0,1].map(()=>mk('polyline',{class:'bk2-ao'},ARM)),AI=[0,1].map(()=>mk('polyline',{class:'bk2-ai'},ARM)),AJ=[0,1,2,3].map(()=>mk('circle',{r:3,class:'bk2-j'},ARM)),AH=[0,1].map(()=>mk('ellipse',{rx:6.5,ry:5,class:'bk2-h'},ARM));
+let FX=360,FXT=360,hand={L:[330,BASE-40],R:[390,BASE-40]};const grip={L:null,R:null};
+const gpt=g=>{if(!g||!g[0].isConnected)return null;const r=g[0].getBoundingClientRect(),m=svg.getScreenCTM();if(!m||!r.width)return null;const p=svg.createSVGPoint();p.x=r.left+r.width*g[1];p.y=r.top+r.height*g[2];const q=p.matrixTransform(m.inverse());return[q.x,q.y]};
+function bkIK(s,h,out){const a=60,b=58,dx=h[0]-s[0],dy=h[1]-s[1];let d=Math.hypot(dx,dy);d=Math.max(8,Math.min(d,a+b-1));const ang=Math.atan2(dy,dx),k=Math.acos(Math.max(-1,Math.min(1,(a*a+d*d-b*b)/(2*a*d))))*out;return{e:[s[0]+a*Math.cos(ang+k),s[1]+a*Math.sin(ang+k)],h:[s[0]+(a+b-1)*Math.cos(ang)*Math.min(1,Math.hypot(dx,dy)/(a+b-1)),s[1]+(a+b-1)*Math.sin(ang)*Math.min(1,Math.hypot(dx,dy)/(a+b-1))]}}
+let bkT=0;(function bkLoop(t){const tg={L:gpt(grip.L),R:gpt(grip.R)};
+  let dsr=355;[tg.L,tg.R].filter(Boolean).forEach(p=>{if(Math.abs(p[0]-dsr)>112)dsr=p[0]-Math.sign(p[0]-dsr)*112});FXT=Math.max(200,Math.min(620,dsr));FX+=(FXT-FX)*.06;
+  const bob=Math.abs(FXT-FX)>3?Math.sin(t/90)*1.6:0;BKB.setAttribute('transform',`translate(${FX.toFixed(1)} ${(BASE+bob).toFixed(1)}) scale(.86)`);
+  const look=tg.R?Math.max(-8,Math.min(8,(tg.R[0]-FX)/12)):0;BKH.setAttribute('transform',`rotate(${look.toFixed(1)} 0 -180)`);
+  const S={L:[FX-29,BASE-127+bob],R:[FX+29,BASE-127+bob]},rest={L:[FX-22,BASE-32],R:[FX+22,BASE-32]};
+  ['L','R'].forEach((k,i)=>{const T2=tg[k]||rest[k];hand[k]=[hand[k][0]+(T2[0]-hand[k][0])*.28,hand[k][1]+(T2[1]-hand[k][1])*.28];const r=bkIK(S[k],hand[k],k==='L'?1:-1),pts=`${S[k][0].toFixed(1)},${S[k][1].toFixed(1)} ${r.e[0].toFixed(1)},${r.e[1].toFixed(1)} ${r.h[0].toFixed(1)},${r.h[1].toFixed(1)}`;
+    AU[i].setAttribute('points',pts);AI[i].setAttribute('points',pts);AJ[i*2].setAttribute('cx',S[k][0].toFixed(1));AJ[i*2].setAttribute('cy',S[k][1].toFixed(1));AJ[i*2+1].setAttribute('cx',r.e[0].toFixed(1));AJ[i*2+1].setAttribute('cy',r.e[1].toFixed(1));
+    AH[i].setAttribute('cx',r.h[0].toFixed(1));AH[i].setAttribute('cy',r.h[1].toFixed(1))});
+  if(svg.isConnected)requestAnimationFrame(bkLoop)})(performance.now());
 let uid=0;
 function vessel(type,x){const v=GV[type],g=mk('g',{class:'bx-v',transform:`translate(${x} ${BASE})`},DL),id='bxc'+(++uid);
   const out=prof(v.o,K,K),inn=prof(v.i.length===2&&v.i[0][0]===0?[[0.01,v.i[0][1]],v.i[1]]:v.i,K,K);
@@ -3879,26 +3911,27 @@ function step(t){si++;stepsEl.querySelectorAll('li').forEach((li,i)=>{li.classLi
 /* Arbeitsschritte */
 let V=null,G=null;
 async function pour(k,cl,into){const [c]=ING[k],sh=SHELF.find(b=>b.k===k),ml=cl*10;step(`${String(cl).replace('.',',')} cl ${k.charAt(0)+k.slice(1).toLowerCase()} abmessen und eingießen.`);
-  sh.g.classList.add('out');const bt=mk('g',{transform:`translate(${sh.x} ${sh.y})`},DL);bottle(k,bt,.34);const J=jigger();
+  sh.g.classList.add('out');const bt=mk('g',{transform:`translate(${sh.x} ${sh.y})`},DL);bottle(k,bt,.34);const J=jigger();grip.R=[bt,.5,.45];
   const jx=into.x+52,jy=BASE-into.v.h*K-40,top=[jx+46,jy-62];const A=arcPts([sh.x,sh.y],top,40),mp=path2(A.o);
   J.pos(jx,jy+4,0);J.g.style.opacity=0;
   await tw(560,u=>{const e=io(u),p=bez([sh.x,sh.y],A.b,top,e);bt.setAttribute('transform',`translate(${p[0].toFixed(1)} ${p[1].toFixed(1)}) rotate(${(-e*118).toFixed(1)}) scale(${(1+.15*e).toFixed(3)})`);J.g.style.opacity=e});
   const st=mk('path',{d:`M${top[0]-44} ${top[1]+18}Q${jx+6} ${jy-40} ${jx} ${jy-38}`,class:'bx-st',style:`--c:${c}`,pathLength:1},DL);
-  const fu=Math.min(1,cl/4);await tw(260+cl*90,u=>J.set(u*fu,c));st.remove();
+  const fu=Math.min(1,cl/4);await tw(260+cl*90,u=>J.set(u*fu,c));st.remove();grip.R=[J.g,.5,.6];
   const back=tw(480,u=>{const e=io(u),p=bez(top,A.b,[sh.x,sh.y],e);bt.setAttribute('transform',`translate(${p[0].toFixed(1)} ${p[1].toFixed(1)}) rotate(${(-(1-e)*118).toFixed(1)}) scale(${(1.15-.15*e).toFixed(3)})`)}).then(()=>{bt.remove();sh.g.classList.remove('out');mp.remove()});
   const rim=[into.x+into.v.d/2*K*.2,BASE-into.v.h*K-26];
   await tw(360,u=>{const e=io(u);J.pos(lerp(jx,rim[0]+12,e),lerp(jy+4,rim[1],e),-e*120)});
   const st2=mk('path',{d:`M${rim[0]-8} ${rim[1]+6}L${into.x} ${(BASE-into.level()*K).toFixed(1)}`,class:'bx-st',style:`--c:${c}`,pathLength:1},DL);
   into.add(c,0,`${String(cl).replace('.',',')} cl ${LBL[k]}`);const L2=into.layers[into.layers.length-1],m0=state.ml;
   await tw(260+cl*80,u=>{L2.ml=ml*u;into.draw();J.set(fu*(1-u),c);state.ml=m0+ml*u;st2.setAttribute('d',`M${rim[0]-8} ${rim[1]+6}L${into.x} ${(BASE-into.level()*K).toFixed(1)}`)});
-  st2.remove();layerLabels(into);await tw(220,u=>J.g.style.opacity=1-u);J.g.remove();await back}
+  st2.remove();layerLabels(into);grip.R=null;await tw(220,u=>J.g.style.opacity=1-u);J.g.remove();await back}
 async function ice(into,crushed){step(crushed?'Crushed Ice einfüllen.':'Eiswürfel einfüllen.');const n=crushed?14:5,cs=[],v=into.v;
   for(let k=0;k<n;k++){const s=crushed?7:15,x=(Math.random()-.5)*(v.i[0][0]*K*1.4||30),y0=-v.h*K-70-k*10,yE=-(v.i[0][1]+2)*K-s/2-(crushed?(k%4)*7:(k%2)*13)-Math.floor(k/(crushed?4:2))*(crushed?7:13),r0=Math.random()*40;
     const c=mk('rect',{x:-s/2,y:-s/2,width:s,height:s,rx:crushed?1:2.5,class:'bx-ice'},into.ice);cs.push({c,x,y0,yE,r0})}
+  grip.L=[into.g,.15,0];
   await tw(700,u=>cs.forEach((q,k)=>{const uu=Math.max(0,Math.min(1,u*1.6-k*.04)),e=uu*uu,b=uu>.85?Math.sin((uu-.85)/.15*Math.PI)*3:0;q.c.setAttribute('transform',`translate(${q.x.toFixed(1)} ${(lerp(q.y0,q.yE,e)-b).toFixed(1)}) rotate(${(q.r0+uu*60).toFixed(1)})`)}));
-  state.tmp=Math.min(state.tmp,crushed?6:8);into.iceN=n}
+  state.tmp=Math.min(state.tmp,crushed?6:8);into.iceN=n;grip.L=null}
 async function shake(v){step('Verschließen und kräftig schütteln.');const capG=mk('g',{class:'bx-capg'},v.g);mk('path',{d:`M${-44*K} ${-174*K}L${-34*K} ${-262*K}H${34*K}L${44*K} ${-174*K}Z`,class:'bx-gw'},capG);
-  v.g.querySelectorAll('.bx-ll').forEach(e=>e.style.opacity=0);v.g.querySelectorAll('.bx-dim').forEach(e=>e.style.display='none');const c=[v.x,BASE-170];const mp=path2([[v.x-60,c[1]-40],[v.x+60,c[1]+40]],'ax2');
+  v.g.querySelectorAll('.bx-ll').forEach(e=>e.style.opacity=0);v.g.querySelectorAll('.bx-dim').forEach(e=>e.style.display='none');grip.R=[v.g,.62,.12];grip.L=[v.g,.38,.88];const c=[v.x,BASE-170];const mp=path2([[v.x-60,c[1]-40],[v.x+60,c[1]+40]],'ax2');
   await tw(420,u=>{const e=io(u);v.pos(lerp(v.x,c[0],e),lerp(BASE,c[1]+60,e),e*-32)});
   const gh=[0,1].map(i=>{const u=mk('use',{href:'#'+(v.g.id||(v.g.id='bxv'+(++uid))),class:'bx-gh'},DL);return u});
   const t0=state.tmp,d0=state.dil,base=[v.x,v.y];let hist=[];
@@ -3906,37 +3939,37 @@ async function shake(v){step('Verschließen und kräftig schütteln.');const cap
     gh.forEach((g2,i)=>{const h=hist[2+i*2]||[x,y];g2.setAttribute('transform',`translate(${(h[0]-x).toFixed(1)} ${(h[1]-y).toFixed(1)})`);g2.style.opacity=(.18-.07*i)*(1-u)});
     state.tmp=lerp(t0,-4,io(u));state.dil=lerp(d0,25,io(u));v.g.classList.toggle('frost',u>.35)});
   gh.forEach(g2=>g2.remove());mp.remove();v.blend();v.mix=false;
-  await tw(400,u=>{const e=io(u);v.pos(lerp(v.x,PV,e),lerp(v.y,BASE,e),-32*(1-e))});capG.remove()}
+  await tw(400,u=>{const e=io(u);v.pos(lerp(v.x,PV,e),lerp(v.y,BASE,e),-32*(1-e))});capG.remove();grip.R=grip.L=null}
 async function stir(v,short){step(short?'Kurz umrühren.':'Mit dem Barlöffel rühren, gleichmäßig, ohne Luft.');const sp=spoon();v.mix=true;const n=short?2:7,t0=state.tmp,d0=state.dil,top=BASE-v.v.h*K;
   v.g.querySelectorAll('.bx-ll').forEach(e=>e.style.opacity=0);
-  const el=mk('ellipse',{cx:v.x,cy:top-10,rx:v.v.d/2*K*.7,ry:5,class:'bx-mp go rot'},DL);
+  const el=mk('ellipse',{cx:v.x,cy:top-10,rx:v.v.d/2*K*.7,ry:5,class:'bx-mp go rot'},DL);grip.R=[sp,.5,.04];grip.L=[v.g,.1,.65];
   await tw(short?900:2600,u=>{const a=u*Math.PI*2*n,x=v.x+Math.cos(a)*v.v.d/2*K*.45;toolPos(sp,x,BASE-14,Math.sin(a)*3);v.draw();
     v.ice.querySelectorAll('.bx-ice').forEach((c,k)=>{const tr=c.getAttribute('transform')||'';const m=/translate\(([-\d.]+) ([-\d.]+)\)/.exec(tr);if(!m)return;if(!c._x)c._x=+m[1];c.setAttribute('transform',tr.replace(/translate\([^)]*\)/,`translate(${(c._x*Math.cos(a+k)).toFixed(1)} ${m[2]})`))});
     if(!short){state.tmp=lerp(t0,-2,io(u));state.dil=lerp(d0,20,io(u))}else{state.dil=Math.max(state.dil,lerp(d0,8,u))}});
-  el.remove();sp.remove();v.mix=false;v.blend()}
+  el.remove();sp.remove();v.mix=false;v.blend();grip.R=grip.L=null}
 async function muddle(v){step('Minze mit Zucker andrücken, nicht zermahlen.');const md=muddler(),top=BASE-v.v.h*K;
   const leaves=[];for(let k=0;k<5;k++){const x=-14+k*7,y=-(v.v.i[0][1]+3)*K;leaves.push(mk('path',{d:`M${x} ${y}q5 -7 10 0q-5 4 -10 0Z`,class:'bx-mint'},v.ice))}
-  await tw(1600,u=>{const o=Math.abs(Math.sin(u*Math.PI*5));toolPos(md,v.x,BASE-(v.v.i[0][1]+4)*K-o*30,0);if(o<.15)leaves.forEach(l=>l.classList.add('pr'))});
-  md.remove();v.leaves=leaves}
+  grip.R=[md,.5,.03];grip.L=[v.g,.08,.6];await tw(1600,u=>{const o=Math.abs(Math.sin(u*Math.PI*5));toolPos(md,v.x,BASE-(v.v.i[0][1]+4)*K-o*30,0);if(o<.15)leaves.forEach(l=>l.classList.add('pr'))});
+  md.remove();v.leaves=leaves;grip.R=grip.L=null}
 async function strain(v,g){step(v.type==='tin'?'Mit dem Hawthorne-Sieb ins vorgekühlte Glas abseihen.':'Abseihen.');const s=strainer();
   v.g.querySelectorAll('.bx-ll').forEach(e=>e.style.opacity=0);v.g.querySelectorAll('.bx-dim').forEach(e=>e.style.display='none');
-  const p1=[g.x-74,BASE-g.v.h*K-64],mp=path2(arcPts([v.x,BASE],p1,60).o);
+  const p1=[g.x-74,BASE-g.v.h*K-64],mp=path2(arcPts([v.x,BASE],p1,60).o);grip.R=[v.g,.5,.55];grip.L=[s,.85,.5];
   await tw(620,u=>{const e=io(u);v.pos(lerp(PV,p1[0],e),lerp(BASE,p1[1]+30,e),e*112);toolPos(s,v.x+Math.cos((v.rot-90)*Math.PI/180)*v.v.h*K,v.y+Math.sin((v.rot-90)*Math.PI/180)*v.v.h*K,v.rot+90);s.style.opacity=e});
   const lip=[v.x+Math.cos((v.rot-90)*Math.PI/180)*v.v.h*K,v.y+Math.sin((v.rot-90)*Math.PI/180)*v.v.h*K];
   const c=v.layers[0]?v.layers[0].c:'#ddd',tot=v.ml*(1+state.dil/100),st=mk('path',{d:'',class:'bx-st',style:`--c:${c}`,pathLength:1},DL);g.add(c,0,'');const L2=g.layers[0],m0=v.ml;
   await tw(1400,u=>{v.layers[0]&&(v.layers[0].ml=m0*(1-u));v.draw();L2.ml=Math.min(g.v.cap*.92,tot*u);g.draw();state.ml=L2.ml;st.setAttribute('d',`M${lip[0].toFixed(1)} ${lip[1].toFixed(1)}Q${(g.x-4).toFixed(1)} ${(lip[1]+10).toFixed(1)} ${g.x} ${(BASE-g.level()*K).toFixed(1)}`)});
   st.remove();await tw(560,u=>{const e=io(u);v.pos(lerp(p1[0],PV,e),lerp(p1[1]+30,BASE,e),112*(1-e));s.style.opacity=1-e});s.remove();mp.remove();
   g.layers[0].lab=`${Math.round(L2.ml)} ml · ≈ ${state.tmp.toFixed(0)} °C`;layerLabels(g);
-  await tw(300,u=>v.g.style.opacity=1-u);v.g.remove();V=null}
+  grip.R=grip.L=null;await tw(300,u=>v.g.style.opacity=1-u);v.g.remove();V=null}
 async function garnish(g,kind){if(!kind)return;const Tx={zeste:'Zitronenzeste über dem Glas abdrehen.',minze:'Minzzweig. Einer.',zitrone:'Zitronenscheibe an den Rand.'};step(Tx[kind]);
   const rx=g.x+g.v.d/2*K*.55,ry=BASE-g.v.h*K;let d;
   if(kind==='zeste'){d=`M${rx} ${ry-2}`;for(let k=0;k<=40;k++){const a=k/40*Math.PI*5,r=7-k*.08;d+=`L${(rx+Math.cos(a)*r+k*.4).toFixed(1)} ${(ry-2-k*.9+Math.sin(a)*3).toFixed(1)}`}}
   else if(kind==='minze')d=`M${g.x} ${ry+8}V${ry-26}M${g.x} ${ry-10}q-12 -6 -16 3q10 3 16 -3M${g.x} ${ry-18}q12 -8 16 1q-9 4 -16 -1M${g.x} ${ry-26}q-8 -8 -12 -2q6 4 12 2`;
   else {const r=13;d=`M${rx-r} ${ry}A${r} ${r} 0 0 1 ${rx+r} ${ry}ZM${rx-r+3} ${ry}A${r-3} ${r-3} 0 0 1 ${rx+r-3} ${ry}`;for(let k=1;k<6;k++){const a=Math.PI+k*Math.PI/6;d+=`M${rx} ${ry}L${(rx+Math.cos(a)*(r-3)).toFixed(1)} ${(ry+Math.sin(a)*(r-3)).toFixed(1)}`}}
-  const p=mk('path',{d,class:'bx-gar '+kind,pathLength:1},DL);g.extra.push(p);await tw(700,u=>p.style.strokeDashoffset=(1-u).toFixed(3));
+  const p=mk('path',{d,class:'bx-gar '+kind,pathLength:1},DL);g.extra.push(p);grip.L=[g.g,.5,0];await tw(700,u=>p.style.strokeDashoffset=(1-u).toFixed(3));grip.L=null;
   const cl=mk('g',{class:'bx-ll'},DL);mk('path',{d:`M${rx-4} ${ry-20}L${rx-40} ${ry-56}H${rx-56}`,class:'bx-lld'},cl);mk('text',{x:rx-59,y:ry-52.5,class:'bx-llt','text-anchor':'end'},cl,{zeste:'ZESTE',minze:'MINZE',zitrone:'ZITRONE'}[kind]);g.extra.push(cl)}
-async function serve(g){step('Ausgabe an Platz C.');follow(PU);g.g.querySelectorAll('.bx-ll').forEach(e=>e.style.opacity=0);const x0=g.x,mp=path2([[x0,BASE+3],[PU,BASE+3]],'ax2');
-  await tw(900,u=>{const e=io(u),x=lerp(x0,PU,e);g.pos(x,BASE);g.extra.forEach(p=>p.setAttribute('transform',`translate(${(x-x0).toFixed(1)} 0)`))});mp.remove();layerLabels(g,true)}
+async function serve(g){step('Ausgabe an Platz C.');follow(PU);g.g.querySelectorAll('.bx-ll').forEach(e=>e.style.opacity=0);const x0=g.x,mp=path2([[x0,BASE+3],[PU,BASE+3]],'ax2');grip.R=[g.g,.12,.75];
+  await tw(900,u=>{const e=io(u),x=lerp(x0,PU,e);g.pos(x,BASE);g.extra.forEach(p=>p.setAttribute('transform',`translate(${(x-x0).toFixed(1)} 0)`))});mp.remove();layerLabels(g,true);grip.R=null}
 /* Ablauf je Rezept */
 const MN={shake:'GESCHÜTTELT',stir:'GERÜHRT',muddle:'GESTAMPFT',build:'IM GLAS GEBAUT',warm:'ERWÄRMT',chill:'GEKÜHLT',neat:'PUR'};
 function plan(r,m){const a=[];if(m==='shake'||m==='stir'){a.push('Eiswürfel einfüllen.');r.z.forEach(([k,cl])=>a.push(`${String(cl).replace('.',',')} cl ${k.charAt(0)+k.slice(1).toLowerCase()} abmessen und eingießen.`));a.push(m==='shake'?'Verschließen und kräftig schütteln.':'Mit dem Barlöffel rühren, gleichmäßig, ohne Luft.');a.push(m==='shake'?'Mit dem Hawthorne-Sieb ins vorgekühlte Glas abseihen.':'Abseihen.')}
@@ -3964,7 +3997,7 @@ async function make(r,forceMethod){if(busy)return;busy=true;skip=false;const m=f
   const n=S.get('bar',{}),c=(n[r.id]||0)+1;n[r.id]=c;S.set('bar',n);
   let fin=r.hum;if(r.id==='vesper'&&c>1)fin=`Vesper Nummer ${c}. M hat Ihr P.S. gelesen. Sie offenbar nicht.`;
   if(forceMethod==='stir'&&r.m==='shake')fin='Gerührt. Q vermerkt eine Abweichung vom Protokoll, mit Datum und Uhrzeit.'+(r.id==='vesper'&&c>1?` Außerdem Nummer ${c}.`:'');
-  say(fin);readout();svg.classList.add('done');stEl.textContent='SERVIERT';stEl.className='st';total();busy=false}
+  say(fin);if(forceMethod==='stir'&&r.m==='shake'){BROW.setAttribute('transform','translate(0 -3)');setTimeout(()=>BROW.removeAttribute('transform'),2600)}readout();svg.classList.add('done');stEl.textContent='SERVIERT';stEl.className='st';total();busy=false}
 function total(){const n=S.get('bar',{});const t=Object.values(n).reduce((a,b)=>a+b,0);cnt.textContent=t?`${t} serviert`:'Noch nichts serviert'}
 list.innerHTML=R.map((r,i)=>`<div class="bar-card" data-id="${r.id}"><div class="bch"><b>${r.n}</b><span>${r.y?r.f+' · '+r.y:r.f}</span></div>
   <div class="bci">${r.z.map(([k,cl])=>`<span><i style="--c:${ING[k][0]}"></i>${String(cl).replace('.',',')} cl ${k.charAt(0)+k.slice(1).toLowerCase()}</span>`).join('')}<span class="m">${MN[r.m]} · ${GV[r.g].n}</span></div>

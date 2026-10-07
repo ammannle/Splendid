@@ -283,4 +283,12 @@ Freigabe: „Anyone with the link“ ist aktiv. Wer die Seite offen hat, sieht n
   Flaschenprofilen `BPR`, Gläser/Gefäße im Schnitt `GV` (Füllhöhe über Innenvolumen `volTab`), Messbecher, Boston-Shaker, Rührglas,
   Barlöffel, Hawthorne-Sieb, Stößel, vorgezeichnete Bewegungsbahnen, Bewegungsunschärfe beim Schütteln, Schichtbeschriftungen,
   Messwerte (Simulation), Schriftfeld, Schrittliste `#barSteps`; am Handy seitlich scrollbar, folgt der Zubereitung.
+- Version 44 (08.10.2026): Konto-Szene beginnt mit Abgriff: abgefangene SWIFT-Nachrichten laufen im Journal (`.ac-raw`), bis die Buchungen
+  kommen; Globus dreht langsam, Suchmeridian mit Spur, Prüfsignale an Finanzplätzen `FIN` (ab „reaktiviert“ Treffer an den Quellen), Anzeige
+  ABGRIFF %. Lageskizze der Titelszene neu (`opGeo()`/`opMap()`, SVG `.op-lsk.nolg` – `legib()` überspringt `nolg`): Ausschnitt `FB`, Gradnetz mit
+  Randteilung, Höhenlinien/Flüsse/Grenze aus `rbase`, Route als Doppellinie mit km-Teilung (hin 475, zurück 425 km), Strecke wird mit Kopf
+  gezeichnet, Detailkreise A Karlsbad und B Prag (gespreizt, nicht maßstäblich), Maßstab, Nordpfeil, Geldspur, Fadenkreuz sucht in den Details.
+  Allgemeine Regel `section{margin-top:56px}` im Briefing neutralisiert (`.ms-stage section{margin:0}`). Bar: Barkeeper wieder da, als technische
+  Figur (`BKG`, Maßstab eigener), Arme mit IK `bkIK`, Hände folgen Griffpunkten `grip.L/R` (Flasche, Messbecher, Shaker, Löffel, Sieb, Glas),
+  läuft hinter dem Tresen mit; Braue bei „gerührt verlangen“.
 - Tests: Playwright-Skripte müssen vor dem Laden `window.__NOINTRO=1` per `addInitScript` setzen, sonst läuft das Intro.
