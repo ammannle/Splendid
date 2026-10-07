@@ -24,8 +24,7 @@ und anschließend per öffentlichem Link geteilt.
 ## Technische Rahmenbedingungen (bereits erfüllt)
 - Keine externen Bilder, keine externen Skripte. Schriften kommen von Google Fonts (erlaubt), mit Fallbacks.
 - Alle Interaktionen (Karten-Tabs, Zielobjekte, Einsatzplan 2/3/4 Tage, Entschlüsselungs-Animation, Radar,
-  Q-Lab mit Roulette-Training, Vesper-Prüfstand, Gadget-Ausgabe, Le Chiffres Tell (Reaktionstest),
-  Defibrillator (Timing), Kontopasswort (Wort-Raten), Gun-Barrel-Easter-Egg per „007“ oder 3× Tipp auf Ms Unterschrift;
+  Q-Lab mit Roulette, Bar und Lizenzprüfung, Gun-Barrel-Easter-Egg per „007“ oder 3× Tipp auf Ms Unterschrift;
   versteckt: Agentenstatus per Klick, geschwärzte Zeile aufdecken, Klick auf die Einstufung „OFFICIAL–SENSITIVE“, Konsolen-Nachricht)
   laufen als Inline-JavaScript im Browser.
 - Seit v5 zusätzlich: Abreisedatum im Einsatzplan (Wochentage, Sonnenuntergang per NOAA-Näherung in MEZ,
@@ -270,4 +269,18 @@ Freigabe: „Anyone with the link“ ist aktiv. Wer die Seite offen hat, sieht n
   Lageskizze der Route (`opGeo()` aus `LOCB`, Reihenfolge `OPO`, Gruppen `OPC`) mit Geldspur aus Konto 7714-V (Datenpakete), 13 Zielpunkten,
   Gruppenbeschriftung, Lauflicht über die Route und Fadenkreuz, das den Empfänger sucht (Koordinaten live); unten Auftragsparameter
   (AUFTRAG, ZIELOBJEKTE, ROUTE, EMPFÄNGER, PROFIL). Ablauf synchron zu Ms Worten über `cue:openCue`. Lichtkante, Ringe und Leuchten entfernt.
+- Version 42 (07.10.2026): Lagebild ohne laufende Strichelung auf den Linien (blinkte durch pathLength 1), Datenpakete langsamer.
+  Konto-Szene neu (`acct()`/`acctFx`/`acctCue`, Klasse `.ac2`): Kontoblatt mit Status EINGEFROREN → REAKTIVIERT, Kennwort in sechs Feldern,
+  Buchungsjournal (Zeilen erscheinen zu „Neun Überweisungen“, Beträge zählen), Summe; rechts Weltkugel (orthografisch, Canvas: Gradring,
+  Gradnetz, gestrichelte Küsten) mit Quellen `ACS` (Beschriftung seitlich mit Hinweislinien), Geldflüsse als Großkreisbögen mit Höhe und
+  Paketen, ab „Alle Empfänger“ logarithmischer Zoom (bis 95×) auf Böhmen mit Empfängern `ACD` und Fadenkreuzen.
+- Version 43 (07.10.2026): Einsatzbefehl inhaltlich wie das Briefing (Le Chiffre, Quantum/SPECTRE, Konto 7714-V, „Folgen Sie dem Geld“),
+  Abreisedatum jetzt dort (`#dep`, `depFlags()`). Missionsziele: 15 Punkte aus dem früheren Einsatzplan (Speicher `ops5-goals2`).
+  Modul Einsatzplan (`#ops`, `plans`, `D1–D3`, `BK`, `DRIVE`) entfernt; Module neu nummeriert (03 Quartiere … 10 Archiv), Kürzel 1–9 angepasst.
+  Bereitschaft: Datum 30, Quittung 30, Lizenz 40. Quartiere & Assets als kompaktes Register `AS` (36 Einträge in sechs Kategorien `ASK`,
+  `<details>` je Eintrag, Standard nur befohlene/wichtige, „weitere anzeigen“, Kategorie unter `ops5-ascat`). Q-Lab: Ausrüstungsausgabe,
+  Kontopasswort, Defibrillator und Le Chiffres Tell entfernt. Bar neu als technische Zeichnung (`#barSvg` 960×440): Hinterbuffet mit
+  Flaschenprofilen `BPR`, Gläser/Gefäße im Schnitt `GV` (Füllhöhe über Innenvolumen `volTab`), Messbecher, Boston-Shaker, Rührglas,
+  Barlöffel, Hawthorne-Sieb, Stößel, vorgezeichnete Bewegungsbahnen, Bewegungsunschärfe beim Schütteln, Schichtbeschriftungen,
+  Messwerte (Simulation), Schriftfeld, Schrittliste `#barSteps`; am Handy seitlich scrollbar, folgt der Zubereitung.
 - Tests: Playwright-Skripte müssen vor dem Laden `window.__NOINTRO=1` per `addInitScript` setzen, sonst läuft das Intro.

@@ -1971,6 +1971,67 @@ html.msfull{overflow:hidden}
 .ac-gl{flex:1;min-height:0;width:100%;display:block}
 @container (max-width:640px){.ac2 .ac-x,.ac-tb,.ac-r:first-child,.ac-gh span,.ac-gf .ac-ll{display:none}.ac-sum{flex-direction:column;align-items:flex-start;gap:2px}.ac-gf,.ac-gh{letter-spacing:.06em;font-size:10px;overflow:hidden}.ac-led{justify-content:center}.ac-led{width:45%;gap:6px;top:13%}.ac-glw{width:45%;top:13%}
   .ac-row{grid-template-columns:minmax(0,1fr) auto}.ac-row span{font-size:10px}.ac-r{grid-template-columns:1fr;gap:2px;font-size:10.5px}.ac-sum i{font-size:10px;letter-spacing:.06em}.ac-pw{gap:3px}.ac-pw u{width:16px;height:20px;font-size:12px}}
+/* Bar v43: technische Zeichnung */
+.barb2{padding:14px 16px 16px;display:grid;gap:12px;position:relative;z-index:1}
+#barSvg{width:100%;height:auto;display:block;border:1px solid var(--line);border-radius:2px}
+.bx-bg{fill:color-mix(in srgb,var(--cyan) 3%,var(--mapbg))}
+.bx-gl{fill:none;stroke:rgba(143,215,232,.06);stroke-width:1}
+.bx-hl{stroke:rgba(143,215,232,.35);stroke-width:1}.bx-fl{stroke:rgba(255,255,255,.22);stroke-width:.6}
+.bx-ln{fill:none;stroke:rgba(143,215,232,.55);stroke-width:1;stroke-dasharray:1;stroke-dashoffset:0}
+.bx-ln.fr{stroke:rgba(143,215,232,.35)}.bx-ln.fr2{stroke:rgba(143,215,232,.6)}.bx-ln.tk{stroke:rgba(143,215,232,.5)}
+.bx-ln.sh{stroke:var(--cyan);stroke-width:1.2}.bx-ln.ct{stroke:var(--cyan);stroke-width:1.3}.bx-ln.ax{stroke:var(--amber);stroke-dasharray:6 3 1 3}
+.bx-ln.box{stroke:rgba(143,215,232,.55)}.bx-ln.box2{stroke:rgba(143,215,232,.3)}.bx-ln.box3{stroke:rgba(143,215,232,.12)}
+#barSvg.plot .bx-sheet .bx-ln:not(.ax){stroke-dasharray:1;stroke-dashoffset:1;animation:bxPlot 1.6s cubic-bezier(.4,0,.2,1) forwards}
+#barSvg.plot .bx-sheet .bx-slot{opacity:0;animation:gzfade .5s ease forwards;animation-delay:calc(.6s + var(--i,0)*.05s)}
+#barSvg.pre .bx-sheet{opacity:0}
+@keyframes bxPlot{to{stroke-dashoffset:0}}
+.bx-t{font-family:var(--mono);fill:var(--mute);font-size:10px;letter-spacing:.12em}
+.bx-t.lbl{fill:var(--cyan);letter-spacing:.18em}.bx-t.sm{letter-spacing:.08em}.bx-t.lbl.a{fill:var(--amber)}.bx-t.tn{font-size:9px;fill:rgba(143,215,232,.55)}
+.bx-t.rl{font-size:10px;letter-spacing:.14em}.bx-t.rv{fill:var(--ink);font-size:11px;letter-spacing:.06em;font-variant-numeric:tabular-nums}.bx-t.tbn{fill:var(--ink);font-family:var(--head);font-size:15px;font-weight:600;letter-spacing:.06em}
+.bx-tb{fill:var(--amber)}
+.bx-bto{fill:rgba(143,215,232,.06);stroke:var(--cyan);stroke-width:1;stroke-linejoin:round}
+.bx-lb{fill:color-mix(in srgb,var(--c) 22%,transparent);stroke:var(--c);stroke-width:.8}.bx-lb2{stroke:var(--c);stroke-width:.6;opacity:.7}
+.bx-lbt{font-family:var(--mono);font-size:6.5px;fill:var(--ink);letter-spacing:.04em}
+.bx-cap{fill:rgba(143,215,232,.25);stroke:var(--cyan);stroke-width:.8}.bx-glint{stroke:rgba(255,255,255,.35);stroke-width:1.2}
+.bx-slot{transition:opacity .25s}.bx-slot.out{opacity:.15}
+.bx-ct{opacity:.6}
+.bx-gw{fill:rgba(143,215,232,.07);stroke:var(--cyan);stroke-width:1.4;stroke-linejoin:round}
+.bx-gi{fill:none;stroke:rgba(143,215,232,.5);stroke-width:.7;stroke-dasharray:3 2}
+.bx-v.in .bx-gw,.bx-v.in .bx-gi{stroke-dasharray:1;stroke-dashoffset:1;animation:bxPlot 1.1s cubic-bezier(.4,0,.2,1) forwards}
+.bx-v.in .bx-gi{animation-delay:.3s}
+.bx-v.frost .bx-gw{fill:url(#bxF)}
+.bx-lq{fill:color-mix(in srgb,var(--c) 42%,transparent)}
+.bx-lqs{stroke:var(--c);stroke-width:1.2}
+.bx-swirl{opacity:.6}
+.bx-ice{fill:rgba(220,235,239,.18);stroke:var(--ink);stroke-width:.8}
+.bx-dl{fill:none;stroke:var(--amber);stroke-width:.8}.bx-dt{font-family:var(--mono);font-size:9.5px;fill:var(--amber);letter-spacing:.06em}
+.bx-dim{opacity:0;animation:gzfade .5s ease .9s forwards;transition:opacity .3s}
+.bx-ll{transition:opacity .3s}.bx-lld{fill:none;stroke:rgba(220,235,239,.55);stroke-width:.8}.bx-lldot{fill:var(--ink)}
+.bx-llt{font-family:var(--mono);font-size:9.5px;fill:var(--ink);letter-spacing:.08em}
+.bx-to{fill:rgba(143,215,232,.08);stroke:var(--ink);stroke-width:1;stroke-linejoin:round}
+.bx-sc{stroke:var(--ink);stroke-width:.7}.bx-sct{font-family:var(--mono);font-size:6px;fill:var(--mute)}
+.bx-st{fill:none;stroke:var(--c);stroke-width:2.2;stroke-linecap:round;stroke-dasharray:4 3;animation:bxFlow .35s linear infinite}
+@keyframes bxFlow{to{stroke-dashoffset:-7}}
+.bx-mp{fill:none;stroke:rgba(242,182,94,.55);stroke-width:1;stroke-dasharray:3 4;opacity:0;transition:opacity .25s}.bx-mp.go{opacity:1}
+.bx-mp.ax2{stroke:rgba(143,215,232,.5);stroke-dasharray:8 3 2 3}
+.bx-mp.rot{animation:bxRot .6s linear infinite}@keyframes bxRot{to{stroke-dashoffset:-14}}
+.bx-gh{pointer-events:none}
+.bx-mint{fill:rgba(120,190,110,.25);stroke:#8FCB7E;stroke-width:.8;transition:transform .2s}.bx-mint.pr{transform:scaleY(.6);transform-box:fill-box;transform-origin:bottom}
+.bx-gar{fill:none;stroke-width:1.4;stroke-linecap:round;stroke-dasharray:1;stroke-dashoffset:1}.bx-gar.zeste,.bx-gar.zitrone{stroke:#F3E58A}.bx-gar.minze{stroke:#8FCB7E}
+.bx-steam{fill:none;stroke:var(--mute);stroke-width:1;animation:steam 2s ease-in-out infinite}
+.bx-bub circle{fill:none;stroke:#fff;stroke-width:.6;animation:bub 1.6s linear infinite}
+.barrow{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:14px;align-items:start}
+.barsteps{list-style:none;margin:0;padding:8px 10px;border:1px solid var(--line);display:grid;gap:2px;font-family:var(--mono);font-size:.74rem;max-height:220px;overflow:auto}
+.barsteps li{display:grid;grid-template-columns:2.4em 1fr;gap:6px;color:var(--mute);padding:2px 0;transition:color .2s}
+.barsteps li i{font-style:normal;color:rgba(143,215,232,.5)}
+.barsteps li.now{color:var(--amber)}.barsteps li.now i{color:var(--amber)}.barsteps li.ok{color:var(--ink)}.barsteps li.ok i::after{content:" ✓";color:var(--green)}
+.barlist2{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:8px}
+.bar-card .bci{display:flex;flex-wrap:wrap;gap:4px 10px;margin:6px 0;font-family:var(--mono);font-size:.7rem;color:var(--ink)}
+.bar-card .bci i{display:inline-block;width:8px;height:8px;margin-right:5px;border:1px solid var(--c);background:color-mix(in srgb,var(--c) 35%,transparent)}
+.bar-card .bci .m{flex-basis:100%;color:var(--cyan);font-size:.64rem;letter-spacing:.1em}
+.bar-card details summary{font-family:var(--mono);font-size:.66rem;color:var(--mute);cursor:pointer;letter-spacing:.1em}
+.barscroll{overflow-x:auto;-webkit-overflow-scrolling:touch}
+@media (max-width:760px){.barrow{grid-template-columns:1fr}#barSvg{min-width:760px}}
 .ms-cold,.ms-lost{position:absolute;inset:0;background:#020507;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;overflow:hidden}
 .mc-term{font-family:var(--mono);font-size:clamp(.6rem,1.4vw,.8rem);letter-spacing:.16em;color:var(--cyan);width:min(560px,86%)}
 .mc-term p{margin:0 0 4px;opacity:0;white-space:nowrap;overflow:hidden;animation:msType .5s steps(24) calc(.2s + var(--i)*.38s) both,gzfade .01s calc(.2s + var(--i)*.38s) forwards}
@@ -2310,12 +2371,12 @@ html.msfull{overflow:hidden}
       </div>
     </div>
     <div class="panel bar">
-      <div class="ph"><b>BAR // BECHER’S · DIE GETRÄNKE DER AKTEN</b><span><span id="barCnt"></span> · <span class="st" id="barState">BEREIT</span></span></div>
-      <div class="barb">
-        <div class="barstage"><svg id="barSvg" viewBox="0 0 640 300" role="img" aria-label="Barkeeper hinter dem Tresen"></svg>
-          <div class="barcap" id="barCap" aria-live="polite"></div>
-          <div class="qbtns"><button class="qbtn" type="button" id="barFast">TEMPO ×2</button><button class="qbtn" type="button" id="barSkip">ÜBERSPRINGEN</button></div></div>
-        <div class="barlist" id="barList"></div>
+      <div class="ph"><b>BAR // Q-ABTEILUNG · GETRÄNKELABOR</b><span><span id="barCnt"></span> · <span class="st" id="barState">BEREIT</span></span></div>
+      <div class="barb2">
+        <div class="barscroll"><svg id="barSvg" viewBox="0 0 960 440" role="img" aria-label="Technische Zeichnung: Bar-Arbeitsplatz mit Hinterbuffet, Gläsern und Werkzeug"></svg></div>
+        <div class="barrow"><div><div class="barcap" id="barCap" aria-live="polite"></div><div class="qbtns"><button class="qbtn" type="button" id="barFast">TEMPO ×2</button><button class="qbtn" type="button" id="barSkip">ÜBERSPRINGEN</button></div></div>
+          <ol class="barsteps" id="barSteps" aria-label="Arbeitsablauf"></ol></div>
+        <div class="barlist2" id="barList"></div>
       </div>
     </div>
     <div class="panel qp quiz">
@@ -3621,145 +3682,255 @@ function stats(){histEl.innerHTML=hist.slice(0,18).map(n=>`<span class="${col(n)
   statEl.innerHTML=`${h.length} Coups · Rot ${Math.round(r/h.length*100)} % · Schwarz ${Math.round((h.length-r-z)/h.length*100)} % · Zero ${z}×<br>Heiß: ${hot.join(', ')} · Kalt: ${absent.join(', ')} <small>(Der Kessel hat kein Gedächtnis. Croupiers schon.)</small>`}
 stats();render();drawWheel();say('Jeton wählen, auf das Tableau setzen, Kugel werfen. Rechtsklick nimmt einen Einsatz zurück.','');
 })();
-/* q-lab: Bar mit Barkeeper. Rezepte aus den Filmen, Zubereitung als Animation. */
+/* q-lab: Bar (v43) als technische Zeichnung der Q-Abteilung: Hinterbuffet mit Flaschenprofilen, Gläser und Gefäße im Schnitt
+   (Füllstand über das echte Innenvolumen), Messbecher, Boston-Shaker, Rührglas, Barlöffel, Hawthorne-Sieb, Stößel.
+   Bewegungsbahnen werden vorgezeichnet, Messwerte (Volumen, Temperatur, Verdünnung) sind eine Simulation. */
 (function(){
-const NS='http://www.w3.org/2000/svg',svg=document.getElementById('barSvg'),cap=document.getElementById('barCap'),list=document.getElementById('barList'),stEl=document.getElementById('barState'),cnt=document.getElementById('barCnt');
+const NS='http://www.w3.org/2000/svg',svg=document.getElementById('barSvg'),cap=document.getElementById('barCap'),list=document.getElementById('barList'),stEl=document.getElementById('barState'),cnt=document.getElementById('barCnt'),stepsEl=document.getElementById('barSteps');
 const mk=(t,a,p,txt)=>{const e=document.createElementNS(NS,t);for(const k in a)e.setAttribute(k,a[k]);(p||svg).appendChild(e);if(txt!=null)e.textContent=txt;return e};
-/* Rezepte: Mengen in cl; Schritte werden aus Methode und Zutaten erzeugt */
 const R=[
- {id:'vesper',n:'Vesper',f:'Casino Royale',y:2006,g:'martini',c:'#E9D9A6',m:'shake',z:[['GIN',6],['WODKA',2],['LILLET',1]],gar:'zeste',
+ {id:'vesper',n:'Vesper',f:'Casino Royale',y:2006,g:'martini',m:'shake',z:[['GIN',6],['WODKA',2],['LILLET',1]],gar:'zeste',
   s:'Bond bestellt ihn am Pokertisch, diktiert das Rezept und benennt ihn später nach Vesper Lynd.',q:'Drei Teile Gin, ein Teil Wodka, ein halber Teil Lillet. Auf Eis schütteln, große dünne Zitronenzeste.',hum:'„Ein Vesper.“ M: Einer.'},
- {id:'vmart',n:'Wodka-Martini',f:'James Bond jagt Dr. No',y:1962,g:'martini',c:'#E8EEF0',m:'shake',z:[['WODKA',6],['WERMUT',1]],gar:'zeste',
+ {id:'vmart',n:'Wodka-Martini',f:'James Bond jagt Dr. No',y:1962,g:'martini',m:'shake',z:[['WODKA',6],['WERMUT',1]],gar:'zeste',
   s:'Schon im ersten Film bringt man ihm den Martini so, wie er ihn verlangt hat: geschüttelt, nicht gerührt.',q:'Wodka und trockener Wermut auf Eis schütteln, in die vorgekühlte Schale abseihen, Zeste.',hum:'Der Barkeeper hat nicht gefragt. Er wusste es.'},
- {id:'henderson',n:'Martini, gerührt',f:'Man lebt nur zweimal',y:1967,g:'martini',c:'#E8EEF0',m:'stir',z:[['WODKA',6],['WERMUT',1]],gar:'zeste',
+ {id:'henderson',n:'Martini, gerührt',f:'Man lebt nur zweimal',y:1967,g:'martini',m:'stir',z:[['WODKA',6],['WERMUT',1]],gar:'zeste',
   s:'Der Kontaktmann in Tokio mixt ihn gerührt statt geschüttelt und fragt nach, ob das richtig war. Bond ist zu höflich für eine Korrektur.',q:'Wodka und Wermut im Rührglas auf Eis rühren, abseihen, Zeste. Formal korrekt, dienstlich bedenklich.',hum:'Bond nennt ihn perfekt. Bond lügt beruflich.'},
- {id:'julep',n:'Mint Julep',f:'Goldfinger',y:1964,g:'julep',c:'#C98A3A',m:'muddle',z:[['SIRUP',1],['BOURBON',6]],gar:'minze',
+ {id:'julep',n:'Mint Julep',f:'Goldfinger',y:1964,g:'julep',m:'muddle',z:[['SIRUP',1],['BOURBON',6]],gar:'minze',
   s:'Auf Goldfingers Gestüt in Kentucky. Bond bestellt ihn mit Sour Mash, nicht zu süß.',q:'Minze mit Zucker im Becher andrücken, Bourbon, Crushed Ice, rühren bis der Becher beschlägt, Minzzweig.',hum:'Goldfinger zahlt. Bond trinkt trotzdem mit Vorsicht.'},
- {id:'collins',n:'Rum Collins',f:'Feuerball',y:1965,g:'highball',c:'#E6D7B0',m:'build',z:[['RUM',5],['ZITRONE',2.5],['SIRUP',1.5],['SODA',8]],gar:'zitrone',
+ {id:'collins',n:'Rum Collins',f:'Feuerball',y:1965,g:'highball',m:'build',z:[['RUM',5],['ZITRONE',2.5],['SIRUP',1.5],['SODA',8]],gar:'zitrone',
   s:'In Nassau, in einem Casino voller SPECTRE-Leute. Bond bestellt einen Rum Collins, Domino lässt anschreiben.',q:'Rum, Zitronensaft und Zuckersirup auf Eis ins Longdrinkglas, mit Soda auffüllen, kurz rühren, Zitronenscheibe.',hum:'Getrunken auf Rechnung eines Mannes mit Augenklappe.'},
- {id:'sake',n:'Sake, warm',f:'Man lebt nur zweimal',y:1967,g:'sake',c:'#F2EFE4',m:'warm',z:[['SAKE',6]],gar:'',
+ {id:'sake',n:'Sake, warm',f:'Man lebt nur zweimal',y:1967,g:'sake',m:'warm',z:[['SAKE',6]],gar:'',
   s:'Bond lobt den Sake – und dass er korrekt auf 98,4 Grad Fahrenheit temperiert ist.',q:'Sake im Wasserbad auf Körpertemperatur bringen, etwa 37 °C, in kleine Schalen gießen.',hum:'98,4 °F. Bond misst Temperaturen offenbar am Geschmack.'},
- {id:'dom',n:'Dom Pérignon ’53',f:'Goldfinger',y:1964,g:'flute',c:'#F1DB8A',m:'chill',z:[['CHAMPAGNER',10]],gar:'',
+ {id:'dom',n:'Dom Pérignon ’53',f:'Goldfinger',y:1964,g:'flute',m:'chill',z:[['CHAMPAGNER',10]],gar:'',
   s:'Bond besteht darauf, dass man ihn unter 38 °F trinkt. Darüber sei es wie die Beatles ohne Ohrenschützer.',q:'Champagner gut gekühlt, unter 3 °C, in die Flöte gießen, zweimal, damit die Perlage nicht überläuft.',hum:'Kurz darauf ist Jill Masterson vergoldet. Der Champagner kann nichts dafür.'},
- {id:'mojito',n:'Mojito',f:'Stirb an einem anderen Tag',y:2002,g:'highball',c:'#D9EFD0',m:'muddle',z:[['SIRUP',1.5],['LIMETTE',2.5],['RUM',5],['SODA',6]],gar:'minze',
+ {id:'mojito',n:'Mojito',f:'Stirb an einem anderen Tag',y:2002,g:'highball',m:'muddle',z:[['SIRUP',1.5],['LIMETTE',2.5],['RUM',5],['SODA',6]],gar:'minze',
   s:'Havanna. Bond bestellt einen Mojito und beobachtet Jinx, die aus dem Meer steigt.',q:'Minze, Limettensaft und Zucker im Glas andrücken, Crushed Ice, weißer Rum, mit Soda auffüllen, Minzzweig.',hum:'Der Barkeeper sieht nur den Mojito. Professionell.'},
- {id:'macallan',n:'Macallan, 50 Jahre',f:'Skyfall',y:2012,g:'tumbler',c:'#B5651D',m:'neat',z:[['WHISKY',4]],gar:'',
+ {id:'macallan',n:'Macallan, 50 Jahre',f:'Skyfall',y:2012,g:'tumbler',m:'neat',z:[['WHISKY',4]],gar:'',
   s:'Auf Silvas Insel. Ein Glas auf Sévérines Kopf, ein Schießspiel, und Bond findet es eine Verschwendung guten Scotchs.',q:'Pur, Zimmertemperatur, ohne Eis. Ein paar Tropfen Wasser sind erlaubt, Wilhelm Tell nicht.',hum:'Das Glas überlebt. Der Rest der Szene nicht.'},
- {id:'smoothie',n:'Probiotischer Smoothie',f:'Spectre',y:2015,g:'highball',c:'#9BC46A',m:'build',z:[['SMOOTHIE',12]],gar:'',
+ {id:'smoothie',n:'Probiotischer Smoothie',f:'Spectre',y:2015,g:'highball',m:'build',z:[['SMOOTHIE',12]],gar:'',
   s:'In der Hoffler-Klinik in den Alpen bestellt Bond einen Martini. Die Klinik schenkt keinen Alkohol aus.',q:'Grün, gesund, alkoholfrei. Wird serviert, nicht empfohlen.',hum:'Bond nimmt ihn mit dem Gesicht eines Mannes, der gerade gefoltert wird. Vorgezogen.'},
- {id:'beton',n:'Beton',f:'Hausempfehlung Karlsbad',y:0,g:'tumbler',c:'#E4CF8E',m:'build',z:[['BECHEROVKA',4],['TONIC',10]],gar:'zitrone',
+ {id:'beton',n:'Beton',f:'Hausempfehlung Karlsbad',y:0,g:'tumbler',m:'build',z:[['BECHEROVKA',4],['TONIC',10]],gar:'zitrone',
   s:'Kein Film, aber Ihr Einsatzgebiet: Becherovka und Tonic, der Name ist ein Wortspiel aus BEcherovka und TONic.',q:'Becherovka auf Eis, mit Tonic auffüllen, Zitronenscheibe. In Becher’s Bar im Pupp ohnehin Pflicht.',hum:'M genehmigt ihn als landeskundliche Maßnahme.'}];
-/* Szene */
-const BOT={GIN:'#CFE8F0',WODKA:'#E6EEF0',LILLET:'#E9C46A',WERMUT:'#D8E6C8',BOURBON:'#B8732E',RUM:'#E8DCC2',ZITRONE:'#F3E58A',SIRUP:'#F2EFE4',SODA:'#DDEFF5',SAKE:'#F2EFE4',CHAMPAGNER:'#F1DB8A',LIMETTE:'#C9E6A0',WHISKY:'#B5651D',SMOOTHIE:'#9BC46A',BECHEROVKA:'#E4CF8E',TONIC:'#E8F4F6'};
-const SHELF=Object.keys(BOT).map((k,i)=>({k,x:132+(i%8)*50+(i%8>3?40:0),y:i<8?66:122}));
-mk('rect',{x:0,y:0,width:640,height:300,class:'b-bg'});
-mk('path',{d:'M110 66H530M110 70H530M110 122H530M110 126H530',class:'b-shelf'});
-mk('path',{d:'M100 20H540V200H100Z',class:'b-mirror'});mk('path',{d:'M320 0V14M306 14h28l-6 8h-16Z',class:'b-line'});
-SHELF.forEach(b=>{b.g=mk('g',{class:'b-bottle',transform:`translate(${b.x} ${b.y})`});bottleShape(b.g,b.k)});
-function bottleShape(g,k){mk('path',{d:'M-8 0V-30Q-8 -36 -3 -38V-48H3V-38Q8 -36 8 -30V0Z',class:'b-bt'},g);mk('rect',{x:-6,y:-26,width:12,height:12,class:'b-lbl',style:`fill:${BOT[k]}`},g);mk('text',{x:0,y:-17.5,class:'b-bt-t','text-anchor':'middle'},g,k.slice(0,3))}
-/* Barkeeper */
-const BK=mk('g',{class:'bk'});
-mk('path',{d:'M296 212V146Q296 128 320 126Q344 128 344 146V212',class:'bk-body'},BK);
-mk('path',{d:'M304 140L320 186L336 140M320 186V212M312 160h0M320 170a1.4 1.4 0 1 0 .1 0M320 182a1.4 1.4 0 1 0 .1 0M320 194a1.4 1.4 0 1 0 .1 0',class:'bk-vest'},BK);
-mk('path',{d:'M312 132l8 4l8 -4l-1 8l-7 -3l-7 3Z',class:'bk-tie'},BK);
-const HEAD=mk('g',{class:'bk-head'},BK);mk('circle',{cx:320,cy:100,r:14,class:'bk-face'},HEAD);mk('path',{d:'M306 98Q308 82 322 84Q334 85 334 98Q330 90 320 90Q312 90 306 98Z',class:'bk-hair'},HEAD);
-mk('path',{d:'M314 101h3M323 101h3M316 108q4 2 8 0',class:'bk-feat'},HEAD);mk('path',{d:'M314 98h4M322 98h4',class:'bk-brow',id:'bkBrow'},HEAD);
-const armL=mk('polyline',{class:'bk-arm'}),armR=mk('polyline',{class:'bk-arm'});const handL=mk('circle',{r:4,class:'bk-hand'}),handR=mk('circle',{r:4,class:'bk-hand'});
-/* Tresen */
-mk('path',{d:'M40 212H600V220H40Z',class:'b-counter'});mk('path',{d:'M48 220V300M592 220V300M48 260H592M60 286H580',class:'b-front'});
-for(let x=80;x<580;x+=60)mk('path',{d:`M${x} 226h44v28h-44Z`,class:'b-panel'});
-mk('ellipse',{cx:575,cy:212,rx:16,ry:3,class:'b-coaster'});mk('text',{x:575,y:236,class:'b-t','text-anchor':'middle'},null,'GAST');
-const bucket=mk('g',{class:'b-bucket',transform:'translate(80 212)',style:'opacity:0'});mk('path',{d:'M-16 0L-19 -26H19L16 0Z',class:'b-bt'},bucket);mk('path',{d:'M-14 -26l4 -8M-6 -26l2 -10M4 -26l-2 -8M12 -26l-3 -9',class:'b-line'},bucket);
-/* Gefäße und Gläser */
-const GL={martini:{d:'M-12 0h24M0 0V-22M-22 -48L0 -22L22 -48Z',lq:'M-22 -48L0 -22L22 -48Z',top:-48,bot:-22},
- highball:{d:'M-12 0V-60H12V0Z',lq:'M-11 -1V-59H11V-1Z',top:-58,bot:-2},julep:{d:'M-14 0L-16 -42H16L14 0Z',lq:'M-13 -1L-15 -41H15L13 -1Z',top:-40,bot:-2},
- tumbler:{d:'M-15 0V-32H15V0ZM-15 -5H15',lq:'M-14 -6V-31H14V-6Z',top:-30,bot:-6},flute:{d:'M-10 0h20M0 0V-18M-8 -66Q-9 -30 0 -18Q9 -30 8 -66Z',lq:'M-8 -66Q-9 -30 0 -18Q9 -30 8 -66Z',top:-62,bot:-18},
- sake:{d:'M-11 0L-13 -16H13L11 0Z',lq:'M-10 -1L-12 -15H12L10 -1Z',top:-14,bot:-2},
- tin:{d:'M-13 0L-16 -46H16L13 0Z',lq:'M-12 -1L-15 -45H15L12 -1Z',top:-44,bot:-2},mixing:{d:'M-15 0V-46H15V0ZM-15 -4H15',lq:'M-14 -5V-45H14V-5Z',top:-44,bot:-5}};
-let uid=0;function vessel(type,x,y,color){const s=GL[type],id='lq'+(++uid),g=mk('g',{class:'b-vessel',transform:`translate(${x} ${y})`});
-  const cp=mk('clipPath',{id},g);mk('path',{d:s.lq},cp);const r=mk('rect',{x:-30,y:s.bot,width:60,height:0,class:'b-liq','clip-path':`url(#${id})`,style:`fill:${color||'#E9D9A6'}`},g);
-  mk('path',{d:s.d,class:'b-glass'},g);return{g,r,s,type,x,y,lv:0,rot:0,set(l){this.lv=Math.max(0,Math.min(1,l));const h=(this.s.bot-this.s.top)*this.lv;this.r.setAttribute('y',(this.s.bot-h).toFixed(1));this.r.setAttribute('height',h.toFixed(1))},
-   pos(x,y,rot){this.x=x;this.y=y;this.rot=rot||0;this.g.setAttribute('transform',`translate(${x.toFixed(1)} ${y.toFixed(1)}) rotate(${this.rot.toFixed(1)})`)},color(c){this.r.style.fill=c}}}
-/* Arme: zwei Segmente, Ellbogen nach außen */
-const SL=[302,132],SR=[338,132],REST={L:[288,200],R:[352,200]};let hL=[...REST.L],hR=[...REST.R];
-function ik(s,h,out){const a=36,b=34,dx=h[0]-s[0],dy=h[1]-s[1];let d=Math.hypot(dx,dy);d=Math.min(d,a+b-.5);const ang=Math.atan2(dy,dx),k=Math.acos((a*a+d*d-b*b)/(2*a*d))*out;return[s[0]+a*Math.cos(ang+k),s[1]+a*Math.sin(ang+k)]}
-function pose(){const eL=ik(SL,hL,1),eR=ik(SR,hR,-1);armL.setAttribute('points',`${SL} ${eL.map(v=>v.toFixed(1))} ${hL.map(v=>v.toFixed(1))}`);armR.setAttribute('points',`${SR} ${eR.map(v=>v.toFixed(1))} ${hR.map(v=>v.toFixed(1))}`);
-  handL.setAttribute('cx',hL[0]);handL.setAttribute('cy',hL[1]);handR.setAttribute('cx',hR[0]);handR.setAttribute('cy',hR[1])}
-pose();
+/* Zutaten: Farbe, Flaschenform */
+const ING={GIN:['#BFE3EE','tall'],WODKA:['#E6EEF0','slim'],LILLET:['#E9C46A','round'],WERMUT:['#D8E6C8','round'],BOURBON:['#C07A35','square'],RUM:['#E8DCC2','tall'],ZITRONE:['#F3E58A','small'],SIRUP:['#F2EFE4','small'],
+ SODA:['#DDEFF5','small'],SAKE:['#F2EFE4','tokkuri'],CHAMPAGNER:['#F1DB8A','champ'],LIMETTE:['#C9E6A0','small'],WHISKY:['#B5651D','square'],SMOOTHIE:['#9BC46A','small'],BECHEROVKA:['#7FB07A','becher'],TONIC:['#E8F4F6','small']};
+const LBL={GIN:'GIN',WODKA:'WODKA',LILLET:'LILLET',WERMUT:'WERMUT',BOURBON:'BOURB.',RUM:'RUM',ZITRONE:'ZITR.',SIRUP:'SIRUP',SODA:'SODA',SAKE:'SAKE',CHAMPAGNER:'CHAMP.',LIMETTE:'LIM.',WHISKY:'SCOTCH',SMOOTHIE:'SMOOTH.',BECHEROVKA:'BECHER.',TONIC:'TONIC'};
+/* Flaschenprofile (mm, rechte Hälfte von unten nach oben) */
+const BPR={tall:[[36,0],[36,205],[30,232],[13,250],[13,292],[14,300]],slim:[[32,0],[32,225],[22,250],[12,262],[12,300],[13,306]],round:[[44,0],[46,40],[46,150],[36,180],[14,205],[14,250],[15,256]],
+ square:[[40,0],[40,190],[36,204],[15,214],[15,262],[17,272]],small:[[30,0],[30,130],[22,152],[11,165],[11,196],[12,202]],tokkuri:[[28,0],[38,40],[40,80],[30,130],[12,160],[11,190],[15,196]],
+ champ:[[44,0],[44,170],[38,215],[15,262],[15,300],[17,310]],becher:[[34,0],[42,10],[42,170],[34,190],[13,214],[13,250],[15,256]]};
+const prof=(pts,sx,sy)=>{const r=pts.map(([x,y])=>`${(x*sx).toFixed(1)} ${(-y*sy).toFixed(1)}`),l=pts.slice().reverse().map(([x,y])=>`${(-x*sx).toFixed(1)} ${(-y*sy).toFixed(1)}`);return 'M'+r.join('L')+'L'+l.join('L')+'Z'};
+/* Gläser und Gefäße (mm): o = Außenkontur, i = Innenkontur (rechte Hälfte, unten nach oben), Nennmaße für Maßketten */
+const GV={
+ martini:{n:'COCKTAILSCHALE',o:[[42,0],[42,3],[5,6],[4,92],[56,175]],i:[[0,99],[53,174]],h:175,d:112},
+ highball:{n:'LONGDRINKGLAS',o:[[33,0],[33,150]],i:[[31,10],[31,149]],h:150,d:66},
+ julep:{n:'JULEP-BECHER',o:[[34,0],[38,100]],i:[[32,5],[36,99]],h:100,d:76},
+ tumbler:{n:'TUMBLER',o:[[42,0],[42,90]],i:[[40,12],[40,89]],h:90,d:84},
+ flute:{n:'SEKTFLÖTE',o:[[35,0],[35,3],[4,6],[3,95],[24,140],[26,230]],i:[[0,101],[22,140],[24,229]],h:230,d:52},
+ sake:{n:'OCHOKO',o:[[22,0],[30,40]],i:[[20,4],[28,39]],h:40,d:60},
+ tin:{n:'BOSTON-SHAKER',o:[[36,0],[46,175]],i:[[34,4],[44,174]],h:175,d:92},
+ mixing:{n:'RÜHRGLAS',o:[[46,0],[46,150]],i:[[43,16],[43,149]],h:150,d:92}};
+/* Innenvolumen als Tabelle: Höhe ↔ ml */
+function volTab(v){const I=v.i,ys=[],vs=[];let acc=0;const y0=I[0][1],y1=I[I.length-1][1],rad=y=>{for(let k=1;k<I.length;k++){if(y<=I[k][1]){const a=I[k-1],b=I[k],u=(y-a[1])/((b[1]-a[1])||1);return a[0]+(b[0]-a[0])*u}}return I[I.length-1][0]};
+  for(let y=y0;y<=y1;y+=.5){const r=rad(y);acc+=Math.PI*r*r*.5/1000;ys.push(y);vs.push(acc)}v.cap=acc;v.lev=ml=>{if(ml<=0)return y0;for(let k=0;k<vs.length;k++)if(vs[k]>=ml)return ys[k];return y1};v.rad=rad}
+Object.values(GV).forEach(volTab);
+const K=.75,BASE=388;
+/* Grundblatt */
+const defs=mk('defs',{});
+const hp=mk('pattern',{id:'bxH',width:6,height:6,patternUnits:'userSpaceOnUse',patternTransform:'rotate(45)'},defs);mk('line',{x1:0,y1:0,x2:0,y2:6,class:'bx-hl'},hp);
+const fp=mk('pattern',{id:'bxF',width:4,height:4,patternUnits:'userSpaceOnUse',patternTransform:'rotate(-35)'},defs);mk('line',{x1:0,y1:0,x2:0,y2:4,class:'bx-fl'},fp);
+const gp=mk('pattern',{id:'bxG',width:20,height:20,patternUnits:'userSpaceOnUse'},defs);mk('path',{d:'M20 0H0V20',class:'bx-gl'},gp);
+mk('rect',{x:0,y:0,width:960,height:440,class:'bx-bg'});mk('rect',{x:0,y:0,width:960,height:440,fill:'url(#bxG)'});
+const SH=mk('g',{class:'bx-sheet'});
+const L=(d,c,p)=>mk('path',{d,class:'bx-ln '+(c||''),pathLength:1},p||SH);
+const T=(x,y,s,c,a,p)=>mk('text',{x,y,class:'bx-t '+(c||''),'text-anchor':a||'start'},p||SH,s);
+L('M14 14H946V426H14Z','fr');L('M20 20H940V420H20Z','fr2');
+for(let x=40;x<940;x+=100){L(`M${x} 14V20M${x} 420V426`,'tk');T(x+3,24+6,String((x-40)/100+1),'tn')}
+/* Hinterbuffet */
+const SHY=150,ks=Object.keys(ING);L(`M34 ${SHY}H740M34 ${SHY+5}H740`,'sh');L(`M34 ${SHY+5}V${SHY+12}M740 ${SHY+5}V${SHY+12}`,'sh');
+T(36,40,'HINTERBUFFET · M 1:2,5','lbl');
+const SHELF=ks.map((k,i)=>({k,x:62+i*43,y:SHY}));
+function bottle(k,p,sc){const [c,t]=ING[k],g=mk('g',{class:'bx-bt'},p),pts=BPR[t],top=pts[pts.length-1][1],s=sc||.34;
+  mk('path',{d:prof(pts,s,s),class:'bx-bto'},g);const lw=pts[1][0]*s*.86,ly=-top*s*.36;
+  mk('rect',{x:-lw,y:ly-10,width:2*lw,height:20,class:'bx-lb',style:`--c:${c}`},g);mk('path',{d:`M${-lw} ${ly-6}H${lw}`,class:'bx-lb2'},g);
+  mk('text',{x:0,y:ly+5.5,class:'bx-lbt','text-anchor':'middle'},g,LBL[k]);
+  const capY=-top*s,cw=pts[pts.length-1][0]*s;mk('rect',{x:-cw,y:capY-1,width:2*cw,height:5,class:'bx-cap'},g);
+  mk('path',{d:`M${(pts[1][0]*s*.55).toFixed(1)} -4V${(-pts[1][1]*s*.9).toFixed(1)}`,class:'bx-glint'},g);return g}
+SHELF.forEach((b,i)=>{b.g=mk('g',{transform:`translate(${b.x} ${b.y})`,class:'bx-slot'},SH);bottle(b.k,b.g);T(b.x,b.y+22,String(i+1).padStart(2,'0'),'tn','middle')});
+/* Tresen im Schnitt */
+mk('rect',{x:34,y:BASE,width:906,height:18,fill:'url(#bxH)',class:'bx-ct'});L(`M34 ${BASE}H940M34 ${BASE+18}H940`,'ct');T(40,BASE+32,'TRESEN · SCHNITT A–A','lbl');
+/* Arbeitsplätze */
+const PV=250,PG=460,PU=640;
+[[PV,'A · MIXEN'],[PG,'B · GLAS'],[PU,'C · AUSGABE']].forEach(([x,n])=>{L(`M${x} ${BASE+2}V${BASE+16}`,'ax');L(`M${x-34} ${BASE+9}H${x+34}`,'ax');T(x,BASE-6+24+18,n,'lbl','middle')});
+/* Messwerte */
+const MX=752,MY=44;L(`M${MX} ${MY}H936V${MY+192}H${MX}Z`,'box');T(MX+8,MY+16,'MESSWERTE · SIMULATION','lbl a sm');L(`M${MX} ${MY+24}H936`,'box2');
+const RD=[['VOL','VOLUMEN','0 ml'],['TMP','TEMPERATUR','—'],['DIL','VERDÜNNUNG','—'],['TIM','ARBEITSZEIT','0,0 s'],['MTH','METHODE','—']].map(([id,l,v],i)=>{T(MX+8,MY+44+i*30,l,'rl');const t=T(930,MY+44+i*30,v,'rv','end');L(`M${MX+8} ${MY+50+i*30}H928`,'box3');return[id,t]});
+const RV=Object.fromEntries(RD);const tbar=mk('rect',{x:MX+8,y:MY+186-6,width:0,height:3,class:'bx-tb'});
+/* Schriftfeld */
+const TB={x:752,y:250};L(`M${TB.x} ${TB.y}H936V${TB.y+118}H${TB.x}Z`,'box');L(`M${TB.x} ${TB.y+26}H936M${TB.x} ${TB.y+52}H936M${TB.x} ${TB.y+78}H936M${TB.x+62} ${TB.y+52}V${TB.y+118}`,'box2');
+T(TB.x+8,TB.y+17,'Q-ABT. · GETRÄNKELABOR','lbl a sm');const tbN=T(TB.x+8,TB.y+44,'—','tbn');
+T(TB.x+8,TB.y+66,'GLAS','rl');const tbG=T(TB.x+70,TB.y+66,'—','rv');T(TB.x+8,TB.y+92,'JAHR','rl');const tbF=T(TB.x+70,TB.y+92,'—','rv');
+T(TB.x+8,TB.y+110,'BLATT','rl');const tbB=T(TB.x+70,TB.y+110,'—','rv');
+/* Gefäß im Schnitt */
+const DL=mk('g',{class:'bx-dyn'});
+let uid=0;
+function vessel(type,x){const v=GV[type],g=mk('g',{class:'bx-v',transform:`translate(${x} ${BASE})`},DL),id='bxc'+(++uid);
+  const out=prof(v.o,K,K),inn=prof(v.i.length===2&&v.i[0][0]===0?[[0.01,v.i[0][1]],v.i[1]]:v.i,K,K);
+  const cp=mk('clipPath',{id},g);mk('path',{d:inn},cp);
+  const liq=mk('g',{'clip-path':`url(#${id})`},g),ice=mk('g',{'clip-path':`url(#${id})`},g);
+  const wall=mk('path',{d:out,class:'bx-gw',pathLength:1},g);mk('path',{d:inn,class:'bx-gi',pathLength:1},g);
+  const o={type,v,g,x,y:BASE,rot:0,liq,ice,layers:[],ml:0,extra:[],
+    pos(x,y,r){this.x=x;this.y=y;this.rot=r||0;g.setAttribute('transform',`translate(${x.toFixed(1)} ${y.toFixed(1)}) rotate(${this.rot.toFixed(1)})`)},
+    draw(){liq.innerHTML='';let acc=0;const lv=this.layers;lv.forEach((L2,i)=>{const y0=v.lev(acc),y1=v.lev(acc+L2.ml);acc+=L2.ml;if(y1-y0<.2)return;
+      mk('rect',{x:-80,y:(-y1*K).toFixed(1),width:160,height:((y1-y0)*K+.3).toFixed(1),class:'bx-lq',style:`--c:${L2.c}`},liq);
+      mk('path',{d:`M-80 ${(-y1*K).toFixed(1)}H80`,class:'bx-lqs',style:`--c:${L2.c}`},liq)});
+      if(this.mix){const y1=v.lev(acc);mk('rect',{x:-80,y:(-y1*K).toFixed(1),width:160,height:(y1*K).toFixed(1),fill:'url(#bxF)',class:'bx-swirl'},liq)}
+      this.ml=acc},
+    add(c,ml,lab){this.layers.push({c,ml,lab});this.draw()},
+    blend(){const t=this.layers.reduce((a,l)=>a+l.ml,0);if(!t)return;const c=mixC(this.layers);this.layers=[{c,ml:t}];this.draw()},
+    level(){return v.lev(this.ml)}};
+  return o}
+function mixC(ls){let r=0,g=0,b=0,t=0;ls.forEach(l=>{const n=parseInt(l.c.slice(1),16);r+=(n>>16)*l.ml;g+=((n>>8)&255)*l.ml;b+=(n&255)*l.ml;t+=l.ml});return '#'+[r,g,b].map(v=>Math.round(v/t).toString(16).padStart(2,'0')).join('')}
+/* Maßketten am Gefäß */
+function dims(o,side){const v=o.v,g=mk('g',{class:'bx-dim'},o.g),s=side||-1,X=s*(v.d/2*K+18),H=v.h*K;
+  mk('path',{d:`M${s*(v.d/2*K+4)} 0H${X+s*6}M${s*(v.d/2*K+4)} ${-H}H${X+s*6}M${X} 0V${-H}M${X-3} -3L${X+3} 3M${X-3} ${-H-3}L${X+3} ${-H+3}`,class:'bx-dl'},g);
+  mk('text',{x:X+s*-4,y:(-H/2).toFixed(1),class:'bx-dt','text-anchor':'middle',transform:`rotate(-90 ${X+s*-4} ${(-H/2).toFixed(1)})`},g,`≈ ${v.h}`);
+  const D=v.d/2*K;mk('path',{d:`M${-D} ${-H-10}V${-H-20}M${D} ${-H-10}V${-H-20}M${-D} ${-H-16}H${D}`,class:'bx-dl'},g);
+  mk('text',{x:0,y:-H-21,class:'bx-dt','text-anchor':'middle'},g,`Ø ≈ ${v.d}`);
+  mk('text',{x:0,y:16,class:'bx-dt','text-anchor':'middle'},g,`${v.n} · ≈ ${Math.round(v.cap/10)*10} ml`);return g}
+/* Ebene für Beschriftungen der Schichten */
+function layerLabels(o,left){o.g.querySelectorAll('.bx-ll').forEach(e=>e.remove());let acc=0;const v=o.v,R2=v.d/2*K,sg=left?-1:1;o.layers.forEach((l,i)=>{if(!l.lab)return;const y=-(v.lev(acc+l.ml/2))*K;acc+=l.ml;const ly=-(v.h*K)*.15-i*15-14;
+  const g=mk('g',{class:'bx-ll'},o.g);const px=sg*v.rad(v.lev(acc-l.ml/2))*K*.4;mk('path',{d:`M${px.toFixed(1)} ${y.toFixed(1)}L${sg*(R2+30)} ${ly}H${sg*(R2+44)}`,class:'bx-lld'},g);mk('circle',{cx:px.toFixed(1),cy:y.toFixed(1),r:1.6,class:'bx-lldot'},g);
+  mk('text',{x:sg*(R2+47),y:ly+3.5,class:'bx-llt','text-anchor':left?'end':'start'},g,l.lab)})}
+/* Werkzeuge */
+function jigger(){const g=mk('g',{class:'bx-tool'},DL);mk('path',{d:'M-17 -46L-6 -24L-6 -22L-17 0H17L6 -22L6 -24L17 -46Z',class:'bx-to'},g);
+  const id='bxj'+(++uid),cp=mk('clipPath',{id},g);mk('path',{d:'M-16.5 -45L-6 -24.5H6L16.5 -45Z'},cp);const fill=mk('rect',{x:-20,y:-24,width:40,height:0,class:'bx-lq','clip-path':`url(#${id})`},g);
+  for(let k=1;k<=4;k++){const y=-24-k*5.2;mk('path',{d:`M${(6+k*2.1).toFixed(1)} ${y.toFixed(1)}h4`,class:'bx-sc'},g);mk('text',{x:(12+k*2.1).toFixed(1),y:(y+2.5).toFixed(1),class:'bx-sct'},g,k%2?'':String(k))}
+  return{g,fill,set(u,c){const h=21*u;fill.setAttribute('y',(-24-h).toFixed(1));fill.setAttribute('height',h.toFixed(1));fill.style.setProperty('--c',c)},pos(x,y,r){g.setAttribute('transform',`translate(${x.toFixed(1)} ${y.toFixed(1)}) rotate(${(r||0).toFixed(1)})`)}}}
+function spoon(){const g=mk('g',{class:'bx-tool'},DL);let d='M0 0';for(let k=0;k<26;k++)d+=`L${k%2?1.6:-1.6} ${-k*6}`;mk('path',{d,class:'bx-to'},g);mk('path',{d:'M0 -156v-8',class:'bx-to'},g);mk('ellipse',{cx:0,cy:-170,rx:3.5,ry:6,class:'bx-to'},g);mk('ellipse',{cx:0,cy:6,rx:5,ry:9,class:'bx-to'},g);return g}
+function strainer(){const g=mk('g',{class:'bx-tool'},DL);mk('ellipse',{cx:0,cy:0,rx:36,ry:6,class:'bx-to'},g);let d='M-30 4';for(let k=0;k<=24;k++)d+=`L${-30+k*2.5} ${4+(k%2?4:0)}`;mk('path',{d,class:'bx-to'},g);
+  mk('path',{d:'M36 0H82M36 -3H82M82 -3V0',class:'bx-to'},g);for(let k=-24;k<=24;k+=8)mk('circle',{cx:k,cy:0,r:1.5,class:'bx-to'},g);return g}
+function muddler(){const g=mk('g',{class:'bx-tool'},DL);mk('path',{d:'M-5 0V-150H5V0ZM-6 -150h12v-18h-12Z',class:'bx-to'},g);for(let k=0;k<6;k++)mk('path',{d:`M-5 ${-4-k*3}H5`,class:'bx-sc'},g);for(let k=0;k<5;k++)mk('path',{d:`M-6 ${-153-k*3}H6`,class:'bx-sc'},g);return g}
+const toolPos=(g,x,y,r)=>g.setAttribute('transform',`translate(${x.toFixed(1)} ${y.toFixed(1)}) rotate(${(r||0).toFixed(1)})`);
+/* Bewegungsbahn vorzeichnen */
+function path2(pts,c){const d='M'+pts.map(p=>p.map(v=>v.toFixed(1)).join(' ')).join('L');const p=mk('path',{d,class:'bx-mp '+(c||''),pathLength:1},DL);setTimeout(()=>p.classList.add('go'),20);return p}
+const bez=(a,b,c,u)=>[(1-u)*(1-u)*a[0]+2*(1-u)*u*b[0]+u*u*c[0],(1-u)*(1-u)*a[1]+2*(1-u)*u*b[1]+u*u*c[1]];
+const arcPts=(a,c,lift)=>{const b=[(a[0]+c[0])/2,Math.min(a[1],c[1])-lift],o=[];for(let k=0;k<=24;k++)o.push(bez(a,b,c,k/24));return{b,o}};
 /* Zeitsteuerung */
-let speed=1,skip=false,busy=false;
+let speed=1,skip=false,busy=false,T0=0,clock=0;
 const tw=(ms,f)=>new Promise(res=>{if(skip||RM){f(1);res();return}const t0=performance.now(),D=ms/speed;(function s(t){const u=Math.min(1,(t-t0)/D);f(u);if(u<1&&!skip)requestAnimationFrame(s);else{f(1);res()}})(t0)});
-const io=u=>u<.5?2*u*u:1-Math.pow(-2*u+2,2)/2;const lerp=(a,b,u)=>a+(b-a)*u;
-const moveH=(side,to,ms)=>{const from=side==='L'?[...hL]:[...hR];return tw(ms||420,u=>{const e=io(u),p=[lerp(from[0],to[0],e),lerp(from[1],to[1],e)];if(side==='L')hL=p;else hR=p;pose()})};
+const io=u=>u<.5?2*u*u:1-Math.pow(-2*u+2,2)/2,lerp=(a,b,u)=>a+(b-a)*u;
 const say=t=>{cap.textContent=t};
-const VS=[250,212],GS=[400,212],GU=[575,212];
-/* Schritte */
-async function pour(k,cl,into,total){const sh=SHELF.find(b=>b.k===k);say(`${String(cl).replace('.',',')} cl ${k.charAt(0)+k.slice(1).toLowerCase()}`);
-  await moveH('R',[sh.x,sh.y-20],380);sh.g.style.opacity=0;const bt=mk('g',{class:'b-bottle'});bottleShape(bt,k);
-  const p0=[sh.x,sh.y],p1=[into.x+26,into.y+into.s.top-30];
-  await tw(450,u=>{const e=io(u),x=lerp(p0[0],p1[0],e),y=lerp(p0[1],p1[1],e);bt.setAttribute('transform',`translate(${x} ${y}) rotate(${-e*125})`);hR=[x,y-20];pose()});
-const mx=p1[0]-39,my=p1[1]+28;
-  const st=mk('path',{d:`M${mx} ${my}Q${mx-4} ${(my+into.y+into.s.top)/2} ${into.x+4} ${into.y+into.s.top+4}`,class:'b-stream',style:`stroke:${BOT[k]}`});
-  const l0=into.lv;await tw(300+cl*130,u=>into.set(l0+(cl/total)*u));st.remove();
-  await tw(420,u=>{const e=io(u),x=lerp(p1[0],p0[0],e),y=lerp(p1[1],p0[1],e);bt.setAttribute('transform',`translate(${x} ${y}) rotate(${-(1-e)*125})`);hR=[x,y-20];pose()});
-  bt.remove();sh.g.style.opacity=1}
-async function ice(into,crushed){say(crushed?'Crushed Ice':'Eis');await moveH('L',[into.x-24,150],320);const cubes=[];
-  for(let k=0;k<(crushed?6:3);k++){const c=mk('rect',{x:into.x-6+k*4-(crushed?6:0),y:140,width:crushed?4:8,height:crushed?4:8,class:'b-ice'});cubes.push(c)}
-  await tw(420,u=>cubes.forEach((c,k)=>c.setAttribute('y',(140+u*(into.y+into.s.top+10-140)+k*2).toFixed(1))));cubes.forEach(c=>c.remove());await moveH('L',REST.L,300)}
-async function shake(v){say('Geschüttelt, kräftig, rund zehn Sekunden. Hier etwas kürzer.');
-  const cap2=mk('path',{d:'M-15 -46L-12 -64H12L15 -46Z',class:'b-glass'},v.g);
-  const c=[330,150];await Promise.all([tw(420,u=>{const e=io(u);v.pos(lerp(VS[0],c[0],e),lerp(VS[1],c[1]+30,e),e*-35);hR=[v.x+6,v.y-56];hL=[v.x-8,v.y-4];pose()})]);
-  v.g.classList.add('frost');await tw(1700,u=>{const o=Math.sin(u*Math.PI*22)*(1-Math.pow(u,6));v.pos(c[0]+o*13,c[1]+30+o*-9,-35+o*6);hR=[v.x+6,v.y-56];hL=[v.x-8,v.y-4];HEAD.setAttribute('transform',`rotate(${o*2} 320 110)`);pose()});
-  HEAD.removeAttribute('transform');cap2.remove();await tw(380,u=>{const e=io(u);v.pos(lerp(c[0],VS[0],e),lerp(c[1]+30,VS[1],e),-35*(1-e));hR=[v.x+6,v.y-56];hL=[v.x-8,v.y-4];pose()});await moveH('L',REST.L,260)}
-async function stir(v){say('Gerührt. Langsam, mit dem Barlöffel, etwa dreißig Umdrehungen.');const sp=mk('line',{class:'b-spoon'});
-  await moveH('R',[v.x,v.y-70],380);await tw(1900,u=>{const a=u*Math.PI*2*6,tx=v.x+Math.cos(a)*5,ty=v.y-70+Math.sin(a)*2;sp.setAttribute('x1',tx);sp.setAttribute('y1',ty);sp.setAttribute('x2',v.x+Math.cos(a)*7);sp.setAttribute('y2',v.y-6);hR=[tx,ty];pose()});
-  sp.remove();await moveH('R',REST.R,300)}
-async function muddle(v){say('Minze andrücken, nicht zermalmen. Die Minze hat niemandem etwas getan.');const md=mk('line',{class:'b-muddler'});
-  await moveH('R',[v.x,v.y-80],360);await tw(1500,u=>{const o=Math.abs(Math.sin(u*Math.PI*5))*16;md.setAttribute('x1',v.x);md.setAttribute('y1',v.y-82+o);md.setAttribute('x2',v.x);md.setAttribute('y2',v.y-12+o*.2);hR=[v.x,v.y-82+o];pose()});
-  md.remove();await moveH('R',REST.R,300)}
-async function strain(v,g){say('Abseihen.');const p0=[v.x,v.y],p1=[g.x-30,g.y+g.s.top-26];
-  await tw(450,u=>{const e=io(u);v.pos(lerp(p0[0],p1[0],e),lerp(p0[1],p1[1],e),e*95);hR=[v.x-4,v.y-30];hL=[v.x+10,v.y-46];pose()});
-  const st=mk('path',{d:`M${p1[0]+40} ${p1[1]+10}Q${g.x+2} ${p1[1]+20} ${g.x} ${g.y+g.s.top+6}`,class:'b-stream',style:`stroke:${g.r.style.fill}`});
-  const l0=v.lv;await tw(1000,u=>{v.set(l0*(1-u));g.set(u*.92)});st.remove();
-  await tw(420,u=>{const e=io(u);v.pos(lerp(p1[0],p0[0],e),lerp(p1[1],p0[1],e),95*(1-e));hR=[v.x-4,v.y-30];hL=[v.x+10,v.y-46];pose()});await Promise.all([moveH('R',REST.R,280),moveH('L',REST.L,280)])}
-async function garnish(g,kind){if(!kind)return;const T={zeste:'Zitronenzeste, über dem Glas abgedreht.',minze:'Ein Minzzweig. Nicht drei.',zitrone:'Zitronenscheibe an den Rand.',olive:'Olive.'};say(T[kind]);
-  await moveH('L',[g.x-6,g.y+g.s.top-12],420);const gx=g.x+(kind==='minze'?-4:10),gy=g.y+g.s.top;
-  const d={zeste:`M${gx} ${gy}q4 -8 -2 -10q-6 -2 -2 -10q4 -6 -2 -10`,minze:`M${gx} ${gy}v-14M${gx} ${gy-8}q-8 -4 -10 2q6 2 10 -2M${gx} ${gy-12}q8 -6 10 0q-6 3 -10 0`,zitrone:`M${gx-8} ${gy+2}A9 9 0 0 1 ${gx+10} ${gy+2}ZM${gx+1} ${gy+2}L${gx+1} ${gy-7}`}[kind];
-  const p=mk('path',{d,class:'b-garnish '+kind});p.style.opacity=0;await tw(380,u=>p.style.opacity=u);g.extra=(g.extra||[]).concat(p);await moveH('L',REST.L,300)}
-async function serve(g,r){say('Serviert.');await moveH('R',[g.x+16,g.y-16],300);const x0=g.x;
-  await tw(900,u=>{const e=io(u),x=lerp(x0,GU[0],e);g.pos(x,g.y);(g.extra||[]).forEach(p=>p.setAttribute('transform',`translate(${(x-x0).toFixed(1)} 0)`));hR=[Math.min(x+16,470),g.y-16];pose()});
-  await moveH('R',REST.R,300);HEAD.setAttribute('transform','rotate(-6 320 112)');await tw(500,()=>{});HEAD.removeAttribute('transform')}
-async function warm(g){say('Sake im Wasserbad auf etwa 37 °C. Bond prüft es später ohne Thermometer.');const steam=mk('path',{d:`M${g.x-4} ${g.y-20}q-4 -6 0 -12q4 -6 0 -12M${g.x+4} ${g.y-20}q-4 -6 0 -12`,class:'b-steam'});setTimeout(()=>steam.remove(),6000/speed)}
-async function chill(g){bucket.style.opacity=1;say('Im Kühler unter 3 °C, also unter 38 °F. Alles andere wäre, laut Bond, die Beatles ohne Ohrenschützer.');await tw(900,()=>{})}
+const follow=x=>setTimeout(()=>{const sc=svg.parentNode;if(sc.scrollWidth>sc.clientWidth+4)sc.scrollTo({left:Math.max(0,x/960*sc.scrollWidth-sc.clientWidth/2),behavior:RM?'auto':'smooth'})},700);
+let state={ml:0,tmp:20,dil:0};
+function readout(){RV.VOL.textContent=`${Math.round(state.ml)} ml`;RV.TMP.textContent=state.tmp==null?'—':`≈ ${state.tmp.toFixed(1).replace('.',',')} °C`;RV.DIL.textContent=state.dil?`≈ ${Math.round(state.dil)} %`:'—';
+  const s=(performance.now()-T0)/1000;RV.TIM.textContent=`${s.toFixed(1).replace('.',',')} s`;tbar.setAttribute('width',Math.min(168,s*5).toFixed(1))}
+let rdT=0;function rdLoop(){if(!busy)return;readout();rdT=requestAnimationFrame(rdLoop)}
+/* Schrittliste */
+let STEPS=[],si=-1;
+function stepsInit(a){STEPS=a;si=-1;stepsEl.innerHTML=a.map((t,i)=>`<li data-i="${i}"><i>${String(i+1).padStart(2,'0')}</i><span>${t}</span></li>`).join('')}
+function step(t){si++;stepsEl.querySelectorAll('li').forEach((li,i)=>{li.classList.toggle('now',i===si);li.classList.toggle('ok',i<si)});if(t)say(t)}
+/* Arbeitsschritte */
+let V=null,G=null;
+async function pour(k,cl,into){const [c]=ING[k],sh=SHELF.find(b=>b.k===k),ml=cl*10;step(`${String(cl).replace('.',',')} cl ${k.charAt(0)+k.slice(1).toLowerCase()} abmessen und eingießen.`);
+  sh.g.classList.add('out');const bt=mk('g',{transform:`translate(${sh.x} ${sh.y})`},DL);bottle(k,bt,.34);const J=jigger();
+  const jx=into.x+52,jy=BASE-into.v.h*K-40,top=[jx+46,jy-62];const A=arcPts([sh.x,sh.y],top,40),mp=path2(A.o);
+  J.pos(jx,jy+4,0);J.g.style.opacity=0;
+  await tw(560,u=>{const e=io(u),p=bez([sh.x,sh.y],A.b,top,e);bt.setAttribute('transform',`translate(${p[0].toFixed(1)} ${p[1].toFixed(1)}) rotate(${(-e*118).toFixed(1)}) scale(${(1+.15*e).toFixed(3)})`);J.g.style.opacity=e});
+  const st=mk('path',{d:`M${top[0]-44} ${top[1]+18}Q${jx+6} ${jy-40} ${jx} ${jy-38}`,class:'bx-st',style:`--c:${c}`,pathLength:1},DL);
+  const fu=Math.min(1,cl/4);await tw(260+cl*90,u=>J.set(u*fu,c));st.remove();
+  const back=tw(480,u=>{const e=io(u),p=bez(top,A.b,[sh.x,sh.y],e);bt.setAttribute('transform',`translate(${p[0].toFixed(1)} ${p[1].toFixed(1)}) rotate(${(-(1-e)*118).toFixed(1)}) scale(${(1.15-.15*e).toFixed(3)})`)}).then(()=>{bt.remove();sh.g.classList.remove('out');mp.remove()});
+  const rim=[into.x+into.v.d/2*K*.2,BASE-into.v.h*K-26];
+  await tw(360,u=>{const e=io(u);J.pos(lerp(jx,rim[0]+12,e),lerp(jy+4,rim[1],e),-e*120)});
+  const st2=mk('path',{d:`M${rim[0]-8} ${rim[1]+6}L${into.x} ${(BASE-into.level()*K).toFixed(1)}`,class:'bx-st',style:`--c:${c}`,pathLength:1},DL);
+  into.add(c,0,`${String(cl).replace('.',',')} cl ${LBL[k]}`);const L2=into.layers[into.layers.length-1],m0=state.ml;
+  await tw(260+cl*80,u=>{L2.ml=ml*u;into.draw();J.set(fu*(1-u),c);state.ml=m0+ml*u;st2.setAttribute('d',`M${rim[0]-8} ${rim[1]+6}L${into.x} ${(BASE-into.level()*K).toFixed(1)}`)});
+  st2.remove();layerLabels(into);await tw(220,u=>J.g.style.opacity=1-u);J.g.remove();await back}
+async function ice(into,crushed){step(crushed?'Crushed Ice einfüllen.':'Eiswürfel einfüllen.');const n=crushed?14:5,cs=[],v=into.v;
+  for(let k=0;k<n;k++){const s=crushed?7:15,x=(Math.random()-.5)*(v.i[0][0]*K*1.4||30),y0=-v.h*K-70-k*10,yE=-(v.i[0][1]+2)*K-s/2-(crushed?(k%4)*7:(k%2)*13)-Math.floor(k/(crushed?4:2))*(crushed?7:13),r0=Math.random()*40;
+    const c=mk('rect',{x:-s/2,y:-s/2,width:s,height:s,rx:crushed?1:2.5,class:'bx-ice'},into.ice);cs.push({c,x,y0,yE,r0})}
+  await tw(700,u=>cs.forEach((q,k)=>{const uu=Math.max(0,Math.min(1,u*1.6-k*.04)),e=uu*uu,b=uu>.85?Math.sin((uu-.85)/.15*Math.PI)*3:0;q.c.setAttribute('transform',`translate(${q.x.toFixed(1)} ${(lerp(q.y0,q.yE,e)-b).toFixed(1)}) rotate(${(q.r0+uu*60).toFixed(1)})`)}));
+  state.tmp=Math.min(state.tmp,crushed?6:8);into.iceN=n}
+async function shake(v){step('Verschließen und kräftig schütteln.');const capG=mk('g',{class:'bx-capg'},v.g);mk('path',{d:`M${-44*K} ${-174*K}L${-34*K} ${-262*K}H${34*K}L${44*K} ${-174*K}Z`,class:'bx-gw'},capG);
+  v.g.querySelectorAll('.bx-ll').forEach(e=>e.style.opacity=0);v.g.querySelectorAll('.bx-dim').forEach(e=>e.style.display='none');const c=[v.x,BASE-170];const mp=path2([[v.x-60,c[1]-40],[v.x+60,c[1]+40]],'ax2');
+  await tw(420,u=>{const e=io(u);v.pos(lerp(v.x,c[0],e),lerp(BASE,c[1]+60,e),e*-32)});
+  const gh=[0,1].map(i=>{const u=mk('use',{href:'#'+(v.g.id||(v.g.id='bxv'+(++uid))),class:'bx-gh'},DL);return u});
+  const t0=state.tmp,d0=state.dil,base=[v.x,v.y];let hist=[];
+  await tw(2400,u=>{const o=Math.sin(u*Math.PI*26)*(1-Math.pow(u,8));const x=base[0]+o*16,y=base[1]-o*11;hist.unshift([x,y]);hist=hist.slice(0,5);v.pos(x,y,-32+o*5);
+    gh.forEach((g2,i)=>{const h=hist[2+i*2]||[x,y];g2.setAttribute('transform',`translate(${(h[0]-x).toFixed(1)} ${(h[1]-y).toFixed(1)})`);g2.style.opacity=(.18-.07*i)*(1-u)});
+    state.tmp=lerp(t0,-4,io(u));state.dil=lerp(d0,25,io(u));v.g.classList.toggle('frost',u>.35)});
+  gh.forEach(g2=>g2.remove());mp.remove();v.blend();v.mix=false;
+  await tw(400,u=>{const e=io(u);v.pos(lerp(v.x,PV,e),lerp(v.y,BASE,e),-32*(1-e))});capG.remove()}
+async function stir(v,short){step(short?'Kurz umrühren.':'Mit dem Barlöffel rühren, gleichmäßig, ohne Luft.');const sp=spoon();v.mix=true;const n=short?2:7,t0=state.tmp,d0=state.dil,top=BASE-v.v.h*K;
+  v.g.querySelectorAll('.bx-ll').forEach(e=>e.style.opacity=0);
+  const el=mk('ellipse',{cx:v.x,cy:top-10,rx:v.v.d/2*K*.7,ry:5,class:'bx-mp go rot'},DL);
+  await tw(short?900:2600,u=>{const a=u*Math.PI*2*n,x=v.x+Math.cos(a)*v.v.d/2*K*.45;toolPos(sp,x,BASE-14,Math.sin(a)*3);v.draw();
+    v.ice.querySelectorAll('.bx-ice').forEach((c,k)=>{const tr=c.getAttribute('transform')||'';const m=/translate\(([-\d.]+) ([-\d.]+)\)/.exec(tr);if(!m)return;if(!c._x)c._x=+m[1];c.setAttribute('transform',tr.replace(/translate\([^)]*\)/,`translate(${(c._x*Math.cos(a+k)).toFixed(1)} ${m[2]})`))});
+    if(!short){state.tmp=lerp(t0,-2,io(u));state.dil=lerp(d0,20,io(u))}else{state.dil=Math.max(state.dil,lerp(d0,8,u))}});
+  el.remove();sp.remove();v.mix=false;v.blend()}
+async function muddle(v){step('Minze mit Zucker andrücken, nicht zermahlen.');const md=muddler(),top=BASE-v.v.h*K;
+  const leaves=[];for(let k=0;k<5;k++){const x=-14+k*7,y=-(v.v.i[0][1]+3)*K;leaves.push(mk('path',{d:`M${x} ${y}q5 -7 10 0q-5 4 -10 0Z`,class:'bx-mint'},v.ice))}
+  await tw(1600,u=>{const o=Math.abs(Math.sin(u*Math.PI*5));toolPos(md,v.x,BASE-(v.v.i[0][1]+4)*K-o*30,0);if(o<.15)leaves.forEach(l=>l.classList.add('pr'))});
+  md.remove();v.leaves=leaves}
+async function strain(v,g){step(v.type==='tin'?'Mit dem Hawthorne-Sieb ins vorgekühlte Glas abseihen.':'Abseihen.');const s=strainer();
+  v.g.querySelectorAll('.bx-ll').forEach(e=>e.style.opacity=0);v.g.querySelectorAll('.bx-dim').forEach(e=>e.style.display='none');
+  const p1=[g.x-74,BASE-g.v.h*K-64],mp=path2(arcPts([v.x,BASE],p1,60).o);
+  await tw(620,u=>{const e=io(u);v.pos(lerp(PV,p1[0],e),lerp(BASE,p1[1]+30,e),e*112);toolPos(s,v.x+Math.cos((v.rot-90)*Math.PI/180)*v.v.h*K,v.y+Math.sin((v.rot-90)*Math.PI/180)*v.v.h*K,v.rot+90);s.style.opacity=e});
+  const lip=[v.x+Math.cos((v.rot-90)*Math.PI/180)*v.v.h*K,v.y+Math.sin((v.rot-90)*Math.PI/180)*v.v.h*K];
+  const c=v.layers[0]?v.layers[0].c:'#ddd',tot=v.ml*(1+state.dil/100),st=mk('path',{d:'',class:'bx-st',style:`--c:${c}`,pathLength:1},DL);g.add(c,0,'');const L2=g.layers[0],m0=v.ml;
+  await tw(1400,u=>{v.layers[0]&&(v.layers[0].ml=m0*(1-u));v.draw();L2.ml=Math.min(g.v.cap*.92,tot*u);g.draw();state.ml=L2.ml;st.setAttribute('d',`M${lip[0].toFixed(1)} ${lip[1].toFixed(1)}Q${(g.x-4).toFixed(1)} ${(lip[1]+10).toFixed(1)} ${g.x} ${(BASE-g.level()*K).toFixed(1)}`)});
+  st.remove();await tw(560,u=>{const e=io(u);v.pos(lerp(p1[0],PV,e),lerp(p1[1]+30,BASE,e),112*(1-e));s.style.opacity=1-e});s.remove();mp.remove();
+  g.layers[0].lab=`${Math.round(L2.ml)} ml · ≈ ${state.tmp.toFixed(0)} °C`;layerLabels(g);
+  await tw(300,u=>v.g.style.opacity=1-u);v.g.remove();V=null}
+async function garnish(g,kind){if(!kind)return;const Tx={zeste:'Zitronenzeste über dem Glas abdrehen.',minze:'Minzzweig. Einer.',zitrone:'Zitronenscheibe an den Rand.'};step(Tx[kind]);
+  const rx=g.x+g.v.d/2*K*.55,ry=BASE-g.v.h*K;let d;
+  if(kind==='zeste'){d=`M${rx} ${ry-2}`;for(let k=0;k<=40;k++){const a=k/40*Math.PI*5,r=7-k*.08;d+=`L${(rx+Math.cos(a)*r+k*.4).toFixed(1)} ${(ry-2-k*.9+Math.sin(a)*3).toFixed(1)}`}}
+  else if(kind==='minze')d=`M${g.x} ${ry+8}V${ry-26}M${g.x} ${ry-10}q-12 -6 -16 3q10 3 16 -3M${g.x} ${ry-18}q12 -8 16 1q-9 4 -16 -1M${g.x} ${ry-26}q-8 -8 -12 -2q6 4 12 2`;
+  else {const r=13;d=`M${rx-r} ${ry}A${r} ${r} 0 0 1 ${rx+r} ${ry}ZM${rx-r+3} ${ry}A${r-3} ${r-3} 0 0 1 ${rx+r-3} ${ry}`;for(let k=1;k<6;k++){const a=Math.PI+k*Math.PI/6;d+=`M${rx} ${ry}L${(rx+Math.cos(a)*(r-3)).toFixed(1)} ${(ry+Math.sin(a)*(r-3)).toFixed(1)}`}}
+  const p=mk('path',{d,class:'bx-gar '+kind,pathLength:1},DL);g.extra.push(p);await tw(700,u=>p.style.strokeDashoffset=(1-u).toFixed(3));
+  const cl=mk('g',{class:'bx-ll'},DL);mk('path',{d:`M${rx-4} ${ry-20}L${rx-40} ${ry-56}H${rx-56}`,class:'bx-lld'},cl);mk('text',{x:rx-59,y:ry-52.5,class:'bx-llt','text-anchor':'end'},cl,{zeste:'ZESTE',minze:'MINZE',zitrone:'ZITRONE'}[kind]);g.extra.push(cl)}
+async function serve(g){step('Ausgabe an Platz C.');follow(PU);g.g.querySelectorAll('.bx-ll').forEach(e=>e.style.opacity=0);const x0=g.x,mp=path2([[x0,BASE+3],[PU,BASE+3]],'ax2');
+  await tw(900,u=>{const e=io(u),x=lerp(x0,PU,e);g.pos(x,BASE);g.extra.forEach(p=>p.setAttribute('transform',`translate(${(x-x0).toFixed(1)} 0)`))});mp.remove();layerLabels(g,true)}
 /* Ablauf je Rezept */
-let glass=null,vess=null;
+const MN={shake:'GESCHÜTTELT',stir:'GERÜHRT',muddle:'GESTAMPFT',build:'IM GLAS GEBAUT',warm:'ERWÄRMT',chill:'GEKÜHLT',neat:'PUR'};
+function plan(r,m){const a=[];if(m==='shake'||m==='stir'){a.push('Eiswürfel einfüllen.');r.z.forEach(([k,cl])=>a.push(`${String(cl).replace('.',',')} cl ${k.charAt(0)+k.slice(1).toLowerCase()} abmessen und eingießen.`));a.push(m==='shake'?'Verschließen und kräftig schütteln.':'Mit dem Barlöffel rühren, gleichmäßig, ohne Luft.');a.push(m==='shake'?'Mit dem Hawthorne-Sieb ins vorgekühlte Glas abseihen.':'Abseihen.')}
+  else if(m==='muddle'){a.push(`${String(r.z[0][1]).replace('.',',')} cl ${r.z[0][0].charAt(0)+r.z[0][0].slice(1).toLowerCase()} abmessen und eingießen.`,'Minze mit Zucker andrücken, nicht zermahlen.','Crushed Ice einfüllen.');r.z.slice(1).forEach(([k,cl])=>a.push(`${String(cl).replace('.',',')} cl ${k.charAt(0)+k.slice(1).toLowerCase()} abmessen und eingießen.`));a.push('Mit dem Barlöffel rühren, gleichmäßig, ohne Luft.')}
+  else if(m==='build'){a.push('Eiswürfel einfüllen.');r.z.forEach(([k,cl])=>a.push(`${String(cl).replace('.',',')} cl ${k.charAt(0)+k.slice(1).toLowerCase()} abmessen und eingießen.`));if(r.z.length>1)a.push('Kurz umrühren.')}
+  else if(m==='chill')a.push('Flasche im Kühler auf unter 3 °C bringen.',`10 cl Champagner abmessen und eingießen.`);
+  else if(m==='warm')a.push('6 cl Sake abmessen und eingießen.','Im Wasserbad auf etwa 37 °C erwärmen.');
+  else r.z.forEach(([k,cl])=>a.push(`${String(cl).replace('.',',')} cl ${k.charAt(0)+k.slice(1).toLowerCase()} abmessen und eingießen.`));
+  if(r.gar)a.push({zeste:'Zitronenzeste über dem Glas abdrehen.',minze:'Minzzweig. Einer.',zitrone:'Zitronenscheibe an den Rand.'}[r.gar]);a.push('Ausgabe an Platz C.');return a}
 async function make(r,forceMethod){if(busy)return;busy=true;skip=false;const m=forceMethod||r.m;stEl.textContent='IN ZUBEREITUNG';stEl.className='st warn';
   document.querySelectorAll('.bar-card').forEach(c=>c.classList.toggle('on',c.dataset.id===r.id));
-  [glass,vess].forEach(v=>v&&(v.g.remove(),(v.extra||[]).forEach(p=>p.remove())));bucket.style.opacity=0;svg.querySelectorAll('.b-steam,.b-bubbles').forEach(e=>e.remove());
-  glass=vessel(r.g,GS[0],GS[1],r.c);vess=null;const tot=r.z.reduce((s,z)=>s+z[1],0);
-  if(m==='shake'||m==='stir'){vess=vessel(m==='shake'?'tin':'mixing',VS[0],VS[1],r.c);await ice(vess);for(const[k,cl]of r.z)await pour(k,cl,vess,tot);
-    if(m==='shake')await shake(vess);else await stir(vess);await strain(vess,glass)}
-  else if(m==='muddle'){say('Zuerst Minze und Zucker in das Glas.');const mint=mk('path',{d:`M${GS[0]-8} ${GS[1]-6}q8 -10 16 0`,class:'b-garnish minze'});await pour(r.z[0][0],r.z[0][1],glass,tot);await muddle(glass);mint.remove();
-    await ice(glass,true);for(const[k,cl]of r.z.slice(1))await pour(k,cl,glass,tot);await stir(glass)}
-  else if(m==='build'){await ice(glass);for(const[k,cl]of r.z)await pour(k,cl,glass,tot)}
-  else if(m==='warm'){await pour('SAKE',6,glass,6);await warm(glass)}
-  else if(m==='chill'){await chill(glass);await pour('CHAMPAGNER',10,glass,10);const b=mk('g',{class:'b-bubbles'});for(let k=0;k<6;k++)mk('circle',{cx:GS[0]-4+k*1.6,cy:GS[1]-24,r:1,style:`animation-delay:${k*.25}s`},b)}
-  else{for(const[k,cl]of r.z)await pour(k,cl,glass,tot)}
-  await garnish(glass,r.gar);await serve(glass,r);
+  DL.innerHTML='';G=V=null;state={ml:0,tmp:r.id==='dom'?8:20,dil:0};T0=performance.now();rdLoop();
+  tbN.textContent=r.n.toUpperCase();tbG.textContent=GV[r.g].n;tbF.textContent=r.y?String(r.y):'KARLSBAD';tbB.textContent=`${String(R.indexOf(r)+1).padStart(2,'0')} / ${R.length}`;RV.MTH.textContent=MN[m];
+  stepsInit(plan(r,m));svg.classList.remove('done');
+  G=vessel(r.g,PG);dims(G,1);G.g.classList.add('in');follow((m==='shake'||m==='stir')?(PV+PG)/2:PG);
+  if(m==='shake'||m==='stir'){V=vessel(m==='shake'?'tin':'mixing',PV);dims(V,-1);V.g.classList.add('in');await tw(500,()=>{});await ice(V);for(const[k,cl]of r.z)await pour(k,cl,V);
+    if(m==='shake')await shake(V);else await stir(V);await strain(V,G)}
+  else if(m==='muddle'){await pour(r.z[0][0],r.z[0][1],G);await muddle(G);await ice(G,true);for(const[k,cl]of r.z.slice(1))await pour(k,cl,G);await stir(G);state.tmp=Math.min(state.tmp,2);state.dil=Math.max(state.dil,15)}
+  else if(m==='build'){await tw(400,()=>{});await ice(G);for(const[k,cl]of r.z)await pour(k,cl,G);if(r.z.length>1)await stir(G,true);state.tmp=Math.min(state.tmp,5);state.dil=Math.max(state.dil,8)}
+  else if(m==='chill'){step('Flasche im Kühler auf unter 3 °C bringen.');await tw(1200,u=>state.tmp=lerp(8,2.5,io(u)));await pour('CHAMPAGNER',10,G);const b=mk('g',{class:'bx-bub'},DL);
+    for(let k=0;k<9;k++)mk('circle',{cx:(PG-6+(k%3)*6),cy:BASE-110*K,r:1.1,style:`animation-delay:${(k*.21).toFixed(2)}s`},b);G.extra.push(b)}
+  else if(m==='warm'){await pour('SAKE',6,G);step('Im Wasserbad auf etwa 37 °C erwärmen.');const st=mk('path',{d:`M${PG-6} ${BASE-46}q-5 -8 0 -16q5 -8 0 -16M${PG+6} ${BASE-46}q-5 -8 0 -16q5 -8 0 -16`,class:'bx-steam'},DL);G.extra.push(st);await tw(1300,u=>state.tmp=lerp(20,37,io(u)))}
+  else{await tw(400,()=>{});for(const[k,cl]of r.z)await pour(k,cl,G)}
+  await garnish(G,r.gar);await serve(G);step('');stepsEl.querySelectorAll('li').forEach(li=>{li.classList.remove('now');li.classList.add('ok')});
   const n=S.get('bar',{}),c=(n[r.id]||0)+1;n[r.id]=c;S.set('bar',n);
   let fin=r.hum;if(r.id==='vesper'&&c>1)fin=`Vesper Nummer ${c}. M hat Ihr P.S. gelesen. Sie offenbar nicht.`;
-  if(forceMethod==='stir'&&r.m==='shake')fin='Gerührt. Der Barkeeper hebt eine Braue um genau einen Millimeter. Dienstlich vermerkt.'+(r.id==='vesper'&&c>1?` Außerdem Nummer ${c}.`:'');
-  say(fin);if(forceMethod==='stir'&&r.m==='shake'){const b=document.getElementById('bkBrow');b.setAttribute('transform','translate(0 -2)');setTimeout(()=>b.removeAttribute('transform'),2500)}
-  stEl.textContent='SERVIERT';stEl.className='st';total();busy=false}
+  if(forceMethod==='stir'&&r.m==='shake')fin='Gerührt. Q vermerkt eine Abweichung vom Protokoll, mit Datum und Uhrzeit.'+(r.id==='vesper'&&c>1?` Außerdem Nummer ${c}.`:'');
+  say(fin);readout();svg.classList.add('done');stEl.textContent='SERVIERT';stEl.className='st';total();busy=false}
 function total(){const n=S.get('bar',{});const t=Object.values(n).reduce((a,b)=>a+b,0);cnt.textContent=t?`${t} serviert`:'Noch nichts serviert'}
-list.innerHTML=R.map(r=>`<div class="bar-card" data-id="${r.id}"><div class="bch"><b>${r.n}</b><span>${r.y?r.f+' · '+r.y:r.f}</span></div><p>${r.s}</p>
-  <ul>${r.z.map(([k,cl])=>`<li>${String(cl).replace('.',',')} cl ${k.charAt(0)+k.slice(1).toLowerCase()}</li>`).join('')}${r.gar?`<li>${{zeste:'Zitronenzeste',minze:'Minzzweig',zitrone:'Zitronenscheibe'}[r.gar]}</li>`:''}</ul>
-  <p class="bcq">${r.q}</p><div class="qbtns"><button type="button" class="qbtn go" data-mk="${r.id}">ZUBEREITEN</button>${r.m==='shake'?`<button type="button" class="qbtn" data-stir="${r.id}">GERÜHRT VERLANGEN</button>`:''}</div></div>`).join('');
+list.innerHTML=R.map((r,i)=>`<div class="bar-card" data-id="${r.id}"><div class="bch"><b>${r.n}</b><span>${r.y?r.f+' · '+r.y:r.f}</span></div>
+  <div class="bci">${r.z.map(([k,cl])=>`<span><i style="--c:${ING[k][0]}"></i>${String(cl).replace('.',',')} cl ${k.charAt(0)+k.slice(1).toLowerCase()}</span>`).join('')}<span class="m">${MN[r.m]} · ${GV[r.g].n}</span></div>
+  <details><summary>Akte</summary><p>${r.s}</p><p class="bcq">${r.q}</p></details>
+  <div class="qbtns"><button type="button" class="qbtn go" data-mk="${r.id}">ZUBEREITEN</button>${r.m==='shake'?`<button type="button" class="qbtn" data-stir="${r.id}">GERÜHRT VERLANGEN</button>`:''}</div></div>`).join('');
 list.querySelectorAll('[data-mk]').forEach(b=>b.onclick=()=>{make(R.find(r=>r.id===b.dataset.mk));svg.scrollIntoView({block:'nearest',behavior:RM?'auto':'smooth'})});
 list.querySelectorAll('[data-stir]').forEach(b=>b.onclick=()=>{make(R.find(r=>r.id===b.dataset.stir),'stir');svg.scrollIntoView({block:'nearest',behavior:RM?'auto':'smooth'})});
 document.getElementById('barFast').onclick=e=>{speed=speed===1?2:1;e.target.textContent=speed===1?'TEMPO ×2':'TEMPO ×1'};
 document.getElementById('barSkip').onclick=()=>{skip=true};
-total();say('Wählen Sie ein Getränk. Der Barkeeper hört zu, nickt und fragt nicht nach.');
+/* Blatt zeichnen, sobald sichtbar */
+if('IntersectionObserver' in window&&!RM){svg.classList.add('pre');const ob=new IntersectionObserver(es=>{if(es.some(e=>e.isIntersecting)){ob.disconnect();svg.classList.remove('pre');svg.classList.add('plot')}},{threshold:.25});ob.observe(svg)}
+total();stepsInit(['Getränk wählen.']);say('Wählen Sie ein Getränk. Die Q-Abteilung zeichnet die Zubereitung mit, Schritt für Schritt.');
 })();
 
 /* toast */
