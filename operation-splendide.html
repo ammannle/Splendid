@@ -334,6 +334,24 @@ section{margin-top:56px}
 .ref:hover{border-color:var(--cyan)}
 
 /* assets */
+.as-bar{margin:0 0 10px;flex-wrap:wrap}.as-bar .tbtn i{font-style:normal;color:var(--mute);margin-left:4px}.as-bar .as-all{margin-left:auto}
+.as-reg{padding:0}
+.as-it{border-bottom:1px solid var(--line)}.as-it:last-child{border-bottom:0}
+.as-it summary{display:grid;grid-template-columns:86px minmax(0,1.1fr) 90px minmax(0,1.6fr) 84px;gap:12px;align-items:center;padding:9px 14px;cursor:pointer;list-style:none;font-size:.9rem}
+.as-it summary::-webkit-details-marker{display:none}
+.as-it summary:hover{background:rgba(143,215,232,.05)}
+.as-it[open] summary{background:rgba(143,215,232,.07)}
+.as-k{font-family:var(--mono);font-size:.64rem;letter-spacing:.12em;color:var(--cyan)}
+.as-it summary b{font-family:var(--head);font-weight:600;letter-spacing:.02em}
+.as-c{font-family:var(--mono);font-size:.7rem;color:var(--mute);letter-spacing:.06em;text-transform:uppercase}
+.as-m{font-size:.8rem;color:var(--mute);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.as-p{font-family:var(--mono);font-size:.6rem;letter-spacing:.1em;color:var(--cyan);border:1px solid var(--line2);padding:1px 6px}
+.as-it.must .as-p{color:var(--amber);border-color:rgba(242,182,94,.6)}.as-it.must .as-k{color:var(--amber)}
+.as-p{justify-self:end}.as-it summary::after{content:"+";font-family:var(--mono);color:var(--cyan);grid-column:5;justify-self:end}
+.as-it summary:has(.as-p)::after{content:none}
+.as-more{display:block;width:100%;padding:10px 14px;background:none;border:0;border-top:1px solid var(--line);color:var(--cyan);font-family:var(--mono);font-size:.72rem;letter-spacing:.12em;text-align:left;cursor:pointer}.as-more:hover{background:rgba(143,215,232,.05)}
+.as-b{padding:4px 14px 14px 112px;display:grid;gap:6px}.as-b p{margin:0;font-size:.9rem;max-width:72ch}.as-b a{font-family:var(--mono);font-size:.72rem}
+@media (max-width:700px){.as-it summary{grid-template-columns:70px minmax(0,1fr) 74px;gap:8px}.as-c,.as-m{display:none}.as-it summary::after{grid-column:3}.as-b{padding:4px 12px 12px}}
 .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));gap:10px}
 .asset{padding:14px 16px 16px}
 .asset .tag{font-family:var(--mono);font-size:.64rem;color:var(--cyan);letter-spacing:.08em}
@@ -2185,9 +2203,9 @@ html.msfull{overflow:hidden}
   </section>
 
   <section id="assets">
-    <div class="sh"><div><div class="ix">MODUL 03 // LOGISTIK</div><h2>Quartiere &amp; Assets</h2></div><p>Vier Agenten, zwei Zimmer pro Quartier. Karlsbad ist befohlen, Prag nach Lage.</p></div>
-    <div class="cards" id="hotelList"></div>
-    <div class="cards" id="extras" style="margin-top:10px"></div>
+    <div class="sh"><div><div class="ix">MODUL 03 // LOGISTIK</div><h2>Quartiere &amp; Assets</h2></div><p>Quartiere, Tische, Bars und alles, was zwischen den Zielobjekten lohnt. Eintrag antippen für Details.</p></div>
+    <div class="tabs as-bar" id="asBar" role="toolbar" aria-label="Kategorien"></div>
+    <div class="panel as-reg" id="asReg"></div>
     <div class="panel recipe">
       <svg viewBox="0 0 54 72" aria-hidden="true"><path d="M4 6 H50 L27 36 Z" fill="none" stroke="currentColor" stroke-width="2" style="color:var(--amber)"/><path d="M11 14 H43 L27 33 Z" fill="currentColor" style="color:var(--amber);opacity:.25"/><line x1="27" y1="36" x2="27" y2="62" stroke="currentColor" stroke-width="2" style="color:var(--amber)"/><line x1="15" y1="66" x2="39" y2="66" stroke="currentColor" stroke-width="2" style="color:var(--amber)"/></svg>
       <div><b>PROTOKOLL VESPER</b>Drei Teile Gin, ein Teil Wodka, ein halber Teil Lillet (im Original Kina Lillet), auf Eis geschüttelt, große dünne Zitronenzeste.</div>
@@ -3475,8 +3493,51 @@ depIn.addEventListener('change',()=>{dep=/^2026-11-\d\d$/.test(depIn.value)?depI
 document.getElementById('depClr').onclick=()=>{dep='';depIn.value='';S.set('dep','');depFlags();countdown()};
 
 /* assets, regs */
-document.getElementById('hotelList').innerHTML=H.map(h=>`<div class="panel asset${h[3]?' must':''}"><div class="tag">${h[3]?'QUARTIER // BEFOHLEN':'QUARTIER // OPTION'}</div><h3>${h[0]}</h3><div class="meta">${h[1]}</div><p>${h[2]}</p><span class="mnote">${h[4]}</span></div>`).join('');
-document.getElementById('extras').innerHTML=X.map(e=>`<div class="panel asset${e.id==='casino'?' must':''}"><div class="tag">${e.id==='casino'?'ASSET // ZIEL 02':'ASSET'}</div><h3>${e.name}</h3><div class="meta">${e.city} · ${e.meta}</div><p>${e.txt}</p><a href="${gm(e.lat,e.lon)}" target="_blank" rel="noopener">KOORDINATEN ÖFFNEN</a></div>`).join('');
+/* Quartiere & Assets: kompaktes Register, Details per Aufklappen. k: q Quartier, e Essen, b Bar, x Erlebnis, s Sehenswert, p Praktisch */
+const ASK={q:['QUARTIER','Quartiere'],e:['ESSEN','Essen'],b:['BAR','Bars'],x:['ERLEBNIS','Erlebnisse'],s:['SICHT','Sehenswert'],p:['PRAKTISCH','Praktisch']};
+const XA=Object.fromEntries(X.map(e=>[e.id,e]));
+const AS=[
+ ['q',H[0][0],'Karlsbad',H[0][1],H[0][2],H[0][4],'Grandhotel Pupp, Karlovy Vary',2],
+ ['q',H[1][0],'Prag',H[1][1],H[1][2],H[1][4],'Hotel Jalta, Praha',1],
+ ['q',H[2][0],'Prag',H[2][1],H[2][2],H[2][4],'Mandarin Oriental, Prague',0],
+ ['q','Hotel Imperial','Karlsbad','Jugendstil-Grandhotel über der Stadt','Hoch über dem Kurviertel, mit eigener Standseilbahn hinunter ins Zentrum. Ausweichquartier, falls das Pupp ausgebucht ist.','Ein Hotel auf dem Berg. Man sieht jeden kommen.','Hotel Imperial, Karlovy Vary',0],
+ ['q','Hotel Thermal','Karlsbad','Bau der 1970er-Jahre an der Teplá','Hauptspielstätte des Filmfestivals Karlovy Vary. Kein Charme der Belle Époque, dafür Architektur des Kalten Kriegs und Blick über das Tal.','Betonbau mit Filmgeschichte. Passt zu Ihnen.','Hotel Thermal, Karlovy Vary',0],
+ ['q','Hotel Bílý kůň','Loket','am Marktplatz','Direkt an dem Platz, auf dem Bond und Vesper Mathis treffen; der Schriftzug ist im Film kurz zu sehen. Für eine ruhige Nacht vor oder nach Karlsbad.','Wohnen am Tatort. Sie wären nicht die Ersten.','Hotel Bílý kůň, Loket',0],
+ ['q','Hotel Paříž','Prag','Jugendstil neben dem Gemeindehaus','Prunkvolles Jugendstilhaus in der Altstadt, wenige Schritte vom Pulverturm. Garage vorab klären.','Jugendstil. Q nennt es Ornament ohne Funktion.','Hotel Paříž, Praha',0],
+ ['q','Augustine','Prag','Kleinseite, ehemaliges Augustinerkloster','Luxushotel in einem Klosterensemble unterhalb der Burg; zu Fuß nach Strahov und zur Karlsbrücke.','Noch ein Kloster. Ich sehe ein Muster.','Augustine Hotel, Prague',0],
+ ['e','Grandrestaurant Pupp','Karlsbad','im Grandhotel Pupp · Ziel 03','Schauplatz des Dinners mit Vesper. Tisch für vier gegen 19:30 Uhr gleich mit der Zimmerbuchung reservieren und nach dem Tisch aus der Filmszene fragen. Smoking erwünscht.','Sie bestellen. Nicht der Kellner.','Grandhotel Pupp, Karlovy Vary',2],
+ ['e','Café Elefant','Karlsbad','Kaffeehaus an der Alten Wiese','Traditionskaffeehaus an der Promenade zwischen Pupp und Kolonnaden. Für den Nachmittag zwischen Kaiserbad und Dämmerungsgang.','Kuchen ist keine Mahlzeit. Im Einsatz schon.','Café Elefant, Karlovy Vary',0],
+ ['e','Klosterbrauerei Strahov','Prag','neben der Strahov-Bibliothek','Mittagessen gleich nach dem Committee Room. Hausgebrautes Bier im Klosterhof.','Ein Bier für M. Symbolisch.','Klášterní pivovar Strahov, Praha',0],
+ ['e','Café Savoy','Prag','Kleinseite','Großes Kaffeehaus mit historischer Kassettendecke, nahe der Moldau. Gut für ein Frühstück vor der Burg.','Frühstück ist Teil des Einsatzes. Ich habe das schriftlich.','Café Savoy, Praha',0],
+ ['e','Kavárna Obecní dům','Prag','Jugendstil-Café im Gemeindehaus','Kaffeehaus im prachtvollsten Jugendstilbau der Stadt am Platz der Republik.','Kronleuchter, Marmor, Kaffee. Das Schatzamt nennt es Repräsentation.','Kavárna Obecní dům, Praha',0],
+ ['b','Becher’s Bar','Karlsbad',XA.becher.meta,XA.becher.txt,'Ein Vesper. Nicht drei.','Grandhotel Pupp, Karlovy Vary',1],
+ ['b','Hemingway Bar','Prag',XA.hemingway.meta,XA.hemingway.txt,'Der Barkeeper berät. Sie hören zu.','Hemingway Bar, Praha',1],
+ ['b','Bugsy’s Bar','Prag','Pařížská, Altstadt','Klassische Cocktailbar an der Pariser Straße. Ausweichziel, wenn die Hemingway Bar voll ist.','Ein Name wie ein Gangster. Benehmen Sie sich trotzdem.','Bugsy\'s Bar, Praha',0],
+ ['b','Jan Becher Museum','Karlsbad','Museum des Kräuterlikörs','Geschichte der Becherovka mit Verkostung. Der Likör ist das Wasser der Stadt, nur stärker.','Verkostung heißt nicht Vorrat.','Jan Becher Museum, Karlovy Vary',0],
+ ['x','Casino im Pupp','Karlsbad',XA.casino.meta,XA.casino.txt,'Das Limit gilt auch nach dem dritten Gewinn.','Grandhotel Pupp, Karlovy Vary',2],
+ ['x','Führung Kaiserbad','Karlsbad','Fassade des Casino Royale · 1–2 Wochen vorher','Innen Zander-Saal und Kaiserkabine, gegenüber dem Pupp. Führungszeiten für den Anreisetag erfragen.','Die Fassade kennen Sie. Jetzt sehen Sie, was dahinter ist.','Císařské lázně, Karlovy Vary',1],
+ ['x','Kalter-Krieg-Museum','Prag',XA.jalta.meta,XA.jalta.txt,'Sprechen Sie dort leise. Aus Prinzip.','Hotel Jalta, Praha',1],
+ ['x','Ranger Shooting','Prag',XA.ranger.meta,XA.ranger.txt,'Kein Vesper davor.','Ranger Shooting, Praha',0],
+ ['x','Standseilbahn und Aussichtsturm Diana','Karlsbad','vom Pupp aus bergauf','Die Bahn fährt direkt neben dem Grandhotel auf den Freundschaftshügel; oben der Aussichtsturm über dem Tal der Teplá.','Überblick verschaffen. Erst dann handeln.','Lanovka Diana, Karlovy Vary',0],
+ ['x','Moser Besucherzentrum','Karlsbad','Glashütte mit Führung','Böhmisches Kristall aus der Manufaktur Moser, mit Blick in die Glashütte. Ein Mitbringsel, das zerbrechlicher ist als Sie.','Bitte nicht auf Spesen.','Moser Visitor Centre, Karlovy Vary',0],
+ ['x','Adventsmärkte','Prag',XA.advent.meta,XA.advent.txt,'Glühwein ist kein Getränk für den Dienst. Heute schon.','Staroměstské náměstí, Praha',0],
+ ['s','Burg Loket','Loket','gotische Burg über der Ohře','Bester Blick auf die Dächer und die Flussschleife, gleich nach dem Treffen am Marktplatz.','Wer oben steht, sieht zuerst.','Hrad Loket',1],
+ ['s','Sprudelkolonnade','Karlsbad','die heißeste Quelle der Stadt','Die Fontäne des Vřídlo steigt in einer Halle aus den 1970er-Jahren. Becher mit Schnabel gibt es überall.','Trinken Sie es nicht. Riechen genügt.','Vřídelní kolonáda, Karlovy Vary',0],
+ ['s','Karlsbrücke bei Dämmerung','Prag','zwischen Kleinseite und Altstadt','Nach Strahov bergab durch die Kleinseite, zur blauen Stunde über die Brücke.','Viele Menschen. Gut zum Verschwinden.','Karlův most, Praha',0],
+ ['s','Prager Burg','Prag','Hradschin, neben Strahov','Veitsdom und Burghöfe liegen auf dem Weg von Strahov hinunter zur Kleinseite.','Eine Burg mit Regierung. Seien Sie höflich.','Pražský hrad',0],
+ ['s','Aussichtsturm Petřín','Prag','über der Kleinseite','Stahlturm auf dem Petřín mit Blick über Burg und Altstadt. Mit der Standseilbahn erreichbar.','Noch ein Aussichtspunkt. Ich mag Leute, die den Überblick behalten.','Petřínská rozhledna, Praha',0],
+ ...B.map(b=>['p',b[0],'Unterwegs',b[1].split(/[.:]/)[0],b[1].replace('Genaue Zeiten zeigt der Einsatzplan nach Datumswahl.','Genaue Zeiten erscheinen nach Wahl des Abreisedatums im Einsatzbefehl.'),b[2],'',b[0]==='Ausweise'||b[0]==='E-Vignette'?1:0])];
+(function(){const box=document.getElementById('asReg'),bar=document.getElementById('asBar');let cat=S.get('ascat','all'),more=false;
+  const cnt=k=>AS.filter(a=>k==='all'||a[0]===k).length,PR=['','WICHTIG','BEFOHLEN'];
+  bar.innerHTML=[['all','Alle']].concat(Object.entries(ASK).map(([k,v])=>[k,v[1]])).map(([k,l])=>`<button type="button" class="tbtn" data-k="${k}">${l} <i>${cnt(k)}</i></button>`).join('')+`<button type="button" class="tbtn as-all" aria-pressed="false">ALLE DETAILS</button>`;
+  function draw(){bar.querySelectorAll('[data-k]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.k===cat)));
+    const all=AS.filter(a=>cat==='all'||a[0]===cat),vis=cat==='all'&&!more?all.filter(a=>a[7]):all;
+    box.innerHTML=vis.map((a,i)=>`<details class="as-it k-${a[0]}${a[7]===2?' must':a[7]?' imp':''}"><summary><span class="as-k">${ASK[a[0]][0]}</span><b>${a[1]}</b><span class="as-c">${a[2]}</span><span class="as-m">${a[3]}</span>${a[7]?`<span class="as-p">${PR[a[7]]}</span>`:''}</summary>
+      <div class="as-b"><p>${a[4]}</p><span class="mnote">${a[5]}</span>${a[6]?`<a href="${gq(a[6])}" target="_blank" rel="noopener">AUF DER KARTE ÖFFNEN ›</a>`:''}</div></details>`).join('')+(vis.length<all.length?`<button type="button" class="as-more">+ ${all.length-vis.length} WEITERE EINTRÄGE ANZEIGEN</button>`:cat==='all'?`<button type="button" class="as-more less">− NUR WICHTIGE ANZEIGEN</button>`:'');
+    const mb=box.querySelector('.as-more');if(mb)mb.onclick=()=>{more=!mb.classList.contains('less')?true:false;draw()}}
+  bar.onclick=e=>{const b=e.target.closest('button');if(!b)return;if(b.classList.contains('as-all')){const on=b.getAttribute('aria-pressed')!=='true';if(on&&!more){more=true;draw()}b.setAttribute('aria-pressed',String(on));box.querySelectorAll('details').forEach(d=>d.open=on);return}
+    cat=b.dataset.k;S.set('ascat',cat);draw()};
+  if(!ASK[cat]&&cat!=='all')cat='all';draw()})();
 /* q-lab: Roulette, europäisch (eine Zero), vollständiges Tableau */
 const eur=n=>n.toLocaleString('de-DE')+' €';
 (function(){
