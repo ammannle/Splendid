@@ -5911,7 +5911,7 @@ const SND=(()=>{let ac=null,on=false,master=null,drone=null,nb=null;
   const mdat=()=>{if(MD===undefined){const el=document.getElementById('muData');if(!el)return null;try{MD=JSON.parse(el.textContent)}catch(e){MD=null}}return MD};
   const mbuf=k=>MB[k]||(MB[k]=new Promise((res,rej)=>{const b=atob(mdat()[k]),a=new Uint8Array(b.length);for(let i=0;i<b.length;i++)a[i]=b.charCodeAt(i);ac.decodeAudioData(a.buffer,res,rej)}));
   A.hasScore=()=>!!mdat();
-  A.cue=k=>{if(!ok())return;if(!bus){bus=ac.createGain();bus.gain.value=.9;bus.connect(master)}if(k===cueN)return;cueN=k;clearTimeout(cueT);
+  A.cue=k=>{if(!k&&ac){cueN=null;clearTimeout(cueT);if(cueG){const g=cueG;cueG=null;try{g.gain.cancelScheduledValues(ac.currentTime);g.disconnect()}catch(e){}}return}if(!ok())return;if(!bus){bus=ac.createGain();bus.gain.value=.9;bus.connect(master)}if(k===cueN)return;cueN=k;clearTimeout(cueT);
     const old=cueG,t=ac.currentTime;if(old){old.gain.cancelScheduledValues(t);old.gain.setTargetAtTime(0,t,.45);setTimeout(()=>{try{old.disconnect()}catch(e){}},4000)}cueG=null;
     if(!k||!mdat()||!MD[k])return;const g=ac.createGain();g.gain.setValueAtTime(0,t);g.gain.linearRampToValueAtTime(1,t+(LOOP[k]?1.4:.08));g.connect(bus);cueG=g;
     mbuf(k).then(buf=>{if(cueN!==k||cueG!==g)return;let at=ac.currentTime+.05,first=true;const XF=2;
@@ -5946,8 +5946,9 @@ const VOX=(()=>{const WS='speechSynthesis' in window&&'SpeechSynthesisUtterance'
     get voices(){const d=dat();return d?Object.keys(d).filter(k=>Object.keys(d[k]).length):[]},get voice(){return dat()&&dat()[vk]&&Object.keys(D[vk]).length?vk:'m'},set voice(v){if(dat()&&D[v]&&Object.keys(D[v]).length){vk=v;S.set('msvoice',v)}},
     set(v){on=!!v&&has;if(on)prime();else{halt();SND.duck(false)}},
     wave(b){if(!an||!src)return false;an.getFloatTimeDomainData(b);return true},
-    speak(t,cb){if(!on)return;halt();if(!t)return;const k=key(t);
-      const V=VOX.voice;if(rec()&&D[V]&&D[V][k]){prime();busy=true;const g=gen;get(k).then(b=>{if(g!==gen)return;const s=ac.createBufferSource();s.buffer=b;s.connect(out);
+    hold:false,
+    speak(t,cb){if(!on||VOX.hold)return;halt();if(!t)return;const k=key(t);
+      const V=VOX.voice;if(rec()&&D[V]&&D[V][k]){prime();busy=true;const g=gen;get(k).then(b=>{if(g!==gen||VOX.hold)return;const s=ac.createBufferSource();s.buffer=b;s.connect(out);
         s.onended=()=>{if(src===s){src=null;done()}};src=s;SND.duck(true);s.start(ac.currentTime+.12);cb&&cb(b.duration,.12)}).catch(()=>{if(g===gen){busy=false;ws(t,cb)}})}
       else ws(t,cb)},
     pause(){if(!on)return;if(ac&&ac.state==='running')ac.suspend();if(WS)speechSynthesis.pause()},
@@ -6333,8 +6334,8 @@ function frame(now){if(!playing)return;el=Math.min(TOT,(now-t0)/1000);
   if(cur>=0&&VOX.busy){const end=SC.slice(0,cur+1).reduce((a,s)=>a+s.t,0)-.02;if(el>end){el=end;t0=now-end*1000}}
   let acc=0,i=0;for(;i<SC.length;i++){if(el<acc+SC[i].t)break;acc+=SC[i].t}
   if(i>=SC.length){stop(true);return}if(i!==cur)show(i);$('msBar').style.width=(el/TOT*100)+'%';$('msTime').textContent=`${mmss(el)} / ${mmss(TOT)}`;raf=requestAnimationFrame(frame)}
-function play(){if(el>=TOT)el=0;playing=true;dustGo();scopeGo();SND.resume();VOX.resume();t0=performance.now()-el*1000;$('msPlay').textContent='❚❚ PAUSE';cancelAnimationFrame(raf);raf=requestAnimationFrame(frame);anims.forEach(a=>a.play())}
-function stop(end){if(end&&auto){const d=auto;auto=null;setTimeout(()=>{msP.classList.remove('auto');setFull(false);d()},RM?0:1600)}playing=false;SND.pause();VOX.pause();if(end){VOX.cancel();SND.musicOff()}cancelAnimationFrame(raf);anims.forEach(a=>a.pause());$('msPlay').textContent=end?'↺ NOCHMAL':'▶ WEITER';if(end){$('msBar').style.width='100%';el=TOT}}
+function play(){if(el>=TOT)el=0;playing=true;VOX.hold=false;dustGo();scopeGo();SND.resume();VOX.resume();t0=performance.now()-el*1000;$('msPlay').textContent='❚❚ PAUSE';cancelAnimationFrame(raf);raf=requestAnimationFrame(frame);anims.forEach(a=>a.play())}
+function stop(end){if(end&&auto){const d=auto;auto=null;setTimeout(()=>{msP.classList.remove('auto');setFull(false);d()},RM?0:1600)}playing=false;SND.pause();VOX.pause();if(end){VOX.hold=true;VOX.cancel();SND.musicOff()}cancelAnimationFrame(raf);anims.forEach(a=>a.pause());$('msPlay').textContent=end?'↺ NOCHMAL':'▶ WEITER';if(end){$('msBar').style.width='100%';el=TOT}}
 const jump=i=>{VOX.cancel();el=SC.slice(0,i).reduce((a,s)=>a+s.t,0)+.01;cur=-1;play()};
 const sndBtn=$('msSnd');function sndSet(v){SND.set(v);S.set('mssnd',v?1:0);sndBtn.setAttribute('aria-pressed',String(SND.on));sndBtn.textContent=SND.on?'♪ MUSIK AN':'♪ MUSIK AUS';if(SND.on&&cur>=0&&SC[cur].ch>0&&!SND.hasScore())SND.droneOn()}
 sndBtn.onclick=()=>{sndSet(!SND.on);if(SND.on&&cur>=0)SND.hasScore()?SND.cue(cueOf(SC[cur])):SND.mood(moodOf(SC[cur]))};if(S.get('mssnd',1))sndBtn.textContent='♪ MUSIK AN (KLICK)';
