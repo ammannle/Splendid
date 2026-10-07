@@ -595,7 +595,7 @@ html.bpfull{overflow:hidden}
 .lp .lpo{font-size:15px;letter-spacing:.08em;fill:var(--amber);opacity:.9}
 .lp .lrg{font-size:14px;fill:var(--red);opacity:.75;letter-spacing:.1em}
 .lp .fr{fill:none;stroke:var(--cyan);stroke-width:1.2;opacity:.7}.lp .fr2{fill:none;stroke:var(--cyan);stroke-width:.6;opacity:.35}.lp .tk{stroke:var(--cyan);stroke-width:1;opacity:.7}
-.lp .lgx,.lp .lsm{font-size:14px;fill:var(--cyan);letter-spacing:.08em}.lp .sb1{fill:var(--cyan)}.lp .sb0{fill:none;stroke:var(--cyan);stroke-width:1}
+.lp .lsc{font-size:12px;opacity:.7}.lp .lgx,.lp .lsm{font-size:14px;fill:var(--cyan);letter-spacing:.08em}.lp .sb1{fill:var(--cyan)}.lp .sb0{fill:none;stroke:var(--cyan);stroke-width:1}
 .lp .ln{fill:none;stroke:var(--cyan);stroke-width:1.2}.lp .nf{fill:var(--cyan)}
 .lp .tr{fill:color-mix(in srgb,var(--green) 10%,transparent);stroke:var(--green);stroke-width:.8;stroke-opacity:.55}
 .lp .sp{fill:none;stroke:var(--cyan);stroke-width:1.2}.lp .spd{fill:var(--cyan)}.lp .bs{fill:none;stroke:var(--amber);stroke-width:1.2}.lp .ts{stroke:var(--amber);stroke-width:1.6}
@@ -615,6 +615,22 @@ html.bpfull{overflow:hidden}
 @keyframes lpIn{from{opacity:0}to{opacity:1}}@keyframes lpLock{0%{opacity:0;transform:scale(1.6)}60%{opacity:1}100%{transform:none}}
 @keyframes lpScan{0%{opacity:.5;transform:translateX(0)}95%{opacity:.5}100%{opacity:0;transform:translateX(1608px)}}
 @media (prefers-reduced-motion:reduce){.lp.run *{animation:none!important}}
+
+/* Ansichten: Aufriss & Schnitt, Lageplan */
+.bd.vw-det .cutbox,.bd.vw-det .cutctl,.bd.vw-det .mapbox2,.bd.vw-det .mapctl,.bd.vw-cut .detbox,.bd.vw-cut .detctl,.bd.vw-cut .mapbox2,.bd.vw-cut .mapctl,.bd.vw-cut .bpbox,.bd.vw-cut .bpctl:not(.cutctl),
+.bd.vw-map .detbox,.bd.vw-map .detctl,.bd.vw-map .cutbox,.bd.vw-map .cutctl,.bd.vw-map .bpbox,.bd.vw-map .bpctl:not(.mapctl),.bd.vw-bp .cutbox,.bd.vw-bp .cutctl,.bd.vw-bp .mapbox2,.bd.vw-bp .mapctl,
+.bd.vw-det .bpctl.cutctl,.bd.vw-det .bpctl.mapctl{display:none}
+.bd.vw-bp .bpctl.detctl{display:none}
+.cutbox{margin-top:10px;display:grid;grid-template-columns:minmax(0,1fr) 220px;gap:12px;align-items:start}
+.csv .dks{opacity:0;transition:opacity .4s}.csv.open .dks{opacity:1}.csv .dk-f,.csv .dk-h,.csv .dk-t{transition:opacity .8s}.csv.open .dk-f,.csv.open .dk-h{opacity:.1}.csv.open .dk-t{opacity:.35}
+.csv .dks path{fill:none;stroke-linecap:round;stroke-linejoin:round}.csv .dks .dk-s{stroke:var(--amber);stroke-width:calc(var(--sw,1.6)*1.5)}.csv .dks .dk-sh{stroke:var(--amber);stroke-width:calc(var(--sw,1.6)*.5);opacity:.55}.csv .dks .dk-sf{stroke:var(--cyan);stroke-width:calc(var(--sw,1.6)*.75);opacity:.9}
+.csv.open .dks path{stroke-dasharray:1;stroke-dashoffset:1;animation:gzdraw 1.2s ease-in-out var(--d) forwards}
+.csv .dks text{fill:var(--amber);font:500 20px var(--mono);letter-spacing:.08em;opacity:0}.csv.open .dks text{animation:dkt .5s ease 1.4s forwards}.csv .dks text.rd{fill:var(--red)}
+.mapbox2{margin-top:10px;border:1px solid var(--line);border-radius:2px;overflow:hidden}.mbw{position:relative}.mbw .lp{display:block}
+.mapbox2.full,.cutbox.full{position:fixed;inset:0;z-index:150;margin:0;padding:max(16px,env(safe-area-inset-top)) 16px 16px;background:color-mix(in srgb,var(--bg) 96%,transparent);display:grid;align-content:center;overflow:auto;cursor:zoom-out}
+.mapbox2.full .mbw{width:min(100%,calc((100vh - 40px)*16/9));justify-self:center;cursor:default}
+.cutbox.full{grid-template-columns:minmax(0,1fr) 240px}.cutbox.full .dbw{width:min(100%,calc((100vh - 40px)*16/9));justify-self:center;cursor:default}
+@media (max-width:1000px){.cutbox{grid-template-columns:1fr}.cutbox.full{grid-template-columns:1fr}}
 /* Detailblatt im Modul Zielobjekte */
 .dvw{margin-top:14px}
 .bd.vw-det .bpbox,.bd.vw-det .bpctl:not(.detctl){display:none}.bd.vw-bp .detbox,.bd.vw-bp .detctl{display:none}
@@ -2624,6 +2640,7 @@ html.msfull{overflow:hidden}
   <p>RECHERCHESTAND OKTOBER 2026 · ÖFFNUNGSZEITEN IM NOVEMBER VOR ABFAHRT PRÜFEN · FIKTIVER AUFTRAG, INOFFIZIELLER FAN-REISEPLAN OHNE VERBINDUNG ZU EON PRODUCTIONS ODER RECHTEINHABERN</p>
   <p>BILDVORLAGEN (Wikimedia Commons, nachgezeichnet): Aston Martin DB5, charner1963, CC0 · Lotus Esprit, cactus cowboy, CC0 · Citroën 2CV, spadassin, CC0 · Sunbeam Alpine, Rama, <a href="https://creativecommons.org/licenses/by-sa/2.0/fr/" target="_blank" rel="noopener">CC BY-SA 2.0 FR</a> · Maßfigur 007 im Smoking: eigene Konstruktion nach Fotos von Daniel Craig (Montclair Film, <a href="https://creativecommons.org/licenses/by/2.0/" target="_blank" rel="noopener">CC BY 2.0</a>)</p>
   <p class="ptcred">PORTRÄTS ALLER ZIELPERSONEN: Grafiken vom Nutzer bereitgestellt, in Tonstufen vektorisiert. PORTRÄTS, VON HAND NACH FOTOS GEZEICHNET (Wikimedia Commons): Eva Green: Marc Obin, CC BY 3.0 · Giancarlo Giannini: Gorup de Besanez, CC BY-SA 4.0 · Jeffrey Wright: David Shankbone, CC BY-SA 3.0 · Judi Dench: Caroline Bonarde Ucci at https://www.flickr.com/photos/caroline_bonarde/, CC BY 3.0 · Mads Mikkelsen: LucaFazPhoto, CC BY-SA 4.0 · Ivana Miličević: Q-Abteilung, freie Zeichnung · Jesper Christensen: Siebbi, CC BY 3.0 · Simon Abkarian: Georges Biard, CC BY-SA 3.0 · Malcolm Sinclair: John Thaxter, CC BY-SA 3.0 · Richard Sammel: Gage Skidmore, CC BY-SA 2.0</p>
+  <p>LAGEPLÄNE: Kartendaten © <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap-Mitwirkende</a> (ODbL) · Höhenlinien aus AWS Terrain Tiles (u. a. SRTM, EU-DEM).</p>
   <p>QUELLEN: <a href="https://www.thejamesbonddossier.com/films/casino-royale/locations.htm" target="_blank" rel="noopener">James Bond Dossier</a> · <a href="https://www.recenzent.org.ua/casino-royale-locations-in-prague/" target="_blank" rel="noopener">Casino Royale Prague locations</a> · <a href="https://bondlocations.com/2019/12/13/casino-royale-locations-gallery" target="_blank" rel="noopener">bondlocations.com</a> · <a href="https://www.reelstreets.com/films/casino-royale-2006/" target="_blank" rel="noopener">Reelstreets</a> · <a href="https://prague.eu/en/objevujte/cold-war-museum-muzeum-studene-valky/" target="_blank" rel="noopener">prague.eu</a> · <a href="https://www.strahovskyklaster.cz/en/for-visitors" target="_blank" rel="noopener">Strahov</a> · <a href="https://www.kudyznudy.cz/aktivity/cisarske-lazne-v-karlovych-varech" target="_blank" rel="noopener">Císařské lázně</a> · <a href="https://edalnice.cz" target="_blank" rel="noopener">edalnice.cz</a></p>
 </footer>
 <div class="gb" id="gb" hidden aria-hidden="true"><div class="dots"><i></i><i></i><i></i><i></i></div><div class="barrel"><div class="rifle"></div><div class="hole">♠</div></div><div class="blood"></div><div class="gbt"><small>DIE 00-EINHEIT IN</small>Operation Splendide</div><span class="skip">TIPPEN ZUM SCHLIESSEN</span></div>
@@ -2632,8 +2649,8 @@ html.msfull{overflow:hidden}
    Je id: w,h · f Kamera-Fokus · L Ebenen a/f/h/c/m/r · T Texte · an Merkmale [Nr, x, y, Hinweis-x, Hinweis-y, Name] · tg Filmszene [x, y, Größe] · tl Name */
 let DETD;function DET(k){if(DETD===undefined){const el=document.getElementById('detData');if(!el)return null;try{DETD=JSON.parse(el.textContent)}catch(e){DETD=null}}return DETD&&DETD[k]||null}
 const DLY={c:[0,.7],a:[.15,1.9],f:[.7,2.3],h:[1.4,2.7],m:[1.7,2.8],r:[2.4,2.9]};
-function detSVG(k,cls){const d=DET(k);if(!d)return '';const ord=['c','a','f','h','m','r'].filter(c=>d.L[c]&&d.L[c].length);
-  return `<svg class="${cls||''} ms-det" viewBox="0 0 ${d.w} ${d.h}" aria-hidden="true" focusable="false">${ord.map(c=>{const L=d.L[c],[d0,d1]=DLY[c],n=L.length;return `<g class="dk-${c}">${L.map((q,i)=>`<path d="${q}"${c==='c'?'':' pathLength="1"'} style="--d:${(d0+(d1-d0)*i/Math.max(1,n-1)).toFixed(2)}s"/>`).join('')}</g>`}).join('')}<g class="dk-t">${(d.T||[]).map(([x,y,t,c,an])=>`<text x="${x}" y="${y}" class="${c||''}"${an&&an!=='start'?` text-anchor="${an}"`:''}>${t}</text>`).join('')}</g></svg>`}
+function detSVG(k,cls,cut){const d=DET(k);if(!d)return '';const SX=cut&&d.S?`<g class="dks">${['sh','s','sf'].map(c=>(d.S.L[c]||[]).map((q,i,A)=>`<path d="${q}" pathLength="1" class="dk-${c}" style="--d:${(i*.9/Math.max(1,A.length-1)).toFixed(2)}s"/>`).join('')).join('')}${(d.S.T||[]).map(([x,y,t,c,an])=>`<text x="${x}" y="${y}" class="${c||''}"${an&&an!=='start'?` text-anchor="${an}"`:''}>${t}</text>`).join('')}</g>`:'';const ord=['c','a','f','h','m','r'].filter(c=>d.L[c]&&d.L[c].length);
+  return `<svg class="${cls||''} ms-det" viewBox="0 0 ${d.w} ${d.h}" aria-hidden="true" focusable="false">${ord.map(c=>{const L=d.L[c],[d0,d1]=DLY[c],n=L.length;return `<g class="dk-${c}">${L.map((q,i)=>`<path d="${q}"${c==='c'?'':' pathLength="1"'} style="--d:${(d0+(d1-d0)*i/Math.max(1,n-1)).toFixed(2)}s"/>`).join('')}</g>`}).join('')}<g class="dk-t">${(d.T||[]).map(([x,y,t,c,an])=>`<text x="${x}" y="${y}" class="${c||''}"${an&&an!=='start'?` text-anchor="${an}"`:''}>${t}</text>`).join('')}</g>${SX}</svg>`}
 /* Miniatur einer Detailzeichnung (Karten, Detailpanel): nur Konturen und Details, Ausschnitt th (2:1) */
 function detThumb(k){const d=DET(k);if(!d)return '';const b=d.th||[0,0,d.w,d.h];return `<svg class="dth" viewBox="${b.join(' ')}" preserveAspectRatio="xMidYMid meet" aria-hidden="true" focusable="false">${['a','f'].map(c=>(d.L[c]||[]).map(q=>`<path class="${c}" d="${q}"/>`).join('')).join('')}</svg>`}
 /* Erfassungsebene: Merkmale werden nacheinander eingemessen (Klammern rasten ein, Hinweislinie, Kennung, Status),
@@ -2707,7 +2724,7 @@ function lpSVG(k,o){const d=MAPG(k);if(!d)return '';o=o||{};const W=d.w,H=d.h,s=
   <g class="lp-t">${rings}${o.name?(()=>{const b=t.b,x0=Math.min(W-40-o.name.length*12.5-150,b[2]+26),y0=Math.max(70,b[1]-34),ll=`${lat(t.y).toFixed(4)} N · ${lon(t.x).toFixed(4)} E`,w=Math.max(o.name.length*12.5+120,ll.length*10.4+30);return `<path d="M${N(b[2])} ${N(b[1])}L${N(x0)} ${N(y0+40)}" class="tl"/><rect x="${N(x0)}" y="${N(y0)}" width="${N(w)}" height="54" class="tb"/><rect x="${N(x0)}" y="${N(y0)}" width="4" height="54" class="tk2"/><text x="${N(x0+14)}" y="${N(y0+22)}" class="ltn">◎ ZIEL · ${o.name}</text><text x="${N(x0+14)}" y="${N(y0+43)}" class="ltc">${ll}</text>`})():''}${P('tgt','tgt',` fill="url(#lpT${k})"`)}<path d="M${N(tc[0])} ${M}V${N(tc[1]-30)}M${N(tc[0])} ${N(tc[1]+30)}V${H-M}M${M} ${N(tc[1])}H${N(tc[0]-30)}M${N(tc[0]+30)} ${N(tc[1])}H${W-M}" class="tx"/></g>
   <rect class="lp-scan" x="-8" y="0" width="8" height="${H}"/>
   <g class="lp-f"><rect x="${M}" y="${M}" width="${W-2*M}" height="${H-2*M}" class="fr"/><rect x="${M+6}" y="${M+6}" width="${W-2*M-12}" height="${H-2*M-12}" class="fr2"/><path d="${tk}" class="tk"/>${tl}${sbar}${nor}
-   <text x="${W-470}" y="${H-70}" class="lsm">GITTER ${gs} M · 1 : ${Math.round(3779.5/s/100)*100}</text></g></svg>`}
+   <text x="${W-470}" y="${H-92}" class="lsm lsc">KARTE © OPENSTREETMAP-MITWIRKENDE (ODBL)</text><text x="${W-470}" y="${H-70}" class="lsm">GITTER ${gs} M · 1 : ${Math.round(3779.5/s/100)*100}</text></g></svg>`}
 </script>
 <script>
 (function(){
@@ -3249,7 +3266,7 @@ function bpPlay(instant){const svg=detail.querySelector('.bp:not(.bpth)');if(!sv
   if(!('IntersectionObserver' in window)){go();return}
   bpIO=new IntersectionObserver(es=>{if(es.some(e=>e.isIntersecting)){bpIO.disconnect();go()}},{threshold:.35});bpIO.observe(svg)}
 function bpBtn(open){const b=document.getElementById('bpTog');if(b)b.textContent=open?'AUFRISS SCHLIESSEN':'AUFRISS ÖFFNEN'}
-function showCard(id,scroll,keep){const c=L.find(x=>x.id===id);if(!c)return;const dd=DET(id),vw=dd?(window.__dvw||'det'):'bp';const[s,k]=st(c.id);const on=SEC.has(id),x=XT[id],idx=L.indexOf(c),[nb,nd]=nearest(c);
+function showCard(id,scroll,keep){const c=L.find(x=>x.id===id);if(!c)return;const dd=DET(id),mp=MAPG(id),VV=[dd&&'det',dd&&dd.S&&'cut',!dd&&'bp',mp&&'map'].filter(Boolean),vw=VV.includes(window.__dvw)?window.__dvw:VV[0];const[s,k]=st(c.id);const on=SEC.has(id),x=XT[id],idx=L.indexOf(c),[nb,nd]=nearest(c);
   const wasOpen=keep&&detail.querySelector('.bp.open');
   deck.querySelectorAll('.tgt').forEach(p=>p.setAttribute('aria-pressed',p.dataset.id===id?'true':'false'));
   const pips=(n,l)=>`<div class="rate"><span>${l}</span><i>${[1,2,3,4,5].map(j=>`<b class="${j<=n?'on':''}"></b>`).join('')}</i></div>`;
@@ -3257,9 +3274,13 @@ function showCard(id,scroll,keep){const c=L.find(x=>x.id===id);if(!c)return;cons
   detail.innerHTML=`<div class="scan"><span class="thw big${dd?' det':''}">${dd?detThumb(id):bpThumb(c,'td')}<i>${dd?'DETAILBLATT':'ANSICHT'}</i></span><div>${code(c)}<br>${c.lat.toFixed(4)} N<br>${c.lon.toFixed(4)} E<br><span class="${k}">● ${s}</span>${on?'<br><span class="s-ok">✓ GESICHERT</span>':''}</div>
     <div class="rates">${pips(x.r[0],'ZUGANG')}${pips(x.r[1],'BOND-FAKTOR')}${pips(x.r[2],'FOTOWERT')}</div></div>
   <div class="bd vw-${vw}"><h3>${c.name}</h3><div class="cov">DECKNAME IM FILM // ${c.as} · ${c.city.toUpperCase()}</div>
-  ${dd?`<div class="tabs dvw" role="tablist" aria-label="Ansicht"><button class="tbtn" type="button" role="tab" data-v="det" aria-selected="${vw==='det'}">DETAILBLATT</button><button class="tbtn" type="button" role="tab" data-v="bp" aria-selected="${vw==='bp'}">AUFRISS &amp; SCHNITT</button></div>
-  <div class="detbox"><div class="dbw">${detSVG(id,'dsv')}</div><div class="dleg"><b>MERKMALE</b><ol>${(dd.an||[]).map((q,i)=>`<li><button type="button" data-i="${i}"><span>${String(q[0]).padStart(2,'0')}</span>${q[5]}</button></li>`).join('')}${dd.tg?`<li class="t"><button type="button" data-i="t"><span>◎</span>ZIEL · ${dd.tl}</button></li>`:''}</ol><p>Merkmal wählen: Lage in der Zeichnung wird eingemessen.</p></div></div>
+  ${VV.length>1?`<div class="tabs dvw" role="tablist" aria-label="Ansicht">${VV.map(v=>`<button class="tbtn" type="button" role="tab" data-v="${v}" aria-selected="${vw===v}">${{det:'DETAILBLATT',cut:'AUFRISS &amp; SCHNITT',bp:'AUFRISS &amp; SCHNITT',map:'LAGEPLAN'}[v]}</button>`).join('')}</div>`:''}
+  ${dd?`<div class="detbox"><div class="dbw">${detSVG(id,'dsv')}</div><div class="dleg"><b>MERKMALE</b><ol>${(dd.an||[]).map((q,i)=>`<li><button type="button" data-i="${i}"><span>${String(q[0]).padStart(2,'0')}</span>${q[5]}</button></li>`).join('')}${dd.tg?`<li class="t"><button type="button" data-i="t"><span>◎</span>ZIEL · ${dd.tl}</button></li>`:''}</ol><p>Merkmal wählen: Lage in der Zeichnung wird eingemessen.</p></div></div>
   <div class="bpctl detctl"><button class="qbtn go" type="button" id="dtAna">ANALYSE</button><button class="qbtn" type="button" id="dtRe">NEU ZEICHNEN</button><button class="qbtn" type="button" id="dtFull">VOLLBILD</button><span>NACH VORLAGE · MASSE MIT ≈ GESCHÄTZT</span></div>`:''}
+  ${dd&&dd.S?`<div class="cutbox"><div class="dbw cbw">${detSVG(id,'dsv csv',true)}</div><div class="dleg cleg"><b>SCHNITT</b><p>Auf Knopfdruck tritt die Fassade zurück; der Schnitt zeigt Geschosse, Treppen, Räume und Ausstattung in der Kontur der Ansicht.</p></div></div>
+  <div class="bpctl cutctl"><button class="qbtn go" type="button" id="cutTog">SCHNITT ÖFFNEN</button><button class="qbtn" type="button" id="cutRe">NEU ZEICHNEN</button><button class="qbtn" type="button" id="cutFull">VOLLBILD</button><span>AUFRISS NACH DETAILBLATT · SCHNITT SCHEMATISCH</span></div>`:''}
+  ${mp?`<div class="mapbox2"><div class="mbw">${lpSVG(id,{name:c.name.toUpperCase()})}</div></div>
+  <div class="bpctl mapctl"><button class="qbtn go" type="button" id="lpRe">NEU AUFBAUEN</button><button class="qbtn" type="button" id="lpFull">VOLLBILD</button><span>KARTE © OPENSTREETMAP-MITWIRKENDE (ODbL) · HÖHEN: TERRAIN TILES</span></div>`:''}
   <div class="bpbox">${bpSVG(c,idx)}</div>
   <div class="bpctl"><button class="qbtn go" type="button" id="bpTog">AUFRISS ÖFFNEN</button><button class="qbtn" type="button" id="bpRe">NEU ZEICHNEN</button><button class="qbtn" type="button" id="bpFull">VOLLBILD</button><span>SCHEMATISCH, NICHT MASSSTÄBLICH</span></div>
   <div class="dgrid">
@@ -3283,24 +3304,45 @@ function showCard(id,scroll,keep){const c=L.find(x=>x.id===id);if(!c)return;cons
   fb.onclick=()=>full(!box.classList.contains('full'));box.addEventListener('click',e=>{if(box.classList.contains('full')&&!e.target.closest('.bp,.bplist'))full(false)});
   if(!window.__bpEsc){window.__bpEsc=1;addEventListener('keydown',e=>{if(e.key==='Escape'){const b=document.querySelector('.bpbox.full');if(b){b.classList.remove('full');document.documentElement.classList.remove('bpfull');const f=document.getElementById('bpFull');if(f)f.textContent='VOLLBILD'}}})}
   bpPlay(!!wasOpen);
-  if(dd)detView(id,dd);
+  viewInit(id,dd,mp,vw);
   if(scroll)detail.scrollIntoView({block:'nearest'})}
+/* Ansichten im Detailpanel: DETAILBLATT · AUFRISS & SCHNITT · LAGEPLAN */
+function viewInit(id,dd,mp,vw){const bd=detail.querySelector('.bd');
+  const set=v=>{window.__dvw=v;['det','cut','bp','map'].forEach(q=>bd.classList.toggle('vw-'+q,q===v));detail.querySelectorAll('.dvw .tbtn').forEach(x=>x.setAttribute('aria-selected',x.dataset.v===v));
+    if(v==='det'&&detView.redraw)detView.redraw();if(v==='bp')bpPlay(false);if(v==='cut')cutView(id,dd,true);if(v==='map')mapView(id,true)};
+  detView.go=vw==='det';if(dd)detView(id,dd);if(dd&&dd.S)cutView(id,dd,vw==='cut');if(mp)mapView(id,vw==='map');
+  detail.querySelectorAll('.dvw .tbtn').forEach(b=>b.onclick=()=>set(b.dataset.v))}
+function fullTog(box,btn,on,after){box.classList.toggle('full',on);btn.textContent=on?'VOLLBILD SCHLIESSEN':'VOLLBILD';document.documentElement.classList.toggle('bpfull',on);requestAnimationFrame(()=>after&&after())}
+if(!window.__vwEsc){window.__vwEsc=1;addEventListener('keydown',e=>{if(e.key!=='Escape')return;document.querySelectorAll('.cutbox.full,.mapbox2.full').forEach(b=>{b.classList.remove('full');document.documentElement.classList.remove('bpfull')});['cutFull','lpFull'].forEach(i=>{const f=document.getElementById(i);if(f)f.textContent='VOLLBILD'})})}
+/* Aufriss & Schnitt auf Basis der Detailzeichnung: Fassade tritt zurück, Schnitt wird gezeichnet */
+function cutView(id,dd,go){const box=detail.querySelector('.cutbox');if(!box)return;const w=box.querySelector('.dbw'),svg=w.querySelector('svg'),tg=document.getElementById('cutTog');
+  const size=()=>{const k=w.clientWidth/dd.w;if(k)svg.style.setProperty('--sw',(1/k).toFixed(2))};size();if(window.ResizeObserver)new ResizeObserver(size).observe(w);
+  const setOpen=o=>{svg.classList.toggle('open',o);tg.textContent=o?'SCHNITT SCHLIESSEN':'SCHNITT ÖFFNEN'};
+  const draw=()=>{setOpen(false);svg.classList.remove('done','play');void svg.getBoundingClientRect();if(RM){svg.classList.add('done');setOpen(true);return}svg.classList.add('play');clearTimeout(cutView.t);cutView.t=setTimeout(()=>{if(svg.isConnected)setOpen(true)},2900)};
+  if(go)draw();else{svg.classList.add('done')}
+  tg.onclick=()=>{clearTimeout(cutView.t);setOpen(!svg.classList.contains('open'))};document.getElementById('cutRe').onclick=draw;
+  const fb=document.getElementById('cutFull');fb.onclick=()=>fullTog(box,fb,!box.classList.contains('full'),size);box.onclick=e=>{if(box.classList.contains('full')&&!e.target.closest('.dbw,.dleg'))fullTog(box,fb,false,size)}}
+/* Lageplan im Detailpanel */
+function mapView(id,go){const box=detail.querySelector('.mapbox2');if(!box)return;const w=box.querySelector('.mbw'),sv=w.querySelector('svg.lp');
+  const size=()=>{const r=w.clientWidth;if(r)sv.style.setProperty('--px',(1600/r).toFixed(3))};size();if(window.ResizeObserver)new ResizeObserver(size).observe(w);
+  const run=()=>{sv.classList.remove('run');void sv.getBoundingClientRect();if(!RM)sv.classList.add('run')};if(go)run();
+  document.getElementById('lpRe').onclick=run;const fb=document.getElementById('lpFull');fb.onclick=()=>fullTog(box,fb,!box.classList.contains('full'),size);box.onclick=e=>{if(box.classList.contains('full')&&!e.target.closest('.mbw'))fullTog(box,fb,false,size)}}
 /* Detailblatt im Zielobjekt: Zeichnung wird gezeichnet, danach misst die Analyse die Merkmale ein; Legende hebt einzelne hervor */
 let dtT=[];function detView(id,dd){const bd=detail.querySelector('.bd'),box=detail.querySelector('.detbox'),w=box.querySelector('.dbw'),svg=w.querySelector('svg');dtT.forEach(clearTimeout);dtT=[];
   let hud=null;const size=()=>{const k=w.clientWidth/dd.w;if(!k)return;svg.style.setProperty('--sw',(1/k).toFixed(2));if(hud){hud.el.style.setProperty('--u',(1/k).toFixed(3))}};
   const mk=()=>{if(hud)hud.el.remove();const k=(w.clientWidth||800)/dd.w,c=L.find(x=>x.id===id);hud=detHud(id,(1/k).toFixed(3),{cmp:w.clientWidth<520&&!box.classList.contains('full'),ll:`${c.lat.toFixed(4)} N · ${c.lon.toFixed(4)} E`});if(hud)w.appendChild(hud.el)};
   const ana=()=>{dtT.forEach(clearTimeout);dtT=[];mk();if(!hud)return;if(RM){hud.all();return}hud.focus(null);const n=hud.n;for(let i=0;i<n;i++)dtT.push(setTimeout(()=>hud.acquire(i),300+i*900));dtT.push(setTimeout(()=>{hud.target();dtT.push(setTimeout(()=>hud.all(),1600))},300+n*900))};
   const draw=()=>{svg.classList.remove('done','play');void svg.getBoundingClientRect();svg.classList.add('play');mk();dtT.push(setTimeout(ana,RM?0:2900))};
-  size();mk();if(RM){svg.classList.add('done');hud&&hud.all()}else draw();
+  size();mk();if(RM){svg.classList.add('done');hud&&hud.all()}else if(detView.go)draw();else svg.classList.add('done')
   if(window.ResizeObserver){const ro=new ResizeObserver(size);ro.observe(w)}
-  detail.querySelectorAll('.dvw .tbtn').forEach(b=>b.onclick=()=>{window.__dvw=b.dataset.v;detail.querySelectorAll('.dvw .tbtn').forEach(x=>x.setAttribute('aria-selected',x===b));bd.classList.toggle('vw-det',b.dataset.v==='det');bd.classList.toggle('vw-bp',b.dataset.v==='bp');if(b.dataset.v==='det'){size();draw()}else bpPlay(false)});
+  detView.redraw=()=>{size();draw()};
   box.querySelectorAll('.dleg button').forEach(b=>{const f=()=>{if(!hud)return;dtT.forEach(clearTimeout);dtT=[];hud.all();const i=b.dataset.i==='t'?'t':+b.dataset.i;hud.focus(i);box.querySelectorAll('.dleg button').forEach(x=>x.classList.toggle('on',x===b))};b.onclick=f;b.onmouseenter=f;b.onfocus=f});
   box.querySelector('.dleg').onmouseleave=()=>{if(hud&&!dtT.length){hud.focus(null);box.querySelectorAll('.dleg button').forEach(x=>x.classList.remove('on'))}};
   document.getElementById('dtAna').onclick=ana;document.getElementById('dtRe').onclick=draw;
   const fb=document.getElementById('dtFull'),full=on=>{box.classList.toggle('full',on);fb.textContent=on?'VOLLBILD SCHLIESSEN':'VOLLBILD';document.documentElement.classList.toggle('bpfull',on);requestAnimationFrame(()=>{size();mk();hud&&hud.all()})};
   fb.onclick=()=>full(!box.classList.contains('full'));box.onclick=e=>{if(box.classList.contains('full')&&!e.target.closest('.dbw,.dleg'))full(false)};
   if(!window.__dtEsc){window.__dtEsc=1;addEventListener('keydown',e=>{if(e.key==='Escape'){const b=document.querySelector('.detbox.full');if(b){b.classList.remove('full');document.documentElement.classList.remove('bpfull');const f=document.getElementById('dtFull');if(f)f.textContent='VOLLBILD'}}})}}
-if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',()=>{const p=deck.querySelector('.tgt[aria-pressed="true"]');if(p&&DET(p.dataset.id))showCard(p.dataset.id,false,true)});
+if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',()=>{const p=deck.querySelector('.tgt[aria-pressed="true"]');if(p&&(DET(p.dataset.id)||MAPG(p.dataset.id)))showCard(p.dataset.id,false,true)});
 showCard('pupp',false);secSync();
 
 /* maps */
