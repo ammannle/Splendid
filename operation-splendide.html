@@ -1935,6 +1935,13 @@ html.msfull{overflow:hidden}
   .op-par{grid-template-columns:repeat(3,1fr);height:21%;bottom:5%}.op-c[data-k="a"],.op-c[data-k="r"]{display:none}.op-c:nth-child(3){border-left:0}.op-c{padding:0 6px}.op-mh .op-src{display:none}}
 @media (prefers-reduced-motion:reduce){.op2 *{transition:none!important;animation:none!important}}
 /* Konto VESPER v42 */
+.ac-tb{position:relative}
+.ac-raw{position:absolute;left:12px;right:12px;top:calc(.6cqh + 2em);bottom:6px;overflow:hidden;display:flex;flex-direction:column;justify-content:flex-end;font-size:max(10px,.86cqw);line-height:1.45;color:rgba(143,215,232,.55);letter-spacing:.04em;white-space:nowrap;transition:opacity .4s;-webkit-mask-image:linear-gradient(transparent,#000 35%);mask-image:linear-gradient(transparent,#000 35%)}
+.ac-raw div{animation:acIn .25s ease}.ac-raw .hit{color:var(--amber)}
+@keyframes acIn{from{opacity:0;transform:translateX(-6px)}}
+.ac2.s-tx .ac-raw{opacity:0}
+.ac-scn{color:var(--amber);font-variant-numeric:tabular-nums;transition:opacity .4s}.ac-scn b{font-weight:600}.ac2.s-tx .ac-scn{opacity:0}
+
 .ms-acct.ac2{display:block;container-type:size;font-family:var(--mono);color:var(--ink);background:color-mix(in srgb,var(--cyan) 3%,#03080b);background-image:linear-gradient(rgba(143,215,232,.045) 1px,transparent 1px),linear-gradient(90deg,rgba(143,215,232,.045) 1px,transparent 1px);background-size:26px 26px}
 .ac2.in .op-fr{opacity:1}
 .ac-hd{position:absolute;left:4.5%;right:4.5%;top:5%;display:flex;justify-content:space-between;gap:12px;white-space:nowrap;font-size:max(11px,1.05cqw);letter-spacing:.2em;color:var(--mute);border-bottom:1px solid rgba(143,215,232,.22);padding-bottom:6px;opacity:0;transition:opacity .5s .1s}
@@ -1967,7 +1974,7 @@ html.msfull{overflow:hidden}
 .ac-glw::before{content:"";position:absolute;right:-3px;top:-3px;width:10px;height:10px;border-right:2px solid var(--amber);border-top:2px solid var(--amber)}
 .ac-gh,.ac-gf{display:flex;justify-content:space-between;gap:8px;padding:5px 10px;font-size:max(10.5px,.9cqw);letter-spacing:.18em;color:var(--mute);white-space:nowrap}
 .ac-gh{border-bottom:1px solid rgba(143,215,232,.2)}.ac-gh b{color:var(--cyan);font-weight:600}.ac-gf{border-top:1px solid rgba(143,215,232,.2);font-variant-numeric:tabular-nums}
-.ac2.s-bo .ac-dst{color:var(--red)}
+.ac2.s-bo .ac-dst{color:var(--red)}.ac-dst.hit{color:var(--amber)}
 .ac-gl{flex:1;min-height:0;width:100%;display:block}
 @container (max-width:640px){.ac2 .ac-x,.ac-tb,.ac-r:first-child,.ac-gh span,.ac-gf .ac-ll{display:none}.ac-sum{flex-direction:column;align-items:flex-start;gap:2px}.ac-gf,.ac-gh{letter-spacing:.06em;font-size:10px;overflow:hidden}.ac-led{justify-content:center}.ac-led{width:45%;gap:6px;top:13%}.ac-glw{width:45%;top:13%}
   .ac-row{grid-template-columns:minmax(0,1fr) auto}.ac-row span{font-size:10px}.ac-r{grid-template-columns:1fr;gap:2px;font-size:10.5px}.ac-sum i{font-size:10px;letter-spacing:.06em}.ac-pw{gap:3px}.ac-pw u{width:16px;height:20px;font-size:12px}}
@@ -5133,6 +5140,7 @@ const TX=[['14.09. 02:13','ZÜRICH → KARLOVY VARY','1.200.000'],['14.09. 02:41
 const ACS={'ZÜRICH':[8.54,47.37],'LIECHTENSTEIN':[9.52,47.14],'LUXEMBURG':[6.13,49.61],'NASSAU':[-77.35,25.06],'ZYPERN':[33.36,35.17]};
 const ACD={'KARLOVY VARY':[12.87,50.23],'LOKET':[12.75,50.19],'PRAHA-BARRANDOV':[14.40,50.03],'PRAHA':[14.42,50.08],'PLZEŇ':[13.38,49.75]};
 const ACSL={'ZÜRICH':[-96,8],'LIECHTENSTEIN':[-40,46],'LUXEMBURG':[-100,-34],'NASSAU':[-20,-34],'ZYPERN':[30,30]};
+const FIN=[['LONDON',[-.12,51.5]],['FRANKFURT',[8.68,50.11]],['NEW YORK',[-74,40.7]],['PANAMA',[-79.5,9]],['DUBAI',[55.3,25.2]],['MONACO',[7.42,43.74]],['WIEN',[16.37,48.21]],['MADRID',[-3.7,40.4]],['GENF',[6.14,46.2]],['AMSTERDAM',[4.9,52.37]],['ISTANBUL',[28.97,41.0]],['ZÜRICH',[8.54,47.37]],['NASSAU',[-77.35,25.06]]];
 const ACDL={'KARLOVY VARY':[-40,-46],'LOKET':[-60,40],'PRAHA':[40,-46],'PRAHA-BARRANDOV':[40,48],'PLZEŇ':[-50,52]};
 function acct(){const rows=TX.map((t,i)=>`<div class="ac-row" data-i="${i}"><i>${t[0]}</i><span>${t[1]}</span><b>${t[2]} €</b></div>`).join('');
   return `<div class="ms-acct ac2"><i class="op-fr" aria-hidden="true"><i></i><i></i><i></i><i></i></i>
@@ -5141,22 +5149,29 @@ function acct(){const rows=TX.map((t,i)=>`<div class="ac-row" data-i="${i}"><i>$
       <div class="ac-r"><i>KONTO</i><b>7714-V · ORGANISATION</b></div>
       <div class="ac-r"><i>STATUS</i><b class="ac-st"><span class="a">EINGEFROREN SEIT 11/2006</span><span class="b">REAKTIVIERT</span></b></div>
       <div class="ac-r"><i>KENNWORT</i><span class="ac-pw">${'VESPER'.split('').map((ch,i)=>`<u style="--i:${i}"><span>${ch}</span></u>`).join('')}</span></div></div>
-    <div class="ac-tb"><div class="ac-th"><i>DATUM</i><i>QUELLE → EMPFÄNGER</i><i>BETRAG</i></div>${rows}</div>
+    <div class="ac-tb"><div class="ac-raw" aria-hidden="true"></div><div class="ac-th"><i>DATUM</i><i>QUELLE → EMPFÄNGER</i><i>BETRAG</i></div>${rows}</div>
     <div class="ac-sum"><i>SUMME · <span class="ac-n">0</span> / 9 ÜBERWEISUNGEN</i><b class="ac-tot">0 €</b></div></section>
-  <section class="ac-glw"><div class="ac-gh"><b>GELDFLUSS<span class="ac-x"> · ORTHOGRAFISCH</span></b><span class="ac-zm">M 1:1</span></div><canvas class="ac-gl" aria-hidden="true"></canvas>
+  <section class="ac-glw"><div class="ac-gh"><b>GELDFLUSS<span class="ac-x"> · ORTHOGRAFISCH</span></b><span class="ac-scn">ABGRIFF <b>0</b> %</span><span class="ac-zm">M 1:1</span></div><canvas class="ac-gl" aria-hidden="true"></canvas>
     <div class="ac-gf"><span class="ac-ll">λ 0.00° · φ 0.00°</span><span class="ac-dst">EMPFÄNGER · —</span></div></section></div>`}
 function acctOn(){}
 function acctFx(root){const o=root.querySelector('.ac2');if(!o)return;const me=cur,ck=cxClock(),cv=o.querySelector('.ac-gl'),utc=o.querySelector('.ac-utc'),ll=o.querySelector('.ac-ll'),zm=o.querySelector('.ac-zm');
   const tu=()=>{utc.textContent=new Date().toISOString().slice(11,19)+' UTC'};tu();const iv=setInterval(()=>{if(cur!==me||!o.isConnected)return clearInterval(iv);tu()},1000);
   later(()=>o.classList.add('in'),40);
-  const A=o._A={tx:1e9,bo:1e9};o._t=()=>ck(performance.now());if(RM){A.tx=-1e5;A.bo=-1e5;o.classList.add('in','s-re','s-pw','s-tx','s-sum','s-bo');o.querySelectorAll('.ac-row').forEach(r=>r.classList.add('on'));o.querySelector('.ac-tot').textContent='11.400.000 €';o.querySelector('.ac-n').textContent='9';o.querySelector('.ac-dst').textContent='EMPFÄNGER · BÖHMEN'}
+  const A=o._A={tx:1e9,bo:1e9,re:1e9};o._t=()=>ck(performance.now());if(RM){A.tx=-1e5;A.bo=-1e5;o.classList.add('in','s-re','s-pw','s-tx','s-sum','s-bo');o.querySelectorAll('.ac-row').forEach(r=>r.classList.add('on'));o.querySelector('.ac-tot').textContent='11.400.000 €';o.querySelector('.ac-n').textContent='9';o.querySelector('.ac-dst').textContent='EMPFÄNGER · BÖHMEN'}
+  /* Abgriff: abgefangene Zahlungsnachrichten laufen durch, bis die Buchungen erscheinen */
+  const raw=o.querySelector('.ac-raw'),scn=o.querySelector('.ac-scn b'),HX='0123456789ABCDEF',hx=n=>Array.from({length:n},()=>HX[Math.random()*16|0]+HX[Math.random()*16|0]).join(' '),
+    BIC=['ZKBKCHZZ','LILALI2X','BCEELULL','RBBSBSNS','BCYPCY2N','KOMBCZPP','CEKOCZPP','GIBACZPX','DEUTDEFF','BARCGB22'],pick=a=>a[Math.random()*a.length|0],
+    MSG=()=>{const r=Math.random();return r<.18?`{1:F01${pick(BIC)}AXXX${(Math.random()*1e10|0).toString().padStart(10,'0')}}`:r<.32?`:20:REF${(Math.random()*1e8|0).toString(36).toUpperCase()}`:r<.46?`:32A:2609${String(10+(Math.random()*20|0))}EUR${(Math.random()*3e6|0).toLocaleString('de-DE').replace(/\./g,'')},00`
+      :r<.58?`:50K:/${pick(['CH','LI','LU','BS','CY'])}${(Math.random()*1e16).toFixed(0).slice(0,16)} ███████`:r<.7?`:59:/CZ${(Math.random()*1e16).toFixed(0).slice(0,16)} ██████ ████`:r<.78?':71A:OUR':`${hx(10)}`};
+  if(raw&&!RM){let ln=0;const tick=()=>{if(cur!==me||!o.isConnected||o.classList.contains('s-tx'))return;const d=document.createElement('div');d.textContent=MSG();if(Math.random()<.12)d.className='hit';raw.appendChild(d);
+      while(raw.children.length>40)raw.firstChild.remove();ln++;later(tick,70+Math.random()*60)};tick()}
   const D=Math.PI/180,E=u=>{u=Math.min(1,Math.max(0,u));return u<.5?4*u*u*u:1-Math.pow(-2*u+2,3)/2},TR=TX.map(t=>{const [a,b]=t[1].split(' → ');return{s:ACS[a],d:ACD[b]||ACD.PRAHA,sn:a,dn:b}});
   const v3=([lo,la])=>[Math.cos(la*D)*Math.cos(lo*D),Math.cos(la*D)*Math.sin(lo*D),Math.sin(la*D)];
   const gc=(a,b,u)=>{const p=v3(a),q=v3(b),w=Math.acos(Math.min(1,p[0]*q[0]+p[1]*q[1]+p[2]*q[2])),s=Math.sin(w)||1,k1=Math.sin((1-u)*w)/s,k2=Math.sin(u*w)/s,x=k1*p[0]+k2*q[0],y=k1*p[1]+k2*q[1],z=k1*p[2]+k2*q[2];return[Math.atan2(y,x)/D,Math.asin(Math.max(-1,Math.min(1,z)))/D,w]};
   (function f(now){if(cur!==me||!cv.isConnected)return;const r=cv.getBoundingClientRect(),dp=Math.min(2,devicePixelRatio||1),W=Math.round(r.width*dp),H=Math.round(r.height*dp);if(!W||!H){requestAnimationFrame(f);return}
     if(cv.width!==W||cv.height!==H){cv.width=W;cv.height=H}const c=cv.getContext('2d'),t=RM?99999:ck(now),mob=r.width<420;
     /* Kamera: Atlantik → Europa (ab erster Überweisung) → Böhmen (Zoom) */
-    const u1=E((t-A.tx+400)/2600),u2=E((t-A.bo)/2000),up=E((t-A.bo)/1200),lon0=-28+(6+28)*u1+(13.55-6)*up,lat0=30+(44-30)*u1+(50.0-44)*up,Z=Math.exp(u2*Math.log(95)),R0=Math.min(W,H)*.41,R=R0*Z,cx=W/2,cy=H/2+(mob?0:4*dp);
+    const u1=E((t-A.tx+400)/2600),u2=E((t-A.bo)/2000),up=E((t-A.bo)/1200),lon0=-28+Math.min(t,A.tx)*.0016*(1-u1)+(6+28-Math.min(t,A.tx)*.0016)*u1+(13.55-6)*up,lat0=30+(44-30)*u1+(50.0-44)*up,Z=Math.exp(u2*Math.log(95)),R0=Math.min(W,H)*.41,R=R0*Z,cx=W/2,cy=H/2+(mob?0:4*dp);
     const sp=Math.sin(lat0*D),cp=Math.cos(lat0*D);
     const P=(lo,la,h)=>{const cl=Math.cos(la*D),dl=(lo-lon0)*D,k=(h||1)*R;return[cx+k*cl*Math.sin(dl),cy-k*(cp*Math.sin(la*D)-sp*cl*Math.cos(dl)),sp*Math.sin(la*D)+cp*cl*Math.cos(dl)]};
     const C='143,215,232',Am='242,182,94',Rd='240,85,74',font=(s,w)=>`${w||500} ${s*dp}px "IBM Plex Mono",monospace`,intro=E(t/1200);
@@ -5174,7 +5189,15 @@ function acctFx(root){const o=root.querySelector('.ac2');if(!o)return;const me=c
     /* Küsten gestrichelt */
     if(t>300){c.globalAlpha=Math.min(1,(t-300)/900);c.setLineDash([2*dp,2.5*dp]);c.strokeStyle=`rgba(${C},.8)`;c.lineWidth=1*dp;c.fillStyle=`rgba(${C},.045)`;
       wld().forEach(pl=>{c.beginPath();let pen=0,vis=0;pl.forEach(([lo,la])=>{const q=P(lo/D,la/D);if(q[2]>0){pen?c.lineTo(q[0],q[1]):c.moveTo(q[0],q[1]);pen=1;vis=1}else pen=0});if(vis){c.fill();c.stroke()}});c.setLineDash([]);c.globalAlpha=1}
+    /* Suchscan: Meridian läuft über die Kugel, Spur dahinter */
+    const pre=1-E((t-A.tx)/900);if(pre>.02&&t>400){const ph=((t-400)%2600)/2600,sl=lon0-90+ph*180;c.globalAlpha=pre;
+      for(let k=0;k<14;k++){const lo=sl-k*2.2;c.strokeStyle=`rgba(${C},${(k?.18*(1-k/14):.85).toFixed(2)})`;c.lineWidth=(k?1:1.4)*dp;c.beginPath();let pen=0;for(let la=-88;la<=88;la+=3){const q=P(lo,la);if(q[2]>0){pen?c.lineTo(q[0],q[1]):c.moveTo(q[0],q[1]);pen=1}else pen=0}c.stroke()}c.globalAlpha=1}
     c.restore();
+    if(pre>.02&&t>700){if(!o._pg)o._pg=[];const now2=t;if(!o._pl||now2-o._pl>260){o._pl=now2;const hitP=t>A.re,src=hitP?Object.entries(ACS):FIN;const [n,ll]=src[Math.random()*src.length|0];o._pg.push({n,ll,t0:now2,hit:hitP})}
+      o._pg=o._pg.filter(g=>t-g.t0<1500);o._pg.forEach(g=>{const p=P(g.ll[0],g.ll[1]);if(p[2]<=0)return;const k=(t-g.t0)/1500,col=g.hit?Am:C;c.globalAlpha=pre*(1-k);c.strokeStyle=`rgba(${col},1)`;c.lineWidth=1*dp;
+        c.beginPath();c.arc(p[0],p[1],(4+16*k)*dp,0,6.283);c.stroke();c.fillStyle=`rgba(${col},1)`;c.fillRect(p[0]-1.5*dp,p[1]-1.5*dp,3*dp,3*dp);
+});c.globalAlpha=1;const lg=o._pg[o._pg.length-1],dst=o.querySelector('.ac-dst');if(lg&&dst&&t<A.tx&&dst._n!==lg.n+lg.hit){dst._n=lg.n+lg.hit;dst.textContent=(lg.hit?'TREFFER · ':'PRÜFE · ')+lg.n;dst.classList.toggle('hit',lg.hit)}}
+    if(scn){const v=Math.min(100,Math.round(t/Math.max(1,(A.tx<1e8?A.tx:6000))*100));if(scn._v!==v){scn._v=v;scn.textContent=v}}
     /* Überweisungen als Großkreisbögen mit Höhe; Paket läuft */
     let n=0;const lab=[];
     TR.forEach((q,i)=>{const t0=A.tx+i*380;if(t<t0)return;n++;const u=E((t-t0)/800),w=gc(q.s,q.d,0)[2],hk=.06+.16*Math.min(1,w/.5),al=1-u2*.75;
@@ -5199,9 +5222,9 @@ function acctFx(root){const o=root.querySelector('.ac2');if(!o)return;const me=c
 /* Ablauf zu den Worten: reaktiviert · VESPER · Neun Überweisungen · elf Millionen · Böhmen */
 function acctCue(root,at){const o=root.querySelector('.ac2');if(!o||RM)return;const me=cur,ok=()=>cur===me&&o.isConnected,add=c=>ok()&&o.classList.add(c),A=o._A;
   const tr=at('reaktiviert'),tp=at('VESPER'),tn=at('Neun'),te=at('elf'),tb=at('Alle');
-  later(()=>{add('s-re');ok()&&SND.ping()},tr);
+  later(()=>{add('s-re');if(!ok())return;A.re=o._t();SND.ping()},tr);
   later(()=>{add('s-pw');if(!ok())return;o.querySelectorAll('.ac-pw u').forEach((u,i)=>later(()=>{if(ok()){u.classList.add('on');SND.tick&&SND.tick()}},i*110))},tp-200);
-  later(()=>{if(!ok())return;add('s-tx');A.tx=o._t?o._t():0;const rows=o.querySelectorAll('.ac-row');
+  later(()=>{if(!ok())return;add('s-tx');A.tx=o._t?o._t():0;const dz=o.querySelector('.ac-dst');if(dz){dz.textContent='EMPFÄNGER · —';dz.classList.remove('hit')}const rows=o.querySelectorAll('.ac-row');
     rows.forEach((r,i)=>later(()=>{if(!ok())return;r.classList.add('on','cur');later(()=>r.classList.remove('cur'),600);const b=r.querySelector('b'),v=+b.textContent.replace(/\D/g,'');countUp(b,v,500,' €');SND.tick&&SND.tick()},i*380))},tn);
   later(()=>{add('s-sum');ok()&&countUp(o.querySelector('.ac-tot'),11400000,1400,' €')},Math.max(te,tn+9*380));
   later(()=>{if(!ok())return;add('s-bo');A.bo=o._t?o._t():0;SND.whoosh(.2);later(()=>{if(ok()){o.querySelector('.ac-dst').textContent='EMPFÄNGER · BÖHMEN · 5 ORTE';SND.ping()}},1600)},Math.max(tb-200,te+900))}
