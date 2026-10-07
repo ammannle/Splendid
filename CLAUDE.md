@@ -298,4 +298,14 @@ Freigabe: „Anyone with the link“ ist aktiv. Wer die Seite offen hat, sieht n
   Ebene `.rt-x` in Bildschirmpixeln (Gradnetz mit Grad-/Minutenangaben `RP`, Rahmen mit Teilung, km-Teilung an der Strecke, Maßstab, Nordpfeil,
   Koordinaten des Fahrzeugs), Anzeige KURS, Straße als Doppellinie (`.rm-cas` + Mittellinie), Hinweiskasten statt Banner. Bar in gemeinsamem
   Maßstab `K=.45` (Gläser, Shaker, Werkzeug in echten Längen, Barkeeper nach Körpermaßen in mm, Arme mit Verkürzung, Ellbogen nach unten).
+- Version 46 (07.10.2026): Missionsbriefing nicht mehr als Modul auf der Seite (`#mission` nur sichtbar mit Klasse `live`, die `msAuto` setzt
+  und `setFull(false)` entfernt; Nav-Eintrag weg, Module 01–09, Kürzel angepasst). Titelszene: statt Fahrt-Animation baut eine Scanlinie die
+  Lageskizze auf (`opScan`, `.scl`), zu „Route“ leuchten die Etappen A–D nacheinander (`.lgp`, `.ltag`, Kopfzeile `.op-km`). Konto-Zoomkarte:
+  Höhenlinien aus dem Lagekarten-Gelände (`acGeo()`), Siedlungsflächen `AC_URB`, Gewässer `AC_RIV`, Orte `AC_TWN`, Landschaften `AC_RNG`,
+  Entfernungsringe um Prag, Kartenrahmen mit Gradteilung, Maßstab mit Verhältniszahl, Nordpfeil, Beschriftung mit Kollisionsschutz.
+  Zielobjekte im Briefing: statt der Strichbilder hochdetaillierte technische Zeichnungen (Ansicht/Schnitt/Axonometrie/Typenblatt) für
+  loket, pupp, mlyn, trziste, airport, strahov, ministry, danube, vitkov, museum. Daten in `<script type="application/json" id="detData">`
+  (je id: w, h, f = Kamera-Fokus, L = Ebenen a/f/h/c/m/r, T = Texte), `DET(k)`/`ART(k)`, Darstellung in `artSVG()` (Klasse `ms-det`),
+  in `art()` vollständig sichtbar (contain) links neben dem Panel mit sanfter Fahrt zum Fokus. Generatoren lagen im Scratchpad; MSA-Strichbilder
+  bleiben als Rückfall.
 - Tests: Playwright-Skripte müssen vor dem Laden `window.__NOINTRO=1` per `addInitScript` setzen, sonst läuft das Intro.
