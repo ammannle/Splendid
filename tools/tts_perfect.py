@@ -68,6 +68,13 @@ def check(asr, text, wav):
     for k, w in enumerate(hw):
         for t in toks(w.word): hyp.append(t); hwi.append(k)
     ref = toks(text)
+    # getrennt erkannte Komposita („Grand Hotel“) wieder zusammenfügen, wenn das Soll-Wort sie enthält
+    rs = set(ref); j = 0
+    while j < len(hyp) - 1:
+        w = hyp[j] + hyp[j + 1]
+        if hyp[j] not in rs and any(difflib.SequenceMatcher(None, w, r).ratio() >= .85 for r in rs):
+            hyp[j:j + 2] = [w]; hwi[j:j + 2] = [hwi[j + 1]]
+        else: j += 1
     errs, last = [], None
     for i, j in align(ref, hyp):
         if i is not None and j is not None:
@@ -149,6 +156,20 @@ def main(ref, outdir, only=None):
         print(line, flush=True); rep.write(line + '\n'); rep.flush()
     if os.path.exists(tmp): os.remove(tmp)
 
+def recheck(outdir):
+    """Nur prüfen: alle vorhandenen Clips erneut gegen den Soll-Text abgleichen."""
+    caps = [c for c in tts.captions(open(tts.HTML, encoding='utf-8').read()) if c]
+    asr = WhisperModel('medium', device='cpu', compute_type='int8')
+    bad = []
+    for i, c in enumerate(caps):
+        f = os.path.join(outdir, f'm_{tts.key(c)}.wav')
+        if not os.path.exists(f): print(i, 'FEHLT'); bad.append(i); continue
+        ok, sc, errs, end, hyp = check(asr, norm(c), f)
+        print(f"{i:2d} {'OK ' if ok else 'XX '}{sc:.2f} {' '.join(errs) or '-'} | {hyp}", flush=True)
+        if not ok: bad.append(i)
+    print('NICHT BESTANDEN:', ','.join(map(str, bad)) or '-')
+
 if __name__ == '__main__':
     a = sys.argv[1:]
+    if a and a[0] == '--check': recheck(a[1]); sys.exit()
     main(a[0], a[1], set(int(x) for x in a[2].split(',')) if len(a) > 2 else None)
