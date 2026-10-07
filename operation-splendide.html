@@ -1176,6 +1176,17 @@ body.boot .ph .st{animation:flick .9s 1s steps(2) 2}
 .ms-asv{position:absolute;left:0;top:0;will-change:transform}
 .ms-asv path{fill:none;stroke:var(--cyan);stroke-width:var(--sw,2.1);stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:1;stroke-dashoffset:1;animation:gzdraw 1.5s ease-in-out var(--d) forwards}
 .ms-asv.done path{animation:none;stroke-dashoffset:0}
+/* Detailzeichnungen: Ebenen mit eigener Strichstärke, Text blendet nach dem Zeichnen ein */
+.ms-det .dk-a path{stroke-width:calc(var(--sw,2.1)*1.3)}.ms-det .dk-f path{stroke-width:calc(var(--sw,2.1)*.75);opacity:.85}
+.ms-det .dk-h path{stroke-width:calc(var(--sw,2.1)*.5);opacity:.45}.ms-det .dk-m path{stroke-width:calc(var(--sw,2.1)*.6);opacity:.8}
+.ms-det .dk-c path{stroke:var(--amber);stroke-width:calc(var(--sw,2.1)*.6);opacity:.5}.ms-det .dk-r path{stroke:var(--red);stroke-width:calc(var(--sw,2.1)*1.1)}
+.ms-det .dk-c path{stroke-dasharray:calc(var(--sw,2.1)*10) calc(var(--sw,2.1)*4) calc(var(--sw,2.1)*1.5) calc(var(--sw,2.1)*4);stroke-dashoffset:0;opacity:0;animation:dkc .8s ease var(--d) forwards}
+@keyframes dkc{to{opacity:.5}}.ms-asv.done.ms-det .dk-c path{animation:none;opacity:.5}
+.ms-det text{fill:var(--cyan);font:500 24px "IBM Plex Mono",monospace;letter-spacing:.06em;opacity:0;animation:dkt .6s ease 2.3s forwards}
+.ms-det text.sm{font-size:20px;opacity:0}.ms-det text.ti{font-size:30px;font-weight:600}.ms-det text.dm{font-size:19px}.ms-det text.am{fill:var(--amber)}.ms-det text.rd{fill:var(--red)}
+@keyframes dkt{to{opacity:.9}}.ms-asv.done.ms-det text{animation:none;opacity:.9}
+@media (prefers-reduced-motion:reduce){.ms-det text{animation:none;opacity:.9}.ms-det .dk-c path{animation:none;opacity:.5}}
+.ms-artl .ms-det text{animation-delay:1.3s}
 .ms-shot:not(.nar) .ms-art::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,transparent 52%,color-mix(in srgb,var(--mapbg) 92%,transparent) 76%);pointer-events:none}
 .ms-hud{position:absolute;left:0;top:0;bottom:0;right:30%;pointer-events:none;font-family:var(--mono);font-size:.62rem;letter-spacing:.14em;color:var(--amber)}
 .ms-shot.nar .ms-hud{right:34%}
@@ -5231,8 +5242,14 @@ function side(o){const h=head(o),x=o.id&&XT[o.id],rk=o.id&&RISK[o.id];
   ${o.face?face(o.face,o.fc||''):''}${o.car?carMini(o.car,o.cc||''):''}${o.x?`<p class="ms-x">${o.x}</p>`:''}${o.id&&L.some(t=>t.id===o.id)?`<div class="ms-locw"><span>LAGESKIZZE · ROUTE</span>${locMini(o.id)}</div>`:''}</aside>`}
 function hud(o){const h=head(o);return `<div class="ms-hud"><span class="tl">${h.code} · ${h.name.toUpperCase()}</span><span class="tr"><i></i>REC</span><span class="bl">${h.pos}</span><span class="br">MI6 · Q-ABT · ${(FXN[o.fx]||'ZEICHNUNG')}</span></div>`}
 const FXN={draw:'ZEICHNUNG',iris:'OPTIK',scan:'SCANNER',wipe:'AUFKLÄRUNG',tiles:'ENTSCHLÜSSELUNG',zoomout:'TELE',zoomin:'ANNÄHERUNG',lock:'ZIELERFASSUNG'};
-function artSVG(k){const a=MSA[k],n=a.G.length;return `<svg class="ms-asv" viewBox="0 0 ${a.w} ${a.h}" aria-hidden="true" focusable="false">${a.G.map((d,i)=>`<path d="${d}" pathLength="1" style="--d:${(i*2.2/n).toFixed(2)}s"/>`).join('')}</svg>`}
-const shot=s=>`<div class="ms-shot fx-${s.fx||'draw'} ${MSA[s.art].w/MSA[s.art].h<1.4?'nar':''}"><div class="ms-art"><div class="ms-cam">${artSVG(s.art)}</div></div>${side(s)}${s.sup?`<div class="ms-sup"><b>${s.sup[0]}</b><span>${s.sup[1]}</span></div>`:''}</div>`;
+/* Detailzeichnungen der Zielobjekte (technische Ansichten/Schnitte nach den Vorlagen des Nutzers), Daten in #detData: Ebenen a/f/h/c/m/r + Text */
+let DETD;const DET=k=>{if(DETD===undefined){const el=document.getElementById('detData');try{DETD=el?JSON.parse(el.textContent):null}catch(e){DETD=null}}return DETD&&DETD[k]||null};
+const ART=k=>DET(k)||MSA[k];
+const DLY={c:[0,.7],a:[.15,1.9],f:[.7,2.3],h:[1.4,2.7],m:[1.7,2.8],r:[2.4,2.9]};
+function artSVG(k){const d=DET(k);if(d){const ord=['c','a','f','h','m','r'].filter(c=>d.L[c]&&d.L[c].length);
+    return `<svg class="ms-asv ms-det" viewBox="0 0 ${d.w} ${d.h}" aria-hidden="true" focusable="false">${ord.map(c=>{const L=d.L[c],[d0,d1]=DLY[c],n=L.length;return `<g class="dk-${c}">${L.map((q,i)=>`<path d="${q}"${c==='c'?'':' pathLength="1"'} style="--d:${(d0+(d1-d0)*i/Math.max(1,n-1)).toFixed(2)}s"/>`).join('')}</g>`}).join('')}<g class="dk-t">${(d.T||[]).map(([x,y,t,c,an])=>`<text x="${x}" y="${y}" class="${c||''}"${an&&an!=='start'?` text-anchor="${an}"`:''}>${t}</text>`).join('')}</g></svg>`}
+  const a=MSA[k],n=a.G.length;return `<svg class="ms-asv" viewBox="0 0 ${a.w} ${a.h}" aria-hidden="true" focusable="false">${a.G.map((d,i)=>`<path d="${d}" pathLength="1" style="--d:${(i*2.2/n).toFixed(2)}s"/>`).join('')}</svg>`}
+const shot=s=>`<div class="ms-shot fx-${s.fx||'draw'} ${ART(s.art).w/ART(s.art).h<1.4?'nar':''}"><div class="ms-art"><div class="ms-cam">${artSVG(s.art)}</div></div>${side(s)}${s.sup?`<div class="ms-sup"><b>${s.sup[0]}</b><span>${s.sup[1]}</span></div>`:''}</div>`;
 
 /* Lagebild: Organigramm aus den Personenakten, Kamera fährt auf die Beteiligten */
 const OGB={le:[340,240,700,330],qu:[520,104,540,250],sp:[480,14,620,292],al:[-20,22,720,338],all:[0,0,1000,560]};
@@ -6151,7 +6168,7 @@ function pkCue(root,at){const w=root.querySelector('.pk3');if(!w||RM)return;cons
 /* Aufriss zuerst (zeichnen, öffnen), dann Überblendung in die Zeichnung des Ortes */
 function two(root,s){const me=cur;open(root);later(()=>{if(cur!==me)return;const w=root.querySelector('.ms-two'),l=root.querySelector('.ms-artl');l.innerHTML=shot(s);w.classList.add('flip');art(l,s)},Math.round(s.t*1000*.42))}
 /* Zeichnung: Bühne füllen (wie object-fit: cover), Einblendung je nach fx, dann Kamerafahrt */
-function art(root,s){const box=root.querySelector('.ms-art'),cam=box&&box.querySelector('.ms-cam'),svg=cam&&cam.querySelector('svg');if(!svg)return;const a=MSA[s.art],fx=s.fx||'draw',[fxr,fyr]=s.f||[.5,.5];
+function art(root,s){const box=root.querySelector('.ms-art'),cam=box&&box.querySelector('.ms-cam'),svg=cam&&cam.querySelector('svg');if(!svg)return;const a=ART(s.art),fx=s.fx||'draw',[fxr,fyr]=s.f||[.5,.5];
   const W=box.clientWidth,H=box.clientHeight,k=Math.max(W/a.w,H/a.h),w=a.w*k,h=a.h*k;cam.style.width=w+'px';cam.style.height=h+'px';svg.style.setProperty('--sw',(1.15/k).toFixed(2));
   const ox=w-W,oy=h-H,cl=(v,m)=>Math.max(-m,Math.min(0,v));
   const fit=(sc,cx,cy)=>{const tx=W/2-cx*w*sc,ty=H/2-cy*h*sc;return `translate(${cl(tx,w*sc-W).toFixed(1)}px,${cl(ty,h*sc-H).toFixed(1)}px) scale(${sc})`};
