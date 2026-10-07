@@ -2037,8 +2037,8 @@ html.msfull{overflow:hidden}
 .bk2-o{fill:#05121a;stroke:var(--ink);stroke-width:1.2;stroke-linejoin:round}.bk2-v{fill:url(#bxF);stroke:var(--cyan);stroke-width:1}
 .bk2-l{fill:none;stroke:var(--ink);stroke-width:1;stroke-linecap:round}.bk2-bt{fill:var(--red);stroke:none}.bk2-hr{fill:rgba(220,235,239,.25);stroke:var(--ink);stroke-width:1}
 .bk2-ax{stroke:var(--amber);stroke-width:.8;stroke-dasharray:8 3 2 3;opacity:.7}.bk2-cs{fill:none;stroke:rgba(143,215,232,.35);stroke-width:.8;stroke-dasharray:3 3}
-.bk2-t{font-family:var(--mono);font-size:9.5px;fill:var(--amber);letter-spacing:.1em}
-.bk2-ao{fill:none;stroke:var(--ink);stroke-width:10;stroke-linecap:round;stroke-linejoin:round}.bk2-ai{fill:none;stroke:#05121a;stroke-width:7.6;stroke-linecap:round;stroke-linejoin:round}
+.bk2-t{font-family:var(--mono);font-size:22px;fill:var(--amber);letter-spacing:.1em}
+.bk2-ao{fill:none;stroke:var(--ink);stroke-width:25;stroke-linecap:round;stroke-linejoin:round}.bk2-ai{fill:none;stroke:#05121a;stroke-width:22.6;stroke-linecap:round;stroke-linejoin:round}
 .bk2-j{fill:#05121a;stroke:var(--amber);stroke-width:1}.bk2-h{fill:#05121a;stroke:var(--ink);stroke-width:1.2}
 
 .barb2{padding:14px 16px 16px;display:grid;gap:12px;position:relative;z-index:1}
@@ -3803,7 +3803,7 @@ const GV={
 function volTab(v){const I=v.i,ys=[],vs=[];let acc=0;const y0=I[0][1],y1=I[I.length-1][1],rad=y=>{for(let k=1;k<I.length;k++){if(y<=I[k][1]){const a=I[k-1],b=I[k],u=(y-a[1])/((b[1]-a[1])||1);return a[0]+(b[0]-a[0])*u}}return I[I.length-1][0]};
   for(let y=y0;y<=y1;y+=.5){const r=rad(y);acc+=Math.PI*r*r*.5/1000;ys.push(y);vs.push(acc)}v.cap=acc;v.lev=ml=>{if(ml<=0)return y0;for(let k=0;k<vs.length;k++)if(vs[k]>=ml)return ys[k];return y1};v.rad=rad}
 Object.values(GV).forEach(volTab);
-const K=.75,BASE=388;
+const K=.45,BASE=388;
 /* Grundblatt */
 const defs=mk('defs',{});
 const hp=mk('pattern',{id:'bxH',width:6,height:6,patternUnits:'userSpaceOnUse',patternTransform:'rotate(45)'},defs);mk('line',{x1:0,y1:0,x2:0,y2:6,class:'bx-hl'},hp);
@@ -3829,7 +3829,7 @@ SHELF.forEach((b,i)=>{b.g=mk('g',{transform:`translate(${b.x} ${b.y})`,class:'bx
 /* Tresen im Schnitt */
 mk('rect',{x:34,y:BASE,width:906,height:18,fill:'url(#bxH)',class:'bx-ct'});L(`M34 ${BASE}H940M34 ${BASE+18}H940`,'ct');T(40,BASE+32,'TRESEN · SCHNITT A–A','lbl');
 /* Arbeitsplätze */
-const PV=250,PG=460,PU=640;
+const PV=228,PG=476,PU=650;
 [[PV,'A · MIXEN'],[PG,'B · GLAS'],[PU,'C · AUSGABE']].forEach(([x,n])=>{L(`M${x} ${BASE+2}V${BASE+16}`,'ax');L(`M${x-34} ${BASE+9}H${x+34}`,'ax');T(x,BASE-6+24+18,n,'lbl','middle')});
 /* Messwerte */
 const MX=752,MY=44;L(`M${MX} ${MY}H936V${MY+192}H${MX}Z`,'box');T(MX+8,MY+16,'MESSWERTE · SIMULATION','lbl a sm');L(`M${MX} ${MY+24}H936`,'box2');
@@ -3843,26 +3843,27 @@ T(TB.x+8,TB.y+110,'BLATT','rl');const tbB=T(TB.x+70,TB.y+110,'—','rv');
 /* Gefäß im Schnitt */
 /* Barkeeper (technische Figur, eigener Maßstab): Körper hinter dem Werkzeug, Arme davor. Hände folgen den Griffpunkten (grip). */
 const BKG=mk('g',{class:'bk2'});const BKB=mk('g',{},BKG);
-mk('path',{d:'M0 -232V8',class:'bk2-ax'},BKB);mk('path',{d:'M-46 -150H46',class:'bk2-ax'},BKB);mk('circle',{cx:0,cy:-196,r:30,class:'bk2-cs'},BKB);
-mk('path',{d:'M-27 0L-30 -100Q-36 -140 -34 -150Q-20 -160 -8 -162H8Q20 -160 34 -150Q36 -140 30 -100L27 0',class:'bk2-o'},BKB);
-mk('path',{d:'M-24 0L-26 -100L-12 -150L0 -112L12 -150L26 -100L24 0Z',class:'bk2-v'},BKB);
-mk('path',{d:'M-12 -150L-6 -160M12 -150L6 -160M0 -112V0',class:'bk2-l'},BKB);[-92,-70,-48,-26].forEach(y=>mk('circle',{cx:0,cy:y,r:2,class:'bk2-l'},BKB));
-mk('path',{d:'M-11 -164L-2 -159L-11 -154ZM11 -164L2 -159L11 -154Z',class:'bk2-bt'},BKB);mk('rect',{x:-2.5,y:-161.5,width:5,height:5,class:'bk2-bt'},BKB);
-mk('path',{d:'M-7 -162V-174M7 -162V-174',class:'bk2-o'},BKB);
-const BKH=mk('g',{},BKB);mk('ellipse',{cx:0,cy:-196,rx:17,ry:22,class:'bk2-o'},BKH);mk('path',{d:'M-17 -200Q-17 -222 0 -220Q17 -222 17 -200Q14 -212 0 -212Q-12 -212 -17 -200Z',class:'bk2-hr'},BKH);
-mk('path',{d:'M17 -198q5 0 4 6q-1 5 -5 4',class:'bk2-l'},BKH);mk('path',{d:'M-17 -198q-5 0 -4 6q1 5 5 4',class:'bk2-l'},BKH);
-mk('path',{d:'M-9 -194h5M4 -194h5M0 -192v8M-5 -180q5 2 10 0',class:'bk2-l'},BKH);const BROW=mk('path',{d:'M-10 -199h7M3 -199h7',class:'bk2-l'},BKH);
-mk('text',{x:-40,y:-196,class:'bk2-t','text-anchor':'end'},BKB,'BARKEEPER · M 1:8');
+/* Maße in mm über Tresenhöhe (Tresen 1 050 mm, Schulter 1 450, Scheitel 1 760) */
+mk('path',{d:'M0 -730V20',class:'bk2-ax'},BKB);mk('path',{d:'M-260 -385H260',class:'bk2-ax'},BKB);mk('circle',{cx:0,cy:-578,r:150,class:'bk2-cs'},BKB);
+mk('path',{d:'M-168 0L-176 -170Q-186 -300 -205 -360Q-200 -395 -150 -405Q-90 -415 -56 -420H56Q90 -415 150 -405Q200 -395 205 -360Q186 -300 176 -170L168 0',class:'bk2-o'},BKB);
+mk('path',{d:'M-150 0L-158 -170L-150 -300L-62 -405L0 -255L62 -405L150 -300L158 -170L150 0Z',class:'bk2-v'},BKB);
+mk('path',{d:'M-62 -405L-36 -440M62 -405L36 -440M0 -255V0M-120 -110h50M70 -110h50',class:'bk2-l'},BKB);[-215,-165,-115,-65].forEach(y=>mk('circle',{cx:0,cy:y,r:7,class:'bk2-l'},BKB));
+mk('path',{d:'M-62 -458L-8 -443L-62 -428ZM62 -458L8 -443L62 -428Z',class:'bk2-bt'},BKB);mk('rect',{x:-11,y:-454,width:22,height:22,class:'bk2-bt'},BKB);
+mk('path',{d:'M-44 -420V-482M44 -420V-482',class:'bk2-o'},BKB);
+const BKH=mk('g',{},BKB);mk('ellipse',{cx:0,cy:-578,rx:76,ry:108,class:'bk2-o'},BKH);mk('path',{d:'M-76 -600Q-80 -695 0 -690Q80 -695 76 -600Q66 -652 0 -652Q-56 -652 -76 -600Z',class:'bk2-hr'},BKH);
+mk('path',{d:'M76 -590q22 -2 20 26q-2 22 -22 18',class:'bk2-l'},BKH);mk('path',{d:'M-76 -590q-22 -2 -20 26q2 22 22 18',class:'bk2-l'},BKH);
+mk('path',{d:'M-42 -575h22M20 -575h22M0 -570v40l-10 6M-24 -505q24 9 48 0',class:'bk2-l'},BKH);const BROW=mk('path',{d:'M-46 -598h30M16 -598h30',class:'bk2-l'},BKH);
+mk('text',{x:-215,y:-330,class:'bk2-t','text-anchor':'end'},BKB,'BARKEEPER · 1,85 M');
 const DL=mk('g',{class:'bx-dyn'});
-const ARM=mk('g',{class:'bk2-arm'}),AU=[0,1].map(()=>mk('polyline',{class:'bk2-ao'},ARM)),AI=[0,1].map(()=>mk('polyline',{class:'bk2-ai'},ARM)),AJ=[0,1,2,3].map(()=>mk('circle',{r:3,class:'bk2-j'},ARM)),AH=[0,1].map(()=>mk('ellipse',{rx:6.5,ry:5,class:'bk2-h'},ARM));
+const ARM=mk('g',{class:'bk2-arm'}),AU=[0,1].map(()=>mk('polyline',{class:'bk2-ao'},ARM)),AI=[0,1].map(()=>mk('polyline',{class:'bk2-ai'},ARM)),AJ=[0,1,2,3].map(()=>mk('circle',{r:4.5,class:'bk2-j'},ARM)),AH=[0,1].map(()=>mk('ellipse',{rx:9,ry:7,class:'bk2-h'},ARM));
 let FX=360,FXT=360,hand={L:[330,BASE-40],R:[390,BASE-40]};const grip={L:null,R:null};
 const gpt=g=>{if(!g||!g[0].isConnected)return null;const r=g[0].getBoundingClientRect(),m=svg.getScreenCTM();if(!m||!r.width)return null;const p=svg.createSVGPoint();p.x=r.left+r.width*g[1];p.y=r.top+r.height*g[2];const q=p.matrixTransform(m.inverse());return[q.x,q.y]};
-function bkIK(s,h,out){const a=60,b=58,dx=h[0]-s[0],dy=h[1]-s[1];let d=Math.hypot(dx,dy);d=Math.max(8,Math.min(d,a+b-1));const ang=Math.atan2(dy,dx),k=Math.acos(Math.max(-1,Math.min(1,(a*a+d*d-b*b)/(2*a*d))))*out;return{e:[s[0]+a*Math.cos(ang+k),s[1]+a*Math.sin(ang+k)],h:[s[0]+(a+b-1)*Math.cos(ang)*Math.min(1,Math.hypot(dx,dy)/(a+b-1)),s[1]+(a+b-1)*Math.sin(ang)*Math.min(1,Math.hypot(dx,dy)/(a+b-1))]}}
+function bkIK(s,h,out){const a=300*K*.62,b=330*K*.62,dx=h[0]-s[0],dy=h[1]-s[1];let d=Math.hypot(dx,dy);d=Math.max(8,Math.min(d,a+b-1));const ang=Math.atan2(dy,dx),k0=Math.acos(Math.max(-1,Math.min(1,(a*a+d*d-b*b)/(2*a*d)))),e1=[s[0]+a*Math.cos(ang+k0),s[1]+a*Math.sin(ang+k0)],e2=[s[0]+a*Math.cos(ang-k0),s[1]+a*Math.sin(ang-k0)],ee=(e1[1]-out*(e1[0]-s[0])*.35)>(e2[1]-out*(e2[0]-s[0])*.35)?e1:e2;return{e:ee,h:[s[0]+(a+b-1)*Math.cos(ang)*Math.min(1,Math.hypot(dx,dy)/(a+b-1)),s[1]+(a+b-1)*Math.sin(ang)*Math.min(1,Math.hypot(dx,dy)/(a+b-1))]}}
 let bkT=0;(function bkLoop(t){const tg={L:gpt(grip.L),R:gpt(grip.R)};
-  let dsr=355;[tg.L,tg.R].filter(Boolean).forEach(p=>{if(Math.abs(p[0]-dsr)>112)dsr=p[0]-Math.sign(p[0]-dsr)*112});FXT=Math.max(200,Math.min(620,dsr));FX+=(FXT-FX)*.06;
-  const bob=Math.abs(FXT-FX)>3?Math.sin(t/90)*1.6:0;BKB.setAttribute('transform',`translate(${FX.toFixed(1)} ${(BASE+bob).toFixed(1)}) scale(.86)`);
+  let dsr=352;[tg.L,tg.R].filter(Boolean).forEach(p=>{if(Math.abs(p[0]-dsr)>140)dsr=p[0]-Math.sign(p[0]-dsr)*140});FXT=Math.max(200,Math.min(620,dsr));FX+=(FXT-FX)*.06;
+  const bob=Math.abs(FXT-FX)>3?Math.sin(t/90)*1.6:0;BKB.setAttribute('transform',`translate(${FX.toFixed(1)} ${(BASE+bob).toFixed(1)}) scale(${K})`);
   const look=tg.R?Math.max(-8,Math.min(8,(tg.R[0]-FX)/12)):0;BKH.setAttribute('transform',`rotate(${look.toFixed(1)} 0 -180)`);
-  const S={L:[FX-29,BASE-127+bob],R:[FX+29,BASE-127+bob]},rest={L:[FX-22,BASE-32],R:[FX+22,BASE-32]};
+  const S={L:[FX-190*K,BASE-385*K+bob],R:[FX+190*K,BASE-385*K+bob]},rest={L:[FX-210*K,BASE-24],R:[FX+210*K,BASE-24]};
   ['L','R'].forEach((k,i)=>{const T2=tg[k]||rest[k];hand[k]=[hand[k][0]+(T2[0]-hand[k][0])*.28,hand[k][1]+(T2[1]-hand[k][1])*.28];const r=bkIK(S[k],hand[k],k==='L'?1:-1),pts=`${S[k][0].toFixed(1)},${S[k][1].toFixed(1)} ${r.e[0].toFixed(1)},${r.e[1].toFixed(1)} ${r.h[0].toFixed(1)},${r.h[1].toFixed(1)}`;
     AU[i].setAttribute('points',pts);AI[i].setAttribute('points',pts);AJ[i*2].setAttribute('cx',S[k][0].toFixed(1));AJ[i*2].setAttribute('cy',S[k][1].toFixed(1));AJ[i*2+1].setAttribute('cx',r.e[0].toFixed(1));AJ[i*2+1].setAttribute('cy',r.e[1].toFixed(1));
     AH[i].setAttribute('cx',r.h[0].toFixed(1));AH[i].setAttribute('cy',r.h[1].toFixed(1))});
@@ -3901,11 +3902,11 @@ function jigger(){const g=mk('g',{class:'bx-tool'},DL);mk('path',{d:'M-17 -46L-6
   const id='bxj'+(++uid),cp=mk('clipPath',{id},g);mk('path',{d:'M-16.5 -45L-6 -24.5H6L16.5 -45Z'},cp);const fill=mk('rect',{x:-20,y:-24,width:40,height:0,class:'bx-lq','clip-path':`url(#${id})`},g);
   for(let k=1;k<=4;k++){const y=-24-k*5.2;mk('path',{d:`M${(6+k*2.1).toFixed(1)} ${y.toFixed(1)}h4`,class:'bx-sc'},g);mk('text',{x:(12+k*2.1).toFixed(1),y:(y+2.5).toFixed(1),class:'bx-sct'},g,k%2?'':String(k))}
   return{g,fill,set(u,c){const h=21*u;fill.setAttribute('y',(-24-h).toFixed(1));fill.setAttribute('height',h.toFixed(1));fill.style.setProperty('--c',c)},pos(x,y,r){g.setAttribute('transform',`translate(${x.toFixed(1)} ${y.toFixed(1)}) rotate(${(r||0).toFixed(1)})`)}}}
-function spoon(){const g=mk('g',{class:'bx-tool'},DL);let d='M0 0';for(let k=0;k<26;k++)d+=`L${k%2?1.6:-1.6} ${-k*6}`;mk('path',{d,class:'bx-to'},g);mk('path',{d:'M0 -156v-8',class:'bx-to'},g);mk('ellipse',{cx:0,cy:-170,rx:3.5,ry:6,class:'bx-to'},g);mk('ellipse',{cx:0,cy:6,rx:5,ry:9,class:'bx-to'},g);return g}
-function strainer(){const g=mk('g',{class:'bx-tool'},DL);mk('ellipse',{cx:0,cy:0,rx:36,ry:6,class:'bx-to'},g);let d='M-30 4';for(let k=0;k<=24;k++)d+=`L${-30+k*2.5} ${4+(k%2?4:0)}`;mk('path',{d,class:'bx-to'},g);
+function spoon(){const g=mk('g',{class:'bx-tool'},DL);g._s=.78;let d='M0 0';for(let k=0;k<26;k++)d+=`L${k%2?1.6:-1.6} ${-k*6}`;mk('path',{d,class:'bx-to'},g);mk('path',{d:'M0 -156v-8',class:'bx-to'},g);mk('ellipse',{cx:0,cy:-170,rx:3.5,ry:6,class:'bx-to'},g);mk('ellipse',{cx:0,cy:6,rx:5,ry:9,class:'bx-to'},g);return g}
+function strainer(){const g=mk('g',{class:'bx-tool'},DL);g._s=.66;mk('ellipse',{cx:0,cy:0,rx:36,ry:6,class:'bx-to'},g);let d='M-30 4';for(let k=0;k<=24;k++)d+=`L${-30+k*2.5} ${4+(k%2?4:0)}`;mk('path',{d,class:'bx-to'},g);
   mk('path',{d:'M36 0H82M36 -3H82M82 -3V0',class:'bx-to'},g);for(let k=-24;k<=24;k+=8)mk('circle',{cx:k,cy:0,r:1.5,class:'bx-to'},g);return g}
-function muddler(){const g=mk('g',{class:'bx-tool'},DL);mk('path',{d:'M-5 0V-150H5V0ZM-6 -150h12v-18h-12Z',class:'bx-to'},g);for(let k=0;k<6;k++)mk('path',{d:`M-5 ${-4-k*3}H5`,class:'bx-sc'},g);for(let k=0;k<5;k++)mk('path',{d:`M-6 ${-153-k*3}H6`,class:'bx-sc'},g);return g}
-const toolPos=(g,x,y,r)=>g.setAttribute('transform',`translate(${x.toFixed(1)} ${y.toFixed(1)}) rotate(${(r||0).toFixed(1)})`);
+function muddler(){const g=mk('g',{class:'bx-tool'},DL);g._s=.62;mk('path',{d:'M-5 0V-150H5V0ZM-6 -150h12v-18h-12Z',class:'bx-to'},g);for(let k=0;k<6;k++)mk('path',{d:`M-5 ${-4-k*3}H5`,class:'bx-sc'},g);for(let k=0;k<5;k++)mk('path',{d:`M-6 ${-153-k*3}H6`,class:'bx-sc'},g);return g}
+const toolPos=(g,x,y,r)=>g.setAttribute('transform',`translate(${x.toFixed(1)} ${y.toFixed(1)}) rotate(${(r||0).toFixed(1)}) scale(${g._s||1})`);
 /* Bewegungsbahn vorzeichnen */
 function path2(pts,c){const d='M'+pts.map(p=>p.map(v=>v.toFixed(1)).join(' ')).join('L');const p=mk('path',{d,class:'bx-mp '+(c||''),pathLength:1},DL);setTimeout(()=>p.classList.add('go'),20);return p}
 const bez=(a,b,c,u)=>[(1-u)*(1-u)*a[0]+2*(1-u)*u*b[0]+u*u*c[0],(1-u)*(1-u)*a[1]+2*(1-u)*u*b[1]+u*u*c[1]];
@@ -3947,7 +3948,7 @@ async function ice(into,crushed){step(crushed?'Crushed Ice einfüllen.':'Eiswür
   await tw(700,u=>cs.forEach((q,k)=>{const uu=Math.max(0,Math.min(1,u*1.6-k*.04)),e=uu*uu,b=uu>.85?Math.sin((uu-.85)/.15*Math.PI)*3:0;q.c.setAttribute('transform',`translate(${q.x.toFixed(1)} ${(lerp(q.y0,q.yE,e)-b).toFixed(1)}) rotate(${(q.r0+uu*60).toFixed(1)})`)}));
   state.tmp=Math.min(state.tmp,crushed?6:8);into.iceN=n;grip.L=null}
 async function shake(v){step('Verschließen und kräftig schütteln.');const capG=mk('g',{class:'bx-capg'},v.g);mk('path',{d:`M${-44*K} ${-174*K}L${-34*K} ${-262*K}H${34*K}L${44*K} ${-174*K}Z`,class:'bx-gw'},capG);
-  v.g.querySelectorAll('.bx-ll').forEach(e=>e.style.opacity=0);v.g.querySelectorAll('.bx-dim').forEach(e=>e.style.display='none');grip.R=[v.g,.62,.12];grip.L=[v.g,.38,.88];const c=[v.x,BASE-170];const mp=path2([[v.x-60,c[1]-40],[v.x+60,c[1]+40]],'ax2');
+  v.g.querySelectorAll('.bx-ll').forEach(e=>e.style.opacity=0);v.g.querySelectorAll('.bx-dim').forEach(e=>e.style.display='none');grip.R=[v.g,.62,.12];grip.L=[v.g,.38,.88];const c=[v.x+24,BASE-250];const mp=path2([[v.x-60,c[1]-40],[v.x+60,c[1]+40]],'ax2');
   await tw(420,u=>{const e=io(u);v.pos(lerp(v.x,c[0],e),lerp(BASE,c[1]+60,e),e*-32)});
   const gh=[0,1].map(i=>{const u=mk('use',{href:'#'+(v.g.id||(v.g.id='bxv'+(++uid))),class:'bx-gh'},DL);return u});
   const t0=state.tmp,d0=state.dil,base=[v.x,v.y];let hist=[];
