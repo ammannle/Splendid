@@ -1655,6 +1655,40 @@ html.msfull{overflow:hidden}
 .pk3 .p3view{opacity:0;transition:opacity .9s}.pk3.in .p3view{opacity:1}
 @media (max-width:700px){.p3hand,.p3ecg{display:none}}
 @media (prefers-reduced-motion:reduce){.p3c .p3i{animation:none!important;transform:none}.p3haze{display:none}.pk3 .p3view{opacity:1}}
+/* Kennwort-Tor (Vesper-Szene) */
+.vg{position:fixed;inset:0;z-index:210;display:grid;place-items:center;padding:16px;background:radial-gradient(ellipse at 50% 40%,#0c1d27,#03080b 70%);font-family:var(--mono);color:var(--ink)}
+.vg[hidden]{display:none}
+.vg::after{content:"";position:absolute;inset:0;pointer-events:none;background:repeating-linear-gradient(0deg,rgba(143,215,232,.03) 0 1px,transparent 1px 3px)}
+.vg-scr{position:relative;width:min(560px,100%);padding:26px 28px 24px;background:linear-gradient(180deg,#0e2230,#09161f);border:1px solid rgba(143,215,232,.35);border-radius:6px;box-shadow:0 30px 90px rgba(0,0,0,.7),0 0 0 6px #050c12,0 0 0 7px rgba(143,215,232,.18);animation:vgIn .7s cubic-bezier(.2,.8,.2,1) both}
+@keyframes vgIn{from{opacity:0;transform:scale(.94) translateY(14px);filter:blur(6px)}to{opacity:1;transform:none;filter:none}}
+.vg-hd{display:flex;align-items:center;gap:12px;padding-bottom:14px;border-bottom:1px solid rgba(143,215,232,.2);margin-bottom:16px}
+.vg-lg{font-size:1.6rem;color:var(--amber);line-height:1}.vg-hd b{display:block;font-family:var(--head);font-size:1.05rem;letter-spacing:.14em}.vg-hd i{display:block;font-style:normal;font-size:.72rem;letter-spacing:.14em;color:var(--mute);margin-top:2px}
+.vg-led{margin-left:auto;width:9px;height:9px;border-radius:50%;background:var(--green);box-shadow:0 0 10px var(--green);animation:msBlink 1.4s steps(2) infinite}
+.vg-dl{display:grid;grid-template-columns:auto 1fr;gap:6px 18px;margin:0 0 20px;font-size:.8rem}.vg-dl dt{color:var(--mute);letter-spacing:.14em}.vg-dl dd{margin:0;color:var(--cyan);letter-spacing:.08em}
+.vg-lb{display:block;font-size:.78rem;letter-spacing:.3em;color:var(--amber);margin-bottom:10px}
+.vg-box{position:relative;display:grid;grid-template-columns:repeat(6,1fr);gap:10px;cursor:text}
+.vg-box i{position:relative;height:64px;display:grid;place-items:center;border:1px solid rgba(143,215,232,.45);border-radius:4px;background:#050d13;font-style:normal;font-family:var(--head);font-weight:700;font-size:2rem;color:var(--ink);transition:border-color .2s,background .3s,color .3s,box-shadow .3s}
+.vg-box i.cur::after{content:"";position:absolute;left:30%;right:30%;bottom:12px;height:3px;background:var(--cyan);animation:msBlink 1s steps(2) infinite}
+.vg-box i.f{border-color:var(--cyan);box-shadow:inset 0 0 14px rgba(143,215,232,.12);animation:vgKey .18s ease-out}
+@keyframes vgKey{from{transform:scale(1.12)}to{transform:none}}
+.vg-box input{position:absolute;inset:0;width:100%;height:100%;opacity:0;font-size:16px;border:0;background:none;color:transparent;caret-color:transparent;text-transform:uppercase}
+.vg-box.bad{animation:vgShake .45s cubic-bezier(.36,.07,.19,.97)}.vg-box.bad i{border-color:var(--red);color:var(--red);box-shadow:inset 0 0 14px rgba(240,85,74,.25)}
+@keyframes vgShake{10%,90%{transform:translateX(-2px)}20%,80%{transform:translateX(4px)}30%,50%,70%{transform:translateX(-8px)}40%,60%{transform:translateX(8px)}}
+.vg-box.ok i{border-color:var(--green);color:var(--green);background:rgba(75,227,154,.08);box-shadow:0 0 18px rgba(75,227,154,.35);transition-delay:calc(var(--k)*.09s)}
+.vg-msg{margin-top:14px;font-size:.78rem;letter-spacing:.18em;color:var(--mute);min-height:1.3em}.vg-msg.r{color:var(--red)}.vg-msg.g{color:var(--green);font-weight:600}
+.vg-ok{margin-top:16px;width:100%;padding:12px;background:none;border:1px solid var(--amber);color:var(--amber);font-family:var(--mono);font-weight:600;font-size:.86rem;letter-spacing:.3em;border-radius:3px;cursor:pointer}
+.vg-ok:hover,.vg-ok:focus-visible{background:var(--amber);color:var(--bg)}
+.vg-hint{margin:14px 0 0;min-height:1.2em;font-size:.82rem;line-height:1.5;color:var(--amber)}.vg-hint:empty{display:none}
+.vg-load{display:none;margin-top:18px}.vg-load span{display:block;font-size:.76rem;letter-spacing:.24em;color:var(--cyan);margin-bottom:8px}
+.vg-load i{display:block;height:3px;background:rgba(143,215,232,.2)}.vg-load b{display:block;height:100%;width:0;background:var(--cyan);box-shadow:0 0 10px var(--cyan);transition:width 1.6s cubic-bezier(.4,0,.2,1)}
+.vg.won .vg-load{display:block}.vg.won .vg-ok{display:none}.vg.won .vg-load b{width:100%}
+.vg.out{animation:vgOut .7s ease forwards}@keyframes vgOut{to{opacity:0;filter:blur(6px)}}
+@media (max-width:560px){.vg-scr{padding:20px 16px}.vg-box{gap:6px}.vg-box i{height:52px;font-size:1.6rem}.vg-dl{font-size:.72rem;gap:4px 12px}}
+@media (prefers-reduced-motion:reduce){.vg-scr,.vg-box.bad,.vg.out{animation:none}}
+/* Briefing im Auto-Modus */
+.ms-skipb{display:none}
+.panel.ms.full.auto .ms-skipb{display:inline-block;position:absolute;right:12px;top:calc(env(safe-area-inset-top,0px) + 10px);z-index:20;padding:6px 12px;background:rgba(5,12,18,.75);border:1px solid var(--line2);color:var(--ink);font-family:var(--mono);font-size:.72rem;letter-spacing:.16em;border-radius:2px;cursor:pointer}
+.panel.ms.full.auto .ms-skipb:hover{border-color:var(--amber);color:var(--amber)}
 .ms-cold,.ms-lost{position:absolute;inset:0;background:#020507;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;overflow:hidden}
 .mc-term{font-family:var(--mono);font-size:clamp(.6rem,1.4vw,.8rem);letter-spacing:.16em;color:var(--cyan);width:min(560px,86%)}
 .mc-term p{margin:0 0 4px;opacity:0;white-space:nowrap;overflow:hidden;animation:msType .5s steps(24) calc(.2s + var(--i)*.38s) both,gzfade .01s calc(.2s + var(--i)*.38s) forwards}
@@ -1763,9 +1797,21 @@ html.msfull{overflow:hidden}
     </div>
     <div class="ilock" id="iLock"><svg viewBox="0 0 160 160"><circle cx="80" cy="80" r="72" class="il1"/><circle cx="80" cy="80" r="50" class="il2"/><circle cx="80" cy="80" r="4" class="il3"/><path d="M80 0v26M80 134v26M0 80h26M134 80h26" class="il4"/><path d="M30 30h14M30 30v14M130 30h-14M130 30v14M30 130h14M30 130v-14M130 130h-14M130 130v-14" class="il5"/></svg>
       <div class="ilk" id="iLk">ZIELERFASSUNG 1/3</div><div class="icoord" id="iCoord">--.---- N · --.---- E</div><div class="iplace" id="iPlace">&nbsp;</div></div>
-    <div class="igrant" id="iGrant">ZUGANG GEWÄHRT<small>WILLKOMMEN, 00-EINHEIT</small></div>
+    <div class="igrant" id="iGrant">VERBINDUNG STEHT<small>KENNWORT ERFORDERLICH</small></div>
   </div>
   <button class="iskip" id="iSkip" type="button">ÜBERSPRINGEN ›</button>
+</div>
+<div id="vgate" class="vg" hidden>
+  <div class="vg-scr" role="dialog" aria-modal="true" aria-labelledby="vgT">
+    <div class="vg-hd"><span class="vg-lg">◆</span><div><b id="vgT">BANQUE PRIVÉE · TRANSFERTERMINAL</b><i>VERBINDUNG GESICHERT · KANAL 7 · AES-256</i></div><span class="vg-led"></span></div>
+    <dl class="vg-dl"><dt>KONTOINHABER</dt><dd>00-EINHEIT · AGENT 01–04</dd><dt>KONTO</dt><dd>7714-V · CASINO ROYALE</dd><dt>VORGANG</dt><dd>FREIGABE MISSIONSAKTE</dd></dl>
+    <label class="vg-lb" for="vgIn">KENNWORT EINGEBEN</label>
+    <div class="vg-box" id="vgBox"><i></i><i></i><i></i><i></i><i></i><i></i><input id="vgIn" maxlength="6" autocomplete="off" autocorrect="off" autocapitalize="characters" spellcheck="false" enterkeyhint="go" aria-describedby="vgMsg"></div>
+    <div class="vg-msg" id="vgMsg" aria-live="polite">6 ZEICHEN · BESTÄTIGEN MIT ENTER</div>
+    <button type="button" class="vg-ok" id="vgOk">BESTÄTIGEN</button>
+    <p class="vg-hint" id="vgHint" aria-live="polite"></p>
+    <div class="vg-load" id="vgLoad"><span>MISSIONSBRIEFING WIRD GELADEN</span><i><b></b></i></div>
+  </div>
 </div>
 <script>if(window.__NOINTRO)document.getElementById('intro').hidden=true;else document.documentElement.classList.add('introing')</script>
 <div class="sys">
@@ -1856,7 +1902,7 @@ html.msfull{overflow:hidden}
   <section id="mission">
     <div class="sh"><div><div class="ix">MODUL 02 // BRIEFING</div><h2>Missionsbriefing</h2></div><p>Gut sechs Minuten, in der Reihenfolge des Einsatzplans: Auftrag, Tag 1 bis Tag 3, Finale. M hat darauf bestanden, dass Sie es sich ansehen.</p></div>
     <div class="panel ms"><div class="ph"><b>BRIEFING // OPERATION SPLENDIDE</b><span class="st" id="msTime"></span></div>
-      <div class="ms-stage" id="msStage" aria-live="off"></div>
+      <div class="ms-stage" id="msStage" aria-live="off"></div><button type="button" class="ms-skipb" id="msSkip">BRIEFING ÜBERSPRINGEN ›</button>
       <div class="ms-cap" id="msCap"><canvas class="ms-scope" id="msScope" aria-hidden="true"></canvas><div class="ms-ct" id="msCapT" aria-live="polite"></div><div class="ms-lage" id="msLage" aria-hidden="true"></div></div>
       <div class="ms-ctl"><button type="button" class="qbtn go" id="msPlay">▶ ABSPIELEN</button><button type="button" class="qbtn" id="msPrev" aria-label="Vorherige Szene">‹ SZENE</button><button type="button" class="qbtn" id="msNext" aria-label="Nächste Szene">SZENE ›</button><button type="button" class="qbtn" id="msRe">↺ VON VORN</button><button type="button" class="qbtn" id="msVox" aria-pressed="false" title="Sprachausgabe">STIMME AUS</button><button type="button" class="qbtn" id="msSnd" aria-pressed="false" title="Musik und Effekte">♪ MUSIK AUS</button><button type="button" class="qbtn" id="msFull" aria-pressed="false" title="Vollbild (F)">⛶ VOLLBILD</button><button type="button" class="qbtn ms-rhint" id="msRot">⤢ QUER LESEN</button><span class="ms-time" id="msScene"></span><div class="ms-prog"><i id="msBar"></i></div></div>
       <div class="ms-chips" id="msChips"></div>
@@ -3713,6 +3759,25 @@ document.addEventListener('visibilitychange',()=>{document.title=document.hidden
 function heroDraw(){const r=document.querySelector('#heroMap .rt');if(!r)return;const L=r.getTotalLength();
   r.style.transition='none';r.style.strokeDasharray=L;r.style.strokeDashoffset=L;r.getBoundingClientRect();r.style.transition='stroke-dashoffset 2.4s .6s cubic-bezier(.4,0,.2,1)';r.style.strokeDashoffset=0;
   setTimeout(()=>{r.style.transition=r.style.strokeDasharray=r.style.strokeDashoffset=''},3200)}
+/* Kennwort-Tor nach der Verbindungsanimation (wie die Vesper-Szene im Film), danach automatisch das Missionsbriefing, dann die Seite */
+function pageIn(){document.documentElement.classList.remove('introing');scrollTo({top:0,behavior:'instant'});
+  if(!RM){document.body.classList.add('boot');setTimeout(heroDraw,300);setTimeout(()=>document.body.classList.remove('boot'),4400)}}
+function vGate(){const g=document.getElementById('vgate');if(!g){pageIn();return}
+  const inp=document.getElementById('vgIn'),box=document.getElementById('vgBox'),cells=[...box.querySelectorAll('i')],msg=document.getElementById('vgMsg'),hint=document.getElementById('vgHint'),okB=document.getElementById('vgOk');
+  let fails=0,won=false,armed=false;g.hidden=false;g.classList.remove('won','out');inp.value='';box.className='vg-box';msg.className='vg-msg';msg.textContent='6 ZEICHEN · BESTÄTIGEN MIT ENTER';hint.textContent='';
+  const paint=()=>{const v=inp.value.toUpperCase().replace(/[^A-ZÄÖÜ0-9]/g,'').slice(0,6);if(inp.value!==v)inp.value=v;cells.forEach((c,i)=>{c.textContent=v[i]||'';c.classList.toggle('f',!!v[i]);c.classList.toggle('cur',i===v.length&&!won)})};
+  const arm=()=>{if(armed)return;armed=true;try{window.msArm&&msArm()}catch(e){}};
+  const tick=()=>{try{window.SND&&SND.tick&&SND.tick()}catch(e){}};
+  const H=['M: Sie wissen es. Ein Name, sechs Buchstaben.','M: Er hat einen Martini nach ihr benannt.','M: Venedig. Sie hat ihn nicht verlassen, sie hat ihn verraten. Ihr Vorname beginnt mit V.'];
+  const submit=()=>{if(won)return;arm();const v=inp.value.toUpperCase();
+    if(v==='VESPER'){won=true;cells.forEach((c,i)=>{c.style.setProperty('--k',i);c.classList.remove('cur')});box.className='vg-box ok';msg.className='vg-msg g';msg.textContent='KENNWORT AKZEPTIERT · ZUGANG GEWÄHRT';hint.textContent='';
+      try{window.SND&&SND.ping&&SND.ping()}catch(e){}inp.blur();setTimeout(()=>g.classList.add('won'),RM?0:700);
+      setTimeout(()=>{g.classList.add('out');setTimeout(()=>{g.hidden=true;if(window.msAuto)msAuto(pageIn);else pageIn()},RM?0:650)},RM?300:2600);return}
+    fails++;box.className='vg-box';void box.offsetWidth;box.className='vg-box bad';msg.className='vg-msg r';msg.textContent=`ZUGRIFF VERWEIGERT · VERSUCH ${fails}`;
+    if(fails>=2)hint.textContent=H[Math.min(H.length-1,fails-2)];inp.value='';inp.focus()};
+  inp.oninput=()=>{arm();tick();if(box.classList.contains('bad'))box.className='vg-box';paint();if(inp.value.length===6)setTimeout(()=>{if(inp.value.length===6)submit()},250)};
+  inp.onkeydown=e=>{if(e.key==='Enter'){e.preventDefault();submit()}};okB.onclick=submit;box.onclick=()=>inp.focus();
+  paint();setTimeout(()=>inp.focus({preventScroll:true}),400)}
 function runIntro(ov){const term=document.getElementById('iTerm'),bar=document.getElementById('iBar'),pct=document.getElementById('iPct');
   const T=[];let done=false;const at=(ms,f)=>T.push(setTimeout(()=>{if(!done)f()},ms));
   const L=[['> MI6 // SICHERE VERBINDUNG WIRD AUFGEBAUT','',''],['> ROUTING ÜBER VAUXHALL CROSS, LONDON ',' OK','ok'],['> RELAIS KARLSBAD · PRAG ',' OK','ok'],['> CHIFFRE OS-26/CZ ',' GELADEN','ok'],['> EMPFÄNGER: 00-EINHEIT · 4 AGENTEN','',''],['> AUFTRAG: ',' OPERATION SPLENDIDE','am']];
@@ -3734,8 +3799,8 @@ function runIntro(ov){const term=document.getElementById('iTerm'),bar=document.g
     for(let f=0;f<=24;f++)at(t0+f*45,()=>{lc.textContent=scr(c,Math.round(f/24*c.length))});
     at(t0+1150,()=>{lc.textContent=c;lk.classList.add('locked');lp.innerHTML=`${p}<small>${q}</small>`})});
   t=t+300+3*1650+200;at(t,()=>ov.classList.add('i-grant'));
-  const finish=()=>{if(done)return;done=true;T.forEach(clearTimeout);ov.classList.add('i-closing');if(!RM){document.body.classList.add('boot');setTimeout(heroDraw,300);setTimeout(()=>document.body.classList.remove('boot'),4400)}setTimeout(()=>ov.classList.add('i-open'),RM?0:250);
-    setTimeout(()=>{document.documentElement.classList.remove('introing');ov.hidden=true;},RM?300:900)};
+  const finish=()=>{if(done)return;done=true;T.forEach(clearTimeout);ov.classList.add('i-closing');setTimeout(()=>ov.classList.add('i-open'),RM?0:250);
+    setTimeout(()=>{ov.hidden=true;vGate()},RM?300:900)};
   at(t+2400,finish);
   ov.onclick=finish;document.getElementById('iSkip').onclick=e=>{e.stopPropagation();finish()};
   const key=e=>{if(!done&&(e.key==='Escape'||e.key==='Enter'||e.key===' ')){e.preventDefault();finish()}if(done)removeEventListener('keydown',key,true)};addEventListener('keydown',key,true)}
@@ -5084,7 +5149,7 @@ const CH=['AUFTRAG','LOKET · KARLSBAD','PRAG','RÜCKWEG','FINALE'];
 function depTxt(up){const d=typeof dep!=='undefined'&&dep?new Date(dep+'T12:00'):null;return d?(up?'AM ':'')+ddmm(d)+'.2026':(up?'IM ':'')+'NOVEMBER 2026'}
 const TOT=SC.reduce((a,s)=>a+s.t,0),mmss=v=>`${Math.floor(v/60)}:${String(Math.floor(v%60)).padStart(2,'0')}`;
 const chipsEl=$('msChips');chipsEl.innerHTML=CH.map((n,i)=>`<button type="button" data-c="${i}">${n}</button>`).join('');
-let cur=-1,t0=0,el=0,playing=false,raf=0,timers=[],anims=[];
+let cur=-1,t0=0,el=0,playing=false,raf=0,timers=[],anims=[],auto=null;
 function clear(){timers.forEach(clearTimeout);timers=[];anims.forEach(a=>a.cancel());anims=[]}
 function later(f,ms){timers.push(setTimeout(f,RM?0:ms))}
 const TRS=['dissolve','cut','dissolve','cut'];
@@ -5378,7 +5443,7 @@ function frame(now){if(!playing)return;el=Math.min(TOT,(now-t0)/1000);
   let acc=0,i=0;for(;i<SC.length;i++){if(el<acc+SC[i].t)break;acc+=SC[i].t}
   if(i>=SC.length){stop(true);return}if(i!==cur)show(i);$('msBar').style.width=(el/TOT*100)+'%';$('msTime').textContent=`${mmss(el)} / ${mmss(TOT)}`;raf=requestAnimationFrame(frame)}
 function play(){if(el>=TOT)el=0;playing=true;dustGo();scopeGo();SND.resume();VOX.resume();t0=performance.now()-el*1000;$('msPlay').textContent='❚❚ PAUSE';cancelAnimationFrame(raf);raf=requestAnimationFrame(frame);anims.forEach(a=>a.play())}
-function stop(end){playing=false;SND.pause();VOX.pause();if(end){VOX.cancel();SND.musicOff()}cancelAnimationFrame(raf);anims.forEach(a=>a.pause());$('msPlay').textContent=end?'↺ NOCHMAL':'▶ WEITER';if(end){$('msBar').style.width='100%';el=TOT}}
+function stop(end){if(end&&auto){const d=auto;auto=null;setTimeout(()=>{msP.classList.remove('auto');setFull(false);d()},RM?0:1600)}playing=false;SND.pause();VOX.pause();if(end){VOX.cancel();SND.musicOff()}cancelAnimationFrame(raf);anims.forEach(a=>a.pause());$('msPlay').textContent=end?'↺ NOCHMAL':'▶ WEITER';if(end){$('msBar').style.width='100%';el=TOT}}
 const jump=i=>{VOX.cancel();el=SC.slice(0,i).reduce((a,s)=>a+s.t,0)+.01;cur=-1;play()};
 const sndBtn=$('msSnd');function sndSet(v){SND.set(v);S.set('mssnd',v?1:0);sndBtn.setAttribute('aria-pressed',String(SND.on));sndBtn.textContent=SND.on?'♪ MUSIK AN':'♪ MUSIK AUS';if(SND.on&&cur>=0&&SC[cur].ch>0&&!SND.hasScore())SND.droneOn()}
 sndBtn.onclick=()=>{sndSet(!SND.on);if(SND.on&&cur>=0)SND.hasScore()?SND.cue(cueOf(SC[cur])):SND.mood(moodOf(SC[cur]))};if(S.get('mssnd',1))sndBtn.textContent='♪ MUSIK AN (KLICK)';
@@ -5398,10 +5463,10 @@ let msY=0;
 const portrait=()=>innerWidth<=700&&innerHeight>innerWidth;
 function rotFix(){const r=msP.classList.contains('full')&&portrait();if(msP.classList.contains('rot')!==r){msP.classList.toggle('rot',r);setTimeout(redo,RM?0:150)}}
 addEventListener('resize',()=>{if(msP.classList.contains('full'))rotFix()});
-function setFull(on){if(msP.classList.contains('full')===on)return;if(on)msY=scrollY;msP.classList.toggle('full',on);document.documentElement.classList.toggle('msfull',on);
+function setFull(on,noFs){if(msP.classList.contains('full')===on)return;if(!on&&auto){const d=auto;auto=null;msP.classList.remove('auto');if(playing||el<TOT)stop(true);setTimeout(d,60)}if(on)msY=scrollY;msP.classList.toggle('full',on);document.documentElement.classList.toggle('msfull',on);
   if(on&&portrait())msP.classList.add('rot');if(!on)msP.classList.remove('rot');
   const b=$('msFull');b.textContent=on?'✕ VOLLBILD BEENDEN':'⛶ VOLLBILD';b.setAttribute('aria-pressed',String(on));
-  if(on&&fsOk&&!document.fullscreenElement)msP.requestFullscreen().then(()=>{const o=screen.orientation;if(o&&o.lock&&innerWidth<=700)return o.lock('landscape').then(()=>setTimeout(rotFix,250))}).catch(()=>{});
+  if(on&&fsOk&&!noFs&&!document.fullscreenElement)msP.requestFullscreen().then(()=>{const o=screen.orientation;if(o&&o.lock&&innerWidth<=700)return o.lock('landscape').then(()=>setTimeout(rotFix,250))}).catch(()=>{});
   if(!on){try{screen.orientation&&screen.orientation.unlock&&screen.orientation.unlock()}catch(e){}}
   if(!on&&document.fullscreenElement===msP)document.exitFullscreen().catch(()=>{});
   if(!on)requestAnimationFrame(()=>scrollTo({top:msY,behavior:'instant'}));
@@ -5415,6 +5480,10 @@ document.addEventListener('keydown',e=>{const t=e.target;if(t&&(t.isContentEdita
   else if((e.key==='f'||e.key==='F')&&!e.ctrlKey&&!e.metaKey&&!e.altKey){const r=st.getBoundingClientRect();if(msP.classList.contains('full')||(r.bottom>0&&r.top<innerHeight)){e.preventDefault();setFull(!msP.classList.contains('full'))}}},true);
 let rzT=0;addEventListener('resize',()=>{if(!msP.classList.contains('full'))return;clearTimeout(rzT);rzT=setTimeout(redo,200)});
 show(0);$('msTime').textContent=`0:00 / ${mmss(TOT)}`;
+/* Auto-Modus: nach dem Kennwort direkt ins Briefing (Vollbild-Overlay), danach weiter zur Seite */
+window.msArm=()=>{if(S.get('mssnd',1)&&!SND.on)sndSet(true);if(VOX.has&&S.get('msvox',1)&&!voxArmed)voxSet(true,false)};
+window.msAuto=done=>{auto=done;seen=true;msP.classList.add('auto');setFull(true,true);jump(0)};
+$('msSkip').onclick=()=>{if(auto)setFull(false)};
 let seen=false;if('IntersectionObserver' in window){const io=new IntersectionObserver(es=>{if(!seen&&es.some(e=>e.isIntersecting)){seen=true;io.disconnect();play()}},{threshold:.5});io.observe(st)}
 })();
 

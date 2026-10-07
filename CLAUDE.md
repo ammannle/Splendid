@@ -237,4 +237,9 @@ Freigabe: „Anyone with the link“ ist aktiv. Wer die Seite offen hat, sieht n
   Chips als 3D-Stapel, Spotlicht, Rauch (Canvas), Giftglas mit Tropfen und EKG, Einsatz zählt auf 10.000.000 $, Le Chiffre Full House,
   Bond Straight Flush mit Lichtausbruch, am Ende Platz der 00-Einheit und Karten werden verdeckt. Ablauf synchron zur Stimme über `s.cue`
   (Anker im Text × Cliplänge, in `pwGo`). Schlusshand korrigiert: Board A♠ 8♠ 6♠ 4♠ A♥. Szene 10 s.
+- Version 33 (07.10.2026): Neuer Seitenablauf: Verbindungsanimation (`#intro`, endet jetzt mit „VERBINDUNG STEHT · KENNWORT ERFORDERLICH“) →
+  Kennwort-Tor `#vgate` im Stil der Vesper-Szene (`vGate()`, Bankterminal mit 6 Feldern, Kennwort VESPER, Fehlversuche mit Schütteln und
+  M-Hinweisen ab dem 2. Versuch) → Missionsbriefing startet automatisch im Vollbild-Overlay (`msArm()` schaltet Stimme/Musik in der
+  Eingabe-Geste frei, `msAuto(done)`, Klasse `.ms.auto`, Knopf „BRIEFING ÜBERSPRINGEN“, Esc) → danach reguläre Seite (`pageIn()`,
+  Seitenaufbau `boot`). Läuft bei jedem Laden und bei „Intro wiederholen“. Tests mit `__NOINTRO` überspringen alles.
 - Tests: Playwright-Skripte müssen vor dem Laden `window.__NOINTRO=1` per `addInitScript` setzen, sonst läuft das Intro.
