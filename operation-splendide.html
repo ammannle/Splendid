@@ -1346,7 +1346,7 @@ html.msfull{overflow:hidden}
  .ms-lock span{font-size:.64rem;max-width:46vw;white-space:normal}.ma-k{font-size:.64rem;letter-spacing:.18em}.ma-s{font-size:.64rem;letter-spacing:.06em}.ma-h{letter-spacing:.04em}
  .ms-open.clean .mo-k{font-size:.64rem;letter-spacing:.12em;max-width:92%;text-align:center}.mo-sub{font-size:.64rem;letter-spacing:.06em;padding:0 8px}.rm-ban{font-size:.66rem;letter-spacing:.08em;padding:4px 8px}.ms-chap{gap:8px}}
 .ms-sup{bottom:54px}
-@media (max-width:700px){.ms-bpl .ms-side,.ms-split .ms-side{display:none}.ms-lock span{display:none}.ms-stamp{top:24%;font-size:1.1rem;padding:4px 12px}.ms-sup{bottom:auto}}
+@media (max-width:700px){.ms-bpl .ms-side,.ms-split .ms-side{display:none}.ms-lock span{display:none}.ms-stamp{top:15%;font-size:1rem;padding:3px 10px}.ms-sup{bottom:auto}}
 /* v26 Dramaturgie: Handkamera, Schärfe ziehen, Kernsätze, Akt-Montage, Cold Open, Stempel, Verbindungsende, Oszilloskop, Lagestufe */
 .ms-hh{position:absolute;inset:0;scale:1.012;animation:msRack .9s ease-out both,msDrift 13s ease-in-out infinite alternate}
 @keyframes msRack{from{filter:blur(7px)}to{filter:none}}
@@ -1383,7 +1383,8 @@ html.msfull{overflow:hidden}
 .panel.ms.full.rot .ms-cap{min-height:0;padding:4px 10px;font-size:.8rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .panel.ms.full.rot .ms-ctl{padding:4px 8px;gap:4px}.panel.ms.full.rot .ms-ctl .qbtn{padding:4px 8px;font-size:.66rem}
 .ms-rhint{display:none}
-@media (max-width:700px) and (orientation:portrait){.ms-rhint{display:block;position:absolute;right:8px;bottom:8px;z-index:6;padding:4px 8px;font-family:var(--mono);font-size:.66rem;letter-spacing:.06em;color:var(--amber);background:color-mix(in srgb,var(--bg) 85%,transparent);border:1px solid var(--amber);cursor:pointer}.panel.ms.full .ms-rhint{display:none}}
+@media (max-width:700px) and (orientation:portrait){.qbtn.ms-rhint{display:inline-block;border-color:var(--amber);color:var(--amber)}.panel.ms.full .ms-rhint{display:none}
+ .ms-stage .rm-tl{max-width:calc(100% - 24px);top:8px;left:8px}.ms-stage .rm-tr{top:auto;bottom:46px;right:8px}.ms-stage .rm-ban{bottom:auto;top:44%}}
 .ms-cold,.ms-lost{position:absolute;inset:0;background:#020507;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;overflow:hidden}
 .mc-term{font-family:var(--mono);font-size:clamp(.6rem,1.4vw,.8rem);letter-spacing:.16em;color:var(--cyan);width:min(560px,86%)}
 .mc-term p{margin:0 0 4px;opacity:0;white-space:nowrap;overflow:hidden;animation:msType .5s steps(24) calc(.2s + var(--i)*.38s) both,gzfade .01s calc(.2s + var(--i)*.38s) forwards}
@@ -1585,9 +1586,9 @@ html.msfull{overflow:hidden}
   <section id="mission">
     <div class="sh"><div><div class="ix">MODUL 02 // BRIEFING</div><h2>Missionsbriefing</h2></div><p>Gut sechs Minuten, in der Reihenfolge des Einsatzplans: Auftrag, Tag 1 bis Tag 3, Finale. M hat darauf bestanden, dass Sie es sich ansehen.</p></div>
     <div class="panel ms"><div class="ph"><b>BRIEFING // OPERATION SPLENDIDE</b><span class="st" id="msTime"></span></div>
-      <div class="ms-stage" id="msStage" aria-live="off"><button type="button" class="ms-rhint" id="msRot">⤢ QUER</button></div>
+      <div class="ms-stage" id="msStage" aria-live="off"></div>
       <div class="ms-cap" id="msCap"><canvas class="ms-scope" id="msScope" aria-hidden="true"></canvas><div class="ms-ct" id="msCapT" aria-live="polite"></div><div class="ms-lage" id="msLage" aria-hidden="true"></div></div>
-      <div class="ms-ctl"><button type="button" class="qbtn go" id="msPlay">▶ ABSPIELEN</button><button type="button" class="qbtn" id="msPrev" aria-label="Vorherige Szene">‹ SZENE</button><button type="button" class="qbtn" id="msNext" aria-label="Nächste Szene">SZENE ›</button><button type="button" class="qbtn" id="msRe">↺ VON VORN</button><button type="button" class="qbtn" id="msVox" aria-pressed="false" title="Sprachausgabe">STIMME AUS</button><button type="button" class="qbtn" id="msSnd" aria-pressed="false" title="Musik und Effekte">♪ MUSIK AUS</button><button type="button" class="qbtn" id="msFull" aria-pressed="false" title="Vollbild (F)">⛶ VOLLBILD</button><span class="ms-time" id="msScene"></span><div class="ms-prog"><i id="msBar"></i></div></div>
+      <div class="ms-ctl"><button type="button" class="qbtn go" id="msPlay">▶ ABSPIELEN</button><button type="button" class="qbtn" id="msPrev" aria-label="Vorherige Szene">‹ SZENE</button><button type="button" class="qbtn" id="msNext" aria-label="Nächste Szene">SZENE ›</button><button type="button" class="qbtn" id="msRe">↺ VON VORN</button><button type="button" class="qbtn" id="msVox" aria-pressed="false" title="Sprachausgabe">STIMME AUS</button><button type="button" class="qbtn" id="msSnd" aria-pressed="false" title="Musik und Effekte">♪ MUSIK AUS</button><button type="button" class="qbtn" id="msFull" aria-pressed="false" title="Vollbild (F)">⛶ VOLLBILD</button><button type="button" class="qbtn ms-rhint" id="msRot">⤢ QUER LESEN</button><span class="ms-time" id="msScene"></span><div class="ms-prog"><i id="msBar"></i></div></div>
       <div class="ms-chips" id="msChips"></div>
     </div>
   </section>
