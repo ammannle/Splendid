@@ -22,6 +22,9 @@ from chatterbox.mtl_tts import ChatterboxMultilingualTTS
 from faster_whisper import WhisperModel
 
 RUNS, SRUNS, ROUNDS = 5, 8, 4
+# Eigennamen (Lautschrift): Erkennung schreibt sie verschieden, daher unscharfer Abgleich
+NAMES = {'schiffre', 'lö', 'kwantum', 'spekter', 'wesper', 'splondiehd', 'roajal', 'loket', 'pupp', 'barrandoff', 'dänjub', 'emm',
+         'karolinenthal', 'karlsbad', 'nassau', 'mühlbrunnkolonnade', 'veitsberg', 'pilsen', 'augsburg', 'böhmen', 'kaiserbad', 'grandhotel'}
 # Lautschrift -> so schreibt die Erkennung den Namen üblicherweise
 ALT = {'lö': ['le'], 'schiffre': ['chiffre', 'schiffer', 'shiffre'], 'spekter': ['spectre', 'specter', 'spektor'],
        'kwantum': ['quantum'], 'wesper': ['vesper'], 'splondiehd': ['splendide', 'splendid'], 'kasino': ['casino'],
@@ -32,8 +35,17 @@ FUNC = {'die', 'der', 'das', 'den', 'dem', 'ein', 'und', 'es', 'in', 'an', 'am',
 def toks(t):
     t = re.sub(r'\b00\b', 'doppelnull', t.lower())
     t = re.sub(r'doppel[\s-]*null', 'doppelnull', t).replace('-', ' ')
-    t = re.sub(r'\d+', lambda m: ' ' + NUM.get(int(m[0]), m[0]) + ' ', t)
-    return [w for w in re.sub(r'[^a-zäöüß ]', ' ', t).split() if w]
+    t = re.sub(r'\d+', lambda m: ' ' + ({0: 'null'} | NUM).get(int(m[0]), m[0]) + ' ', t)
+    t = re.sub(r'doppel[\s-]*null', 'doppelnull', t)
+    t = t.replace('ß', 'ss').replace('ph', 'f')
+    t = re.sub(r'c(?!h)', 'k', t)
+    return [w for w in re.sub(r'[^a-zäöü ]', ' ', t).split() if w]
+
+def same(r, h):
+    """Normales Wort: gleich, oder nur die Endung weicht ab (Beugung); der Wortanfang muss stimmen."""
+    if r == h: return True
+    n = min(4, len(r))
+    return h[:n] == r[:n] and difflib.SequenceMatcher(None, r, h).ratio() >= .8
 
 def sim(r, h):
     best = difflib.SequenceMatcher(None, r, h).ratio()
@@ -78,8 +90,8 @@ def check(asr, text, wav):
     errs, last = [], None
     for i, j in align(ref, hyp):
         if i is not None and j is not None:
-            s = sim(ref[i], hyp[j]); need = .55 if ref[i] in ALT else (.6 if len(ref[i]) > 6 else .7)
-            if s >= need: last = (i, j); continue
+            good = sim(ref[i], hyp[j]) >= .55 if (ref[i] in ALT or ref[i] in NAMES) else same(ref[i], hyp[j])
+            if good: last = (i, j); continue
             errs.append(f'{ref[i]}≠{hyp[j]}')
         elif i is not None:
             if ref[i] in FUNC and len(ref) > 6: errs.append(f'(-{ref[i]})')   # kurzes Füllwort: leichter Fehler
