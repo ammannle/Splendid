@@ -37,6 +37,7 @@ def toks(t):
     t = re.sub(r'doppel[\s-]*null', 'doppelnull', t).replace('-', ' ')
     t = re.sub(r'\d+', lambda m: ' ' + ({0: 'null'} | NUM).get(int(m[0]), m[0]) + ' ', t)
     t = re.sub(r'doppel[\s-]*null', 'doppelnull', t)
+    t = re.sub(r'\bkm\b', 'kilometer', t)
     t = t.replace('ß', 'ss').replace('ph', 'f')
     t = re.sub(r'c(?!h)', 'k', t)
     return [w for w in re.sub(r'[^a-zäöü ]', ' ', t).split() if w]
@@ -84,7 +85,7 @@ def check(asr, text, wav):
     rs = set(ref); j = 0
     while j < len(hyp) - 1:
         w = hyp[j] + hyp[j + 1]
-        if hyp[j] not in rs and any(difflib.SequenceMatcher(None, w, r).ratio() >= .85 for r in rs):
+        if hyp[j] not in rs and hyp[j + 1] not in rs and len(hyp[j]) > 2 and any(difflib.SequenceMatcher(None, w, r).ratio() >= .85 for r in rs):
             hyp[j:j + 2] = [w]; hwi[j:j + 2] = [hwi[j + 1]]
         else: j += 1
     errs, last = [], None
