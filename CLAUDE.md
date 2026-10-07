@@ -242,4 +242,7 @@ Freigabe: „Anyone with the link“ ist aktiv. Wer die Seite offen hat, sieht n
   M-Hinweisen ab dem 2. Versuch) → Missionsbriefing startet automatisch im Vollbild-Overlay (`msArm()` schaltet Stimme/Musik in der
   Eingabe-Geste frei, `msAuto(done)`, Klasse `.ms.auto`, Knopf „BRIEFING ÜBERSPRINGEN“, Esc) → danach reguläre Seite (`pageIn()`,
   Seitenaufbau `boot`). Läuft bei jedem Laden und bei „Intro wiederholen“. Tests mit `__NOINTRO` überspringen alles.
+- Version 34 (07.10.2026): Keine künstliche Drehung mehr im Briefing-Vollbild (`.rot` und Orientierungssperre entfernt, Knopf „Quer lesen“
+  ausgeblendet): Hochformat zeigt das Bild aufrecht in 4:3 mit Steuerung darunter, Querformat bildschirmfüllend. Kennwort-Tor erscheint
+  sofort über dem Intro (keine Türöffnung mehr, die Seite blitzt nicht auf); beim Freigeben startet das Briefing unter dem Tor, das dann ausblendet.
 - Tests: Playwright-Skripte müssen vor dem Laden `window.__NOINTRO=1` per `addInitScript` setzen, sonst läuft das Intro.
