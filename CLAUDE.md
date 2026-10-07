@@ -227,4 +227,9 @@ Freigabe: „Anyone with the link“ ist aktiv. Wer die Seite offen hat, sieht n
   Datenpakete im Organigramm (`orgFx`), Geldströme und hochzählende Beträge (`acctFx`), Titel entschlüsselt mit Lichtkante und 13 Zielpunkten
   (`openFx`), Scheinwerferkegel auf der Routenkarte, Kartenwenden und Herzschlag am Pokertisch, Staub beim Stempel (`finFx`), Bildrauschen
   und Röhre aus am Ende (`lostFx`). Alles respektiert reduzierte Bewegung.
+- Version 31 (07.10.2026): Routenkarten im Briefing neu (`rleg`/`rmap`/`rdrive` v2, Klasse `.ms-rm.v2`): Strecke als Catmull-Rom-Spline
+  (`crSpline`), Grundkarte ohne Schrift (`rgeo`), Beschriftung, Start-/Zielmarken, Wegpunkte und Fahrzeug in einer Ebene in Bildschirmpixeln
+  (`.rl-ov`, Labels aus `rlabels()`, Kollision nach Rang, meiden HUD-Felder). Kamera: Totale (`T1`), Anflug (`T2`), Verfolgung mit Vorausblick,
+  Schlusstotale (`TE`). Die gefahrene Linie wird jedes Bild exakt bis zur Fahrzeugposition gebaut (kein Nachhinken); Scheinwerferkegel entfernt.
+  Fahrt-Szenen a, c, d jetzt 6,5 s.
 - Tests: Playwright-Skripte müssen vor dem Laden `window.__NOINTRO=1` per `addInitScript` setzen, sonst läuft das Intro.

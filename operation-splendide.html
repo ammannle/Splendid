@@ -1505,7 +1505,7 @@ html.msfull{overflow:hidden}
 .ms-cold .cx-globe{position:absolute;right:-2%;top:-6%;height:112%;aspect-ratio:1;opacity:0;animation:gzfade 1.4s ease .3s forwards;pointer-events:none}
 .ms-cold.glb .mc-term,.ms-cold.glb .ms-scope,.ms-cold.glb .mc-live{position:relative;z-index:1;width:min(460px,52%)}
 /* Routenkarte */
-.ms-rm .rm-beam{fill:url(#rmBeam);opacity:.9}
+
 .ms-rm .rm-dest.on{animation:cxDest 1.4s ease-out infinite;transform-box:fill-box;transform-origin:center}
 @keyframes cxDest{0%{stroke-width:2}50%{stroke-width:5}100%{stroke-width:2}}
 /* Poker */
@@ -1529,6 +1529,45 @@ html.msfull{overflow:hidden}
 @media (prefers-reduced-motion:reduce){.ms-sc .ms-open .mo-title,.ms-open .mo-title span{animation:none;opacity:1}.cx-dust,.cx-streak,.cx-scan,.cx-sweep,.cx-plot,.cx-hb,.cx-burst,.cx-flare{display:none}.cx-ret{opacity:1;transform:none;transition:none}
   .ms-sc .ms-split>.bp,.ms-sc .ms-acmap svg,.ms-sc .pk,.ms-sc .ms-fin>svg{animation:none}.cx-br,.cx-seg i,.cx-id{animation:none;opacity:1}}
 
+/* Routenkarte v31 */
+.ms-rm.v2 .rm-map{position:absolute;inset:0;width:100%;height:100%}
+.ms-rm.v2 .rl-ov{position:absolute;inset:0;width:100%;height:100%;overflow:visible;pointer-events:none}
+.ms-rm.v2 .m-grid{stroke:rgba(143,215,232,.05);vector-effect:non-scaling-stroke}
+.ms-rm.v2 .m-cont{opacity:.11}.ms-rm.v2 .m-cont.maj{opacity:.2}
+.ms-rm.v2 .m-river{stroke:#1E5A70;stroke-width:2.4px;vector-effect:non-scaling-stroke}
+.ms-rm.v2 .m-border{stroke:rgba(220,235,239,.35);stroke-width:1.2px;vector-effect:non-scaling-stroke}
+.ms-rm.v2 .rm-all{fill:none;stroke:rgba(143,215,232,.22);stroke-width:1.6px;stroke-linejoin:round;vector-effect:non-scaling-stroke}.ms-rm.v2 .rm-all.b{stroke-dasharray:3 5}
+.ms-rm.v2 .rm-plan{fill:none;stroke:rgba(242,182,94,.55);stroke-width:1.6px;stroke-dasharray:1;stroke-dashoffset:0;stroke-linejoin:round;vector-effect:non-scaling-stroke}
+.ms-rm.v2 .rm-done{fill:none;stroke:var(--amber);stroke-width:3px;stroke-linejoin:round;stroke-linecap:round;vector-effect:non-scaling-stroke;filter:none}
+.ms-rm.v2 .rm-glow{fill:none;stroke:var(--amber);stroke-width:9px;opacity:.16;stroke-linejoin:round;stroke-linecap:round;vector-effect:non-scaling-stroke}
+.rl{opacity:0;transition:opacity .35s}.rl.on{opacity:1}
+.rl text{font-family:var(--mono);font-size:12px;letter-spacing:.06em;fill:var(--ink);paint-order:stroke;stroke:var(--mapbg);stroke-width:4px;stroke-linejoin:round}
+.rl .d{fill:var(--mapbg);stroke:var(--ink);stroke-width:1.4}
+.rl.tn text{font-family:var(--head);font-weight:600;font-size:14px;letter-spacing:.1em}
+.rl.tn2 text{fill:color-mix(in srgb,var(--ink) 75%,var(--bg))}
+.rl.riv text{fill:#6FB6CC;font-style:italic;letter-spacing:.3em}
+.rl.rng text{fill:color-mix(in srgb,var(--ink) 55%,var(--bg));letter-spacing:.34em}
+.rl.cty text{fill:color-mix(in srgb,var(--ink) 40%,var(--bg));font-size:13px;letter-spacing:.5em}
+.rl.road rect{fill:var(--mapbg);stroke:var(--cyan);stroke-width:1;opacity:.95}.rl.road text{fill:var(--cyan);font-weight:600;stroke:none}
+.rl.hot text{fill:var(--amber)}.rl.hot .d{stroke:var(--amber);fill:var(--amber)}
+.rp{opacity:0;transition:opacity .4s}.rp.in{opacity:1}.rp.dim{opacity:.55}
+.rp .pc{stroke:var(--mapbg);stroke-width:2}.rp.s .pc{fill:var(--green)}.rp.e .pc{fill:var(--red)}
+.rp .pr{fill:none;stroke-width:1.5;transform-box:fill-box;transform-origin:center;animation:rpRing 1.8s ease-out infinite}.rp.s .pr{stroke:var(--green)}.rp.e .pr{stroke:var(--red)}
+.rp .pl rect{fill:color-mix(in srgb,var(--bg) 85%,transparent);stroke-width:1}.rp.s .pl rect{stroke:var(--green)}.rp.e .pl rect{stroke:var(--red)}
+.rp .pl text{font-family:var(--mono);font-size:11px;letter-spacing:.12em;font-weight:600}.rp.s .pl text{fill:var(--green)}.rp.e .pl text{fill:var(--red)}
+.rp.e.lk .pc{animation:rpLk 1s ease-in-out infinite}
+@keyframes rpRing{0%{transform:scale(.4);opacity:.9}100%{transform:scale(1.6);opacity:0}}
+@keyframes rpLk{50%{r:8}}
+.rw .wd{fill:var(--mapbg);stroke:var(--cyan);stroke-width:1.4}.rw.on .wd{fill:var(--green);stroke:var(--green)}
+.rw .wr{fill:none;stroke:var(--green);opacity:0;transform-box:fill-box;transform-origin:center}.rw.on .wr{animation:rwPing .9s ease-out}
+@keyframes rwPing{0%{opacity:.9;transform:scale(.3)}100%{opacity:0;transform:scale(2.2)}}
+.rc .ca{fill:var(--amber);stroke:#1a1206;stroke-width:1.2;stroke-linejoin:round}
+.rc .ch{fill:rgba(242,182,94,.16);stroke:rgba(242,182,94,.55);stroke-width:1}
+.rc .cp{fill:none;stroke:var(--amber);stroke-width:1.2;opacity:0;transform-box:fill-box;transform-origin:center}
+.rc.mv .cp{animation:rcPulse 1.6s ease-out infinite}
+@keyframes rcPulse{0%{opacity:.7;transform:scale(.5)}100%{opacity:0;transform:scale(1.3)}}
+@media (max-width:700px){.rl text{font-size:11px}.rl.tn text{font-size:12px}.rl.rng text,.rl.cty text{display:none}.rp .pl{display:none}}
+@media (prefers-reduced-motion:reduce){.rp .pr,.rc .cp,.rw .wr{animation:none}}
 .ms-cold,.ms-lost{position:absolute;inset:0;background:#020507;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;overflow:hidden}
 .mc-term{font-family:var(--mono);font-size:clamp(.6rem,1.4vw,.8rem);letter-spacing:.16em;color:var(--cyan);width:min(560px,86%)}
 .mc-term p{margin:0 0 4px;opacity:0;white-space:nowrap;overflow:hidden;animation:msType .5s steps(24) calc(.2s + var(--i)*.38s) both,gzfade .01s calc(.2s + var(--i)*.38s) forwards}
@@ -4720,50 +4759,104 @@ function rbase(fz){fz=+fz||1;if(RMB[fz])return RMB[fz];const m=maps.route,{P}=rp
   (m.towns2||[]).forEach(([n,la,lo])=>{const[x,y]=P(la,lo);o+=`<circle cx="${x}" cy="${y}" r="${1.6*fz}" class="m-town2"/><text x="${x+4*fz}" y="${y+2.5*fz}" class="m-tn2">${n}</text>`});
   m.towns.forEach(([n,la,lo,ps])=>{const[x,y]=P(la,lo),l=ps==='l';o+=`<rect x="${x-2*fz}" y="${y-2*fz}" width="${4*fz}" height="${4*fz}" class="m-town"/><text x="${l?x-5*fz:x+5*fz}" y="${y-4*fz}" class="m-townt" ${l?'text-anchor="end"':''}>${n.toUpperCase()}</text>`});
   return RMB[fz]=o}
-function rleg(k){const L=RL[k],m=maps.route,{P}=rproj(),src=L.set==='out'?m.out:m.back,C={aug:[48.3705,10.8978],loket:[50.1866,12.754],kv:[50.2306,12.8711],prg:[50.0755,14.4378]};
-  const near=c=>{let b=0,bd=1e9;src.forEach((q,i)=>{const d=(q[0]-c[0])**2+(q[1]-c[1])**2;if(d<bd){bd=d;b=i}});return b};let a=near(C[L.f]),b=near(C[L.t]);if(L.set==='back'&&b===0)b=src.length-1;
+/* Routenkarte v31: geglättete Strecke, Beschriftung in Bildschirmgröße (Ebene über der Karte), Kamera mit Totale, Verfolgung mit Vorausblick und Schlusstotale.
+   Die gefahrene Linie wird jedes Bild exakt bis zur Fahrzeugposition neu gebaut (kein Nachhinken). */
+const C4={aug:[48.3705,10.8978],loket:[50.1866,12.754],kv:[50.2306,12.8711],prg:[50.0755,14.4378]};
+function crSpline(raw,n){if(raw.length<3)return raw.slice();const out=[],p=i=>raw[Math.max(0,Math.min(raw.length-1,i))];
+  for(let i=0;i<raw.length-1;i++){const p0=p(i-1),p1=p(i),p2=p(i+1),p3=p(i+2);for(let j=0;j<n;j++){const t=j/n,t2=t*t,t3=t2*t;
+    out.push([0,1].map(k=>.5*((2*p1[k])+(-p0[k]+p2[k])*t+(2*p0[k]-5*p1[k]+4*p2[k]-p3[k])*t2+(-p0[k]+3*p1[k]-3*p2[k]+p3[k])*t3)))}}
+  out.push(raw[raw.length-1]);return out}
+function rleg(k){const L=RL[k],m=maps.route,{P}=rproj(),src=L.set==='out'?m.out:m.back;
+  const near=c=>{let b=0,bd=1e9;src.forEach((q,i)=>{const d=(q[0]-c[0])**2+(q[1]-c[1])**2;if(d<bd){bd=d;b=i}});return b};let a=near(C4[L.f]),b=near(C4[L.t]);if(L.set==='back'&&b===0)b=src.length-1;
   const raw=(a<=b?src.slice(a,b+1):src.slice(b,a+1).reverse()).map(q=>P(q[0],q[1]));
-  const pts=[];for(let i=1;i<raw.length;i++){const[x0,y0]=raw[i-1],[x1,y1]=raw[i],n=Math.max(1,Math.ceil(Math.hypot(x1-x0,y1-y0)/2));for(let j=0;j<n;j++){const t=j/n;pts.push([x0+(x1-x0)*t,y0+(y1-y0)*t])}}pts.push(raw[raw.length-1]);
-  if(k==='b'){const[x0,y0]=raw[0],[x1,y1]=raw[raw.length-1];pts.length=0;for(let j=0;j<=60;j++){const t=j/60;pts.push([x0+(x1-x0)*t+Math.sin(t*Math.PI*3)*1.4,y0+(y1-y0)*t-Math.sin(t*Math.PI)*2.5])}}
+  let pts=crSpline(raw,24);
+  if(k==='b'){const[x0,y0]=raw[0],[x1,y1]=raw[raw.length-1];pts=[];for(let j=0;j<=80;j++){const t=j/80;pts.push([x0+(x1-x0)*t+Math.sin(t*Math.PI*3)*1.4,y0+(y1-y0)*t-Math.sin(t*Math.PI)*2.5])}}
   const cum=[0];for(let i=1;i<pts.length;i++)cum.push(cum[i-1]+Math.hypot(pts[i][0]-pts[i-1][0],pts[i][1]-pts[i-1][1]));const len=cum[cum.length-1];
-  const at=f=>{const d=f*len;let i=1;while(i<cum.length-1&&cum[i]<d)i++;const t=(d-cum[i-1])/((cum[i]-cum[i-1])||1),x=pts[i-1][0]+(pts[i][0]-pts[i-1][0])*t,y=pts[i-1][1]+(pts[i][1]-pts[i-1][1])*t;return[x,y,Math.atan2(pts[i][1]-pts[i-1][1],pts[i][0]-pts[i-1][0])]};
+  const idx=f=>{const d=f*len;let lo=1,hi=cum.length-1;while(lo<hi){const md=(lo+hi)>>1;if(cum[md]<d)lo=md+1;else hi=md}return lo};
+  const at=f=>{const i=idx(f),d=f*len,t=(d-cum[i-1])/((cum[i]-cum[i-1])||1),x=pts[i-1][0]+(pts[i][0]-pts[i-1][0])*t,y=pts[i-1][1]+(pts[i][1]-pts[i-1][1])*t;return[x,y,Math.atan2(pts[i][1]-pts[i-1][1],pts[i][0]-pts[i-1][0]),i]};
   const wps=[];[...m.towns,...(m.towns2||[])].forEach(([n,la,lo])=>{const[x,y]=P(la,lo);let bi=-1,bd=1e9;pts.forEach((q,i)=>{const d=Math.hypot(q[0]-x,q[1]-y);if(d<bd){bd=d;bi=i}});if(bd<9)wps.push([n.split(' ')[0],cum[bi]/len,x,y])});
   let bf=null;if(m.border){const B=m.border.map(q=>P(q[0],q[1]));for(let i=1;i<pts.length&&bf==null;i++)for(let j=1;j<B.length;j++){const[a1,b1]=pts[i-1],[a2,b2]=pts[i],[c1,d1]=B[j-1],[c2,d2]=B[j],den=(a2-a1)*(d2-d1)-(b2-b1)*(c2-c1);if(!den)continue;const u=((c1-a1)*(d2-d1)-(d1-b1)*(c2-c1))/den,v=((c1-a1)*(b2-b1)-(d1-b1)*(a2-a1))/den;if(u>=0&&u<=1&&v>=0&&v<=1){bf=(cum[i-1]+u*(cum[i]-cum[i-1]))/len;break}}}
-  wps.sort((p,q)=>p[1]-q[1]);return{L,pts,len,at,wps:wps.filter((w,i,a)=>a.findIndex(z=>z[0]===w[0])===i),bf,d:'M'+pts.map(q=>q[0].toFixed(1)+' '+q[1].toFixed(1)).join('L')}}
-function rmap(k){const R2=rleg(k),L=R2.L,[dx,dy]=R2.pts[R2.pts.length-1];
-  const tk0=[...R2.wps.filter(w=>w[1]>.06&&w[1]<.94).map(w=>[w[0].toUpperCase(),w[1],'']),...(R2.bf!=null&&!R2.wps.some(w=>Math.abs(w[1]-R2.bf)<.06)?[['GRENZE',R2.bf,'']]:[])].sort((a,b)=>a[1]-b[1]),ticks=[[RT[L.f],0,'s']];
+  wps.sort((p,q)=>p[1]-q[1]);const xs=pts.map(p=>p[0]),ys=pts.map(p=>p[1]);
+  return{L,pts,len,at,wps:wps.filter((w,i,a)=>a.findIndex(z=>z[0]===w[0])===i&&w[1]>.04&&w[1]<.96),bf,box:[Math.min(...xs),Math.min(...ys),Math.max(...xs),Math.max(...ys)],d:'M'+pts.map(q=>q[0].toFixed(1)+' '+q[1].toFixed(1)).join('L')}}
+/* Grundkarte ohne Schrift (Schrift kommt in Bildschirmgröße aus der Ebene darüber), Straßen geglättet */
+let RGEO=null;
+function rgeo(){if(RGEO)return RGEO;const m=maps.route,{P}=rproj(),sm=a=>'M'+crSpline(a.map(q=>P(q[0],q[1])),18).map(q=>q[0].toFixed(1)+' '+q[1].toFixed(1)).join('L');
+  let o=rbase(1).replace(/<text[\s\S]*?<\/text>/g,'').replace(/<rect[^>]*class="(plate road|m-town)"[^>]*\/>/g,'').replace(/<circle[^>]*class="m-town2"[^>]*\/>/g,'').replace(/<path d="[^"]*" class="rm-all"[^>]*\/>/g,'').replace(/<line[^>]*class="m-grid"\/>/g,'');
+  o+=`<path d="${sm(m.out)}" class="rm-all"/><path d="${sm(m.back)}" class="rm-all b"/>`;return RGEO=o}
+function rlabels(){const m=maps.route,{P}=rproj(),L=[],add=(t,la,lo,c,p,o)=>{const[x,y]=P(la,lo);L.push(Object.assign({t,x,y,c,p},o||{}))};
+  add('DEUTSCHLAND',49.05,11.95,'cty',0);add('ČESKÁ REPUBLIKA',49.45,13.75,'cty',0);
+  (m.ranges||[]).forEach(([n,la,lo])=>add(n,la,lo,'rng',1));(m.rivers||[]).forEach(([pts,n,lp])=>add(n,lp[0],lp[1],'riv',1.5));
+  (m.roads||[]).forEach(([n,la,lo])=>add(n,la,lo,'road',2,{plate:1}));(m.towns2||[]).forEach(([n,la,lo])=>add(n,la,lo,'tn2',2.5,{dot:1}));
+  m.towns.forEach(([n,la,lo,ps])=>add(n.split(' · ')[0].toUpperCase(),la,lo,'tn',3,{dot:1,left:ps==='l',key:n.split(' ')[0]}));return L}
+function rmap(k){const R2=rleg(k),L=R2.L;
+  const tk0=[...R2.wps.map(w=>[w[0].toUpperCase(),w[1],'']),...(R2.bf!=null&&!R2.wps.some(w=>Math.abs(w[1]-R2.bf)<.06)?[['GRENZE',R2.bf,'']]:[])].sort((a,b)=>a[1]-b[1]),ticks=[[RT[L.f],0,'s']];
   tk0.forEach(t=>{if(t[1]-ticks[ticks.length-1][1]>.09&&t[1]<.91)ticks.push(t)});ticks.push([RT[L.t],1,'e']);
-  const fz=(L.z/400).toFixed(3),known=maps.route.towns.some(t=>t[0].toUpperCase().startsWith(RT[L.t]));
-  return `<div class="ms-rm" data-leg="${k}"><svg viewBox="0 0 1000 470" preserveAspectRatio="xMidYMid slice" aria-hidden="true" style="--fz:${fz}">${rbase(fz)}
-    <path d="${R2.d}" class="rm-ahead"/><path d="${R2.d}" class="rm-done" pathLength="1" stroke-dasharray="0 1"/>
-    ${R2.wps.map(w=>`<g class="rm-wp" data-f="${w[1].toFixed(3)}"><circle cx="${w[2].toFixed(1)}" cy="${w[3].toFixed(1)}" r="${(3.2*fz).toFixed(2)}"/></g>`).join('')}
-    <circle class="rm-dest" cx="${dx.toFixed(1)}" cy="${dy.toFixed(1)}" r="${(9*fz).toFixed(2)}"/>${known?'':`<text class="rm-lab" x="${(dx+7*fz).toFixed(1)}" y="${(dy+13*fz).toFixed(1)}">${RT[L.t]}</text>`}
-    <defs><linearGradient id="rmBeam" x1="0" x2="1"><stop offset="0" stop-color="#F2B65E" stop-opacity=".35"/><stop offset="1" stop-color="#F2B65E" stop-opacity="0"/></linearGradient></defs><g class="rm-car"><g transform="scale(${fz})"><path class="rm-beam" d="M5 0L34 -9Q38 0 34 9Z"/><circle class="halo" r="10"/><circle r="6"/><path d="M7 0L-5 -5L-2.5 0L-5 5Z"/></g></g></svg>
+  return `<div class="ms-rm v2" data-leg="${k}"><svg class="rm-map" viewBox="0 0 1000 470" preserveAspectRatio="xMidYMid slice" aria-hidden="true">${rgeo()}
+    <path d="${R2.d}" class="rm-plan" pathLength="1"/><path d="" class="rm-done"/><path d="" class="rm-glow"/></svg>
+    <svg class="rl-ov" aria-hidden="true"></svg>
     <div class="rm-hud"><div class="rm-tl"><span>ETAPPE ${k.toUpperCase()} · ${L.via}</span><b>${RT[L.f]} → ${RT[L.t]}</b></div>
     <div class="rm-tr"><div><i>DISTANZ</i><b class="v-km">0 KM</b></div><div><i>FAHRZEIT</i><b class="v-t">0:00</b></div><div><i>TEMPO</i><b class="v-v">0</b></div></div>
     <div class="rm-ban"></div><div class="rm-bot">${ticks.map(t=>`<span class="rm-tk ${t[2]}" data-f="${t[1].toFixed(3)}" style="left:${(t[1]*100).toFixed(1)}%">${t[0]}</span>`).join('')}<div class="rm-bar"><i></i></div></div></div></div>`}
-function rdrive(root,s){const box=root.querySelector('.ms-rm');if(!box)return;const k=box.dataset.leg,R2=rleg(k),L=R2.L,svg=box.querySelector('svg'),car=svg.querySelector('.rm-car'),done=svg.querySelector('.rm-done'),me=cur;
-  const km=box.querySelector('.v-km'),tm=box.querySelector('.v-t'),vv=box.querySelector('.v-v'),bar=box.querySelector('.rm-bar i'),ban=box.querySelector('.rm-ban'),tks=[...box.querySelectorAll('.rm-tk')],wps=[...svg.querySelectorAll('.rm-wp')];
-  const m0=(t=>{const[h,mm]=t.split(':').map(Number);return h*60+mm})(L.t0),m1=(t=>{const[h,mm]=t.split(':').map(Number);return h*60+mm})(L.t1),hhmm=v=>`${String(Math.floor(v/60)%24).padStart(2,'0')}:${String(Math.floor(v%60)).padStart(2,'0')}`;
-  const full=[0,0,1000,470],Z=L.z,ZH=Z*470/1000,[sx,sy]=R2.pts[0],[ex,ey]=R2.pts[R2.pts.length-1],cl=(x,y,w,h)=>[Math.max(-60,Math.min(1060-w,x-w/2)),Math.max(-40,Math.min(510-h,y-h/2)),w,h];
-  const D=RM?0:Math.max(3600,Math.min(6400,(s.t||7)*1000-2300)),T1=800,T2=1700,T3=T2+D;let banQ=[],last=-1,cx=sx,cy=sy,vs=0;
-  const show=(txt,red)=>{ban.textContent=txt;ban.className='rm-ban'+(red?' r':'');void ban.offsetWidth;ban.classList.add('go')};
-  const P2=u=>{const a=.1;if(u<a)return u*u/(2*a)/(1-a);if(u>1-a)return 1-(1-u)*(1-u)/(2*a)/(1-a);return (u-a/2)/(1-a)};
-  const t0=performance.now();svg.setAttribute('viewBox',full.join(' '));
-  (function step(now){if(cur!==me||!box.isConnected)return;const t=RM?T3+1:now-t0;
+function rdrive(root,s){const box=root.querySelector('.ms-rm');if(!box)return;const k=box.dataset.leg,R2=rleg(k),L=R2.L,svg=box.querySelector('.rm-map'),ov=box.querySelector('.rl-ov'),me=cur,NS='http://www.w3.org/2000/svg';
+  const done=svg.querySelector('.rm-done'),glow=svg.querySelector('.rm-glow'),plan=svg.querySelector('.rm-plan');
+  const km=box.querySelector('.v-km'),tm=box.querySelector('.v-t'),vv=box.querySelector('.v-v'),bar=box.querySelector('.rm-bar i'),ban=box.querySelector('.rm-ban'),tks=[...box.querySelectorAll('.rm-tk')];
+  const mins=t=>{const[h,mm]=t.split(':').map(Number);return h*60+mm},m0=mins(L.t0),m1=mins(L.t1);
+  /* Ebene in Bildschirmpixeln */
+  let BW=box.clientWidth,BH=box.clientHeight;ov.setAttribute('viewBox',`0 0 ${BW} ${BH}`);const A=BW/BH,mob=BW<560;
+  const LB=rlabels().map(l=>{const g=document.createElementNS(NS,'g');g.setAttribute('class','rl '+l.c);let h='';
+    if(l.dot)h+=`<circle r="${l.c==='tn'?3.4:2.4}" class="d"/>`;
+    const tx=l.dot?(l.left?-8:8):0,anc=l.dot?(l.left?'end':'start'):'middle';
+    if(l.plate){const w=l.t.length*8+10;h+=`<rect x="${-w/2}" y="-9" width="${w}" height="18" rx="2"/>`}
+    h+=`<text x="${tx}" y="${l.dot?4:l.plate?4.5:4}" text-anchor="${anc}">${l.t}</text>`;g.innerHTML=h;ov.appendChild(g);
+    const cw=l.c==='tn'?8.6:l.c==='cty'||l.c==='rng'?9.4:7.6,w=l.plate?l.t.length*8+10:l.t.length*cw+(l.dot?10:0);
+    return Object.assign(l,{g,w,h:18,on:false,hot:false})});
+  const pin=(cls,lab)=>{const g=document.createElementNS(NS,'g');g.setAttribute('class','rp '+cls);g.innerHTML=`<circle r="15" class="pr"/><circle r="5.5" class="pc"/><g class="pl"><rect x="12" y="-24" width="${lab.length*7.6+16}" height="18" rx="2"/><text x="20" y="-11">${lab}</text></g>`;ov.appendChild(g);return g};
+  const p0=pin('s','START · '+RT[L.f]),p1=pin('e','ZIEL · '+RT[L.t]);
+  const W=R2.wps.map(w=>{const g=document.createElementNS(NS,'g');g.setAttribute('class','rw');g.innerHTML='<circle r="9" class="wr"/><circle r="3.6" class="wd"/>';ov.appendChild(g);return{w,g,on:false}});
+  const car=document.createElementNS(NS,'g');car.setAttribute('class','rc');car.innerHTML='<circle r="20" class="cp"/><circle r="11" class="ch"/><path d="M11 0L-7 -8L-3 0L-7 8Z" class="ca"/>';ov.appendChild(car);
+  /* Kamera */
+  const[b0,b1,b2,b3]=R2.box,bw=b2-b0,bh=b3-b1,fw=Math.max(bw*1.35,bh*1.35*A,120),fit=[(b0+b2)/2,(b1+b3)/2,fw],
+    wf=Math.min(fw,Math.max(mob?90:110,fw*(mob?.5:.42)));
+  const vbOf=([cx,cy,w])=>{const h=w/A;return[cx-w/2,cy-h/2,w,h]};
+  const proj=(vb,x,y)=>{const sc=Math.max(BW/vb[2],BH/vb[3]),ox=(BW-vb[2]*sc)/2,oy=(BH-vb[3]*sc)/2;return[(x-vb[0])*sc+ox,(y-vb[1])*sc+oy]};
+  const ez=u=>u<.5?4*u*u*u:1-Math.pow(-2*u+2,3)/2,P2=u=>{const a=.12;if(u<a)return u*u/(2*a)/(1-a);if(u>1-a)return 1-(1-u)*(1-u)/(2*a)/(1-a);return(u-a/2)/(1-a)};
+  const T1=1300,T2=2300,TE=1000,D=RM?0:Math.max(2600,Math.min(6200,(s.t||7)*1000-T2-TE-400)),T3=T2+D;
+  let cam=null,lastNow=performance.now(),hd=R2.at(0)[2],vs=0,banQ={},lastW=-1;const ck=cxClock();
+  const showBan=(txt,red)=>{ban.textContent=txt;ban.className='rm-ban'+(red?' r':'');void ban.offsetWidth;ban.classList.add('go')};
+  /* geplante Strecke wird in der Totale gezeichnet */
+  if(!RM&&plan.animate)anims.push(plan.animate([{strokeDashoffset:1},{strokeDashoffset:0}],{duration:900,easing:'cubic-bezier(.4,0,.2,1)',fill:'both'}));
+  const pts=R2.pts,prefix=i=>{let d='M'+pts[0][0].toFixed(2)+' '+pts[0][1].toFixed(2);for(let j=1;j<i;j++)d+='L'+pts[j][0].toFixed(2)+' '+pts[j][1].toFixed(2);return d};
+  (function step(now){if(cur!==me||!box.isConnected)return;const t=RM?T3+TE+1:ck(now),dt=Math.min(64,now-lastNow);lastNow=now;
+    if(box.clientWidth!==BW||box.clientHeight!==BH){BW=box.clientWidth;BH=box.clientHeight;ov.setAttribute('viewBox',`0 0 ${BW} ${BH}`)}
     let f=0;if(t>T2)f=Math.min(1,P2(Math.min(1,(t-T2)/D)));
-    const[x,y,a]=R2.at(f);car.setAttribute('transform',`translate(${x.toFixed(1)} ${y.toFixed(1)}) rotate(${(a*180/Math.PI).toFixed(1)})`);done.setAttribute('stroke-dasharray',`${f.toFixed(4)} 1`);
-    cx+=(x-cx)*.12;cy+=(y-cy)*.12;let vb;
-    if(t<T1)vb=full;else if(t<T2){const u=(t-T1)/(T2-T1),q=u<.5?4*u*u*u:1-Math.pow(-2*u+2,3)/2,tg=cl(sx,sy,Z,ZH);vb=full.map((v,i)=>v+(tg[i]-v)*q);cx=sx;cy=sy}
-    else if(f<1)vb=cl(cx,cy,Z,ZH);else{const u=Math.min(1,(t-T3)/900),w=Z*(1+.25*u);vb=cl(ex,ey,w,w*.47)}
-    svg.setAttribute('viewBox',vb.map(v=>v.toFixed(1)).join(' '));
+    const[x,y,a,ix]=R2.at(f);let da=a-hd;while(da>Math.PI)da-=2*Math.PI;while(da<-Math.PI)da+=2*Math.PI;hd+=da*(1-Math.exp(-dt/90));
+    /* gefahrene Linie exakt bis zum Fahrzeug */
+    const dd=f>0?prefix(ix)+'L'+x.toFixed(2)+' '+y.toFixed(2):'';done.setAttribute('d',dd);glow.setAttribute('d',dd);
+    /* Kamera: Totale → Anflug → Verfolgung mit Vorausblick → Schlusstotale */
+    const look=[x+Math.cos(hd)*wf*.14,y+Math.sin(hd)*wf*.14,wf];let tg;
+    if(t<T1)tg=fit;else if(t<T2){const u=ez((t-T1)/(T2-T1)),[sx,sy]=R2.at(0);const L2=[sx+Math.cos(hd)*wf*.14,sy+Math.sin(hd)*wf*.14,wf];tg=fit.map((v,i)=>v+(L2[i]-v)*u)}
+    else if(t<T3)tg=look;else{const u=ez(Math.min(1,(t-T3)/TE));tg=look.map((v,i)=>v+(fit[i]-v)*u)}
+    if(!cam||t<T2||t>T3)cam=tg.slice();else{const q=1-Math.exp(-dt/160);cam=cam.map((v,i)=>v+(tg[i]-v)*q)}
+    const vb=vbOf(cam);svg.setAttribute('viewBox',vb.map(v=>v.toFixed(2)).join(' '));
+    /* Beschriftung in Bildschirmgröße, Kollisionen nach Rang */
+    const[s0x,s0y]=proj(vb,pts[0][0],pts[0][1]),[s1x,s1y]=proj(vb,pts[pts.length-1][0],pts[pts.length-1][1]),[ccx,ccy]=proj(vb,x,y),pw=l=>l.length*7.6+16;
+    const BR=box.getBoundingClientRect(),hudR=[...box.querySelectorAll('.rm-tl,.rm-tr,.rm-bot,.rm-ban.go')].map(e=>{const r=e.getBoundingClientRect();return[r.left-BR.left-4,r.top-BR.top-4,r.right-BR.left+4,r.bottom-BR.top+4]});
+    const placed=[[ccx-24,ccy-24,ccx+24,ccy+24],...hudR];if(t>300&&!mob)placed.push([s0x-8,s0y-28,s0x+12+pw('START · '+RT[L.f]),s0y+8]);if(t>600&&!mob)placed.push([s1x-8,s1y-28,s1x+12+pw('ZIEL · '+RT[L.t]),s1y+8]);const near=(lx,ly)=>{const[cx2,cy2]=proj(vb,x,y);return Math.hypot(lx-cx2,ly-cy2)};
+    LB.slice().sort((p,q)=>q.p-p.p).forEach(l=>{const[sx,sy]=proj(vb,l.x,l.y),x0=l.dot?(l.left?sx-l.w:sx-4):sx-l.w/2,r=[x0-4,sy-l.h/2-2,x0+l.w+4,sy+l.h/2+2];
+      const ok=sx>-20&&sx<BW+20&&sy>34&&sy<BH-46&&r[0]>2&&r[2]<BW-2&&!placed.some(p=>p[0]<r[2]&&r[0]<p[2]&&p[1]<r[3]&&r[1]<p[3])&&near(sx,sy)>(l.dot?0:26);
+      if(ok)placed.push(r);if(ok!==l.on){l.on=ok;l.g.classList.toggle('on',ok)}l.g.setAttribute('transform',`translate(${sx.toFixed(1)} ${sy.toFixed(1)})`);
+      const hot=l.key&&(l.key.toUpperCase().startsWith(RT[L.f])||l.key.toUpperCase().startsWith(RT[L.t])||near(sx,sy)<34);if(hot!==l.hot){l.hot=hot;l.g.classList.toggle('hot',hot)}});
+    p0.setAttribute('transform',`translate(${s0x.toFixed(1)} ${s0y.toFixed(1)})`);p1.setAttribute('transform',`translate(${s1x.toFixed(1)} ${s1y.toFixed(1)})`);
+    if(t>300)p0.classList.add('in');if(t>600)p1.classList.add('in');p1.classList.toggle('lk',f>=1);p0.classList.toggle('dim',t>T2+600);
+    W.forEach(q=>{const[wx,wy]=proj(vb,q.w[2],q.w[3]);q.g.setAttribute('transform',`translate(${wx.toFixed(1)} ${wy.toFixed(1)})`);if(!q.on&&f>=q.w[1]){q.on=true;q.g.classList.add('on');SND.ping()}});
+    const[cx3,cy3]=proj(vb,x,y);car.setAttribute('transform',`translate(${cx3.toFixed(1)} ${cy3.toFixed(1)}) rotate(${(hd*180/Math.PI).toFixed(1)})`);car.classList.toggle('mv',t>T2&&f<1);
+    /* Anzeigen */
     km.textContent=Math.round(f*L.km)+' KM';{const e=(m1-m0)*f;tm.textContent=`${Math.floor(e/60)}:${String(Math.floor(e%60)).padStart(2,'0')}`}
-    const sp=t>T2&&f<1?(L.km/((m1-m0)/60))*(f<.1||f>.9?(f<.1?f/.1:(1-f)/.1)*.9+.1:1)*(1+.06*Math.sin(now/700)):0;vs+=(sp-vs)*.08;vv.textContent=Math.round(vs);
-    bar.style.width=(f*100).toFixed(1)+'%';tks.forEach(e=>e.classList.toggle('on',+e.dataset.f<=f+.002));wps.forEach(e=>e.classList.toggle('on',+e.dataset.f<=f));
-    R2.wps.forEach((w,i)=>{if(i>last&&w[1]>.04&&w[1]<.96&&f>=w[1]){last=i;SND.ping()}});
-    if(R2.bf!=null&&!banQ.b&&f>=R2.bf){banQ.b=1;show(L.set==='back'?'GRENZE · DEUTSCHLAND':'GRENZE · TSCHECHIEN');SND.ping()}
-    if(f>=1&&!banQ.e){banQ.e=1;svg.querySelector('.rm-dest').classList.add('on');later(()=>show(`ANKUNFT · ${RT[L.t]}`),R2.bf!=null&&f-R2.bf<.2?900:0)}
-    if(t<T3+2600)requestAnimationFrame(step)})(t0);
+    const sp=t>T2&&f<1?(L.km/((m1-m0)/60))*(f<.12||f>.88?(f<.12?f/.12:(1-f)/.12)*.85+.15:1)*(1+.05*Math.sin(t/700)):0;vs+=(sp-vs)*(1-Math.exp(-dt/220));vv.textContent=Math.round(vs);
+    bar.style.width=(f*100).toFixed(2)+'%';tks.forEach(e=>e.classList.toggle('on',+e.dataset.f<=f+.002));
+    if(R2.bf!=null&&!banQ.b&&f>=R2.bf){banQ.b=1;showBan(L.set==='back'?'GRENZE · DEUTSCHLAND':'GRENZE · TSCHECHIEN');SND.ping()}
+    if(f>=1&&!banQ.e){banQ.e=1;later(()=>showBan(`ANKUNFT · ${RT[L.t]}`),R2.bf!=null&&f-R2.bf<.2?900:0)}
+    if(t<T3+TE+3000)requestAnimationFrame(step)})(performance.now());
   later(()=>SND.whoosh(.15),T1)}
 
 /* Kino-Bausteine: Titelsequenz, Akt-Karten, Abspann, Ortseinblendung */
@@ -4786,7 +4879,7 @@ const SC=[
  {ch:0,t:8,tr:'cut',og:'al',h:()=>orgScene('al',3,'UNSERE SEITE'),on:orgOn,c:'M: Damals hat uns das fast einen Agenten gekostet. Und eine Frau namens Vesper das Leben. Diesmal verlieren wir niemanden.'},
  {ch:0,t:13,tr:'cut',h:acct,on:acctOn,c:'M: Vor einundzwanzig Tagen wurde ein eingefrorenes Konto der Organisation reaktiviert. Kennwort: VESPER. Neun Überweisungen, über elf Millionen Euro. Alle Empfänger sitzen in Böhmen.'},
  {ch:0,t:12,tr:'cut',h:opening,on:openSnd,c:'M: Ihr Auftrag: Operation Splendide. Folgen Sie dem Geld. Dreizehn Zielobjekte, eine Route. Finden Sie den Empfänger, und lassen Sie sich nicht sehen.'},
- {ch:1,t:5.5,leg:'a',h:()=>rmap('a'),on:rdrive,c:'Abfahrt Augsburg. Ab der tschechischen Grenze gilt Funkstille.'},
+ {ch:1,t:6.5,leg:'a',h:()=>rmap('a'),on:rdrive,c:'Abfahrt Augsburg. Ab der tschechischen Grenze gilt Funkstille.'},
  A('loket',{ch:1,t:7,bp:'loket',fx:'lock',f:[.73,.62],id:'loket',k:'ZIELOBJEKT 01 / 13',face:'mathis',fc:'Kontakt vor Ort. Kennt jeden Polizisten der Stadt.',c:'Zielobjekt eins: Loket. Hier ging die erste Überweisung ein und wurde bar abgehoben. Finden Sie heraus, wer neu in der Stadt ist.'}),
  {ch:1,t:5.5,leg:'b',h:()=>rmap('b'),on:rdrive,c:'Zwölf Kilometer bis Karlsbad. Ab hier wird es eng.'},
  A('pupp',{ch:1,t:6.5,fx:'wipe',f:[.56,.72],id:'pupp',k:'ZIELOBJEKT 02 / 13',car:'dbs12',cc:'Steht im Film vor dem Hotel. Ihres nicht.',c:'Zielobjekt zwei: das Grandhotel Pupp. Ihr Quartier und der Namensgeber dieser Operation. Prüfen Sie die Gästeliste. Diskret.'}),
@@ -4794,7 +4887,7 @@ const SC=[
  A('trziste',{ch:1,t:6,bp:'trziste',fx:'zoomout',f:[.4,.3],id:'trziste',k:'ZIELOBJEKT 04 / 13',x:'Dreifaltigkeitssäule und Schlossturm im Rücken: genau die Einstellung aus der Limousinenfahrt.',c:'Zielobjekt vier: der Markt unter dem Schlossturm. Von hier sehen Sie jeden, der zum Casino will. Und jeder sieht Sie.'}),
  {ch:1,t:7,h:()=>`<div class="ms-split">${bp('kaiserbad')}${side({id:'kaiserbad',k:'ZIELOBJEKT 05 / 13',face:'lechiffre',fc:'Bankier des Terrors. Rechnet schneller, als er lügt.'})}</div>`,on:open,c:'Zielobjekt fünf: das Kaiserbad, die Fassade des Casino Royale. Hier wurde das Konto zuletzt bewegt. Heute Nacht wird gespielt.'},
  {ch:1,t:7,h:()=>`<div class="ms-split pkw">${poker()}${face('leiter','CIA. Finanziert den Rebuy. Fragt nicht zweimal.')}</div>`,on:pk,c:'Damals: zehn Millionen Einsatz, Gift im Glas und das Blatt seines Lebens. Wer heute am Tisch sitzt, spielt um mehr als Geld.'},
- {ch:2,t:5.5,leg:'c',h:()=>rmap('c'),on:rdrive,c:'Das Geld hat Karlsbad in der Nacht verlassen. Ziel: Prag.'},
+ {ch:2,t:6.5,leg:'c',h:()=>rmap('c'),on:rdrive,c:'Das Geld hat Karlsbad in der Nacht verlassen. Ziel: Prag.'},
  A('airport',{ch:2,t:6.5,bp:'airport',fx:'wipe',f:[.3,.65],id:'airport',k:'ZIELOBJEKT 06 / 13',x:'Im Film soll hier der Skyfleet-Prototyp gesprengt werden. Bond verhindert es mit Tanklaster und Schlüsselbund.',c:'Zielobjekt sechs: der Flughafen. Hier wollte die Organisation einmal ein Flugzeug sprengen. Prüfen Sie jede Ankunft aus Nassau.'}),
  A('strahov',{ch:2,t:6,bp:'strahov',fx:'iris',f:[.5,.45],id:'strahov',k:'ZIELOBJEKT 07 / 13',face:'m',fc:'Leitung. Erwartet Ergebnisse, keine Ausreden.',c:'Zielobjekt sieben: die Klosterbibliothek über der Burg. Hier liegt, was niemand digital haben will. Fotografieren Sie alles.'}),
  A('ministry',{ch:2,t:6,bp:'ministry',fx:'zoomout',f:[.48,.55],id:'ministry',k:'ZIELOBJEKT 08 / 13',face:'dimitrios',fc:'Waffenhändler. Verliert beim Poker ein Auto.',c:'Zielobjekt acht: das Ministerium in Karolinenthal. Ein Bombenleger ist hier schon einmal untergetaucht. Achten Sie auf Lieferanten.'}),
@@ -4802,7 +4895,7 @@ const SC=[
  A('vitkov',{ch:2,t:6,bp:'vitkov',fx:'zoomin',f:[.5,.42],id:'vitkov',k:'ZIELOBJEKT 10 / 13',x:'Nationaldenkmal Vítkov. Montags geschlossen.',c:'Zielobjekt zehn: das Reiterdenkmal auf dem Hügel. Der beste Blick über die Stadt. Für Sie und für jeden Scharfschützen.'}),
  A('museum',{ch:2,t:6.5,bp:'museum',fx:'lock',f:[.5,.55],id:'museum',k:'ZIELOBJEKT 11 / 13',face:'gettler',fc:'Sonnenbrille mit nur einem Glas. Achten Sie auf Hüte.',c:'Zielobjekt elf: das Nationalmuseum. Hier wurde Vesper beobachtet, ohne es zu merken. Achten Sie darauf, wer Sie beobachtet.'}),
  {ch:2,t:7,h:()=>`<div class="ms-split">${bp('barrandov')}${side({id:'barrandov',k:'ZIELOBJEKT 12 / 13',face:'white',fc:'Die Organisation. Hat Geduld. Viel Geduld.'})}</div>`,on:open,c:'Zielobjekt zwölf: die Filmstudios Barrandov. Hier endet die Spur des Geldes, mitten in einer Kulisse. Jemand will, dass wir sehen, was wir sehen sollen.'},
- {ch:3,t:5.5,leg:'d',h:()=>rmap('d'),on:rdrive,c:'Rückzug über Pilsen. Keine Umwege.'},
+ {ch:3,t:6.5,leg:'d',h:()=>rmap('d'),on:rdrive,c:'Rückzug über Pilsen. Keine Umwege.'},
  {ch:3,t:6,h:()=>`<div class="ms-split">${bp('plana')}${side({id:'plana',k:'ZIELOBJEKT 13 / 13',face:'valenka',fc:'Begleiterin von Le Chiffre. Unterschätzt man einmal.'})}</div>`,on:open,c:'Zielobjekt dreizehn: das Städtchen Plan. Im Film das Krankenhaus. Halten Sie dort nur, wenn jemand verletzt ist.'},
  {ch:4,h:()=>`<div class="ms-fin"><svg class="gzs draw" viewBox="0 0 1000 420">${window.gzDraw?gzDraw(db5,false):''}</svg><div class="ms-end"><b>IHRE MISSION BEGINNT ${depTxt(1)}</b><span>Ein Vesper. Nicht drei. — M</span>${tminus()}</div><div class="ms-stamp">AUFTRAG ERTEILT</div></div>`,on:fin,t:8,c:'Ihr Bericht geht nur an mich. Trauen Sie niemandem, der Ihnen zu schnell vertraut. Viel Glück, 00-Einheit. Ende der Übertragung.'},
  {ch:4,t:3,tr:'cut',h:lost,on:lostOn,c:''}
@@ -4928,7 +5021,7 @@ function moodOf(s){if(s.h===coldOpen||s.h===lost)return 0;if(s.og)return s.og===
 /* Lesbarkeit: SVG-Schrift im Briefing nie kleiner als MIN px (Bezug: Grundmaßstab ohne Kamerazoom), Halo gegen Linien.
    Mikroschrift in Abzeichen (unter 4,5 px) bleibt Grafik. */
 function legib(node){if(!node||!node.isConnected)return;const inl=innerWidth<=700&&!st.closest('.ms').classList.contains('full'),MIN=inl?9.5:innerWidth<700?10.5:12;
-  node.querySelectorAll('svg').forEach(svg=>{if(svg.ownerSVGElement)return;const vb0=svg.viewBox&&svg.viewBox.baseVal,vb=svg.classList.contains('ogsv')?{width:1000,height:560}:vb0;if(!vb||!vb.width||!svg.clientWidth)return;
+  node.querySelectorAll('svg').forEach(svg=>{if(svg.ownerSVGElement||svg.classList.contains('rl-ov')||svg.classList.contains('rm-map'))return;const vb0=svg.viewBox&&svg.viewBox.baseVal,vb=svg.classList.contains('ogsv')?{width:1000,height:560}:vb0;if(!vb||!vb.width||!svg.clientWidth)return;
     const ar=svg.preserveAspectRatio.baseVal.meetOrSlice===2?Math.max:Math.min,k=ar(svg.clientWidth/vb.width,(svg.clientHeight||svg.clientWidth)/vb.height);
     svg.querySelectorAll('text').forEach(t=>{if(t.dataset.lg||t.ownerSVGElement!==svg)return;if(t.closest('symbol,.ogl,.lgb,defs')||t.querySelector('textPath'))return;const fs=parseFloat(getComputedStyle(t).fontSize);if(!fs)return;
       let m=1;const sp=t.closest('g[transform],text[transform]');if(sp&&sp.transform&&sp.transform.baseVal.numberOfItems){const c=sp.transform.baseVal.consolidate();if(c)m=Math.hypot(c.matrix.a,c.matrix.b)}
