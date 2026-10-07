@@ -232,4 +232,9 @@ Freigabe: „Anyone with the link“ ist aktiv. Wer die Seite offen hat, sieht n
   (`.rl-ov`, Labels aus `rlabels()`, Kollision nach Rang, meiden HUD-Felder). Kamera: Totale (`T1`), Anflug (`T2`), Verfolgung mit Vorausblick,
   Schlusstotale (`TE`). Die gefahrene Linie wird jedes Bild exakt bis zur Fahrzeugposition gebaut (kein Nachhinken); Scheinwerferkegel entfernt.
   Fahrt-Szenen a, c, d jetzt 6,5 s.
+- Version 32 (07.10.2026): Pokerszene neu als echte 3D-Szene (`poker()`/`pk()`/`pkCue()`, Klassen `p3*`): perspektivischer Tisch, Kamera
+  über Einstellungen `P3` (wide, bet, board, lc, show, win, seat, end), Karten mit Vorder-/Rückseite drehen in 3D (`p3flip`, Zeitlupe `p3slow`),
+  Chips als 3D-Stapel, Spotlicht, Rauch (Canvas), Giftglas mit Tropfen und EKG, Einsatz zählt auf 10.000.000 $, Le Chiffre Full House,
+  Bond Straight Flush mit Lichtausbruch, am Ende Platz der 00-Einheit und Karten werden verdeckt. Ablauf synchron zur Stimme über `s.cue`
+  (Anker im Text × Cliplänge, in `pwGo`). Schlusshand korrigiert: Board A♠ 8♠ 6♠ 4♠ A♥. Szene 10 s.
 - Tests: Playwright-Skripte müssen vor dem Laden `window.__NOINTRO=1` per `addInitScript` setzen, sonst läuft das Intro.
