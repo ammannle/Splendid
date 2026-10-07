@@ -105,6 +105,7 @@ a:focus-visible,button:focus-visible,.mk:focus-visible{outline:2px solid var(--a
 
 /* sections */
 section{margin-top:56px}
+#mission:not(.live){display:none}
 .ms-stage section{margin:0}
 .sh{display:flex;align-items:flex-end;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-bottom:16px;padding-bottom:10px;border-bottom:1px solid var(--line)}
 .sh .ix{font-family:var(--mono);font-size:.72rem;color:var(--amber);letter-spacing:.1em}
@@ -2248,7 +2249,7 @@ html.msfull{overflow:hidden}
   <button class="rdy" type="button" id="rdyBtn" title="Einsatzbereitschaft (Taste ?: Kürzel)"><i><b id="rdyBar"></b></i><span id="rdyN">BEREIT –</span></button>
   <span class="hide-s">MI6 · 00-SEKTION · OPS-ZENTRALE</span>
   <span class="hide-m clk" id="clk" aria-label="Ortszeit London und Prag">LDN --:-- · PRG --:--</span>
-  <nav aria-label="Module"><a href="#tx">Befehl</a><a href="#mission">Briefing</a><a href="#assets">Quartiere</a><a href="#targets">Ziele</a><a href="#maps">Lage</a><a href="#persons">Personen</a><a href="#garage">Garage</a><a href="#gadgets">Gadgets</a><a href="#qlab">Q-Lab</a><a href="#world-sec">Archiv</a></nav>
+  <nav aria-label="Module"><a href="#tx">Befehl</a><a href="#assets">Quartiere</a><a href="#targets">Ziele</a><a href="#maps">Lage</a><a href="#persons">Personen</a><a href="#garage">Garage</a><a href="#gadgets">Gadgets</a><a href="#qlab">Q-Lab</a><a href="#world-sec">Archiv</a></nav>
   <button class="theme-btn" id="themeBtn" type="button">Tag / Nacht</button>
 </div>
 
@@ -2349,7 +2350,7 @@ html.msfull{overflow:hidden}
   </section>
 
   <section id="assets">
-    <div class="sh"><div><div class="ix">MODUL 03 // LOGISTIK</div><h2>Quartiere &amp; Assets</h2></div><p>Quartiere, Tische, Bars und alles, was zwischen den Zielobjekten lohnt. Eintrag antippen für Details.</p></div>
+    <div class="sh"><div><div class="ix">MODUL 02 // LOGISTIK</div><h2>Quartiere &amp; Assets</h2></div><p>Quartiere, Tische, Bars und alles, was zwischen den Zielobjekten lohnt. Eintrag antippen für Details.</p></div>
     <div class="tabs as-bar" id="asBar" role="toolbar" aria-label="Kategorien"></div>
     <div class="panel as-reg" id="asReg"></div>
     <div class="panel recipe">
@@ -2359,13 +2360,13 @@ html.msfull{overflow:hidden}
   </section>
 
   <section id="targets">
-    <div class="sh"><div><div class="ix">MODUL 04 // ZIELERFASSUNG</div><h2>Zielobjekte</h2></div><p>Dreizehn Drehorte in Reihenfolge der Route. Ziel auswählen für Lagebericht und Koordinaten.</p></div>
+    <div class="sh"><div><div class="ix">MODUL 03 // ZIELERFASSUNG</div><h2>Zielobjekte</h2></div><p>Dreizehn Drehorte in Reihenfolge der Route. Ziel auswählen für Lagebericht und Koordinaten.</p></div>
     <div class="grid" id="deck"></div>
     <div class="panel detail" id="detail" aria-live="polite"></div>
   </section>
 
   <section id="maps">
-    <div class="sh"><div><div class="ix">MODUL 05 // KARTOGRAFIE</div><h2>Lagekarten</h2></div><div class="tabs" role="tablist" id="mapTabs"></div></div>
+    <div class="sh"><div><div class="ix">MODUL 04 // KARTOGRAFIE</div><h2>Lagekarten</h2></div><div class="tabs" role="tablist" id="mapTabs"></div></div>
     <div class="panel">
       <div class="ph"><b id="mapTitle">LAGE</b><span id="mapCode"></span></div>
       <div class="mapbox"><svg id="map" viewBox="0 0 1000 640" data-w="1000" data-h="640" role="img" aria-label="Lagekarte"></svg>
@@ -2378,7 +2379,7 @@ html.msfull{overflow:hidden}
   </section>
 
   <section id="persons">
-    <div class="sh"><div><div class="ix">MODUL 06 // ZIELPERSONEN</div><h2>Personenakten</h2></div><p>Elf Akten aus dem Einsatz Casino Royale, gezeichnet nach Beobachtung, frontal und im Profil, mit Erkennungsmerkmalen. Dazu fünf Organisationen und wer wem gehorcht.</p></div>
+    <div class="sh"><div><div class="ix">MODUL 05 // ZIELPERSONEN</div><h2>Personenakten</h2></div><p>Elf Akten aus dem Einsatz Casino Royale, gezeichnet nach Beobachtung, frontal und im Profil, mit Erkennungsmerkmalen. Dazu fünf Organisationen und wer wem gehorcht.</p></div>
     <div class="panel"><div class="ph"><b>REGISTRATUR // PERSONEN</b><span class="st">11 AKTEN · OFFICIAL–SENSITIVE</span></div>
       <div class="pawrap"><div class="palist" id="paList" aria-label="Personen"></div>
         <div class="pamain"><div class="pasheet" id="paSheet"></div><div class="patext" id="paText" aria-live="polite"></div></div></div>
@@ -2390,7 +2391,7 @@ html.msfull{overflow:hidden}
   </section>
 
   <section id="garage">
-    <div class="sh"><div><div class="ix">MODUL 07 // Q-ABTEILUNG · FUHRPARK</div><h2>Qs Garage</h2></div><p>Jedes Fahrzeug, das 007 im Dienst bewegt hat, als Seitenriss mit Datenblatt, Ausstattung und Rückgabeprotokoll. Bitte nichts anfassen.</p></div>
+    <div class="sh"><div><div class="ix">MODUL 06 // Q-ABTEILUNG · FUHRPARK</div><h2>Qs Garage</h2></div><p>Jedes Fahrzeug, das 007 im Dienst bewegt hat, als Seitenriss mit Datenblatt, Ausstattung und Rückgabeprotokoll. Bitte nichts anfassen.</p></div>
     <div class="panel gz">
       <div class="ph"><b>FUHRPARK // SEITENRISSE</b><span class="st" id="gzState"></span></div>
       <div class="gzf" id="gzFlt" role="group" aria-label="Hersteller"><button type="button" aria-pressed="true" data-f="Alle">ALLE</button><button type="button" aria-pressed="false" data-f="Aston Martin">ASTON MARTIN</button><button type="button" aria-pressed="false" data-f="BMW">BMW</button><button type="button" aria-pressed="false" data-f="Lotus">LOTUS</button><button type="button" aria-pressed="false" data-f="Andere">ANDERE</button></div>
@@ -2415,7 +2416,7 @@ html.msfull{overflow:hidden}
   </section>
 
   <section id="gadgets">
-    <div class="sh"><div><div class="ix">MODUL 08 // Q-ABTEILUNG · AUSRÜSTUNG</div><h2>Qs Gadgets</h2></div><p>Ausrüstung aus sechs Jahrzehnten, als Bauplan mit Datenblatt, Vorführung und Rückgabeprotokoll. Quittieren Sie, was Sie mitnehmen.</p></div>
+    <div class="sh"><div><div class="ix">MODUL 07 // Q-ABTEILUNG · AUSRÜSTUNG</div><h2>Qs Gadgets</h2></div><p>Ausrüstung aus sechs Jahrzehnten, als Bauplan mit Datenblatt, Vorführung und Rückgabeprotokoll. Quittieren Sie, was Sie mitnehmen.</p></div>
     <div class="panel gz gd">
       <div class="ph"><b>AUSRÜSTUNG // BAUPLÄNE</b><span class="st" id="gdState"></span></div>
       <div class="gzf" id="gdFlt" role="group" aria-label="Kategorie"></div>
@@ -2436,7 +2437,7 @@ html.msfull{overflow:hidden}
   </section>
 
   <section id="qlab">
-    <div class="sh"><div><div class="ix">MODUL 09 // Q-ABTEILUNG · TRAINING</div><h2>Trainingsprogramm</h2></div><p>Vorbereitung auf den Einsatz. Gespielt wird mit Übungsgeld des Schatzamts.</p></div>
+    <div class="sh"><div><div class="ix">MODUL 08 // Q-ABTEILUNG · TRAINING</div><h2>Trainingsprogramm</h2></div><p>Vorbereitung auf den Einsatz. Gespielt wird mit Übungsgeld des Schatzamts.</p></div>
     <div class="panel rt">
       <div class="ph"><b>SPIELTISCH // ROULETTE · EUROPÄISCH, EINE ZERO</b><span class="st" id="rtState">FAITES VOS JEUX</span></div>
       <div class="rtb">
@@ -2478,7 +2479,7 @@ html.msfull{overflow:hidden}
   </section>
 
   <section id="world-sec">
-    <div class="sh"><div><div class="ix">MODUL 10 // WELTLAGE</div><h2>Das Archiv</h2></div><p>Alle Einsätze seit 1962 auf einer Karte. Jede Linie ist ein Film, jeder Punkt ein Schauplatz der Handlung, und die Figuren sind unterwegs. Film wählen oder Chronologie abspielen.</p></div>
+    <div class="sh"><div><div class="ix">MODUL 09 // WELTLAGE</div><h2>Das Archiv</h2></div><p>Alle Einsätze seit 1962 auf einer Karte. Jede Linie ist ein Film, jeder Punkt ein Schauplatz der Handlung, und die Figuren sind unterwegs. Film wählen oder Chronologie abspielen.</p></div>
     <div class="panel">
       <div class="ph"><b id="wTitle">WELTLAGE</b><span id="wStat"></span></div>
       <div class="fstrip" id="wFilms" aria-label="Filme"></div>
@@ -6142,7 +6143,7 @@ const portrait=()=>innerWidth<=700&&innerHeight>innerWidth;
 /* keine künstliche Drehung mehr: Hochformat zeigt das Briefing aufrecht (4:3 mit Steuerung darunter), Querformat bildschirmfüllend */
 function rotFix(){if(msP.classList.contains('rot')){msP.classList.remove('rot');setTimeout(redo,RM?0:150)}}
 addEventListener('resize',()=>{if(msP.classList.contains('full'))rotFix()});
-function setFull(on,noFs){if(msP.classList.contains('full')===on)return;if(!on&&auto){const d=auto;auto=null;msP.classList.remove('auto');if(playing||el<TOT)stop(true);setTimeout(d,60)}if(on)msY=scrollY;msP.classList.toggle('full',on);document.documentElement.classList.toggle('msfull',on);
+function setFull(on,noFs){if(msP.classList.contains('full')===on)return;if(!on)document.getElementById('mission').classList.remove('live');if(!on&&auto){const d=auto;auto=null;msP.classList.remove('auto');if(playing||el<TOT)stop(true);setTimeout(d,60)}if(on)msY=scrollY;msP.classList.toggle('full',on);document.documentElement.classList.toggle('msfull',on);
   msP.classList.remove('rot');
   const b=$('msFull');b.textContent=on?'✕ VOLLBILD BEENDEN':'⛶ VOLLBILD';b.setAttribute('aria-pressed',String(on));
   if(on&&fsOk&&!noFs&&!document.fullscreenElement)msP.requestFullscreen().catch(()=>{});
@@ -6161,8 +6162,9 @@ let rzT=0;addEventListener('resize',()=>{if(!msP.classList.contains('full'))retu
 show(0);$('msTime').textContent=`0:00 / ${mmss(TOT)}`;
 /* Auto-Modus: nach dem Kennwort direkt ins Briefing (Vollbild-Overlay), danach weiter zur Seite */
 window.msArm=()=>{if(S.get('mssnd',1)&&!SND.on)sndSet(true);if(VOX.has&&S.get('msvox',1)&&!voxArmed)voxSet(true,false)};
-window.msAuto=done=>{auto=done;seen=true;msP.classList.add('auto');setFull(true,true);jump(0)};
+window.msAuto=done=>{auto=done;seen=true;document.getElementById('mission').classList.add('live');msP.classList.add('auto');setFull(true,true);jump(0)};
 $('msSkip').onclick=()=>{if(auto)setFull(false)};
+if(window.__NOINTRO)document.getElementById('mission').classList.add('live');
 let seen=false;if('IntersectionObserver' in window){const io=new IntersectionObserver(es=>{if(!seen&&es.some(e=>e.isIntersecting)){seen=true;io.disconnect();play()}},{threshold:.5});io.observe(st)}
 })();
 
@@ -6438,7 +6440,7 @@ window.readiness=()=>{clearTimeout(rdyT);rdyT=setTimeout(()=>{const ps=rdyParts(
   rdyN.textContent=`BEREIT ${v} %`;rdyBar.style.width=v+'%';rdyBtn.classList.toggle('ok',v>=100);rdyBtn.setAttribute('aria-label',`Einsatzbereitschaft ${v} Prozent`)},30)};
 const _set=S.set;S.set=(k,v)=>{_set(k,v);if(window.readiness)readiness()};readiness();
 const kh=document.createElement('div');kh.className='khelp';kh.hidden=true;kh.setAttribute('role','dialog');kh.setAttribute('aria-modal','true');kh.setAttribute('aria-label','Lagebericht und Tastenkürzel');document.body.appendChild(kh);
-const JUMP={'1':['tx','Einsatzbefehl'],'2':['mission','Missionsbriefing'],'3':['assets','Quartiere & Assets'],'4':['targets','Zielobjekte'],'5':['maps','Lagekarten'],'6':['persons','Personenakten'],'7':['garage','Qs Garage'],'8':['gadgets','Qs Gadgets'],'9':['qlab','Trainingsprogramm'],'q':['qlab','Q-Lab'],'w':['world-sec','Das Archiv'],'b':['mission','Briefing'],'p':['persons','Personenakten'],'g':['garage','Qs Garage'],'x':['gadgets','Qs Gadgets']};
+const JUMP={'1':['tx','Einsatzbefehl'],'2':['assets','Quartiere & Assets'],'3':['targets','Zielobjekte'],'4':['maps','Lagekarten'],'5':['persons','Personenakten'],'6':['garage','Qs Garage'],'7':['gadgets','Qs Gadgets'],'8':['qlab','Trainingsprogramm'],'9':['world-sec','Das Archiv'],'q':['qlab','Q-Lab'],'w':['world-sec','Das Archiv'],'p':['persons','Personenakten'],'g':['garage','Qs Garage'],'x':['gadgets','Qs Gadgets']};
 function khShow(){const ps=rdyParts(),v=Math.round(ps.reduce((a,p)=>a+p[1]*Math.min(1,p[2]),0)),open=ps.filter(p=>p[2]<1);
   kh.innerHTML=`<div class="kh"><h3>LAGEBERICHT · BEREIT ${v} %</h3><p>${v>=100?'M: Vollständig. Ich bin beinahe beeindruckt. Fahren Sie.':open.length<=2?'M: Fast. „Fast“ hat noch keinen Einsatz gerettet.':'M: Das ist kein Reiseplan, das ist eine Absichtserklärung.'}</p>
   <ul class="rd">${ps.map(p=>`<li class="${p[2]>=1?'ok':''}"><b>${p[0]}</b><span>${p[3]}</span></li>`).join('')}</ul>
