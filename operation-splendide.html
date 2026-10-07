@@ -1794,6 +1794,24 @@ html.msfull{overflow:hidden}
 .co-hs,.co-rd,.co-sc{z-index:1}.co-hs{width:37%;padding:10px 12px;margin:-10px 0 0 -12px;background:rgba(2,5,7,.72)}.co-rd{width:37%;background:rgba(2,5,7,.8)}.co-sc{width:37%;background:rgba(2,5,7,.6)}
 @media (max-width:700px){.co-hs{width:56%;padding:6px 8px}.co-sc{width:56%}}
 @media (max-width:700px){.co-hs p{white-space:nowrap}.co-hs p span{overflow:hidden;text-overflow:ellipsis}.co-hs p:nth-child(3),.co-hs p:nth-child(4){display:none}}
+/* Zielobjekte v38: Datenblatt, Lageskizze, Messlinien, Abgleich, Scanband */
+.ms-dl{display:grid;grid-template-columns:auto 1fr;gap:3px 10px;margin:4px 0 2px;padding:6px 0;border-top:1px solid rgba(143,215,232,.22);border-bottom:1px solid rgba(143,215,232,.22);font-family:var(--mono);font-size:.7rem;line-height:1.3}
+.ms-dl dt{color:var(--mute);letter-spacing:.16em}.ms-dl dd{margin:0;color:var(--ink)}
+.ms-dl .rk{display:flex;align-items:center;gap:3px}.ms-dl .rk i{width:12px;height:6px;background:rgba(143,215,232,.18)}.ms-dl .rk i.on{background:var(--amber)}.ms-dl .rk i.h{background:var(--red)}.ms-dl .rk span{margin-left:6px;color:var(--mute)}
+.ms-locw{margin-top:auto;flex:none}.ms-locw span{display:block;font-family:var(--mono);font-size:.66rem;letter-spacing:.2em;color:var(--mute);margin:6px 0 3px}.ms-loc{display:block;width:100%;height:92px;border:1px solid rgba(143,215,232,.25);background:rgba(143,215,232,.03)}
+.ms-loc .r{fill:none;stroke:rgba(143,215,232,.55);stroke-width:1.4px;vector-effect:non-scaling-stroke}.ms-loc text{font-family:var(--mono);fill:var(--mute);letter-spacing:.14em}.ms-loc .o{fill:rgba(143,215,232,.6)}.ms-loc .c{fill:var(--red)}
+.ms-loc .p{fill:none;stroke:var(--red);stroke-width:1.2px;vector-effect:non-scaling-stroke;transform-box:fill-box;transform-origin:center;animation:rpRing 1.6s ease-out infinite}
+.cx-dim{position:absolute;border-left:1.5px solid var(--cyan);border-right:1.5px solid var(--cyan);animation:cxTrk 1.9s cubic-bezier(.2,.9,.2,1) forwards}
+.cx-dim::before{content:"";position:absolute;left:0;right:0;top:50%;border-top:1px solid var(--cyan)}
+.cx-dim span{position:absolute;left:50%;bottom:100%;transform:translateX(-50%);margin-bottom:2px;font-size:.72rem;letter-spacing:.08em;color:var(--cyan);background:color-mix(in srgb,var(--bg) 80%,transparent);padding:0 5px;white-space:nowrap}
+.cx-band{position:absolute;left:0;right:0;top:0;height:16%;pointer-events:none;background:repeating-linear-gradient(0deg,rgba(143,215,232,.07) 0 1px,transparent 1px 4px),linear-gradient(180deg,transparent,rgba(143,215,232,.07),transparent);opacity:0;animation:cxBand 4.2s linear 1.8s infinite}
+@keyframes cxBand{0%{top:-16%;opacity:0}10%{opacity:1}90%{opacity:1}100%{top:100%;opacity:0}}
+.cx-ab{position:absolute;left:50%;top:22px;transform:translateX(-50%);display:flex;align-items:center;gap:8px;padding:3px 8px;font-size:.7rem;letter-spacing:.16em;color:var(--ink);background:color-mix(in srgb,var(--bg) 72%,transparent);white-space:nowrap}
+.cx-ab i{display:block;width:64px;height:3px;background:rgba(143,215,232,.2)}.cx-ab b{display:block;height:100%;width:0;background:var(--cyan)}
+.cx-ab em{font-style:normal;min-width:7.5em;color:var(--cyan);font-variant-numeric:tabular-nums}.cx-ab.ok em{color:var(--green)}.cx-ab.ok b{background:var(--green)}
+@media (max-width:700px){.cx-ab,.ms-dl,.ms-loc{display:none}}
+@media (prefers-reduced-motion:reduce){.cx-band{display:none}}
+.ms-side:has(.ms-locw) .ms-face div,.ms-side:has(.ms-locw) .ms-carm div{max-width:min(100%,150px)}.ms-loc{height:78px}
 .ms-cold,.ms-lost{position:absolute;inset:0;background:#020507;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;overflow:hidden}
 .mc-term{font-family:var(--mono);font-size:clamp(.6rem,1.4vw,.8rem);letter-spacing:.16em;color:var(--cyan);width:min(560px,86%)}
 .mc-term p{margin:0 0 4px;opacity:0;white-space:nowrap;overflow:hidden;animation:msType .5s steps(24) calc(.2s + var(--i)*.38s) both,gzfade .01s calc(.2s + var(--i)*.38s) forwards}
@@ -4949,8 +4967,18 @@ const carMini=(id,cap)=>{const c=GZc(id);return c&&window.gzDraw?`<figure class=
 const ll=(a,b)=>`${a.toFixed(4)} N · ${b.toFixed(4)} E`;
 function head(o){const t=o.id?T(o.id):null;
   return{code:t?`OBJ ${t.r}${t.s}`:(o.code||'ORT'),name:o.name||(t&&t.name)||'',as:o.as||(t&&t.as),pos:t?ll(t.lat,t.lon):o.pos?ll(...o.pos):''}}
-function side(o){const h=head(o);return `<aside class="ms-side"><div class="ms-k2">${o.k}</div><div class="ms-tt"><i>${h.code}</i>${h.name}</div>${h.as?`<div class="ms-as">IM FILM · ${h.as}</div>`:''}${h.pos?`<div class="ms-co">${h.pos}</div>`:''}
-  ${o.face?face(o.face,o.fc||''):''}${o.car?carMini(o.car,o.cc||''):''}${o.x?`<p class="ms-x">${o.x}</p>`:''}</aside>`}
+/* Datenblatt je Zielobjekt: Kenndaten, Risikostufe (Ms Einschätzung), Lageskizze der Route mit allen 13 Zielen */
+const RISK={loket:2,pupp:2,mlyn:3,trziste:2,kaiserbad:5,airport:4,strahov:2,ministry:3,danube:3,vitkov:4,museum:3,barrandov:5,plana:1};
+const cut=(v,n)=>{v=(v||'').split(/[,;(]/)[0].trim();return v.length>n?v.slice(0,n-1)+'…':v};
+let LOCB=null;
+function locMini(id){if(!LOCB){const{P}=rproj(),m=maps.route,pts=[...m.out,...m.back].map(q=>P(q[0],q[1])),tg=L.map(t=>[t.id,...P(t.lat,t.lon)]),xs=pts.map(p=>p[0]).concat(tg.map(t=>t[1])),ys=pts.map(p=>p[1]).concat(tg.map(t=>t[2]));
+    const x0=Math.min(...xs)-14,y0=Math.min(...ys)-10,w=Math.max(...xs)-x0+14,h=Math.max(...ys)-y0+10,pth=a=>'M'+crSpline(a.map(q=>P(q[0],q[1])),10).map(q=>q[0].toFixed(1)+' '+q[1].toFixed(1)).join('L');
+    LOCB={vb:`${x0.toFixed(0)} ${y0.toFixed(0)} ${w.toFixed(0)} ${h.toFixed(0)}`,d:pth(m.out)+pth(m.back),tg,h,x0,y0}}
+  const B=LOCB,u=B.h/96;return `<svg class="ms-loc" viewBox="${B.vb}" preserveAspectRatio="xMidYMid meet" aria-hidden="true"><path d="${B.d}" class="r"/>${B.tg.map(([i,x,y])=>`<circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="${((i===id?3.6:2)*u).toFixed(2)}" class="${i===id?'c':'o'}"/>`).join('')}${B.tg.filter(t=>t[0]===id).map(([i,x,y])=>`<circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="${(9*u).toFixed(2)}" class="p"/>`).join('')}</svg>`}
+function side(o){const h=head(o),x=o.id&&XT[o.id],rk=o.id&&RISK[o.id];
+  const dl=x?`<dl class="ms-dl"><dt>BAU</dt><dd>${cut(x.b,44)}</dd><dt>STIL</dt><dd>${cut(x.s,44)}</dd>${rk?`<dt>RISIKO</dt><dd class="rk">${[1,2,3,4,5].map(k=>`<i class="${k<=rk?(rk>=4?'h':'on'):''}"></i>`).join('')}<span>${rk}/5</span></dd>`:''}</dl>`:'';
+  return `<aside class="ms-side"><div class="ms-k2">${o.k}</div><div class="ms-tt"><i>${h.code}</i>${h.name}</div>${h.as?`<div class="ms-as">IM FILM · ${h.as}</div>`:''}${h.pos?`<div class="ms-co">${h.pos}</div>`:''}${dl}
+  ${o.face?face(o.face,o.fc||''):''}${o.car?carMini(o.car,o.cc||''):''}${o.x?`<p class="ms-x">${o.x}</p>`:''}${o.id&&L.some(t=>t.id===o.id)?`<div class="ms-locw"><span>LAGESKIZZE · ROUTE</span>${locMini(o.id)}</div>`:''}</aside>`}
 function hud(o){const h=head(o);return `<div class="ms-hud"><span class="tl">${h.code} · ${h.name.toUpperCase()}</span><span class="tr"><i></i>REC</span><span class="bl">${h.pos}</span><span class="br">MI6 · Q-ABT · ${(FXN[o.fx]||'ZEICHNUNG')}</span></div>`}
 const FXN={draw:'ZEICHNUNG',iris:'OPTIK',scan:'SCANNER',wipe:'AUFKLÄRUNG',tiles:'ENTSCHLÜSSELUNG',zoomout:'TELE',zoomin:'ANNÄHERUNG',lock:'ZIELERFASSUNG'};
 function artSVG(k){const a=MSA[k],n=a.G.length;return `<svg class="ms-asv" viewBox="0 0 ${a.w} ${a.h}" aria-hidden="true" focusable="false">${a.G.map((d,i)=>`<path d="${d}" pathLength="1" style="--d:${(i*2.2/n).toFixed(2)}s"/>`).join('')}</svg>`}
@@ -5317,19 +5345,20 @@ function tgtHud(s,n){const id=s.id||((s.h&&s.h.toString().match(/id:'(\w+)'/))||
     <div class="cx-id"><b>ZIELOBJEKT</b><span class="cx-n">${String(n).padStart(2,'0')}</span><em>/ 13</em><div class="cx-seg">${seg}</div></div>
     <div class="cx-rec"><i></i>REC <span class="cx-tc">00:00:00</span></div>
     ${pos?`<div class="cx-co">${pos}</div>`:''}<div class="cx-md">${MODE[s.fx]||'AUFRISS'} <span class="cx-sig"><i></i><i></i><i></i><i></i></span></div>
-    ${ret}<i class="cx-scan"></i></div>`}
+    ${ret}<i class="cx-scan"></i><i class="cx-band"></i><div class="cx-ab"><span>3D-ABGLEICH</span><i><b></b></i><em>0 %</em></div></div>`}
 function tgtGo(node,s){const h=node.querySelector('.cx-tgt');if(!h)return;const me=cur,ck=cxClock(),tc=h.querySelector('.cx-tc'),co=h.querySelector('.cx-co');
   decode(co,1100);const nEl=h.querySelector('.cx-n'),n=+nEl.textContent;if(!RM){let k=0;const iv=setInterval(()=>{if(cur!==me||k>=n){clearInterval(iv);nEl.textContent=String(n).padStart(2,'0');return}k++;nEl.textContent=String(k).padStart(2,'0')},Math.max(30,500/n));timers.push(iv)}
   (function f(now){if(cur!==me||!h.isConnected)return;const t=ck(now)/1000;tc.textContent=`${String(Math.floor(t/60)).padStart(2,'0')}:${String(Math.floor(t%60)).padStart(2,'0')}:${String(Math.floor(t*25%25)).padStart(2,'0')}`;requestAnimationFrame(f)})(performance.now());
+  {const ab=h.querySelector('.cx-ab'),bar=ab.querySelector('b'),pc=ab.querySelector('em'),t0=performance.now(),dur=RM?0:Math.max(2500,s.t*1000*.7);(function g(now){if(cur!==me||!h.isConnected)return;const u=dur?Math.min(1,(now-t0)/dur):1,v=Math.round(100*(1-Math.pow(1-u,2)));bar.style.width=v+'%';pc.textContent=u<1?v+' %':'BESTÄTIGT';ab.classList.toggle('ok',u>=1);if(u<1)requestAnimationFrame(g)})(t0)}
   const a0=s.bp?Math.round(s.t*1000*.42)+700:900;later(()=>{const r=h.querySelector('.cx-ret');if(r){r.classList.add('on');SND.ping()}},a0+300);if(s.art&&s.fx!=='lock'&&!RM)later(()=>track(h,me),a0+1200)}
 /* Beobachtung: kurze Tracking-Rahmen auf markanten Stellen der Zeichnung */
-const TRK=['PERSON · ABGLEICH','ANALYSE 87 %','BEWEGUNG','FAHRZEUG · KZ ?','PROFIL · 3 TREFFER','WÄRME 36,8 °C','GESICHT · 0,92','OBJEKT · STATISCH'];
+const TRK=['KANTE · FASSADE','ZUGANG · NORD','SICHTACHSE 02','FLUCHTPUNKT','PERSON · ABGLEICH 0,87','FENSTERACHSE','DACHKANTE','OBJEKT · STATISCH'];
 function track(h,me){if(innerWidth<=700)return;let k=0;const busy=()=>[...h.querySelectorAll('.cx-trk,.cx-ret,.cx-ret span,.cx-id,.cx-rec,.cx-co,.cx-md')].concat([...h.parentNode.querySelectorAll('.ms-lock,.ms-sup')]).map(e=>e.getBoundingClientRect());
   const one=()=>{if(cur!==me||!h.isConnected)return;const R=h.getBoundingClientRect(),B=busy();let pick=null;
     for(let n=0;n<14&&!pick;n++){const w=40+Math.random()*56,x=R.left+R.width*(.12+Math.random()*.6),y=R.top+R.height*(.2+Math.random()*.48),r={left:x-8,top:y-8,right:x+Math.max(w,150)+8,bottom:y+w*.8+26};
       if(r.right<R.right-10&&r.bottom<R.bottom-10&&!B.some(b=>b.left<r.right&&r.left<b.right&&b.top<r.bottom&&r.top<b.bottom))pick=[x-R.left,y-R.top,w]}
     if(pick){const b=document.createElement('div');b.className='cx-trk';Object.assign(b.style,{left:pick[0].toFixed(0)+'px',top:pick[1].toFixed(0)+'px',width:pick[2].toFixed(0)+'px',height:(pick[2]*.8).toFixed(0)+'px'});
-      b.innerHTML=`<span>${TRK[(Math.random()*TRK.length)|0]}</span>`;h.appendChild(b);setTimeout(()=>b.remove(),1700)}
+      if(k%2){b.className='cx-dim';b.style.height='14px';b.style.width=(pick[2]*1.8).toFixed(0)+'px';b.innerHTML=`<span>Δ ${(4+Math.random()*36).toFixed(1).replace('.',',')} M</span>`}else b.innerHTML=`<span>${TRK[(Math.random()*TRK.length)|0]}</span>`;h.appendChild(b);setTimeout(()=>b.remove(),1900)}
     if(++k<6)timers.push(setTimeout(one,900+Math.random()*700))};one()}
 
 /* ---- Aufriss: Plotterkopf fährt über das Blatt, während die Linien gezeichnet werden ---- */

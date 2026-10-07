@@ -257,4 +257,7 @@ Freigabe: „Anyone with the link“ ist aktiv. Wer die Seite offen hat, sieht n
   Kopfzeile mit UTC-Uhr, Verbindungsaufbau Zeile für Zeile mit OK-Vermerken, Messwerte (Latenz, Bitrate, Signal, Frequenz), Stimmanalysator
   „LIVE · M“. Globus technisch: Gradring mit Teilung (dreht), Gradnetz, gestrichelte Küsten, zwei Satellitenbahnen, Relais London → ARGUS-3 →
   Böhmen mit Datenpaketen, Zielerfassung Böhmen mit Fadenkreuzlinien und Koordinaten, Zoom in den nächsten Schnitt.
+- Version 38 (07.10.2026): Zielobjekte technischer: Seitenleiste als Datenblatt (`side()`: Bau und Stil aus `XT`, Risikostufe `RISK`
+  als Ms Einschätzung, Lageskizze der Route mit allen 13 Zielen `locMini()`), im HUD 3D-Abgleich mit Fortschritt (`.cx-ab`), Scanband
+  (`.cx-band`), Tracking abwechselnd als Messlinie mit Maß (`.cx-dim`) und technische Kennungen (`TRK`).
 - Tests: Playwright-Skripte müssen vor dem Laden `window.__NOINTRO=1` per `addInitScript` setzen, sonst läuft das Intro.
