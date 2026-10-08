@@ -331,7 +331,13 @@ Freigabe: „Anyone with the link“ ist aktiv. Wer die Seite offen hat, sieht n
   (z8 außerhalb, z11 im Korridor ±16 km, z12 im Nahkorridor ±3 km mit Nebenstraßen und Bächen) als Kacheln `ch` (Rahmen `b`, Ebenen
   Wald, Siedlung, Gewerbe, Gewässer, Flüsse, Grenze, Straßen r1–r5 als Doppellinien, Bahn), Höhenlinien `ct`, Orte `pl`, Gipfel `pk`,
   Straßennummern `rf`, echte Strecken `rt` aus OSRM (Etappen a 313, b 14, c 134, d 404 km). Ebenenfolge `RQL`, Kachel-Culling `rcull`,
-  LOD-Klassen `qn` (Nahsicht, Nebenstraßen) und `qf` (Totale, dünnere Linien). Weite Ansichten nutzen eine einmal erzeugte Bitmap
-  (`rbmp()`, 4 px je Einheit, `.rq-bm`, Klasse `bm`), Vektoren erst ab Nahsicht. Beschriftung nur in Streckennähe, Dörfer je Etappe
-  max. 110 nahe der Route, versteckte Labels mit display:none. Generator im Scratchpad (`route/`). Quellenhinweis im Footer.
+  LOD-Klassen `qn` (Nahsicht, Nebenstraßen) und `qf` (Totale). Beschriftung nur in Streckennähe, Dörfer je Etappe max. 110 nahe der
+  Route, versteckte Labels mit display:none. Generator im Scratchpad (`route/`). Quellenhinweis im Footer.
+- Version 51 (08.10.2026): Routen-Animation ruhig und flüssig: Grundkarte wird im Leerlauf (Kennwort-Tor, `vGate` → `window.rimQueue`,
+  sonst nach 9 s bzw. beim ersten `rdrive`) als Bilder vorgerendert (`RIM`: `bg` ganze Karte, je Etappe `k1` Totale und `k2` Verfolgung,
+  `rimJob`/`rqSrc`/`rimReg`, Größe gedeckelt 6144 px/16 MPx) und als `<img class="rm-ly">` per `translate3d/scale` (GPU) unter der
+  SVG-Ebene bewegt (`lyUp`), Überblendung k1→k2 nach Zoom; Vektoren `.rq` nur noch als Rückfall (Klasse `im` blendet sie aus).
+  Kamera-Richtung `hc` aus Sehne weit voraus, stark geglättet (Fahrzeug folgt weiter der Straße mit `hd`), Kamera-Dämpfung 260 ms.
+  HUD-Maße nur alle 300 ms (`hudC`), Labels: Vorrang für sichtbare, Einblenden erst nach 180 ms Stabilität, Einblenden mit Übergang.
+  Defekte Pfadsegmente („M x yl“ ohne Punkte) aus `#routeData` entfernt (brachen Pfade ab), Generator korrigiert.
 - Tests: Playwright-Skripte müssen vor dem Laden `window.__NOINTRO=1` per `addInitScript` setzen, sonst läuft das Intro.
