@@ -367,4 +367,12 @@ Freigabe: „Anyone with the link“ ist aktiv. Wer die Seite offen hat, sieht n
   allgemein über `A`/`O`. Prag-Daten mit größerem Nord-/Südrand neu erzeugt (`MY=110`). Modul Personenakten: Organigramm `#ogSvg`
   ebenfalls als Netzwerkblatt (`window.o2Markup`, Klasse `o2mod`, Hover hebt Verbindungen hervor, Klick auf Organisation zeigt die Akte,
   auf Person öffnet `paOpen`; Tastatur per tabindex; am Handy seitlich scrollbar).
+- Version 55 (08.10.2026): Szene 1 (Cold Open) komplett neu als SIGINT-Leitstelle (`coldOpen()`, `co3Fx`, Klasse `.co3`, Daten `CO3`):
+  Kopfzeile mit Einstufung, Sitzung und Uhren LDN/PRG/UTC; Verbindungskette Vauxhall Cross → ARGUS-3 → 00-Einheit (rastet je Schritt ein);
+  Protokoll mit 8 Schritten und echten Zeitstempeln; Kryptografie (ECDH P-521, AES-256-GCM, SHA-384, Rotations-Countdown, Fingerabdruck
+  entschlüsselt sich); Globus auf Canvas mit Rasterland (`c3dots`), Küsten, Grenzen (`c3brd` aus `WORLD.bord`), Tag/Nacht-Grenze nach
+  aktueller UTC, Gradnetz, Gradring, GEO-Bahn mit ARGUS-3 bei 9° O, Ausleuchtzone, Strahlkegel Up-/Downlink mit Paketen, Zielspot Böhmen,
+  Zoom am Ende; Satellitendaten mit berechnetem Azimut/Elevation/Schrägentfernung für London und Prag (`CO3.look`), Linkbudget mit
+  Freiraumdämpfung bei 8,412 GHz; Spektrumanalysator mit Wasserfall (Träger erscheint, Marker M1); Stimmanalyse (`.ms-scope`, Pegel aus
+  `VOX.wave`) mit Stimmprofil-Abgleich; Bestätigung „Verbindung steht“; Fußzeile mit Paketen/Jitter. Handy: reduzierte Ansicht.
 - Tests: Playwright-Skripte müssen vor dem Laden `window.__NOINTRO=1` per `addInitScript` setzen, sonst läuft das Intro.
