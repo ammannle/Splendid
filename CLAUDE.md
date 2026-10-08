@@ -327,4 +327,11 @@ Freigabe: „Anyone with the link“ ist aktiv. Wer die Seite offen hat, sieht n
   Generator im Scratchpad (`map/gen.py`, `cfg.py`, `dem.py`; Daten © OpenStreetMap-Mitwirkende, ODbL, Hinweis in Karte und Footer).
   Modul Zielobjekte: Ansichten DETAILBLATT · AUFRISS & SCHNITT (neu auf Basis der Detailzeichnung: Fassade tritt zurück, Schnitt-Ebenen `S`
   in `#detData` mit `s`/`sh`/`sf` + Texten, `cutView`) · LAGEPLAN (`mapView`), alte Aufrisse nur noch für Kaiserbad, Barrandov, Planá (`viewInit`).
+- Version 50 (08.10.2026): Routenkarten im Briefing auf OSM-Grundlage (`#routeData`, `RTD()`): Vektorkacheln von OpenFreeMap
+  (z8 außerhalb, z11 im Korridor ±16 km, z12 im Nahkorridor ±3 km mit Nebenstraßen und Bächen) als Kacheln `ch` (Rahmen `b`, Ebenen
+  Wald, Siedlung, Gewerbe, Gewässer, Flüsse, Grenze, Straßen r1–r5 als Doppellinien, Bahn), Höhenlinien `ct`, Orte `pl`, Gipfel `pk`,
+  Straßennummern `rf`, echte Strecken `rt` aus OSRM (Etappen a 313, b 14, c 134, d 404 km). Ebenenfolge `RQL`, Kachel-Culling `rcull`,
+  LOD-Klassen `qn` (Nahsicht, Nebenstraßen) und `qf` (Totale, dünnere Linien). Weite Ansichten nutzen eine einmal erzeugte Bitmap
+  (`rbmp()`, 4 px je Einheit, `.rq-bm`, Klasse `bm`), Vektoren erst ab Nahsicht. Beschriftung nur in Streckennähe, Dörfer je Etappe
+  max. 110 nahe der Route, versteckte Labels mit display:none. Generator im Scratchpad (`route/`). Quellenhinweis im Footer.
 - Tests: Playwright-Skripte müssen vor dem Laden `window.__NOINTRO=1` per `addInitScript` setzen, sonst läuft das Intro.
