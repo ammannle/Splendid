@@ -350,4 +350,12 @@ Freigabe: „Anyone with the link“ ist aktiv. Wer die Seite offen hat, sieht n
   in Metern mit Mindestbreite, Beschriftung in Bildschirmgröße mit Kollisionsschutz, Farben aus Theme-Variablen (Neuzeichnen bei
   Theme-Wechsel). `draw()` lässt bei OSM-Grundlage das schematische Gelände, Flüsse, Blöcke, Brücken, Grenze, Straßenschilder weg;
   Marker, Personen, Orte bleiben. `RTDG()`/`CITY()` cachen erst, wenn die JSON-Blöcke geparst sind; `window.__mbRedraw` nach DOMContentLoaded.
+- Version 53 (08.10.2026): Organigramm im Briefing (Lagebild 1–3) komplett neu als technisches Netzwerkblatt 1600×960 (`orgScene2`,
+  `o2Markup`, `o2On`, `o2Fx`; `orgFx` leitet bei `.o2g` weiter): Raster, Sektoren A Verbündete / B Organisation mit Kontaktzone, Ebenenlineal
+  E1–E5, Koordinatenteilung; Personenkarten (Porträt aus `PA.sheet`, Kennung P-xx, Rolle, Status-Chip aus `TAG`, Gefahr 5 Stufen, Grad G),
+  Organisationskarten (Abzeichen `BADGE`, ORG-0x, Langname, Sitz, Akten); Verbindungen rechtwinklig mit gerundeten Ecken (`O2E` mit
+  Wegpunkten, `o2Path`), Ports, Knotenpunkte `O2J`, Beschriftungen mit Kennung K-xx; Tafeln Legende, Abhörprotokoll (`O2LOG`), Zentralität
+  (Grad), Schriftfeld. Feste Ebene `.o2hud`: Übersicht mit Kameraausschnitt, Zoom, Koordinaten. Kamera `O2BX` (Desktop) / `O2BM` (Handy),
+  Hervorhebung über Klasse `lit` (Befehlswege zeichnen sich, Geld/Feindkontakt fließen), Datenpakete auf aktiven Kanten, Fadenkreuz am
+  Schlüsselknoten. Modul-Daten über `window.ogData`.
 - Tests: Playwright-Skripte müssen vor dem Laden `window.__NOINTRO=1` per `addInitScript` setzen, sonst läuft das Intro.
