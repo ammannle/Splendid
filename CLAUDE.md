@@ -379,4 +379,9 @@ Freigabe: „Anyone with the link“ ist aktiv. Wer die Seite offen hat, sieht n
   Bildschirmgröße (`zprep` nach `draw()`, `zApply` aus `viewer().onZoom`): Gegenskalierung um den Ankerpunkt (Beschriftung hängt am nächsten
   Marker), Zielobjekte/Assets über innere Ebene `g.mkz` (die Einrast-Animation setzt CSS-transform auf `.mk`), Personen über `a.k` in
   `renderP`, `.m-lock` über `data-x/y`; Linien mit `vector-effect:non-scaling-stroke`. Faktor relativ zur Startansicht (`svg._zh`).
+- Version 57 (08.10.2026): Pokerszene im Briefing hochwertiger/technischer (`PK4`, `pk4St`, `pk4Rv`, `pk4Res`, Klasse `.pk3.v4`):
+  Werkstattzeichnung des Tisches (Polstersegmente, Pot-Zone, Kartenfelder mit Teilung, Dealer mit Chiprack, Schlitten, Ablage, Mittelkreuz),
+  vier Spieler des Finales mit echten Händen (Fukutu K♠Q♠, Infante 8♣8♥, Le Chiffre A♦6♦, Bond 5♠7♠), Kartenkennungen B1–B5.
+  Analysetafeln: Kopfzeile (Tisch, Blinds, Straße), Spielerliste mit Gewinnchance je Straße (vorab exakt berechnet), Kurve, Straßenanzeige
+  PREFLOP → SHOWDOWN, Befund mit EKG rechts. Kamera-Einstellungen `P3` neu (Tisch mittig zwischen den Tafeln). Handy: Tafeln ausgeblendet.
 - Tests: Playwright-Skripte müssen vor dem Laden `window.__NOINTRO=1` per `addInitScript` setzen, sonst läuft das Intro.

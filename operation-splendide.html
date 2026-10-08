@@ -1956,6 +1956,50 @@ html.msfull{overflow:hidden}
 @keyframes p3sw{0%{opacity:1;top:0}100%{opacity:0;top:100%}}
 @media (max-width:700px){.p3call,.p3eval{display:none}}
 .p3call{left:28px;top:26px;bottom:auto;width:270px}.p3eval{right:24px;top:110px;bottom:auto;width:290px}.pk3.tech .p3win span{font-size:30px;letter-spacing:.32em}.pk3.tech .p3win::before,.pk3.tech .p3win::after{display:none}
+/* Pokerszene v57: Werkstattzeichnung, vier Spieler, Analysetafeln */
+.pk3.v4 .p3eval,.pk3.v4 .p3hand{display:none}
+.pk3.st-fk .fk .p3i,.pk3.st-inf .inf .p3i{animation:p3flip .55s cubic-bezier(.3,.7,.3,1) forwards}.pk3.st-fk .f1 .p3i,.pk3.st-inf .n1 .p3i{animation-delay:.1s}
+.pk3.v4 .p3c .ct{position:absolute;left:50%;top:100%;margin-top:5px;transform:translateX(-50%);white-space:nowrap;text-decoration:none;font-family:var(--mono);font-size:10px;letter-spacing:.12em;color:var(--cyan);opacity:0;transition:opacity .4s .3s,color .4s}
+.pk3.st-b0 .b0 .ct,.pk3.st-b1 .b1 .ct,.pk3.st-b2 .b2 .ct,.pk3.st-b3 .b3 .ct,.pk3.st-b4 .b4 .ct{opacity:.8}.pk3.st-win .p3c.w .ct{color:var(--amber);opacity:1}.pk3.st-end .p3c .ct{opacity:0}
+.p3draw .pz{stroke:var(--amber);stroke-opacity:.4;stroke-dasharray:4 5;stroke-dashoffset:0;opacity:0}.pk3.in .p3draw .pz{animation:gzfade .8s ease 1.2s forwards}
+.pk3.st-bet .p3draw .pz{stroke-opacity:.75}
+.p3draw .sg{stroke-opacity:.45;stroke-width:.8}.p3draw .cf{stroke-opacity:.4;stroke-dasharray:3 4;stroke-dashoffset:0;opacity:0}.pk3.in .p3draw .cf{animation:gzfade .6s ease 1.1s forwards}
+.p3draw .dl{stroke-opacity:.8;stroke-width:1.2}.p3draw .dl2{stroke-opacity:.45;stroke-width:.8}.p3draw .cx{stroke:var(--amber);stroke-opacity:.6}
+.p3draw .dt.xs{font-size:10px;letter-spacing:.18em;fill-opacity:.65}.p3draw .dt.xs.c{fill-opacity:.4}.p3draw .pzt{fill:var(--amber);fill-opacity:.55}
+.p3pl.fkp,.p3pl.inp{font-size:13px;color:rgba(143,215,232,.6)}.pk3.st-win .p3pl.fkp,.pk3.st-win .p3pl.inp,.pk3.st-win .p3pl.lcp{opacity:.35}
+.p3pl::after{content:"";display:block;height:1px;margin-top:3px;background:currentColor;opacity:.4}
+.pk3.v4 .p3pot{top:30px}.pk3.v4.st-win .p3pot{opacity:0}
+.p4top{position:absolute;left:12px;right:12px;top:6px;z-index:6;display:flex;justify-content:space-between;gap:16px;font-family:var(--mono);font-size:10.5px;letter-spacing:.16em;color:var(--mute);padding-bottom:4px;border-bottom:1px solid rgba(143,215,232,.25);white-space:nowrap}
+.p4top b{color:var(--cyan);font-weight:600}.p4top em{font-style:normal;color:var(--amber)}
+.p4pl,.p4ch{position:absolute;top:38px;z-index:6;width:192px;padding:8px 9px 7px;background:rgba(5,12,18,.88);border:1px solid rgba(143,215,232,.4);font-family:var(--mono);color:var(--ink);opacity:0;transform:translateY(6px);transition:opacity .5s,transform .6s cubic-bezier(.2,.8,.2,1)}
+.p4pl{left:12px}.p4ch{right:12px}.pk3.in .p4pl,.pk3.in .p4ch{opacity:1;transform:none;transition-delay:.6s}
+.p4pl::before,.p4ch::before{content:"";position:absolute;left:-3px;top:-3px;width:9px;height:9px;border-left:2px solid var(--amber);border-top:2px solid var(--amber)}
+.p4pl .t,.p4ch .t{display:flex;justify-content:space-between;gap:6px;font-size:9.5px;letter-spacing:.14em;color:var(--amber);padding-bottom:5px;margin-bottom:4px;border-bottom:1px solid rgba(143,215,232,.25)}.p4pl .t span,.p4ch .t span{color:var(--mute);letter-spacing:.08em}
+.p4pl .pr{padding:3px 0 3px 7px;border-left:2px solid var(--c);margin-bottom:3px;transition:opacity .5s,background .5s}
+.p4pl .ph{display:flex;align-items:baseline;gap:5px;font-size:10px;letter-spacing:.06em;white-space:nowrap}.p4pl .ph i{font-style:normal;color:var(--mute);font-size:9.5px}.p4pl .ph b{color:var(--c);font-weight:600;flex:1}
+.p4pl .hc{display:flex;gap:3px}.p4pl .hc u{text-decoration:none;min-width:19px;text-align:center;padding:0 1px;border:1px solid rgba(143,215,232,.4);font-size:9.5px;line-height:13px;color:var(--mute)}
+.p4pl .pr.rv .hc u{color:var(--ink);border-color:var(--c);animation:p4in .4s ease}.p4pl .hc u.r{color:var(--red)!important}
+.p4pl .rk{font-style:normal;width:20px;text-align:right;color:var(--mute);font-size:10px}
+.p4pl .pb{display:flex;align-items:center;gap:6px;margin-top:2px}.p4pl .pb s{flex:1;display:block;height:4px;background:rgba(143,215,232,.12);text-decoration:none;position:relative}
+.p4pl .pb s::after{content:"";position:absolute;inset:0;background:repeating-linear-gradient(90deg,transparent 0 calc(25% - 1px),rgba(143,215,232,.35) calc(25% - 1px) 25%)}
+.p4pl .pb s u{display:block;height:100%;background:var(--c);transform:scaleX(0);transform-origin:left;transition:transform .6s cubic-bezier(.2,.8,.2,1)}
+.p4pl .pv{width:46px;text-align:right;font-size:10.5px;font-weight:600;color:var(--ink);font-variant-numeric:tabular-nums}
+.p4pl .pn{font-size:8.5px;letter-spacing:.06em;color:var(--mute);margin-top:1px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.p4pl .pr.rv .hn{color:var(--c)}
+.p4pl .pr.out{opacity:.42}.p4pl .pr.win{background:linear-gradient(90deg,rgba(242,182,94,.16),transparent)}.p4pl .pr.win .pv{color:var(--amber)}
+@keyframes p4in{from{opacity:0;transform:translateY(-4px)}}
+.p4ch svg{display:block;width:100%;height:auto;overflow:visible}
+.p4ch .ax{fill:none;stroke:rgba(143,215,232,.6);stroke-width:.8}.p4ch .gl{stroke:rgba(143,215,232,.12);stroke-width:.6;stroke-dasharray:2 3}
+.p4ch text.q4y{font-size:7.5px;fill:var(--mute);text-anchor:end;font-family:var(--mono)}.p4ch text.q4x{font-size:6.6px;fill:var(--mute);text-anchor:middle;letter-spacing:.04em;font-family:var(--mono)}
+.p4ch .ln{fill:none;stroke-width:1.4;stroke-linejoin:round;stroke-dasharray:1;stroke-dashoffset:1;transition:stroke-dashoffset .7s cubic-bezier(.4,0,.2,1)}.p4ch .ln.bd{stroke-width:2}
+.p4ch .pt{opacity:0;transition:opacity .3s .5s}.p4ch .pt.on{opacity:1}
+.p4ch .lgd{display:grid;grid-template-columns:1fr 1fr;gap:2px 8px;margin-top:5px;font-size:9px;letter-spacing:.08em;color:var(--mute)}.p4ch .lgd i{display:inline-block;width:10px;height:2px;margin-right:5px;vertical-align:middle;background:var(--c)}
+.p4str{position:absolute;left:50%;bottom:8px;transform:translateX(-50%);z-index:6;display:flex;align-items:center;gap:6px;font-family:var(--mono);font-size:10px;letter-spacing:.16em;color:var(--mute);opacity:0;transition:opacity .5s .8s;white-space:nowrap}
+.pk3.in .p4str{opacity:1}.p4str i{font-style:normal;opacity:.4}.p4str span{padding:2px 7px;border:1px solid rgba(143,215,232,.25);transition:color .3s,border-color .3s,background .3s}
+.p4str span.dn{color:var(--cyan);border-color:rgba(143,215,232,.55)}.p4str span.on{color:var(--amber);border-color:var(--amber);background:rgba(242,182,94,.1)}
+.pk3.v4 .p3call{left:auto;right:12px;top:250px;bottom:auto;width:192px;padding:8px 9px 6px}
+.pk3.v4 .p3call .ch{font-size:9.5px;letter-spacing:.14em}.pk3.v4 .p3call .cr{font-size:9.5px;letter-spacing:.04em}.pk3.v4 .p3call svg{height:34px}
+.pk3.v4 .p3win{top:44px}.pk3.v4.st-seat .p4pl .pr.out,.pk3.v4.st-end .p4pl .pr.out{opacity:.3}
+@media (max-width:700px){.pk3.v4 .p4pl,.pk3.v4 .p4ch,.pk3.v4 .p4top{display:none}.p4str{font-size:17px;bottom:2px}.pk3.v4 .p3c .ct{display:none}}
 /* Cold Open v37: SIGINT-Leitstelle */
 .ms-cold.co2{display:block;padding:0;background:radial-gradient(ellipse 60% 70% at 66% 50%,#0a1a24 0%,#03080b 70%);background-color:#020507}
 .co2::before{content:"";position:absolute;inset:0;background-image:linear-gradient(rgba(143,215,232,.045) 1px,transparent 1px),linear-gradient(90deg,rgba(143,215,232,.045) 1px,transparent 1px);background-size:32px 32px;opacity:0;animation:gzfade 1.2s ease .1s forwards}
@@ -7056,51 +7100,90 @@ const PKB=[['A','♠'],['8','♠'],['6','♠'],['4','♠'],['A','♥']],PKL=[['A
 function pcard(cls,r,s,x,y,rot,win){const red=s==='♥'||s==='♦';return `<div class="p3c ${cls}${win?' w':''}" style="--x:${x}px;--y:${y}px;--r:${rot||0}deg"><div class="p3i"><i class="fc${red?' rd':''}"><b>${r}<em>${s}</em></b><span>${s}</span><b class="bt">${r}<em>${s}</em></b></i><i class="bk"></i></div></div>`}
 function pstack(cls,x,y,n,col,px,py,sx,sy){let o='';for(let i=0;i<n;i++)o+=`<i style="--z:${i*3}px"></i>`;return `<div class="p3s ${cls} ${col||''}" style="--x:${x}px;--y:${y}px;--px:${(px||x)-x}px;--py:${(py||y)-y}px;--sx:${(sx||x)-x}px;--sy:${(sy||y)-y}px">${o}</div>`}
 function p3stad(d){const W=760+2*d,H=380+2*d,r=190+d,x=-d,y=-d;return `M${x+r} ${y}H${x+W-r}A${r} ${r} 0 0 1 ${x+W-r} ${y+H}H${x+r}A${r} ${r} 0 0 1 ${x+r} ${y}Z`}
+/* Pokerszene v57: Werkstattzeichnung des Tisches (Polstersegmente, Dealer mit Chiprack und Kartenschlitten, Pot-Zone, Kartenfelder B1–B5,
+   Maßketten), vier Spieler des Finales mit echten Händen, Analysetafeln: Spielerliste mit Gewinnwahrscheinlichkeit je Straße (vorab exakt
+   berechnet: Flop/Turn/River vollständig, Preflop 300 000 Stichproben), Wahrscheinlichkeitskurve, Straßenanzeige, Befund mit EKG. */
+const PK4={pl:[['fk','FUKUTU','S7',[['K','♠'],['Q','♠']],'FLUSH · K-HOCH','#8FD7E8',4],['inf','INFANTE','S3',[['8','♣'],['8','♥']],'FULL HOUSE · 8/A','#DCEBEF',3],
+  ['lc','LE CHIFFRE','S1',[['A','♦'],['6','♦']],'FULL HOUSE · A/6','#F0554A',2],['bd','BOND','S5',[['5','♠'],['7','♠']],'STRAIGHT FLUSH · 4–8','#F2B65E',1]],
+  eq:{fk:[31.9,63.3,0,0],inf:[30.2,18.0,0,0],lc:[26.4,9.0,0,0],bd:[11.5,9.6,100,100]},st:['PREFLOP','FLOP','TURN','RIVER']};
 function poker(){let t='';
-  PKB.forEach(([r,s],i)=>t+=pcard('bd b'+i,r,s,262+i*62,138,0,i<4));
+  PKB.forEach(([r,s],i)=>t+=pcard('bd b'+i,r,s,262+i*62,138,0,i<4).replace('</div></div>',`</div><u class="ct">B${i+1} · ${r}${s}</u></div>`));
   PKL.forEach(([r,s],i)=>t+=pcard('lc l'+i,r,s,214+i*50,26,-8+i*14));
   PKD.forEach(([r,s],i)=>t+=pcard('me m'+i,r,s,316+i*52,262,-6+i*12,1));
-  t+=pstack('bet a',470,300,9,'r',590,200,612,300)+pstack('bet b',500,306,7,'k',622,210,646,312)+pstack('bet c',488,282,8,'a',606,182,628,282)+pstack('lcs a2',150,70,10,'k',640,186,664,292)+pstack('lcs b2',178,62,8,'r',652,214,676,318)+pstack('own',700,300,5,'a');
-  /* Konstruktionszeichnung des Tisches (wird wie vom Plotter gezogen) */
+  PK4.pl[0][3].forEach(([r,s],i)=>t+=pcard('fk f'+i,r,s,44,112+i*64,90+(i?6:-4)));
+  PK4.pl[1][3].forEach(([r,s],i)=>t+=pcard('inf n'+i,r,s,660,112+i*64,-90+(i?-6:4)));
+  t+=pstack('bet a',470,300,9,'r',590,200,612,300)+pstack('bet b',500,306,7,'k',622,210,646,312)+pstack('bet c',488,282,8,'a',606,182,628,282)+pstack('lcs a2',150,70,10,'k',640,186,664,292)+pstack('lcs b2',178,62,8,'r',652,214,676,318)+pstack('own',700,300,5,'a')
+    +pstack('fks',96,270,9,'k',560,170,600,290)+pstack('ins',640,70,8,'r',584,232,620,300);
+  /* Werkstattzeichnung */
   let g='',k=0;const L=(d,c)=>g+=`<path d="${d}" pathLength="1" class="${c||''}" style="--k:${k++}"/>`;
-  L(p3stad(26),'o');L(p3stad(19),'f');L(p3stad(0),'m');L(p3stad(-34),'d');
+  L(p3stad(26),'o');L(p3stad(19),'f');L(p3stad(0),'m');L(p3stad(-34),'d');L(p3stad(-110),'pz');
+  /* Polstersegmente der Bande */
+  {let d='';const seg=(x,y,nx,ny)=>{d+=`M${(x+nx*19).toFixed(1)} ${(y+ny*19).toFixed(1)}L${(x+nx*26).toFixed(1)} ${(y+ny*26).toFixed(1)}`};
+    for(let x=190;x<=570;x+=19){seg(x,0,0,-1);seg(x,380,0,1)}for(let a=-90;a<=90;a+=7){const q=a*Math.PI/180;seg(570+190*Math.cos(q),190+190*Math.sin(q),Math.cos(q),Math.sin(q));seg(190-190*Math.cos(q),190+190*Math.sin(q),-Math.cos(q),Math.sin(q))}L(d,'sg')}
   L('M-70 190H830','ax');L('M380 -70V450','ax');
   L('M-26 455V485M786 455V485M-26 474H786','dm');L('M816 -26H846M816 406H846M835 -26V406','dm');
   L('M262 128V118H572V128','dm');[[262,138],[572,138]].forEach(([x,y])=>L(`M${x} ${y-6}l0 -6`,'dm'));
+  L('M262 240V250M324 240V250M262 246H324','dm');
+  /* Kartenfelder */
+  for(let i=0;i<5;i++)L(`M${259+i*62} ${135}h62v86h-62Z`,'cf');
+  /* Dealer: Chiprack, Kartenschlitten, Ablage */
+  L('M452 22h132v30h-132Z','dl');{let d='';for(let i=1;i<10;i++)d+=`M${452+i*13.2} 22v30`;L(d,'dl2')}
+  L('M600 24l44 6l-4 30l-44 -6Z','dl');L('M606 30l34 4','dl2');L('M408 24h32v40h-32Z','dl2');
+  L('M380 190m-18 0h36M380 172v36','cx');
   const seats=[[380,-44],[640,-12],[808,190],[640,392],[380,424],[120,392],[-48,190],[120,-12]];
   seats.forEach(([x,y])=>L(`M${x+14} ${y}A14 14 0 1 1 ${x+14-.01} ${y}`,'st'));
   let tx=seats.map(([x,y],i)=>`<text x="${x}" y="${y+4.5}" class="sn">${i+1}</text>`).join('');
-  tx+=`<text x="380" y="489" class="dt">2 400</text><text x="852" y="196" class="dt" transform="rotate(-90 852 190)">1 200</text><text x="417" y="114" class="dt sm">GEMEINSCHAFTSKARTEN</text><text x="380" y="248" class="lg">CASINO ROYALE · TISCH 1</text>`;
+  tx+=`<text x="380" y="489" class="dt">2 400</text><text x="852" y="196" class="dt" transform="rotate(-90 852 190)">1 200</text><text x="417" y="114" class="dt sm">GEMEINSCHAFTSKARTEN</text>
+    <text x="293" y="262" class="dt xs">62</text>
+    <text x="518" y="16" class="dt xs">CHIPRACK · DEALER</text><text x="622" y="74" class="dt xs">SCHLITTEN</text><text x="424" y="76" class="dt xs">ABLAGE</text>
+    <text x="380" y="318" class="dt xs pzt">POT-ZONE</text><text x="380" y="352" class="lg">CASINO ROYALE · TISCH 1</text>`;
   t+=`<svg class="p3draw" viewBox="-90 -70 960 580" aria-hidden="true">${g}${tx}</svg>`;
   t+=`<div class="p3pl lcp" style="--x:180px;--y:-14px">LE CHIFFRE</div><div class="p3pl bdp" style="--x:300px;--y:356px">BOND</div><div class="p3pl usp" style="--x:600px;--y:356px">00-EINHEIT</div>
+    <div class="p3pl fkp" style="--x:-4px;--y:250px">FUKUTU</div><div class="p3pl inp" style="--x:752px;--y:250px">INFANTE</div>
     <div class="p3seat" style="--x:640px;--y:322px"><svg viewBox="-50 -50 100 100"><circle r="40" class="o"/><circle r="26" class="i"/><path d="M-48 0h14M34 0h14M0 -48v14M0 34v14"/></svg></div>
     <div class="p3burst" style="--x:342px;--y:300px"><i></i><i></i><i></i></div>`;
-  return `<div class="pk3 tech"><div class="p3in">
+  /* Analysetafeln */
+  const rows=PK4.pl.map(([id,n,seat,cs,hand,col])=>`<div class="pr ${id}" style="--c:${col}"><div class="ph"><i>${seat}</i><b>${n}</b><span class="hc">${cs.map(()=>'<u>▮</u>').join('')}</span><em class="rk">—</em></div>
+      <div class="pb"><s><u></u></s><b class="pv">--,- %</b></div><div class="pn">HAND · <span class="hn">VERDECKT</span></div></div>`).join('');
+  const ch=(()=>{const X=i=>34+i*44,Y=v=>100-v*.86;let o=`<path d="M22 100H174M22 10V100" class="ax"/>${[0,25,50,75,100].map(v=>`<path d="M20 ${Y(v)}H174" class="gl"/><text x="17" y="${Y(v)+2.5}" class="q4y">${v}</text>`).join('')}`;
+    o+=PK4.st.map((s,i)=>`<text x="${X(i)}" y="112" class="q4x">${s}</text><path d="M${X(i)} 100v3" class="ax"/>`).join('');
+    PK4.pl.forEach(([id,,,,,col])=>{const e=PK4.eq[id];o+=`<path class="ln ${id}" d="M${e.map((v,i)=>X(i)+' '+Y(v).toFixed(1)).join('L')}" pathLength="1" style="stroke:${col}"/>${e.map((v,i)=>`<circle class="pt ${id} s${i}" cx="${X(i)}" cy="${Y(v).toFixed(1)}" r="2.6" style="fill:${col}"/>`).join('')}`});return o})();
+  return `<div class="pk3 tech v4"><div class="p3in">
     <div class="p3view"><div class="p3cam"><div class="p3tab"><i class="p3felt"></i>${t}</div></div></div>
     <svg class="p3ov" viewBox="0 0 1000 470" aria-hidden="true"><path class="ld" d=""/><circle class="ldp" r="4"/></svg>
-    <div class="p3pot"><b>EINSATZ</b><span class="v">0 $</span></div>
+    <div class="p4top"><span><b>CASINO ROYALE</b> · MONTENEGRO · TISCH 1 · TEXAS HOLD'EM · NO LIMIT</span><span>BUY-IN 10 MIO $ · BLINDS 500K/1M · HAND 047 · <em class="p4st">PREFLOP</em></span></div>
+    <div class="p4pl"><div class="t"><b>SPIELER · ALL-IN</b><span>GEWINNCHANCE</span></div>${rows}</div>
+    <div class="p4ch"><div class="t"><b>GEWINNCHANCE</b><span>% JE STRASSE</span></div><svg class="nolg" viewBox="0 0 180 116">${ch}</svg>
+      <div class="lgd">${PK4.pl.map(([id,n,,,,col])=>`<span style="--c:${col}"><i></i>${n}</span>`).join('')}</div></div>
+    <div class="p4str">${PK4.st.concat(['SHOWDOWN']).map((s,i)=>`<span data-i="${i}">${s}</span>`).join('<i>▸</i>')}</div>
+    <div class="p3pot"><b>POT · 4 SPIELER ALL-IN</b><span class="v">0 $</span></div>
     <div class="p3call"><div class="ch"><b>BEFUND 01</b><span>SITZ 5 · BOND</span></div><div class="cr"><i>SUBSTANZ</i><span>DIGITALIS · MARTINI</span></div>
       <div class="cr"><i>HERZRHYTHMUS</i><span class="hr">KAMMERFLIMMERN</span></div><svg viewBox="0 0 300 50"><path class="e" d=""/></svg></div>
-    <div class="p3eval"><div class="eh">HANDAUSWERTUNG</div>
-      <div class="er lc"><i>LE CHIFFRE</i><b>A♦ 6♦</b><span>FULL HOUSE · A/6</span></div>
-      <div class="er bd"><i>BOND</i><b>5♠ 7♠</b><span>STRAIGHT FLUSH 4–8</span></div></div>
-    <div class="p3win"><span>STRAIGHT FLUSH</span><small>4 BIS 8 PIK · SITZ 5</small></div><i class="p3sw"></i></div></div>`}
+    <div class="p3win"><span>STRAIGHT FLUSH</span><small>4 BIS 8 PIK · SITZ 5 · 100 %</small></div><i class="p3sw"></i></div></div>`}
+/* Straße setzen: Gewinnwahrscheinlichkeiten, Kurve, Anzeige */
+function pk4St(w,i){if(!w||!w.isConnected)return;w.dataset.st=i;const st=w.querySelector('.p4st');if(st)st.textContent=i>3?'SHOWDOWN':PK4.st[i];
+  w.querySelectorAll('.p4str span').forEach(s=>{s.classList.toggle('on',+s.dataset.i===i);s.classList.toggle('dn',+s.dataset.i<i)});
+  PK4.pl.forEach(([id])=>{const v=PK4.eq[id][Math.min(3,i)],r=w.querySelector('.pr.'+id);if(!r)return;r.querySelector('.pv').textContent=v.toFixed(1).replace('.',',')+' %';r.querySelector('s u').style.transform=`scaleX(${v/100})`;
+    w.querySelectorAll(`.p4ch .pt.${id}`).forEach((c,j)=>c.classList.toggle('on',j<=Math.min(3,i)))});
+  w.querySelectorAll('.p4ch .ln').forEach(l=>l.style.strokeDashoffset=String(1-Math.min(3,i)/3))}
+function pk4Rv(w,id){const p=PK4.pl.find(q=>q[0]===id),r=w&&w.querySelector('.pr.'+id);if(!p||!r)return;r.classList.add('rv');r.querySelector('.hc').innerHTML=p[3].map(([a,b])=>`<u class="${b==='♥'||b==='♦'?'r':''}">${a}${b}</u>`).join('');r.querySelector('.hn').textContent=p[4];r.querySelector('.rk').textContent='#'+p[6]}
+function pk4Res(w){PK4.pl.forEach(([id,,,,,,rk])=>{const r=w.querySelector('.pr.'+id);r&&r.classList.add(rk===1?'win':'out')})}
 /* Kamera-Einstellungen (Tischebene) */
-const P3={wide:{rx:62,rz:0,s:.86,x:0,y:24},bet:{rx:55,rz:-3,s:1.1,x:-40,y:-10},board:{rx:47,rz:0,s:1.1,x:-120,y:22},lc:{rx:50,rz:4,s:1.4,x:90,y:140},
-  show:{rx:40,rz:-2,s:1.45,x:-90,y:-110},win:{rx:44,rz:0,s:1.15,x:-110,y:-34},seat:{rx:60,rz:-10,s:1.05,x:-170,y:-60},end:{rx:58,rz:-12,s:1.28,x:-250,y:-110}};
+const P3={wide:{rx:60,rz:0,s:.64,x:0,y:40},bet:{rx:55,rz:-2,s:.7,x:0,y:24},board:{rx:46,rz:0,s:.9,x:0,y:44},lc:{rx:50,rz:3,s:1.05,x:80,y:150},
+  show:{rx:42,rz:-2,s:1.05,x:40,y:-80},win:{rx:46,rz:0,s:.88,x:0,y:6},seat:{rx:58,rz:-8,s:.86,x:-60,y:-30},end:{rx:56,rz:-10,s:.98,x:-110,y:-60}};
 const p3tf=p=>`translate(${p.x}px,${p.y}px) scale(${p.s}) rotateX(${p.rx}deg) rotateZ(${p.rz}deg)`;
 function pk(root){const w=root.querySelector('.pk3');if(!w)return;const me=cur,inn=w.querySelector('.p3in');
   let k=1;const fit=()=>{k=w.clientWidth/1000;inn.style.transform=`scale(${k})`;inn.style.top=Math.max(0,(w.clientHeight-470*k)/2)+'px'};fit();
   const cam=w.querySelector('.p3cam');let pose=P3.wide;cam.style.transform=p3tf(pose);
   SND.hush(true);
-  if(RM){w.classList.add('in','st-bet','st-b0','st-b1','st-b2','st-b3','st-b4','st-lc','st-m0','st-m1','st-win');cam.style.transform=p3tf(P3.win);w.querySelector('.p3pot .v').textContent='10.000.000 $';return}
+  if(RM){w.classList.add('in','st-bet','st-b0','st-b1','st-b2','st-b3','st-b4','st-fk','st-inf','st-lc','st-m0','st-m1','st-win');cam.style.transform=p3tf(P3.win);w.querySelector('.p3pot .v').textContent='10.000.000 $';pk4St(w,4);PK4.pl.forEach(p=>pk4Rv(w,p[0]));pk4Res(w);return}
   w._go=(to,ms,ease)=>{const fr=pose;pose=P3[to];anims.push(cam.animate([{transform:p3tf(fr)},{transform:p3tf(pose)}],{duration:ms,easing:ease||'cubic-bezier(.45,0,.2,1)',fill:'forwards'}))};
-  later(()=>w.classList.add('in'),60);w._go('bet',3200,'cubic-bezier(.3,0,.3,1)');
+  later(()=>w.classList.add('in'),60);w._go('bet',3200,'cubic-bezier(.3,0,.3,1)');later(()=>cur===me&&pk4St(w,0),400);
   /* Befund: Hinweislinie vom Sitz zum Kasten, EKG im Kasten */
   const ld=w.querySelector('.p3ov .ld'),ldp=w.querySelector('.p3ov .ldp'),plate=w.querySelector('.p3pl.bdp'),box=w.querySelector('.p3call'),ecg=w.querySelector('.p3call .e'),ck=cxClock();let phase=0,trace=[];
   (function f(now){if(cur!==me||!w.isConnected)return;ck(now);
     if(w.classList.contains('st-gift')&&!w.classList.contains('st-b0')){const ir=inn.getBoundingClientRect(),pr=plate.getBoundingClientRect(),br=box.getBoundingClientRect();
-      const px=(pr.left+pr.width/2-ir.left)/k,py=(pr.top-ir.top)/k,bx=(br.right-ir.left)/k,by=(br.top+18*k-ir.top)/k,ex=bx+40;
+      const px=(pr.left+pr.width/2-ir.left)/k,py=(pr.top-ir.top)/k,bx=(br.left-ir.left)/k,by=(br.top+18*k-ir.top)/k,ex=bx-30;
       ld.setAttribute('d',`M${px.toFixed(1)} ${py.toFixed(1)}L${ex.toFixed(1)} ${by.toFixed(1)}L${bx.toFixed(1)} ${by.toFixed(1)}`);ldp.setAttribute('cx',px.toFixed(1));ldp.setAttribute('cy',py.toFixed(1))}
     if(playing){phase+=58/60/60;const ph=phase%1,bad=w.classList.contains('st-gift')&&!w.classList.contains('st-calm'),v=bad?(Math.random()-.5)*16+(ph<.08?-18:0):ph<.04?-3:ph<.07?18:ph<.1?-20:ph<.13?7:ph>.3&&ph<.4?-4*Math.sin((ph-.3)/.1*Math.PI):0;trace.push(v);if(trace.length>150)trace.shift()}
     ecg.setAttribute('d','M'+trace.map((v,i)=>`${i*2} ${(25+v).toFixed(1)}`).join('L'));requestAnimationFrame(f)})(performance.now());
@@ -7111,12 +7194,14 @@ function pkCue(root,at){const w=root.querySelector('.pk3');if(!w||RM)return;cons
   later(()=>{add('st-bet');SND.whoosh(.2);countUp(w.querySelector('.p3pot .v'),10000000,1300,' $')},tz);
   later(()=>{add('st-gift');SND.ping()},tg);later(()=>{add('st-calm');const h=w.querySelector('.p3call .hr');if(h&&ok())h.textContent='STABILISIERT · DEFIBRILLIERT'},tg+1500);
   later(()=>ok()&&w._go('board',600),tb-250);
-  [0,1,2].forEach(i=>later(()=>{add('st-b'+i);SND.shutter()},tb+i*100));later(()=>{add('st-b3');SND.shutter()},tb+380);later(()=>{add('st-b4');SND.shutter()},tb+560);
-  later(()=>ok()&&w._go('lc',500),tb+450);later(()=>{add('st-lc');SND.shutter()},tb+700);
-  later(()=>ok()&&w._go('show',700,'cubic-bezier(.2,0,.1,1)'),tb+1050);later(()=>{add('st-m0');SND.shutter()},tb+1300);later(()=>{add('st-m1');SND.shutter()},tb+1650);
-  later(()=>{add('st-win');SND.hush(false);SND.hit();ok()&&w._go('win',900,'cubic-bezier(.2,.8,.2,1)')},tb+2000);
-  later(()=>{add('st-seat');ok()&&w._go('seat',1500)},Math.max(tb+2900,tw+500));
-  later(()=>{add('st-end');ok()&&w._go('end',2600,'cubic-bezier(.3,0,.2,1)')},Math.max(tb+3800,ts))}
+  [0,1,2].forEach(i=>later(()=>{add('st-b'+i);SND.shutter()},tb+i*100));later(()=>ok()&&pk4St(w,1),tb+260);
+  later(()=>{add('st-b3');SND.shutter();ok()&&pk4St(w,2)},tb+380);later(()=>{add('st-b4');SND.shutter();ok()&&pk4St(w,3)},tb+560);
+  later(()=>{add('st-fk');ok()&&pk4Rv(w,'fk');SND.shutter()},tb+640);later(()=>{add('st-inf');ok()&&pk4Rv(w,'inf');SND.shutter()},tb+820);
+  later(()=>ok()&&w._go('lc',500),tb+760);later(()=>{add('st-lc');ok()&&pk4Rv(w,'lc');SND.shutter()},tb+1000);
+  later(()=>ok()&&w._go('show',700,'cubic-bezier(.2,0,.1,1)'),tb+1250);later(()=>{add('st-m0');SND.shutter()},tb+1450);later(()=>{add('st-m1');ok()&&pk4Rv(w,'bd');SND.shutter()},tb+1750);
+  later(()=>{add('st-win');ok()&&(pk4St(w,4),pk4Res(w));SND.hush(false);SND.hit();ok()&&w._go('win',900,'cubic-bezier(.2,.8,.2,1)')},tb+2100);
+  later(()=>{add('st-seat');ok()&&w._go('seat',1500)},Math.max(tb+3000,tw+500));
+  later(()=>{add('st-end');ok()&&w._go('end',2600,'cubic-bezier(.3,0,.2,1)')},Math.max(tb+3900,ts))}
 
 
 /* Aufriss zuerst (zeichnen, öffnen), dann Überblendung in die Zeichnung des Ortes */
