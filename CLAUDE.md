@@ -318,4 +318,13 @@ Freigabe: „Anyone with the link“ ist aktiv. Wer die Seite offen hat, sieht n
 - Version 48 (07.10.2026): Detailzeichnungen auch als Miniatur (`detThumb(k)`, Ausschnitt `th` 2:1 je id in `#detData`, nur Ebenen a/f):
   Zielobjekt-Karten (`thUp()` nach DOMContentLoaded, ersetzt die Aufriss-Miniatur), Detailpanel links („DETAILBLATT“) und Zielstatus-Liste
   der Startseite (`#tlist .ti`). Kaiserbad, Barrandov, Planá behalten die Aufriss-Miniatur.
+- Version 49 (08.10.2026): Briefing: Überspringen beendet Stimme und Musik wirklich (`VOX.hold` blockt spätes `speak`, `SND.cue(null)` trennt die
+  Musik auch bei pausiertem Ton). Zielobjekt-Szenen zeigen statt der alten Aufrisse **Lagepläne aus OpenStreetMap** (`#mapData`, `MAPG(k)`, `lpSVG(k,o)`;
+  je id: Gebäude in Streifen, Straßen als Doppellinien nach Klasse r1–r6, Bahn/Tram, Gewässer, Grün/Wald, Plätze, Parkplätze, Bäume, Quellen/Brunnen,
+  Haltestellen, Höhenlinien aus AWS-Terrain-Tiles, Straßen-/Gewässer-/Ortsnamen, Meter-Gitter, Rahmen mit Bogensekunden-Teilung, Maßstab, Nordpfeil,
+  Ziel rot schraffiert mit Ringen 50/100/200 m und Kennung). Aufbau in Ebenen (Klasse `run`), Kamerafahrt über die viewBox (`lpGo`), Statuszeile
+  LAGEPLAN/OSM %. Zweiphasen-Szenen (`two()`): Lageplan ~52 % der Szene, dann Detailzeichnung; Kaiserbad/Barrandov/Planá: nur Lageplan.
+  Generator im Scratchpad (`map/gen.py`, `cfg.py`, `dem.py`; Daten © OpenStreetMap-Mitwirkende, ODbL, Hinweis in Karte und Footer).
+  Modul Zielobjekte: Ansichten DETAILBLATT · AUFRISS & SCHNITT (neu auf Basis der Detailzeichnung: Fassade tritt zurück, Schnitt-Ebenen `S`
+  in `#detData` mit `s`/`sh`/`sf` + Texten, `cutView`) · LAGEPLAN (`mapView`), alte Aufrisse nur noch für Kaiserbad, Barrandov, Planá (`viewInit`).
 - Tests: Playwright-Skripte müssen vor dem Laden `window.__NOINTRO=1` per `addInitScript` setzen, sonst läuft das Intro.
