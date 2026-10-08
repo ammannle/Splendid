@@ -358,4 +358,13 @@ Freigabe: „Anyone with the link“ ist aktiv. Wer die Seite offen hat, sieht n
   (Grad), Schriftfeld. Feste Ebene `.o2hud`: Übersicht mit Kameraausschnitt, Zoom, Koordinaten. Kamera `O2BX` (Desktop) / `O2BM` (Handy),
   Hervorhebung über Klasse `lit` (Befehlswege zeichnen sich, Geld/Feindkontakt fließen), Datenpakete auf aktiven Kanten, Fadenkreuz am
   Schlüsselknoten. Modul-Daten über `window.ogData`.
+- Version 54 (08.10.2026): Titelszene „Operation Splendide“: Lageskizze mit OSM-Grundkarte (`opOsm`: `MB.render` des Routennetzes in
+  Bildschirmauflösung als `<image class="g-osm">`, nur Großstädte, ohne Nummernschilder: `st.labMin`), Detailkreise maßstäblich (`I.SC`,
+  Ziele an echter Lage, verdrängte Marken mit Lagepunkt und Hinweislinie, Ausreißer Flughafen/Barrandov als Randmarke mit km und Richtung)
+  mit Stadtplänen Karlsbad/Prag aus `#cityData` (`.i-osm`, affin über `I.SC`), Distanzringe, Achsen, Maßstab 500 m/1 km, Koordinaten.
+  Bilder je Größe in `OPIMG` zwischengespeichert. Links Etappentabelle `.op-et` (A–D mit km/Zeit, leuchtet beim Wort „Route“ mit),
+  unter der Karte Legende `.op-lg` mit Maßstabszahl (`.op-ms`, aus Bildschirm-ppu). `MB.render` rechnet Kachel-Sichtbarkeit jetzt
+  allgemein über `A`/`O`. Prag-Daten mit größerem Nord-/Südrand neu erzeugt (`MY=110`). Modul Personenakten: Organigramm `#ogSvg`
+  ebenfalls als Netzwerkblatt (`window.o2Markup`, Klasse `o2mod`, Hover hebt Verbindungen hervor, Klick auf Organisation zeigt die Akte,
+  auf Person öffnet `paOpen`; Tastatur per tabindex; am Handy seitlich scrollbar).
 - Tests: Playwright-Skripte müssen vor dem Laden `window.__NOINTRO=1` per `addInitScript` setzen, sonst läuft das Intro.
