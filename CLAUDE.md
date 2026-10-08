@@ -375,4 +375,8 @@ Freigabe: „Anyone with the link“ ist aktiv. Wer die Seite offen hat, sieht n
   Zoom am Ende; Satellitendaten mit berechnetem Azimut/Elevation/Schrägentfernung für London und Prag (`CO3.look`), Linkbudget mit
   Freiraumdämpfung bei 8,412 GHz; Spektrumanalysator mit Wasserfall (Träger erscheint, Marker M1); Stimmanalyse (`.ms-scope`, Pegel aus
   `VOX.wave`) mit Stimmprofil-Abgleich; Bestätigung „Verbindung steht“; Fußzeile mit Paketen/Jitter. Handy: reduzierte Ansicht.
+- Version 56 (08.10.2026): Lagekarten: Marker, Beschriftungen, Schilder, Zielpersonen und Zielerfassung behalten beim Zoomen ihre
+  Bildschirmgröße (`zprep` nach `draw()`, `zApply` aus `viewer().onZoom`): Gegenskalierung um den Ankerpunkt (Beschriftung hängt am nächsten
+  Marker), Zielobjekte/Assets über innere Ebene `g.mkz` (die Einrast-Animation setzt CSS-transform auf `.mk`), Personen über `a.k` in
+  `renderP`, `.m-lock` über `data-x/y`; Linien mit `vector-effect:non-scaling-stroke`. Faktor relativ zur Startansicht (`svg._zh`).
 - Tests: Playwright-Skripte müssen vor dem Laden `window.__NOINTRO=1` per `addInitScript` setzen, sonst läuft das Intro.

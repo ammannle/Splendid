@@ -2577,6 +2577,7 @@ html.msfull{overflow:hidden}
   .co3 .c3-ok{left:auto;right:3cqw;top:auto;bottom:23cqh;transform:none;padding:4px 8px}.co3.c3-up .c3-ok{transform:none}.co3 .c3-ok b{font-size:10px;letter-spacing:.2em}.co3 .c3-ok span{display:none}
   .co3 .c3-ft{display:none}.co3 .c3-cls{font-size:8px;padding:1px 4px}.co3 .c3-top{font-size:8px;gap:6px}.co3 .c3-vo{bottom:3cqh}}
 @media (prefers-reduced-motion:reduce){.co3 .c3-grid,.co3 .c3-fr i,.co3 .c3-top,.co3 .c3-chain,.co3 .c3-gl,.co3 .c3-ft{animation:none;opacity:1}}
+#map :is(path,line,rect,circle){vector-effect:non-scaling-stroke}
 </style>
 </head>
 <body>
@@ -3896,16 +3897,34 @@ function draw(svgEl,key,opts){
     el('rect',{x:-90,y:0,width:90,height:H,fill:'url(#scanG)',class:'m-scan'});
     const hg=el('g',{class:'m-hudt'});const ht=T(56,H-16,'','m-gt',{},hg);ht.innerHTML=`<tspan class="m-dot">●</tspan> SAT-UPLINK AKTIV · KARTE ${m.code||''} · <tspan class="m-clock"></tspan>`;
     const xh=el('g',{class:'m-xh'});el('line',{x1:0,y1:0,x2:W,y2:0,class:'h'},xh);el('line',{x1:0,y1:0,x2:0,y2:H,class:'v'},xh);el('rect',{class:'m-xhb',rx:2},xh);el('text',{class:'m-xht'},xh);el('circle',{r:5,class:'m-xhc'},xh)}
+  if(!hero){svgEl._zh=1000/(innerWidth<680?520:1000);zprep(svgEl)}
   if(!hero){curMap=key;sel=null;document.getElementById('mapTitle').textContent='LAGE // '+m.label.toUpperCase();document.getElementById('mapCode').textContent='KARTE '+m.code;info.textContent=m.note;
     document.querySelectorAll('#mapTabs .tbtn').forEach(b=>b.setAttribute('aria-selected',b.dataset.k===key?'true':'false'));
     const pe=document.getElementById('ppl');pe.innerHTML='<span class="pplh">ZIELPERSONEN</span>'+people.map(([id])=>{const p=PP[id];return `<button type="button" class="pchip f-${p.f}" data-p="${id}" aria-pressed="false"><i></i>${p.n}</button>`}).join('');
     pe.querySelectorAll('.pchip').forEach(b=>b.onclick=()=>selP(sel===b.dataset.p?null:b.dataset.p));
     MV.focus=P(m.focus[0],m.focus[1]);MV.home()}
 }
+/* Lagekarten: konstante Bildschirmgröße beim Zoomen. Marker, Beschriftungen, Schilder und Personen werden um ihren Ankerpunkt
+   gegenskaliert (Beschriftung hängt am nächsten Marker), Linienstärken bleiben per non-scaling-stroke gleich. */
+function zprep(svg){const items=[],pts=[],ctr=e=>{try{const b=e.getBBox();return[b.x+b.width/2,b.y+b.height/2]}catch(x){return[0,0]}};
+  [...svg.children].forEach(e=>{const c=e.getAttribute('class')||'';
+    if(e.tagName==='g'&&/\bmk\b/.test(c)){const f=e.querySelector('circle,rect');if(!f)return;const p=f.tagName==='circle'?[+f.getAttribute('cx'),+f.getAttribute('cy')]:ctr(f);
+      /* innere Ebene: die Einrast-Animation setzt transform per CSS auf .mk */let w=e.querySelector(':scope>g.mkz');if(!w){w=document.createElementNS(NS,'g');w.setAttribute('class','mkz');while(e.firstChild)w.appendChild(e.firstChild);e.appendChild(w)}items.push({e:w,p});pts.push(p)}
+    else if(/\bm-(town2?|lmk)\b/.test(c)){const p=ctr(e);items.push({e,p});pts.push(p)}});
+  [...svg.children].forEach(e=>{const c=e.getAttribute('class')||'';if(e.tagName!=='text'||!/\bm-(rng|rivt|land|lmt|road|tn2|townt|edge|strt|gt)\b/.test(c))return;
+    const x=+e.getAttribute('x'),y=+e.getAttribute('y');let best=null,bd=46;pts.forEach(p=>{const d=Math.hypot(p[0]-x,p[1]-y);if(d<bd){bd=d;best=p}});const p=best||ctr(e);
+    items.push({e,p});const pr=e.previousElementSibling;if(pr&&pr.tagName==='rect'&&/\bplate\b/.test(pr.getAttribute('class')||''))items.push({e:pr,p})});
+  items.forEach(it=>it.t0=it.e.getAttribute('transform')||'');svg._zi=items;svg._zs=null}
+function zApply(svg,z){const items=svg._zi;if(!items)return;const s=Math.min(1,(svg._zh||1)/z);if(svg._zs===s)return;svg._zs=s;
+  const tf=(p,t0)=>s===1?t0:`translate(${p[0]} ${p[1]}) scale(${s.toFixed(4)}) translate(${-p[0]} ${-p[1]})${t0?' '+t0:''}`;
+  items.forEach(({e,p,t0})=>{const v=tf(p,t0);if(v)e.setAttribute('transform',v);else e.removeAttribute('transform')});
+  (anims.get(svg)||[]).forEach(a=>{a.k=s;renderP(a)});
+  svg.querySelectorAll('.m-lock').forEach(g=>{const v=tf([+g.dataset.x,+g.dataset.y],'');if(v)g.setAttribute('transform',v);else g.removeAttribute('transform')})}
 /* Zielerfassung auf der Karte: Klammern rasten ein, Peillinien zu den Rändern, Koordinaten */
 function lockOn(svgEl,x,y,txt,cls){svgEl.querySelectorAll('.m-lock').forEach(e=>e.remove());const W=+svgEl.dataset.w,H=+svgEl.dataset.h,g=document.createElementNS(NS,'g');g.setAttribute('class','m-lock '+(cls||''));
-  const d=26;g.innerHTML=`<path class="tl" d="M${x-W} ${y}H${x-d-6}M${x+d+6} ${y}H${x+W}M${x} ${y-H}V${y-d-6}M${x} ${y+d+6}V${y+H}"/><g class="br" style="transform-origin:${x}px ${y}px"><path d="M${x-d} ${y-d+9}v-9h9M${x+d-9} ${y-d}h9v9M${x+d} ${y+d-9}v9h-9M${x-d+9} ${y+d}h-9v-9"/></g><text x="${x+d+10}" y="${y-d-6}" class="m-lkt">${txt}</text>`;
+  g.dataset.x=x;g.dataset.y=y;const d=26;g.innerHTML=`<path class="tl" d="M${x-W} ${y}H${x-d-6}M${x+d+6} ${y}H${x+W}M${x} ${y-H}V${y-d-6}M${x} ${y+d+6}V${y+H}"/><g class="br" style="transform-origin:${x}px ${y}px"><path d="M${x-d} ${y-d+9}v-9h9M${x+d-9} ${y-d}h9v9M${x+d} ${y+d-9}v9h-9M${x-d+9} ${y+d}h-9v-9"/></g><text x="${x+d+10}" y="${y-d-6}" class="m-lkt">${txt}</text>`;
   (svgEl.querySelector('.ppl-layer')||svgEl).before?svgEl.insertBefore(g,svgEl.querySelector('.m-scan')||null):svgEl.appendChild(g);
+  if(svgEl._zs&&svgEl._zs!==1){const s=svgEl._zs;g.setAttribute('transform',`translate(${x} ${y}) scale(${s.toFixed(4)}) translate(${-x} ${-y})`)}
   const V=VIEW.get(svgEl);if(V&&V.fly&&!RM)V.fly(x,y,Math.min(V.w,innerWidth<680?380:560))}
 /* Einblenden einer Karte: radial vom Fokus, Route wird gezeichnet, Marker rasten nacheinander ein */
 function reveal(svgEl){if(RM||!svgEl.animate)return;const V=VIEW.get(svgEl);svgEl.classList.remove('rv');void svgEl.getBoundingClientRect();svgEl.classList.add('rv');
@@ -3942,7 +3961,7 @@ function viewer(svg,BW,BH,lvl,o){
   const end=()=>{if(drag&&drag.on){try{svg.releasePointerCapture(drag.id)}catch(e){}svg.classList.remove('drag')}drag=null};
   svg.addEventListener('pointerup',end);svg.addEventListener('pointercancel',end);
   return V}
-const MV=viewer(mapSvg,1000,640,document.getElementById('zLvl'),{min:220,homeW:()=>innerWidth<680?520:1000});
+const MV=viewer(mapSvg,1000,640,document.getElementById('zLvl'),{min:220,homeW:()=>innerWidth<680?520:1000,onZoom:z=>zApply(mapSvg,z)});
 const Z=MV,setZ=MV.set,mapA=MV.A;
 document.getElementById('zIn').onclick=()=>MV.zoomBy(1.5);
 document.getElementById('zOut').onclick=()=>{sel&&selP(null);MV.zoomBy(1/1.5)};
