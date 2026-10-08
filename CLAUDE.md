@@ -340,4 +340,14 @@ Freigabe: „Anyone with the link“ ist aktiv. Wer die Seite offen hat, sieht n
   Kamera-Richtung `hc` aus Sehne weit voraus, stark geglättet (Fahrzeug folgt weiter der Straße mit `hd`), Kamera-Dämpfung 260 ms.
   HUD-Maße nur alle 300 ms (`hudC`), Labels: Vorrang für sichtbare, Einblenden erst nach 180 ms Stabilität, Einblenden mit Übergang.
   Defekte Pfadsegmente („M x yl“ ohne Punkte) aus `#routeData` entfernt (brachen Pfade ab), Generator korrigiert.
+- Version 52 (08.10.2026): Lagekarten im Modul (Route B-1, Karlsbad B-2, Prag B-3) und Startseiten-Karte auf OSM-Grundlage wie im Briefing.
+  Stadtpläne in `#cityData` (kv, prg; Generator Scratchpad `city/gen.py`: OpenFreeMap-Kacheln z14, Höhenlinien 5 m aus AWS Terrain Tiles
+  `elevation-tiles-prod.s3.amazonaws.com`): Kacheln `ch` mit Ebenen (Gebäude `bld`, Straßen r1–r6 + Tunnel, Wege `pth`/`stp`, Bahn `rl`,
+  Tram `tm`, Brücken `brg`, Wasser `wat`/`wl1`/`wl2`, Grün/Wald/Park/Friedhof/Sport, Siedlung/Gewerbe) als Varint-Deltas in Base64
+  (`unpk`, `p2d`), Höhenlinien `ct` (+ Höhenzahlen `cl`), Straßennamen `sn`, Gewässernamen `wn`, Ortsteile `pl`, Orte `po`. Route nutzt
+  `#routeData` (affin umgerechnet). Renderer `MB` (global, im ersten Skript zwischen `MB-BEGIN`/`MB-END`): Canvas unter der SVG
+  (`.mbase`, `.mb-cv`), Übersicht `L1` einmal, nach dem Zoomen scharfer Ausschnitt `L2` (`MB.view` aus `viewer().set`), Straßenbreiten
+  in Metern mit Mindestbreite, Beschriftung in Bildschirmgröße mit Kollisionsschutz, Farben aus Theme-Variablen (Neuzeichnen bei
+  Theme-Wechsel). `draw()` lässt bei OSM-Grundlage das schematische Gelände, Flüsse, Blöcke, Brücken, Grenze, Straßenschilder weg;
+  Marker, Personen, Orte bleiben. `RTDG()`/`CITY()` cachen erst, wenn die JSON-Blöcke geparst sind; `window.__mbRedraw` nach DOMContentLoaded.
 - Tests: Playwright-Skripte müssen vor dem Laden `window.__NOINTRO=1` per `addInitScript` setzen, sonst läuft das Intro.
