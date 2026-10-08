@@ -631,6 +631,23 @@ html.bpfull{overflow:hidden}
 .mapbox2.full .mbw{width:min(100%,calc((100vh - 40px)*16/9));justify-self:center;cursor:default}
 .cutbox.full{grid-template-columns:minmax(0,1fr) 240px}.cutbox.full .dbw{width:min(100%,calc((100vh - 40px)*16/9));justify-self:center;cursor:default}
 @media (max-width:1000px){.cutbox{grid-template-columns:1fr}.cutbox.full{grid-template-columns:1fr}}
+
+/* Routenkarten: OSM-Grundlage (Vektorkacheln) */
+.ms-rm.v2 .rq path{fill:none;vector-effect:non-scaling-stroke;stroke-linecap:round;stroke-linejoin:round}
+.ms-rm.v2 .q-cn{stroke:var(--amber);stroke-width:.6px;opacity:.13}.ms-rm.v2 .q-cm{stroke:var(--amber);stroke-width:.9px;opacity:.26}
+.ms-rm.v2 .q-frs path{fill:rgba(75,227,154,.055);stroke:rgba(75,227,154,.22);stroke-width:.6px}
+.ms-rm.v2 .q-urb path{fill:rgba(143,215,232,.10);stroke:rgba(143,215,232,.35);stroke-width:.6px}.ms-rm.v2 .q-ind path{fill:rgba(242,182,94,.06);stroke:rgba(242,182,94,.25);stroke-width:.5px}
+.ms-rm.v2 .q-wat path{fill:rgba(42,111,134,.45);stroke:rgba(111,182,204,.7);stroke-width:.8px}
+.ms-rm.v2 .q-wl1 path{stroke:#2A6F86;stroke-width:2.2px}.ms-rm.v2 .q-wl2 path{stroke:rgba(42,111,134,.8);stroke-width:.8px}
+.ms-rm.v2 .q-bd path{stroke:rgba(220,235,239,.55);stroke-width:1.4px;stroke-dasharray:9 4 2 4}
+.ms-rm.v2 .q-r5{display:none}.ms-rm.v2 .qn .q-r5{display:inline}.ms-rm.v2 .q-r5 path{stroke:rgba(143,215,232,.32);stroke-width:.6px}
+.ms-rm.v2 .q-r4 path{stroke:rgba(143,215,232,.5);stroke-width:.9px}
+.ms-rm.v2 .q-r3c path{stroke:rgba(143,215,232,.7);stroke-width:2.6px}.ms-rm.v2 .q-r3 path{stroke:#071419;stroke-width:1.1px}
+.ms-rm.v2 .q-rl path{stroke:rgba(143,215,232,.75);stroke-width:2.2px}.ms-rm.v2 .q-rlx path{stroke:#071419;stroke-width:1px;stroke-dasharray:5 5}
+.ms-rm.v2 .q-r2c path{stroke:rgba(143,215,232,.85);stroke-width:3.6px}.ms-rm.v2 .q-r2 path{stroke:#071419;stroke-width:1.8px}
+.ms-rm.v2 .q-r1c path{stroke:var(--cyan);stroke-width:5.2px}.ms-rm.v2 .q-r1 path{stroke:#071419;stroke-width:3px}.ms-rm.v2 .q-r1m path{stroke:rgba(143,215,232,.6);stroke-width:.6px}
+.rl.tn3 text{fill:color-mix(in srgb,var(--ink) 75%,var(--bg));font-size:11.5px}.rl.tv text{fill:color-mix(in srgb,var(--ink) 55%,var(--bg));font-size:10px;letter-spacing:.04em}.rl.tv .d{stroke-width:1}
+.rl.pk text{fill:rgba(242,182,94,.75);font-size:10px;letter-spacing:.05em}.rl.pk .d{fill:none;stroke:rgba(242,182,94,.8)}
 /* Detailblatt im Modul Zielobjekte */
 .dvw{margin-top:14px}
 .bd.vw-det .bpbox,.bd.vw-det .bpctl:not(.detctl){display:none}.bd.vw-bp .detbox,.bd.vw-bp .detctl{display:none}
@@ -2812,8 +2829,8 @@ const NS='http://www.w3.org/2000/svg';
 const maps={
  route:{label:'Route Augsburg–Prag',b:[48.15,50.42,10.55,14.75],
    towns:[['Augsburg',48.3705,10.8978],['Nürnberg',49.4521,11.0767],['Marktredwitz',50.003,12.087,'l'],['Cheb',50.0796,12.3739],['Karlsbad',50.2306,12.8711],['Prag',50.0755,14.4378],['Pilsen',49.7384,13.3736],['Waidhaus · Grenze',49.642,12.495]],
-   out:[[48.3705,10.8978],[48.76,11.42],[49.45,11.08],[49.66,11.55],[50.003,12.087],[50.0796,12.3739],[50.1866,12.754],[50.2306,12.8711],[50.17,13.40],[50.1069,14.2663],[50.0755,14.4378]],
-   back:[[50.0755,14.4378],[49.95,14.0],[49.7384,13.3736],[49.70,12.90],[49.642,12.495],[49.55,12.10],[49.45,11.08],[48.76,11.42],[48.3705,10.8978]],
+   out:[[48.3705,10.8978],[48.3739,10.9123],[48.3856,10.9076],[48.3972,10.9204],[48.4089,10.9235],[48.3963,11.0556],[48.3942,11.0643],[48.3934,11.0662],[48.3927,11.0676],[48.3915,11.0677],[48.4021,11.0839],[48.4311,11.1026],[48.4398,11.1419],[48.4767,11.1488],[48.4883,11.1993],[48.5027,11.2099],[48.521,11.2388],[48.534,11.2413],[48.5464,11.2575],[48.5538,11.2824],[48.5692,11.2985],[48.5802,11.348],[48.5826,11.3951],[48.6124,11.4381],[48.6326,11.4497],[48.6477,11.4754],[48.6463,11.5157],[48.62,11.5284],[48.579,11.5888],[48.6088,11.6572],[48.6142,11.6913],[48.6547,11.7198],[48.6655,11.7348],[48.6895,11.7382],[48.7315,11.8479],[48.7712,11.887],[48.7944,11.9237],[48.8241,11.9549],[48.8416,12.0032],[48.8608,12.0169],[48.8911,12.076],[48.9148,12.0881],[48.9598,12.0929],[48.9768,12.065],[49.009,12.0608],[49.0262,12.071],[49.0423,12.0962],[49.0652,12.0921],[49.0808,12.101],[49.0984,12.0931],[49.1249,12.1086],[49.1505,12.1061],[49.1823,12.1237],[49.2043,12.1157],[49.2347,12.1326],[49.2644,12.1229],[49.2943,12.1464],[49.3145,12.1542],[49.3874,12.1482],[49.4611,12.195],[49.5004,12.1857],[49.5343,12.1384],[49.5578,12.1227],[49.5751,12.1245],[49.6119,12.153],[49.6535,12.1473],[49.6832,12.1273],[49.7298,12.157],[49.7698,12.1527],[49.8036,12.1824],[49.8279,12.1652],[49.8656,12.1834],[49.8944,12.2192],[49.936,12.2265],[49.9446,12.261],[49.963,12.2556],[50.0488,12.3539],[50.0811,12.3734],[50.0875,12.3974],[50.0873,12.4502],[50.104,12.4922],[50.1013,12.5368],[50.1226,12.5857],[50.1419,12.6124],[50.1565,12.6674],[50.1848,12.6922],[50.2,12.7419],[50.1993,12.7429],[50.1976,12.741],[50.1953,12.7425],[50.1952,12.7426],[50.1946,12.7436],[50.1946,12.7437],[50.1944,12.7439],[50.1938,12.7443],[50.1937,12.7444],[50.1934,12.7447],[50.1929,12.7465],[50.1928,12.7477],[50.1927,12.7481],[50.1923,12.7488],[50.1881,12.7453],[50.1878,12.7462],[50.188,12.7465],[50.1883,12.7467],[50.1884,12.7468],[50.1891,12.748],[50.1885,12.7508],[50.1885,12.7514],[50.1863,12.7532],[50.1866,12.754],[50.1885,12.7514],[50.1891,12.748],[50.1878,12.7463],[50.1878,12.7462],[50.1878,12.7461],[50.1878,12.7459],[50.188,12.7454],[50.1881,12.7453],[50.1883,12.7452],[50.1887,12.7452],[50.1905,12.7455],[50.1923,12.7488],[50.1926,12.7483],[50.1927,12.7481],[50.1929,12.7465],[50.1933,12.7449],[50.1934,12.7447],[50.1935,12.7445],[50.1953,12.7425],[50.197,12.7412],[50.1976,12.741],[50.1981,12.7412],[50.1988,12.7421],[50.1993,12.7429],[50.1996,12.7439],[50.2004,12.7451],[50.2028,12.7573],[50.2118,12.7683],[50.2214,12.8213],[50.2339,12.8402],[50.2307,12.8707],[50.2389,12.8892],[50.233,12.9202],[50.2123,12.9124],[50.2108,12.9357],[50.1975,12.9665],[50.151,13.0491],[50.1333,13.1262],[50.1355,13.3198],[50.1428,13.3354],[50.1557,13.3399],[50.1591,13.3535],[50.1806,13.3808],[50.1608,13.4044],[50.1481,13.3953],[50.1377,13.4609],[50.1686,13.5848],[50.1676,13.7263],[50.1772,13.8086],[50.164,13.8543],[50.1572,13.9692],[50.1425,13.9991],[50.117,14.0208],[50.1055,14.0688],[50.0944,14.242],[50.0746,14.2925],[50.0789,14.3442],[50.0695,14.3615],[50.0696,14.3818],[50.0788,14.404],[50.0743,14.4064],[50.0755,14.4378]],
+   back:[[50.0755,14.4378],[50.0777,14.4196],[50.0686,14.3341],[50.0558,14.3363],[50.048,14.2577],[50.0382,14.2247],[49.9936,14.1608],[49.949,14.041],[49.918,13.9997],[49.887,13.9207],[49.8573,13.8777],[49.8358,13.7879],[49.7992,13.7492],[49.7829,13.711],[49.7765,13.6679],[49.759,13.629],[49.7371,13.5103],[49.7457,13.4892],[49.7484,13.3984],[49.7398,13.3711],[49.7299,13.3697],[49.7319,13.3206],[49.7099,13.2827],[49.7019,13.1948],[49.7128,13.165],[49.7232,13.0942],[49.7074,13.0452],[49.7024,12.9883],[49.7063,12.9541],[49.7216,12.8973],[49.7486,12.8355],[49.7517,12.8068],[49.7374,12.7349],[49.703,12.6953],[49.6817,12.6458],[49.6746,12.5593],[49.6529,12.5134],[49.6439,12.5082],[49.633,12.4524],[49.6122,12.402],[49.6189,12.3659],[49.614,12.3392],[49.5966,12.3181],[49.5873,12.2831],[49.5662,12.2537],[49.5647,12.2095],[49.5536,12.1964],[49.5312,12.1881],[49.526,12.1805],[49.5207,12.1658],[49.5202,12.165],[49.5191,12.1639],[49.5188,12.1636],[49.5186,12.1634],[49.5184,12.1633],[49.5181,12.1628],[49.5186,12.1615],[49.4977,12.1873],[49.4589,12.1946],[49.3875,12.1481],[49.3144,12.154],[49.2948,12.1465],[49.2644,12.1227],[49.2359,12.1325],[49.2043,12.1155],[49.1823,12.1236],[49.1506,12.1059],[49.1249,12.1084],[49.0984,12.0929],[49.0808,12.1009],[49.0653,12.0919],[49.0424,12.096],[49.0263,12.0709],[49.009,12.0606],[48.9767,12.0649],[48.9597,12.0928],[48.9148,12.0879],[48.8895,12.0743],[48.8608,12.0168],[48.8417,12.0031],[48.8242,11.9548],[48.7945,11.9236],[48.7713,11.8869],[48.7316,11.8478],[48.6897,11.7382],[48.6657,11.7347],[48.6548,11.7197],[48.6139,11.6902],[48.6088,11.6567],[48.5818,11.5881],[48.62,11.5287],[48.6461,11.5184],[48.6477,11.4754],[48.6326,11.4497],[48.6124,11.4381],[48.5826,11.3951],[48.5802,11.348],[48.5692,11.2985],[48.5538,11.2824],[48.5464,11.2575],[48.534,11.2413],[48.521,11.2388],[48.5027,11.2099],[48.4883,11.1993],[48.4767,11.1488],[48.4398,11.1419],[48.4312,11.1026],[48.4003,11.0811],[48.3946,11.0647],[48.3961,11.0316],[48.402,10.9678],[48.4088,10.9268],[48.4095,10.924],[48.4099,10.9213],[48.4103,10.919],[48.4114,10.9189],[48.4108,10.9201],[48.4104,10.9201],[48.4103,10.9201],[48.4095,10.9201],[48.4064,10.9202],[48.4044,10.9203],[48.4036,10.9203],[48.4016,10.9204],[48.3989,10.9208],[48.3978,10.9205],[48.3796,10.8987],[48.3705,10.8978]],
    border:[[50.42,12.30],[50.30,12.10],[50.18,12.17],[50.09,12.25],[49.97,12.44],[49.80,12.47],[49.65,12.53],[49.46,12.70],[49.25,12.95],[49.05,13.20],[48.85,13.45],[48.60,13.80]],
    cards:['loket','plana'], extras:[], pos:{loket:'tl',plana:'l'}, note:'Hin über Cheb (ca. 4 h bis Loket), zurück über Pilsen und Waidhaus (ca. 4,5 h)'},
  kv:{label:'Karlsbad · „Montenegro"',b:[50.2148,50.2292,12.8648,12.9001],
@@ -5460,7 +5477,7 @@ function chips(x,y,n){let o='';for(let i=0;i<n;i++)o+=`<ellipse cx="${x}" cy="${
 function seat(x,y,lab,cls){return `<g class="pk-seat ${cls||''}"><circle cx="${x}" cy="${y}" r="20" class="pk-head"/><path d="M${x-30} ${y+34}q30 -26 60 0" class="pk-sh"/><text x="${x}" y="${y+52}" text-anchor="middle" class="pk-l">${lab}</text></g>`}
 /* Route (Lage) aus den Kartendaten projiziert; Etappe hebt einen Abschnitt hervor, der DB5 fährt nur diesen */
 const CITY={aug:['AUGSBURG',[48.3705,10.8978],1],loket:['LOKET',[50.1866,12.754],-1],kv:['KARLSBAD',[50.2306,12.8711],1],prg:['PRAHA',[50.0755,14.4378],1],pils:['PLZEŇ',[49.7475,13.3776],-1]};
-const LEGS={a:['aug','loket','out','07:30 · AUGSBURG → LOKET · CA. 335 KM · GUT 4 STD.'],b:['loket','kv','out','14:00 · LOKET → KARLSBAD · 12 KM · 20 MIN.'],c:['kv','prg','out','09:30 · KARLSBAD → PRAG · D6 · CA. 1 STD. 45'],d:['prg','aug','back','16:00 · PRAG → PILSEN → AUGSBURG · CA. 425 KM · 4 STD. 30']};
+const LEGS={a:['aug','loket','out','07:30 · AUGSBURG → LOKET · CA. 313 KM · GUT 4 STD.'],b:['loket','kv','out','14:00 · LOKET → KARLSBAD · 14 KM · 20 MIN.'],c:['kv','prg','out','09:30 · KARLSBAD → PRAG · D6 · CA. 1 STD. 45'],d:['prg','aug','back','16:00 · PRAG → PILSEN → AUGSBURG · CA. 404 KM · 4 STD. 30']};
 function route(leg){const out=maps.route.out.concat([[50.17,13.4],[50.12,14.0],[50.0755,14.4378]]),back=maps.route.back||[],k=88;
   const P=([la,lo])=>[(lo-10.6)*k*Math.cos(49.9*Math.PI/180)+60,(51.0-la)*k+40];
   const all=out.concat(back).map(P),xs=all.map(p=>p[0]),ys=all.map(p=>p[1]);const mx=Math.min(...xs)-60,my=Math.min(...ys)-60,w=Math.max(...xs)-mx+60,h=Math.max(...ys)-my+60,sc=Math.min(940/w,420/h);
@@ -5674,8 +5691,8 @@ function acctCue(root,at){const o=root.querySelector('.ac2');if(!o||RM)return;co
   later(()=>{add('s-sum');ok()&&countUp(o.querySelector('.ac-tot'),11400000,1400,' €')},Math.max(te,tn+9*380));
   later(()=>{if(!ok())return;add('s-bo');A.bo=o._t?o._t():0;SND.whoosh(.2);later(()=>{if(ok()){o.querySelector('.ac-dst').textContent='EMPFÄNGER · BÖHMEN · 5 ORTE';SND.ping()}},1600)},Math.max(tb-200,te+900))}
 /* Routenkarte: Gelände der Lagekarte, Kamera folgt dem Fahrzeug, Live-Werte, Wegpunkte, Grenzübertritt */
-const RL={a:{f:'aug',t:'loket',set:'out',km:335,t0:'07:30',t1:'11:30',via:'A8 · A9 · A93 · E48',z:400},b:{f:'loket',t:'kv',set:'out',km:12,t0:'14:00',t1:'14:20',via:'OHŘE-TAL',z:110},
-  c:{f:'kv',t:'prg',set:'out',km:128,t0:'09:30',t1:'11:15',via:'D6',z:360},d:{f:'prg',t:'aug',set:'back',km:425,t0:'16:00',t1:'20:30',via:'D5 · A6 · A93 · A9',z:440}};
+const RL={a:{f:'aug',t:'loket',set:'out',km:313,t0:'07:30',t1:'11:30',via:'A8 · A9 · A93 · E48',z:400},b:{f:'loket',t:'kv',set:'out',km:14,t0:'14:00',t1:'14:20',via:'OHŘE-TAL',z:110},
+  c:{f:'kv',t:'prg',set:'out',km:134,t0:'09:30',t1:'11:15',via:'D6',z:360},d:{f:'prg',t:'aug',set:'back',km:404,t0:'16:00',t1:'20:30',via:'D5 · A6 · A93 · A9',z:440}};
 const RT={aug:'AUGSBURG',loket:'LOKET',kv:'KARLSBAD',prg:'PRAG'};
 function rproj(){const m=maps.route,[la0,la1,lo0,lo1]=m.b,k=Math.cos((la0+la1)/2*Math.PI/180),W=1000,H=470,pad=24,sc=Math.min((W-2*pad)/((lo1-lo0)*k),(H-2*pad)/(la1-la0)),ox=(W-(lo1-lo0)*k*sc)/2,oy=(H-(la1-la0)*sc)/2;
   return{P:(la,lo)=>[ox+(lo-lo0)*k*sc,oy+(la1-la)*sc],sc}}
@@ -5708,7 +5725,8 @@ function rleg(k){const L=RL[k],m=maps.route,{P}=rproj(),src=L.set==='out'?m.out:
   const near=c=>{let b=0,bd=1e9;src.forEach((q,i)=>{const d=(q[0]-c[0])**2+(q[1]-c[1])**2;if(d<bd){bd=d;b=i}});return b};let a=near(C4[L.f]),b=near(C4[L.t]);if(L.set==='back'&&b===0)b=src.length-1;
   const raw=(a<=b?src.slice(a,b+1):src.slice(b,a+1).reverse()).map(q=>P(q[0],q[1]));
   let pts=crSpline(raw,24);
-  if(k==='b'){const[x0,y0]=raw[0],[x1,y1]=raw[raw.length-1];pts=[];for(let j=0;j<=80;j++){const t=j/80;pts.push([x0+(x1-x0)*t+Math.sin(t*Math.PI*3)*1.4,y0+(y1-y0)*t-Math.sin(t*Math.PI)*2.5])}}
+  const RD=RTD();if(RD&&RD.rt&&RD.rt[k])pts=RD.rt[k].p.map(q=>q.slice());
+  else if(k==='b'){const[x0,y0]=raw[0],[x1,y1]=raw[raw.length-1];pts=[];for(let j=0;j<=80;j++){const t=j/80;pts.push([x0+(x1-x0)*t+Math.sin(t*Math.PI*3)*1.4,y0+(y1-y0)*t-Math.sin(t*Math.PI)*2.5])}}
   const cum=[0];for(let i=1;i<pts.length;i++)cum.push(cum[i-1]+Math.hypot(pts[i][0]-pts[i-1][0],pts[i][1]-pts[i-1][1]));const len=cum[cum.length-1];
   const idx=f=>{const d=f*len;let lo=1,hi=cum.length-1;while(lo<hi){const md=(lo+hi)>>1;if(cum[md]<d)lo=md+1;else hi=md}return lo};
   const at=f=>{const i=idx(f),d=f*len,t=(d-cum[i-1])/((cum[i]-cum[i-1])||1),x=pts[i-1][0]+(pts[i][0]-pts[i-1][0])*t,y=pts[i-1][1]+(pts[i][1]-pts[i-1][1])*t;return[x,y,Math.atan2(pts[i][1]-pts[i-1][1],pts[i][0]-pts[i-1][0]),i]};
@@ -5717,15 +5735,28 @@ function rleg(k){const L=RL[k],m=maps.route,{P}=rproj(),src=L.set==='out'?m.out:
   wps.sort((p,q)=>p[1]-q[1]);const xs=pts.map(p=>p[0]),ys=pts.map(p=>p[1]);
   return{L,pts,len,at,wps:wps.filter((w,i,a)=>a.findIndex(z=>z[0]===w[0])===i&&w[1]>.04&&w[1]<.96),bf,box:[Math.min(...xs),Math.min(...ys),Math.max(...xs),Math.max(...ys)],d:'M'+pts.map(q=>q[0].toFixed(1)+' '+q[1].toFixed(1)).join('L')}}
 /* Grundkarte ohne Schrift (Schrift kommt in Bildschirmgröße aus der Ebene darüber), Straßen geglättet */
-let RGEO=null;
-function rgeo(){if(RGEO)return RGEO;const m=maps.route,{P}=rproj(),sm=a=>'M'+crSpline(a.map(q=>P(q[0],q[1])),18).map(q=>q[0].toFixed(1)+' '+q[1].toFixed(1)).join('L');
+let RGEO=null,RTDD;
+/* Routenkarten-Grundlage aus OSM-Vektorkacheln (#routeData): Kacheln ch [Rahmen, Ebenen], Höhenlinien ct, Orte pl, Gipfel pk, Straßennummern rf, Strecken rt */
+function RTD(){if(RTDD===undefined){const el=document.getElementById('routeData');if(!el)return null;try{RTDD=JSON.parse(el.textContent)}catch(e){RTDD=null}}return RTDD}
+const RQL=[['frs','q-frs'],['urb','q-urb'],['ind','q-ind'],['wat','q-wat'],['wl2','q-wl2'],['wl1','q-wl1'],['bd','q-bd'],['r5','q-r5'],['r4','q-r4'],['r3','q-r3c'],['r3','q-r3'],['rl','q-rl'],['rl','q-rlx'],['r2','q-r2c'],['r2','q-r2'],['r1','q-r1c'],['r1','q-r1'],['r1','q-r1m']];
+function rgeo(){if(RGEO)return RGEO;const RD=RTD();
+  if(RD){const m=maps.route,{P}=rproj(),sm=a=>'M'+crSpline(a.map(q=>P(q[0],q[1])),6).map(q=>q[0].toFixed(2)+' '+q[1].toFixed(2)).join('L');let o=`<g class="rq" transform="scale(${(1/RD.Q).toFixed(4)})">`;
+    if(RD.ct){o+=`<path d="${RD.ct.cn||''}" class="q-cn"/><path d="${RD.ct.cm||''}" class="q-cm"/>`}
+    RQL.forEach(([c,cl])=>{o+=`<g class="${cl}">${RD.ch.map((h,i)=>h.p[c]?`<path data-c="${i}" d="${h.p[c]}"/>`:'').join('')}</g>`});
+    o+=`</g><path d="${sm(m.out)}" class="rm-all"/><path d="${sm(m.back)}" class="rm-all b"/>`;return RGEO=o}const m=maps.route,{P}=rproj(),sm=a=>'M'+crSpline(a.map(q=>P(q[0],q[1])),18).map(q=>q[0].toFixed(1)+' '+q[1].toFixed(1)).join('L');
   let o=rbase(1).replace(/<text[\s\S]*?<\/text>/g,'').replace(/<rect[^>]*class="(plate road|m-town)"[^>]*\/>/g,'').replace(/<circle[^>]*class="m-town2"[^>]*\/>/g,'').replace(/<path d="[^"]*" class="rm-all"[^>]*\/>/g,'').replace(/<line[^>]*class="m-grid"\/>/g,'');
   o+=`<path d="${sm(m.out)}" class="rm-all"/><path d="${sm(m.back)}" class="rm-all b"/>`;return RGEO=o}
 function rlabels(){const m=maps.route,{P}=rproj(),L=[],add=(t,la,lo,c,p,o)=>{const[x,y]=P(la,lo);L.push(Object.assign({t,x,y,c,p},o||{}))};
   add('DEUTSCHLAND',49.05,11.95,'cty',0);add('ČESKÁ REPUBLIKA',49.45,13.75,'cty',0);
   (m.ranges||[]).forEach(([n,la,lo])=>add(n,la,lo,'rng',1));(m.rivers||[]).forEach(([pts,n,lp])=>add(n,lp[0],lp[1],'riv',1.5));
   (m.roads||[]).forEach(([n,la,lo])=>add(n,la,lo,'road',2,{plate:1}));(m.towns2||[]).forEach(([n,la,lo])=>add(n,la,lo,'tn2',2.5,{dot:1}));
-  m.towns.forEach(([n,la,lo,ps])=>add(n.split(' · ')[0].toUpperCase(),la,lo,'tn',3,{dot:1,left:ps==='l',key:n.split(' ')[0]}));return L}
+  m.towns.forEach(([n,la,lo,ps])=>add(n.split(' · ')[0].toUpperCase(),la,lo,'tn',3,{dot:1,left:ps==='l',key:n.split(' ')[0]}));
+  const RD=RTD();if(RD){const taken=L.filter(l=>l.c==='tn'||l.c==='tn2').map(l=>[l.x,l.y]),free=(x,y,d)=>!taken.some(([a,b])=>Math.hypot(a-x,b-y)<d);
+    for(let i=L.length-1;i>=0;i--)if(L[i].c==='road')L.splice(i,1);
+    (RD.pl||[]).forEach(([x,y,n,c,rk])=>{if(!free(x,y,c==='c3'?3:6))return;taken.push([x,y]);L.push({t:c==='c3'?n:n.toUpperCase(),x,y,c:c==='c1'?'tn2':c==='c2'?'tn3':'tv',p:c==='c1'?2.6:c==='c2'?2:1.1-Math.min(.6,(rk||12)/40),dot:1})});
+    (RD.pk||[]).forEach(([x,y,n,e])=>L.push({t:`${n} ${e}`,x,y,c:'pk',p:.9,dot:1,tri:1}));
+    (RD.rf||[]).forEach(([x,y,r,c])=>L.push({t:r,x,y,c:'road',p:c==='motorway'?2.3:1.7,plate:1}))}
+  return L}
 function rmap(k){const R2=rleg(k),L=R2.L;
   const tk0=[...R2.wps.map(w=>[w[0].toUpperCase(),w[1],'']),...(R2.bf!=null&&!R2.wps.some(w=>Math.abs(w[1]-R2.bf)<.06)?[['GRENZE',R2.bf,'']]:[])].sort((a,b)=>a[1]-b[1]),ticks=[[RT[L.f],0,'s']];
   tk0.forEach(t=>{if(t[1]-ticks[ticks.length-1][1]>.09&&t[1]<.91)ticks.push(t)});ticks.push([RT[L.t],1,'e']);
@@ -5742,11 +5773,11 @@ function rdrive(root,s){const box=root.querySelector('.ms-rm');if(!box)return;co
   /* Ebene in Bildschirmpixeln */
   let BW=box.clientWidth,BH=box.clientHeight;ov.setAttribute('viewBox',`0 0 ${BW} ${BH}`);const A=BW/BH,mob=BW<560;
   const LB=rlabels().map(l=>{const g=document.createElementNS(NS,'g');g.setAttribute('class','rl '+l.c);let h='';
-    if(l.dot)h+=`<circle r="${l.c==='tn'?3.4:2.4}" class="d"/>`;
+    if(l.tri)h+=`<path d="M0 -4.5L4.5 3H-4.5Z" class="d"/>`;else if(l.dot)h+=`<circle r="${l.c==='tn'?3.4:l.c==='tv'?1.8:2.4}" class="d"/>`;
     const tx=l.dot?(l.left?-8:8):0,anc=l.dot?(l.left?'end':'start'):'middle';
     if(l.plate){const w=l.t.length*8+10;h+=`<rect x="${-w/2}" y="-9" width="${w}" height="18" rx="2"/>`}
     h+=`<text x="${tx}" y="${l.dot?4:l.plate?4.5:4}" text-anchor="${anc}">${l.t}</text>`;g.innerHTML=h;ov.appendChild(g);
-    const cw=l.c==='tn'?8.6:l.c==='cty'||l.c==='rng'?9.4:7.6,w=l.plate?l.t.length*8+10:l.t.length*cw+(l.dot?10:0);
+    const cw=l.c==='tn'?8.6:l.c==='cty'||l.c==='rng'?9.4:l.c==='tv'||l.c==='pk'?6.4:7.6,w=l.plate?l.t.length*8+10:l.t.length*cw+(l.dot?10:0);
     return Object.assign(l,{g,w,h:18,on:false,hot:false})});
   const pin=(cls,lab)=>{const g=document.createElementNS(NS,'g');g.setAttribute('class','rp '+cls);g.innerHTML=`<circle r="15" class="pr"/><circle r="5.5" class="pc"/><g class="pl"><rect x="12" y="-24" width="${lab.length*7.6+16}" height="18" rx="2"/><text x="20" y="-11">${lab}</text></g>`;ov.appendChild(g);return g};
   const p0=pin('s','START · '+RT[L.f]),p1=pin('e','ZIEL · '+RT[L.t]);
@@ -5777,6 +5808,10 @@ function rdrive(root,s){const box=root.querySelector('.ms-rm');if(!box)return;co
     SB.innerHTML=`<rect x="${bx}" y="${by}" width="${(w/2).toFixed(1)}" height="5" class="k"/><rect x="${(bx+w/2).toFixed(1)}" y="${by}" width="${(w/2).toFixed(1)}" height="5" class="w"/><text x="${bx}" y="${by-5}">0</text><text x="${(bx+w).toFixed(1)}" y="${by-5}" text-anchor="end">${N} KM</text>`;
     NA.setAttribute('transform',`translate(${BW-M-30} ${mob?BH-110:96})`);
     CO.setAttribute('x',bx);CO.setAttribute('y',by+20);CO.textContent=`${RP.la(y).toFixed(4)}° N · ${RP.lo(x).toFixed(4)}° E`}
+  /* Kacheln außerhalb des Bildausschnitts ausblenden; Nebenstraßen erst ab Nahsicht */
+  const RDc=RTD(),CHP=RDc?RDc.ch.map((h,i)=>({b:h.b,els:[...svg.querySelectorAll(`[data-c="${i}"]`)],on:true})):[];let lodN=null;
+  const rcull=vb=>{const x0=vb[0]-8,y0=vb[1]-8,x1=vb[0]+vb[2]+8,y1=vb[1]+vb[3]+8;CHP.forEach(c=>{const v=c.b[2]>x0&&c.b[0]<x1&&c.b[3]>y0&&c.b[1]<y1;if(v!==c.on){c.on=v;c.els.forEach(e=>e.style.display=v?'':'none')}});
+    const near=vb[2]<260;if(near!==lodN){lodN=near;svg.classList.toggle('qn',near)}};
   const car=document.createElementNS(NS,'g');car.setAttribute('class','rc');car.innerHTML='<circle r="20" class="cp"/><circle r="11" class="ch"/><path d="M11 0L-7 -8L-3 0L-7 8Z" class="ca"/>';ov.appendChild(car);
   /* Kamera */
   const[b0,b1,b2,b3]=R2.box,bw=b2-b0,bh=b3-b1,fw=Math.max(bw*1.35,bh*1.35*A,120),fit=[(b0+b2)/2,(b1+b3)/2,fw],
@@ -5802,6 +5837,7 @@ function rdrive(root,s){const box=root.querySelector('.ms-rm');if(!box)return;co
     else if(t<T3)tg=look;else{const u=ez(Math.min(1,(t-T3)/TE));tg=look.map((v,i)=>v+(fit[i]-v)*u)}
     if(!cam||t<T2||t>T3)cam=tg.slice();else{const q=1-Math.exp(-dt/160);cam=cam.map((v,i)=>v+(tg[i]-v)*q)}
     const vb=vbOf(cam);svg.setAttribute('viewBox',vb.map(v=>v.toFixed(2)).join(' '));
+    rcull(vb);
     /* Beschriftung in Bildschirmgröße, Kollisionen nach Rang */
     const[s0x,s0y]=proj(vb,pts[0][0],pts[0][1]),[s1x,s1y]=proj(vb,pts[pts.length-1][0],pts[pts.length-1][1]),[ccx,ccy]=proj(vb,x,y),pw=l=>l.length*7.6+16;
     const BR=box.getBoundingClientRect(),hudR=[...box.querySelectorAll('.rm-tl,.rm-tr,.rm-bot,.rm-ban.go')].map(e=>{const r=e.getBoundingClientRect();return[r.left-BR.left-4,r.top-BR.top-4,r.right-BR.left+4,r.bottom-BR.top+4]});
@@ -5830,7 +5866,7 @@ const cr=(a,d,html,cls)=>`<div class="mo-cr ${cls||''}" style="--a:${a}s;--d:${d
 /* Operationsblatt (v41): Titel als technisches Einsatzblatt. Links Codename mit Konstruktionslinien und Stammdaten, rechts Lageskizze der Route
    mit 13 Zielobjekten, Geldspur aus Konto 7714-V und Suche nach dem Empfänger; unten Auftragsparameter. Ablauf synchron zu Ms Worten (openCue). */
 /* Lageskizze v44: technische Karte im Koordinatensystem der Routenkarten (rproj, 1000×470). Gradnetz mit Randteilung, Höhenlinien,
-   Flüsse, Grenze, Route als Doppellinie mit km-Teilung (Längen aus den Etappen: hin 475 km, zurück 425 km), Detailkreise A (Karlsbad)
+   Flüsse, Grenze, Route als Doppellinie mit km-Teilung (Längen aus den Etappen: hin 461 km, zurück 404 km), Detailkreise A (Karlsbad)
    und B (Prag) mit gespreizter, nicht maßstäblicher Lage der Zielobjekte, Maßstabsleiste, Nordpfeil, Geldspur und Fadenkreuz. */
 const OPO=['loket','pupp','mlyn','trziste','kaiserbad','airport','strahov','ministry','danube','vitkov','museum','barrandov','plana'];
 const OPC=[['LOKET',[0]],['KARLOVY VARY',[1,2,3,4]],['PRAHA',[5,6,7,8,9,10,11]],['PLANÁ',[12]]];
@@ -5873,7 +5909,7 @@ function opMap(){const G=opGeo(),{P}=G,m=maps.route,[la0,la1,lo0,lo1]=G.FB,F=v=>
     o+=`<path d="${R2.d}" class="lgp" data-k="${k}" pathLength="1"/><g class="ltag" data-k="${k}"><path d="M${F(mx)} ${F(my)}L${F(tx2)} ${F(ty2)}"/><rect x="${F(tx2-9)}" y="${F(ty2-9)}" width="18" height="18"/><text x="${F(tx2)}" y="${F(ty2+5.5)}" text-anchor="middle">${k.toUpperCase()}</text></g>`});
   const ticks=(a,c,km,cls,lab)=>{let t='';const T=c[c.length-1];for(let k=50;k<km;k+=50){const L2=T*k/km;let i=c.findIndex(v=>v>=L2);if(i<1)i=1;const u=(L2-c[i-1])/(c[i]-c[i-1]||1),x=a[i-1][0]+(a[i][0]-a[i-1][0])*u,y=a[i-1][1]+(a[i][1]-a[i-1][1])*u,dx=a[i][0]-a[i-1][0],dy=a[i][1]-a[i-1][1],d=Math.hypot(dx,dy)||1,nx=-dy/d,ny=dx/d;
       t+=`<g class="kt ${cls}" data-f="${(k/km).toFixed(3)}"><path d="M${F(x-nx*6)} ${F(y-ny*6)}L${F(x+nx*6)} ${F(y+ny*6)}"/>${lab&&k%100===0?`<text x="${F(x+nx*(cls==='b'?-18:18))}" y="${F(y+ny*(cls==='b'?-18:18)+5)}" text-anchor="middle">${k}</text>`:''}</g>`}return t};
-  o+=ticks(G.out,G.oc,475,'o',0)+ticks(G.back,G.bc,425,'b',0);
+  o+=ticks(G.out,G.oc,461,'o',0)+ticks(G.back,G.bc,404,'b',0);
   /* Orte */
   [['AUGSBURG',48.3705,10.8978,'e'],['NÜRNBERG',49.4521,11.0767,'w'],['CHEB',50.0796,12.3739,'s'],['PILSEN',49.7384,13.3736,'s']].forEach(([n,la,lo,al],i)=>{const [x,y]=P(la,lo);
     o+=`<g class="tw" style="--i:${i}"><rect x="${F(x-4)}" y="${F(y-4)}" width="8" height="8"/><text x="${F(al==='w'?x-12:al==='e'?x+12:x)}" y="${F(al==='s'?y+26:y+6)}" text-anchor="${al==='w'?'end':al==='e'?'start':'middle'}">${n}</text></g>`});
@@ -5909,7 +5945,7 @@ function opening(){const cell=(k,l,v)=>`<div class="op-c" data-k="${k}"><i>${l}<
   <div class="op-body"><section class="op-tb"><div class="op-k">EINSATZBEFEHL<span class="op-x"> · CODENAME</span></div>
     <div class="op-ttl"><div class="op-l1">OPERATION</div><div class="op-l2"><span>SPLENDIDE</span><i class="cl t"></i><i class="cl b"></i><i class="cv l"></i><i class="cv r"></i></div><div class="op-dim"><i></i><span>9 ZEICHEN · NACH HOTEL SPLENDIDE</span></div></div>
     <dl class="op-meta"><dt>EINSATZRAUM</dt><dd>LOKET · KARLOVY VARY · PRAHA</dd><dt>ZEITRAUM</dt><dd>${depTxt()}</dd><dt>EINHEIT</dt><dd>00-EINHEIT · AGENT 01–04</dd><dt>FREIGABE</dt><dd>M</dd></dl></section>
-    <section class="op-map"><div class="op-mh"><b>LAGESKIZZE · ROUTE AUGSBURG – PRAHA</b><span class="op-km">STRECKE <b>900</b> KM</span></div>${opMap()}<div class="op-co">50.0000 N · 12.0000 E</div></section></div>
+    <section class="op-map"><div class="op-mh"><b>LAGESKIZZE · ROUTE AUGSBURG – PRAHA</b><span class="op-km">STRECKE <b>865</b> KM</span></div>${opMap()}<div class="op-co">50.0000 N · 12.0000 E</div></section></div>
   <div class="op-par">${cell('a','AUFTRAG','—')}${cell('z','ZIELOBJEKTE','00')}${cell('r','ROUTE','—')}${cell('e','EMPFÄNGER','—')}${cell('p','PROFIL','—')}</div></div>`}
 function openFx(root){const o=root.querySelector('.op2');if(!o)return;const me=cur,ck=cxClock(),utc=o.querySelector('.op-utc');
   const t=()=>{const d=new Date();utc.textContent=d.toISOString().slice(11,19)+' UTC'};t();const iv=setInterval(()=>{if(cur!==me||!o.isConnected)return clearInterval(iv);t()},1000);
@@ -5936,7 +5972,7 @@ function openCue(root,at){const o=root.querySelector('.op2');if(!o||RM)return;co
   later(()=>{add('s-r');if(!ok())return;OP_SET(o,'r');decode(o.querySelector('.op-c[data-k="r"] b'),500);const km=o.querySelector('.op-km');
     ['a','b','c','d'].forEach((k,i)=>later(()=>{if(!ok())return;const L=RL[k];o.querySelectorAll('.op-lsk .lgp.cur,.op-lsk .ltag.cur').forEach(e=>{e.classList.remove('cur');e.classList.add('done')});
       o.querySelectorAll(`.op-lsk [data-k="${k}"]`).forEach(e=>e.classList.add('on','cur'));if(km){km.innerHTML=`ETAPPE <b>${k.toUpperCase()}</b> · ${RT[L.f]} → ${RT[L.t]} · <b>${L.km} KM</b> · ${L.t0}–${L.t1}`;km.classList.add('lg')}SND.tick&&SND.tick()},i*620));
-    later(()=>{if(!ok())return;o.querySelectorAll('.op-lsk .cur').forEach(e=>{e.classList.remove('cur');e.classList.add('done')});if(km){km.innerHTML='STRECKE <b>900</b> KM · 4 ETAPPEN';km.classList.remove('lg')}},4*620+400)},tr);
+    later(()=>{if(!ok())return;o.querySelectorAll('.op-lsk .cur').forEach(e=>{e.classList.remove('cur');e.classList.add('done')});if(km){km.innerHTML='STRECKE <b>865</b> KM · 4 ETAPPEN';km.classList.remove('lg')}},4*620+400)},tr);
   later(()=>{add('s-e');if(!ok())return;OP_SET(o,'e');decode(o.querySelector('.op-c[data-k="e"] b'),700);SND.ping();const G=opGeo(),R=o._ret,B=G.ins[1],A2=G.ins[0],seq=[[A2,1],[A2,3],[B,0],[B,4],[B,6]];
     seq.forEach(([I,k],i)=>later(()=>{if(!ok())return;const [x,y]=I.p[k],t=G.tg[I.ix[k]];R.tx=x;R.ty=y;R.ll=[t.lat,t.lon]},i*380));later(()=>add('s-lk'),seq.length*380)},te);
   later(()=>{add('s-p');if(!ok())return;OP_SET(o,'p');decode(o.querySelector('.op-c[data-k="p"] b'),500)},ts)}
