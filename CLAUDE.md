@@ -391,4 +391,5 @@ Freigabe: „Anyone with the link“ ist aktiv. Wer die Seite offen hat, sieht n
 - Version 59 (27.10.2026): Musik „brief“ (Cold Open, Lagebild, Konto) durch vom Nutzer gelieferte Aufnahme ersetzt („Briefing Room“, 30 s,
   Schleife). `tools/music.py` nimmt jetzt .wav oder .mp3 und ersetzt nur gelieferte Stücke (übrige bleiben eingebettet).
 - Version 60 (27.10.2026): Musik „title“ (Titelszene „Operation Splendide“) durch vom Nutzer gelieferte Aufnahme ersetzt („Midnight Assignment“, 22 s, einmalig).
+- Version 61 (27.10.2026): Musik „drive“ (Fahrten und Zielobjekte) durch vom Nutzer gelieferte Aufnahme ersetzt („Border Run“, Schleife).
 - Tests: Playwright-Skripte müssen vor dem Laden `window.__NOINTRO=1` per `addInitScript` setzen, sonst läuft das Intro.
