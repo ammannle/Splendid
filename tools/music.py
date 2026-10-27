@@ -3,7 +3,7 @@
 
 Die Stücke wurden mit MusicGen (Meta, facebook/musicgen-small, Lizenz CC BY-NC 4.0, private Nutzung) erzeugt,
 siehe Prompts in MUSIC unten. Aufruf: python3 tools/music.py <Ordner mit brief, title, drive, casino, final als .wav oder .mp3>
-Fehlende Stücke bleiben wie eingebettet. Seit v59: brief vom Nutzer geliefert (ElevenLabs Music, „Briefing Room“).
+Fehlende Stücke bleiben wie eingebettet. Seit v59/v60: brief („Briefing Room“) und title („Midnight Assignment“) vom Nutzer geliefert.
 Klang: Lautheit angleichen, Ein-/Ausblendung, Mono-MP3, eingebettet als <script type="application/json" id="muData">.
 """
 import base64, json, os, re, subprocess, sys, tempfile
