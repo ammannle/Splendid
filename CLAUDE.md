@@ -386,6 +386,6 @@ Freigabe: „Anyone with the link“ ist aktiv. Wer die Seite offen hat, sieht n
   PREFLOP → SHOWDOWN, Befund mit EKG rechts. Kamera-Einstellungen `P3` neu (Tisch mittig zwischen den Tafeln). Handy: Tafeln ausgeblendet.
 - Version 58 (27.10.2026): Briefing-Stimme neu mit ElevenLabs (Stimme „M“ aus dem ElevenLabs-Konto, Modell eleven_v4), alle 25 Szenen,
   Sprechzeit ca. 3:17. Aussprache im Prompt: „Doppelnull-Einheit“, „Wesper“ statt Vesper. Erzeugung wegen Drosselung des Kontos teils
-  in Blöcken mit [long pause], danach an den Pausen geschnitten (Scratchpad ), Kontrolle per faster-whisper. Einbetten mit
-   (neue Option , Dateien ). ElevenLabs-Flow „Operation Splendide – Missionsbriefing M“.
+  in Blöcken mit [long pause], danach an den Pausen geschnitten (Scratchpad `split.py`), Kontrolle per faster-whisper. Einbetten mit
+  `python3 tools/tts.py --wavdir <Ordner> --tempo 1.0` (neue Option `--tempo`, Dateien `m_<key>.wav`). ElevenLabs-Flow „Operation Splendide – Missionsbriefing M“.
 - Tests: Playwright-Skripte müssen vor dem Laden `window.__NOINTRO=1` per `addInitScript` setzen, sonst läuft das Intro.
