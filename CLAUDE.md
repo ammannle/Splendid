@@ -388,4 +388,6 @@ Freigabe: „Anyone with the link“ ist aktiv. Wer die Seite offen hat, sieht n
   Sprechzeit ca. 3:17. Aussprache im Prompt: „Doppelnull-Einheit“, „Wesper“ statt Vesper. Erzeugung wegen Drosselung des Kontos teils
   in Blöcken mit [long pause], danach an den Pausen geschnitten (Scratchpad `split.py`), Kontrolle per faster-whisper. Einbetten mit
   `python3 tools/tts.py --wavdir <Ordner> --tempo 1.0` (neue Option `--tempo`, Dateien `m_<key>.wav`). ElevenLabs-Flow „Operation Splendide – Missionsbriefing M“.
+- Version 59 (27.10.2026): Musik „brief“ (Cold Open, Lagebild, Konto) durch vom Nutzer gelieferte Aufnahme ersetzt („Briefing Room“, 30 s,
+  Schleife). `tools/music.py` nimmt jetzt .wav oder .mp3 und ersetzt nur gelieferte Stücke (übrige bleiben eingebettet).
 - Tests: Playwright-Skripte müssen vor dem Laden `window.__NOINTRO=1` per `addInitScript` setzen, sonst läuft das Intro.

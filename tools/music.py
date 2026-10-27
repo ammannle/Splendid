@@ -2,7 +2,8 @@
 """Filmmusik für das Briefing einbetten.
 
 Die Stücke wurden mit MusicGen (Meta, facebook/musicgen-small, Lizenz CC BY-NC 4.0, private Nutzung) erzeugt,
-siehe Prompts in MUSIC unten. Aufruf: python3 tools/music.py <Ordner mit brief.wav, title.wav, drive.wav, casino.wav, final.wav>
+siehe Prompts in MUSIC unten. Aufruf: python3 tools/music.py <Ordner mit brief, title, drive, casino, final als .wav oder .mp3>
+Fehlende Stücke bleiben wie eingebettet. Seit v59: brief vom Nutzer geliefert (ElevenLabs Music, „Briefing Room“).
 Klang: Lautheit angleichen, Ein-/Ausblendung, Mono-MP3, eingebettet als <script type="application/json" id="muData">.
 """
 import base64, json, os, re, subprocess, sys, tempfile
@@ -20,8 +21,8 @@ def main(d):
     data = {}
     with tempfile.TemporaryDirectory() as tmp:
         for k, (_, _, loop) in MUSIC.items():
-            src = os.path.join(d, k + '.wav')
-            if not os.path.exists(src): print('fehlt', k); continue
+            src = next((p for p in (os.path.join(d, k + e) for e in ('.wav', '.mp3')) if os.path.exists(p)), None)
+            if not src: print('fehlt', k, '(bleibt wie eingebettet)'); continue
             out = os.path.join(tmp, k + '.mp3')
             dur = float(subprocess.run(['ffprobe', '-v', 'error', '-show_entries', 'format=duration', '-of', 'csv=p=0', src], capture_output=True, text=True).stdout)
             af = f'highpass=f=35,loudnorm=I=-19:TP=-2,afade=t=in:d={0.05 if not loop else 0.3},afade=t=out:st={dur - (2.5 if not loop else 0.2):.2f}:d={2.5 if not loop else 0.2}'
@@ -29,6 +30,8 @@ def main(d):
             data[k] = base64.b64encode(open(out, 'rb').read()).decode()
             print(k, round(os.path.getsize(out) / 1024), 'KB')
     src = open(HTML, encoding='utf-8').read()
+    old = re.search(r'<script type="application/json" id="muData">(.*?)</script>', src, re.S)
+    if old: data = {**json.loads(old.group(1)), **data}  # nur gelieferte Stücke ersetzen
     tag = '<script type="application/json" id="muData">' + json.dumps(data, separators=(',', ':')) + '</script>'
     src = re.sub(r'<script type="application/json" id="muData">.*?</script>', lambda m: tag, src, flags=re.S) if 'id="muData"' in src else src.replace('</body>', tag + '\n</body>')
     open(HTML, 'w', encoding='utf-8').write(src)
