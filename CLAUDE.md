@@ -384,4 +384,8 @@ Freigabe: „Anyone with the link“ ist aktiv. Wer die Seite offen hat, sieht n
   vier Spieler des Finales mit echten Händen (Fukutu K♠Q♠, Infante 8♣8♥, Le Chiffre A♦6♦, Bond 5♠7♠), Kartenkennungen B1–B5.
   Analysetafeln: Kopfzeile (Tisch, Blinds, Straße), Spielerliste mit Gewinnchance je Straße (vorab exakt berechnet), Kurve, Straßenanzeige
   PREFLOP → SHOWDOWN, Befund mit EKG rechts. Kamera-Einstellungen `P3` neu (Tisch mittig zwischen den Tafeln). Handy: Tafeln ausgeblendet.
+- Version 58 (27.10.2026): Briefing-Stimme neu mit ElevenLabs (Stimme „M“ aus dem ElevenLabs-Konto, Modell eleven_v4), alle 25 Szenen,
+  Sprechzeit ca. 3:17. Aussprache im Prompt: „Doppelnull-Einheit“, „Wesper“ statt Vesper. Erzeugung wegen Drosselung des Kontos teils
+  in Blöcken mit [long pause], danach an den Pausen geschnitten (Scratchpad ), Kontrolle per faster-whisper. Einbetten mit
+   (neue Option , Dateien ). ElevenLabs-Flow „Operation Splendide – Missionsbriefing M“.
 - Tests: Playwright-Skripte müssen vor dem Laden `window.__NOINTRO=1` per `addInitScript` setzen, sonst läuft das Intro.

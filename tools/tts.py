@@ -2,6 +2,7 @@
 """Erzeugt Ms Sprachaufnahmen für das Missionsbriefing (Piper, neuronale Stimmen) und bettet sie in die Seite ein.
 
 Aufruf:  python3 tools/tts.py <Ordner mit Piper-Stimmen>
+         python3 tools/tts.py --wavdir <Ordner> --tempo 1.0   (ElevenLabs-Aufnahmen, Stimme „M“, Modell eleven_v4)
          python3 tools/tts.py --wavdir <Ordner>   (fertige Aufnahmen aus tools/tts_chatterbox.py verwenden, nur Klang + Einbetten)
 Benötigt: pip install piper-tts, ffmpeg, Stimmen de_DE-kerstin-low und de_DE-thorsten-high
 (https://huggingface.co/rhasspy/piper-voices). Nach jeder Änderung an den Szenentexten erneut ausführen.
@@ -49,12 +50,14 @@ def norm(t):
     for a, b in SAY: t = re.sub(a, b, t)
     return t
 
+TEMPO = 1.17  # Chatterbox; ElevenLabs (--tempo 1.0) spricht bereits im richtigen Tempo
+
 def radio(w, mp, br, light=False):
     """light: realistische Stimme, nur sanft gefärbt (Chatterbox). Sonst Klang einer abhörsicheren Funkverbindung: Stimme etwas tiefer (Formanten bleiben), Funkband, leichte Sättigung,
     harte Kompression, Rauschteppich, Kanal öffnet mit Rauschstoß und Piepton, endet mit Quittungston."""
     sr = 'aformat=sample_rates=22050:channel_layouts=mono'
     voice = (
-        (f'[0:a]{sr},rubberband=tempo=1.17:formant=preserved,highpass=f=120,lowpass=f=7000,equalizer=f=2500:t=q:w=1:g=2.5,'  # realistisch: nur sanft gefärbt
+        (f'[0:a]{sr},rubberband=tempo={TEMPO}:formant=preserved,highpass=f=120,lowpass=f=7000,equalizer=f=2500:t=q:w=1:g=2.5,'  # realistisch: nur sanft gefärbt
          'acompressor=threshold=-22dB:ratio=3:attack=5:release=100:makeup=2,'
          'aecho=0.9:0.35:11|23:0.08|0.05,loudnorm=I=-16:TP=-1.5,apad=pad_dur=0.12[v];' if light else
          f'[0:a]{sr},rubberband=pitch=0.94:formant=preserved,highpass=f=260,lowpass=f=3900,'
@@ -104,5 +107,6 @@ def main(vdir, wavdir=None):
 
 if __name__ == '__main__':
     a = sys.argv[1:]
+    if '--tempo' in a: i = a.index('--tempo'); TEMPO = float(a[i + 1]); del a[i:i + 2]
     if a[:1] == ['--wavdir']: main(None, a[1])
     else: main(a[0] if a else '.')
